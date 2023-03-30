@@ -4,8 +4,8 @@ The Quizrd API is a REST-ful API which operates on the following
 resources:
 
 - *Players*
+- *Quizmasters*
 - *Admins*
-- *Questions*
 - *Quizzes*
 - *Generators*
 
@@ -15,12 +15,10 @@ The purpose of this API is to address the data needs relating to
 constructing, generating, operating, and playing online trivia quizzes.
 
 - A *player* participates in a *quiz*.
-- An *admin* constructs and operates a *quiz*.
-- A *question* is a multiple choice challenge with four possible answers.
-- A *quiz* is an interactive online competition containing a sequence of *questions*. *Quizzes* may be shared and reused. *Quizzes* are operated in one of two modes:
-  - synchronous - *players* answer each *question* in lock step
-  - asynchronous - *players* respond to *questions* on their own schedule
-- A *generator* generates a stream of *questions*.
+- A *quizmaster* organizes and runs a *quiz*.
+- A *sysadmin* manages the system.
+- A *quiz* is an interactive online competition containing a sequence of multiple choice questions.
+- A *generator* dynamically generates a *quiz*.
 
 ## Resources in general
 
@@ -166,7 +164,18 @@ Each *player* has one non-core properties:
 | --- | --- |
 | name | the display name of a *player* |
 
-Each *player* has a sub-resource of *quizzes* they are currently playing, referenced with the URI `base_uri://players/player_id/quizzes` (there should not be a trailing */*). The only operation available on this sub-resource is *list*.
+### Quizmasters
+
+Each *quizmaster* has three non-core properties:
+
+| name | value |
+| --- | --- |
+| name | the display name of an *quizmaster* |
+| email | the email address of an *quizmaster* |
+
+*insert* and *patch* operations that include an _email_ already
+used in another *quizmaster* resource will fail with a `409` status
+code.
 
 ### Admins
 
@@ -176,27 +185,10 @@ Each *admin* has three non-core properties:
 | --- | --- |
 | name | the display name of an *admin* |
 | email | the email address of an *admin* |
-| active | boolean; whether this *admin* is currently active |
-
-Any *admin* resource that has ever been used to create a
-*quiz* should never be deleted. Instead, the _active_ property
-should be set to `false`.
 
 *insert* and *patch* operations that include an _email_ already
 used in another *admin* resource will fail with a `409` status
 code.
-
-### Questions
-
-Each *question* has three non-core properties:
-
-| name | value |
-| --- | --- |
-| challenge| string describing the *question* challenge |
-| answers | list of strings representing possible answers |
-| imageUrl | string containing URL of an image to display |
-
-A *question* resource with an _id_ that is referenced by a *quiz* cannot be deleted.
 
 ### Quizzes
 
@@ -205,24 +197,22 @@ Each *quiz* has thirteen non-core properties:
 | name | value |
 | --- | --- |
 | name | the display name of this *quiz* |
-| playUrl | URL for playing this quiz |
-| pin | pin code for playing this quiz |
+| playUrl | URL for playing this *quiz* |
+| pin | pin code for playing this *quiz* |
 | topic | string representing the topic of this *quiz* |
-| author | the id of the author of this *quiz* |
-| numQuestions | number of *questions* included in this *quiz* |
-| questions | array of ids of *questions* included in this *quiz* |
+| author | the id of the *quizmaster* of this *quiz* |
+| numQuestions | number of questions included in this *quiz* |
+| questions | array of questions and associated answers included in this *quiz* |
 | difficulty | integer level of difficulty (1-10) |
 | timeLimit | number of seconds to respond to each question in this *quiz* |
-| leaderboard | a map of player ids to scores |
+| leaderboard | a map of player ids to scores for this *quiz* |
 | imageUrl | string containing URL of an image to display for this *quiz* |
 | sync | boolean; whether this *quiz* is synchronous or asynchronous |
 | active | boolean; whether this *quiz* is currently being played |
 
-Each *quiz's* name must be unique. Attempts to *insert* or *patch*
-a *quiz* to have a _name_ already used by another *quiz* will
-fail with a `409` status.
+Each *quiz's* playUrl and pin must be unique. Attempts to *insert* or *patch* a *quiz* to have a _playUrl_ or _pin_ already used by another *quiz* will fail with a `409` status.
 
-The _author_ and list of _questions_ properties of a *quiz* must contain the _id_ of an existing author, and *questions*, respectively.
+The _author_ of a *quiz* must contain the _id_ of an existing author.
 
 ### Generators
 
@@ -233,6 +223,3 @@ Each *generator* has four non-core properties:
 | type | string representing the *generator* type |
 | subscription | pubsub subscription for streaming *questions* from this *generator* |
 | topic | pubsub topic for streaming *questions* from this *generator* |
-| quizzes | list of ids of *quizzes* using this *generator* |
-
-The value of the _quizzes_ property must be a list of _id_ of existing *quizzes*.
