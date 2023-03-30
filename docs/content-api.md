@@ -1,31 +1,31 @@
-# Quizrd API (QAPI)
+# Emblem - Content API
 
-![Quizrd Application architecture diagram](../docs/images/application.png)
+![Emblem Application architecture diagram](../docs/images/application.png)
 
-The Quizrd API is responsible for data management, business requirements, and transaction management. The code lives in its own [directory](https://github.com/GoogleCloudPlatform/quizrd.io/tree/main/qapi).
+The Emblem Content API is responsible for data management, business requirements, and transaction management. The code lives in its own [directory](https://github.com/GoogleCloudPlatform/emblem/tree/main/content-api).
 
 ## Design
 
-The Quizrd API is configured as a Cloud Run service written using the [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework for Python. The [OpenAPI specification](./openapi.yaml) defines the operations and data for this API.
+The Emblem Content API is configured as a Cloud Run service written using the [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework for Python. The [OpenAPI specification](./openapi.yaml) defines the operations and data for this API.
 
 Most application developers should use the [Client Libraries](../client-libs) instead of directly sending requests to the API itself.
 
-The Quizrd API uses the following Google Cloud services:
+The Content API uses the following Google Cloud services:
 
 * **Cloud Firestore** - stores application data
 * **Cloud Logging** - creates structured log entries
 
-Quizrd uses a testing & delivery pipeline to automate deployment of the web application (Website & Quizrd API) and setup of operations management.
+Emblem uses a testing & delivery pipeline to automate deployment of the web application (Website & Content API) and setup of operations management.
 
-To deploy the Quizrd API manually, either launch the [Quickstart](#quickstart) interactive tutorial or follow the [Setup](#setup) guide below.
+To deploy the Emblem Content API manually, either launch the [Quickstart](#quickstart) interactive tutorial or follow the [Setup](#setup) guide below.
 
 ## Interactive Walkthrough for Setup
 
-Learn how to run the API by following an interactive tutorial on Cloud Shell, a free browser-based IDE that comes preconfigured with the necessary tools to run Quizrd. Click the button below to clone Quizrd into a Cloud Shell instance and launch the interactive tutorial:
+Learn how to run the API by following an interactive tutorial on Cloud Shell, a free browser-based IDE that comes preconfigured with the necessary tools to run Emblem. Click the button below to clone Emblem into a Cloud Shell instance and launch the interactive tutorial:
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fmco-gh%2Fquizrd.io&cloudshell_tutorial=docs%2Ftutorials%2Fapi-quickstart.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Femblem&cloudshell_tutorial=docs%2Ftutorials%2Fapi-quickstart.md)
 
-Once your Quizrd API is running, you can deploy the Quizrd Website to interact with the API by launching the [Website Quickstart on Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fmco-gh%2Fquizrd.io&cloudshell_tutorial=docs%2Ftutorials%2Fwebsite-quickstart.md).
+Once your Emblem Content API is running, you can deploy the Emblem Website to interact with the API by launching the [Website Quickstart on Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Femblem&cloudshell_tutorial=docs%2Ftutorials%2Fwebsite-quickstart.md).
 
 ## Manual Instructions for Setup
 
@@ -40,7 +40,7 @@ in your browser.
 
 1. [Navigate to Cloud Firestore](https://console.cloud.google.com/firestore/data)
 and select **Native** mode. This can only be done once, before the database is used.
-1. "Seed" the Quizrd API Cloud Firestore database with the
+1. "Seed" the Emblem API Cloud Firestore database with the
 the first `approver`. Click **Data** from the options at
 the left side of the Cloud Firestore screen, then enter
 the first approver:
@@ -72,14 +72,14 @@ This script imports content from [`sample_data.json`](./data/sample_data.json). 
 Once the database has been seeded, you can interact with the data by running the [Website](../website/README.md) or by making requests to the API directly.
 
     # Get the URL from your deployed API.
-    export EMBLEM_API_URL=$(gcloud run services describe qapi --project $PROJECT_ID --format "value(status.url)")
+    export EMBLEM_API_URL=$(gcloud run services describe content-api --project $PROJECT_ID --format "value(status.url)")
 
     # Make an HTTP request to get a "cause" entry.
     curl -X GET $EMBLEM_API_URL/causes/6aee60eead3741a98f15
 
 ### Deploy the API server to Cloud Run
 
-1. Navigate to the directory `qapi`.
+1. Navigate to the directory `content-api`.
 1. Run the command `gcloud init` and set the email address
    to one that has permission to access the database. The
    email you used to create the project is fine. Also select
@@ -90,18 +90,18 @@ Once the database has been seeded, you can interact with the data by running the
 
 1. Create a container for the API server using Cloud Build.
 
-        gcloud builds submit . --tag=gcr.io/$PROJECT_ID/qapi
+        gcloud builds submit . --tag=gcr.io/$PROJECT_ID/content-api
 
     This will create a container image and save it in
     a container registry.
 
 1. Deploy to Cloud Run.
 
-        gcloud run deploy --image=gcr.io/$PROJECT_ID/qapi
+        gcloud run deploy --image=gcr.io/$PROJECT_ID/content-api
 
 The API server will be deployed and run. Note the
 URI of the new service. This URI will need to be provided to
-the Quizrd website when it is installed.
+the Emblem website when it is installed.
 
 ## Running Locally
 
@@ -182,9 +182,9 @@ the approver seeding script from any authenticated machine.
 
 1. Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to
    the full path you noted in the previous step.
-1. "Seed" the local Quizrd API test Cloud Firestore database with this
+1. "Seed" the local Emblem API test Cloud Firestore database with this
    service account as an approver.
-1. Navigate to `../qapi/data`
+1. Navigate to `../content-api/data`
 1. Run the seeding script:
 
         python data/seed_test_approver.py <YOUR_EMAIL_ADDRESS>
