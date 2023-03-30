@@ -1,28 +1,26 @@
-# Emblem API Reference
+# Quizrd API Reference
 
-The Emblem API is a REST-style API which operates on the following
+The Quizrd API is a REST-ful API which operates on the following
 resources:
 
-- Approvers
-- Campaigns
-- Causes
-- Donations
-- Donors
+- *Players*
+- *Admins*
+- *Questions*
+- *Quizzes*
+- *Generators*
 
 ## Purpose and overview
 
 The purpose of this API is to address the data needs relating to
-fundraising *campaigns* for worthy *causes*.
+constructing, generating, operating, and playing online trivia quizzes.
 
-A *cause* is an organization of some kind (often a charity) that
-accepts *donations* from *donors*. Donations reach *causes*
-through *campaigns*. Campaigns are promoted by sponsors, and can
-only be for an approved *cause*. *Donors* are individuals who
-are authenticated and approved by a campaign.
-
-A *cause* may only accept donations if it has been approved by
-one or more *approvers*, who are individuals designated by the
-fundraising site to vet causes according to the site's criteria.
+- A *player* participates in a *quiz*.
+- An *admin* constructs and operates a *quiz*.
+- A *question* is a multiple choice challenge with four possible answers.
+- A *quiz* is an interactive online competition containing a sequence of *questions*. *Quizzes* may be shared and reused. *Quizzes* are operated in one of two modes:
+  - synchronous - *players* answer each *question* in lock step
+  - asynchronous - *players* respond to *questions* on their own schedule
+- A *generator* generates a stream of *questions*.
 
 ## Resources in general
 
@@ -160,92 +158,81 @@ using the [curl](https://curl.se/) command line tool are available.
 
 ## Resource details
 
-### Approvers
+### Players
 
-Each *approver* has three non-core properties:
+Each *player* has one non-core properties:
 
 | name | value |
 | --- | --- |
-| name | the person's actual name |
-| email | how to reach this person |
-| active | boolean; whether this person can currently approve |
+| name | the display name of a *player* |
 
-Any *approvers* resource that has ever been used to approve a
-*cause* should never be deleted. Instead, the _active_ property
+Each *player* has a sub-resource of *quizzes* they are currently playing, referenced with the URI `base_uri://players/player_id/quizzes` (there should not be a trailing */*). The only operation available on this sub-resource is *list*.
+
+### Admins
+
+Each *admin* has three non-core properties:
+
+| name | value |
+| --- | --- |
+| name | the display name of an *admin* |
+| email | the email address of an *admin* |
+| active | boolean; whether this *admin* is currently active |
+
+Any *admin* resource that has ever been used to create a
+*quiz* should never be deleted. Instead, the _active_ property
 should be set to `false`.
 
 *insert* and *patch* operations that include an _email_ already
-used in another *approvers* resource will fail with a `409` status
+used in another *admin* resource will fail with a `409` status
 code.
 
-### Campaigns
+### Questions
 
-Each *campaign* has seven non-core properties:
+Each *question* has three non-core properties:
 
 | name | value |
 | --- | --- |
-| name | the display name of the campaign |
-| description | string describing the purpose of the campaign |
-| cause | the id of the cause this campaign is for |
-| managers | array of strings containing email addresses of contact persons |
-| goal | number; the amount in USD this campaign is trying to raise |
+| challenge| string describing the *question* challenge |
+| answers | list of strings representing possible answers |
 | imageUrl | string containing URL of an image to display |
-| active | boolean; whether this person can currently approve |
 
-Each *campaign's* name must be unique. Attempts to *insert* or *patch*
-a *campaign* to have a _name_ already used by another *campaign* will
+A *question* resource with an _id_ that is referenced by a *quiz* cannot be deleted.
+
+### Quizzes
+
+Each *quiz* has thirteen non-core properties:
+
+| name | value |
+| --- | --- |
+| name | the display name of this *quiz* |
+| playUrl | URL for playing this quiz |
+| pin | pin code for playing this quiz |
+| topic | string representing the topic of this *quiz* |
+| author | the id of the author of this *quiz* |
+| numQuestions | number of *questions* included in this *quiz* |
+| questions | array of ids of *questions* included in this *quiz* |
+| difficulty | integer level of difficulty (1-10) |
+| timeLimit | number of seconds to respond to each question in this *quiz* |
+| leaderboard | a map of player ids to scores |
+| imageUrl | string containing URL of an image to display for this *quiz* |
+| sync | boolean; whether this *quiz* is synchronous or asynchronous |
+| active | boolean; whether this *quiz* is currently being played |
+
+Each *quiz's* name must be unique. Attempts to *insert* or *patch*
+a *quiz* to have a _name_ already used by another *quiz* will
 fail with a `409` status.
 
-The _cause_ property of a campaign must contain the _id_ of an existing
-_cause_.
+The _author_ and list of _questions_ properties of a *quiz* must contain the _id_ of an existing author, and *questions*, respectively.
 
-### Causes
+### Generators
 
-Each *cause* has four non-core properties:
-
-| name | value |
-| --- | --- |
-| name | the display name of the campaign |
-| description | string describing the purpose of the campaign |
-| imageUrl | string containing URL of an image to display |
-| active | boolean; whether this person can currently approve |
-
-The _name_ must be unique among *causes*. A *campaign* resource with
-an _id_ that is referenced by a *campaign* cannot be deleted. Instead
-the _active_ property should be set to `false`.
-
-Each *cause* has a sub-resource of *donations* to this cause, referenced
-with the URI `base_uri://causes/cause_id/donations` (there should not
-be a trailing */*). The only operation available on this sub-resource
-is *list*.
-
-### Donations
-
-Each *donation* has three non-core properties:
+Each *generator* has four non-core properties:
 
 | name | value |
 | --- | --- |
-| campaign | ID of the campaign this donation is for |
-| donor | ID of the donor making this donation |
-| amount | number; the amount in USD of the donation |
+| type | string representing the *generator* type |
+| subscription | pubsub subscription for streaming *questions* from this *generator* |
+| topic | pubsub topic for streaming *questions* from this *generator* |
+| quizzes | list of ids of *quizzes* using this *generator* |
 
-The value of the _campaign_ property must be the _id_ of an
-existing *campaign*. The value of the _donor_ property must
-be the _id_ of a *donor*.
-
-### Donors
-
-Each *donor* has three non-core properties:
-
-| name | value |
-| --- | --- |
-| name | the display name of the donor |
-| email | the donor's email address |
-| mailing_address | the physical address of the donor |
-
-The _email_ property must be unique among all *donors*.
-
-Each *donor* has a sub-resource of *donations* to this cause, referenced
-with the URI `base_uri://donors/donor_id/donations` (there should not
-be a trailing */*). The only operation available on this sub-resource
-is *list*.
+The value of the _quizzes_ property must be a list of _id_ of existing *quizzes*.
