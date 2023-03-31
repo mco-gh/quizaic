@@ -782,6 +782,17 @@ components:
     Quiz:
       required:
       - name
+      - playUrl
+      - pin
+      - topic
+      - author
+      - numQuestions
+      - questions
+      - difficulty
+      - timeLimit
+      - leaderboard
+      - sync
+      - active
       properties:
         id:
           type: string
@@ -800,6 +811,63 @@ components:
         topic:
           type: string
           description: the topic of this quiz
+        author:
+          type: string
+          description: the id of the quizmaster of this quiz
+        numQuestions:
+          type: string
+          description: number of questions included in this quiz
+        questions:
+          type: array
+          description: array of question/answer objects included in this quiz
+          default: []
+          items:
+            type: object
+            description: question and associated possible answers 
+            required:
+              - question
+              - answers
+              properties:
+                question:
+                  type: string
+                  description: question text
+                answers:
+                  type: array
+                  description: array of possible multiple choice answers to this question
+                  default: [4]
+                  items:
+                    type: string
+                    format: string
+                    description: one of four possible answers to the associated question
+        difficulty:
+          type: number
+          description: integer level of difficulty (1-10)
+          minimum: 1
+          maximum: 10
+        timeLimit:
+          type: number
+          description: number of seconds to respond to each question in this quiz
+          minimum: 3
+          maximum: 300
+        leaderboard:
+          type: object
+          description: map of player id to score for this quiz
+          properties:
+            player:
+              type: string
+              description: the id of this player
+            score:
+              type: integer
+              description: the score of this player
+          required:
+          - player
+        imageUrl:
+          type: string
+          description: string containing URL of an image to display for this quiz
+        sync:
+          type: boolean
+          default: true
+          description: is this quiz synchronous (false == asynchronous)
         active:
           type: boolean
           default: false
