@@ -825,20 +825,20 @@ components:
             type: object
             description: question and associated possible answers 
             required:
-              - question
-              - answers
-              properties:
-                question:
+            - question
+            - answers
+            properties:
+              question:
+                type: string
+                description: question text
+              answers:
+                type: array
+                description: array of possible multiple choice answers to this question
+                default: [4]
+                items:
                   type: string
-                  description: question text
-                answers:
-                  type: array
-                  description: array of possible multiple choice answers to this question
-                  default: [4]
-                  items:
-                    type: string
-                    format: string
-                    description: one of four possible answers to the associated question
+                  format: string
+                  description: one of four possible answers to the associated question
         difficulty:
           type: number
           description: integer level of difficulty (1-10)
