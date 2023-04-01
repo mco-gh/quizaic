@@ -16,14 +16,14 @@ import os
 
 from middleware.logging import log
 
-import openapi_client
-from openapi_client.api_client import ApiClient
-from openapi_client.api.default_api import DefaultApi
-from openapi_client.configuration import Configuration
+import generated
+from generated.api_client import ApiClient
+from generated.api.default_api import DefaultApi
+from generated.configuration import Configuration
 
 
-class QuizrdClient(object):
-    """API client for Quizrd
+class EmblemClient(object):
+    """API client for Emblem
 
     :host: Required. URI of API server
     :param access_token: required when making authentication calls
@@ -31,7 +31,7 @@ class QuizrdClient(object):
 
     def __init__(self, host, access_token=None, trace=None):
         if host is None:
-            log(f"Asked to create an QuizrdClient for no host", severity="ERROR")
+            log(f"Asked to create an EmblemClient for no host", severity="ERROR")
             raise ValueError
             
         conf = Configuration(host=host)
