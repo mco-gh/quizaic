@@ -11,17 +11,17 @@ Key | Input Type | Accessed Type | Description | Notes
 **difficulty** | decimal.Decimal, int, float,  | decimal.Decimal,  | integer level of difficulty (1-10) | 
 **numQuestions** | str,  | str,  | number of questions included in this quiz | 
 **timeLimit** | decimal.Decimal, int, float,  | decimal.Decimal,  | number of seconds to respond to each question in this quiz | 
-**[leaderboard](#leaderboard)** | dict, frozendict.frozendict,  | frozendict.frozendict,  | map of player id to score for this quiz | 
-**pin** | str,  | str,  | pin code for playing this quiz | 
-**author** | str,  | str,  | the id of the quizmaster of this quiz | 
 **name** | None, str,  | NoneClass, str,  | the display name of this quiz | 
-**[questions](#questions)** | list, tuple,  | tuple,  | array of question/answer objects included in this quiz | 
-**active** | bool,  | BoolClass,  | is this quiz currently being played? | if omitted the server will use the default value of False
 **topic** | str,  | str,  | the topic of this quiz | 
 **sync** | bool,  | BoolClass,  | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | if omitted the server will use the default value of True
-**playUrl** | str,  | str,  | URL for playing this quiz | 
 **id** | str,  | str,  | unique, system-assigned identifier | [optional] 
+**playUrl** | str,  | str,  | URL for playing this quiz | [optional] 
+**pin** | str,  | str,  | pin code for playing this quiz | [optional] 
+**author** | str,  | str,  | the id of the quizmaster of this quiz | [optional] 
+**[questions](#questions)** | list, tuple,  | tuple,  | array of question/answer objects included in this quiz | [optional] 
+**[leaderboard](#leaderboard)** | dict, frozendict.frozendict,  | frozendict.frozendict,  | map of player id to score for this quiz | [optional] 
 **imageUrl** | str,  | str,  | string containing URL of an image to display for this quiz | [optional] 
+**active** | bool,  | BoolClass,  | is this quiz currently being played? | [optional] if omitted the server will use the default value of False
 **timeCreated** | str, datetime,  | str,  | system-assigned creation timestamp | [optional] value must conform to RFC-3339 date-time
 **updated** | str, datetime,  | str,  | system-assigned update timestamp | [optional] value must conform to RFC-3339 date-time
 **selfLink** | str,  | str,  | full URI of the resource | [optional] 

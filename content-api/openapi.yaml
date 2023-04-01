@@ -782,17 +782,11 @@ components:
     Quiz:
       required:
       - name
-      - playUrl
-      - pin
       - topic
-      - author
       - numQuestions
-      - questions
       - difficulty
       - timeLimit
-      - leaderboard
       - sync
-      - active
       properties:
         id:
           type: string
