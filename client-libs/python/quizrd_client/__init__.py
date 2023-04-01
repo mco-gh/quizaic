@@ -22,8 +22,8 @@ from generated.api.default_api import DefaultApi
 from generated.configuration import Configuration
 
 
-class EmblemClient(object):
-    """API client for Emblem
+class QuizrdClient(object):
+    """API client for Quizrd
 
     :host: Required. URI of API server
     :param access_token: required when making authentication calls
@@ -31,7 +31,7 @@ class EmblemClient(object):
 
     def __init__(self, host, access_token=None, trace=None):
         if host is None:
-            log(f"Asked to create an EmblemClient for no host", severity="ERROR")
+            log(f"Asked to create an QuizrdClient for no host", severity="ERROR")
             raise ValueError
             
         conf = Configuration(host=host)
