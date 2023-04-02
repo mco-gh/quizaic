@@ -60,7 +60,7 @@ class Quiz(
                         _configuration=_configuration,
                     )
             id = schemas.StrSchema
-            quizzer = schemas.StrSchema
+            host = schemas.StrSchema
             playUrl = schemas.StrSchema
             pin = schemas.StrSchema
             topic = schemas.StrSchema
@@ -207,7 +207,7 @@ class Quiz(
             __annotations__ = {
                 "name": name,
                 "id": id,
-                "quizzer": quizzer,
+                "host": host,
                 "playUrl": playUrl,
                 "pin": pin,
                 "topic": topic,
@@ -235,7 +235,7 @@ class Quiz(
     def __getitem__(self, name: typing_extensions.Literal["id"]) -> MetaOapg.properties.id: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["quizzer"]) -> MetaOapg.properties.quizzer: ...
+    def __getitem__(self, name: typing_extensions.Literal["host"]) -> MetaOapg.properties.host: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["playUrl"]) -> MetaOapg.properties.playUrl: ...
@@ -285,7 +285,7 @@ class Quiz(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["name", "id", "quizzer", "playUrl", "pin", "topic", "anonymous", "imageUrl", "difficulty", "timeLimit", "numQuestions", "numAnswers", "questions", "sync", "active", "timeCreated", "updated", "selfLink", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["name", "id", "host", "playUrl", "pin", "topic", "anonymous", "imageUrl", "difficulty", "timeLimit", "numQuestions", "numAnswers", "questions", "sync", "active", "timeCreated", "updated", "selfLink", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -297,7 +297,7 @@ class Quiz(
     def get_item_oapg(self, name: typing_extensions.Literal["id"]) -> typing.Union[MetaOapg.properties.id, schemas.Unset]: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["quizzer"]) -> typing.Union[MetaOapg.properties.quizzer, schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["host"]) -> typing.Union[MetaOapg.properties.host, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["playUrl"]) -> typing.Union[MetaOapg.properties.playUrl, schemas.Unset]: ...
@@ -347,7 +347,7 @@ class Quiz(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["name", "id", "quizzer", "playUrl", "pin", "topic", "anonymous", "imageUrl", "difficulty", "timeLimit", "numQuestions", "numAnswers", "questions", "sync", "active", "timeCreated", "updated", "selfLink", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["name", "id", "host", "playUrl", "pin", "topic", "anonymous", "imageUrl", "difficulty", "timeLimit", "numQuestions", "numAnswers", "questions", "sync", "active", "timeCreated", "updated", "selfLink", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -356,7 +356,7 @@ class Quiz(
         *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         name: typing.Union[MetaOapg.properties.name, None, str, ],
         id: typing.Union[MetaOapg.properties.id, str, schemas.Unset] = schemas.unset,
-        quizzer: typing.Union[MetaOapg.properties.quizzer, str, schemas.Unset] = schemas.unset,
+        host: typing.Union[MetaOapg.properties.host, str, schemas.Unset] = schemas.unset,
         playUrl: typing.Union[MetaOapg.properties.playUrl, str, schemas.Unset] = schemas.unset,
         pin: typing.Union[MetaOapg.properties.pin, str, schemas.Unset] = schemas.unset,
         topic: typing.Union[MetaOapg.properties.topic, str, schemas.Unset] = schemas.unset,
@@ -380,7 +380,7 @@ class Quiz(
             *_args,
             name=name,
             id=id,
-            quizzer=quizzer,
+            host=host,
             playUrl=playUrl,
             pin=pin,
             topic=topic,

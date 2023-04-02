@@ -18,6 +18,6 @@ from openapi_client.model.cause import Cause
 from openapi_client.model.donation import Donation
 from openapi_client.model.donor import Donor
 from openapi_client.model.generator import Generator
+from openapi_client.model.host import Host
 from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
-from openapi_client.model.quizzer import Quizzer

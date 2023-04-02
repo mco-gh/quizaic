@@ -46,16 +46,16 @@ from openapi_client.paths.generators_id.delete import GeneratorsIdDelete
 from openapi_client.paths.generators_id.get import GeneratorsIdGet
 from openapi_client.paths.generators_id.patch import GeneratorsIdPatch
 from openapi_client.paths.generators.post import GeneratorsPost
+from openapi_client.paths.hosts.get import HostsGet
+from openapi_client.paths.hosts_id.delete import HostsIdDelete
+from openapi_client.paths.hosts_id.get import HostsIdGet
+from openapi_client.paths.hosts_id.patch import HostsIdPatch
+from openapi_client.paths.hosts.post import HostsPost
 from openapi_client.paths.players.get import PlayersGet
 from openapi_client.paths.players_id.delete import PlayersIdDelete
 from openapi_client.paths.players_id.get import PlayersIdGet
 from openapi_client.paths.players_id.patch import PlayersIdPatch
 from openapi_client.paths.players.post import PlayersPost
-from openapi_client.paths.quizzers.get import QuizzersGet
-from openapi_client.paths.quizzers_id.delete import QuizzersIdDelete
-from openapi_client.paths.quizzers_id.get import QuizzersIdGet
-from openapi_client.paths.quizzers_id.patch import QuizzersIdPatch
-from openapi_client.paths.quizzers.post import QuizzersPost
 from openapi_client.paths.quizzes.get import QuizzesGet
 from openapi_client.paths.quizzes_id.delete import QuizzesIdDelete
 from openapi_client.paths.quizzes_id.get import QuizzesIdGet
@@ -101,16 +101,16 @@ class DefaultApi(
     GeneratorsIdGet,
     GeneratorsIdPatch,
     GeneratorsPost,
+    HostsGet,
+    HostsIdDelete,
+    HostsIdGet,
+    HostsIdPatch,
+    HostsPost,
     PlayersGet,
     PlayersIdDelete,
     PlayersIdGet,
     PlayersIdPatch,
     PlayersPost,
-    QuizzersGet,
-    QuizzersIdDelete,
-    QuizzersIdGet,
-    QuizzersIdPatch,
-    QuizzersPost,
     QuizzesGet,
     QuizzesIdDelete,
     QuizzesIdGet,

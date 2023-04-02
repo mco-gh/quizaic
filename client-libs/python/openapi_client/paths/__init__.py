@@ -8,8 +8,8 @@ import enum
 class PathValues(str, enum.Enum):
     PLAYERS = "/players"
     PLAYERS_ID = "/players/{id}"
-    QUIZZERS = "/quizzers"
-    QUIZZERS_ID = "/quizzers/{id}"
+    HOSTS = "/hosts"
+    HOSTS_ID = "/hosts/{id}"
     ADMINS = "/admins"
     ADMINS_ID = "/admins/{id}"
     QUIZZES = "/quizzes"

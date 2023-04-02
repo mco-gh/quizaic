@@ -10,7 +10,7 @@ Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **name** | None, str,  | NoneClass, str,  | the display name of this quiz | 
 **id** | str,  | str,  | unique, system-assigned identifier | [optional] 
-**quizzer** | str,  | str,  | the id of the quizzer | [optional] 
+**host** | str,  | str,  | the id of the host | [optional] 
 **playUrl** | str,  | str,  | URL for playing this quiz | [optional] 
 **pin** | str,  | str,  | pin code for playing this quiz | [optional] 
 **topic** | str,  | str,  | the topic of this quiz | [optional] 

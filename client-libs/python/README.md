@@ -148,9 +148,9 @@ from openapi_client.model.cause import Cause
 from openapi_client.model.donation import Donation
 from openapi_client.model.donor import Donor
 from openapi_client.model.generator import Generator
+from openapi_client.model.host import Host
 from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
-from openapi_client.model.quizzer import Quizzer
 # Defining the host is optional and defaults to https://example.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -223,16 +223,16 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**generators_id_get**](docs/apis/tags/DefaultApi.md#generators_id_get) | **get** /generators/{id} | returns a single generator
 *DefaultApi* | [**generators_id_patch**](docs/apis/tags/DefaultApi.md#generators_id_patch) | **patch** /generators/{id} | updates a single generator
 *DefaultApi* | [**generators_post**](docs/apis/tags/DefaultApi.md#generators_post) | **post** /generators | Create a new generator
+*DefaultApi* | [**hosts_get**](docs/apis/tags/DefaultApi.md#hosts_get) | **get** /hosts | Returns a list of hosts
+*DefaultApi* | [**hosts_id_delete**](docs/apis/tags/DefaultApi.md#hosts_id_delete) | **delete** /hosts/{id} | deletes a single host
+*DefaultApi* | [**hosts_id_get**](docs/apis/tags/DefaultApi.md#hosts_id_get) | **get** /hosts/{id} | returns a single host
+*DefaultApi* | [**hosts_id_patch**](docs/apis/tags/DefaultApi.md#hosts_id_patch) | **patch** /hosts/{id} | updates a single host
+*DefaultApi* | [**hosts_post**](docs/apis/tags/DefaultApi.md#hosts_post) | **post** /hosts | Create a new host
 *DefaultApi* | [**players_get**](docs/apis/tags/DefaultApi.md#players_get) | **get** /players | Returns a list of players
 *DefaultApi* | [**players_id_delete**](docs/apis/tags/DefaultApi.md#players_id_delete) | **delete** /players/{id} | deletes a single player
 *DefaultApi* | [**players_id_get**](docs/apis/tags/DefaultApi.md#players_id_get) | **get** /players/{id} | returns a single player
 *DefaultApi* | [**players_id_patch**](docs/apis/tags/DefaultApi.md#players_id_patch) | **patch** /players/{id} | updates a single player
 *DefaultApi* | [**players_post**](docs/apis/tags/DefaultApi.md#players_post) | **post** /players | Create a new player
-*DefaultApi* | [**quizzers_get**](docs/apis/tags/DefaultApi.md#quizzers_get) | **get** /quizzers | Returns a list of quizzers
-*DefaultApi* | [**quizzers_id_delete**](docs/apis/tags/DefaultApi.md#quizzers_id_delete) | **delete** /quizzers/{id} | deletes a single quizzer
-*DefaultApi* | [**quizzers_id_get**](docs/apis/tags/DefaultApi.md#quizzers_id_get) | **get** /quizzers/{id} | returns a single quizzer
-*DefaultApi* | [**quizzers_id_patch**](docs/apis/tags/DefaultApi.md#quizzers_id_patch) | **patch** /quizzers/{id} | updates a single quizzer
-*DefaultApi* | [**quizzers_post**](docs/apis/tags/DefaultApi.md#quizzers_post) | **post** /quizzers | Create a new quizzer
 *DefaultApi* | [**quizzes_get**](docs/apis/tags/DefaultApi.md#quizzes_get) | **get** /quizzes | Returns a list of quizzes
 *DefaultApi* | [**quizzes_id_delete**](docs/apis/tags/DefaultApi.md#quizzes_id_delete) | **delete** /quizzes/{id} | deletes a single quiz
 *DefaultApi* | [**quizzes_id_get**](docs/apis/tags/DefaultApi.md#quizzes_id_get) | **get** /quizzes/{id} | returns a single quiz
@@ -248,9 +248,9 @@ Class | Method | HTTP request | Description
  - [Donation](docs/models/Donation.md)
  - [Donor](docs/models/Donor.md)
  - [Generator](docs/models/Generator.md)
+ - [Host](docs/models/Host.md)
  - [Player](docs/models/Player.md)
  - [Quiz](docs/models/Quiz.md)
- - [Quizzer](docs/models/Quizzer.md)
 
 ## Documentation For Authorization
 
