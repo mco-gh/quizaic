@@ -779,14 +779,102 @@ paths:
 
 components:
   schemas:
+    Player:
+      required:
+      - name
+      - email
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: unique, system-assigned identifier
+        name:
+          type: string
+          description: the display name of this player
+        email:
+          type: string
+          description: the email address of this player
+        timeCreated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned creation timestamp
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned update timestamp
+        selfLink:
+          type: string
+          format: uri
+          readOnly: true
+          description: full URI of the resource
+
+    Quizzer:
+      required:
+      - name
+      - email
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: unique, system-assigned identifier
+        name:
+          type: string
+          description: the display name of this quizzer
+        email:
+          type: string
+          description: the email address of this quizzer
+        timeCreated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned creation timestamp
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned update timestamp
+        selfLink:
+          type: string
+          format: uri
+          readOnly: true
+          description: full URI of the resource
+
+    Admin:
+      required:
+      - name
+      - email
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: unique, system-assigned identifier
+        name:
+          type: string
+          description: the display name of this admin
+        email:
+          type: string
+          description: the email address of this admin
+        timeCreated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned creation timestamp
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned update timestamp
+        selfLink:
+          type: string
+          format: uri
+          readOnly: true
+          description: full URI of the resource
+
     Quiz:
       required:
       - name
-      - topic
-      - numQuestions
-      - difficulty
-      - timeLimit
-      - sync
       properties:
         id:
           type: string
@@ -796,6 +884,9 @@ components:
           type: string
           nullable: true
           description: the display name of this quiz
+        quizzer:
+          type: string
+          description: the id of the quizzer
         playUrl:
           type: string
           description: URL for playing this quiz
@@ -805,12 +896,29 @@ components:
         topic:
           type: string
           description: the topic of this quiz
-        author:
+        anonymous:
+          type: boolean
+          description: whether players may be anonymous
+          default: true
+        imageUrl:
           type: string
-          description: the id of the quizmaster of this quiz
+          description: string containing URL of an image to display for this quiz
+        difficulty:
+          type: number
+          description: integer level of difficulty (1-10)
+          minimum: 1
+          maximum: 10
+        timeLimit:
+          type: number
+          description: number of seconds to respond to each question in this quiz
+          minimum: 3
+          maximum: 300
         numQuestions:
           type: string
           description: number of questions included in this quiz
+        numAnswers:
+          type: string
+          description: number of answers possible for each question in this quiz (0 == free form)
         questions:
           type: array
           description: array of question/answer objects included in this quiz
@@ -828,44 +936,54 @@ components:
               answers:
                 type: array
                 description: array of possible multiple choice answers to this question
-                default: [4]
                 items:
                   type: string
                   format: string
-                  description: one of four possible answers to the associated question
-        difficulty:
-          type: number
-          description: integer level of difficulty (1-10)
-          minimum: 1
-          maximum: 10
-        timeLimit:
-          type: number
-          description: number of seconds to respond to each question in this quiz
-          minimum: 3
-          maximum: 300
-        leaderboard:
-          type: object
-          description: map of player id to score for this quiz
-          properties:
-            player:
-              type: string
-              description: the id of this player
-            score:
-              type: integer
-              description: the score of this player
-          required:
-          - player
-        imageUrl:
-          type: string
-          description: string containing URL of an image to display for this quiz
+                  description: one possible answer to the associated question
         sync:
           type: boolean
-          default: true
           description: is this quiz synchronous (false == asynchronous)
+          default: true
         active:
           type: boolean
-          default: false
           description: is this quiz currently being played?
+          default: false
+        timeCreated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned creation timestamp
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned update timestamp
+        selfLink:
+          type: string
+          format: uri
+          readOnly: true
+          description: full URI of the resource
+
+    Generator:
+      required:
+      - name
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: unique, system-assigned identifier
+        name:
+          type: string
+          description: the display name of this generator
+        freeform:
+          type: boolean
+          description: whether this generator supports free-form answers
+          default: false
+        topic_list:
+          type: array
+          description: array of topics supported by this generator (empty == unlimited)
+          items: 
+            type: string
         timeCreated:
           type: string
           format: date-time

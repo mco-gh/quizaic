@@ -206,13 +206,13 @@ Each *quiz* has the following non-core properties:
 | playUrl | URL for playing this *quiz* |
 | pin | pin code for playing this *quiz* |
 | topic | string representing the topic of this *quiz* |
+| anonymous | boolean; whether players are anonymous |
 | imageUrl | string containing URL of an image to display for this *quiz* |
 | difficulty | integer level of difficulty (1-10) |
 | timeLimit | number of seconds to respond to each question in this *quiz* |
 | numQuestions | number of questions included in this *quiz* |
 | numAnswers | number of answers for each question (0 == free form) |
 | questions | array of questions and associated answers included in this *quiz* |
-| anonymous | boolean; whether players are anonymous |
 | sync | boolean; whether this *quiz* is synchronous or asynchronous |
 | active | boolean; whether this *quiz* is currently being played |
 
@@ -222,8 +222,10 @@ The _author_ of a *quiz* must contain the _id_ of an existing author.
 
 ### Generators
 
-Each *generator* has one non-core property:
+Each *generator* has three non-core properties:
 
 | name | value |
 | --- | --- |
 | name | string representing the *generator* name |
+| freeform | boolean; whether this *generator* supports free-form answers |
+| topic_list | array of topics supported by this *generator* (empty == unlimited) |
