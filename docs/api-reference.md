@@ -4,7 +4,7 @@ The Quizrd API is a REST-ful API which operates on the following
 resources:
 
 - *Players*
-- *Quizmasters*
+- *Quizzer*
 - *Admins*
 - *Quizzes*
 - *Generators*
@@ -15,10 +15,10 @@ The purpose of this API is to address the data needs relating to
 constructing, generating, operating, and playing online trivia quizzes.
 
 - A *player* participates in a *quiz*.
-- A *quizmaster* organizes and runs a *quiz*.
+- A *quizzer* organizes and runs a *quiz*.
 - A *sysadmin* manages the system.
 - A *quiz* is an interactive online competition containing a sequence of multiple choice questions.
-- A *generator* dynamically generates a *quiz*.
+- A *generator* generates a *quiz* based on *quizzer* specifications.
 
 ## Resources in general
 
@@ -158,28 +158,33 @@ using the [curl](https://curl.se/) command line tool are available.
 
 ### Players
 
-Each *player* has one non-core properties:
+Each *player* has two non-core properties:
 
 | name | value |
 | --- | --- |
 | name | the display name of a *player* |
+| email | the email address of a *player* |
 
-### Quizmasters
+*insert* and *patch* operations that include an _email_ already
+used in another *player* resource will fail with a `409` status
+code.
 
-Each *quizmaster* has three non-core properties:
+### Quizzers
+
+Each *quizzer* has two non-core properties:
 
 | name | value |
 | --- | --- |
-| name | the display name of an *quizmaster* |
-| email | the email address of an *quizmaster* |
+| name | the display name of an *quizzer* |
+| email | the email address of an *quizzer* |
 
 *insert* and *patch* operations that include an _email_ already
-used in another *quizmaster* resource will fail with a `409` status
+used in another *quizzer* resource will fail with a `409` status
 code.
 
 ### Admins
 
-Each *admin* has three non-core properties:
+Each *admin* has two non-core properties:
 
 | name | value |
 | --- | --- |
@@ -192,21 +197,22 @@ code.
 
 ### Quizzes
 
-Each *quiz* has thirteen non-core properties:
+Each *quiz* has the following non-core properties:
 
 | name | value |
 | --- | --- |
 | name | the display name of this *quiz* |
+| quizzer | the id of the *quizzer* of this *quiz* |
 | playUrl | URL for playing this *quiz* |
 | pin | pin code for playing this *quiz* |
 | topic | string representing the topic of this *quiz* |
-| author | the id of the *quizmaster* of this *quiz* |
-| numQuestions | number of questions included in this *quiz* |
-| questions | array of questions and associated answers included in this *quiz* |
+| imageUrl | string containing URL of an image to display for this *quiz* |
 | difficulty | integer level of difficulty (1-10) |
 | timeLimit | number of seconds to respond to each question in this *quiz* |
-| leaderboard | a map of player ids to scores for this *quiz* |
-| imageUrl | string containing URL of an image to display for this *quiz* |
+| numQuestions | number of questions included in this *quiz* |
+| numAnswers | number of answers for each question (0 == free form) |
+| questions | array of questions and associated answers included in this *quiz* |
+| anonymous | boolean; whether players are anonymous |
 | sync | boolean; whether this *quiz* is synchronous or asynchronous |
 | active | boolean; whether this *quiz* is currently being played |
 
@@ -216,10 +222,8 @@ The _author_ of a *quiz* must contain the _id_ of an existing author.
 
 ### Generators
 
-Each *generator* has four non-core properties:
+Each *generator* has one non-core property:
 
 | name | value |
 | --- | --- |
-| type | string representing the *generator* type |
-| subscription | pubsub subscription for streaming *questions* from this *generator* |
-| topic | pubsub topic for streaming *questions* from this *generator* |
+| name | string representing the *generator* name |
