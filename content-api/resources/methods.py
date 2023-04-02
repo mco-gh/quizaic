@@ -22,19 +22,11 @@ from utils.logging import log
 
 
 resource_fields = {
-    "approvers": ["name", "email", "active"],
-    "campaigns": [
-        "name",
-        "description",
-        "cause",
-        "managers",
-        "goal",
-        "imageUrl",
-        "active",
-    ],
-    "causes": ["name", "description", "imageUrl", "active"],
-    "donations": ["campaign", "donor", "amount"],
-    "donors": ["name", "email", "mailing_address"],
+    "admins": ["id", "name", "email"],
+    "hosts": ["id", "name", "email"],
+    "players": ["id", "name", "email"],
+    "quizzes": ["name"],
+    "generators": ["name"],
 }
 
 

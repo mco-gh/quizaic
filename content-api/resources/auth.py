@@ -40,7 +40,7 @@ def user_is_host(email, quiz_id):
     quiz = db.fetch("quizzes", quiz_id, methods.resource_fields["quizzes"])
     if quiz is None or quiz.get("host") is None:
         return False
-    return email in quiz["host"]
+    return quiz.get("host") == email
 
 
 def user_is_player(email, player_id):
@@ -51,7 +51,7 @@ def user_is_player(email, player_id):
             "players", methods.resource_fields["players"], "email", email
         )
         return len(matching_players) > 0
-    player = db.fetch("players", quiz_id, methods.resource_fields["players"])
+    player = db.fetch("players", player_id, methods.resource_fields["players"])
     if player is None or player.get("email") is None:
         return False
     return player.get("email") == email
@@ -69,11 +69,11 @@ def allowed(operation, resource_kind, representation=None):
     if resource_kind == "admins":
         return is_admin
 
-    if resource_kind == "host":
-        # Any authenticated user can create a host record for themself
+    if resource_kind == "hosts":
+        # Any admin or authenticated user can create a host record for themself
         if operation == "POST":
             host_email = representation.get("email")
-            return host_email == email
+            return is_admin or host_email == email
         # A host record can be read, updated, or deleted only by the
         # host associated with that record or an admin.
         if operation in ["GET", "PATCH", "DELETE"]:
@@ -86,7 +86,7 @@ def allowed(operation, resource_kind, representation=None):
         # Any authenticated user can create a player record for themself
         if operation == "POST":
             player_email = representation.get("email")
-            return player_email == email
+            return is_admin or player_email == email
         # A player record can be read, updated, or deleted only by the
         # player associated with that record or an admin.
         if operation in ["GET", "PATCH", "DELETE"]:
@@ -109,6 +109,10 @@ def allowed(operation, resource_kind, representation=None):
         if operation == "GET":
             return True
         return False
+
+    if resource_kind == "generators":
+        # Must be an admin to do anything with generators
+        return is_admin
 
     # All other accesses are disallowed. This prevents unanticipated access.
     return False
