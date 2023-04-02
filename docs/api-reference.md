@@ -4,7 +4,7 @@ The Quizrd API is a REST-ful API which operates on the following
 resources:
 
 - *Players*
-- *Quizzer*
+- *Host*
 - *Admins*
 - *Quizzes*
 - *Generators*
@@ -15,10 +15,10 @@ The purpose of this API is to address the data needs relating to
 constructing, generating, operating, and playing online trivia quizzes.
 
 - A *player* participates in a *quiz*.
-- A *quizzer* organizes and runs a *quiz*.
+- A *host* organizes and runs a *quiz*.
 - A *sysadmin* manages the system.
 - A *quiz* is an interactive online competition containing a sequence of multiple choice questions.
-- A *generator* generates a *quiz* based on *quizzer* specifications.
+- A *generator* generates a *quiz* based on *host* specifications.
 
 ## Resources in general
 
@@ -169,17 +169,17 @@ Each *player* has two non-core properties:
 used in another *player* resource will fail with a `409` status
 code.
 
-### Quizzers
+### Hosts
 
-Each *quizzer* has two non-core properties:
+Each *host* has two non-core properties:
 
 | name | value |
 | --- | --- |
-| name | the display name of an *quizzer* |
-| email | the email address of an *quizzer* |
+| name | the display name of an *host* |
+| email | the email address of an *host* |
 
 *insert* and *patch* operations that include an _email_ already
-used in another *quizzer* resource will fail with a `409` status
+used in another *host* resource will fail with a `409` status
 code.
 
 ### Admins
@@ -202,7 +202,7 @@ Each *quiz* has the following non-core properties:
 | name | value |
 | --- | --- |
 | name | the display name of this *quiz* |
-| quizzer | the id of the *quizzer* of this *quiz* |
+| host | the id of the *host* of this *quiz* |
 | playUrl | URL for playing this *quiz* |
 | pin | pin code for playing this *quiz* |
 | topic | string representing the topic of this *quiz* |

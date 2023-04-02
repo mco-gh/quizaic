@@ -29,18 +29,18 @@ def user_is_admin(email):
     return len(matching_admins) > 0
 
 
-def user_is_quizzer(email, quiz_id):
+def user_is_host(email, quiz_id):
     if email is None:
         return False
     if quiz_id == "any":
-        matching_quizzers = db.list_matching(
-            "quizzers", methods.resource_fields["quizzers"], "email", email
+        matching_hosts = db.list_matching(
+            "hosts", methods.resource_fields["hosts"], "email", email
         )
-        return len(matching_quizzers) > 0
+        return len(matching_hosts) > 0
     quiz = db.fetch("quizzes", quiz_id, methods.resource_fields["quizzes"])
-    if quiz is None or quiz.get("quizzer") is None:
+    if quiz is None or quiz.get("host") is None:
         return False
-    return email in quiz["quizzer"]
+    return email in quiz["host"]
 
 
 def user_is_player(email, player_id):
@@ -63,23 +63,23 @@ def allowed(operation, resource_kind, representation=None):
     # Check for everything requiring auth and handle
 
     is_admin = user_is_admin(email)
-    is_quizzer = user_is_quizzer(email, "any")
+    is_host = user_is_host(email, "any")
     
     # Admins (and only admins) can do any operation on the admins collection.
     if resource_kind == "admins":
         return is_admin
 
-    if resource_kind == "quizzer":
-        # Any authenticated user can create a quizzer record for themself
+    if resource_kind == "host":
+        # Any authenticated user can create a host record for themself
         if operation == "POST":
-            quizzer_email = representation.get("email")
-            return quizzer_email == email
-        # A quizzer record can be read, updated, or deleted only by the
-        # quizzer associated with that record or an admin.
+            host_email = representation.get("email")
+            return host_email == email
+        # A host record can be read, updated, or deleted only by the
+        # host associated with that record or an admin.
         if operation in ["GET", "PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             id = path_parts[1]
-            return is_admin or user_is_quizzer(email, id)
+            return is_admin or user_is_host(email, id)
         return False
 
     if resource_kind == "players":
@@ -96,15 +96,15 @@ def allowed(operation, resource_kind, representation=None):
         return False
 
     if resource_kind == "quizzes":
-        # Must be an admin or a quizzer to create a quiz.
+        # Must be an admin or a host to create a quiz.
         if operation == "POST":
-            return is_admin or is_quizzer
-        # Must be an admin or the quizzer associated with a quiz
+            return is_admin or is_host
+        # Must be an admin or the host associated with a quiz
         # to modify, or delete a quiz.
         if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             id = path_parts[1]
-            return is_admin or user_is_quizzer(email, id)
+            return is_admin or user_is_host(email, id)
         # Anyone can read all quiz records (for unauthenticated players).
         if operation == "GET":
             return True

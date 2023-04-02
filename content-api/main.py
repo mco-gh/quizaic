@@ -53,7 +53,7 @@ trace.set_tracer_provider(provider)
 
 resource = [
     "players",
-    "quizzers",
+    "hosts",
     "admins",
     "quizzes",
     "generators",

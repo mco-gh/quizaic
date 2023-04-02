@@ -137,20 +137,20 @@ paths:
         default:
           description: Unexpected error
 
-  /quizzers:
+  /hosts:
     get:
-      summary: Returns a list of quizzers
+      summary: Returns a list of hosts
       security:
         - bearerAuth: []
       responses:
         '200':
-          description: A JSON array of quizzers
+          description: A JSON array of hosts
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Quizzer'
+                  $ref: '#/components/schemas/Host'
         '403':
           description: Forbidden
         '404':
@@ -159,47 +159,47 @@ paths:
           description: Unexpected error
 
     post:
-      summary: Create a new quizzer
+      summary: Create a new host
       security:
         - bearerAuth: []
       requestBody:
-        description: JSON representation of a single quizzer
+        description: JSON representation of a single host
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Quizzer'
+              $ref: '#/components/schemas/Host'
       responses:
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Quizzer'
+                $ref: '#/components/schemas/Host'
         '403':
           description: Forbidden
         '404':
-          description: quizzer must have been misspelled in path
+          description: host must have been misspelled in path
 
-  /quizzers/{id}:
+  /hosts/{id}:
     get:
-      summary: returns a single quizzer
+      summary: returns a single host
       security:
         - bearerAuth: []
       parameters:
         - name: id
           in: path
-          description: Quizzer Id
+          description: Host Id
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: JSON representation of an quizzer
+          description: JSON representation of an host
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Quizzer'
+                $ref: '#/components/schemas/Host'
         '403':
           description: Forbidden
         '404':
@@ -208,30 +208,30 @@ paths:
           description: Unexpected error
 
     patch:
-      summary: updates a single quizzer
+      summary: updates a single host
       security:
         - bearerAuth: []
       parameters:
         - name: id
           in: path
-          description: Quizzer Id
+          description: Host Id
           required: true
           schema:
             type: string
       requestBody:
-        description: JSON representation of a single quizzer
+        description: JSON representation of a single host
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Quizzer'
+              $ref: '#/components/schemas/Host'
       responses:
         '201':
-          description: JSON representation of an quizzer 
+          description: JSON representation of an host 
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Quizzer'
+                $ref: '#/components/schemas/Host'
         '403':
           description: Forbidden
         '404':
@@ -242,13 +242,13 @@ paths:
           description: Unexpected error
 
     delete:
-      summary: deletes a single quizzer
+      summary: deletes a single host
       security:
         - bearerAuth: []
       parameters:
         - name: id
           in: path
-          description: Quizzer Id
+          description: Host Id
           required: true
           schema:
             type: string
@@ -1318,7 +1318,7 @@ components:
           readOnly: true
           description: full URI of the resource
 
-    Quizzer:
+    Host:
       required:
       - name
       - email
@@ -1329,10 +1329,10 @@ components:
           description: unique, system-assigned identifier
         name:
           type: string
-          description: the display name of this quizzer
+          description: the display name of this host
         email:
           type: string
-          description: the email address of this quizzer
+          description: the email address of this host
         timeCreated:
           type: string
           format: date-time
@@ -1392,9 +1392,9 @@ components:
           type: string
           nullable: true
           description: the display name of this quiz
-        quizzer:
+        host:
           type: string
-          description: the id of the quizzer
+          description: the id of the host
         playUrl:
           type: string
           description: URL for playing this quiz
