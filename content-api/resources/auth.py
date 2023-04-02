@@ -20,31 +20,41 @@ from resources import methods
 from data import cloud_firestore as db
 
 
-def user_is_approver(email):
+def user_is_admin(email):
     if email is None:
         return False
-    matching_approvers = db.list_matching(
-        "approvers", methods.resource_fields["approvers"], "email", email
+    matching_admins = db.list_matching(
+        "admins", methods.resource_fields["admins"], "email", email
     )
-    return len(matching_approvers) > 0
+    return len(matching_admins) > 0
 
 
-def user_is_manager(email, campaign_id):
+def user_is_quizzer(email, quiz_id):
     if email is None:
         return False
-    campaign = db.fetch("campaigns", campaign_id, methods.resource_fields["campaigns"])
-    if campaign is None or campaign.get("managers") is None:
+    if quiz_id == "any":
+        matching_quizzers = db.list_matching(
+            "quizzers", methods.resource_fields["quizzers"], "email", email
+        )
+        return len(matching_quizzers) > 0
+    quiz = db.fetch("quizzes", quiz_id, methods.resource_fields["quizzes"])
+    if quiz is None or quiz.get("quizzer") is None:
         return False
-    return email in campaign["managers"]
+    return email in quiz["quizzer"]
 
 
-def user_is_donor(email, donor_id):
+def user_is_player(email, player_id):
     if email is None:
         return False
-    donor = db.fetch("donors", donor_id, methods.resource_fields["donors"])
-    if donor is not None and email == donor.get("email"):
-        return True
-    return False
+    if player_id == "any":
+        matching_players = db.list_matching(
+            "players", methods.resource_fields["players"], "email", email
+        )
+        return len(matching_players) > 0
+    player = db.fetch("players", quiz_id, methods.resource_fields["players"])
+    if player is None or player.get("email") is None:
+        return False
+    return player.get("email") == email
 
 
 def allowed(operation, resource_kind, representation=None):
@@ -52,48 +62,53 @@ def allowed(operation, resource_kind, representation=None):
 
     # Check for everything requiring auth and handle
 
-    is_approver = user_is_approver(email)
+    is_admin = user_is_admin(email)
+    is_quizzer = user_is_quizzer(email, "any")
+    
+    # Admins (and only admins) can do any operation on the admins collection.
+    if resource_kind == "admins":
+        return is_admin
 
-    if is_approver:
-        return True
-    elif resource_kind == "approvers":
+    if resource_kind == "quizzer":
+        # Any authenticated user can create a quizzer record for themself
+        if operation == "POST":
+            quizzer_email = representation.get("email")
+            return quizzer_email == email
+        # A quizzer record can be read, updated, or deleted only by the
+        # quizzer associated with that record or an admin.
+        if operation in ["GET", "PATCH", "DELETE"]:
+            path_parts = request.path.split("/")
+            id = path_parts[1]
+            return is_admin or user_is_quizzer(email, id)
         return False
 
-    if resource_kind in ["campaigns", "causes"]:
+    if resource_kind == "players":
+        # Any authenticated user can create a player record for themself
         if operation == "POST":
-            return is_approver
+            player_email = representation.get("email")
+            return player_email == email
+        # A player record can be read, updated, or deleted only by the
+        # player associated with that record or an admin.
+        if operation in ["GET", "PATCH", "DELETE"]:
+            path_parts = request.path.split("/")
+            id = path_parts[1]
+            return is_admin or user_is_player(email, id)
+        return False
+
+    if resource_kind == "quizzes":
+        # Must be an admin or a quizzer to create a quiz.
+        if operation == "POST":
+            return is_admin or is_quizzer
+        # Must be an admin or the quizzer associated with a quiz
+        # to modify, or delete a quiz.
         if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             id = path_parts[1]
-            return is_approver or user_is_manager(email, id)
-        return True
-
-    if resource_kind == "donors":
-        if operation == "POST":
-            # Any authenticated user can create a donor record for themself
-            donor_email = representation.get("email")
-            return donor_email == email
-        if operation in ["PATCH", "DELETE"]:
-            return is_approver
-        return True
-
-    if resource_kind == "donations":
-        # Approvers can do all operations on donations, for cleanup purposes.
-        #
-        # Donors can GET their own donations, Campaign managers can GET their
-        # donations. Note that both of these GETs are subdomain ones.
-        #
-        # Donors can POST new donations.
-
-        if is_approver:
+            return is_admin or user_is_quizzer(email, id)
+        # Anyone can read all quiz records (for unauthenticated players).
+        if operation == "GET":
             return True
+        return False
 
-        if operation == "POST":
-            return user_is_manager(
-                email, representation.get("campaign")
-            ) or user_is_donor(email, representation.get("donor"))
-
-        return True
-
-    # No other case requires authorization
-    return True
+    # All other accesses are disallowed. This prevents unanticipated access.
+    return False
