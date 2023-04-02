@@ -53,7 +53,7 @@ def unseed_database():
     print("Deleting seed data from Google Cloud Project '{}'.".format(client.project))
     print("This may take a few minutes...")
     # Delete all objects from seed data
-    collections = ["players", "quizzers", "admins", "quizzes", "generators"]
+    collections = ["players", "hosts", "admins", "quizzes", "generators"]
     for coll in collections:
         coll_ref = client.collection(coll)
         docs = coll_ref.list_documents()

@@ -24,7 +24,7 @@
     }
   },
   {
-    "collection": "quizzers",
+    "collection": "hosts",
     "id": "1b271fa397f14c2b9582",
     "data": {
       "name": "Emma Mcdonalid",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "collection": "quizzers",
+    "collection": "hosts",
     "id": "bd9682710f784951aad8",
     "data": {
       "name": "Jackson Carter",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "collection": "quizzers",
+    "collection": "hosts",
     "id": "913349c0d8e34dedaba7",
     "data": {
       "name": "Fabíola Almeida",
