@@ -6,8 +6,16 @@ import enum
 
 
 class PathValues(str, enum.Enum):
+    PLAYERS = "/players"
+    PLAYERS_ID = "/players/{id}"
+    QUIZZERS = "/quizzers"
+    QUIZZERS_ID = "/quizzers/{id}"
+    ADMINS = "/admins"
+    ADMINS_ID = "/admins/{id}"
     QUIZZES = "/quizzes"
     QUIZZES_ID = "/quizzes/{id}"
+    GENERATORS = "/generators"
+    GENERATORS_ID = "/generators/{id}"
     APPROVERS = "/approvers"
     APPROVERS_ID = "/approvers/{id}"
     CAMPAIGNS = "/campaigns"

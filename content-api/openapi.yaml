@@ -10,6 +10,387 @@ servers:
   description: Development server
 
 paths:
+  /players:
+    get:
+      summary: Returns a list of players
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A JSON array of players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found. The path must have a typo
+        default:
+          description: Unexpected error
+
+    post:
+      summary: Create a new player
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: JSON representation of a single player
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '403':
+          description: Forbidden
+        '404':
+          description: player must have been misspelled in path
+
+  /players/{id}:
+    get:
+      summary: returns a single player
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Player Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JSON representation of an player
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        default:
+          description: Unexpected error
+
+    patch:
+      summary: updates a single player
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Player Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: JSON representation of a single player
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+      responses:
+        '201':
+          description: JSON representation of an player 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: deletes a single player
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Player Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+  /quizzers:
+    get:
+      summary: Returns a list of quizzers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A JSON array of quizzers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Quizzer'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found. The path must have a typo
+        default:
+          description: Unexpected error
+
+    post:
+      summary: Create a new quizzer
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: JSON representation of a single quizzer
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quizzer'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quizzer'
+        '403':
+          description: Forbidden
+        '404':
+          description: quizzer must have been misspelled in path
+
+  /quizzers/{id}:
+    get:
+      summary: returns a single quizzer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Quizzer Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JSON representation of an quizzer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quizzer'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        default:
+          description: Unexpected error
+
+    patch:
+      summary: updates a single quizzer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Quizzer Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: JSON representation of a single quizzer
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quizzer'
+      responses:
+        '201':
+          description: JSON representation of an quizzer 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quizzer'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: deletes a single quizzer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Quizzer Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+  /admins:
+    get:
+      summary: Returns a list of admins
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A JSON array of admins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Admin'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found. The path must have a typo
+        default:
+          description: Unexpected error
+
+    post:
+      summary: Create a new admin
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: JSON representation of a single admin
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Admin'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+        '403':
+          description: Forbidden
+        '404':
+          description: admin must have been misspelled in path
+
+  /admins/{id}:
+    get:
+      summary: returns a single admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Admin Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JSON representation of an admin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        default:
+          description: Unexpected error
+
+    patch:
+      summary: updates a single admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Admin Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: JSON representation of a single admin
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Admin'
+      responses:
+        '201':
+          description: JSON representation of an admin 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: deletes a single admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Admin Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
   /quizzes:
     get:
       summary: Returns a list of quizzes
@@ -122,6 +503,133 @@ paths:
         - name: id
           in: path
           description: Quiz Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+  /generators:
+    get:
+      summary: Returns a list of generators
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A JSON array of generators
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Generator'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found. The path must have a typo
+        default:
+          description: Unexpected error
+
+    post:
+      summary: Create a new generator
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: JSON representation of a single generator
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Generator'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Generator'
+        '403':
+          description: Forbidden
+        '404':
+          description: generator must have been misspelled in path
+
+  /generators/{id}:
+    get:
+      summary: returns a single generator
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Generator Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JSON representation of an generator
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Generator'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        default:
+          description: Unexpected error
+
+    patch:
+      summary: updates a single generator
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Generator Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: JSON representation of a single generator
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Generator'
+      responses:
+        '201':
+          description: JSON representation of an generator 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Generator'
+        '403':
+          description: Forbidden
+        '404':
+          description: not found
+        '409':
+          description: Conflict. If-Match header provided does not match current contents
+        default:
+          description: Unexpected error
+
+    delete:
+      summary: deletes a single generator
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Generator Id
           required: true
           schema:
             type: string

@@ -141,12 +141,16 @@ import time
 import openapi_client
 from pprint import pprint
 from openapi_client.apis.tags import default_api
+from openapi_client.model.admin import Admin
 from openapi_client.model.approver import Approver
 from openapi_client.model.campaign import Campaign
 from openapi_client.model.cause import Cause
 from openapi_client.model.donation import Donation
 from openapi_client.model.donor import Donor
+from openapi_client.model.generator import Generator
+from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
+from openapi_client.model.quizzer import Quizzer
 # Defining the host is optional and defaults to https://example.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -169,11 +173,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     
     try:
-        # Returns a list of approvers
-        api_response = api_instance.approvers_get()
+        # Returns a list of admins
+        api_response = api_instance.admins_get()
         pprint(api_response)
     except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->approvers_get: %s\n" % e)
+        print("Exception when calling DefaultApi->admins_get: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -182,6 +186,11 @@ All URIs are relative to *https://example.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**admins_get**](docs/apis/tags/DefaultApi.md#admins_get) | **get** /admins | Returns a list of admins
+*DefaultApi* | [**admins_id_delete**](docs/apis/tags/DefaultApi.md#admins_id_delete) | **delete** /admins/{id} | deletes a single admin
+*DefaultApi* | [**admins_id_get**](docs/apis/tags/DefaultApi.md#admins_id_get) | **get** /admins/{id} | returns a single admin
+*DefaultApi* | [**admins_id_patch**](docs/apis/tags/DefaultApi.md#admins_id_patch) | **patch** /admins/{id} | updates a single admin
+*DefaultApi* | [**admins_post**](docs/apis/tags/DefaultApi.md#admins_post) | **post** /admins | Create a new admin
 *DefaultApi* | [**approvers_get**](docs/apis/tags/DefaultApi.md#approvers_get) | **get** /approvers | Returns a list of approvers
 *DefaultApi* | [**approvers_id_delete**](docs/apis/tags/DefaultApi.md#approvers_id_delete) | **delete** /approvers/{id} | deletes a single approver
 *DefaultApi* | [**approvers_id_get**](docs/apis/tags/DefaultApi.md#approvers_id_get) | **get** /approvers/{id} | returns a single approver
@@ -209,6 +218,21 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**donors_id_get**](docs/apis/tags/DefaultApi.md#donors_id_get) | **get** /donors/{id} | returns a single donor
 *DefaultApi* | [**donors_id_patch**](docs/apis/tags/DefaultApi.md#donors_id_patch) | **patch** /donors/{id} | updates a single donor
 *DefaultApi* | [**donors_post**](docs/apis/tags/DefaultApi.md#donors_post) | **post** /donors | Create a new donor or update existing donor with matching email address. Email address should uniquely specify a donor.
+*DefaultApi* | [**generators_get**](docs/apis/tags/DefaultApi.md#generators_get) | **get** /generators | Returns a list of generators
+*DefaultApi* | [**generators_id_delete**](docs/apis/tags/DefaultApi.md#generators_id_delete) | **delete** /generators/{id} | deletes a single generator
+*DefaultApi* | [**generators_id_get**](docs/apis/tags/DefaultApi.md#generators_id_get) | **get** /generators/{id} | returns a single generator
+*DefaultApi* | [**generators_id_patch**](docs/apis/tags/DefaultApi.md#generators_id_patch) | **patch** /generators/{id} | updates a single generator
+*DefaultApi* | [**generators_post**](docs/apis/tags/DefaultApi.md#generators_post) | **post** /generators | Create a new generator
+*DefaultApi* | [**players_get**](docs/apis/tags/DefaultApi.md#players_get) | **get** /players | Returns a list of players
+*DefaultApi* | [**players_id_delete**](docs/apis/tags/DefaultApi.md#players_id_delete) | **delete** /players/{id} | deletes a single player
+*DefaultApi* | [**players_id_get**](docs/apis/tags/DefaultApi.md#players_id_get) | **get** /players/{id} | returns a single player
+*DefaultApi* | [**players_id_patch**](docs/apis/tags/DefaultApi.md#players_id_patch) | **patch** /players/{id} | updates a single player
+*DefaultApi* | [**players_post**](docs/apis/tags/DefaultApi.md#players_post) | **post** /players | Create a new player
+*DefaultApi* | [**quizzers_get**](docs/apis/tags/DefaultApi.md#quizzers_get) | **get** /quizzers | Returns a list of quizzers
+*DefaultApi* | [**quizzers_id_delete**](docs/apis/tags/DefaultApi.md#quizzers_id_delete) | **delete** /quizzers/{id} | deletes a single quizzer
+*DefaultApi* | [**quizzers_id_get**](docs/apis/tags/DefaultApi.md#quizzers_id_get) | **get** /quizzers/{id} | returns a single quizzer
+*DefaultApi* | [**quizzers_id_patch**](docs/apis/tags/DefaultApi.md#quizzers_id_patch) | **patch** /quizzers/{id} | updates a single quizzer
+*DefaultApi* | [**quizzers_post**](docs/apis/tags/DefaultApi.md#quizzers_post) | **post** /quizzers | Create a new quizzer
 *DefaultApi* | [**quizzes_get**](docs/apis/tags/DefaultApi.md#quizzes_get) | **get** /quizzes | Returns a list of quizzes
 *DefaultApi* | [**quizzes_id_delete**](docs/apis/tags/DefaultApi.md#quizzes_id_delete) | **delete** /quizzes/{id} | deletes a single quiz
 *DefaultApi* | [**quizzes_id_get**](docs/apis/tags/DefaultApi.md#quizzes_id_get) | **get** /quizzes/{id} | returns a single quiz
