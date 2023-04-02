@@ -35,12 +35,7 @@ class Quiz(
 
     class MetaOapg:
         required = {
-            "difficulty",
-            "numQuestions",
-            "timeLimit",
             "name",
-            "topic",
-            "sync",
         }
         
         class properties:
@@ -64,8 +59,13 @@ class Quiz(
                         *_args,
                         _configuration=_configuration,
                     )
+            id = schemas.StrSchema
+            quizzer = schemas.StrSchema
+            playUrl = schemas.StrSchema
+            pin = schemas.StrSchema
             topic = schemas.StrSchema
-            numQuestions = schemas.StrSchema
+            anonymous = schemas.BoolSchema
+            imageUrl = schemas.StrSchema
             
             
             class difficulty(
@@ -86,11 +86,8 @@ class Quiz(
                 class MetaOapg:
                     inclusive_maximum = 300
                     inclusive_minimum = 3
-            sync = schemas.BoolSchema
-            id = schemas.StrSchema
-            playUrl = schemas.StrSchema
-            pin = schemas.StrSchema
-            author = schemas.StrSchema
+            numQuestions = schemas.StrSchema
+            numAnswers = schemas.StrSchema
             
             
             class questions(
@@ -202,90 +199,26 @@ class Quiz(
             
                 def __getitem__(self, i: int) -> MetaOapg.items:
                     return super().__getitem__(i)
-            
-            
-            class leaderboard(
-                schemas.DictSchema
-            ):
-            
-            
-                class MetaOapg:
-                    required = {
-                        "player",
-                    }
-                    
-                    class properties:
-                        player = schemas.StrSchema
-                        score = schemas.IntSchema
-                        __annotations__ = {
-                            "player": player,
-                            "score": score,
-                        }
-                
-                player: MetaOapg.properties.player
-                
-                @typing.overload
-                def __getitem__(self, name: typing_extensions.Literal["player"]) -> MetaOapg.properties.player: ...
-                
-                @typing.overload
-                def __getitem__(self, name: typing_extensions.Literal["score"]) -> MetaOapg.properties.score: ...
-                
-                @typing.overload
-                def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-                
-                def __getitem__(self, name: typing.Union[typing_extensions.Literal["player", "score", ], str]):
-                    # dict_instance[name] accessor
-                    return super().__getitem__(name)
-                
-                
-                @typing.overload
-                def get_item_oapg(self, name: typing_extensions.Literal["player"]) -> MetaOapg.properties.player: ...
-                
-                @typing.overload
-                def get_item_oapg(self, name: typing_extensions.Literal["score"]) -> typing.Union[MetaOapg.properties.score, schemas.Unset]: ...
-                
-                @typing.overload
-                def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-                
-                def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["player", "score", ], str]):
-                    return super().get_item_oapg(name)
-                
-            
-                def __new__(
-                    cls,
-                    *_args: typing.Union[dict, frozendict.frozendict, ],
-                    player: typing.Union[MetaOapg.properties.player, str, ],
-                    score: typing.Union[MetaOapg.properties.score, decimal.Decimal, int, schemas.Unset] = schemas.unset,
-                    _configuration: typing.Optional[schemas.Configuration] = None,
-                    **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
-                ) -> 'leaderboard':
-                    return super().__new__(
-                        cls,
-                        *_args,
-                        player=player,
-                        score=score,
-                        _configuration=_configuration,
-                        **kwargs,
-                    )
-            imageUrl = schemas.StrSchema
+            sync = schemas.BoolSchema
             active = schemas.BoolSchema
             timeCreated = schemas.DateTimeSchema
             updated = schemas.DateTimeSchema
             selfLink = schemas.StrSchema
             __annotations__ = {
                 "name": name,
-                "topic": topic,
-                "numQuestions": numQuestions,
-                "difficulty": difficulty,
-                "timeLimit": timeLimit,
-                "sync": sync,
                 "id": id,
+                "quizzer": quizzer,
                 "playUrl": playUrl,
                 "pin": pin,
-                "author": author,
-                "questions": questions,
-                "leaderboard": leaderboard,
+                "topic": topic,
+                "anonymous": anonymous,
                 "imageUrl": imageUrl,
+                "difficulty": difficulty,
+                "timeLimit": timeLimit,
+                "numQuestions": numQuestions,
+                "numAnswers": numAnswers,
+                "questions": questions,
+                "sync": sync,
                 "active": active,
                 "timeCreated": timeCreated,
                 "updated": updated,
@@ -293,33 +226,16 @@ class Quiz(
             }
 
     
-    difficulty: MetaOapg.properties.difficulty
-    numQuestions: MetaOapg.properties.numQuestions
-    timeLimit: MetaOapg.properties.timeLimit
     name: MetaOapg.properties.name
-    topic: MetaOapg.properties.topic
-    sync: MetaOapg.properties.sync
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["name"]) -> MetaOapg.properties.name: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["topic"]) -> MetaOapg.properties.topic: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["numQuestions"]) -> MetaOapg.properties.numQuestions: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["difficulty"]) -> MetaOapg.properties.difficulty: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["timeLimit"]) -> MetaOapg.properties.timeLimit: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["sync"]) -> MetaOapg.properties.sync: ...
-    
-    @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["id"]) -> MetaOapg.properties.id: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["quizzer"]) -> MetaOapg.properties.quizzer: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["playUrl"]) -> MetaOapg.properties.playUrl: ...
@@ -328,16 +244,31 @@ class Quiz(
     def __getitem__(self, name: typing_extensions.Literal["pin"]) -> MetaOapg.properties.pin: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["author"]) -> MetaOapg.properties.author: ...
+    def __getitem__(self, name: typing_extensions.Literal["topic"]) -> MetaOapg.properties.topic: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["anonymous"]) -> MetaOapg.properties.anonymous: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["imageUrl"]) -> MetaOapg.properties.imageUrl: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["difficulty"]) -> MetaOapg.properties.difficulty: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["timeLimit"]) -> MetaOapg.properties.timeLimit: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["numQuestions"]) -> MetaOapg.properties.numQuestions: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["numAnswers"]) -> MetaOapg.properties.numAnswers: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["questions"]) -> MetaOapg.properties.questions: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["leaderboard"]) -> MetaOapg.properties.leaderboard: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["imageUrl"]) -> MetaOapg.properties.imageUrl: ...
+    def __getitem__(self, name: typing_extensions.Literal["sync"]) -> MetaOapg.properties.sync: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["active"]) -> MetaOapg.properties.active: ...
@@ -354,7 +285,7 @@ class Quiz(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["name", "topic", "numQuestions", "difficulty", "timeLimit", "sync", "id", "playUrl", "pin", "author", "questions", "leaderboard", "imageUrl", "active", "timeCreated", "updated", "selfLink", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["name", "id", "quizzer", "playUrl", "pin", "topic", "anonymous", "imageUrl", "difficulty", "timeLimit", "numQuestions", "numAnswers", "questions", "sync", "active", "timeCreated", "updated", "selfLink", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -363,22 +294,10 @@ class Quiz(
     def get_item_oapg(self, name: typing_extensions.Literal["name"]) -> MetaOapg.properties.name: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["topic"]) -> MetaOapg.properties.topic: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["numQuestions"]) -> MetaOapg.properties.numQuestions: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["difficulty"]) -> MetaOapg.properties.difficulty: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["timeLimit"]) -> MetaOapg.properties.timeLimit: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["sync"]) -> MetaOapg.properties.sync: ...
-    
-    @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["id"]) -> typing.Union[MetaOapg.properties.id, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["quizzer"]) -> typing.Union[MetaOapg.properties.quizzer, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["playUrl"]) -> typing.Union[MetaOapg.properties.playUrl, schemas.Unset]: ...
@@ -387,16 +306,31 @@ class Quiz(
     def get_item_oapg(self, name: typing_extensions.Literal["pin"]) -> typing.Union[MetaOapg.properties.pin, schemas.Unset]: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["author"]) -> typing.Union[MetaOapg.properties.author, schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["topic"]) -> typing.Union[MetaOapg.properties.topic, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["anonymous"]) -> typing.Union[MetaOapg.properties.anonymous, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["imageUrl"]) -> typing.Union[MetaOapg.properties.imageUrl, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["difficulty"]) -> typing.Union[MetaOapg.properties.difficulty, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["timeLimit"]) -> typing.Union[MetaOapg.properties.timeLimit, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["numQuestions"]) -> typing.Union[MetaOapg.properties.numQuestions, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["numAnswers"]) -> typing.Union[MetaOapg.properties.numAnswers, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["questions"]) -> typing.Union[MetaOapg.properties.questions, schemas.Unset]: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["leaderboard"]) -> typing.Union[MetaOapg.properties.leaderboard, schemas.Unset]: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["imageUrl"]) -> typing.Union[MetaOapg.properties.imageUrl, schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["sync"]) -> typing.Union[MetaOapg.properties.sync, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["active"]) -> typing.Union[MetaOapg.properties.active, schemas.Unset]: ...
@@ -413,26 +347,27 @@ class Quiz(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["name", "topic", "numQuestions", "difficulty", "timeLimit", "sync", "id", "playUrl", "pin", "author", "questions", "leaderboard", "imageUrl", "active", "timeCreated", "updated", "selfLink", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["name", "id", "quizzer", "playUrl", "pin", "topic", "anonymous", "imageUrl", "difficulty", "timeLimit", "numQuestions", "numAnswers", "questions", "sync", "active", "timeCreated", "updated", "selfLink", ], str]):
         return super().get_item_oapg(name)
     
 
     def __new__(
         cls,
         *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        difficulty: typing.Union[MetaOapg.properties.difficulty, decimal.Decimal, int, float, ],
-        numQuestions: typing.Union[MetaOapg.properties.numQuestions, str, ],
-        timeLimit: typing.Union[MetaOapg.properties.timeLimit, decimal.Decimal, int, float, ],
         name: typing.Union[MetaOapg.properties.name, None, str, ],
-        topic: typing.Union[MetaOapg.properties.topic, str, ],
-        sync: typing.Union[MetaOapg.properties.sync, bool, ],
         id: typing.Union[MetaOapg.properties.id, str, schemas.Unset] = schemas.unset,
+        quizzer: typing.Union[MetaOapg.properties.quizzer, str, schemas.Unset] = schemas.unset,
         playUrl: typing.Union[MetaOapg.properties.playUrl, str, schemas.Unset] = schemas.unset,
         pin: typing.Union[MetaOapg.properties.pin, str, schemas.Unset] = schemas.unset,
-        author: typing.Union[MetaOapg.properties.author, str, schemas.Unset] = schemas.unset,
-        questions: typing.Union[MetaOapg.properties.questions, list, tuple, schemas.Unset] = schemas.unset,
-        leaderboard: typing.Union[MetaOapg.properties.leaderboard, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
+        topic: typing.Union[MetaOapg.properties.topic, str, schemas.Unset] = schemas.unset,
+        anonymous: typing.Union[MetaOapg.properties.anonymous, bool, schemas.Unset] = schemas.unset,
         imageUrl: typing.Union[MetaOapg.properties.imageUrl, str, schemas.Unset] = schemas.unset,
+        difficulty: typing.Union[MetaOapg.properties.difficulty, decimal.Decimal, int, float, schemas.Unset] = schemas.unset,
+        timeLimit: typing.Union[MetaOapg.properties.timeLimit, decimal.Decimal, int, float, schemas.Unset] = schemas.unset,
+        numQuestions: typing.Union[MetaOapg.properties.numQuestions, str, schemas.Unset] = schemas.unset,
+        numAnswers: typing.Union[MetaOapg.properties.numAnswers, str, schemas.Unset] = schemas.unset,
+        questions: typing.Union[MetaOapg.properties.questions, list, tuple, schemas.Unset] = schemas.unset,
+        sync: typing.Union[MetaOapg.properties.sync, bool, schemas.Unset] = schemas.unset,
         active: typing.Union[MetaOapg.properties.active, bool, schemas.Unset] = schemas.unset,
         timeCreated: typing.Union[MetaOapg.properties.timeCreated, str, datetime, schemas.Unset] = schemas.unset,
         updated: typing.Union[MetaOapg.properties.updated, str, datetime, schemas.Unset] = schemas.unset,
@@ -443,19 +378,20 @@ class Quiz(
         return super().__new__(
             cls,
             *_args,
-            difficulty=difficulty,
-            numQuestions=numQuestions,
-            timeLimit=timeLimit,
             name=name,
-            topic=topic,
-            sync=sync,
             id=id,
+            quizzer=quizzer,
             playUrl=playUrl,
             pin=pin,
-            author=author,
-            questions=questions,
-            leaderboard=leaderboard,
+            topic=topic,
+            anonymous=anonymous,
             imageUrl=imageUrl,
+            difficulty=difficulty,
+            timeLimit=timeLimit,
+            numQuestions=numQuestions,
+            numAnswers=numAnswers,
+            questions=questions,
+            sync=sync,
             active=active,
             timeCreated=timeCreated,
             updated=updated,

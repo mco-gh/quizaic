@@ -11,9 +11,13 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from openapi_client.model.admin import Admin
 from openapi_client.model.approver import Approver
 from openapi_client.model.campaign import Campaign
 from openapi_client.model.cause import Cause
 from openapi_client.model.donation import Donation
 from openapi_client.model.donor import Donor
+from openapi_client.model.generator import Generator
+from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
+from openapi_client.model.quizzer import Quizzer

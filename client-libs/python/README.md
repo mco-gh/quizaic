@@ -217,12 +217,16 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [Admin](docs/models/Admin.md)
  - [Approver](docs/models/Approver.md)
  - [Campaign](docs/models/Campaign.md)
  - [Cause](docs/models/Cause.md)
  - [Donation](docs/models/Donation.md)
  - [Donor](docs/models/Donor.md)
+ - [Generator](docs/models/Generator.md)
+ - [Player](docs/models/Player.md)
  - [Quiz](docs/models/Quiz.md)
+ - [Quizzer](docs/models/Quizzer.md)
 
 ## Documentation For Authorization
 

@@ -8,19 +8,20 @@ dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**difficulty** | decimal.Decimal, int, float,  | decimal.Decimal,  | integer level of difficulty (1-10) | 
-**numQuestions** | str,  | str,  | number of questions included in this quiz | 
-**timeLimit** | decimal.Decimal, int, float,  | decimal.Decimal,  | number of seconds to respond to each question in this quiz | 
 **name** | None, str,  | NoneClass, str,  | the display name of this quiz | 
-**topic** | str,  | str,  | the topic of this quiz | 
-**sync** | bool,  | BoolClass,  | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | if omitted the server will use the default value of True
 **id** | str,  | str,  | unique, system-assigned identifier | [optional] 
+**quizzer** | str,  | str,  | the id of the quizzer | [optional] 
 **playUrl** | str,  | str,  | URL for playing this quiz | [optional] 
 **pin** | str,  | str,  | pin code for playing this quiz | [optional] 
-**author** | str,  | str,  | the id of the quizmaster of this quiz | [optional] 
-**[questions](#questions)** | list, tuple,  | tuple,  | array of question/answer objects included in this quiz | [optional] 
-**[leaderboard](#leaderboard)** | dict, frozendict.frozendict,  | frozendict.frozendict,  | map of player id to score for this quiz | [optional] 
+**topic** | str,  | str,  | the topic of this quiz | [optional] 
+**anonymous** | bool,  | BoolClass,  | whether players may be anonymous | [optional] if omitted the server will use the default value of True
 **imageUrl** | str,  | str,  | string containing URL of an image to display for this quiz | [optional] 
+**difficulty** | decimal.Decimal, int, float,  | decimal.Decimal,  | integer level of difficulty (1-10) | [optional] 
+**timeLimit** | decimal.Decimal, int, float,  | decimal.Decimal,  | number of seconds to respond to each question in this quiz | [optional] 
+**numQuestions** | str,  | str,  | number of questions included in this quiz | [optional] 
+**numAnswers** | str,  | str,  | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional] 
+**[questions](#questions)** | list, tuple,  | tuple,  | array of question/answer objects included in this quiz | [optional] 
+**sync** | bool,  | BoolClass,  | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional] if omitted the server will use the default value of True
 **active** | bool,  | BoolClass,  | is this quiz currently being played? | [optional] if omitted the server will use the default value of False
 **timeCreated** | str, datetime,  | str,  | system-assigned creation timestamp | [optional] value must conform to RFC-3339 date-time
 **updated** | str, datetime,  | str,  | system-assigned update timestamp | [optional] value must conform to RFC-3339 date-time
@@ -69,23 +70,7 @@ list, tuple,  | tuple,  | array of possible multiple choice answers to this ques
 ### Tuple Items
 Class Name | Input Type | Accessed Type | Description | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-items | str,  | str,  | one of four possible answers to the associated question | 
-
-# leaderboard
-
-map of player id to score for this quiz
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  | map of player id to score for this quiz | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**player** | str,  | str,  | the id of this player | 
-**score** | decimal.Decimal, int,  | decimal.Decimal,  | the score of this player | [optional] 
-**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
+items | str,  | str,  | one possible answer to the associated question | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
