@@ -23,6 +23,7 @@
 """
 
 import json
+import os
 import re
 import requests
 
@@ -33,12 +34,13 @@ from opentelemetry import trace
 # Query the metadata server on initialization to get the project number used
 # to identify the trace identifier that helps group log entries by http request.
 metadata_url = "http://metadata.google.internal/computeMetadata/v1"
+
 try:
     PROJECT_ID = requests.get(
         f"{metadata_url}/project/project-id", headers={"Metadata-Flavor": "Google"}
     ).text
 except Exception as e:
-    PROJECT_ID = "-- MISSING PROJECT ID --"
+    PROJECT_ID = os.getenv("PROJECT_ID") or "-- MISSING PROJECT ID --"
 
 
 def log(message, severity="DEFAULT", **kwargs):

@@ -23,6 +23,7 @@
 """
 
 import json
+import os
 import re
 import requests
 
@@ -37,7 +38,7 @@ try:
         f"{metadata_url}/project/project-id", headers={"Metadata-Flavor": "Google"}
     ).text
 except Exception as e:
-    PROJECT_ID = "-- MISSING PROJECT ID --"
+    PROJECT_ID = os.getenv("PROJECT_ID") or "-- MISSING PROJECT ID --"
 
 
 def log(message, severity="DEFAULT", **kwargs):
