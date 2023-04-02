@@ -52,11 +52,11 @@ propagate.set_global_textmap(
 trace.set_tracer_provider(provider)
 
 resource = [
-    "approvers",
-    "campaigns",
-    "causes",
-    "donations",
-    "donors",
+    "players",
+    "quizzers",
+    "admins",
+    "quizzes",
+    "generators",
 ]
 
 app = Flask(__name__)
