@@ -16,8 +16,8 @@ class Generator:
         self.type = type
         self._gen = supported_gens[type].Generator()
 
-    def get_gens(self):
-        return supported_gens.keys()
+    def get_gens():
+        return set(supported_gens.keys())
 
     def __str__(self):
         return self._gen.__str__()

@@ -1,6 +1,10 @@
 import pytest
 import gen
 
+def test_get_gens():
+    gens = gen.Generator.get_gens()
+    assert(gens == set(["jeopardy", "bard", "chatgpt"]))
+
 def test_create_jeopardy_gen():
     g = gen.Generator("jeopardy")
     s = str(g)
