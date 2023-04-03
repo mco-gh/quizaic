@@ -40,7 +40,7 @@ try:
         f"{metadata_url}/project/project-id", headers={"Metadata-Flavor": "Google"}
     ).text
 except Exception as e:
-    PROJECT_ID = os.getenv("PROJECT_ID") or "-- MISSING PROJECT ID --"
+    PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT") or "-- MISSING PROJECT ID --"
 
 
 def log(message, severity="DEFAULT", **kwargs):
