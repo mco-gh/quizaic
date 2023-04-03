@@ -6,4 +6,4 @@ class Generator:
         return "ChatGPT Generator"
 
     def gen_quiz(self):
-        return "Here's a ChatGPT quiz."
+        return "I'm a quiz made by the ChatGPT Generator."

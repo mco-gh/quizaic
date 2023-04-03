@@ -6,4 +6,4 @@ class Generator:
         return "Jeopardy Generator"
 
     def gen_quiz(self):
-        return "Here's a Jeopardy quiz."
+        return "I'm a quiz made by the Jeopardy Generator."
