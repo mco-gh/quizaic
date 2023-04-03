@@ -1,20 +1,21 @@
+import importlib
+import gen
 
-import gen.jeopardy
-import gen.bard
-import gen.chatgpt
-
-supported_types = {
-    "jeopardy": Jeopardy_gen,
-    "bard": Bard_gen, 
-    "chatgpt": Chatgpt_gen
+supported_gens = {
+    "jeopardy": None,
+    "bard":     None, 
+    "chatgpt":  None,
 }
+
+for i in supported_gens:
+    supported_gens[i] = importlib.import_module("gen." + i)
 
 class Generator:
     def __init__(self, type):
-        if type not in supported_types:
+        if type not in supported_gens:
             raise Exception(f"Unsupported generator type {type}.")
         self.type = type
-        self._gen = self.supported_types[type]()
+        self._gen = supported_gens[type].Generator()
 
     def __str__(self):
         print(f"running __str__() on generator object")

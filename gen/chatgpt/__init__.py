@@ -1,3 +1,3 @@
-
-class Chatgpt_gen:
-    pass
+class Generator:
+    def __init__(self):
+        pass
