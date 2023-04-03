@@ -4,9 +4,9 @@ import jeopardy
 #import chatgpt
 
 supported_types = 
-    "jeopardy": jeopardy,
-#   "bard": bard, 
-#   "chatgpt": chatgpt
+    "jeopardy": jeopardy_gen,
+#   "bard": bard_gen, 
+#   "chatgpt": chatgpt_gen
 }
 
 class Generator:
@@ -14,8 +14,11 @@ class Generator:
         if type not in supported_types:
             raise Exception(f"Unsupported generator type {type}.")
         self.type = type
-        self._generator = self.supported_types[type]()
+        self._gen = self.supported_types[type]()
 
     def __str__(self):
         print(f"running __str__() on generator object")
-        #self._instance.__str__(self)
+        #self._gen.__str__(self)
+
+    def gen_quiz(self):
+        pass
