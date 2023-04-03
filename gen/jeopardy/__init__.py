@@ -1,3 +1,3 @@
 
-class jeopardy_gen:
+class Jeopardy_gen:
     pass

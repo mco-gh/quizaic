@@ -1,3 +1,3 @@
 
-class bard_gen:
+class Bard_gen:
     pass

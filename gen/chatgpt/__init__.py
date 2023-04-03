@@ -1,3 +1,3 @@
 
-class chatgpt_gen:
+class Chatgpt_gen:
     pass
