@@ -18,8 +18,7 @@ class Generator:
         self._gen = supported_gens[type].Generator()
 
     def __str__(self):
-        print(f"running __str__() on generator object")
-        #self._gen.__str__(self)
+        return self._gen.__str__()
 
     def gen_quiz(self):
-        pass
+        return self._gen.gen_quiz()
