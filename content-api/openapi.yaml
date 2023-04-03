@@ -1437,6 +1437,7 @@ components:
             required:
             - question
             - answers
+            - answer
             properties:
               question:
                 type: string
@@ -1448,6 +1449,9 @@ components:
                   type: string
                   format: string
                   description: one possible answer to the associated question
+              answer:
+                type: string
+                description: answer text (free form) or letter (multiple choice)
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)

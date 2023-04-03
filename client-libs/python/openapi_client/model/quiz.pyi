@@ -97,6 +97,7 @@ class Quiz(
                     
                         class MetaOapg:
                             required = {
+                                "answer",
                                 "question",
                                 "answers",
                             }
@@ -126,11 +127,14 @@ class Quiz(
                                 
                                     def __getitem__(self, i: int) -> MetaOapg.items:
                                         return super().__getitem__(i)
+                                answer = schemas.StrSchema
                                 __annotations__ = {
                                     "question": question,
                                     "answers": answers,
+                                    "answer": answer,
                                 }
                         
+                        answer: MetaOapg.properties.answer
                         question: MetaOapg.properties.question
                         answers: MetaOapg.properties.answers
                         
@@ -141,9 +145,12 @@ class Quiz(
                         def __getitem__(self, name: typing_extensions.Literal["answers"]) -> MetaOapg.properties.answers: ...
                         
                         @typing.overload
+                        def __getitem__(self, name: typing_extensions.Literal["answer"]) -> MetaOapg.properties.answer: ...
+                        
+                        @typing.overload
                         def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
                         
-                        def __getitem__(self, name: typing.Union[typing_extensions.Literal["question", "answers", ], str]):
+                        def __getitem__(self, name: typing.Union[typing_extensions.Literal["question", "answers", "answer", ], str]):
                             # dict_instance[name] accessor
                             return super().__getitem__(name)
                         
@@ -155,15 +162,19 @@ class Quiz(
                         def get_item_oapg(self, name: typing_extensions.Literal["answers"]) -> MetaOapg.properties.answers: ...
                         
                         @typing.overload
+                        def get_item_oapg(self, name: typing_extensions.Literal["answer"]) -> MetaOapg.properties.answer: ...
+                        
+                        @typing.overload
                         def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
                         
-                        def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["question", "answers", ], str]):
+                        def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["question", "answers", "answer", ], str]):
                             return super().get_item_oapg(name)
                         
                     
                         def __new__(
                             cls,
                             *_args: typing.Union[dict, frozendict.frozendict, ],
+                            answer: typing.Union[MetaOapg.properties.answer, str, ],
                             question: typing.Union[MetaOapg.properties.question, str, ],
                             answers: typing.Union[MetaOapg.properties.answers, list, tuple, ],
                             _configuration: typing.Optional[schemas.Configuration] = None,
@@ -172,6 +183,7 @@ class Quiz(
                             return super().__new__(
                                 cls,
                                 *_args,
+                                answer=answer,
                                 question=question,
                                 answers=answers,
                                 _configuration=_configuration,

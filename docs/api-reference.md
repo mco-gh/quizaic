@@ -213,6 +213,7 @@ Each *quiz* has the following non-core properties:
 | numQuestions | number of questions included in this *quiz* |
 | numAnswers | number of answers for each question (0 == free form) |
 | questions | array of questions and associated answers included in this *quiz* |
+| answer | answer text (free form) or letter (multiple choice) |
 | sync | boolean; whether this *quiz* is synchronous or asynchronous |
 | active | boolean; whether this *quiz* is currently being played |
 
