@@ -2,9 +2,10 @@ import importlib
 import gen
 
 supported_gens = {
-    "jeopardy": None,
-    "bard":     None, 
-    "chatgpt":  None,
+    "jeopardy":   None,
+    "bard":       None, 
+    "chatgpt":    None,
+    "opentrivia": None,
 }
 
 class Generator:

@@ -3,7 +3,7 @@ import gen
 
 def test_get_gens():
     gens = gen.Generator.get_gens()
-    assert(gens == set(["jeopardy", "bard", "chatgpt"]))
+    assert(gens == set(["jeopardy", "opentrivia", "bard", "chatgpt"]))
 
 def test_create_jeopardy_gen():
     g = gen.Generator("jeopardy")
@@ -22,6 +22,12 @@ def test_create_chatgpt_gen():
     s = str(g)
     assert(g != None)
     assert(s == "ChatGPT Generator")
+
+def test_create_opentriva_gen():
+    g = gen.Generator("opentrivia")
+    s = str(g)
+    assert(g != None)
+    assert(s == "OpenTrivia Generator")
 
 def test_create_unsupported_gen():
     with pytest.raises(Exception):
