@@ -1,19 +1,28 @@
 # Quizrd Requirements
 
+Scalable and reliable runtime
+Real-time storage engine
+Automation through generative AI
+State of the art devops
+Flexible, fast analytics
+Data visualization
+
 ## General
+- don’t make me think! (about admin)
 - open source software will enable people to host their own quiz server
 - a sample server will be provided on Google Cloud for demonstration purposes
-- mobile devices supported via web browser only (i.e. at least initially, no mobile app)
-- quizzes are real time, created and operated on demand by a quiz administrator
+- initially mobile devices are supported via web browser only, i.e. no mobile app (yet)
+- quizzes can also be non-competitive, i.e. polls
+- quizzes can be real time (operated on demand by a host) or asynchronous
 
 ## Quiz Format
-- all questions will have four possible multiple choice answers
+- questions may be multiple choice or free form text
 - quizzes may have any number of questions
-- order of quiz questions and answers may be randomized
+- questions and answers may be presented in random or fixed order
 
 ## Quiz Generators
-- quiz questions are generated via a standardized Quizrd Generator API (QGAPI)
-- generator modules will adapt the QGAPI to a given generator
+- quiz questions are generated via a common programming interface
+- generator modules will adapt the common interface to a given generator
 - initial support for three generators: Jeopardy, Bard, and ChatGPT
 - generator modules will be dynamically loadable so that developers can extend support for new generators
 
