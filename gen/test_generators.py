@@ -2,7 +2,7 @@ import pytest
 import gen
 
 def test_get_gens():
-    gens = gen.Generator.get_gens()
+    gens = gen.Generator.gens()
     assert(gens == set(["jeopardy", "opentrivia", "bard", "chatgpt"]))
 
 def test_create_jeopardy_gen():
