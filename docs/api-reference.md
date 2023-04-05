@@ -14,11 +14,12 @@ resources:
 The purpose of this API is to address the data needs relating to
 constructing, generating, operating, and playing online trivia quizzes.
 
-- A *player* participates in a *quiz*.
-- A *host* organizes and runs a *quiz*.
-- A *sysadmin* manages the system.
-- A *quiz* is an interactive online competition containing a sequence of multiple choice questions.
+- A *quiz* is an interactive online competition containing a sequence of challenges questions.
+- A *survey* is a non-competitive, information gathering form of a *quiz*
 - A *generator* generates a *quiz* based on *host* specifications.
+- A *player* participates in a *quiz*.
+- A *host* creates and runs a *quiz*.
+- An *admin* manages the system.
 
 ## Resources in general
 
@@ -163,7 +164,7 @@ Each *player* has two non-core properties:
 | name | value |
 | --- | --- |
 | name | the display name of a *player* |
-| email | the email address of a *player* |
+| email | the email address of a *player*, empty string for anonymous players |
 
 *insert* and *patch* operations that include an _email_ already
 used in another *player* resource will fail with a `409` status
@@ -205,17 +206,19 @@ Each *quiz* has the following non-core properties:
 | host | the id of the *host* of this *quiz* |
 | playUrl | URL for playing this *quiz* |
 | pin | pin code for playing this *quiz* |
+| free | boolean; whether answers are free form or multiple choice |
 | topic | string representing the topic of this *quiz* |
-| anonymous | boolean; whether players are anonymous |
+| anonymous | boolean; whether players can be anonymous |
+| randomQ | boolean; whether to randomize question order |
+| randomA | boolean; whether to randomize answer order |
 | imageUrl | string containing URL of an image to display for this *quiz* |
 | difficulty | integer level of difficulty (1-10) |
 | timeLimit | number of seconds to respond to each question in this *quiz* |
 | numQuestions | number of questions included in this *quiz* |
 | numAnswers | number of answers for each question (0 == free form) |
-| questions | array of questions and associated answers included in this *quiz* |
-| answer | answer text (free form) or letter (multiple choice) |
+| QandA | array of questions, associated answers, and correct answers comprising this *quiz* |
 | sync | boolean; whether this *quiz* is synchronous or asynchronous |
-| active | boolean; whether this *quiz* is currently being played |
+| active | boolean; whether this *quiz* is currently available to be played |
 
 Each *quiz's* playUrl and pin must be unique. Attempts to *insert* or *patch* a *quiz* to have a _playUrl_ or _pin_ already used by another *quiz* will fail with a `409` status.
 
@@ -229,4 +232,5 @@ Each *generator* has three non-core properties:
 | --- | --- |
 | name | string representing the *generator* name |
 | freeform | boolean; whether this *generator* supports free-form answers |
-| topic_list | array of topics supported by this *generator* (empty == unlimited) |
+| topic_list | array of topics supported by this *generator* (the empty string means free form topics are supported) |
+

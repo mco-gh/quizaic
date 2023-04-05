@@ -12,13 +12,15 @@ Data visualization
 - open source software will enable people to host their own quiz server
 - a sample server will be provided on Google Cloud for demonstration purposes
 - initially mobile devices are supported via web browser only, i.e. no mobile app (yet)
-- quizzes can also be non-competitive, i.e. polls
-- quizzes can be real time (operated on demand by a host) or asynchronous
 
 ## Quiz Format
 - questions may be multiple choice or free form text
 - quizzes may have any number of questions
+- quizzes may have an associated image
 - questions and answers may be presented in random or fixed order
+- quizzes can be synchronous, operated by a host where challenges are seen in lockstep by all players 
+- quizzes can also be asynchronous, where players can start and advance through the quiz at their own pace at any time, independent of other players
+- quizzes may be ungraded; we call this a *poll* or a *survey* because it exists to gather information rather than to conduct a competition
 
 ## Quiz Generators
 - quiz questions are generated via a common programming interface
@@ -32,13 +34,13 @@ Data visualization
 - the QA and QS communicate using the Quizrd API (QAPI), which is a RESTful HTTP programming interface
 - the QAPI provides bi-directional real-time notification using Web Sockets
 
-## System Administrator (SA) User Interface
+## Admin User Interface
 - set global system parameters
 - add support for additional generators
 
-## Quiz Administrator (Admin) User Interface
-- admin must create a login
-- admin enters quiz parameters:
+## Host User Interface
+- host must create a login
+- host enters quiz parameters:
   - topic
   - number of questions
   - level of difficulty
@@ -46,15 +48,12 @@ Data visualization
 - quiz creation returns two rendezvous points:
   - a unique short URL
   - a unique pin number
-- once a quiz is launched, admin controls the flow
+- once a quiz is launched, host controls the flow
 - quizzes may be synchronous or asynchronous
 
-## Quiz Taker (Participant) User Interface
+## Player (Quiz Participant) User Interface
 - no login required
 - access via quiz specific URL or common URL with pin prompt
 - sequence of questions and responses will appear on device
 - countdown time appears while waiting for response
 - results summary available on device
-
-## Possible Extensions
-- give admins ability to save a quiz for repeated use
