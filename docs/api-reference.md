@@ -12,10 +12,10 @@ resources:
 ## Purpose and overview
 
 The purpose of this API is to address the data needs relating to
-constructing, generating, operating, and playing online trivia quizzes.
+constructing, generating, hosting, and playing online trivia quizzes.
 
 - A *quiz* is an interactive online competition containing a sequence of challenges questions.
-- A *survey* is a non-competitive, information gathering form of a *quiz*
+- A *survey* or *poll* is a special, non-competitive, form of a *quiz* for information gathering.
 - A *generator* generates a *quiz* based on *host* specifications.
 - A *player* participates in a *quiz*.
 - A *host* creates and runs a *quiz*.
@@ -176,8 +176,8 @@ Each *host* has two non-core properties:
 
 | name | value |
 | --- | --- |
-| name | the display name of an *host* |
-| email | the email address of an *host* |
+| name | the display name of a *host* |
+| email | the email address of a *host* |
 
 *insert* and *patch* operations that include an _email_ already
 used in another *host* resource will fail with a `409` status
@@ -202,11 +202,11 @@ Each *quiz* has the following non-core properties:
 
 | name | value |
 | --- | --- |
-| name | the display name of this *quiz* |
+| name | the type name of this *quiz* |
 | host | the id of the *host* of this *quiz* |
-| playUrl | URL for playing this *quiz* |
+| playUrl | direct URL for playing this *quiz* |
 | pin | pin code for playing this *quiz* |
-| free | boolean; whether answers are free form or multiple choice |
+| freeformA | boolean; whether answers are free form or multiple choice |
 | topic | string representing the topic of this *quiz* |
 | anonymous | boolean; whether players can be anonymous |
 | randomQ | boolean; whether to randomize question order |
@@ -231,6 +231,6 @@ Each *generator* has three non-core properties:
 | name | value |
 | --- | --- |
 | name | string representing the *generator* name |
-| freeform | boolean; whether this *generator* supports free-form answers |
+| freeformAnswers | boolean; whether this *generator* supports free-form answers |
 | topic_list | array of topics supported by this *generator* (the empty string means free form topics are supported) |
 
