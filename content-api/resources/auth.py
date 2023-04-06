@@ -19,6 +19,14 @@ from main import g, request
 from resources import methods
 from data import cloud_firestore as db
 
+# legecy emblem support
+def user_is_approver(email):
+    return True
+def user_is_manager(email, campaign_id):
+    return True
+def user_is_donor(email, donor_id):
+    return True
+# end of legecy emblem support
 
 def user_is_admin(email):
     if email is None:
