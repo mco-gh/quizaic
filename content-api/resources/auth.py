@@ -60,6 +60,14 @@ def user_is_player(email, player_id):
 def allowed(operation, resource_kind, representation=None):
     email = g.get("verified_email", None)
 
+    # legacy requests get carte blanche
+    if resource_kind == "approvers" or
+       resource_kind == "campaigns" or
+       resource_kind == "causes" or
+       resource_kind == "donations" or
+       resource_kind == "donors":
+      return True
+
     # Check for everything requiring auth and handle
 
     is_admin = user_is_admin(email)
