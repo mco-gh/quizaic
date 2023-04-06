@@ -10,3 +10,5 @@ export EMBLEM_API_URL=$(gcloud run services describe content-api --region=$REGIO
 export EMBLEM_SESSION_BUCKET=quizrd-prod-382117-sessions
 export SITE_VARS="EMBLEM_API_URL=$EMBLEM_API_URL, EMBLEM_SESSION_BUCKET=$EMBLEM_SESSION_BUCKET"
 export ID_TOKEN=$(gcloud auth print-identity-token)
+#export REDIRECT_URI=https://website-w75476cq7a-uc.a.run.app/callback
+export REDIRECT_URI=http://127.0.0.1:8080/callback
