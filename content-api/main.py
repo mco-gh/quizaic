@@ -57,8 +57,11 @@ resource = [
     "admins",
     "quizzes",
     "generators",
-    "campaigns",
     "approvers",
+    "campaigns",
+    "causes",
+    "donations",
+    "donors",
 ]
 
 app = Flask(__name__)
