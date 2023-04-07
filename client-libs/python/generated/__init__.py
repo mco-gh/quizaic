@@ -13,15 +13,15 @@
 __version__ = "1.0.0"
 
 # import ApiClient
-from generated.api_client import ApiClient
+from openapi_client.api_client import ApiClient
 
 # import Configuration
-from generated.configuration import Configuration
+from openapi_client.configuration import Configuration
 
 # import exceptions
-from generated.exceptions import OpenApiException
-from generated.exceptions import ApiAttributeError
-from generated.exceptions import ApiTypeError
-from generated.exceptions import ApiValueError
-from generated.exceptions import ApiKeyError
-from generated.exceptions import ApiException
+from openapi_client.exceptions import OpenApiException
+from openapi_client.exceptions import ApiAttributeError
+from openapi_client.exceptions import ApiTypeError
+from openapi_client.exceptions import ApiValueError
+from openapi_client.exceptions import ApiKeyError
+from openapi_client.exceptions import ApiException

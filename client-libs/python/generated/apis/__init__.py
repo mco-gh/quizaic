@@ -14,4 +14,4 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
-from generated.api.default_api import DefaultApi
+from openapi_client.api.default_api import DefaultApi

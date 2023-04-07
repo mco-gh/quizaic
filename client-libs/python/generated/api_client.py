@@ -20,10 +20,10 @@ from urllib.parse import quote
 from urllib3.fields import RequestField
 
 
-from generated import rest
-from generated.configuration import Configuration
-from generated.exceptions import ApiTypeError, ApiValueError, ApiException
-from generated.model_utils import (
+from openapi_client import rest
+from openapi_client.configuration import Configuration
+from openapi_client.exceptions import ApiTypeError, ApiValueError, ApiException
+from openapi_client.model_utils import (
     ModelNormal,
     ModelSimple,
     ModelComposed,
@@ -762,10 +762,10 @@ class Endpoint(object):
         Example:
 
         api_instance = DefaultApi()
-        api_instance.approvers_get  # this is an instance of the class Endpoint
-        api_instance.approvers_get()  # this invokes api_instance.approvers_get.__call__()
+        api_instance.admins_get  # this is an instance of the class Endpoint
+        api_instance.admins_get()  # this invokes api_instance.admins_get.__call__()
         which then invokes the callable functions stored in that endpoint at
-        api_instance.approvers_get.callable or self.callable in this class
+        api_instance.admins_get.callable or self.callable in this class
 
         """
         return self.callable(self, *args, **kwargs)
