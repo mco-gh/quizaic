@@ -18,7 +18,7 @@ from middleware.logging import log
 
 import openapi_client
 from openapi_client.api_client import ApiClient
-from openapi_client.api.default_api import DefaultApi
+#from openapi_client.api.default_api import DefaultApi
 from openapi_client.configuration import Configuration
 
 
