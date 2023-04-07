@@ -50,4 +50,14 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_models/__init__.py
+test/test_models/test_admin.py
+test/test_models/test_approver.py
+test/test_models/test_campaign.py
+test/test_models/test_cause.py
+test/test_models/test_donation.py
+test/test_models/test_donor.py
+test/test_models/test_generator.py
+test/test_models/test_host.py
+test/test_models/test_player.py
+test/test_models/test_quiz.py
 tox.ini
