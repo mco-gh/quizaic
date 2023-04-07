@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **topic** | **str** | the topic of this quiz | [optional] 
 **anonymous** | **bool** | whether players may be anonymous | [optional]  if omitted the server will use the default value of True
 **image_url** | **str** | string containing URL of an image to display for this quiz | [optional] 
-**difficulty** | **float** | integer level of difficulty (1-10) | [optional] 
-**time_limit** | **float** | number of seconds to respond to each question in this quiz | [optional] 
-**num_questions** | **float** | number of questions included in this quiz | [optional] 
-**num_answers** | **float** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional] 
+**difficulty** | **int** | integer level of difficulty (1-10) | [optional] 
+**time_limit** | **int** | number of seconds to respond to each question in this quiz (3-300) | [optional] 
+**num_questions** | **int** | number of questions included in this quiz | [optional] 
+**num_answers** | **int** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional] 
 **questions** | [**[QuizQuestions]**](QuizQuestions.md) | array of question/answer objects included in this quiz | [optional]  if omitted the server will use the default value of []
 **sync** | **bool** | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional]  if omitted the server will use the default value of True
 **active** | **bool** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False
