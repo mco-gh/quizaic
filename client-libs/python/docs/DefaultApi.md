@@ -3891,8 +3891,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         time_limit=3,
         num_questions=1,
         num_answers=1,
-        questions=[
-            QuizQuestions(
+        qand_a=[
+            QuizQandA(
                 question="question_example",
                 answer="answer_example",
                 responses="responses_example",
@@ -3990,8 +3990,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         time_limit=3,
         num_questions=1,
         num_answers=1,
-        questions=[
-            QuizQuestions(
+        qand_a=[
+            QuizQandA(
                 question="question_example",
                 answer="answer_example",
                 responses="responses_example",

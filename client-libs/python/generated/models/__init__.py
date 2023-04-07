@@ -19,4 +19,4 @@ from openapi_client.model.generator import Generator
 from openapi_client.model.host import Host
 from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
-from openapi_client.model.quiz_questions import QuizQuestions
+from openapi_client.model.quiz_qand_a import QuizQandA

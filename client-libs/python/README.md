@@ -162,7 +162,7 @@ Class | Method | HTTP request | Description
  - [Host](docs/Host.md)
  - [Player](docs/Player.md)
  - [Quiz](docs/Quiz.md)
- - [QuizQuestions](docs/QuizQuestions.md)
+ - [QuizQandA](docs/QuizQandA.md)
 
 
 ## Documentation For Authorization

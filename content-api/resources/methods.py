@@ -37,7 +37,7 @@ resource_fields = {
         "timeLimit",
         "numQuestions",
         "numAnswers",
-        "questions",
+        "QandA",
         "sync",
         "active",
     ],
