@@ -1424,9 +1424,11 @@ components:
         numQuestions:
           type: number
           description: number of questions included in this quiz
+          minimum: 1
         numAnswers:
           type: number
           description: number of answers possible for each question in this quiz (0 == free form)
+          minimum: 1
         questions:
           type: array
           description: array of question/answer objects included in this quiz

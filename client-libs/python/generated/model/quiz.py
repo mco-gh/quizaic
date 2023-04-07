@@ -70,6 +70,12 @@ class Quiz(ModelNormal):
             'inclusive_maximum': 300,
             'inclusive_minimum': 3,
         },
+        ('num_questions',): {
+            'inclusive_minimum': 1,
+        },
+        ('num_answers',): {
+            'inclusive_minimum': 1,
+        },
     }
 
     @cached_property
@@ -105,8 +111,8 @@ class Quiz(ModelNormal):
             'image_url': (str,),  # noqa: E501
             'difficulty': (float,),  # noqa: E501
             'time_limit': (float,),  # noqa: E501
-            'num_questions': (str,),  # noqa: E501
-            'num_answers': (str,),  # noqa: E501
+            'num_questions': (float,),  # noqa: E501
+            'num_answers': (float,),  # noqa: E501
             'questions': ([QuizQuestions],),  # noqa: E501
             'sync': (bool,),  # noqa: E501
             'active': (bool,),  # noqa: E501
@@ -198,8 +204,8 @@ class Quiz(ModelNormal):
             image_url (str): string containing URL of an image to display for this quiz. [optional]  # noqa: E501
             difficulty (float): integer level of difficulty (1-10). [optional]  # noqa: E501
             time_limit (float): number of seconds to respond to each question in this quiz. [optional]  # noqa: E501
-            num_questions (str): number of questions included in this quiz. [optional]  # noqa: E501
-            num_answers (str): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
+            num_questions (float): number of questions included in this quiz. [optional]  # noqa: E501
+            num_answers (float): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
             questions ([QuizQuestions]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
@@ -300,8 +306,8 @@ class Quiz(ModelNormal):
             image_url (str): string containing URL of an image to display for this quiz. [optional]  # noqa: E501
             difficulty (float): integer level of difficulty (1-10). [optional]  # noqa: E501
             time_limit (float): number of seconds to respond to each question in this quiz. [optional]  # noqa: E501
-            num_questions (str): number of questions included in this quiz. [optional]  # noqa: E501
-            num_answers (str): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
+            num_questions (float): number of questions included in this quiz. [optional]  # noqa: E501
+            num_answers (float): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
             questions ([QuizQuestions]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501

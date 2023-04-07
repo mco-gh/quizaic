@@ -3889,8 +3889,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         image_url="image_url_example",
         difficulty=1,
         time_limit=3,
-        num_questions="num_questions_example",
-        num_answers="num_answers_example",
+        num_questions=1,
+        num_answers=1,
         questions=[
             QuizQuestions(
                 question="question_example",
@@ -3990,8 +3990,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         image_url="image_url_example",
         difficulty=1,
         time_limit=3,
-        num_questions="num_questions_example",
-        num_answers="num_answers_example",
+        num_questions=1,
+        num_answers=1,
         questions=[
             QuizQuestions(
                 question="question_example",
