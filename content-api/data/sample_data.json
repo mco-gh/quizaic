@@ -89,7 +89,23 @@
     "collection": "quizzes",
     "id": "d5816cdf8b3949429c23",
     "data": {
-      "name": "Trivia Quiz by حسین رضایی"
+      "name": "Cat Trivia by حسین رضایی",
+      "host": "1b271fa397f14c2b9582",
+      "playUrl": "https://quizrd/123",
+      "pin": 123,
+      "freeformA": false,
+      "topic": "cats",
+      "anonymous": true,
+      "randomQ": true,
+      "randomA": true,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Black_cat_-_Sydney.jpg/440px-Black_cat_-_Sydney.jpg",
+      "difficulty": 5,
+      "timeLimit": 60,
+      "numQuestions": 3,
+      "numAnswers": 4,
+      "sync": true,
+      "active": false,
+      "QandA": []
     }
   },
   {
