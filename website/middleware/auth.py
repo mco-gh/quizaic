@@ -149,7 +149,6 @@ def get_refreshed_token(refresh_token):
         return None, None
 
     id_token = updates.get("id_token")
-    log(f"updates: {updates}")
 
     expiration = datetime.timestamp(datetime.now()) + updates.get("expires_in")
 
