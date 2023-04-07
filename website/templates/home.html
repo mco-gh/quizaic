@@ -34,6 +34,34 @@
         </div>
     </div>
 </div>
+<!-- Quiz list -->
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        {% for quiz in quizzes %}
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+            <a href="/viewQuiz?quiz_id={{ quiz.id }}">
+                <div class="emblem-campaign-card mdc-card mdc-card--outlined">
+                    <!-- Campaign image -->
+                    <div class="emblem-campaign-image mdc-list-item" style="background-image: url({{ quiz.image_url }}); background-size: cover;"></div>
+                    <!-- Campaign name -->
+                    <div class="emblem-campaign-title mdc-list-item">
+                        <span class="mdc-list-item__text">
+                            {{ quiz.name }}
+                        </span>
+                    </div>
+                    <!-- Campaign description -->
+                    <div class="mdc-list-item">
+                        <span class="mdc-list-item__text">
+                            {{ quiz.description }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 <!-- Campaign list -->
 <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">

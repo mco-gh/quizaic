@@ -15,6 +15,7 @@
 import os
 
 from flask import Flask, current_app
+from os import path, walk
 from views.campaigns import campaigns_bp
 from views.donations import donations_bp
 from views.errors import errors_bp
