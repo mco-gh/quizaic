@@ -27,7 +27,7 @@ import re
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
 
 
-@quizzes_bp.route("/marc")
+@quizzes_bp.route("/")
 def list_quizzes():
     current_user = None
 
@@ -39,7 +39,6 @@ def list_quizzes():
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
-    log(f"quizzes: {quizzes}")
     return render_template("home.html", quizzes=quizzes, current_user=current_user)
 
 
@@ -95,27 +94,5 @@ def webapp_view_quiz():
         log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    quiz["donations"] = []
-    quiz_instance["raised"] = 0
-    quiz_instance["percentComplete"] = 0
-
-    x = """
-    try:
-        donations = g.api.campaigns_id_donations_get(campaign_instance["id"])
-        if len(donations) > 0:
-            campaign_instance["donations"] = list(map(get_donor_name, donations))
-            raised = reduce(
-                lambda t, d: t + int(d["amount"] if d is not None else 0), donations, 0
-            )
-            campaign_instance["raised"] = raised
-            campaign_instance["percentComplete"] = (
-                (raised / float(campaign_instance.goal)) * 100
-                if raised is not None
-                else 0
-            )
-    except Exception as e:
-        log(f"Exception when listing campaign donations: {e}", severity="ERROR")
-        return render_template("errors/403.html"), 403
-        """
 
     return render_template("view-quiz.html", quiz=quiz_instance)

@@ -27,7 +27,7 @@ import re
 campaigns_bp = Blueprint("campaigns", __name__, template_folder="templates")
 
 
-@campaigns_bp.route("/")
+@campaigns_bp.route("/campaigns")
 def list_campaigns():
     current_user = None
 
