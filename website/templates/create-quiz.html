@@ -1,0 +1,110 @@
+<!--
+  Copyright 2021 Google LLC
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+{% extends "base.html" %}
+
+{% block title %}Create Quiz{% endblock %}
+
+{% block materialio_scripts %}
+<script type="text/javascript" nonce="{{ g.csp_nonce }}">
+  function initTextFields() {
+    const selectElements = Array.from(document.querySelectorAll('.mdc-select'));
+    selectElements.map(elem => new mdc.select.MDCSelect(elem));
+    
+    const elements = Array.from(document.querySelectorAll('.mdc-text-field'));
+    elements.map(elem => new mdc.textField.MDCTextField(elem));
+  }
+
+  window.addEventListener('load', () => {
+    initTextFields();
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="emblem-new-campaign mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <!-- Quiz form -->
+    <div class="emblem-new-campaign-form mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+      <form method="POST">
+        <!-- Quiz Name -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="campaign-name-label">Quiz Name</span>
+          <input required type="text" id="name" name="name" class="mdc-text-field__input" aria-labelledby="name">
+          <span class="mdc-line-ripple"></span>
+        </label>
+
+        <!-- Quiz Description -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="campaign-description-label">Quiz Description</span>
+          <input required type="text" id="description" name="description" class="mdc-text-field__input" aria-labelledby="description">
+          <span class="mdc-line-ripple"></span>
+        </label>
+
+        <!-- Quiz Image -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="campaign-image-label">Quiz image</span>
+          <input required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
+          <span class="mdc-line-ripple"></span>
+        </label>
+
+        <!-- Amount (in USD) -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="goal-label">Goal Amount (in USD):</span>
+          <input required type="text" id="goal" name="goal" class="mdc-text-field__input" aria-labelledby="goal">
+          <span class="mdc-line-ripple"></span>
+        </label>
+
+        <!-- Manager Names -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="goal-label">Managers (comma separated):</span>
+          <input required type="text" id="managers" name="managers" class="mdc-text-field__input" aria-labelledby="managers">
+          <span class="mdc-line-ripple"></span>
+        </label>
+        
+        <!-- Causes list -->
+        <select id="cause" name="cause" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          {% for cause in causes %}
+          <option class="mdc-list-item" value="{{ cause.name }}" data-value="{{ cause.id }}">
+            <span class="mdc-list-item__ripple"></span>
+            <span class="mdc-list-item__text">{{ cause.name }}</span>
+          </option>
+          {% endfor %}
+        </select>
+
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+          <div class="emblem-action-buttons mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+            <!-- Submit button -->
+            <button class="mdc-button mdc-button--raised" type="submit">
+              <span class="mdc-button__ripple"></span>
+              <div class="mdc-button__label">Create</div>
+            </button>
+            <!-- Cancel button -->
+            <a href="/" class="mdc-button">
+              <span class="mdc-button__ripple"></span>
+              <span class="mdc-button__label">Cancel</span>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
