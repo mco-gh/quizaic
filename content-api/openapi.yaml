@@ -1432,7 +1432,6 @@ components:
         questions:
           type: array
           description: array of question/answer objects included in this quiz
-          default: []
           items:
             type: object
             description: question and associated possible answers 
@@ -1448,12 +1447,8 @@ components:
                 type: string
                 description: answer text (free form) or letter (multiple choice)
               responses:
-                type: array
-                description: array of possible multiple choice answers to this question
-                items:
-                  type: string
-                  format: string
-                  description: one possible answer to the associated question
+                type: string
+                description: possible multiple choice answers to this question
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)

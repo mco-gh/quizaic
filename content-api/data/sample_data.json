@@ -93,11 +93,9 @@
       "active": false,
       "QandA": [
           {
-              "question": "foo",
-              "answer":   "bar",
-              "responses":  [
-                  "a", "b", "c", "d"
-              ]
+              "question":  "foo",
+              "answer":    "bar",
+              "responses": "a:b:c:d"
           }
       ]
     }
@@ -124,11 +122,9 @@
       "active": false,
       "QandA": [
           {
-              "question": "foo",
-              "answer":   "bar",
-              "responses":  [
-                  "a", "b", "c", "d"
-              ]
+              "question":  "foo",
+              "answer":    "bar",
+              "responses": "a:b:c:d"
           }
       ]
     }
@@ -155,11 +151,9 @@
       "active": false,
       "QandA": [
           {
-              "question": "foo",
-              "answer":   "bar",
-              "responses":  [
-                  "a", "b", "c", "d"
-              ]
+              "question":  "foo",
+              "answer":    "bar",
+              "responses": "a:b:c:d"
           }
       ]
     }

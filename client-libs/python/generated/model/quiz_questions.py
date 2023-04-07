@@ -83,7 +83,7 @@ class QuizQuestions(ModelNormal):
         return {
             'question': (str,),  # noqa: E501
             'answer': (str,),  # noqa: E501
-            'responses': ([str],),  # noqa: E501
+            'responses': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +142,7 @@ class QuizQuestions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            responses ([str]): array of possible multiple choice answers to this question. [optional]  # noqa: E501
+            responses (str): possible multiple choice answers to this question. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -230,7 +230,7 @@ class QuizQuestions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            responses ([str]): array of possible multiple choice answers to this question. [optional]  # noqa: E501
+            responses (str): possible multiple choice answers to this question. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

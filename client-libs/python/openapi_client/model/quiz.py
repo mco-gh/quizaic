@@ -206,7 +206,7 @@ class Quiz(ModelNormal):
             time_limit (int): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
             num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
             num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
-            questions ([QuizQuestions]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
+            questions ([QuizQuestions]): array of question/answer objects included in this quiz. [optional]  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
@@ -308,7 +308,7 @@ class Quiz(ModelNormal):
             time_limit (int): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
             num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
             num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
-            questions ([QuizQuestions]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
+            questions ([QuizQuestions]): array of question/answer objects included in this quiz. [optional]  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501

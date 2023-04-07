@@ -3895,9 +3895,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             QuizQuestions(
                 question="question_example",
                 answer="answer_example",
-                responses=[
-                    "responses_example",
-                ],
+                responses="responses_example",
             ),
         ],
         sync=True,
@@ -3996,9 +3994,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             QuizQuestions(
                 question="question_example",
                 answer="answer_example",
-                responses=[
-                    "responses_example",
-                ],
+                responses="responses_example",
             ),
         ],
         sync=True,
