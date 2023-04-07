@@ -35,7 +35,7 @@ def list_quizzes():
         current_user = g.session_data.get("email")
 
     try:
-        quizzes = g.api2.quizzes_get()
+        quizzes = g.api.quizzes_get()
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
@@ -57,7 +57,7 @@ def new_quiz():
 @quizzes_bp.route("/Quiz", methods=["POST"])
 def save_quiz():
     try:
-        g.api2.quizzes_post(
+        g.api.quizzes_post(
             {
                 "name": request.form["name"],
                 "cause": request.form["cause"],
@@ -84,7 +84,7 @@ def webapp_view_quiz():
         return render_template("errors/500.html"), 500
 
     try:
-        quiz_instance = g.api2.quizzes_id_get(quiz_id)
+        quiz_instance = g.api.quizzes_id_get(quiz_id)
         quiz_instance["formattedDateCreated"] = convert_utc(
             quiz_instance.time_created
         )
