@@ -154,3 +154,6 @@ node_modules/
 # Vim temp files
 *.swo
 *.swp
+
+# Copy of openapi generated code
+website/client-libs/
