@@ -82,8 +82,8 @@ class QuizQuestions(ModelNormal):
         """
         return {
             'question': (str,),  # noqa: E501
-            'answers': ([str],),  # noqa: E501
             'answer': (str,),  # noqa: E501
+            'responses': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class QuizQuestions(ModelNormal):
 
     attribute_map = {
         'question': 'question',  # noqa: E501
-        'answers': 'answers',  # noqa: E501
         'answer': 'answer',  # noqa: E501
+        'responses': 'responses',  # noqa: E501
     }
 
     read_only_vars = {
@@ -104,12 +104,11 @@ class QuizQuestions(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, question, answers, answer, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, question, answer, *args, **kwargs):  # noqa: E501
         """QuizQuestions - a model defined in OpenAPI
 
         Args:
             question (str): question text
-            answers ([str]): array of possible multiple choice answers to this question
             answer (str): answer text (free form) or letter (multiple choice)
 
         Keyword Args:
@@ -143,6 +142,7 @@ class QuizQuestions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            responses ([str]): array of possible multiple choice answers to this question. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -171,7 +171,6 @@ class QuizQuestions(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.question = question
-        self.answers = answers
         self.answer = answer
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
@@ -193,12 +192,11 @@ class QuizQuestions(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, question, answers, answer, *args, **kwargs):  # noqa: E501
+    def __init__(self, question, answer, *args, **kwargs):  # noqa: E501
         """QuizQuestions - a model defined in OpenAPI
 
         Args:
             question (str): question text
-            answers ([str]): array of possible multiple choice answers to this question
             answer (str): answer text (free form) or letter (multiple choice)
 
         Keyword Args:
@@ -232,6 +230,7 @@ class QuizQuestions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            responses ([str]): array of possible multiple choice answers to this question. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -258,7 +257,6 @@ class QuizQuestions(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.question = question
-        self.answers = answers
         self.answer = answer
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

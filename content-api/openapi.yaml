@@ -1444,16 +1444,16 @@ components:
               question:
                 type: string
                 description: question text
-              answers:
+              answer:
+                type: string
+                description: answer text (free form) or letter (multiple choice)
+              responses:
                 type: array
                 description: array of possible multiple choice answers to this question
                 items:
                   type: string
                   format: string
                   description: one possible answer to the associated question
-              answer:
-                type: string
-                description: answer text (free form) or letter (multiple choice)
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)

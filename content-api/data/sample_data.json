@@ -91,7 +91,15 @@
       "numAnswers": 4,
       "sync": true,
       "active": false,
-      "QandA": []
+      "QandA": [
+          {
+              "question": "foo",
+              "answer":   "bar",
+              "responses":  [
+                  "a", "b", "c", "d"
+              ]
+          }
+      ]
     }
   },
   {
@@ -114,7 +122,15 @@
       "numAnswers": 4,
       "sync": true,
       "active": false,
-      "QandA": []
+      "QandA": [
+          {
+              "question": "foo",
+              "answer":   "bar",
+              "responses":  [
+                  "a", "b", "c", "d"
+              ]
+          }
+      ]
     }
   },
   {
@@ -137,7 +153,15 @@
       "numAnswers": 4,
       "sync": true,
       "active": false,
-      "QandA": []
+      "QandA": [
+          {
+              "question": "foo",
+              "answer":   "bar",
+              "responses":  [
+                  "a", "b", "c", "d"
+              ]
+          }
+      ]
     }
   },
   {
