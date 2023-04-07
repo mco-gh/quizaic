@@ -75,14 +75,46 @@
     "collection": "quizzes",
     "id": "f7723afa140f40ff9e70",
     "data": {
-      "name": "Marc's US History Quiz"
+      "name": "Marc's US History Quiz",
+      "host": "1b271fa397f14c2b9582",
+      "playUrl": "https://quizrd.io/123",
+      "pin": "123",
+      "freeformA": false,
+      "topic": "cats",
+      "anonymous": true,
+      "randomQ": true,
+      "randomA": true,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Black_cat_-_Sydney.jpg/440px-Black_cat_-_Sydney.jpg",
+      "difficulty": 5,
+      "timeLimit": 60,
+      "numQuestions": 3,
+      "numAnswers": 4,
+      "sync": true,
+      "active": false,
+      "QandA": []
     }
   },
   {
     "collection": "quizzes",
     "id": "078ba4bfce324ced8586",
     "data": {
-      "name": "Marc's Rock and Roll Quiz"
+      "name": "Marc's Rock and Roll Quiz",
+      "host": "1b271fa397f14c2b9582",
+      "playUrl": "https://quizrd.io/123",
+      "pin": "123",
+      "freeformA": false,
+      "topic": "cats",
+      "anonymous": true,
+      "randomQ": true,
+      "randomA": true,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Black_cat_-_Sydney.jpg/440px-Black_cat_-_Sydney.jpg",
+      "difficulty": 5,
+      "timeLimit": 60,
+      "numQuestions": 3,
+      "numAnswers": 4,
+      "sync": true,
+      "active": false,
+      "QandA": []
     }
   },
   {
@@ -92,7 +124,7 @@
       "name": "Cat Trivia by حسین رضایی",
       "host": "1b271fa397f14c2b9582",
       "playUrl": "https://quizrd.io/123",
-      "pin": 123,
+      "pin": "123",
       "freeformA": false,
       "topic": "cats",
       "anonymous": true,

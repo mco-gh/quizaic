@@ -1422,10 +1422,10 @@ components:
           minimum: 3
           maximum: 300
         numQuestions:
-          type: string
+          type: number
           description: number of questions included in this quiz
         numAnswers:
-          type: string
+          type: number
           description: number of answers possible for each question in this quiz (0 == free form)
         questions:
           type: array
