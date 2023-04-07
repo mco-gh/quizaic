@@ -22,6 +22,8 @@ from views.errors import errors_bp
 from views.auth import auth_bp
 from views.robots_txt import robots_txt_bp
 
+from views.quizzes import quizzes_bp
+
 from middleware import auth, csp
 
 app = Flask(__name__)
@@ -31,6 +33,8 @@ app.register_blueprint(donations_bp)
 app.register_blueprint(campaigns_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(robots_txt_bp)
+
+app.register_blueprint(quizzes_bp)
 
 # Initialize middleware
 auth.init(app)

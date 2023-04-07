@@ -42,6 +42,7 @@ import requests
 from middleware.logging import log
 from middleware import session
 import emblem_client
+import quizrd_client
 
 
 # Treat tokens within this many seconds of expiration as already expired
@@ -80,11 +81,13 @@ def init(app):
         if session_id is None:
             trace = request.headers.get("X-Cloud-Trace-Context")
             g.api = emblem_client.EmblemClient(API_URL, trace=trace)
+            g.api2 = quizrd_client.QuizrdClient(API_URL, trace=trace)
             return
 
         session_data = session.read(session_id)
         if session_data is None:
             g.api = emblem_client.EmblemClient(API_URL)
+            g.api2 = quizrd_client.QuizrdClient(API_URL)
             log(f"Missing session data for id {session_id}", severity="ERROR")
             return
 
@@ -108,6 +111,7 @@ def init(app):
         trace = request.headers.get("X-Cloud-Trace-Context")
 
         g.api = emblem_client.EmblemClient(API_URL, access_token=id_token, trace=trace)
+        g.api2 = quizrd_client.QuizrdClient(API_URL, access_token=id_token, trace=trace)
 
 
 def get_refreshed_token(refresh_token):
