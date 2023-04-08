@@ -112,10 +112,10 @@ class Quiz(ModelNormal):
             'topic': (str, none_type,),  # noqa: E501
             'anonymous': (bool,),  # noqa: E501
             'image_url': (str, none_type,),  # noqa: E501
-            'difficulty': (int,),  # noqa: E501
+            'difficulty': (int, none_type,),  # noqa: E501
             'time_limit': (int, none_type,),  # noqa: E501
-            'num_questions': (int,),  # noqa: E501
-            'num_answers': (int,),  # noqa: E501
+            'num_questions': (int, none_type,),  # noqa: E501
+            'num_answers': (int, none_type,),  # noqa: E501
             'sync': (bool,),  # noqa: E501
             'active': (bool, none_type,),  # noqa: E501
             'qand_a': ([QuizQandA], none_type,),  # noqa: E501
@@ -211,10 +211,10 @@ class Quiz(ModelNormal):
             topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             anonymous (bool): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
-            difficulty (int): integer level of difficulty (1-10). [optional]  # noqa: E501
+            difficulty (int, none_type): integer level of difficulty (1-10). [optional] if omitted the server will use the default value of 5  # noqa: E501
             time_limit (int, none_type): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of 60  # noqa: E501
-            num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
-            num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
+            num_questions (int, none_type): number of questions included in this quiz. [optional] if omitted the server will use the default value of 10  # noqa: E501
+            num_answers (int, none_type): number of answers possible for each question in this quiz (0 == free form). [optional] if omitted the server will use the default value of 4  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a ([QuizQandA], none_type): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
@@ -316,10 +316,10 @@ class Quiz(ModelNormal):
             topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             anonymous (bool): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
-            difficulty (int): integer level of difficulty (1-10). [optional]  # noqa: E501
+            difficulty (int, none_type): integer level of difficulty (1-10). [optional] if omitted the server will use the default value of 5  # noqa: E501
             time_limit (int, none_type): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of 60  # noqa: E501
-            num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
-            num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
+            num_questions (int, none_type): number of questions included in this quiz. [optional] if omitted the server will use the default value of 10  # noqa: E501
+            num_answers (int, none_type): number of answers possible for each question in this quiz (0 == free form). [optional] if omitted the server will use the default value of 4  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a ([QuizQandA], none_type): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501

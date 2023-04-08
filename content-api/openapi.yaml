@@ -1589,6 +1589,8 @@ components:
         difficulty:
           type: integer 
           description: integer level of difficulty (1-10)
+          nullable: true
+          default: 5
           minimum: 1
           maximum: 10
         timeLimit:
@@ -1601,10 +1603,14 @@ components:
         numQuestions:
           type: integer
           description: number of questions included in this quiz
+          nullable: true
+          default: 10
           minimum: 1
         numAnswers:
           type: integer
           description: number of answers possible for each question in this quiz (0 == free form)
+          nullable: true
+          default: 4
           minimum: 1
         sync:
           type: boolean

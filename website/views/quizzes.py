@@ -63,7 +63,7 @@ def save_quiz():
                 "description":  request.form["description"],
                 #"topic":        request.form["topic"],
                 "imageUrl":     request.form["imageUrl"],
-                "timeLimit":    timeLimit,
+                #"timeLimit":    timeLimit,
                 "difficulty":   difficulty,
                 "numQuestions": numQuestions,
                 "numAnswers":   numAnswers,
