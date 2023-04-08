@@ -203,7 +203,7 @@ class Quiz(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
-            freeform (bool): whether this quiz supports free-form answers. [optional] if omitted the server will use the default value of False  # noqa: E501
+            freeform (bool): whether this quiz supports free-form answers. [optional]  # noqa: E501
             run_count (int, none_type): number of times quiz has been run. [optional]  # noqa: E501
             host (str): the id of the host. [optional]  # noqa: E501
             play_url (str): URL for playing this quiz. [optional]  # noqa: E501
@@ -308,7 +308,7 @@ class Quiz(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
-            freeform (bool): whether this quiz supports free-form answers. [optional] if omitted the server will use the default value of False  # noqa: E501
+            freeform (bool): whether this quiz supports free-form answers. [optional]  # noqa: E501
             run_count (int, none_type): number of times quiz has been run. [optional]  # noqa: E501
             host (str): the id of the host. [optional]  # noqa: E501
             play_url (str): URL for playing this quiz. [optional]  # noqa: E501

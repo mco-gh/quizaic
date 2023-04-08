@@ -1558,7 +1558,6 @@ components:
         freeform:
           type: boolean
           description: whether this quiz supports free-form answers
-          default: false
         runCount:
           type: integer
           nullable: true
