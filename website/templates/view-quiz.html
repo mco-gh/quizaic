@@ -112,11 +112,9 @@
               {% else %}
                 {% for response in q.responses %}
                   <tr class="mdc-data-table__row">
-                    <td rowspan="{{ q .num_answers }} class="mdc-data-table__cell">
-                      {% if loop.index == 1 %}
-                        {{ q.question }}
-                      {% endif %}
-                    </td>
+                    {% if loop.index == 1 %}
+                      <td rowspan="{{ quiz.num_answers }}" class="mdc-data-table__cell">{{ q.question }}</td>
+                    {% endif %}
                     <td class="mdc-data-table__cell">
                       {% set correct = q.correct | int %}
                       {% if loop.index == correct + 1 %}
