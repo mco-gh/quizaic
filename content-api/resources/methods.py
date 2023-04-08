@@ -28,6 +28,7 @@ resource_fields = {
     "quizzes": [
         "name",
         "description",
+        "runCount",
         "host",
         "playUrl",
         "pin",
