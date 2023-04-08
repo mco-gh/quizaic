@@ -25,7 +25,7 @@
       <div class="emblem-campaign-image" style="max-width: 250px; height: 150px; border-radius: 5px; background-image: url({{ quiz.image_url }}); background-size: cover;"></div>
       <h2>{{ quiz.name }}</h2>
       <p>{{ quiz.description }}</p>
-      <p>This quiz is {{ "%.1f"|format(quiz.percentComplete) }}% complete.</p>
+      <p>This quiz has been run 0 <!--{{ quiz.runCount }}%--> times.</p>
     </div>
     <!-- Quiz info (top right quadrant) -->
     <div class="emblem-campaign-details mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
@@ -37,36 +37,15 @@
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Raised</span>
-          <span class="mdc-list-item__meta">
-            ${{ "%.2f"|format(quiz.raised) }} (of ${{ "%.2f"|format(quiz.goal) }} goal)
-          </span>
+          <span class="mdc-list-item__text">Number of questions</span>
+          <span class="mdc-list-item__meta">{{ quiz.num_questions }}</span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Created</span>
-          <span class="mdc-list-item__meta">{{ quiz.formattedDateCreated }}</span>
+          <span class="mdc-list-item__text">Number of answers per question</span>
+          <span class="mdc-list-item__meta">{{ quiz.num_answers }}</span>
         </li>
-
-        {% if quiz.timeCreated != quiz.updated %}
-          <li role="separator" class="mdc-list-divider"></li>
-          <li class="mdc-list-item">
-            <span class="mdc-list-item__text">Last Updated</span>
-            <span class="mdc-list-item__meta">{{ quiz.formattedDateUpdated }}</span>
-          </li>
-        {% endif %}
-
-        <li role="separator" class="mdc-list-divider"></li>
-        <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Owners</span>
-          <span class="mdc-list-item__meta">
-            {% for manager in quiz.managers %}
-              {{ manager }}</br>
-            {% endfor %}
-          </span>
-        </li>
-      </ul>
       <!-- Donate button -->
       {% if quiz.active %}
         <a href="/donate?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
@@ -78,9 +57,9 @@
   </div>
 
 
-  <!-- Donation history (bottom half of page) -->
+  <!-- Quiz content (bottom portion of page) -->
   <div class="emblem-donation-history mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-    <h3>Donation History</h3>
+    <h3>Questions</h3>
 
     <div class="mdc-data-table">
       <table class="mdc-data-table__table" aria-label="Donation history">
@@ -94,7 +73,7 @@
             >
               <div class="mdc-data-table__header-cell-wrapper">
                 <div class="mdc-data-table__header-cell-label">
-                  Name
+                  Question
                 </div>
               </div>
             </th>
@@ -106,44 +85,32 @@
             >
               <div class="mdc-data-table__header-cell-wrapper">
                 <div class="mdc-data-table__header-cell-label">
-                  Amount
-                </div>
-              </div>
-            </th>
-            <th
-              class="mdc-data-table__header-cell"
-              role="columnheader"
-              scope="col"
-              data-column-id="date"
-            >
-              <div class="mdc-data-table__header-cell-wrapper">
-                <div class="mdc-data-table__header-cell-label">
-                  Date
+                  Answer
                 </div>
               </div>
             </th>
           </tr>
         </thead>
         <tbody class="mdc-data-table__content">
-          {% set donation_count = quiz.donations | length %}
-          {% if donation_count == 0 %}
+          {% if quiz.num_questions == 0 %}
             <tr class="mdc-data-table__row">
               <td class="mdc-data-table__cell">
-                No donations yet
+                No questions yet
               </td>
             </tr>
           {% else %}
-            {% for donation in quiz.donations %}
-              <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">
-                  {{ donation.donorName }}
-                </td>
-                <td class="mdc-data-table__cell">
-                  ${{ "%.2f"|format(donation.amount) }}
-                </td>
-                <td class="mdc-data-table__cell">
-                  {{ donation.formattedDateCreated }}
-                </td>
+            {% for q in quiz.qand_a %}
+              {% for response in q.responses %}
+                <tr class="mdc-data-table__row">
+                  <td class="mdc-data-table__cell">
+                    {% if loop.index == 1 %}
+                      {{ q.question }}
+                    {% endif %}
+                  </td>
+                  <td class="mdc-data-table__cell">
+                    ${{ response }}
+                  </td>
+                {% endfor %}  
               </tr>
             {% endfor %}
           {% endif %}

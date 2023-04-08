@@ -1619,8 +1619,11 @@ components:
                 type: string
                 description: answer text (free form) or letter (multiple choice)
               responses:
-                type: string
+                type: array
                 description: possible multiple choice answers to this question
+                default: []
+                items:
+                  type: string
         timeCreated:
           type: string
           format: date-time

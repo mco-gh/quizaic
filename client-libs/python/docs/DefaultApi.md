@@ -3903,7 +3903,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             QuizQandA(
                 question="question_example",
                 answer="answer_example",
-                responses="responses_example",
+                responses=[],
             ),
         ],
     ) # Quiz | JSON representation of a single quiz
@@ -4400,7 +4400,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             QuizQandA(
                 question="question_example",
                 answer="answer_example",
-                responses="responses_example",
+                responses=[],
             ),
         ],
     ) # Quiz | JSON representation of a single quiz

@@ -96,7 +96,12 @@
           {
               "question":  "foo",
               "answer":    "bar",
-              "responses": "a:b:c:d"
+              "responses": [
+                  "a",
+                  "b",
+                  "c",
+                  "d"
+              ]
           }
       ]
     }
@@ -126,7 +131,12 @@
           {
               "question":  "foo",
               "answer":    "bar",
-              "responses": "a:b:c:d"
+              "responses": [
+                  "a",
+                  "b",
+                  "c",
+                  "d"
+              ]
           }
       ]
     }
@@ -156,7 +166,12 @@
           {
               "question":  "foo",
               "answer":    "bar",
-              "responses": "a:b:c:d"
+              "responses": [
+                  "a",
+                  "b",
+                  "c",
+                  "d"
+              ]
           }
       ]
     }
