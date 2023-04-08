@@ -50,14 +50,29 @@ def new_quiz():
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
     try:
-        log(f"")
+        sync = request.form["sync"] == "True"
+        difficulty = int(request.form["difficulty"])
+        runCount = 0
+
         g.api.quizzes_post(
             {
-                "name": request.form["name"],
-                "description": request.form["description"],
-                "imageUrl": request.form["imageUrl"],
-                "description": request.form["description"],
-                "runCount": 1
+                "name":         request.form["name"],
+                "description":  request.form["description"],
+                "imageUrl":     request.form["imageUrl"],
+                #"freeform":     request.form["freeform"],
+                #"topic":        request.form["topic"],
+                "difficulty":   difficulty,
+                "timeLimit":    request.form["timeLimit"],
+                "numQuestions": request.form["numQuestions"],
+                "numAnswers":   request.form["numAnswers"],
+                "sync":         sync,
+                # host | the id of the *host* of this *quiz*
+                # playUrl | direct URL for playing this *quiz*
+                # pin | pin code for playing this *quiz*
+                # randomQ | boolean; whether to randomize question order |"
+                # randomA | boolean; whether to randomize answer order |
+                # QandA | array of questions, associated answers, and correct answers comprising this *quiz* |
+                # active | boolean; whether this *quiz* is currently available to be played |
             }
         )
     except Exception as e:

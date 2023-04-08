@@ -92,7 +92,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-description-label">Number of questions</span>
-          <input required type="text" id="numberQ" name="numberQ" class="mdc-text-field__input" aria-labelledby="description">
+          <input required type="text" id="numQuestions" name="numQuestions" class="mdc-text-field__input" aria-labelledby="description">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -100,7 +100,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
         <span class="mdc-text-field__ripple"></span>
         <span class="mdc-floating-label" id="campaign-image-label">Number of answers</span>
-        <input required type="text" id="numberA" name="numberA" class="mdc-text-field__input" aria-labelledby="name">
+        <input required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
         <span class="mdc-line-ripple"></span>
         </label>
       
@@ -133,7 +133,7 @@
         </select>
 
         <!-- Quiz Synchronicity -->
-        <select id="sync" name="Synchonicity" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+        <select id="sync" name="sync" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <option class="mdc-list-item" value="{{ true }}" data-value="{{ true }}">
             <span class="mdc-list-item__ripple"></span>
             <span class="mdc-list-item__text">quizzes are run synchronously</span>

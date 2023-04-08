@@ -1561,8 +1561,8 @@ components:
           default: false
         runCount:
           type: integer
+          nullable: true
           description: number of times quiz has been run
-          default: 0
         host:
           type: string
           description: the id of the host
