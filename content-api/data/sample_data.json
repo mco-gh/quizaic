@@ -87,10 +87,10 @@
       "randomQ": true,
       "randomA": true,
       "imageUrl": "https://images.unsplash.com/photo-1447727214830-cbcbf097b52c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2496&q=80",
-      "difficulty": 5,
-      "timeLimit": 60,
-      "numQuestions": 3,
-      "numAnswers": 4,
+      "difficulty": "5",
+      "timeLimit": "60",
+      "numQuestions": "3",
+      "numAnswers": "4",
       "sync": true,
       "active": false,
       "QandA": [
@@ -125,10 +125,10 @@
       "randomQ": true,
       "randomA": true,
       "imageUrl": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-      "difficulty": 5,
-      "timeLimit": 60,
-      "numQuestions": 2,
-      "numAnswers": 4,
+      "difficulty": "5",
+      "timeLimit": "60",
+      "numQuestions": "2",
+      "numAnswers": "4",
       "sync": true,
       "active": false,
       "QandA": [
@@ -171,10 +171,10 @@
       "randomQ": true,
       "randomA": true,
       "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2286&q=80",
-      "difficulty": 5,
-      "timeLimit": 60,
-      "numQuestions": 2,
-      "numAnswers": 4,
+      "difficulty": "5",
+      "timeLimit": "60",
+      "numQuestions": "2",
+      "numAnswers": "4",
       "sync": true,
       "active": false,
       "QandA": [
@@ -198,6 +198,32 @@
                   "under water"
               ]
           }
+      ]
+    }
+  },
+  {
+    "collection": "quizzes",
+    "id": "Gc34g8db0wCrroLUxJeA",
+    "data": {
+      "name": "New Quiz",
+      "description": "Baseball Hall of Famers",
+      "runCount": 23,
+      "host": "1b271fa397f14c2b9582",
+      "playUrl": "https://quizrd.io/123",
+      "pin": "123",
+      "freeform": false,
+      "topic": "Sports",
+      "anonymous": true,
+      "randomQ": true,
+      "randomA": true,
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1571358607210-1691cb0ea07c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
+      "difficulty": "5",
+      "timeLimit": "60",
+      "numQuestions": "2",
+      "numAnswers": "4",
+      "sync": true,
+      "active": false,
+      "QandA": [
       ]
     }
   },

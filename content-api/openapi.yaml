@@ -1588,31 +1588,21 @@ components:
           nullable: true
           default: ""
         difficulty:
-          type: integer 
+          type: string 
           description: integer level of difficulty (1-10)
-          nullable: true
-          default: 5
-          minimum: 1
-          maximum: 10
+          default: "5"
         timeLimit:
-          type: integer
+          type: string
           description: number of seconds to respond to each question in this quiz (3-300)
-          nullable: true
-          default: 60
-          minimum: 3
-          maximum: 300
+          default: "60"
         numQuestions:
-          type: integer
+          type: string
           description: number of questions included in this quiz
-          nullable: true
-          default: 10
-          minimum: 1
+          default: "10"
         numAnswers:
-          type: integer
+          type: string
           description: number of answers possible for each question in this quiz (0 == free form)
-          nullable: true
-          default: 4
-          minimum: 1
+          default: "4"
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)

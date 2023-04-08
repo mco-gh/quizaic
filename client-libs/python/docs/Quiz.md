@@ -15,10 +15,10 @@ Name | Type | Description | Notes
 **topic** | **str, none_type** | the topic of this quiz | [optional] 
 **anonymous** | **bool, none_type** | whether players may be anonymous | [optional]  if omitted the server will use the default value of True
 **image_url** | **str, none_type** | string containing URL of an image to display for this quiz | [optional]  if omitted the server will use the default value of ""
-**difficulty** | **int, none_type** | integer level of difficulty (1-10) | [optional]  if omitted the server will use the default value of 5
-**time_limit** | **int, none_type** | number of seconds to respond to each question in this quiz (3-300) | [optional]  if omitted the server will use the default value of 60
-**num_questions** | **int, none_type** | number of questions included in this quiz | [optional]  if omitted the server will use the default value of 10
-**num_answers** | **int, none_type** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional]  if omitted the server will use the default value of 4
+**difficulty** | **str** | integer level of difficulty (1-10) | [optional]  if omitted the server will use the default value of "5"
+**time_limit** | **str** | number of seconds to respond to each question in this quiz (3-300) | [optional]  if omitted the server will use the default value of "60"
+**num_questions** | **str** | number of questions included in this quiz | [optional]  if omitted the server will use the default value of "10"
+**num_answers** | **str** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional]  if omitted the server will use the default value of "4"
 **sync** | **bool** | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional]  if omitted the server will use the default value of True
 **active** | **bool, none_type** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False
 **qand_a** | [**[QuizQandA], none_type**](QuizQandA.md) | array of question/answer objects included in this quiz | [optional]  if omitted the server will use the default value of []

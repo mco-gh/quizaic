@@ -50,26 +50,20 @@ def new_quiz():
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
     try:
-        log(request.form)
-        sync = request.form["sync"] == "true"
-        anonymous = request.form["anonymous"] == "true"
-        difficulty = int(request.form["difficulty"])
-        timeLimit = int(request.form["timeLimit"])
-        numQuestions = int(request.form["numQuestions"])
-        numAnswers = int(request.form["numAnswers"])
         g.api.quizzes_post(
             {
                 "name":         request.form["name"],
                 "description":  request.form["description"],
-                #"topic":        request.form["topic"],
                 "imageUrl":     request.form["imageUrl"],
-                #"timeLimit":    timeLimit,
-                "difficulty":   difficulty,
-                #"numQuestions": numQuestions,
-                #"numAnswers":   numAnswers,
-                "sync":         sync,
-                "anonymous":    anonymous,
+                "timeLimit":    request.form["timeLimit"],
+                "difficulty":   request.form["difficulty"],
+                "numQuestions": request.form["numQuestions"],
+                "numAnswers":   request.form["numAnswers"],
+                "sync":         request.form["sync"] == "true",
+                "anonymous":    request.form["anonymous"] == "true",
+                "QandA":        []
                 #"freeform":     request.form["freeform"],
+                #"topic":        request.form["topic"],
                 # host | the id of the *host* of this *quiz*
                 # playUrl | direct URL for playing this *quiz*
                 # pin | pin code for playing this *quiz*
