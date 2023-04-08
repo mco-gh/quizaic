@@ -39,6 +39,7 @@
     <!-- Quiz form -->
     <div class="emblem-new-campaign-form mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
       <form method="POST">
+
         <!-- Quiz Name -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
@@ -55,6 +56,30 @@
           <span class="mdc-line-ripple"></span>
         </label>
 
+        <!-- Quiz Generator -->
+        {% if generator %}
+          <select id="generator" name="generator" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+            {% for generator in generators %}
+            <option class="mdc-list-item" value="{{ geneator.type }}" data-value="{{ generator.id }}">
+              <span class="mdc-list-item__ripple"></span>
+              <span class="mdc-list-item__text">{{ generator.type }}</span>
+            </option>
+            {% endfor %}
+          </select>
+        {% endif %}
+
+        <!-- Quiz Topic -->
+        {% if topic %}
+          <select id="topic" name="topic" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+            {% for topic in topics %}
+            <option class="mdc-list-item" value="{{ topic }}" data-value="{{ topic }}">
+              <span class="mdc-list-item__ripple"></span>
+              <span class="mdc-list-item__text">{{ topic }}</span>
+            </option>
+            {% endfor %}
+          </select>
+        {% endif %}
+
         <!-- Quiz Image -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
@@ -63,30 +88,60 @@
           <span class="mdc-line-ripple"></span>
         </label>
 
-        <!-- Amount (in USD) -->
+        <!-- Quiz Number of Questions -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
-          <span class="mdc-floating-label" id="goal-label">Goal Amount (in USD):</span>
-          <input required type="text" id="goal" name="goal" class="mdc-text-field__input" aria-labelledby="goal">
+          <span class="mdc-floating-label" id="campaign-description-label">Number of questions</span>
+          <input required type="text" id="numberQ" name="numberQ" class="mdc-text-field__input" aria-labelledby="description">
           <span class="mdc-line-ripple"></span>
         </label>
 
-        <!-- Manager Names -->
+        <!-- Quiz Number of Answers -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label" id="campaign-image-label">Number of answers</span>
+        <input required type="text" id="numberA" name="numberA" class="mdc-text-field__input" aria-labelledby="name">
+        <span class="mdc-line-ripple"></span>
+        </label>
+      
+        <!-- Quiz Seconds to Respond -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
-          <span class="mdc-floating-label" id="goal-label">Managers (comma separated):</span>
-          <input required type="text" id="managers" name="managers" class="mdc-text-field__input" aria-labelledby="managers">
+          <span class="mdc-floating-label" id="campaign-image-label">Seconds to response</span>
+          <input required type="text" id="timeLimit" name="timeLimit" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
-        
-        <!-- Causes list -->
-        <select id="cause" name="cause" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-          {% for cause in causes %}
-          <option class="mdc-list-item" value="{{ cause.name }}" data-value="{{ cause.id }}">
+
+        <!-- Quiz Difficulty Level -->
+        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="campaign-image-label">Difficulty level (1-10)</span>
+          <input required type="text" id="difficulty" name="difficulty" class="mdc-text-field__input" aria-labelledby="name">
+          <span class="mdc-line-ripple"></span>
+        </label>
+
+        <!-- Quiz Anonymity -->
+        <select id="anonymous" name="Anonymity" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <option class="mdc-list-item" value="{{ true }}" data-value="{{ true }}">
             <span class="mdc-list-item__ripple"></span>
-            <span class="mdc-list-item__text">{{ cause.name }}</span>
+            <span class="mdc-list-item__text">players may be anonymous</span>
           </option>
-          {% endfor %}
+          <option class="mdc-list-item" value="{{ false }}" data-value="{{ false }}">
+            <span class="mdc-list-item__ripple"></span>
+            <span class="mdc-list-item__text">players must be logged in</span>
+          </option>
+        </select>
+
+        <!-- Quiz Synchronicity -->
+        <select id="sync" name="Synchonicity" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <option class="mdc-list-item" value="{{ true }}" data-value="{{ true }}">
+            <span class="mdc-list-item__ripple"></span>
+            <span class="mdc-list-item__text">quizzes are run synchronously</span>
+          </option>
+          <option class="mdc-list-item" value="{{ false }}" data-value="{{ false }}">
+            <span class="mdc-list-item__ripple"></span>
+            <span class="mdc-list-item__text">quizzes are run asynchronously</span>
+          </option>
         </select>
 
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
