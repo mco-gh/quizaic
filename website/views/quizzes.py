@@ -44,13 +44,7 @@ def list_quizzes():
 
 @quizzes_bp.route("/createQuiz", methods=["GET"])
 def new_quiz():
-    try:
-        causes = g.api.causes_get()
-    except Exception as e:
-        log(f"Exception when listing causes: {e}", severity="ERROR")
-        causes = []
-
-    return render_template("create-quiz.html", causes=causes)
+    return render_template("create-quiz.html")
 
 
 @quizzes_bp.route("/Quiz", methods=["POST"])
@@ -59,12 +53,9 @@ def save_quiz():
         g.api.quizzes_post(
             {
                 "name": request.form["name"],
-                "cause": request.form["cause"],
-                "imageUrl": request.form["imageUrl"],
                 "description": request.form["description"],
-                "goal": float(request.form["goal"]),
-                "managers": re.split(r"[ ,]+", request.form["managers"]),
-                "active": True,
+                "imageUrl": request.form["imageUrl"],
+                "description": request.form["description"]
             }
         )
     except Exception as e:

@@ -217,7 +217,8 @@ if [[ -z "$SKIP_DEPLOY" ]]; then
     STAGING_API_URL=$(gcloud run services describe content-api \
         --project "${STAGE_PROJECT}" --region ${REGION} \
         --format 'value(status.url)')
-    
+    STAGING_REDIR_URL=$(gcloud run services describe website --project "${STAGE_PROJECT}" --region ${REGION} --format 'value(status.url)')/callback
+
     check_for_build_then_run $WEB_BUILD_ID "gcloud run deploy website \
         --allow-unauthenticated \
         --image "${REGION}-docker.pkg.dev/${OPS_PROJECT}/website/website:${SETUP_IMAGE_TAG}" \
@@ -226,6 +227,7 @@ if [[ -z "$SKIP_DEPLOY" ]]; then
         --update-env-vars "EMBLEM_API_URL=${STAGING_API_URL}" \
         --update-env-vars "OTEL_TRACES_EXPORTER=gcp_trace" \
         --update-env-vars "OTEL_METRICS_EXPORTER=none" \
+        --update-env-vars "REDIRECT_URI=${STAGING_REDIR_URL}" \
         --project "${STAGE_PROJECT}" \
         --region "${REGION}" \
         --tag "latest""
@@ -242,6 +244,8 @@ if [[ -z "$SKIP_DEPLOY" ]]; then
             --region "${REGION}""
 
         PROD_API_URL=$(gcloud run services describe content-api --project "${PROD_PROJECT}" --region ${REGION} --format 'value(status.url)')
+        #PROD_REDIR_URL=$(gcloud run services describe website --project "${STAGE_PROJECT}" --region ${REGION} --format 'value(status.url)')/callback
+        PROD_REDIR_URL=https://quizrd.io/callback
         
         check_for_build_then_run $WEB_BUILD_ID "gcloud run deploy website \
             --allow-unauthenticated \
@@ -251,6 +255,7 @@ if [[ -z "$SKIP_DEPLOY" ]]; then
             --update-env-vars "EMBLEM_API_URL=${PROD_API_URL}" \
             --update-env-vars "OTEL_TRACES_EXPORTER=gcp_trace" \
             --update-env-vars "OTEL_METRICS_EXPORTER=none" \
+            --update-env-vars "REDIRECT_URI=${PROD_REDIR_URL}" \
             --project "${PROD_PROJECT}" \
             --region "${REGION}" \
             --tag "latest""
