@@ -22,11 +22,12 @@ from utils.logging import log
 
 
 resource_fields = {
-    "admins": ["id", "name", "email"],
-    "hosts": ["id", "name", "email"],
-    "players": ["id", "name", "email"],
+    "admins": ["name", "email"],
+    "hosts": ["name", "email"],
+    "players": ["name", "email"],
     "quizzes": [
         "name",
+        "description",
         "host",
         "playUrl",
         "pin",
@@ -37,10 +38,11 @@ resource_fields = {
         "timeLimit",
         "numQuestions",
         "numAnswers",
-        "QandA",
         "sync",
         "active",
+        "QandA",
     ],
+    "results": ["quiz", "player", "responses"],
     "generators": ["name"],
     # legacy emblem support follows...
     "approvers": ["name", "email", "active"],

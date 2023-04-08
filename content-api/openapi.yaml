@@ -1551,6 +1551,10 @@ components:
           type: string
           nullable: true
           description: the display name of this quiz
+        desciption:
+          type: string
+          nullable: true
+          description: a short description of the quiz
         host:
           type: string
           description: the id of the host
