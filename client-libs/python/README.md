@@ -163,6 +163,7 @@ Class | Method | HTTP request | Description
  - [Player](docs/Player.md)
  - [Quiz](docs/Quiz.md)
  - [QuizQandA](docs/QuizQandA.md)
+ - [Results](docs/Results.md)
 
 
 ## Documentation For Authorization

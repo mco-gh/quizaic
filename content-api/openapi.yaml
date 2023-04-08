@@ -1429,9 +1429,18 @@ components:
           type: integer
           description: number of answers possible for each question in this quiz (0 == free form)
           minimum: 1
+        sync:
+          type: boolean
+          description: is this quiz synchronous (false == asynchronous)
+          default: true
+        active:
+          type: boolean
+          description: is this quiz currently being played?
+          default: false
         QandA:
           type: array
           description: array of question/answer objects included in this quiz
+          default: []
           items:
             type: object
             description: question and associated possible answers 
@@ -1449,14 +1458,40 @@ components:
               responses:
                 type: string
                 description: possible multiple choice answers to this question
-        sync:
-          type: boolean
-          description: is this quiz synchronous (false == asynchronous)
-          default: true
-        active:
-          type: boolean
-          description: is this quiz currently being played?
-          default: false
+        timeCreated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned creation timestamp
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+          description: system-assigned update timestamp
+        selfLink:
+          type: string
+          format: uri
+          readOnly: true
+          description: full URI of the resource
+
+    Results:
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: unique, system-assigned identifier
+        quiz:
+          type: string
+          description: id of the quiz associated with these results
+        player:
+          type: string
+          description: id of the player associated with these results
+        responses:
+          type: array
+          description: array of responses
+          items:
+            type: string
+          default: []
         timeCreated:
           type: string
           format: date-time

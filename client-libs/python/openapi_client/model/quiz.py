@@ -113,9 +113,9 @@ class Quiz(ModelNormal):
             'time_limit': (int,),  # noqa: E501
             'num_questions': (int,),  # noqa: E501
             'num_answers': (int,),  # noqa: E501
-            'qand_a': ([QuizQandA],),  # noqa: E501
             'sync': (bool,),  # noqa: E501
             'active': (bool,),  # noqa: E501
+            'qand_a': ([QuizQandA],),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
             'self_link': (str,),  # noqa: E501
@@ -139,9 +139,9 @@ class Quiz(ModelNormal):
         'time_limit': 'timeLimit',  # noqa: E501
         'num_questions': 'numQuestions',  # noqa: E501
         'num_answers': 'numAnswers',  # noqa: E501
-        'qand_a': 'QandA',  # noqa: E501
         'sync': 'sync',  # noqa: E501
         'active': 'active',  # noqa: E501
+        'qand_a': 'QandA',  # noqa: E501
         'time_created': 'timeCreated',  # noqa: E501
         'updated': 'updated',  # noqa: E501
         'self_link': 'selfLink',  # noqa: E501
@@ -206,9 +206,9 @@ class Quiz(ModelNormal):
             time_limit (int): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
             num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
             num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
-            qand_a ([QuizQandA]): array of question/answer objects included in this quiz. [optional]  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
+            qand_a ([QuizQandA]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501
@@ -308,9 +308,9 @@ class Quiz(ModelNormal):
             time_limit (int): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
             num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
             num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
-            qand_a ([QuizQandA]): array of question/answer objects included in this quiz. [optional]  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
+            qand_a ([QuizQandA]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501

@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **time_limit** | **int** | number of seconds to respond to each question in this quiz (3-300) | [optional] 
 **num_questions** | **int** | number of questions included in this quiz | [optional] 
 **num_answers** | **int** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional] 
-**qand_a** | [**[QuizQandA]**](QuizQandA.md) | array of question/answer objects included in this quiz | [optional] 
 **sync** | **bool** | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional]  if omitted the server will use the default value of True
 **active** | **bool** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False
+**qand_a** | [**[QuizQandA]**](QuizQandA.md) | array of question/answer objects included in this quiz | [optional]  if omitted the server will use the default value of []
 **time_created** | **datetime** | system-assigned creation timestamp | [optional] [readonly] 
 **updated** | **datetime** | system-assigned update timestamp | [optional] [readonly] 
 **self_link** | **str** | full URI of the resource | [optional] [readonly] 
