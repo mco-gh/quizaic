@@ -6,7 +6,7 @@ question and associated possible answers
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **question** | **str** | question text | 
-**answer** | **str** | answer text (free form) or letter (multiple choice) | 
+**correct** | [**Any**](Any.md) | answer text (free form) or integer (multiple choice) | [optional] 
 **responses** | **[str]** | possible multiple choice answers to this question | [optional]  if omitted the server will use the default value of []
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
