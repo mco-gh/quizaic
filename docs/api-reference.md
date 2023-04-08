@@ -206,7 +206,7 @@ Each *quiz* has the following non-core properties:
 | host | the id of the *host* of this *quiz* |
 | playUrl | direct URL for playing this *quiz* |
 | pin | pin code for playing this *quiz* |
-| freeformA | boolean; whether answers are free form or multiple choice |
+| freeform | boolean; whether answers are free form or multiple choice |
 | topic | string representing the topic of this *quiz* |
 | anonymous | boolean; whether players can be anonymous |
 | randomQ | boolean; whether to randomize question order |

@@ -56,7 +56,7 @@
 3. **Operations**:
    1. create a quiz with the following parameters:
       1. quiz name - must be unique for a given host
-      2. freeformA - whether answers should be free form or multiple choice
+      2. freeform - whether answers should be free form or multiple choice
       3. topic - string representing the topic for the new quiz
       4. anonymous - whether players can be participate anonymously
       5. randomQ - whether to randomize question order

@@ -104,6 +104,7 @@ class Quiz(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'freeform': (bool,),  # noqa: E501
             'run_count': (int,),  # noqa: E501
             'host': (str,),  # noqa: E501
             'play_url': (str,),  # noqa: E501
@@ -132,6 +133,7 @@ class Quiz(ModelNormal):
         'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'freeform': 'freeform',  # noqa: E501
         'run_count': 'runCount',  # noqa: E501
         'host': 'host',  # noqa: E501
         'play_url': 'playUrl',  # noqa: E501
@@ -201,6 +203,7 @@ class Quiz(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
+            freeform (bool): whether this quiz supports free-form answers. [optional] if omitted the server will use the default value of False  # noqa: E501
             run_count (int): number of times quiz has been run. [optional] if omitted the server will use the default value of 0  # noqa: E501
             host (str): the id of the host. [optional]  # noqa: E501
             play_url (str): URL for playing this quiz. [optional]  # noqa: E501
@@ -305,6 +308,7 @@ class Quiz(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
+            freeform (bool): whether this quiz supports free-form answers. [optional] if omitted the server will use the default value of False  # noqa: E501
             run_count (int): number of times quiz has been run. [optional] if omitted the server will use the default value of 0  # noqa: E501
             host (str): the id of the host. [optional]  # noqa: E501
             play_url (str): URL for playing this quiz. [optional]  # noqa: E501

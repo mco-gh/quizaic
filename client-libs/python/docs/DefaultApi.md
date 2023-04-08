@@ -3887,6 +3887,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     quiz = Quiz(
         name="name_example",
         description="description_example",
+        freeform=False,
         run_count=0,
         host="host_example",
         play_url="play_url_example",
@@ -3903,7 +3904,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         qand_a=[
             QuizQandA(
                 question="question_example",
-null,
+                correct="correct_example",
                 responses=[],
             ),
         ],
@@ -4385,6 +4386,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     quiz = Quiz(
         name="name_example",
         description="description_example",
+        freeform=False,
         run_count=0,
         host="host_example",
         play_url="play_url_example",
@@ -4401,7 +4403,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         qand_a=[
             QuizQandA(
                 question="question_example",
-null,
+                correct="correct_example",
                 responses=[],
             ),
         ],

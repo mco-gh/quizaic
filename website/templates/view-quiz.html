@@ -25,7 +25,7 @@
       <div class="emblem-campaign-image" style="max-width: 250px; height: 150px; border-radius: 5px; background-image: url({{ quiz.image_url }}); background-size: cover;"></div>
       <h2>{{ quiz.name }}</h2>
       <p>{{ quiz.description }}</p>
-      <p>This quiz has been run {{ quiz.run_count }}% times.</p>
+      <p>This quiz has been run {{ quiz.run_count }} times.</p>
     </div>
     <!-- Quiz info (top right quadrant) -->
     <div class="emblem-campaign-details mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
@@ -100,18 +100,33 @@
             </tr>
           {% else %}
             {% for q in quiz.qand_a %}
-              {% for response in q.responses %}
+              {% if quiz.freeform %}
                 <tr class="mdc-data-table__row">
                   <td class="mdc-data-table__cell">
-                    {% if loop.index == 1 %}
-                      {{ q.question }}
-                    {% endif %}
+                    {{ q.question }}
                   </td>
                   <td class="mdc-data-table__cell">
-                    ${{ response }}
+                    {{ q.correct }}
                   </td>
+                </tr>
+              {% else %}
+                {% for response in q.responses %}
+                  <tr class="mdc-data-table__row">
+                    <td rowspan="{{ q .num_answers }} class="mdc-data-table__cell">
+                      {% if loop.index == 1 %}
+                        {{ q.question }}
+                      {% endif %}
+                    </td>
+                    <td class="mdc-data-table__cell">
+                      {% set correct = q.correct | int %}
+                      {% if loop.index == correct + 1 %}
+                        (*)
+                      {% endif %}
+                        {{ response }}
+                    </td>
+                  </tr>
                 {% endfor %}  
-              </tr>
+              {% endif %}
             {% endfor %}
           {% endif %}
         </tbody>

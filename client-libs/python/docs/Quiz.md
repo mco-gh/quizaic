@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **name** | **str, none_type** | the display name of this quiz | 
 **id** | **str** | unique, system-assigned identifier | [optional] [readonly] 
 **description** | **str, none_type** | a short description of the quiz | [optional] 
+**freeform** | **bool** | whether this quiz supports free-form answers | [optional]  if omitted the server will use the default value of False
 **run_count** | **int** | number of times quiz has been run | [optional]  if omitted the server will use the default value of 0
 **host** | **str** | the id of the host | [optional] 
 **play_url** | **str** | URL for playing this quiz | [optional] 

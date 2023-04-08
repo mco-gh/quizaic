@@ -29,6 +29,7 @@ resource_fields = {
         "name",
         "description",
         "runCount",
+        "freeform",
         "host",
         "playUrl",
         "pin",

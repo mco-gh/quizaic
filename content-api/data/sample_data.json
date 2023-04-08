@@ -81,8 +81,8 @@
       "host": "1b271fa397f14c2b9582",
       "playUrl": "https://quizrd.io/123",
       "pin": "123",
-      "freeformA": false,
-      "topic": "cats",
+      "freeform": true,
+      "topic": "US History",
       "anonymous": true,
       "randomQ": true,
       "randomA": true,
@@ -96,13 +96,15 @@
       "QandA": [
           {
               "question":  "Who was buried in Grant's Tomb?",
-              "correct": 0,
-              "responses": [
-                  "Grant",
-                  "Washington",
-                  "Jefferson",
-                  "Trump"
-              ]
+              "correct": "Grant"
+          },
+          {
+              "question":  "Where was Lincoln shot?",
+              "correct": "Ford's Theater"
+          },
+          {
+              "question":  "Who was the first President?",
+              "correct": "Washington"
           }
       ]
     }
@@ -117,8 +119,8 @@
       "host": "1b271fa397f14c2b9582",
       "playUrl": "https://quizrd.io/123",
       "pin": "123",
-      "freeformA": false,
-      "topic": "cats",
+      "freeform": false,
+      "topic": "Popular Music",
       "anonymous": true,
       "randomQ": true,
       "randomA": true,
@@ -131,13 +133,23 @@
       "active": false,
       "QandA": [
           {
-              "question": "What is the great band of all time?",
-              "correct": 1,
+              "question": "Which is the greatest band of all time?",
+              "correct": "1",
               "responses": [
                   "The Rolling Stones",
                   "The Beatles",
                   "Oasis",
                   "Spinal Tap"
+              ]
+          },
+          {
+              "question": "Who sold more records than any other individual artist?",
+              "correct": "3",
+              "responses": [
+                  "Bob Dylan",
+                  "Stevie Wonder",
+                  "Michael Jackson",
+                  "Elvis Presley"
               ]
           }
       ]
@@ -153,8 +165,8 @@
       "host": "1b271fa397f14c2b9582",
       "playUrl": "https://quizrd.io/123",
       "pin": "123",
-      "freeformA": false,
-      "topic": "cats",
+      "freeform": false,
+      "topic": "Pets",
       "anonymous": true,
       "randomQ": true,
       "randomA": true,
@@ -168,12 +180,22 @@
       "QandA": [
           {
               "question": "Best cat ever?",
-              "correct": 2,
+              "correct": "0",
               "responses": [
-                  "Baloo",
                   "Clyro",
+                  "Baloo",
                   "Benji",
                   "Juno"
+              ]
+          },
+          {
+              "question": "Where do cats like to hang out?",
+              "correct": "2",
+              "responses": [
+                  "in the rain",
+                  "in a cave",
+                  "in a box",
+                  "under water"
               ]
           }
       ]

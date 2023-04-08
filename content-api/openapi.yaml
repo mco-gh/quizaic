@@ -1555,6 +1555,10 @@ components:
           type: string
           nullable: true
           description: a short description of the quiz
+        freeform:
+          type: boolean
+          description: whether this quiz supports free-form answers
+          default: false
         runCount:
           type: integer
           description: number of times quiz has been run
@@ -1620,7 +1624,7 @@ components:
                 type: string
                 description: question text
               correct:
-                type: any
+                type: string
                 description: answer text (free form) or integer (multiple choice)
               responses:
                 type: array
