@@ -1580,6 +1580,7 @@ components:
         anonymous:
           type: boolean
           description: whether players may be anonymous
+          nullable: true
           default: true
         imageUrl:
           type: string

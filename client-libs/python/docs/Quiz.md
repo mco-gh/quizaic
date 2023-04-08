@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **play_url** | **str, none_type** | URL for playing this quiz | [optional] 
 **pin** | **str, none_type** | pin code for playing this quiz | [optional] 
 **topic** | **str, none_type** | the topic of this quiz | [optional] 
-**anonymous** | **bool** | whether players may be anonymous | [optional]  if omitted the server will use the default value of True
+**anonymous** | **bool, none_type** | whether players may be anonymous | [optional]  if omitted the server will use the default value of True
 **image_url** | **str, none_type** | string containing URL of an image to display for this quiz | [optional]  if omitted the server will use the default value of ""
 **difficulty** | **int, none_type** | integer level of difficulty (1-10) | [optional]  if omitted the server will use the default value of 5
 **time_limit** | **int, none_type** | number of seconds to respond to each question in this quiz (3-300) | [optional]  if omitted the server will use the default value of 60
