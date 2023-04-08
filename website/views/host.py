@@ -16,7 +16,7 @@ from flask import Blueprint, g, redirect, request, render_template
 from middleware.logging import log
 from views.helpers.time import convert_utc
 
-host_bp = Blueprint("play", __name__, template_folder="templates")
+host_bp = Blueprint("host", __name__, template_folder="templates")
 
 
 @host_bp.route("/host/<int:pin>")
