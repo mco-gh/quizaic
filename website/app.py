@@ -23,6 +23,7 @@ from views.auth import auth_bp
 from views.robots_txt import robots_txt_bp
 
 from views.quizzes import quizzes_bp
+from views.play import play_bp
 
 from middleware import auth, csp
 
@@ -35,6 +36,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(robots_txt_bp)
 
 app.register_blueprint(quizzes_bp)
+app.register_blueprint(play_bp)
 
 # Initialize middleware
 auth.init(app)
