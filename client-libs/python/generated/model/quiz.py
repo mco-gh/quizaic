@@ -101,24 +101,24 @@ class Quiz(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
+            'name': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'freeform': (bool,),  # noqa: E501
+            'description': (str,),  # noqa: E501
+            'freeform': (bool, none_type,),  # noqa: E501
             'run_count': (int, none_type,),  # noqa: E501
-            'host': (str,),  # noqa: E501
-            'play_url': (str,),  # noqa: E501
-            'pin': (str,),  # noqa: E501
-            'topic': (str,),  # noqa: E501
+            'host': (str, none_type,),  # noqa: E501
+            'play_url': (str, none_type,),  # noqa: E501
+            'pin': (str, none_type,),  # noqa: E501
+            'topic': (str, none_type,),  # noqa: E501
             'anonymous': (bool,),  # noqa: E501
-            'image_url': (str,),  # noqa: E501
+            'image_url': (str, none_type,),  # noqa: E501
             'difficulty': (int,),  # noqa: E501
             'time_limit': (int,),  # noqa: E501
             'num_questions': (int,),  # noqa: E501
             'num_answers': (int,),  # noqa: E501
             'sync': (bool,),  # noqa: E501
-            'active': (bool,),  # noqa: E501
-            'qand_a': ([QuizQandA],),  # noqa: E501
+            'active': (bool, none_type,),  # noqa: E501
+            'qand_a': ([QuizQandA], none_type,),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
             'self_link': (str,),  # noqa: E501
@@ -168,7 +168,7 @@ class Quiz(ModelNormal):
         """Quiz - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): the display name of this quiz
+            name (str): the display name of this quiz
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -202,22 +202,22 @@ class Quiz(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
-            freeform (bool): whether this quiz supports free-form answers. [optional]  # noqa: E501
+            description (str): a short description of the quiz. [optional]  # noqa: E501
+            freeform (bool, none_type): whether this quiz supports free-form answers. [optional]  # noqa: E501
             run_count (int, none_type): number of times quiz has been run. [optional]  # noqa: E501
-            host (str): the id of the host. [optional]  # noqa: E501
-            play_url (str): URL for playing this quiz. [optional]  # noqa: E501
-            pin (str): pin code for playing this quiz. [optional]  # noqa: E501
-            topic (str): the topic of this quiz. [optional]  # noqa: E501
+            host (str, none_type): the id of the host. [optional]  # noqa: E501
+            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
+            pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
+            topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             anonymous (bool): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
-            image_url (str): string containing URL of an image to display for this quiz. [optional]  # noqa: E501
+            image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
             difficulty (int): integer level of difficulty (1-10). [optional]  # noqa: E501
             time_limit (int): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
             num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
             num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
-            active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
-            qand_a ([QuizQandA]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
+            active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
+            qand_a ([QuizQandA], none_type): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501
@@ -273,7 +273,7 @@ class Quiz(ModelNormal):
         """Quiz - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): the display name of this quiz
+            name (str): the display name of this quiz
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -307,22 +307,22 @@ class Quiz(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
-            freeform (bool): whether this quiz supports free-form answers. [optional]  # noqa: E501
+            description (str): a short description of the quiz. [optional]  # noqa: E501
+            freeform (bool, none_type): whether this quiz supports free-form answers. [optional]  # noqa: E501
             run_count (int, none_type): number of times quiz has been run. [optional]  # noqa: E501
-            host (str): the id of the host. [optional]  # noqa: E501
-            play_url (str): URL for playing this quiz. [optional]  # noqa: E501
-            pin (str): pin code for playing this quiz. [optional]  # noqa: E501
-            topic (str): the topic of this quiz. [optional]  # noqa: E501
+            host (str, none_type): the id of the host. [optional]  # noqa: E501
+            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
+            pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
+            topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             anonymous (bool): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
-            image_url (str): string containing URL of an image to display for this quiz. [optional]  # noqa: E501
+            image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
             difficulty (int): integer level of difficulty (1-10). [optional]  # noqa: E501
             time_limit (int): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
             num_questions (int): number of questions included in this quiz. [optional]  # noqa: E501
             num_answers (int): number of answers possible for each question in this quiz (0 == free form). [optional]  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
-            active (bool): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
-            qand_a ([QuizQandA]): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
+            active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
+            qand_a ([QuizQandA], none_type): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501
