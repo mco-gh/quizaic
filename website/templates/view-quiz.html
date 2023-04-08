@@ -26,6 +26,9 @@
       <h2>{{ quiz.name }}</h2>
       <p>{{ quiz.description }}</p>
       <p>This quiz has been run {{ quiz.run_count }} times.</p>
+      <p>URL for playing this quiz: <strong><a href="{{ quiz.play_url }}" target="_blank">{{ quiz.play_url }}</a></strong>
+      <p>PIN for playing this quiz: <strong>{{ quiz.pin }}</strong></span>
+      </li>
     </div>
     <!-- Quiz info (top right quadrant) -->
     <div class="emblem-campaign-details mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
@@ -33,6 +36,36 @@
         <li class="mdc-list-item">
           <span class="mdc-list-item__text">Status</span>
           <span class="mdc-list-item__meta">{{ 'Active' if quiz.active else 'Closed' }}</span>
+        </li>
+
+        <li role="separator" class="mdc-list-divider"></li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__text">Quiz type</span>
+          <span class="mdc-list-item__meta">
+            {% if quiz.anonymous %}
+              anonymous
+            {% else %}
+              login
+            {% endif %}
+            /
+            {% if quiz.sync %}
+              synchronous
+            {% else %}
+              asynchronous
+            {% endif %}
+            /
+            {% if quiz.freeform %}
+              freeform
+            {% else %}
+              multiple choice
+            {% endif %}
+          </span>
+        </li>
+
+        <li role="separator" class="mdc-list-divider"></li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__text">Topic</span>
+          <span class="mdc-list-item__meta">{{ quiz.topic }}</span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
@@ -46,11 +79,24 @@
           <span class="mdc-list-item__text">Number of answers per question</span>
           <span class="mdc-list-item__meta">{{ quiz.num_answers }}</span>
         </li>
-      <!-- Donate button -->
-      {% if quiz.active %}
-        <a href="/donate?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
+
+        <li role="separator" class="mdc-list-divider"></li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__text">Level of difficulty (1-10)</span>
+          <span class="mdc-list-item__meta">{{ quiz.difficulty }}</span>
+        </li>
+
+        <li role="separator" class="mdc-list-divider"></li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__text">Seconds to respond</span>
+          <span class="mdc-list-item__meta">{{ quiz.time_limit }}</span>
+        </li>
+
+      <!-- Start button -->
+      {% if quiz.active == false %}
+        <a href="/quizzes?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
-          <span class="mdc-button__label">Donate</span>
+          <span class="mdc-button__label">Start Quiz</span>
         </a>
       {% endif %}
     </div>
