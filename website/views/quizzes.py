@@ -47,15 +47,17 @@ def new_quiz():
     return render_template("create-quiz.html")
 
 
-@quizzes_bp.route("/Quiz", methods=["POST"])
+@quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
     try:
+        log(f"")
         g.api.quizzes_post(
             {
                 "name": request.form["name"],
                 "description": request.form["description"],
                 "imageUrl": request.form["imageUrl"],
-                "description": request.form["description"]
+                "description": request.form["description"],
+                "runCount": 1
             }
         )
     except Exception as e:

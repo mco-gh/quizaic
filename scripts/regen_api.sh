@@ -6,3 +6,4 @@ cd ../../../website
 rm -rf client-libs
 cp -r ../client-libs .
 pip install -r requirements.txt
+echo ls ../../../../openapitools.json
