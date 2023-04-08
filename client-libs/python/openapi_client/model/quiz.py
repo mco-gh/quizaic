@@ -103,7 +103,7 @@ class Quiz(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'desciption': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'host': (str,),  # noqa: E501
             'play_url': (str,),  # noqa: E501
             'pin': (str,),  # noqa: E501
@@ -130,7 +130,7 @@ class Quiz(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'desciption': 'desciption',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'host': 'host',  # noqa: E501
         'play_url': 'playUrl',  # noqa: E501
         'pin': 'pin',  # noqa: E501
@@ -198,7 +198,7 @@ class Quiz(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            desciption (str, none_type): a short description of the quiz. [optional]  # noqa: E501
+            description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
             host (str): the id of the host. [optional]  # noqa: E501
             play_url (str): URL for playing this quiz. [optional]  # noqa: E501
             pin (str): pin code for playing this quiz. [optional]  # noqa: E501
@@ -301,7 +301,7 @@ class Quiz(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            desciption (str, none_type): a short description of the quiz. [optional]  # noqa: E501
+            description (str, none_type): a short description of the quiz. [optional]  # noqa: E501
             host (str): the id of the host. [optional]  # noqa: E501
             play_url (str): URL for playing this quiz. [optional]  # noqa: E501
             pin (str): pin code for playing this quiz. [optional]  # noqa: E501

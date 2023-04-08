@@ -1551,7 +1551,7 @@ components:
           type: string
           nullable: true
           description: the display name of this quiz
-        desciption:
+        description:
           type: string
           nullable: true
           description: a short description of the quiz
