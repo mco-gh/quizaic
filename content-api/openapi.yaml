@@ -1549,14 +1549,13 @@ components:
           description: unique, system-assigned identifier
         name:
           type: string
-          nullable: true
           description: the display name of this quiz
         description:
           type: string
-          nullable: true
           description: a short description of the quiz
         freeform:
           type: boolean
+          nullable: true
           description: whether this quiz supports free-form answers
         runCount:
           type: integer
@@ -1564,15 +1563,19 @@ components:
           description: number of times quiz has been run
         host:
           type: string
+          nullable: true
           description: the id of the host
         playUrl:
           type: string
+          nullable: true
           description: URL for playing this quiz
         pin:
           type: string
+          nullable: true
           description: pin code for playing this quiz
         topic:
           type: string
+          nullable: true
           description: the topic of this quiz
         anonymous:
           type: boolean
@@ -1581,6 +1584,8 @@ components:
         imageUrl:
           type: string
           description: string containing URL of an image to display for this quiz
+          nullable: true
+          default: ""
         difficulty:
           type: integer
           description: integer level of difficulty (1-10)
@@ -1606,10 +1611,12 @@ components:
         active:
           type: boolean
           description: is this quiz currently being played?
+          nullable: true
           default: false
         QandA:
           type: array
           description: array of question/answer objects included in this quiz
+          nullable: true
           default: []
           items:
             type: object
