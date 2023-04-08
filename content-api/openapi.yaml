@@ -1587,13 +1587,15 @@ components:
           nullable: true
           default: ""
         difficulty:
-          type: integer
+          type: integer 
           description: integer level of difficulty (1-10)
           minimum: 1
           maximum: 10
         timeLimit:
           type: integer
           description: number of seconds to respond to each question in this quiz (3-300)
+          nullable: true
+          default: 60
           minimum: 3
           maximum: 300
         numQuestions:

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **anonymous** | **bool** | whether players may be anonymous | [optional]  if omitted the server will use the default value of True
 **image_url** | **str, none_type** | string containing URL of an image to display for this quiz | [optional]  if omitted the server will use the default value of ""
 **difficulty** | **int** | integer level of difficulty (1-10) | [optional] 
-**time_limit** | **int** | number of seconds to respond to each question in this quiz (3-300) | [optional] 
+**time_limit** | **int, none_type** | number of seconds to respond to each question in this quiz (3-300) | [optional]  if omitted the server will use the default value of 60
 **num_questions** | **int** | number of questions included in this quiz | [optional] 
 **num_answers** | **int** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional] 
 **sync** | **bool** | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional]  if omitted the server will use the default value of True
