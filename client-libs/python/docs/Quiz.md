@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str, none_type** | the display name of this quiz | 
 **id** | **str** | unique, system-assigned identifier | [optional] [readonly] 
+**desciption** | **str, none_type** | a short description of the quiz | [optional] 
 **host** | **str** | the id of the host | [optional] 
 **play_url** | **str** | URL for playing this quiz | [optional] 
 **pin** | **str** | pin code for playing this quiz | [optional] 

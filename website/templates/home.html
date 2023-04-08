@@ -16,7 +16,7 @@
 
 {% extends "base.html" %}
 
-{% block title %}View campaigns{% endblock %}
+{% block title %}View Quizzes{% endblock %}
 
 {% block content %}
 
@@ -26,7 +26,7 @@
             <h2>Choose a Quiz!</h2>
             {% if current_user %}
             <!-- Create Quiz button -->
-            <a href="/createCampaign" class="mdc-button mdc-button--raised">
+            <a href="/createQuiz" class="mdc-button mdc-button--raised">
                 <span class="mdc-button__ripple"></span>
                 <span class="mdc-button__label">Create new quiz</span>
             </a>
