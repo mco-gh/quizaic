@@ -25,6 +25,14 @@
   },
   {
     "collection": "hosts",
+    "id": "htrsR04CucFqgitqHu3j",
+    "data": {
+      "name": "mco.dev",
+      "email": "marc@mco.dev"
+    }
+  },
+  {
+    "collection": "hosts",
     "id": "1b271fa397f14c2b9582",
     "data": {
       "name": "Emma Mcdonalid",
