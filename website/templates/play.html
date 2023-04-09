@@ -45,7 +45,7 @@
         <div class="info-title"><span>Some Rules of this Quiz</span></div>
         <div class="info-list">
         <div class="info">1. There are 10 questions</div>
-            <div class="info">2. You will have only <span>15 seconds</span> per each question.</div>
+            <div class="info">2. You will have only <span>{{ quiz.time_limit }} seconds</span> per each question.</div>
             <div class="info">3. Once you select your answer, it can't be undone.</div>
             <div class="info">4. You can't select any option once time goes off.</div>
             <div class="info">5. You can't exit from the Quiz while you're playing.</div>
@@ -60,10 +60,10 @@
     <!-- Quiz Box -->
     <div class="quiz_box">
         <div class="play_header">
-            <div class="title">Awesome Quiz Application</div>
+            <div class="title">Quizrd.io</div>
             <div class="timer">
                 <div class="time_left_txt">Time Left</div>
-                <div class="timer_sec">15</div>
+                <div class="timer_sec">{{ quiz.time_limit }}</div>
             </div>
             <div class="time_line"></div>
         </div>
@@ -78,7 +78,7 @@
             <div class="total_que">
                 <!-- Here I've inserted Question Count Number from JavaScript -->
             </div>
-            <button class="next_btn">Next Que</button>
+            <button class="next_btn">Next</button>
         </div>
     </div>
 

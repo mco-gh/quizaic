@@ -35,11 +35,11 @@ continue_btn.onclick = () => {
   quiz_box.classList.add("activeQuiz"); //show quiz box
   showQuetions(0); //calling showQestions function
   queCounter(1); //passing 1 parameter to queCounter
-  startTimer(15); //calling startTimer function
+  startTimer(timelimit); //calling startTimer function
   startTimerLine(0); //calling startTimerLine function
 };
 
-let timeValue = 15;
+let timeValue = timelimit;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -54,7 +54,7 @@ const quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick = () => {
   quiz_box.classList.add("activeQuiz"); //show quiz box
   result_box.classList.remove("activeResult"); //hide result box
-  timeValue = 15;
+  timeValue = timelimit;
   que_count = 0;
   que_numb = 1;
   userScore = 0;
@@ -77,7 +77,7 @@ quit_quiz.onclick = () => {
 const next_btn = document.querySelector(".play_footer .next_btn");
 const bottom_ques_counter = document.querySelector(".play_footer .total_que");
 
-// if Next Que button clicked
+// if Next button clicked
 next_btn.onclick = () => {
   if (que_count < questions.length - 1) {
     //if question count is less than total question length
@@ -184,29 +184,29 @@ function showResult() {
     // if user scored more than 3
     //creating a new span tag and passing the user score number and total question number
     let scoreTag =
-      "<span>and congrats! , You got <p>" +
+      "<span>and congrats! You got " +
       userScore +
-      "</p> out of <p>" +
+      " out of " +
       questions.length +
-      "</p></span>";
+      "</span>";
     scoreText.innerHTML = scoreTag; //adding new span tag inside score_Text
   } else if (userScore > 1) {
     // if user scored more than 1
     let scoreTag =
-      "<span>and nice , You got <p>" +
+      "<span>and nice, you got " +
       userScore +
-      "</p> out of <p>" +
+      " out of " +
       questions.length +
-      "</p></span>";
+      "</span>";
     scoreText.innerHTML = scoreTag;
   } else {
     // if user scored less than 1
     let scoreTag =
-      "<span>and sorry , You got only <p>" +
+      "<span>and sorry, you got only " +
       userScore +
-      "</p> out of <p>" +
+      " out of " +
       questions.length +
-      "</p></span>";
+      "</span>";
     scoreText.innerHTML = scoreTag;
   }
 }
@@ -258,10 +258,10 @@ function startTimerLine(time) {
 function queCounter(index) {
   //creating a new span tag and passing the question number and total question
   let totalQueCounTag =
-    "<span><p>" +
+    "<span>" +
     index +
-    "</p> of <p>" +
+    " of " +
     questions.length +
-    "</p> Questions</span>";
+    " questions</span>";
   bottom_ques_counter.innerHTML = totalQueCounTag; //adding new span tag inside bottom_ques_counter
 }
