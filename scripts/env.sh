@@ -14,7 +14,7 @@ export EMBLEM_CALLBACK_URL=$PROD_CALLBACK_URL
 
 export STAGE_API_URL=$(gcloud run services describe content-api --region=$REGION --project $STAGE_PROJECT --format "value(status.url)")
 export PROD_API_URL=$(gcloud run services describe content-api --region=$REGION --project $PROD_PROJECT --format "value(status.url)")
-EMBLEM_API_URL=$PROD_API_URL
+export EMBLEM_API_URL=$PROD_API_URL
 
 export EMBLEM_SESSION_BUCKET=quizrd-prod-382117-sessions
 export SITE_VARS="EMBLEM_API_URL=$EMBLEM_API_URL, EMBLEM_SESSION_BUCKET=$EMBLEM_SESSION_BUCKET, REDIRECT_URI=$EMBLEM_CALLBACK_URL"
