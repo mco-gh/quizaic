@@ -42,6 +42,8 @@
 
   <!-- Material.io scripts -->
   {% block materialio_scripts %}{% endblock %}
+
+  <!--<script src="/static/play.js" nonce="{{ g.csp_nonce }}></script>-->
 </head>
 
 <body>
@@ -49,7 +51,7 @@
   <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <span class="mdc-top-app-bar__title">Quizrd.io</span>
+        <a href="/"><span class="mdc-top-app-bar__title">Quizrd.io</span></a>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
         <a href="/">

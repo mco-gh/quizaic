@@ -26,9 +26,14 @@ body {
   font-family: 'Google Sans', sans-serif !important;
 }
 
+header a {
+  color: white;
+  text-decoration: none;
+}
+
 a {
   color: #505050;
-  text-decoration: none;
+  /*text-decoration: none; */
 }
 
 body {
