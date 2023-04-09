@@ -29,15 +29,6 @@ nonce="{{ g.csp_nonce }}"
     </div>
 </div>
 
-<script type="text/javascript" nonce="{{ g.csp_nonce }}">
-  let link = document.createElement( "link" );
-  link.href = "/static/play.css";
-  link.type = "text/css";
-  link.rel = "stylesheet";
-  link.media = "screen,print";
-  document.getElementsByTagName("head")[0].appendChild(link);
-</script>
-
 <!-- start Quiz button -->
 <div class="start_btn"><button>Start Quiz</button></div>
 
@@ -96,5 +87,15 @@ nonce="{{ g.csp_nonce }}"
         <button class="quit">Quit Quiz</button>
     </div>
 </div>
+
+<script type="text/javascript" nonce="{{ g.csp_nonce }}">
+  let link = document.createElement( "link" );
+  link.href = "/static/play.css";
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.media = "screen,print";
+  document.getElementsByTagName("head")[0].appendChild(link);
+</script>
+<script src="/static/play.js" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
 
 {% endblock %}

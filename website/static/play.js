@@ -114,7 +114,7 @@ const continue_btn = info_box.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
-const time_line = document.querySelector("header .time_line");
+const time_line = document.querySelector(".play_header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
@@ -173,8 +173,8 @@ quit_quiz.onclick = () => {
   window.location.reload(); //reload the current window
 };
 
-const next_btn = document.querySelector("footer .next_btn");
-const bottom_ques_counter = document.querySelector("footer .total_que");
+const next_btn = document.querySelector(".play_footer .next_btn");
+const bottom_ques_counter = document.querySelector(".play_footer .total_que");
 
 // if Next Que button clicked
 next_btn.onclick = () => {
