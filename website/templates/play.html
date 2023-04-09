@@ -38,11 +38,6 @@ nonce="{{ g.csp_nonce }}"
   document.getElementsByTagName("head")[0].appendChild(link);
 </script>
 
-<script src="/static/play.js" nonce="{{ g.csp_nonce }}></script>
-<script type="text/javascript" nonce="{{ g.csp_nonce }}">
-alert('hi');
-</script>
-
 <!-- start Quiz button -->
 <div class="start_btn"><button>Start Quiz</button></div>
 
