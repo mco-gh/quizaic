@@ -29,7 +29,18 @@ def play(pin):
 
     try:
         quizzes = g.api.quizzes_get()
+        log(quizzes)
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
-    return render_template("play.html", pin=pin, quizzes=quizzes, current_user=current_user)
+
+    quiz = None;
+    for q in quizzes:
+        if q.pin == str(pin):
+            quiz = q
+            break
+
+    if not quiz:
+        log(f"Requested quiz with pin {pin} not found", severity="ERROR")
+
+    return render_template("play.html", quiz=quiz, pin=pin, current_user=current_user)

@@ -1,95 +1,12 @@
-let questions = [
-  {
-    numb: 1,
-    question: "What does HTML stand for?",
-    correct: "Hyper Text Markup Language",
-    responses: [
-      "Hyper Text Preprocessor",
-      "Hyper Text Markup Language",
-      "Hyper Text Multiple Language",
-      "Hyper Tool Multi Language"
-    ]
-  },
-  {
-    numb: 2,
-    question: "What does CSS stand for?",
-    correct: "Cascading Style Sheet",
-    responses: [
-      "Common Style Sheet",
-      "Colorful Style Sheet",
-      "Computer Style Sheet",
-      "Cascading Style Sheet"
-    ]
-  },
-  {
-    numb: 3,
-    question: "What does PHP stand for?",
-    correct: "Hypertext Preprocessor",
-    responses: [
-      "Hypertext Preprocessor",
-      "Hypertext Programming",
-      "Hypertext Preprogramming",
-      "Hometext Preprocessor"
-    ]
-  },
-  {
-    numb: 4,
-    question: "What does SQL stand for?",
-    correct: "Structured Query Language",
-    responses: [
-      "Stylish Question Language",
-      "Stylesheet Query Language",
-      "Statement Question Language",
-      "Structured Query Language"
-    ]
-  },
-  {
-    numb: 5,
-    question: "What does XML stand for?",
-    correct: "eXtensible Markup Language",
-    responses: [
-      "eXtensible Markup Language",
-      "eXecutable Multiple Language",
-      "eXTra Multi-Program Language",
-      "eXamine Multiple Language"
-    ]
-  },
-  {
-    numb: 6,
-    question: "When was HTML5 created?",
-    correct: "1993",
-    responses: ["1157", "1985", "1993", "1991"]
-  },
-  {
-    numb: 7,
-    question: "When was CSS proposed?",
-    correct: "1994",
-    responses: ["1994", "1986", "1997", "2003"]
-  },
-  {
-    numb: 8,
-    question: "When was CodePen.io created?",
-    correct: "2012",
-    responses: ["2013", "2012", "2009", "2010"]
-  },
-  {
-    numb: 9,
-    question: "What are the three coding languages featured in CodePen?",
-    correct: "HTML,CSS and JavaScript",
-    responses: [
-      "HTML,C++ and JSON",
-      "Javascript,CSS and SQL",
-      "HTML,CSS and JavaScript",
-      "C++,C# and C"
-    ]
-  },
-  {
-    numb: 10,
-    question: "When was JavaScript created?",
-    correct: "1996",
-    responses: ["2005", "1991", "1996", "2001"]
-  }
-];
+const data = document.currentScript.dataset;
+const qanda = data.qanda;
+const timelimit = data.timelimit;
+const tmp =  qanda.replace(/\n/g, " ")
+                      .replace(/\'/g, "\"")
+                      .replace(/False/g, "false")
+                      .replace(/True/g, "true");
+const questions = JSON.parse(tmp)
+
 //selecting all required elements
 const start_btn = document.querySelector(".start_btn button");
 const info_box = document.querySelector(".info_box");
@@ -188,7 +105,7 @@ function showQuetions(index) {
   //creating a new span and div tag for question and option and passing the value using array index
   let que_tag =
     "<span>" +
-    questions[index].numb +
+    index +
     ". " +
     questions[index].question +
     "</span>";
@@ -230,6 +147,7 @@ function optionSelected(event) {
   let correcAns = questions[que_count].correct; //getting correct answer from array
   const allOptions = option_list.children.length; //getting all option items
 
+  console.log(userAns, correcAns)
   if (userAns == correcAns) {
     //if user selected option is equal to array's correct answer
     userScore += 1; //upgrading score value with 1
