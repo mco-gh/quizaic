@@ -142,7 +142,7 @@
       "QandA": [
           {
               "question": "Which is the greatest band of all time?",
-              "correct": "1",
+              "correct": "The Beatles",
               "responses": [
                   "The Rolling Stones",
                   "The Beatles",
@@ -152,7 +152,7 @@
           },
           {
               "question": "Who sold more records than any other individual artist?",
-              "correct": "3",
+              "correct": "Elvis Presley",
               "responses": [
                   "Bob Dylan",
                   "Stevie Wonder",
@@ -188,7 +188,7 @@
       "QandA": [
           {
               "question": "Best cat ever?",
-              "correct": "0",
+              "correct": "Clyro",
               "responses": [
                   "Clyro",
                   "Baloo",
@@ -198,7 +198,7 @@
           },
           {
               "question": "Where do cats like to hang out?",
-              "correct": "2",
+              "correct": "in a box",
               "responses": [
                   "in the rain",
                   "in a cave",
