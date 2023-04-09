@@ -1,5 +1,4 @@
 // creating an array and passing the number, questions, options, and answers
-console.log("hi1");
 let questions = [
   {
     numb: 1,
@@ -360,4 +359,3 @@ function queCounter(index) {
     "</p> Questions</span>";
   bottom_ques_counter.innerHTML = totalQueCounTag; //adding new span tag inside bottom_ques_counter
 }
-console.log("hi2");
