@@ -17,6 +17,8 @@ import json
 from google.cloud import firestore
 
 
+# Firebase client uses GOOGLE_CLOUD_PROJECT env var to choose its project.
+
 def seed_admin(email):
     client = firestore.Client()
     print("Seeding admin into Google Cloud Project '{}'.".format(client.project))
