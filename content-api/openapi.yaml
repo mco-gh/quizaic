@@ -1622,8 +1622,8 @@ components:
             description: question and associated possible answers 
             required:
             - question
-            - answers
-            - answer
+            - correct
+            - responses
             properties:
               question:
                 type: string

@@ -1,10 +1,9 @@
-// creating an array and passing the number, questions, options, and answers
 let questions = [
   {
     numb: 1,
     question: "What does HTML stand for?",
-    answer: "Hyper Text Markup Language",
-    options: [
+    correct: "Hyper Text Markup Language",
+    responses: [
       "Hyper Text Preprocessor",
       "Hyper Text Markup Language",
       "Hyper Text Multiple Language",
@@ -14,8 +13,8 @@ let questions = [
   {
     numb: 2,
     question: "What does CSS stand for?",
-    answer: "Cascading Style Sheet",
-    options: [
+    correct: "Cascading Style Sheet",
+    responses: [
       "Common Style Sheet",
       "Colorful Style Sheet",
       "Computer Style Sheet",
@@ -25,8 +24,8 @@ let questions = [
   {
     numb: 3,
     question: "What does PHP stand for?",
-    answer: "Hypertext Preprocessor",
-    options: [
+    correct: "Hypertext Preprocessor",
+    responses: [
       "Hypertext Preprocessor",
       "Hypertext Programming",
       "Hypertext Preprogramming",
@@ -36,8 +35,8 @@ let questions = [
   {
     numb: 4,
     question: "What does SQL stand for?",
-    answer: "Structured Query Language",
-    options: [
+    correct: "Structured Query Language",
+    responses: [
       "Stylish Question Language",
       "Stylesheet Query Language",
       "Statement Question Language",
@@ -47,8 +46,8 @@ let questions = [
   {
     numb: 5,
     question: "What does XML stand for?",
-    answer: "eXtensible Markup Language",
-    options: [
+    correct: "eXtensible Markup Language",
+    responses: [
       "eXtensible Markup Language",
       "eXecutable Multiple Language",
       "eXTra Multi-Program Language",
@@ -58,26 +57,26 @@ let questions = [
   {
     numb: 6,
     question: "When was HTML5 created?",
-    answer: "1993",
-    options: ["1157", "1985", "1993", "1991"]
+    correct: "1993",
+    responses: ["1157", "1985", "1993", "1991"]
   },
   {
     numb: 7,
     question: "When was CSS proposed?",
-    answer: "1994",
-    options: ["1994", "1986", "1997", "2003"]
+    correct: "1994",
+    responses: ["1994", "1986", "1997", "2003"]
   },
   {
     numb: 8,
     question: "When was CodePen.io created?",
-    answer: "2012",
-    options: ["2013", "2012", "2009", "2010"]
+    correct: "2012",
+    responses: ["2013", "2012", "2009", "2010"]
   },
   {
     numb: 9,
     question: "What are the three coding languages featured in CodePen?",
-    answer: "HTML,CSS and JavaScript",
-    options: [
+    correct: "HTML,CSS and JavaScript",
+    responses: [
       "HTML,C++ and JSON",
       "Javascript,CSS and SQL",
       "HTML,CSS and JavaScript",
@@ -87,23 +86,9 @@ let questions = [
   {
     numb: 10,
     question: "When was JavaScript created?",
-    answer: "1996",
-    options: ["2005", "1991", "1996", "2001"]
+    correct: "1996",
+    responses: ["2005", "1991", "1996", "2001"]
   }
-  // you can uncomment the below codes and make duplicate as more as you want to add question
-  // but remember you need to give the numb value serialize like 1,2,3,5,6,7,8,9.....
-
-  //   {
-  //   numb: 6,
-  //   question: "Your Question is Here",
-  //   answer: "Correct answer of the question is here",
-  //   options: [
-  //     "Option 1",
-  //     "option 2",
-  //     "option 3",
-  //     "option 4"
-  //   ]
-  // },
 ];
 //selecting all required elements
 const start_btn = document.querySelector(".start_btn button");
@@ -209,16 +194,16 @@ function showQuetions(index) {
     "</span>";
   let option_tag =
     '<div class="option"><span>' +
-    questions[index].options[0] +
+    questions[index].responses[0] +
     "</span></div>" +
     '<div class="option"><span>' +
-    questions[index].options[1] +
+    questions[index].responses[1] +
     "</span></div>" +
     '<div class="option"><span>' +
-    questions[index].options[2] +
+    questions[index].responses[2] +
     "</span></div>" +
     '<div class="option"><span>' +
-    questions[index].options[3] +
+    questions[index].responses[3] +
     "</span></div>";
   que_text.innerHTML = que_tag; //adding new span tag inside que_tag
   option_list.innerHTML = option_tag; //adding new div tag inside option_tag
@@ -227,19 +212,22 @@ function showQuetions(index) {
 
   // set onclick attribute to all available options
   for (i = 0; i < option.length; i++) {
-    option[i].setAttribute("onclick", "optionSelected(this)");
+    //option[i].setAttribute("onclick", "optionSelected(this)");
+    option[i].addEventListener("click", optionSelected, this);
   }
 }
+ 
 // creating the new div tags which for icons
 let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 //if user clicked on option
-function optionSelected(answer) {
+function optionSelected(event) {
+  answer = event.currentTarget;
   clearInterval(counter); //clear counter
   clearInterval(counterLine); //clear counterLine
   let userAns = answer.textContent; //getting user selected option
-  let correcAns = questions[que_count].answer; //getting correct answer from array
+  let correcAns = questions[que_count].correct; //getting correct answer from array
   const allOptions = option_list.children.length; //getting all option items
 
   if (userAns == correcAns) {
@@ -320,7 +308,7 @@ function startTimer(time) {
       clearInterval(counter); //clear counter
       timeText.textContent = "Time Off"; //change the time text to time off
       const allOptions = option_list.children.length; //getting all option items
-      let correcAns = questions[que_count].answer; //getting correct answer from array
+      let correcAns = questions[que_count].correct; //getting correct answer from array
       for (i = 0; i < allOptions; i++) {
         if (option_list.children[i].textContent == correcAns) {
           //if there is an option which is matched to an array answer
