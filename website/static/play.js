@@ -6,45 +6,42 @@ const tmp =  qanda.replace(/\n/g, " ")
                   .replace(/False/g, "false")
                   .replace(/True/g, "true");
 const questions = JSON.parse(tmp)
+
+const questionView = document.querySelector(".question");
+const resultsView = document.querySelector(".results");
 const totalQuestions = document.querySelector(".play-footer .total-questions");
 const timeLine = document.querySelector(".play-header .time-line");
 const timeText = document.querySelector(".timer .time-left-txt");
 const timeCount = document.querySelector(".timer .timer-sec");
-
-let numQuestions;
-let numCorrect;
-let curQuestion;
-let timeLeft;
-let counter;
-let counterLine;
-let widthValue;
-
 const tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 const crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 const question_text = document.querySelector(".question-text");
 const option_list = document.querySelector(".option-list");
 const next_btn = document.querySelector(".next-btn");
+const scoreText = document.querySelector(".results .score-text");
 
-function startQuiz() {
-  console.log("hi", tickIconTag);
-  numQuestions = qanda.length;
-  numCorrect = 0;
-  curQuestion = 0;
-  timeLeft = timelimit;
-  counter = 0;
-  counterLine = 0;
-  widthValue = 0;
-  updateQuestionCount(0);
-  clearInterval(counter);
-  clearInterval(counterLine);
-  startTimer(timelimit);
-  startTimerLine(widthValue);
-  timeText.textContent = "Time Left";
-  showQuestion(0);
-};
+let numCorrect = 0;
+let questionNum = -1;
+let counter = 0;
+let counterLine = 0;
+let widthValue = 0;
 
-function showQuestion(questionNum) {
-  let question = "<span>" + questionNum + ". " + questions[questionNum].question + "</span>";
+function showNextQuestion() {
+  questionNum++;
+  clearInterval(counter); //clear counter
+  clearInterval(counterLine); //clear counterLine
+
+  if (questionNum >= questions.length) {
+    showResults();
+    return;
+  }
+  
+  displayQuestionCount();
+  startTimer(timelimit); //calling startTimer function
+  startTimerLine(widthValue); //calling startTimerLine function
+  timeText.textContent = "Time Left"; //change the timeText to Time Left
+  next_btn.classList.remove("show"); //hide the next button
+  let question = "<span>" + (questionNum+1) + ". " + questions[questionNum].question + "</span>";
   question_text.innerHTML = question;
 
   let responses = '';
@@ -62,8 +59,6 @@ function showQuestion(questionNum) {
     options[i].addEventListener("click", optionSelected, this);
   }
 
-  let elem = document.querySelector(".play-header .title");
-  elem.textContent = "Question " + questionNum;
   elem = document.querySelector(".question");
   elem.classList.add("show");
 }
@@ -144,7 +139,28 @@ function startTimerLine(time) {
   }
 }
 
-function updateQuestionCount(num) {
-  let tmp = "<span>" + num + " of " + questions.length + " questions</span>";
+function displayQuestionCount() {
+  let tmp = "<span>" + (questionNum + 1) + " of " + questions.length + " questions</span>";
   totalQuestions.innerHTML = tmp;
+}
+
+next_btn.onclick = (ev) => {
+  showNextQuestion();
+}
+
+function enable(elem) {
+  elem.classList.remove("hide");
+  elem.classList.add("show");
+}
+
+function disable(elem) {
+  elem.classList.remove("show");
+  elem.classList.add("hide");
+}
+
+function showResults() {
+  disable(questionView);
+  enable(resultsView);
+  let tmp = "<span>You correctly answered " + numCorrect + " out of " + questions.length + " questions</span>";
+  scoreText.innerHTML = tmp;
 }

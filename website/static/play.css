@@ -89,7 +89,7 @@ section .option-list .option .icon {
     line-height: 24px;
 }
 
-.question .play-header {
+.play-header {
     position: relative;
     z-index: 2;
     height: 70px;
@@ -102,12 +102,12 @@ section .option-list .option .icon {
     box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
 }
 
-.question .play-header .title {
+.play-header .title {
     font-size: 20px;
     font-weight: 600;
 }
 
-.question .play-header .timer {
+.play-header .timer {
     color: #004085;
     background: #cce5ff;
     border: 1px solid #b8daff;
@@ -120,13 +120,13 @@ section .option-list .option .icon {
     width: 145px;
 }
 
-.question .play-header .timer .time-left-txt {
+.play-header .timer .time-left-txt {
     font-weight: 400;
     font-size: 17px;
     user-select: none;
 }
 
-.question .play-header .timer .timer-sec {
+.play-header .timer .timer-sec {
     font-size: 18px;
     font-weight: 500;
     height: 30px;
@@ -140,7 +140,7 @@ section .option-list .option .icon {
     user-select: none;
 }
 
-.question .play-header .time-line {
+.play-header .time-line {
     position: absolute;
     bottom: 0px;
     left: 0px;

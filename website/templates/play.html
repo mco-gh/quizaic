@@ -30,9 +30,9 @@
         </div>
     </div>
 {% else %}
-    <div class="question">
+    <div class="question show">
         <div class="play-header">
-            <div class="title"></div>
+            <div class="title">{{ quiz.name }}</div>
             <div class="timer">
                 <div class="time-left-txt">Time Left</div>
                 <div class="timer-sec">{{ quiz.time_limit }}</div>
@@ -49,18 +49,16 @@
             <button class="next-btn">Next</button>
         </div>
     </div>
-
-    <div class="results-page" style="display: none">
-        <div class="icon">
-            <i class="fas fa-crown"></i>
-        </div>
-        <div class="complete-text">Congratulations - you've completed the quiz!</div>
-        <div class="score-text"></div>
-        <div class="buttons">
-            <button class="restart">Retake Quiz</button>
-            <button class="home">Take me to the Quizrd Home Page</button>
-        </div>
-    </div>
+    <section class="results hide">
+        <div class="results-header">
+            <h2>Results</h2>
+            <div class="score-text"></div>
+            <div class="buttons">
+                <button class="restart">Retake Quiz</button>
+                <button class="home">Take me to the Quizrd Home Page</button>
+            </div>  
+        </div>      
+    </section>
 
     <script type="text/javascript" nonce="{{ g.csp_nonce }}">
         let link = document.createElement( "link" );
@@ -72,7 +70,7 @@
     </script>
     <script src="/static/play.js" data-timelimit="{{ quiz.time_limit }}" data-qanda="{{ quiz.qand_a }}" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
     <script type="text/javascript" nonce="{{ g.csp_nonce }}">
-        startQuiz();
+        showNextQuestion();
     </script>
 {% endif %}
 {% endblock %}
