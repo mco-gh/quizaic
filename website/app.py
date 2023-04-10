@@ -23,7 +23,6 @@ from views.auth import auth_bp
 from views.robots_txt import robots_txt_bp
 
 from views.quizzes import quizzes_bp
-from views.play import play_bp
 from views.host import host_bp
 
 from middleware import auth, csp
@@ -37,7 +36,6 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(robots_txt_bp)
 
 app.register_blueprint(quizzes_bp)
-app.register_blueprint(play_bp)
 app.register_blueprint(host_bp)
 
 # Initialize middleware
@@ -53,9 +51,19 @@ else:
     raise Exception("Missing configuration file.")
 
 
+extra_dirs = ['templates', "views", "static"]
+extra_files = extra_dirs[:]
+for extra_dir in extra_dirs:
+    for dirname, dirs, files in walk(extra_dir):
+        for filename in files:
+            filename = path.join(dirname, filename)
+            if path.isfile(filename):
+                extra_files.append(filename)
+print(extra_files)
+
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT")) if os.getenv("PORT") else 8080
 
     # This is used when running locally. Gunicorn is used to run the
     # application on Cloud Run; see "entrypoint" parameter in the Dockerfile.
-    app.run(host="127.0.0.1", port=PORT, debug=True)
+    app.run(host="127.0.0.1", port=PORT, debug=True, extra_files=extra_files)

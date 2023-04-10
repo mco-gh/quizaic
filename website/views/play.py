@@ -20,7 +20,7 @@ play_bp = Blueprint("play", __name__, template_folder="templates")
 
 
 @play_bp.route("/<int:pin>")
-def play(pin):
+def start(pin):
     current_user = None
     log(f"pin: {pin}")
 
@@ -43,4 +43,37 @@ def play(pin):
     if not quiz:
         log(f"Requested quiz with pin {pin} not found", severity="ERROR")
 
-    return render_template("play.html", quiz=quiz, pin=pin, current_user=current_user)
+    return render_template("start.html", quiz=quiz, pin=pin, current_user=current_user)
+
+@play_bp.route("/play/<int:pin>")
+def play(pin):
+    current_user = None
+    log(f"pin: {pin}")
+
+    if g.session_data:
+        current_user = g.session_data.get("email")
+
+    try:
+        quizzes = g.api.quizzes_get()
+        log(quizzes)
+    except Exception as e:
+        log(f"Exception when listing quizzes view: {e}", severity="ERROR")
+        quizzes = []
+
+    quiz = None;
+    for q in quizzes:
+        if q.pin == str(pin):
+            quiz = q
+            break
+    if not quiz:
+        log(f"Requested quiz with pin {pin} not found", severity="ERROR")
+
+    name = request.form['name']
+    if not quiz:
+        log(f"Player name not provided", severity="ERROR")
+
+    log(f"player name received: {name}")
+
+    # Register player to quiz here.
+
+    return render_template("play.html", quiz=quiz, pin=pin, name=name, current_user=current_user)

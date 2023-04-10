@@ -26,7 +26,6 @@ import re
 
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
 
-
 @quizzes_bp.route("/")
 def list_quizzes():
     current_user = None
@@ -80,7 +79,7 @@ def save_quiz():
     return redirect("/")
 
 
-@quizzes_bp.route("/viewQuiz")
+@quizzes_bp.route("/viewQuiz", methods=["GET"])
 def webapp_view_quiz():
     quiz_id = request.args.get("quiz_id")
 
@@ -102,3 +101,61 @@ def webapp_view_quiz():
 
 
     return render_template("view-quiz.html", quiz=quiz_instance)
+
+@quizzes_bp.route("/<int:pin>", methods=["GET"])
+def start(pin):
+    current_user = None
+    log(f"pin: {pin}")
+
+    if g.session_data:
+        current_user = g.session_data.get("email")
+
+    try:
+        quizzes = g.api.quizzes_get()
+    except Exception as e:
+        log(f"Exception when listing quizzes view: {e}", severity="ERROR")
+        quizzes = []
+
+    quiz = None;
+    for q in quizzes:
+        if q.pin == str(pin):
+            quiz = q
+            break
+
+    if not quiz:
+        log(f"Requested quiz with pin {pin} not found", severity="ERROR")
+
+    return render_template("start.html", quiz=quiz, pin=pin, current_user=current_user)
+
+@quizzes_bp.route("/playQuiz/<int:pin>", methods=["POST"])
+def play(pin):
+    current_user = None
+    log(f"pin: {pin}")
+
+    if g.session_data:
+        current_user = g.session_data.get("email")
+
+    try:
+        quizzes = g.api.quizzes_get()
+        log(quizzes)
+    except Exception as e:
+        log(f"Exception when listing quizzes view: {e}", severity="ERROR")
+        quizzes = []
+
+    quiz = None;
+    for q in quizzes:
+        if q.pin == str(pin):
+            quiz = q
+            break
+    if not quiz:
+        log(f"Requested quiz with pin {pin} not found", severity="ERROR")
+
+    name = request.form['name']
+    if not quiz:
+        log(f"Player name not provided", severity="ERROR")
+
+    log(f"player name not received: {name}")
+
+    # Register player to quiz here.
+
+    return render_template("play.html", quiz=quiz, pin=pin, name=name, current_user=current_user)

@@ -25,7 +25,7 @@
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h2>Error: unknown quiz with pin {{ pin }}.</h2>
+                <h2>Error: unknown quiz with pin {{ pin }}</h2>
             </div>
         </div>
     </div>
@@ -33,77 +33,54 @@
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h2>You are playing quiz "{{ quiz.name }}" (pin: {{ pin }}).</h2>
+                <h2>Welcome, {{name }}, to quiz {{ quiz.name }} (pin {{ pin }})</h2>
             </div>
         </div>
     </div>
-    <!-- start Quiz button -->
-    <div class="start_btn"><button>Start Quiz</button></div>
 
-    <!-- Info Box -->
-    <div class="info_box">
-        <div class="info-title"><span>Some Rules of this Quiz</span></div>
-        <div class="info-list">
-        <div class="info">1. There are 10 questions</div>
-            <div class="info">2. You will have only <span>{{ quiz.time_limit }} seconds</span> per each question.</div>
-            <div class="info">3. Once you select your answer, it can't be undone.</div>
-            <div class="info">4. You can't select any option once time goes off.</div>
-            <div class="info">5. You can't exit from the Quiz while you're playing.</div>
-            <div class="info">6. You'll get points on the basis of your correct answers.</div>
-        </div>
-        <div class="buttons">
-            <button class="quit">Exit Quiz</button>
-            <button class="restart">Continue</button>
-        </div>
-    </div>
-
-    <!-- Quiz Box -->
-    <div class="quiz_box">
-        <div class="play_header">
-            <div class="title">Quizrd.io</div>
+    <div class="question">
+        <div class="play-header">
+            <div class="title"></div>
             <div class="timer">
-                <div class="time_left_txt">Time Left</div>
-                <div class="timer_sec">{{ quiz.time_limit }}</div>
+                <div class="time-left-txt">Time Left</div>
+                <div class="timer-sec">{{ quiz.time_limit }}</div>
             </div>
-            <div class="time_line"></div>
+            <div class="time-line"></div>
         </div>
         <section>
-            <div class="que_text">
-            </div>
-            <div class="option_list">
-            </div>
+            <div class="question-text"></div>
+            <div class="option-list"></div>
         </section>
 
-        <div class="play_footer">
-            <div class="total_que">
-                <!-- Here I've inserted Question Count Number from JavaScript -->
-            </div>
-            <button class="next_btn">Next</button>
+        <div class="play-footer">
+            <div class="total-questions"></div>
+            <button class="next-btn">Next</button>
         </div>
     </div>
 
-    <div class="result_box">
+    <div class="results-page" style="display: none">
         <div class="icon">
             <i class="fas fa-crown"></i>
         </div>
-        <div class="complete_text">You've completed the Quiz!</div>
-        <div class="score_text">
-            <!-- Here I've inserted Score Result from JavaScript -->
-        </div>
+        <div class="complete-text">Congratulations - you've completed the quiz!</div>
+        <div class="score-text"></div>
         <div class="buttons">
-            <button class="restart">Replay Quiz</button>
-            <button class="quit">Quit Quiz</button>
+            <button class="restart">Retake Quiz</button>
+            <button class="home">Take me to the Quizrd Home Page</button>
         </div>
     </div>
 
     <script type="text/javascript" nonce="{{ g.csp_nonce }}">
-    let link = document.createElement( "link" );
-    link.href = "/static/play.css";
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.media = "screen,print";
-    document.getElementsByTagName("head")[0].appendChild(link);
+        let link = document.createElement( "link" );
+        link.href = "/static/play.css";
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.media = "screen,print";
+        document.getElementsByTagName("head")[0].appendChild(link);
     </script>
     <script src="/static/play.js" data-timelimit="{{ quiz.time_limit }}" data-qanda="{{ quiz.qand_a }}" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
+    <script type="text/javascript" nonce="{{ g.csp_nonce }}">
+        startQuiz();
+    </script>
 {% endif %}
 {% endblock %}

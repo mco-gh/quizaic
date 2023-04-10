@@ -122,7 +122,7 @@
     "id": "078ba4bfce324ced8586",
     "data": {
       "name": "Rock and Roll!",
-      "description": "See how well you know modern rock history music",
+      "description": "See how well you know modern rock history",
       "runCount": 2,
       "host": "1b271fa397f14c2b9582",
       "playUrl": "https://quizrd.io/123",
@@ -224,7 +224,7 @@
       "anonymous": true,
       "randomQ": true,
       "randomA": true,
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
       "difficulty": "5",
       "timeLimit": "60",
       "numQuestions": "10",
