@@ -1,4 +1,7 @@
 const data = document.currentScript.dataset;
+const quizId = data.quizid;
+const playerName = data.name;
+console.log(playerName, quizId);
 const qanda = data.qanda;
 const timelimit = data.timelimit;
 const tmp =  qanda.replace(/\n/g, " ")
