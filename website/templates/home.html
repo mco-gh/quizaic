@@ -30,11 +30,6 @@
                 <span class="mdc-button__ripple"></span>
                 <span class="mdc-button__label">Create new quiz</span>
             </a>
-            <!-- Create Campaign button -->
-            <a href="/createCampaign" class="mdc-button mdc-button--raised">
-                <span class="mdc-button__ripple"></span>
-                <span class="mdc-button__label">Create new campaign</span>
-            </a>
             {% endif %}
         </div>
     </div>
@@ -69,32 +64,4 @@
     </div>
 </div>
 
-<!-- Campaign list -->
-<div class="mdc-layout-grid">
-    <div class="mdc-layout-grid__inner">
-        {% for campaign in campaigns %}
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-            <a href="/viewCampaign?campaign_id={{ campaign.id }}">
-                <div class="emblem-campaign-card mdc-card mdc-card--outlined">
-                    <!-- Campaign image --> 
-                    <div class="emblem-campaign-image mdc-list-item" style="background-image: url({{ campaign.image_url }}); background-size: cover;"></div>
-
-                    <!-- Campaign name -->
-                    <div class="emblem-campaign-title mdc-list-item">
-                        <span class="mdc-list-item__text">
-                            {{ campaign.name }}
-                        </span>
-                    </div>
-                    <!-- Campaign description -->
-                    <div class="mdc-list-item">
-                        <span class="mdc-list-item__text">
-                            {{ campaign.description }}
-                        </span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-</div>
 {% endblock %}
