@@ -1637,6 +1637,8 @@ components:
                 default: []
                 items:
                   type: string
+        results:
+          $ref: '#/components/schemas/Results'
         timeCreated:
           type: string
           format: date-time

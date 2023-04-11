@@ -160,7 +160,12 @@
                   "Elvis Presley"
               ]
           }
-      ]
+      ],
+      "results": {
+          "quiz": "078ba4bfce324ced8586",
+          "player": "Marc",
+          "responses": ["The Beatles", "Bob Dylan"] 
+      }
     }
   },
   {

@@ -3908,6 +3908,11 @@ with openapi_client.ApiClient(configuration) as api_client:
                 responses=[],
             ),
         ],
+        results=Results(
+            quiz="quiz_example",
+            player="player_example",
+            responses=[],
+        ),
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set
@@ -4407,6 +4412,11 @@ with openapi_client.ApiClient(configuration) as api_client:
                 responses=[],
             ),
         ],
+        results=Results(
+            quiz="quiz_example",
+            player="player_example",
+            responses=[],
+        ),
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set

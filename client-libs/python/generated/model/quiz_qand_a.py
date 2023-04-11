@@ -104,13 +104,15 @@ class QuizQandA(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, question, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, question, correct, *args, **kwargs):  # noqa: E501
         """QuizQandA - a model defined in OpenAPI
 
         Args:
             question (str): question text
+            correct (str): answer text (free form) or integer (multiple choice)
 
         Keyword Args:
+            responses ([str]): possible multiple choice answers to this question. defaults to []  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -141,10 +143,9 @@ class QuizQandA(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            correct (str): answer text (free form) or integer (multiple choice). [optional]  # noqa: E501
-            responses ([str]): possible multiple choice answers to this question. [optional] if omitted the server will use the default value of []  # noqa: E501
         """
 
+        responses = kwargs.get('responses', [])
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -171,6 +172,8 @@ class QuizQandA(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.question = question
+        self.correct = correct
+        self.responses = responses
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -191,13 +194,15 @@ class QuizQandA(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, question, *args, **kwargs):  # noqa: E501
+    def __init__(self, question, correct, *args, **kwargs):  # noqa: E501
         """QuizQandA - a model defined in OpenAPI
 
         Args:
             question (str): question text
+            correct (str): answer text (free form) or integer (multiple choice)
 
         Keyword Args:
+            responses ([str]): possible multiple choice answers to this question. defaults to []  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -228,10 +233,9 @@ class QuizQandA(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            correct (str): answer text (free form) or integer (multiple choice). [optional]  # noqa: E501
-            responses ([str]): possible multiple choice answers to this question. [optional] if omitted the server will use the default value of []  # noqa: E501
         """
 
+        responses = kwargs.get('responses', [])
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -256,6 +260,8 @@ class QuizQandA(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.question = question
+        self.correct = correct
+        self.responses = responses
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
