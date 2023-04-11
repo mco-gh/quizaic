@@ -108,7 +108,6 @@
           },
           {
               "question":  "Where was Lincoln shot?",
-              "correct": "Ford's Theater"
           },
           {
               "question":  "Who was the first President?",
@@ -291,7 +290,7 @@
     "data": {
       "quiz": "078ba4bfce324ced8586",
       "player": "Marc",
-      "responses": [
+      "answers": [
           "The Beatles",
           "Bob Dylan"
       ]
@@ -303,7 +302,7 @@
     "data": {
       "quiz": "078ba4bfce324ced8586",
       "player": "Maya",
-      "responses": [
+      "answers": [
           "Oasis",
           "Elvis Presley"
       ]

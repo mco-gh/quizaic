@@ -4312,8 +4312,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     results = Results(
         quiz="quiz_example",
         player="player_example",
-        responses=[
-            "responses_example",
+        answers=[
+            "answers_example",
         ],
     ) # Results | JSON representation of a single results object
 
@@ -4396,8 +4396,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     results = Results(
         quiz="quiz_example",
         player="player_example",
-        responses=[
-            "responses_example",
+        answers=[
+            "answers_example",
         ],
     ) # Results | JSON representation of a (most likely empty) results object
 

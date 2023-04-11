@@ -45,7 +45,7 @@ resource_fields = {
         "QandA",
         "results",
     ],
-    "results": ["quiz", "player", "responses"],
+    "results": ["quiz", "player", "answers"],
     "generators": ["name"],
     # legacy emblem support follows...
     "approvers": ["name", "email", "active"],

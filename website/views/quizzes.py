@@ -150,7 +150,6 @@ def play(pin):
     if not quiz:
         log(f"Requested quiz with pin {pin} not found", severity="ERROR")
 
-    log("hi")
     name = request.form['name']
     if not quiz:
         log(f"Player name not provided", severity="ERROR")
@@ -159,10 +158,10 @@ def play(pin):
         r = {
             "player": name,
             "quiz": quiz.id,
-            "responses": []
+            "answers": []
         }
         g.api.results_post(r)
-
+        log(quiz)
     except Exception as e:
         log(f"Exception posting new results object {r}: {e}", severity="ERROR")
 

@@ -84,7 +84,7 @@ class Results(ModelNormal):
             'id': (str,),  # noqa: E501
             'quiz': (str,),  # noqa: E501
             'player': (str,),  # noqa: E501
-            'responses': ([str],),  # noqa: E501
+            'answers': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -96,7 +96,7 @@ class Results(ModelNormal):
         'id': 'id',  # noqa: E501
         'quiz': 'quiz',  # noqa: E501
         'player': 'player',  # noqa: E501
-        'responses': 'responses',  # noqa: E501
+        'answers': 'answers',  # noqa: E501
     }
 
     read_only_vars = {
@@ -144,7 +144,7 @@ class Results(ModelNormal):
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             quiz (str): id of the quiz associated with these results. [optional]  # noqa: E501
             player (str): id or name of the player associated with these results. [optional]  # noqa: E501
-            responses ([str]): array of responses. [optional]  # noqa: E501
+            answers ([str]): array of responses. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,7 +229,7 @@ class Results(ModelNormal):
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             quiz (str): id of the quiz associated with these results. [optional]  # noqa: E501
             player (str): id or name of the player associated with these results. [optional]  # noqa: E501
-            responses ([str]): array of responses. [optional]  # noqa: E501
+            answers ([str]): array of responses. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

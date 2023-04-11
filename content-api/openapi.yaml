@@ -1633,7 +1633,7 @@ components:
         player:
           type: string
           description: id or name of the player associated with these results
-        responses:
+        answers:
           type: array
           description: array of responses
           items:
