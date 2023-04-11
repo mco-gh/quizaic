@@ -150,19 +150,20 @@ def play(pin):
     if not quiz:
         log(f"Requested quiz with pin {pin} not found", severity="ERROR")
 
+    log("hi")
     name = request.form['name']
     if not quiz:
         log(f"Player name not provided", severity="ERROR")
 
     try:
-        q = {
-            "name": "Test Guy",
-            "results": {"Joe": "hi"}
+        r = {
+            "player": name,
+            "quiz": quiz.id,
+            "responses": []
         }
-        log(f"quiz.id: {quiz.id}, q: {q}")
-        g.api.quizzes_id_patch(quiz.id, q)
+        g.api.results_post(r)
 
     except Exception as e:
-        log(f"Exception patching player results: {e}", severity="ERROR")
+        log(f"Exception posting new results object {r}: {e}", severity="ERROR")
 
     return render_template("play.html", quiz=quiz, pin=pin, name=name, current_user=current_user)
