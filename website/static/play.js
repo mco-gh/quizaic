@@ -70,6 +70,11 @@ function optionSelected(event) {
   let correctAns = questions[qnum].correct;
   const allOptions = option_list.children.length;
 
+  let player = "Marc";
+  let quiz = "078ba4bfce324ced8586";
+  let answers = ["one", "two"];
+  document.postResults(player, quiz, answers);
+
   if (userAns == correctAns) {
     numCorrect += 1;
     answer.classList.add("correct");

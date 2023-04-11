@@ -82,25 +82,19 @@
             showNextQuestion(doc.data().currentQuestion);
         });
 
-        const results = collection(db, "results");
-        const q = query(results, where("player", "==", "Marc"));
-        const snap = await getDocs(q);
-        snap.forEach((d) => {
-            // doc.data() is never undefined for query doc snapshots
-            let data = d.data();
-            console.log("marc:", d.id)
-            let docData = { answers: ["The Beatles", "Elvis Parsley"] }
-            setDoc(doc(db, "results", d.id), docData,  { merge: true });
-        });
-        
-        function postResults(quiz, player, results) {
-            console.log("updating results for quiz/player", quiz, player, results);
-            r = {
-                "quiz": quiz,
-                "player": player,
-                "answers": results
-            }
+        async function postResults(player, quiz, answers) {
+            const results = collection(db, "results");
+            const q = query(results, where("player", "==", player), where("quiz", "==", quiz));
+            const snap = await getDocs(q);
+            snap.forEach((d) => {
+                // doc.data() is never undefined for query doc snapshots
+                let data = d.data();
+                console.log("results id: ", d.id)
+                let docData = { answers: answers }
+                setDoc(doc(db, "results", d.id), docData,  { merge: true });
+            });
         }
+        document.postResults = postResults;
     </script>
 
     <script type="text/javascript" nonce="{{ g.csp_nonce }}">
