@@ -154,16 +154,20 @@ def play(pin):
     if not quiz:
         log(f"Player name not provided", severity="ERROR")
 
-    # Register player to quiz here.
-
     try:
-        results = {
-            "player": name,
-            "quiz": q.id,
-            "responses": []
+        q = {
+            "name": "yo",
+            "results": [
+                {
+                    "player": name,
+                    "responses": []
+                }
+            ]
         }
-        log("results:", q.results)
+        log(f"quiz.id: {quiz.id}, q: {q}")
+        g.api.quizzes_id_patch(quiz.id, q)
+
     except Exception as e:
-        log(f"Exception getting player results: {e}", severity="ERROR")
+        log(f"Exception patching player results: {e}", severity="ERROR")
 
     return render_template("play.html", quiz=quiz, pin=pin, name=name, current_user=current_user)
