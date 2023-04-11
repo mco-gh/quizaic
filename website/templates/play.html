@@ -91,10 +91,8 @@
             console.log("marc:", d.id)
             let docData = { answers: ["The Beatles", "Elvis Parsley"] }
             setDoc(doc(db, "results", d.id), docData,  { merge: true });
-            //setDoc(doc, { answers: ["The Beatles", "Elvis Parsley"] }, { merge: true });
         });
         
-
         function postResults(quiz, player, results) {
             console.log("updating results for quiz/player", quiz, player, results);
             r = {
