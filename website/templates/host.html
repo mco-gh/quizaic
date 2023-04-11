@@ -38,8 +38,10 @@
         <span class="mdc-button__ripple"></span>
         <span class="mdc-button__label">Next</span>
     </a>
-</div>
 
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+</div>
+  
 <script type="module" nonce="{{ g.csp_nonce }}">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
@@ -77,6 +79,50 @@
     document.startQuiz = startQuiz;
     document.stopQuiz = stopQuiz;
     document.incrementQuiz = incrementQuiz;
+
+    /*
+    function graph(d) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(d);
+            var options = {
+                title: 'Response Frequencies',
+                legend: { position: 'none' },
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    }
+
+    setInterval(getResults, 5000);
+
+    async function getResults() {
+        const results = collection(db, "results");
+        const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
+        const snap = await getDocs(q);
+        let counters = {}
+        snap.forEach((d) => {
+            // doc.data() is never undefined for query doc snapshots
+            let data = d.data();
+            console.log(data)
+        });
+        let dino = [['Dinosaur', 'Length'],
+                ['Acrocanthosaurus (top-spined lizard)', 12.2],
+                ['Acanthosaurus (top-spined lizard)', 13.2],
+                ['Acrocanthrus (top-spined lizard)', 19.2]];
+        let li = [["Frequency", "Guess"]];
+        for (const [key, value] of Object.entries(counters)) {
+            li.push([key, value]);
+        }
+        console.log(li)
+        console.log(dino)
+        graph(dino);
+        graph(li)
+    }
+*/
+    
 </script>
 
 {% endblock %}
