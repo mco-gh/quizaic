@@ -24,6 +24,7 @@ let numCorrect = 0;
 let counter = 0;
 let counterLine = 0;
 let widthValue = 0;
+let correctAnswer = null;
 
 function showNextQuestion(questionNum) {
   clearInterval(counter); //clear counter
@@ -34,6 +35,7 @@ function showNextQuestion(questionNum) {
     return;
   }
   
+  correctAnswer = questions[questionNum].answer;
   displayQuestionCount(questionNum);
   startTimer(timelimit); //calling startTimer function
   startTimerLine(widthValue); //calling startTimerLine function
@@ -50,10 +52,8 @@ function showNextQuestion(questionNum) {
 
   option_list.innerHTML = responses;
   const options = option_list.querySelectorAll(".option");
-  console.log(options.length)
   for (i = 0; i < options.length; i++) {
     options[i].qnum = questionNum;
-    console.log('marc', i, options[i].questionNum)
     options[i].addEventListener("click", optionSelected, this);
   }
 
@@ -109,9 +109,9 @@ function startTimer(time) {
       clearInterval(counter); //clear counter
       timeText.textContent = "Time Out"; //change the time text to time off
       const allOptions = option_list.children.length; //getting all option items
-      let correctAns = questions[question_num].answer; //getting correct answer from array
+      //let correctAns = questions[question_num].answer; //getting correct answer from array
       for (i = 0; i < allOptions; i++) {
-        if (option_list.children[i].textContent == correctAns) {
+        if (option_list.children[i].textContent == correctAnswer) {
           //if there is an option which is matched to an array answer
           option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
           option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option

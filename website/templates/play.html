@@ -60,33 +60,51 @@
         </div>      
     </section>
 
-    <!--
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    -->
-
     <script type="module" nonce="{{ g.csp_nonce }}">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { doc, getDoc, getFirestore, collection, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+        import { doc, where, query, getFirestore, collection, getDocs, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyCWY14Mna0pyz15Jcv2jLSq5eVxc2XCHfU",
-          authDomain: "quizrd-prod-382117.firebaseapp.com",
-          projectId: "quizrd-prod-382117",
-          storageBucket: "quizrd-prod-382117.appspot.com",
-          messagingSenderId: "338739261213",
-          appId: "1:338739261213:web:49d62e4552ffaabcbe7bf4"
+            apiKey: "AIzaSyCWY14Mna0pyz15Jcv2jLSq5eVxc2XCHfU",
+            authDomain: "quizrd-prod-382117.firebaseapp.com",
+            projectId: "quizrd-prod-382117",
+            storageBucket: "quizrd-prod-382117.appspot.com",
+            messagingSenderId: "338739261213",
+            appId: "1:338739261213:web:49d62e4552ffaabcbe7bf4"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const unsub = onSnapshot(doc(db, "admin", "quizManagement"), (doc) => {
             showNextQuestion(doc.data().currentQuestion);
         });
+
+        const results = collection(db, "results");
+        const q = query(results, where("player", "==", "Marc"));
+        const snap = await getDocs(q);
+        snap.forEach((d) => {
+            // doc.data() is never undefined for query doc snapshots
+            let data = d.data();
+            console.log("marc:", d.id)
+            let docData = { answers: ["The Beatles", "Elvis Parsley"] }
+            setDoc(doc(db, "results", d.id), docData,  { merge: true });
+            //setDoc(doc, { answers: ["The Beatles", "Elvis Parsley"] }, { merge: true });
+        });
+        
+
+        function postResults(quiz, player, results) {
+            console.log("updating results for quiz/player", quiz, player, results);
+            r = {
+                "quiz": quiz,
+                "player": player,
+                "answers": results
+            }
+        }
     </script>
+
     <script type="text/javascript" nonce="{{ g.csp_nonce }}">
         let link = document.createElement( "link" );
         link.href = "/static/play.css";
