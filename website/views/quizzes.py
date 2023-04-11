@@ -137,7 +137,6 @@ def play(pin):
 
     try:
         quizzes = g.api.quizzes_get()
-        log(quizzes)
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
@@ -154,8 +153,17 @@ def play(pin):
     if not quiz:
         log(f"Player name not provided", severity="ERROR")
 
-    log(f"player name not received: {name}")
-
     # Register player to quiz here.
+
+    try:
+        results = {
+            "player": name,
+            "quiz": q.id,
+            "responses": []
+        }
+        results = g.api.quizzes_id_results_get(q.id)
+        log("results:", results)
+    except Exception as e:
+        log(f"Exception getting player results: {e}", severity="ERROR")
 
     return render_template("play.html", quiz=quiz, pin=pin, name=name, current_user=current_user)

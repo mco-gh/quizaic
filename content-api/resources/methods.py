@@ -43,6 +43,7 @@ resource_fields = {
         "sync",
         "active",
         "QandA",
+        "results",
     ],
     "results": ["quiz", "player", "responses"],
     "generators": ["name"],
