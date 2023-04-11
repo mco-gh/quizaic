@@ -21,13 +21,11 @@ const next_btn = document.querySelector(".next-btn");
 const scoreText = document.querySelector(".results .score-text");
 
 let numCorrect = 0;
-let questionNum = -1;
 let counter = 0;
 let counterLine = 0;
 let widthValue = 0;
 
-function showNextQuestion() {
-  questionNum++;
+function showNextQuestion(questionNum) {
   clearInterval(counter); //clear counter
   clearInterval(counterLine); //clear counterLine
 
@@ -36,7 +34,7 @@ function showNextQuestion() {
     return;
   }
   
-  displayQuestionCount();
+  displayQuestionCount(questionNum);
   startTimer(timelimit); //calling startTimer function
   startTimerLine(widthValue); //calling startTimerLine function
   timeText.textContent = "Time Left"; //change the timeText to Time Left
@@ -54,7 +52,7 @@ function showNextQuestion() {
   const options = option_list.querySelectorAll(".option");
   console.log(options.length)
   for (i = 0; i < options.length; i++) {
-    options[i].questionNum = questionNum;
+    options[i].qnum = questionNum;
     console.log('marc', i, options[i].questionNum)
     options[i].addEventListener("click", optionSelected, this);
   }
@@ -65,11 +63,11 @@ function showNextQuestion() {
 
 function optionSelected(event) {
   let answer = event.currentTarget;
-  let questionNum = answer.questionNum;
+  let qnum = answer.qnum;
   clearInterval(counter);
   clearInterval(counterLine);
   let userAns = answer.textContent;
-  let correctAns = questions[questionNum].correct;
+  let correctAns = questions[qnum].correct;
   const allOptions = option_list.children.length;
 
   if (userAns == correctAns) {
@@ -139,8 +137,8 @@ function startTimerLine(time) {
   }
 }
 
-function displayQuestionCount() {
-  let tmp = "<span>" + (questionNum + 1) + " of " + questions.length + " questions</span>";
+function displayQuestionCount(qnum) {
+  let tmp = "<span>" + (qnum + 1) + " of " + questions.length + " questions</span>";
   totalQuestions.innerHTML = tmp;
 }
 
