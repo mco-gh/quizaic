@@ -60,7 +60,6 @@ from openapi_client.model.generator import Generator
 from openapi_client.model.host import Host
 from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
-from openapi_client.model.results import Results
 # Defining the host is optional and defaults to https://example.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -148,11 +147,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**quizzes_id_delete**](docs/DefaultApi.md#quizzes_id_delete) | **DELETE** /quizzes/{id} | deletes a single quiz
 *DefaultApi* | [**quizzes_id_get**](docs/DefaultApi.md#quizzes_id_get) | **GET** /quizzes/{id} | returns a single quiz
 *DefaultApi* | [**quizzes_id_patch**](docs/DefaultApi.md#quizzes_id_patch) | **PATCH** /quizzes/{id} | updates a single quiz
-*DefaultApi* | [**quizzes_id_results_get**](docs/DefaultApi.md#quizzes_id_results_get) | **GET** /quizzes/{id}/results | Returns a list of results objects for a specific quiz
-*DefaultApi* | [**quizzes_id_results_id2_delete**](docs/DefaultApi.md#quizzes_id_results_id2_delete) | **DELETE** /quizzes/{id}/results/{id2} | deletes a results object for a specific quiz/player combination
-*DefaultApi* | [**quizzes_id_results_id2_get**](docs/DefaultApi.md#quizzes_id_results_id2_get) | **GET** /quizzes/{id}/results/{id2} | returns a single results object for a specific quiz/player combination
-*DefaultApi* | [**quizzes_id_results_id2_patch**](docs/DefaultApi.md#quizzes_id_results_id2_patch) | **PATCH** /quizzes/{id}/results/{id2} | updates results for a specific quiz/player combination
-*DefaultApi* | [**quizzes_id_results_post**](docs/DefaultApi.md#quizzes_id_results_post) | **POST** /quizzes/{id}/results | Register a player for a quiz
 *DefaultApi* | [**quizzes_post**](docs/DefaultApi.md#quizzes_post) | **POST** /quizzes | Create a new quiz
 
 
@@ -169,7 +163,7 @@ Class | Method | HTTP request | Description
  - [Player](docs/Player.md)
  - [Quiz](docs/Quiz.md)
  - [QuizQandA](docs/QuizQandA.md)
- - [Results](docs/Results.md)
+ - [QuizResults](docs/QuizResults.md)
 
 
 ## Documentation For Authorization

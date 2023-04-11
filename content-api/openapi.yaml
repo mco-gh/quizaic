@@ -518,165 +518,6 @@ paths:
         default:
           description: Unexpected error
 
-  /quizzes/{id}/results:
-    get:
-      summary: Returns a list of results objects for a specific quiz
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: Quiz Id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A JSON array of results
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Results'
-        '403':
-          description: Forbidden
-        '404':
-          description: not found. The path must have a typo
-        default:
-          description: Unexpected error
-
-    post:
-      summary: Register a player for a quiz
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: Quiz Id
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: JSON representation of a results object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Results'
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Results'
-        '403':
-          description: Forbidden
-        '404':
-          description: quizzes must have been misspelled in path
-
-  /quizzes/{id}/results/{id2}:
-    get:
-      summary: returns a single results object for a specific quiz/player combination
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: Quiz Id
-          required: true
-          schema:
-            type: string
-        - name: id2
-          in: path
-          description: Player Id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: JSON representation of a results object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Results'
-        '403':
-          description: Forbidden
-        '404':
-          description: not found
-        default:
-          description: Unexpected error
-
-    patch:
-      summary: updates results for a specific quiz/player combination
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: Quiz Id
-          required: true
-          schema:
-            type: string
-        - name: id2
-          in: path
-          description: Player Id
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: JSON representation of a results object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Results'
-      responses:
-        '201':
-          description: JSON representation of a results object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Results'
-        '403':
-          description: Forbidden
-        '404':
-          description: not found
-        '409':
-          description: Conflict. If-Match header provided does not match current contents
-        default:
-          description: Unexpected error
-
-    delete:
-      summary: deletes a results object for a specific quiz/player combination
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: Quiz Id
-          required: true
-          schema:
-            type: string
-        - name: id2
-          in: path
-          description: Player Id
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: No content
-        '403':
-          description: Forbidden
-        '404':
-          description: not found
-        '409':
-          description: Conflict. If-Match header provided does not match current contents
-        default:
-          description: Unexpected error
-
   /generators:
     get:
       summary: Returns a list of generators
@@ -1638,41 +1479,23 @@ components:
                 items:
                   type: string
         results:
-          $ref: '#/components/schemas/Results'
-        timeCreated:
-          type: string
-          format: date-time
-          readOnly: true
-          description: system-assigned creation timestamp
-        updated:
-          type: string
-          format: date-time
-          readOnly: true
-          description: system-assigned update timestamp
-        selfLink:
-          type: string
-          format: uri
-          readOnly: true
-          description: full URI of the resource
-
-    Results:
-      properties:
-        id:
-          type: string
-          readOnly: true
-          description: unique, system-assigned identifier
-        quiz:
-          type: string
-          description: id of the quiz associated with these results
-        player:
-          type: string
-          description: id of the player associated with these results
-        responses:
           type: array
-          description: array of responses
-          items:
-            type: string
+          description: list of player results for this quiz
+          nullable: true
           default: []
+          items:
+            type: object
+            description: results for a specific player
+            properties:
+              id:
+                type: string
+                description: player id or name
+              responses:
+                type: array
+                description: individual responses for a given player
+                default: []
+                items:
+                  type: string
         timeCreated:
           type: string
           format: date-time

@@ -1,3 +1,5 @@
+set -x
+
 openapi-generator-cli version-manager set 5.2.1
 #openapi-generator-cli version-manager set 5.3.0
 openapi-generator-cli generate -g python -i content-api/openapi.yaml -o client-libs/python

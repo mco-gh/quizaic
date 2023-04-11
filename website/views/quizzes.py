@@ -35,6 +35,7 @@ def list_quizzes():
 
     try:
         quizzes = g.api.quizzes_get()
+        log(quizzes[0].results)
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
@@ -161,8 +162,7 @@ def play(pin):
             "quiz": q.id,
             "responses": []
         }
-        results = g.api.quizzes_id_results_get(q.id)
-        log("results:", results)
+        log("results:", q.results)
     except Exception as e:
         log(f"Exception getting player results: {e}", severity="ERROR")
 

@@ -31,9 +31,9 @@ from openapi_client.exceptions import ApiAttributeError
 
 def lazy_import():
     from openapi_client.model.quiz_qand_a import QuizQandA
-    from openapi_client.model.results import Results
+    from openapi_client.model.quiz_results import QuizResults
     globals()['QuizQandA'] = QuizQandA
-    globals()['Results'] = Results
+    globals()['QuizResults'] = QuizResults
 
 
 class Quiz(ModelNormal):
@@ -107,7 +107,7 @@ class Quiz(ModelNormal):
             'sync': (bool,),  # noqa: E501
             'active': (bool, none_type,),  # noqa: E501
             'qand_a': ([QuizQandA], none_type,),  # noqa: E501
-            'results': (Results,),  # noqa: E501
+            'results': ([QuizResults], none_type,),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
             'self_link': (str,),  # noqa: E501
@@ -208,7 +208,7 @@ class Quiz(ModelNormal):
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a ([QuizQandA], none_type): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
-            results (Results): [optional]  # noqa: E501
+            results ([QuizResults], none_type): list of player results for this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501
@@ -314,7 +314,7 @@ class Quiz(ModelNormal):
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a ([QuizQandA], none_type): array of question/answer objects included in this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
-            results (Results): [optional]  # noqa: E501
+            results ([QuizResults], none_type): list of player results for this quiz. [optional] if omitted the server will use the default value of []  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501

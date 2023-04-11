@@ -111,7 +111,7 @@ function startTimer(time) {
       clearInterval(counter); //clear counter
       timeText.textContent = "Time Out"; //change the time text to time off
       const allOptions = option_list.children.length; //getting all option items
-      let correctAns = questions[que_count].answer; //getting correct answer from array
+      let correctAns = questions[question_num].answer; //getting correct answer from array
       for (i = 0; i < allOptions; i++) {
         if (option_list.children[i].textContent == correctAns) {
           //if there is an option which is matched to an array answer
