@@ -56,6 +56,7 @@ resource = [
     "hosts",
     "admins",
     "quizzes",
+    "results",
     "generators",
     "approvers",
     "campaigns",

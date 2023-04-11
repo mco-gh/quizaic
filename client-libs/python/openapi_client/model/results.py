@@ -85,9 +85,6 @@ class Results(ModelNormal):
             'quiz': (str,),  # noqa: E501
             'player': (str,),  # noqa: E501
             'responses': ([str],),  # noqa: E501
-            'time_created': (datetime,),  # noqa: E501
-            'updated': (datetime,),  # noqa: E501
-            'self_link': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -100,16 +97,10 @@ class Results(ModelNormal):
         'quiz': 'quiz',  # noqa: E501
         'player': 'player',  # noqa: E501
         'responses': 'responses',  # noqa: E501
-        'time_created': 'timeCreated',  # noqa: E501
-        'updated': 'updated',  # noqa: E501
-        'self_link': 'selfLink',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
-        'time_created',  # noqa: E501
-        'updated',  # noqa: E501
-        'self_link',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,11 +143,8 @@ class Results(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             quiz (str): id of the quiz associated with these results. [optional]  # noqa: E501
-            player (str): id of the player associated with these results. [optional]  # noqa: E501
-            responses ([str]): array of responses. [optional] if omitted the server will use the default value of []  # noqa: E501
-            time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
-            updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
-            self_link (str): full URI of the resource. [optional]  # noqa: E501
+            player (str): id or name of the player associated with these results. [optional]  # noqa: E501
+            responses ([str]): array of responses. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -240,11 +228,8 @@ class Results(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             quiz (str): id of the quiz associated with these results. [optional]  # noqa: E501
-            player (str): id of the player associated with these results. [optional]  # noqa: E501
-            responses ([str]): array of responses. [optional] if omitted the server will use the default value of []  # noqa: E501
-            time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
-            updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
-            self_link (str): full URI of the resource. [optional]  # noqa: E501
+            player (str): id or name of the player associated with these results. [optional]  # noqa: E501
+            responses ([str]): array of responses. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

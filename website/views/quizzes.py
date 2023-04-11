@@ -156,13 +156,8 @@ def play(pin):
 
     try:
         q = {
-            "name": "yo",
-            "results": [
-                {
-                    "player": name,
-                    "responses": []
-                }
-            ]
+            "name": "Test Guy",
+            "results": {"Joe": "hi"}
         }
         log(f"quiz.id: {quiz.id}, q: {q}")
         g.api.quizzes_id_patch(quiz.id, q)

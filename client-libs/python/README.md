@@ -60,6 +60,7 @@ from openapi_client.model.generator import Generator
 from openapi_client.model.host import Host
 from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
+from openapi_client.model.results import Results
 # Defining the host is optional and defaults to https://example.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -148,6 +149,11 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**quizzes_id_get**](docs/DefaultApi.md#quizzes_id_get) | **GET** /quizzes/{id} | returns a single quiz
 *DefaultApi* | [**quizzes_id_patch**](docs/DefaultApi.md#quizzes_id_patch) | **PATCH** /quizzes/{id} | updates a single quiz
 *DefaultApi* | [**quizzes_post**](docs/DefaultApi.md#quizzes_post) | **POST** /quizzes | Create a new quiz
+*DefaultApi* | [**results_get**](docs/DefaultApi.md#results_get) | **GET** /results | Returns a list of results
+*DefaultApi* | [**results_id_delete**](docs/DefaultApi.md#results_id_delete) | **DELETE** /results/{id} | deletes a single results object
+*DefaultApi* | [**results_id_get**](docs/DefaultApi.md#results_id_get) | **GET** /results/{id} | returns a single results object
+*DefaultApi* | [**results_id_patch**](docs/DefaultApi.md#results_id_patch) | **PATCH** /results/{id} | updates a single results object
+*DefaultApi* | [**results_post**](docs/DefaultApi.md#results_post) | **POST** /results | Create a new results object (i.e. register a player)
 
 
 ## Documentation For Models
@@ -163,7 +169,7 @@ Class | Method | HTTP request | Description
  - [Player](docs/Player.md)
  - [Quiz](docs/Quiz.md)
  - [QuizQandA](docs/QuizQandA.md)
- - [QuizResults](docs/QuizResults.md)
+ - [Results](docs/Results.md)
 
 
 ## Documentation For Authorization

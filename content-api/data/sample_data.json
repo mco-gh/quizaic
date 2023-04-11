@@ -114,16 +114,6 @@
               "question":  "Who was the first President?",
               "correct": "Washington"
           }
-      ],
-      "results": [
-          {
-              "player": "Marc",
-              "responses": ["The Beatles", "Bob Dylan"] 
-          },
-          {
-              "player": "Maya",
-              "responses": ["Oasis", "Elvis Presley"] 
-          }
       ]
     }
   },
@@ -170,12 +160,6 @@
                   "Elvis Presley"
               ]
           }
-      ],
-      "results": [
-          {
-              "player": "Marc",
-              "responses": ["The Beatles", "Bob Dylan"] 
-          }
       ]
     }
   },
@@ -221,12 +205,6 @@
                   "in a box",
                   "under water"
               ]
-          }
-      ],
-      "results": [
-          {
-              "player": "Marc",
-              "responses": ["The Beatles", "Bob Dylan"] 
           }
       ]
     }
@@ -304,8 +282,31 @@
     "correct": "Lady Gaga",
     "responses": ["Britney Spears", "Katy Perry", "Lady Gaga", "Ariana Grande"]
   }
-      ],
-      "results": []
+      ]
+    }
+  },
+  {
+    "collection": "results",
+    "id": "pEBbhO6gWSAVdx492uVi",
+    "data": {
+      "quiz": "078ba4bfce324ced8586",
+      "player": "Marc",
+      "responses": [
+          "The Beatles",
+          "Bob Dylan"
+      ]
+    }
+  },
+  {
+    "collection": "results",
+    "id": "s4kAXRt2anQebfJgLqDC",
+    "data": {
+      "quiz": "078ba4bfce324ced8586",
+      "player": "Maya",
+      "responses": [
+          "Oasis",
+          "Elvis Presley"
+      ]
     }
   },
   {

@@ -126,6 +126,9 @@ def allowed(operation, resource_kind, representation=None):
             return True
         return False
 
+    if resource_kind == "results":
+        return True
+
     if resource_kind == "generators":
         # Must be an admin to do anything with generators
         return is_admin
