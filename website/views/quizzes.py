@@ -154,15 +154,15 @@ def play(pin):
     if not quiz:
         log(f"Player name not provided", severity="ERROR")
 
-    try:
-        r = {
-            "player": name,
-            "quiz": quiz.id,
-            "answers": []
-        }
-        g.api.results_post(r)
-        log(quiz)
-    except Exception as e:
-        log(f"Exception posting new results object: {e}", severity="ERROR")
+    #try:
+    #    r = {
+    #        "player": name,
+    #        "quiz": quiz.id,
+    #        "answers": []
+    #    }
+    #    g.api.results_post(r)
+    #    log(quiz)
+    #except Exception as e:
+    #    log(f"Exception posting new results object: {e}", severity="ERROR")
 
     return render_template("play.html", quiz=quiz, pin=pin, name=name, current_user=current_user)

@@ -63,7 +63,7 @@
     <script type="module" nonce="{{ g.csp_nonce }}">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { doc, where, query, getFirestore, collection, getDocs, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+        import { doc, where, query, getFirestore, collection, getDocs, setDoc, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -78,7 +78,8 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const unsub = onSnapshot(doc(db, "admin", "quizManagement"), (doc) => {
+        const unsub = onSnapshot(doc(db, "QuizManagement", "{{ quiz.id }}"), (doc) => {
+            console.log("currentQuestion:", doc.data().currentQuestion)
             showNextQuestion(doc.data().currentQuestion);
         });
 
@@ -95,6 +96,28 @@
             });
         }
         document.postResults = postResults;
+
+        async function resetResults(player, quiz) {
+            const results = collection(db, "results");
+            const q = query(results, where("player", "==", player), where("quiz", "==", quiz));
+            const snap = await getDocs(q);
+            let found = false;
+            snap.forEach((d) => {
+                // A results object already exists for this player/quiz combo, so reset answers.
+                found = true;
+                let docData = { answers: [] }
+                let data = d.data();
+                console.log("results id: ", d.id)
+                setDoc(doc(db, "results", d.id), docData,  { merge: true });
+            });
+            if (!found) {
+                // No results object for this player/quiz combo, so create one.
+                let docData = { player: player, quiz: quiz, answers: [] }
+                const docRef = await addDoc(collection(db, "results"), docData);
+            }
+        }
+        document.postResults = postResults;
+        document.resetResults = resetResults;
     </script>
 
     <script type="text/javascript" nonce="{{ g.csp_nonce }}">

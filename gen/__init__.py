@@ -17,17 +17,17 @@ class Generator:
         self.type = type
         self._gen = supported_gens[type].Generator()
 
-    def gens():
-        return set(supported_gens.keys())
-
-    def modes(self):
-        return None
-
-    def topics(self):
-        return None
-
     def __str__(self):
         return self._gen.__str__()
 
-    def gen_quiz(self):
-        return self._gen.gen_quiz()
+    def get_gens():
+        return set(supported_gens.keys())
+
+    def get_topics(self):
+        return self._gen.get_topics()
+
+    def get_mode(self):
+        return self._gen.get_mode()
+
+    def gen_quiz(topic, numQuestions, numAnswers):
+        return self._gen.gen_quiz(topic, numQuestions, numAnswers)

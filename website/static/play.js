@@ -1,7 +1,7 @@
 const data = document.currentScript.dataset;
-const quizId = data.quizid;
-const playerName = data.name;
-console.log(playerName, quizId);
+let quizid = data.quizid;
+let player = data.name;
+console.log(player, quizid);
 const qanda = data.qanda;
 const timelimit = data.timelimit;
 const tmp =  qanda.replace(/\n/g, " ")
@@ -28,16 +28,21 @@ let counter = 0;
 let counterLine = 0;
 let widthValue = 0;
 let correctAnswer = null;
+let answers = [];
 
 function showNextQuestion(questionNum) {
   clearInterval(counter); //clear counter
   clearInterval(counterLine); //clear counterLine
 
-  if (questionNum >= questions.length) {
+  if (questionNum == 0) {
+    console.log("first question of a quiz so creating or resetting results for player " + player + " and quiz " + quizid + ".")
+    document.resetResults(player, quizid);
+  } else if (questionNum >= questions.length) {
     showResults();
     return;
   }
   
+  console.log("questionNum", questionNum, "questions", questions);
   correctAnswer = questions[questionNum].answer;
   displayQuestionCount(questionNum);
   startTimer(timelimit); //calling startTimer function
@@ -73,10 +78,9 @@ function optionSelected(event) {
   let correctAns = questions[qnum].correct;
   const allOptions = option_list.children.length;
 
-  let player = "Marc";
-  let quiz = "078ba4bfce324ced8586";
-  let answers = ["one", "two"];
-  document.postResults(player, quiz, answers);
+  answers.push(userAns);
+  console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
+  document.postResults(player, quizid, answers);
 
   if (userAns == correctAns) {
     numCorrect += 1;
@@ -99,7 +103,7 @@ function optionSelected(event) {
   for (i = 0; i < allOptions; i++) {
     option_list.children[i].classList.add("disabled");
   }
-  next_btn.classList.add("show");
+  //next_btn.classList.add("show");
 }
 
 function startTimer(time) {
@@ -129,7 +133,7 @@ function startTimer(time) {
       for (i = 0; i < allOptions; i++) {
         option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
       }
-      next_btn.classList.add("show"); //show the next button if user selected any option
+      //next_btn.classList.add("show"); //show the next button if user selected any option
     }
   }
 }
