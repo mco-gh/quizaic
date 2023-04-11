@@ -23,9 +23,57 @@
 <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-            <h2>You are hosting quiz {{ pin }}!</h2>
+            <h2>You are hosting quiz {{ quiz.name }}, pin {{ pin }}</h2>
         </div>
     </div>
+    <a onclick="document.startQuiz()" class="mdc-button mdc-button--raised">
+        <span class="mdc-button__ripple"></span>
+        <span class="mdc-button__label">Start</span>
+    </a>
+    <a onclick="document.stopQuiz()" class="mdc-button mdc-button--raised">
+        <span class="mdc-button__ripple"></span>
+        <span class="mdc-button__label">Stop</span>
+    </a>
+    <a onclick="document.incrementQuiz()" class="mdc-button mdc-button--raised">
+        <span class="mdc-button__ripple"></span>
+        <span class="mdc-button__label">Next</span>
+    </a>
 </div>
+
+<script type="module" nonce="{{ g.csp_nonce }}">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import { doc, where, query, getFirestore, collection, getDocs, setDoc, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCWY14Mna0pyz15Jcv2jLSq5eVxc2XCHfU",
+        authDomain: "quizrd-prod-382117.firebaseapp.com",
+        projectId: "quizrd-prod-382117",
+        storageBucket: "quizrd-prod-382117.appspot.com",
+        messagingSenderId: "338739261213",
+        appId: "1:338739261213:web:49d62e4552ffaabcbe7bf4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function startQuiz() {
+        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
+    }
+
+    async function stopQuiz() {
+        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: -1 });
+    }
+
+    async function incrementQuiz() {
+
+    }
+
+    document.startQuiz = startQuiz;
+    document.stopQuiz = stopQuiz;
+    document.incrementQuiz = incrementQuiz;
+</script>
 
 {% endblock %}

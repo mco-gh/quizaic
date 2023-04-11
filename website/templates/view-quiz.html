@@ -94,9 +94,9 @@
 
       <!-- Start button -->
       {% if quiz.active == false %}
-        <a href="/quizzes?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
+        <a href="/host/{{ quiz.pin }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
-          <span class="mdc-button__label">Start Quiz</span>
+          <span class="mdc-button__label">Manage Quiz</span>
         </a>
       {% endif %}
     </div>

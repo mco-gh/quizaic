@@ -32,4 +32,13 @@ def host(pin):
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
-    return render_template("host.html", pin=pin, quizzes=quizzes, current_user=current_user)
+
+    quiz = None;
+    for q in quizzes:
+        if q.pin == str(pin):
+            quiz = q
+            break
+    if not quiz:
+        log(f"Requested quiz with pin {pin} not found", severity="ERROR")
+
+    return render_template("host.html", pin=pin, quiz=quiz, current_user=current_user)

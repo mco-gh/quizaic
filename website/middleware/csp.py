@@ -40,5 +40,5 @@ def init(app):
             ]
         )
 
-        response.headers["Content-Security-Policy"] = policy
+        #response.headers["Content-Security-Policy"] = policy
         return response
