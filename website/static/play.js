@@ -8,6 +8,7 @@ const tmp =  qanda.replace(/\n/g, " ")
                   .replace(/\'/g, "\"")
                   .replace(/False/g, "false")
                   .replace(/True/g, "true");
+console.log('marc:', tmp)
 const questions = JSON.parse(tmp)
 
 const questionView = document.querySelector(".question");
@@ -44,7 +45,7 @@ function showNextQuestion(questionNum) {
   
   console.log("questionNum", questionNum, "questions", questions);
   document.qnum = questionNum;
-  correctAnswer = questions[questionNum].answer;
+  correctAnswer = questions[questionNum].correct;
   displayQuestionCount(questionNum);
   startTimer(timelimit); //calling startTimer function
   startTimerLine(widthValue); //calling startTimerLine function

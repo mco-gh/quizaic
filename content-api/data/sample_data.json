@@ -81,9 +81,85 @@
   },
   {
     "collection": "quizzes",
+    "id": "12343afa140f40ff9e70",
+    "data": {
+      "name": "Audience Survey",
+      "description": "Getting to know you...",
+      "runCount": 17,
+      "host": "1b271fa397f14c2b9582",
+      "playUrl": "https://quizrd.io/0",
+      "pin": "0",
+      "freeform": false,
+      "topic": "General",
+      "anonymous": true,
+      "randomQ": true,
+      "randomA": true,
+      "imageUrl": "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      "difficulty": "0",
+      "timeLimit": "20",
+      "numQuestions": "5",
+      "numAnswers": "4",
+      "sync": true,
+      "active": false,
+      "QandA": [
+	{
+		"question": "How much experience do you have with cloud computing?",
+		"correct": "N/A",
+		"responses": [
+			"none",
+			"a little",
+			"a lot",
+			"a cloud guru"
+		]
+	},
+	{
+		"question": "Which cloud do you use most?",
+		"correct": "N/A",
+		"responses": [
+			"Google Cloud",
+			"Amazon Web Services",
+			"Microsoft Azure",
+			"Other"
+		]
+	},
+	{
+		"question": "Favorite programming language?",
+		"correct": "N/A",
+		"responses": [
+			"Java",
+			"Python",
+			"C#",
+			"Other"
+		]
+	},
+	{
+		"question": "LLMs seem like they will...",
+		"correct": "N/A",
+		"responses": [
+			"Be an amazingly powerful tool",
+			"Be a mixed bag",
+			"No idea",
+			"Kill all of us"
+		]
+	},
+	{
+		"question": "The best language is...",
+		"correct": "N/A",
+		"responses": [
+			"French",
+			"French",
+			"French",
+			"French"
+		]
+	}
+      ]
+    }
+  },
+  {
+    "collection": "quizzes",
     "id": "f7723afa140f40ff9e70",
     "data": {
-      "name": "Marc's US History Quiz",
+      "name": "US History Quiz",
       "description": "Fun facts you might not have learned in high school",
       "runCount": 17,
       "host": "1b271fa397f14c2b9582",
@@ -103,12 +179,12 @@
       "active": false,
       "QandA": [
           {
-              "question":  "Who was buried in Grant's Tomb?",
+              "question":  "Who was buried in Grants Tomb?",
               "correct": "Grant"
           },
           {
               "question":  "Where was Lincoln shot?",
-              "correct": "Ford's Theater"
+              "correct": "Fords Theater"
           },
           {
               "question":  "Who was the first President?",
@@ -132,7 +208,7 @@
       "anonymous": true,
       "randomQ": true,
       "randomA": true,
-      "imageUrl": "https://images.unsplash.com/photo-1447727214830-cbcbf097b52c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2496&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
       "difficulty": "5",
       "timeLimit": "60",
       "numQuestions": "3",
@@ -181,12 +257,12 @@
 		]
 	},
 	{
-		"question": "What is the title of Marcel Proust's seven-volume novel?",
+		"question": "What is the title of Marcel Prousts seven-volume novel?",
 		"correct": "In Search of Lost Time",
 		"responses": [
 			"In Search of Lost Time",
 			"Les Misérables",
-			"Swann's Way",
+			"Swanns Way",
 			"The Lord of the Baguettes"
 		]
 	},
@@ -201,7 +277,7 @@
 		]
 	},
 	{
-		"question": "What is the main setting of Albert Camus' novel The Stranger?",
+		"question": "What is the main setting of Albert Camus novel The Stranger?",
 		"correct": "Algeria",
 		"responses": [
 			"Algeria",
