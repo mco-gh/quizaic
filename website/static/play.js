@@ -43,6 +43,7 @@ function showNextQuestion(questionNum) {
   }
   
   console.log("questionNum", questionNum, "questions", questions);
+  document.qnum = questionNum;
   correctAnswer = questions[questionNum].answer;
   displayQuestionCount(questionNum);
   startTimer(timelimit); //calling startTimer function
@@ -78,6 +79,9 @@ function optionSelected(event) {
   let correctAns = questions[qnum].correct;
   const allOptions = option_list.children.length;
 
+  while (answers.length < qnum) {
+    answers.push("N/A");
+  }
   answers.push(userAns);
   console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
   document.postResults(player, quizid, answers);
@@ -121,7 +125,7 @@ function startTimer(time) {
       clearInterval(counter); //clear counter
       timeText.textContent = "Time Out"; //change the time text to time off
       const allOptions = option_list.children.length; //getting all option items
-      //let correctAns = questions[question_num].answer; //getting correct answer from array
+      let correctAns = questions[document.qnum].answer; //getting correct answer from array
       for (i = 0; i < allOptions; i++) {
         if (option_list.children[i].textContent == correctAnswer) {
           //if there is an option which is matched to an array answer
@@ -129,6 +133,11 @@ function startTimer(time) {
           option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
           console.log("Time out: auto selected correct answer.");
         }
+        while (answers.length <= document.qnum) {
+          answers.push("N/A");
+        }
+        console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
+        document.postResults(player, quizid, answers);
       }
       for (i = 0; i < allOptions; i++) {
         option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options

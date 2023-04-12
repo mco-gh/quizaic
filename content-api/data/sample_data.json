@@ -119,6 +119,132 @@
   },
   {
     "collection": "quizzes",
+    "id": "6e4f3afa140f40ff9e70",
+    "data": {
+      "name": "Who Wrote It?",
+      "description": "Trivia about French writers",
+      "runCount": 17,
+      "host": "1b271fa397f14c2b9582",
+      "playUrl": "https://quizrd.io/5",
+      "pin": "5",
+      "freeform": false,
+      "topic": "French Literature",
+      "anonymous": true,
+      "randomQ": true,
+      "randomA": true,
+      "imageUrl": "https://images.unsplash.com/photo-1447727214830-cbcbf097b52c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2496&q=80",
+      "difficulty": "5",
+      "timeLimit": "60",
+      "numQuestions": "3",
+      "numAnswers": "4",
+      "sync": true,
+      "active": false,
+      "QandA": [
+{
+		"question": "Who wrote Le Petit Prince?",
+		"correct": "St-Exupery",
+		"responses": [
+			"Sartre",
+			"Voltaire",
+			"St-Exupery",
+			"Victor Hugo"
+		]
+	},
+	{
+		"question": "Who is the author of Les Misérables?",
+		"correct": "Victor Hugo",
+		"responses": [
+			"Gustave Flaubert",
+			"Émile Zola",
+			"Victor Hugo",
+			"Darth Vader"
+		]
+	},
+	{
+		"question": "Which French novel features the character Emma Bovary?",
+		"correct": "Madame Bovary",
+		"responses": [
+			"Madame Bovary",
+			"The Hunchback of Notre-Dame",
+			"Germinal",
+			"Harry Potter and the Baguette Magique"
+		]
+	},
+	{
+		"question": "Which existentialist philosopher wrote the play No Exit?",
+		"correct": "Jean-Paul Sartre",
+		"responses": [
+			"Jean-Paul Sartre",
+			"Albert Camus",
+			"François-René de Chateaubriand",
+			"Captain Crunch"
+		]
+	},
+	{
+		"question": "What is the title of Marcel Proust's seven-volume novel?",
+		"correct": "In Search of Lost Time",
+		"responses": [
+			"In Search of Lost Time",
+			"Les Misérables",
+			"Swann's Way",
+			"The Lord of the Baguettes"
+		]
+	},
+	{
+		"question": "Which author is known for his series of novels called The Rougon-Macquart Cycle?",
+		"correct": "Émile Zola",
+		"responses": [
+			"Émile Zola",
+			"Victor Hugo",
+			"Gustave Flaubert",
+			"Indiana Jones"
+		]
+	},
+	{
+		"question": "What is the main setting of Albert Camus' novel The Stranger?",
+		"correct": "Algeria",
+		"responses": [
+			"Algeria",
+			"France",
+			"Morocco",
+			"Narnia"
+		]
+	},
+	{
+		"question": "What French literary movement is Charles Baudelaire often associated with?",
+		"correct": "Symbolism",
+		"responses": [
+			"Symbolism",
+			"Romanticism",
+			"Realism",
+			"Pokémonism"
+		]
+	},
+	{
+		"question": "Which French author wrote the science fiction novel Twenty Thousand Leagues Under the Sea?",
+		"correct": "Jules Verne",
+		"responses": [
+			"Jules Verne",
+			"Honoré de Balzac",
+			"Alexandre Dumas",
+			"Leonardo DiCaprio"
+		]
+	},
+	{
+		"question": "Who wrote the French novel The Count of Monte Cristo?",
+		"correct": "Alexandre Dumas",
+		"responses": [
+			"Alexandre Dumas",
+			"Victor Hugo",
+			"Honoré de Balzac",
+			"Donald Duck"
+		]
+	}
+      ]
+    }
+  },
+  {
+    "collection": "quizzes",
     "id": "078ba4bfce324ced8586",
     "data": {
       "name": "Rock and Roll!",
