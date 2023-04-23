@@ -168,7 +168,6 @@ Class | Method | HTTP request | Description
  - [Host](docs/Host.md)
  - [Player](docs/Player.md)
  - [Quiz](docs/Quiz.md)
- - [QuizQandA](docs/QuizQandA.md)
  - [Results](docs/Results.md)
 
 

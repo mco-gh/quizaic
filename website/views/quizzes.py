@@ -22,6 +22,7 @@ from views.helpers.time import convert_utc
 
 from functools import reduce
 
+import json
 import re
 
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
@@ -61,7 +62,7 @@ def save_quiz():
                 "numAnswers":   request.form["numAnswers"],
                 "sync":         request.form["sync"] == "true",
                 "anonymous":    request.form["anonymous"] == "true",
-                "QandA":        []
+                "QandA":        request.form['QandA'],
                 #"freeform":     request.form["freeform"],
                 #"topic":        request.form["topic"],
                 # host | the id of the *host* of this *quiz*

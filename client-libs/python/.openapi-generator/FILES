@@ -13,7 +13,6 @@ docs/Generator.md
 docs/Host.md
 docs/Player.md
 docs/Quiz.md
-docs/QuizQandA.md
 docs/Results.md
 git_push.sh
 openapi_client/__init__.py
@@ -34,7 +33,6 @@ openapi_client/model/generator.py
 openapi_client/model/host.py
 openapi_client/model/player.py
 openapi_client/model/quiz.py
-openapi_client/model/quiz_qand_a.py
 openapi_client/model/results.py
 openapi_client/model_utils.py
 openapi_client/models/__init__.py

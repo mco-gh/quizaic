@@ -3901,13 +3901,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         num_answers="4",
         sync=True,
         active=False,
-        qand_a=[
-            QuizQandA(
-                question="question_example",
-                correct="correct_example",
-                responses=[],
-            ),
-        ],
+        qand_a="qand_a_example",
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set
@@ -4003,13 +3997,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         num_answers="4",
         sync=True,
         active=False,
-        qand_a=[
-            QuizQandA(
-                question="question_example",
-                correct="correct_example",
-                responses=[],
-            ),
-        ],
+        qand_a="qand_a_example",
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set

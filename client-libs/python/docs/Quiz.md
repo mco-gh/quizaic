@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **num_answers** | **str** | number of answers possible for each question in this quiz (0 &#x3D;&#x3D; free form) | [optional]  if omitted the server will use the default value of "4"
 **sync** | **bool** | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional]  if omitted the server will use the default value of True
 **active** | **bool, none_type** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False
-**qand_a** | [**[QuizQandA], none_type**](QuizQandA.md) | array of question/answer objects included in this quiz | [optional]  if omitted the server will use the default value of []
+**qand_a** | **str, none_type** | json string representation of questions, correct answers, and options | [optional] 
 **time_created** | **datetime** | system-assigned creation timestamp | [optional] [readonly] 
 **updated** | **datetime** | system-assigned update timestamp | [optional] [readonly] 
 **self_link** | **str** | full URI of the resource | [optional] [readonly] 

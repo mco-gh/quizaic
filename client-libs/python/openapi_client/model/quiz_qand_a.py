@@ -83,7 +83,7 @@ class QuizQandA(ModelNormal):
         return {
             'question': (str,),  # noqa: E501
             'correct': (str,),  # noqa: E501
-            'responses': ([str],),  # noqa: E501
+            'responses': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -104,15 +104,15 @@ class QuizQandA(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, question, correct, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, question, correct, responses, *args, **kwargs):  # noqa: E501
         """QuizQandA - a model defined in OpenAPI
 
         Args:
             question (str): question text
             correct (str): answer text (free form) or integer (multiple choice)
+            responses (str): comma delineated multiple choice responses to this question
 
         Keyword Args:
-            responses ([str]): possible multiple choice answers to this question. defaults to []  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -145,7 +145,6 @@ class QuizQandA(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        responses = kwargs.get('responses', [])
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -194,15 +193,15 @@ class QuizQandA(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, question, correct, *args, **kwargs):  # noqa: E501
+    def __init__(self, question, correct, responses, *args, **kwargs):  # noqa: E501
         """QuizQandA - a model defined in OpenAPI
 
         Args:
             question (str): question text
             correct (str): answer text (free form) or integer (multiple choice)
+            responses (str): comma delineated multiple choice responses to this question
 
         Keyword Args:
-            responses ([str]): possible multiple choice answers to this question. defaults to []  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -235,7 +234,6 @@ class QuizQandA(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        responses = kwargs.get('responses', [])
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

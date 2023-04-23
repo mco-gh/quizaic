@@ -39,6 +39,8 @@ def seed_database(content):
     print("Seeding data into Google Cloud Project '{}'.".format(client.project))
     print("This may take a few minutes...")
     for item in content:
+        if item["collection"] == "quizzes":
+            item["data"]["QandA"] = json.dumps(item["data"]["QandA"])
         doc_ref = client.collection(item["collection"]).document(item["id"])
         try:
             doc_ref.set(item["data"])
@@ -55,7 +57,7 @@ def unseed_database():
     print("Deleting seed data from Google Cloud Project '{}'.".format(client.project))
     print("This may take a few minutes...")
     # Delete all objects from seed data
-    collections = ["players", "hosts", "admins", "quizzes", "results", "generators"]
+    collections = ["QuizManagement", "players", "hosts", "admins", "quizzes", "results", "generators"]
     for coll in collections:
         coll_ref = client.collection(coll)
         docs = coll_ref.list_documents()

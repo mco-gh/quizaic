@@ -1581,30 +1581,9 @@ components:
           nullable: true
           default: false
         QandA:
-          type: array
-          description: array of question/answer objects included in this quiz
+          type: string 
           nullable: true
-          default: []
-          items:
-            type: object
-            description: question and associated possible answers 
-            required:
-            - question
-            - correct
-            - responses
-            properties:
-              question:
-                type: string
-                description: question text
-              correct:
-                type: string
-                description: answer text (free form) or integer (multiple choice)
-              responses:
-                type: array
-                description: possible multiple choice answers to this question
-                default: []
-                items:
-                  type: string
+          description: json string representation of questions, correct answers, and options
         timeCreated:
           type: string
           format: date-time
