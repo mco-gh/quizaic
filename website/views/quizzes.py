@@ -47,6 +47,18 @@ def list_quizzes():
 def new_quiz():
     return render_template("create-quiz.html")
 
+@quizzes_bp.route("/deleteQuiz", methods=["POST"])
+def delete_quiz():
+    try:
+        quiz_id = request.args.get("quiz_id")
+        if quiz_id is None:
+            log(f"/deleteQuiz is missing quiz_id", severity="ERROR")
+            return render_template("errors/500.html"), 500
+        g.api.quizzes_id_delete(quiz_id)
+    except Exception as e:
+        log(f"Exception when deleting a quiz: {e}", severity="ERROR")
+        return render_template("errors/403.html"), 403
+    return redirect("/")
 
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
@@ -100,7 +112,6 @@ def webapp_view_quiz():
     except Exception as e:
         log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
-
 
     return render_template("view-quiz.html", quiz=quiz_instance)
 

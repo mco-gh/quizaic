@@ -92,13 +92,39 @@
           <span class="mdc-list-item__meta">{{ quiz.time_limit }}</span>
         </li>
 
-      <!-- Start button -->
-      {% if quiz.active == false %}
+
+      <!-- Delete Quiz button
+      <script>
+        function deleteQuiz() {
+          let url = "/deleteQuiz?quiz_id={{ quiz.id }}";
+          var xhr = new XMLHttpRequest();
+          xhr.open("DELETE", url);
+          xhr.send();
+          console.log("delete sent to url", url);
+          xhr.onload = function() {
+            if (xhr.status != 200) {
+		    console.log('ERROR');
+            } else {
+		    console.log('DELETED!');
+            }
+	  };
+	  xhr.onerror = function() {
+            console.log('NO CONNECTION');
+	  };
+        }
+      </script> -->
+      <form method="post" action="/deleteQuiz?quiz_id={{ quiz.id }}">
+        <span class="mdc-button__ripple"></span>
+        <button class="mdc-button mdc-button--raised mdc-button__label">Delete Quiz</button>
+      </span>
+
+      <!-- Manage Quiz button -->
+      <span>
         <a href="/host/{{ quiz.pin }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__label">Manage Quiz</span>
         </a>
-      {% endif %}
+      </span>
     </div>
   </div>
 
