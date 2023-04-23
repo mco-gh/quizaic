@@ -1,15 +1,12 @@
 const data = document.currentScript.dataset;
 let quizid = data.quizid;
 let player = data.name;
-console.log(player, quizid);
-const qanda = data.qanda;
+console.log("player: ", player);
+console.log("quizid: ", quizid);
+console.log("qanda: ", data.qanda);
+const questions = JSON.parse(data.qanda);
+console.log("questions: ", questions);
 const timelimit = data.timelimit;
-const tmp =  qanda.replace(/\n/g, " ")
-                  .replace(/\'/g, "\"")
-                  .replace(/False/g, "false")
-                  .replace(/True/g, "true");
-console.log('marc:', tmp)
-const questions = JSON.parse(tmp)
 
 const questionView = document.querySelector(".question");
 const resultsView = document.querySelector(".results");
@@ -32,10 +29,13 @@ let correctAnswer = null;
 let answers = [];
 
 function showNextQuestion(questionNum) {
+  console.log("showNextQuestion() for questionNum ", questionNum);
   clearInterval(counter); //clear counter
   clearInterval(counterLine); //clear counterLine
 
-  if (questionNum == 0) {
+  if (questionNum == -1) {
+    console.log("Quiz not started");
+  } else if (questionNum == 0) {
     console.log("first question of a quiz so creating or resetting results for player " + player + " and quiz " + quizid + ".")
     document.resetResults(player, quizid);
   } else if (questionNum >= questions.length) {
