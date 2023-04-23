@@ -92,12 +92,20 @@
           <span class="mdc-list-item__meta">{{ quiz.time_limit }}</span>
         </li>
 
-      <form method="post" action="/deleteQuiz?quiz_id={{ quiz.id }}">
-        <span class="mdc-button__ripple"></span>
-        <button class="mdc-button mdc-button--raised mdc-button__label">Delete Quiz</button>
+      <span>
+        <a href="/deleteQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__label">Delete Quiz</span>
+        </a>
       </span>
 
-      <!-- Manage Quiz button -->
+      <span>
+        <a href="/editQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__label">Edit Quiz</span>
+        </a>
+      </span>
+
       <span>
         <a href="/host/{{ quiz.pin }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>

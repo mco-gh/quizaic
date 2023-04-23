@@ -94,7 +94,7 @@ def edit_quiz():
     return render_template("create-quiz.html", quiz=quiz_instance, current_user=current_user)
 
 
-@quizzes_bp.route("/deleteQuiz", methods=["POST"])
+@quizzes_bp.route("/deleteQuiz", methods=["GET"])
 def delete_quiz():
     try:
         quiz_id = request.args.get("quiz_id")
