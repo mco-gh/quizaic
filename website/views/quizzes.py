@@ -88,7 +88,7 @@ def edit_quiz():
             quiz_instance.updated
         )
     except Exception as e:
-        log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
+        log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
     return render_template("create-quiz.html", quiz=quiz_instance, current_user=current_user)
@@ -105,6 +105,44 @@ def delete_quiz():
     except Exception as e:
         log(f"Exception when deleting a quiz: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
+    return redirect("/")
+
+@quizzes_bp.route("/editQuiz", methods=["POST"])
+def update_quiz():
+    quiz_id = request.args.get("quiz_id")
+
+    if quiz_id is None:
+        log(f"/viewQuiz is missing quiz_id", severity="ERROR")
+        return render_template("errors/500.html"), 500
+
+    try:
+        g.api.quizzes_id_patch(quiz_id, 
+            {
+                "name":         request.form["name"],
+                "description":  request.form["description"],
+                "imageUrl":     request.form["imageUrl"],
+                "timeLimit":    request.form["timeLimit"],
+                "difficulty":   request.form["difficulty"],
+                "numQuestions": request.form["numQuestions"],
+                "numAnswers":   request.form["numAnswers"],
+                "sync":         request.form["sync"] == "true",
+                "anonymous":    request.form["anonymous"] == "true",
+                "QandA":        request.form['QandA'],
+                #"freeform":     request.form["freeform"],
+                #"topic":        request.form["topic"],
+                # host | the id of the *host* of this *quiz*
+                # playUrl | direct URL for playing this *quiz*
+                # pin | pin code for playing this *quiz*
+                # randomQ | boolean; whether to randomize question order |"
+                # randomA | boolean; whether to randomize answer order |
+                # QandA | array of questions, associated answers, and correct answers comprising this *quiz* |
+                # active | boolean; whether this *quiz* is currently available to be played |
+            }
+        )
+    except Exception as e:
+        log(f"Exception when updating a quiz: {e}", severity="ERROR")
+        return render_template("errors/403.html"), 403
+
     return redirect("/")
 
 @quizzes_bp.route("/createQuiz", methods=["POST"])
