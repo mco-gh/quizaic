@@ -45,7 +45,54 @@ def list_quizzes():
 
 @quizzes_bp.route("/createQuiz", methods=["GET"])
 def new_quiz():
-    return render_template("create-quiz.html")
+    current_user = None
+
+    if g.session_data:
+        current_user = g.session_data.get("email")
+
+    empty_quiz = {
+        "name": "",
+        "description": "",
+        "generator": "",
+        "topic": "",
+        "imageUrl": "",
+        "numQuestions": "",
+        "numAnswers": "",
+        "timeLimit": "",
+        "difficulty": "",
+        "anonymous": "",
+        "synchronous": "",
+        "QandA": "",
+    };
+    return render_template("create-quiz.html", quiz=empty_quiz, current_user=current_user)
+
+@quizzes_bp.route("/editQuiz", methods=["GET"])
+def edit_quiz():
+    current_user = None
+
+    if g.session_data:
+        current_user = g.session_data.get("email")
+
+    quiz_id = request.args.get("quiz_id")
+
+    if quiz_id is None:
+        log(f"/viewQuiz is missing quiz_id", severity="ERROR")
+        return render_template("errors/500.html"), 500
+
+    try:
+        quiz_instance = g.api.quizzes_id_get(quiz_id)
+        quiz_instance["formattedDateCreated"] = convert_utc(
+            quiz_instance.time_created
+        )
+        quiz_instance["formattedDateUpdated"] = convert_utc(
+            quiz_instance.updated
+        )
+    except Exception as e:
+        log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
+        return render_template("errors/403.html"), 403
+
+    return render_template("create-quiz.html", quiz=quiz_instance, current_user=current_user)
+
 
 @quizzes_bp.route("/deleteQuiz", methods=["POST"])
 def delete_quiz():

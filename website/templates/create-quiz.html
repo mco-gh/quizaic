@@ -44,7 +44,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-name-label">Quiz Name</span>
-          <input required type="text" id="name" name="name" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.name }}" required type="text" id="name" name="name" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -52,7 +52,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-description-label">Quiz Description</span>
-          <input required type="text" id="description" name="description" class="mdc-text-field__input" aria-labelledby="description">
+          <input value="{{ quiz.description }}" required type="text" id="description" name="description" class="mdc-text-field__input" aria-labelledby="description">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -60,7 +60,7 @@
         {% if generator %}
           <select id="generator" name="generator" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
             {% for generator in generators %}
-            <option class="mdc-list-item" value="{{ geneator.type }}" data-value="{{ generator.id }}">
+            <option class="mdc-list-item" value="{{ generator.type }}" data-value="{{ generator.id }}">
               <span class="mdc-list-item__ripple"></span>
               <span class="mdc-list-item__text">{{ generator.type }}</span>
             </option>
@@ -84,7 +84,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Quiz image</span>
-          <input required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.image_url }}" required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -92,7 +92,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-description-label">Number of questions</span>
-          <input required type="text" id="numQuestions" name="numQuestions" class="mdc-text-field__input" aria-labelledby="description">
+          <input value="{{ quiz.num_questions }}" required type="text" id="numQuestions" name="numQuestions" class="mdc-text-field__input" aria-labelledby="description">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -100,7 +100,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
         <span class="mdc-text-field__ripple"></span>
         <span class="mdc-floating-label" id="campaign-image-label">Number of answers</span>
-        <input required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
+        <input value="{{ quiz.num_answers }}" required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
         <span class="mdc-line-ripple"></span>
         </label>
       
@@ -108,7 +108,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Seconds to response</span>
-          <input required type="text" id="timeLimit" name="timeLimit" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.time_limit }}" required type="text" id="timeLimit" name="timeLimit" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -116,7 +116,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Difficulty level (1-10)</span>
-          <input required type="text" id="difficulty" name="difficulty" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.difficulty }}" required type="text" id="difficulty" name="difficulty" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -148,18 +148,22 @@
         <label>
           <span>Q&A Specification (in JSON)</span>
           <textarea name="QandA" rows="20" cols="80">
-[
-  {
-    'question': 'Which is the top selling band of all time?',
-    'responses': ['The Rolling Stones', 'The Beatles', 'Oasis', 'Spinal Tap'],
-    'correct': 'The Beatles'
-  },
-  {
-    'question': 'Who sold more records than any other individual artist?',
-    'responses': ['Bob Dylan', 'Stevie Wonder', 'Michael Jackson', 'Elvis Presley'],
-    'correct': 'Elvis Presley'
-  }
-]
+            {% if quiz.qand_a %}
+              {{ quiz.qand_a }}
+            {% else %}
+              [
+                {
+                  'question': 'Which is the top selling band of all time?',
+                  'responses': ['The Rolling Stones', 'The Beatles', 'Oasis', 'Spinal Tap'],
+                  'correct': 'The Beatles'
+                },
+                {
+                  'question': 'Who sold more records than any other individual artist?',
+                  'responses': ['Bob Dylan', 'Stevie Wonder', 'Michael Jackson', 'Elvis Presley'],
+                  'correct': 'Elvis Presley'
+                }
+              ]
+            {% endif %}
           </textarea>
         </label>
 
