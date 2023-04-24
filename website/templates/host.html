@@ -305,7 +305,7 @@
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-    import { doc, where, query, getFirestore, collection, getDoc, getDocs, setDoc, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+    import { doc, where, query, getFirestore, collection, getDoc, getDocs, setDoc, addDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -334,7 +334,14 @@
 
     async function startQuiz() {
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
-    }
+        const results = collection(db, "results");
+        const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
+        const snap = await getDocs(q);
+        snap.forEach((d) => {
+            console.log("doc.ref:", d.ref);
+            deleteDoc(d.ref);
+        });
+    };
 
     async function stopQuiz() {
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: -1 });
