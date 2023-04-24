@@ -23,6 +23,7 @@ from views.helpers.time import convert_utc
 from functools import reduce
 
 import json
+import random
 import re
 
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
@@ -148,9 +149,12 @@ def update_quiz():
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
     try:
+        pin = str(random.randint(1, 9999))
         g.api.quizzes_post(
             {
                 "name":         request.form["name"],
+                "pin":          pin,
+                "playUrl":      "/" + pin,
                 "description":  request.form["description"],
                 "imageUrl":     request.form["imageUrl"],
                 "timeLimit":    request.form["timeLimit"],
