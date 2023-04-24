@@ -362,7 +362,8 @@
         while (list.hasChildNodes()) {
           list.removeChild(list.firstChild);
         }
-        for (let i=0; i < entries.length; i++) {
+        const limit = 5;
+        for (let i=0; i < Math.min(entries.length, limit); i++) {
           let key = entries[i][0];
           let value = entries[i][1];
           console.log(key, value);
