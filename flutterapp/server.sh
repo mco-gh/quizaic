@@ -1,2 +1,3 @@
-#!/bin/bashcd build/web/
+#!/bin/bash
+cd build/web
 python3 -m http.server 8080
