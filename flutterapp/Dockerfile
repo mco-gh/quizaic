@@ -32,7 +32,7 @@ flutter pub getRUN
 flutter build web
 
 # Document the exposed port and start serser
-EXPOSE 8080ENTRYPOINT [ "/usr/local/bin/app/server/server.sh" ]
+EXPOSE 8080ENTRYPOINT [ "/usr/local/bin/app/server.sh" ]
 
 # Run the web service on container startup. 
 # Use gunicorn webserver with one worker process and 8 threads.
