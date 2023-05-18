@@ -65,7 +65,7 @@ def new_quiz():
         "synchronous": "",
         "QandA": "",
     };
-    return render_template("create-quiz.html", quiz=empty_quiz, current_user=current_user)
+    return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])
 def edit_quiz():
@@ -92,7 +92,7 @@ def edit_quiz():
         log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    return render_template("create-quiz.html", quiz=quiz_instance, current_user=current_user)
+    return render_template("create-quiz.html", op="Update", quiz=quiz_instance, current_user=current_user)
 
 
 @quizzes_bp.route("/deleteQuiz", methods=["GET"])
