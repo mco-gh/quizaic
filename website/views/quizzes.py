@@ -92,11 +92,7 @@ def edit_quiz():
         log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    questions = quiz_instance.qand_a
-    print("type(questions): ", type(questions))
-    print("questions: ", questions)
-    questions = json.dumps(json.loads(questions), indent=2)
-    print("questions: ", questions)
+    questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
     return render_template("create-quiz.html", op="Update", quiz=quiz_instance, questions=questions, current_user=current_user)
 
 
@@ -207,11 +203,7 @@ def webapp_view_quiz():
         log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    questions = quiz_instance.qand_a
-    print("type(questions): ", type(questions))
-    print("questions: ", questions)
-    questions = json.dumps(json.loads(questions), indent=2)
-    print("questions: ", questions)
+    questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
     return render_template("view-quiz.html", quiz=quiz_instance, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
