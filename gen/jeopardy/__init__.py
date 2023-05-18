@@ -19,4 +19,5 @@ class Generator:
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer":"correct"})
         filtered = filtered.sample(numQuestions)
+        filtered["responses"] = "[]"
         return filtered.to_json(orient="records")
