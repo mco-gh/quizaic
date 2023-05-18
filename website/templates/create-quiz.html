@@ -153,18 +153,18 @@
             {% if quiz.qand_a %}
               {{ questions }}
             {% else %}
-              [
-                {
-                  'question': 'Which is the top selling band of all time?',
-                  'responses': ['The Rolling Stones', 'The Beatles', 'Oasis', 'Spinal Tap'],
-                  'correct': 'The Beatles'
-                },
-                {
-                  'question': 'Who sold more records than any other individual artist?',
-                  'responses': ['Bob Dylan', 'Stevie Wonder', 'Michael Jackson', 'Elvis Presley'],
-                  'correct': 'Elvis Presley'
-                }
-              ]
+[
+  {
+    'question': 'Which is the top selling band of all time?',
+    'responses': ['The Rolling Stones', 'The Beatles', 'Oasis', 'Spinal Tap'],
+    'correct': 'The Beatles'
+  },
+  {
+    'question': 'Who sold more records than any other individual artist?',
+    'responses': ['Bob Dylan', 'Stevie Wonder', 'Michael Jackson', 'Elvis Presley'],
+    'correct': 'Elvis Presley'
+  }
+]
             {% endif %}
           </textarea>
         </label>
