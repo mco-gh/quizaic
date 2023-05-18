@@ -29,5 +29,5 @@ class Generator:
     def get_mode(self):
         return self._gen.get_mode()
 
-    def gen_quiz(topic, numQuestions, numAnswers):
+    def gen_quiz(self, topic, numQuestions, numAnswers):
         return self._gen.gen_quiz(topic, numQuestions, numAnswers)

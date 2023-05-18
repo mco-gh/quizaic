@@ -1,0 +1,15 @@
+Generate a trivia quiz about popular music. I'd like 10 questions, each with four multiple choice answers. One answer to each question may be funny or silly. Please format the quiz in json document like this, with no internal single quotes or escaped double quotes and no line breaks:
+
+[
+          {
+              "question": "Which band sold the most records of all time?",
+              "correct": "The Beatles",
+              "responses": [
+                  "The Rolling Stones",
+                  "The Beatles",
+                  "Oasis",
+                  "Spinal Tap"
+              ]
+          },
+          ...
+]

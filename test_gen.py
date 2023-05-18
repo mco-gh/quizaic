@@ -1,7 +1,5 @@
 import gen
 g = gen.Generator("jeopardy")
 topics = g.get_topics()
-print("topics:", topics)
-#quiz = generator.gen_quiz()
-#print(quiz)
-
+quiz = g.gen_quiz("QUOTATIONS", 2, 4)
+print(quiz)

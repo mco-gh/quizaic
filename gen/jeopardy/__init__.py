@@ -14,11 +14,9 @@ class Generator:
     def get_mode(self):
         return "free form"
 
-    def gen_quiz(self, numQuestions, numAnswers):
-        questions = [
-	]
-        for i in numQuestions:
-            for j in numAnswers:
-                #questions.append()
-                pass
-        return "I'm a quiz made by the Jeopardy Generator."
+    def gen_quiz(self, topic, numQuestions, numAnswers):
+        filtered = self.db[self.db.category == topic]
+        filtered = filtered[["question", "answer"]]
+        filtered = filtered.rename(columns={"answer":"correct"})
+        filtered = filtered.sample(numQuestions)
+        return filtered.to_json(orient="records")
