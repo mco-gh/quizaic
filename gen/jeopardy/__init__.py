@@ -2,15 +2,14 @@ import pandas
 
 class Generator:
     def __init__(self):
-        self.topics = ["foo", "bar", "baz"]
-        self.db = pandas.load_csv("jeopardy.csv")
-        pandas.head(self.db)
+        self.db = pandas.read_json("gen/jeopardy/jeopardy.json")
+        self.topics = self.db["category"]
 
     def __str__(self):
-        return "Jeopardy Generator"
+        return "Jeopardy Quiz Generator for quizrd.io"
 
     def get_topics(self):
-        return topics
+        return self.topics
 
     def get_mode(self):
         return "free form"
