@@ -77,7 +77,7 @@ def edit_quiz():
     quiz_id = request.args.get("quiz_id")
 
     if quiz_id is None:
-        log(f"/viewQuiz is missing quiz_id", severity="ERROR")
+        log(f"/editQuiz is missing quiz_id", severity="ERROR")
         return render_template("errors/500.html"), 500
 
     try:
@@ -92,7 +92,12 @@ def edit_quiz():
         log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    return render_template("create-quiz.html", op="Update", quiz=quiz_instance, current_user=current_user)
+    questions = quiz_instance.qand_a
+    print("type(questions): ", type(questions))
+    print("questions: ", questions)
+    questions = json.dumps(json.loads(questions), indent=2)
+    print("questions: ", questions)
+    return render_template("create-quiz.html", op="Update", quiz=quiz_instance, questions=questions, current_user=current_user)
 
 
 @quizzes_bp.route("/deleteQuiz", methods=["GET"])
@@ -113,7 +118,7 @@ def update_quiz():
     quiz_id = request.args.get("quiz_id")
 
     if quiz_id is None:
-        log(f"/viewQuiz is missing quiz_id", severity="ERROR")
+        log(f"/editQuiz is missing quiz_id", severity="ERROR")
         return render_template("errors/500.html"), 500
 
     try:
@@ -202,7 +207,12 @@ def webapp_view_quiz():
         log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    return render_template("view-quiz.html", quiz=quiz_instance)
+    questions = quiz_instance.qand_a
+    print("type(questions): ", type(questions))
+    print("questions: ", questions)
+    questions = json.dumps(json.loads(questions), indent=2)
+    print("questions: ", questions)
+    return render_template("view-quiz.html", quiz=quiz_instance, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
 def start(pin):
