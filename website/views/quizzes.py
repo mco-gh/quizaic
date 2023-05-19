@@ -65,6 +65,7 @@ def new_quiz():
         "synchronous": "",
         "QandA": "",
     };
+    generators = ["jeopardy", "palm", "manual"]
     return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])

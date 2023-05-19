@@ -57,19 +57,22 @@
         </label>
 
         <!-- Quiz Generator -->
-        {% if generator %}
-          <select id="generator" name="generator" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-            {% for generator in generators %}
-            <option class="mdc-list-item" value="{{ generator.type }}" data-value="{{ generator.id }}">
-              <span class="mdc-list-item__ripple"></span>
-              <span class="mdc-list-item__text">{{ generator.type }}</span>
-            </option>
-            {% endfor %}
-          </select>
+        {% if generators %}
+          <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+            <span class="mdc-text-field__ripple"></span>
+            <span class="mdc-floating-label" id="campaign-description-label">Generator</span>
+            <select id="generator" name="generator" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+              {% for generator in generators %}
+                <option class="mdc-list-item" value="{{ generator }}" data-value="{{ generator }}">
+                  <span class="mdc-list-item__text">{{ generator }}</span>
+                </option>
+              {% endfor %}
+            </select>
+          </label>
         {% endif %}
 
         <!-- Quiz Topic -->
-        {% if topic %}
+        {% if topics %}
           <select id="topic" name="topic" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
             {% for topic in topics %}
             <option class="mdc-list-item" value="{{ topic }}" data-value="{{ topic }}">
