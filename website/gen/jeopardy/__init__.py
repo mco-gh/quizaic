@@ -8,7 +8,7 @@ class Generator:
         #foo = json.dumps(json.loads(self.db.to_json(orient="records")), indent=4)
         #text_file = open("gen/jeopardy/jeopardy2.json", "w")
         #text_file.write(foo)
-        self.topics = self.db["category"]
+        self.topics = sorted(list(self.db["category"].unique()))
 
     def __str__(self):
         return "Jeopardy Quiz Generator for quizrd.io"

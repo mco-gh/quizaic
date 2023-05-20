@@ -7,3 +7,6 @@ class Generator:
 
     def gen_quiz(self):
         return "I'm a quiz made by the Open Trivia Generator."
+
+    def get_topics(self):
+        return self.topics
