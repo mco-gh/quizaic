@@ -20,6 +20,7 @@ class Generator:
     def __str__(self):
         return self._gen.__str__()
 
+    @staticmethod
     def get_gens():
         return set(supported_gens.keys())
 

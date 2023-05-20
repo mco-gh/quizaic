@@ -66,10 +66,8 @@ def new_quiz():
         "synchronous": "",
         "QandA": "",
     };
-    g = gen.Generator("jeopardy")
-    topics = g.get_topics()
-    print("topics:", topics)
-    return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user)
+    gens = gen.Generator.get_gens()
+    return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user, gens=gens)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])
 def edit_quiz():
