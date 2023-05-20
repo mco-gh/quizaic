@@ -22,6 +22,7 @@ from views.helpers.time import convert_utc
 
 from functools import reduce
 
+import gen
 import json
 import random
 import re
@@ -65,7 +66,9 @@ def new_quiz():
         "synchronous": "",
         "QandA": "",
     };
-    generators = ["jeopardy", "palm", "manual"]
+    g = gen.Generator("jeopardy")
+    topics = g.get_topics()
+    print("topics:", topics)
     return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])
