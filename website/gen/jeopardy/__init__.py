@@ -2,12 +2,9 @@ import pandas
 import json
 
 class Generator:
-    def __init__(self):
-        self.db = pandas.read_json("jeopardy/jeopardy.json")
+    def __init__(self, root):
+        self.db = pandas.read_json(root + "/jeopardy/jeopardy.json")
         self.db["category"] = self.db["category"].str.title()
-        #foo = json.dumps(json.loads(self.db.to_json(orient="records")), indent=4)
-        #text_file = open("gen/jeopardy/jeopardy2.json", "w")
-        #text_file.write(foo)
         self.topics = sorted(list(self.db["category"].unique()))
 
     def __str__(self):

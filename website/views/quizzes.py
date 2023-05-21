@@ -67,6 +67,10 @@ def new_quiz():
         "QandA": "",
     };
     gens = gen.Generator.get_gens()
+    s = str(gens["jeopardy"])
+    print("jep len: ", len(s))
+    for i in ("opentrivia", "palm", "gpt"):
+        print(i, len(str(gens[i])), str(gens[i]))
     return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user, gens=gens)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])

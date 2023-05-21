@@ -2,29 +2,30 @@ import pytest
 import gen
 
 def test_get_gens():
-    gens = gen.Generator.get_gens()
+    gens = gen.Generator.get_gens(".")
     assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt"]))
 
 def test_create_jeopardy_gen():
-    g = gen.Generator("jeopardy")
+    g = gen.Generator("jeopardy", root=".")
+    topics = g.get_topics()
     s = str(g)
     assert(g != None)
     assert(s == "Jeopardy quiz generator for quizrd.io")
 
 def test_create_palm_gen():
-    g = gen.Generator("palm")
+    g = gen.Generator("palm", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "Palm quiz generator for quizrd.io")
 
 def test_create_gpt_gen():
-    g = gen.Generator("gpt")
+    g = gen.Generator("gpt", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "GPT quiz generator for quizrd.io")
 
 def test_create_opentriva_gen():
-    g = gen.Generator("opentrivia")
+    g = gen.Generator("opentrivia", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "OpenTrivia quiz generator for quizrd.io")

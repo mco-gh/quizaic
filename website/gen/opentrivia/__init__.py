@@ -1,8 +1,8 @@
 import glob
 
 class Generator:
-    def __init__(self):
-        self.topics = glob.glob("*", root_dir="opentrivia/categories")
+    def __init__(self, root):
+        self.topics = glob.glob("*", root_dir=root)
         print(self.topics)
 
     def __str__(self):

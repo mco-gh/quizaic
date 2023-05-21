@@ -1,5 +1,6 @@
 class Generator:
-    def __init__(self):
+    def __init__(self, root):
+        self.root = root
         self.topics = "unlimited"
 
     def __str__(self):
