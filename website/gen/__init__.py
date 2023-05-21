@@ -3,9 +3,9 @@ import gen
 
 generators = {
     "jeopardy":   None,
-    #"palm":       None, 
-    #"chatgpt":    None,
-    #"opentrivia": None,
+    "palm":       None, 
+    "gpt":        None,
+    "opentrivia": None,
 }
 
 class Generator:
