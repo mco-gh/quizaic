@@ -10,7 +10,7 @@ class Generator:
         return "Jeopardy quiz generator for quizrd.io"
 
     def get_topics(self, num=100):
-        return self.db["category"].value_counts()[:num].index.tolist()
+        return sorted(self.db["category"].value_counts()[:num].index.tolist())
 
     def get_mode(self):
         return "free form"

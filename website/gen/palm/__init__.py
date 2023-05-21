@@ -1,7 +1,7 @@
 class Generator:
     def __init__(self, root):
         self.root = root
-        self.topics = "unlimited"
+        self.topics = []
 
     def __str__(self):
         return "Palm quiz generator for quizrd.io"
