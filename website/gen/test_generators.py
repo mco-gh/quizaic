@@ -1,6 +1,11 @@
 import pytest
 import gen
 
+
+def test_topics():
+    g = gen.Generator("jeopardy", root=".")
+    assert(g.get_topics(10) == ['Before & After', 'Science', 'Literature', 'American History', 'Potpourri', 'World History', 'Word Origins', 'Colleges & Universities', 'History', 'Sports'])
+
 def test_get_gens():
     gens = gen.Generator.get_gens(".")
     assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt"]))

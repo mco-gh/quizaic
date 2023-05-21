@@ -28,8 +28,8 @@ class Generator:
             gens[g] = gen.Generator(g, root).get_topics()
         return gens
 
-    def get_topics(self):
-        return self._gen.get_topics()
+    def get_topics(self, num=None):
+        return self._gen.get_topics(num)
 
     def get_mode(self):
         return self._gen.get_mode()

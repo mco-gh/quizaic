@@ -1,17 +1,16 @@
-import pandas
+import pandas as pd
 import json
 
 class Generator:
     def __init__(self, root):
-        self.db = pandas.read_json(root + "/jeopardy/jeopardy.json")
+        self.db = pd.read_json(root + "/jeopardy/jeopardy.json")
         self.db["category"] = self.db["category"].str.title()
-        self.topics = sorted(list(self.db["category"].unique()))
 
     def __str__(self):
         return "Jeopardy quiz generator for quizrd.io"
 
-    def get_topics(self):
-        return self.topics
+    def get_topics(self, num=100):
+        return self.db["category"].value_counts()[:num].index.tolist()
 
     def get_mode(self):
         return "free form"

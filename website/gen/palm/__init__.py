@@ -6,7 +6,7 @@ class Generator:
     def __str__(self):
         return "Palm quiz generator for quizrd.io"
 
-    def get_topics(self):
+    def get_topics(self, num=None):
         return self.topics
 
     def gen_quiz(self):
