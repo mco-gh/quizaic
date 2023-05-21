@@ -21,7 +21,13 @@
 <script type="text/javascript" nonce="{{ g.csp_nonce }}">
   function initTextFields() {
     const selectElements = Array.from(document.querySelectorAll('.mdc-select'));
-    selectElements.map(elem => new mdc.select.MDCSelect(elem));
+    selectElements.map(elem => {
+      let el = new mdc.select.MDCSelect(elem);
+      el.listen('MDCSelect:change', () => {
+        alert(`index ${el.selectedIndex}, value "${el.value}"`);
+      });
+      return el;
+    });
     
     const elements = Array.from(document.querySelectorAll('.mdc-text-field'));
     elements.map(elem => new mdc.textField.MDCTextField(elem));
@@ -58,7 +64,7 @@
 
         <!-- Quiz Generator -->
         {% if gens %}
-          <div class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <div id="gen-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
             <div class="mdc-select__anchor"
                  role="button"
                  aria-haspopup="listbox"
@@ -89,7 +95,7 @@
               </span>
               <span class="mdc-line-ripple"></span>
             </div>
-          
+
             <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
               <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
@@ -109,16 +115,54 @@
         {% endif %}
 
         <!-- Quiz Topic -->
-        {% if topics %}
-          <select id="topic" name="topic" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-            {% for topic in topics %}
-            <option class="mdc-list-item" value="{{ topic }}" data-value="{{ topic }}">
-              <span class="mdc-list-item__ripple"></span>
-              <span class="mdc-list-item__text">{{ topic }}</span>
-            </option>
-            {% endfor %}
-          </select>
-        {% endif %}
+        <div class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <div class="mdc-select__anchor"
+               role="button"
+               aria-haspopup="listbox"
+               aria-expanded="false"
+               aria-labelledby="demo-label demo-selected-text">
+            <span class="mdc-select__ripple"></span>
+            <span id="demo-label" class="mdc-floating-label">Topic</span>
+            <span class="mdc-select__selected-text-container">
+              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+            </span>
+           <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5" focusable="false">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-line-ripple"></span>
+          </div>
+
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
+                <span class="mdc-deprecated-list-item__ripple"></span>
+              </li>
+              {% for topic in gens["opentrivia"] %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
+                  <span class="mdc-deprecated-list-item__ripple"></span>
+                  <span class="mdc-deprecated-list-item__text">
+                    {{ topic }}
+                  </span>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
 
         <!-- Quiz Image -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
