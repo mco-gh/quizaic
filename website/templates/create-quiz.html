@@ -92,7 +92,7 @@
 
         <!-- Quiz Generator -->
         {% if gens %}
-          <div id="gen-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <div id="gen-select" name="generator" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
             <div class="mdc-select__anchor"
                  role="button"
                  aria-haspopup="listbox"
@@ -175,7 +175,7 @@
             <span class="mdc-line-ripple"></span>
           </div>
 
-          <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+          <div name="topicSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
               <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
                 <span class="mdc-deprecated-list-item__ripple"></span>
@@ -198,7 +198,7 @@
         <label id="topic-text" style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Quiz topic</span>
-          <input id="topic-text" value="{{ quiz.image_url }}" required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.topic }}" required type="text" id="topic" name="topicText" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -214,7 +214,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-description-label">Number of questions</span>
-          <input value="{{ quiz.num_questions }}" required type="text" id="numQuestions" name="numQuestions" class="mdc-text-field__input" aria-labelledby="description">
+          <input value="{{ quiz.num_questions or 10 }}" required type="text" id="numQuestions" name="numQuestions" class="mdc-text-field__input" aria-labelledby="description">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -222,7 +222,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
         <span class="mdc-text-field__ripple"></span>
         <span class="mdc-floating-label" id="campaign-image-label">Number of answers</span>
-        <input value="{{ quiz.num_answers }}" required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
+        <input value="{{ quiz.num_answers or 4 }}" required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
         <span class="mdc-line-ripple"></span>
         </label>
       
@@ -230,7 +230,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Seconds to response</span>
-          <input value="{{ quiz.time_limit }}" required type="text" id="timeLimit" name="timeLimit" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.time_limit or 30 }}" required type="text" id="timeLimit" name="timeLimit" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
@@ -238,7 +238,7 @@
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Difficulty level (1-10)</span>
-          <input value="{{ quiz.difficulty }}" required type="text" id="difficulty" name="difficulty" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.difficulty or 5 }}" required type="text" id="difficulty" name="difficulty" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 

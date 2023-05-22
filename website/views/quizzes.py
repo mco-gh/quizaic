@@ -153,6 +153,9 @@ def update_quiz():
 def save_quiz():
     try:
         pin = str(random.randint(1, 9999))
+        #log(f"gen: {request.form['generator']}");
+        #log(f"topicSelect: {request.form['topicSelect']}");
+        #log(f"topicText: {request.form['topicText']}");
         g.api.quizzes_post(
             {
                 "name":         request.form["name"],
