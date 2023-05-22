@@ -13,3 +13,6 @@ class Generator:
 
     def get_topics(self, num=None):
         return self.topics
+
+    def get_mode(self):
+        return "multiple choice"

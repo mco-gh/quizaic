@@ -9,5 +9,8 @@ class Generator:
     def get_topics(self, num=None):
         return self.topics
 
+    def get_mode(self):
+        return "both"
+
     def gen_quiz(self):
         return "I'm a quiz made by the ChatGPT Generator."

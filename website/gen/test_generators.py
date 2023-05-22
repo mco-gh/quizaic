@@ -4,7 +4,8 @@ import gen
 
 def test_topics():
     g = gen.Generator("jeopardy", root=".")
-    assert(g.get_topics(10) == ['Before & After', 'Science', 'Literature', 'American History', 'Potpourri', 'World History', 'Word Origins', 'Colleges & Universities', 'History', 'Sports'])
+    print(g.get_topics(10))
+    assert(g.get_topics(10) == ['American History', 'Before & After', 'Colleges & Universities', 'History', 'Literature', 'Potpourri', 'Science', 'Sports', 'Word Origins', 'World History'])
 
 def test_get_gens():
     gens = gen.Generator.get_gens(".")

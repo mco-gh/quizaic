@@ -13,7 +13,7 @@ class Generator:
         return sorted(self.db["category"].value_counts()[:num].index.tolist())
 
     def get_mode(self):
-        return "free form"
+        return "freeform"
 
     def gen_quiz(self, topic, numQuestions, numAnswers):
         filtered = self.db[self.db.category == topic]

@@ -25,9 +25,15 @@ class Generator:
     def get_gens(root="gen"):
         gens = {}
         for g in generators:
-            gens[g] = gen.Generator(g, root).get_topics()
+           gens[g] = {
+               "mode":   gen.Generator(g, root).get_mode(),
+               "topics": gen.Generator(g, root).get_topics()
+           }
         return gens
 
+    def get_mode(self):
+        return self._gen.get_mode()
+    
     def get_topics(self, num=100):
         return self._gen.get_topics(num)
 
