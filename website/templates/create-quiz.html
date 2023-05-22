@@ -245,40 +245,109 @@
           <span class="mdc-line-ripple"></span>
         </label>
 
-        <!-- Quiz Anonymity -->
-        <select id="anonymous" name="anonymous" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-          <option class="mdc-list-item" value="true" data-value="{{ true }}">
-            <span class="mdc-list-item__ripple"></span>
-            <span class="mdc-list-item__text">players may be anonymous</span>
-          </option>
-          <option class="mdc-list-item" value="false" data-value="{{ false }}">
-            <span class="mdc-list-item__ripple"></span>
-            <span class="mdc-list-item__text">players must be logged in</span>
-          </option>
-        </select>
-
         <!-- Quiz Synchronicity -->
-        <select id="sync" name="sync" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-          <option class="mdc-list-item" value="true" data-value="{{ true }}">
-            <span class="mdc-list-item__ripple"></span>
-            <span class="mdc-list-item__text">quizzes are run synchronously</span>
-          </option>
-          <option class="mdc-list-item" value="false" data-value="{{ false }}">
-            <span class="mdc-list-item__ripple"></span>
-            <span class="mdc-list-item__text">quizzes are run asynchronously</span>
-          </option>
-        </select>
+        <div id="sync-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <div class="mdc-select__anchor"
+               role="button"
+               aria-haspopup="listbox"
+               aria-expanded="false"
+               aria-labelledby="demo-label demo-selected-text">
+            <span class="mdc-select__ripple"></span>
+            <span id="demo-label" class="mdc-floating-label">Synchrony</span>
+            <span class="mdc-select__selected-text-container">
+              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+            </span>
+           <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5" focusable="false">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-line-ripple"></span>
+          </div>
+
+          <div name="syncSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">synchronous</span>
+              </li>
+              <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">asynchronous</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quiz Anonymity -->
+        <div id="anon-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <div class="mdc-select__anchor"
+               role="button"
+               aria-haspopup="listbox"
+               aria-expanded="false"
+               aria-labelledby="demo-label demo-selected-text">
+            <span class="mdc-select__ripple"></span>
+            <span id="demo-label" class="mdc-floating-label">Anonymity</span>
+            <span class="mdc-select__selected-text-container">
+              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+            </span>
+           <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5" focusable="false">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-line-ripple"></span>
+          </div>
+
+          <div name="anonSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">players may be anonymous</span>
+              </li>
+              <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">players must be logged in</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
         <!-- Quiz Q and A -->
-        <label>
-          <label class="emblem-new-campaign-input mdc-text-field ">
+        <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
             Q&A Specification (in JSON)
-          </label>
-          <textarea name="QandA" rows="20" cols="80">
-            {% if quiz.qand_a %}
-              {{ questions }}
-            {% else %}
-[
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__trailing"></span>
+          </span>
+          <span class="mdc-text-field__resizer">
+            <textarea class="mdc-text-field__input" name="QandA" rows="20" cols="80" aria-label="Label">{% if quiz.qand_a %}{{ questions }}{% else %}[
   {
     'question': 'Which is the top selling band of all time?',
     'responses': ['The Rolling Stones', 'The Beatles', 'Oasis', 'Spinal Tap'],
@@ -291,7 +360,8 @@
   }
 ]
             {% endif %}
-          </textarea>
+            </textarea>
+          </span>
         </label>
 
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
