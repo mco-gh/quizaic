@@ -19,7 +19,6 @@
 
 {% block materialio_scripts %}
 <script type="text/javascript" nonce="{{ g.csp_nonce }}">
-
   function updateDisplay(cl, value) {
     elems = document.getElementsByClassName(cl);
     for (elem of elems) {
@@ -27,22 +26,29 @@
     }
   }
 
-
   function initTextFields() {
     const selectElements = Array.from(document.querySelectorAll('.mdc-select'));
     selectElements.map(elem => {
       let el = new mdc.select.MDCSelect(elem);
-      if (elem.id == "topic-select") {
-          arguments.callee.topic_select = el;
-      } else if (elem.id == "gen-select") {
+      el.id = "foo";
+      if (elem.id == "gen-select") {
         el.listen('MDCSelect:change', () => {
+          let topic_select = document.getElementById("topic-select");
+          let topic_text = document.getElementById("topic-text");
           arguments.callee.prev = arguments.callee.prev || null;
-          if (arguments.callee.prev) {
-            updateDisplay(arguments.callee.prev, "none");
+          if (el.value == "palm" || el.value == "gpt") {
+            topic_select.style.display = "none";
+            topic_text.style.display = "inline-flex";
+          } else {
+            topic_select.style.display = "inline-flex";
+            topic_text.style.display = "none";
+            if (arguments.callee.prev) {
+              updateDisplay(arguments.callee.prev, "none");
+            }
+            updateDisplay(el.value + "-topics", "block");
+            arguments.callee.prev = el.value + "-topics";
+            arguments.callee.topic_select.selectedIndex = 0;
           }
-          updateDisplay(el.value + "-topics", "block");
-          arguments.callee.prev = el.value + "-topics";
-          arguments.callee.topic_select.selectedIndex = 0;
         });
       }
       return el;
@@ -133,15 +139,15 @@
           </div>
         {% endif %}
 
-        <!-- Quiz Topic -->
-        <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+        <!-- Quiz Topic (select) -->
+        <div id="topic-select" style="display: none" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
           <div class="mdc-select__anchor"
                role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
                aria-labelledby="demo-label demo-selected-text">
             <span class="mdc-select__ripple"></span>
-            <span id="demo-label" class="mdc-floating-label">Topic</span>
+            <span id="demo-label" class="mdc-floating-label">Quiz topic</span>
             <span class="mdc-select__selected-text-container">
               <span id="demo-selected-text" class="mdc-select__selected-text"></span>
             </span>
@@ -184,6 +190,14 @@
             </ul>
           </div>
         </div>
+
+        <!-- Quiz Topic (text) -->
+        <label id="topic-text" style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="campaign-image-label">Quiz topic</span>
+          <input id="topic-text" value="{{ quiz.image_url }}" required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
+          <span class="mdc-line-ripple"></span>
+        </label>
 
         <!-- Quiz Image -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
