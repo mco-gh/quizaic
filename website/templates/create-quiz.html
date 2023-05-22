@@ -32,15 +32,19 @@
     const selectElements = Array.from(document.querySelectorAll('.mdc-select'));
     selectElements.map(elem => {
       let el = new mdc.select.MDCSelect(elem);
-      el.listen('MDCSelect:change', () => {
-        arguments.callee.prev = arguments.callee.prev || null;
-        console.log("prev:", arguments.callee.prev);
-        if (arguments.callee.prev) {
-          updateDisplay(arguments.callee.prev, "none");
-        }
-        updateDisplay(el.value + "-topics", "inline");
-        arguments.callee.prev = el.value + "-topics";
-      });
+      if (elem.id == "topic-select") {
+          arguments.callee.topic_select = el;
+      } else if (elem.id == "gen-select") {
+        el.listen('MDCSelect:change', () => {
+          arguments.callee.prev = arguments.callee.prev || null;
+          if (arguments.callee.prev) {
+            updateDisplay(arguments.callee.prev, "none");
+          }
+          updateDisplay(el.value + "-topics", "block");
+          arguments.callee.prev = el.value + "-topics";
+          arguments.callee.topic_select.selectedIndex = 0;
+        });
+      }
       return el;
     });
 
@@ -130,7 +134,7 @@
         {% endif %}
 
         <!-- Quiz Topic -->
-        <div class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+        <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
           <div class="mdc-select__anchor"
                role="button"
                aria-haspopup="listbox"
