@@ -41,9 +41,11 @@
         el.listen('MDCSelect:change', () => {
           let topic_select = document.getElementById("topic-select");
           let topic_text = document.getElementById("topic-text");
+          let num_answers = document.getElementById("num-answers");
           if (el.value == "palm" || el.value == "gpt") {
             topic_select.style.display = "none";
             topic_text.style.display = "inline-flex";
+            num_answers.value = 1;
           } else {
             topic_select.style.display = "inline-flex";
             topic_text.style.display = "none";
@@ -53,6 +55,7 @@
             updateDisplay(el.value + "-topics", "block");
             prev_gen = el.value + "-topics";
             mdc_topic_select.selectedIndex = 0;
+            num_answers.value = 4;
           }
         });
       }
@@ -219,10 +222,10 @@
         </label>
 
         <!-- Quiz Number of Answers -->
-        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+        <label style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
         <span class="mdc-text-field__ripple"></span>
         <span class="mdc-floating-label" id="campaign-image-label">Number of answers</span>
-        <input value="{{ quiz.num_answers or 4 }}" required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
+        <input id="num-answers" value="{{ quiz.num_answers }}" required type="text" id="numAnswers" name="numAnswers" class="mdc-text-field__input" aria-labelledby="name">
         <span class="mdc-line-ripple"></span>
         </label>
       
