@@ -26,38 +26,41 @@
     }
   }
 
+  let mdc_gen_select = null;
+  let mdc_topic_select = null;
+  let prev_gen = null;
+
   function initTextFields() {
     const selectElements = Array.from(document.querySelectorAll('.mdc-select'));
     selectElements.map(elem => {
       let el = new mdc.select.MDCSelect(elem);
-      el.id = "foo";
-      if (elem.id == "gen-select") {
+      if (elem.id == "topic-select") {
+        mdc_topic_select = el;
+      } else if (elem.id == "gen-select") {
+        mdc_gen_select = el;
         el.listen('MDCSelect:change', () => {
           let topic_select = document.getElementById("topic-select");
           let topic_text = document.getElementById("topic-text");
-          arguments.callee.prev = arguments.callee.prev || null;
           if (el.value == "palm" || el.value == "gpt") {
             topic_select.style.display = "none";
             topic_text.style.display = "inline-flex";
           } else {
             topic_select.style.display = "inline-flex";
             topic_text.style.display = "none";
-            if (arguments.callee.prev) {
-              updateDisplay(arguments.callee.prev, "none");
+            if (prev_gen) {
+              updateDisplay(prev_gen, "none");
             }
             updateDisplay(el.value + "-topics", "block");
-            arguments.callee.prev = el.value + "-topics";
-            arguments.callee.topic_select.selectedIndex = 0;
+            prev_gen = el.value + "-topics";
+            mdc_topic_select.selectedIndex = 0;
           }
         });
       }
       return el;
     });
-
     const elements = Array.from(document.querySelectorAll('.mdc-text-field'));
     elements.map(elem => new mdc.textField.MDCTextField(elem));
   }
-
   window.addEventListener('load', () => {
     initTextFields();
   });
