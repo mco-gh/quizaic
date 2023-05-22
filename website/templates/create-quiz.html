@@ -22,22 +22,24 @@
 
   function updateDisplay(cl, value) {
     elems = document.getElementsByClassName(cl);
-    for (let elem in elems) {
+    for (elem of elems) {
       elem.style.display = value;
     }
   }
 
+
   function initTextFields() {
-    let prev = null;
     const selectElements = Array.from(document.querySelectorAll('.mdc-select'));
     selectElements.map(elem => {
       let el = new mdc.select.MDCSelect(elem);
       el.listen('MDCSelect:change', () => {
-        if (prev) {
-          updateDisplay(prev, "none");
+        arguments.callee.prev = arguments.callee.prev || null;
+        console.log("prev:", arguments.callee.prev);
+        if (arguments.callee.prev) {
+          updateDisplay(arguments.callee.prev, "none");
         }
         updateDisplay(el.value + "-topics", "inline");
-        prev = el.value + "-topics";
+        arguments.callee.prev = el.value + "-topics";
       });
       return el;
     });
