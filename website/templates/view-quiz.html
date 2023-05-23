@@ -54,7 +54,7 @@
               asynchronous
             {% endif %}
             /
-            {% if quiz.freeform %}
+            {% if quiz.mode == "freeform" %}
               freeform
             {% else %}
               multiple choice
@@ -70,14 +70,23 @@
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Number of questions</span>
-          <span class="mdc-list-item__meta">{{ quiz.num_questions }}</span>
+          <span class="mdc-list-item__text">Number of questions/answers per question</span>
+          <span class="mdc-list-item__meta">
+          <span class="mdc-list-item__meta">
+            {{ quiz.num_questions }}
+            /
+            {{ quiz.num_answers }}
+          </span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Number of answers per question</span>
-          <span class="mdc-list-item__meta">{{ quiz.num_answers }}</span>
+          <span class="mdc-list-item__text">Randomize order of questions/answers</span>
+          <span class="mdc-list-item__meta">
+            {{ quiz.random_q }}
+            /
+            {{ quiz.random_a }}
+          </span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
