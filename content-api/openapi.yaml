@@ -1534,7 +1534,7 @@ components:
           description: quiz generator type
         mode:
           type: string 
-          description: quiz mode, "freeform" or "multiple choice"
+          description: quiz mode, freeform or multiple-choice
         topic:
           type: string
           nullable: true
