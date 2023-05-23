@@ -169,10 +169,9 @@ def save_quiz():
                 "difficulty":   request.form["difficulty"],
                 "sync":         request.form["syncSelect"] == "true",
                 "anonymous":    request.form["anonSelect"] == "true",
-                "QandA":        request.form['QandA'],
-                # host | the id of the *host* of this *quiz*
-                # randomQ | boolean; whether to randomize question order |"
-                # randomA | boolean; whether to randomize answer order |
+                "randomQ":      request.form["randomQSelect"] == "true",
+                "randomA":      request.form["randomASelect"] == "true",
+                "QandA":        request.form["QandA"],
             }
         )
     except Exception as e:
