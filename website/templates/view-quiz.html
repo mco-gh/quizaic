@@ -158,12 +158,13 @@
               </td>
             </tr>
           {% else %}
+<!--
             <textarea readonly rows="20" cols="80">
 {{ questions }}
             </textarea>
-<!--
-            {% for q in quiz.qand_a %}
-              {% if quiz.freeform %}
+-->
+            {% for q in qa %}
+              {% if quiz.mode == "freeform" %}
                 <tr class="mdc-data-table__row">
                   <td class="mdc-data-table__cell">
                     {{ q.question }}
@@ -188,7 +189,6 @@
                 {% endfor %}  
               {% endif %}
             {% endfor %}
--->
           {% endif %}
         </tbody>
       </table>

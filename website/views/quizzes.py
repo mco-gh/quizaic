@@ -204,8 +204,9 @@ def webapp_view_quiz():
         log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
+    qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
-    return render_template("view-quiz.html", quiz=quiz_instance, questions=questions)
+    return render_template("view-quiz.html", quiz=quiz_instance, qa=qa, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
 def start(pin):
