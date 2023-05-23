@@ -1563,6 +1563,7 @@ components:
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)
+          nullable: true
           default: true
         anonymous:
           type: boolean
