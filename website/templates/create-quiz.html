@@ -46,6 +46,7 @@
           let mode_multiple_choice = document.getElementById("mode-multiple-choice");
           let topic_select = document.getElementById("topic-select");
           let topic_text = document.getElementById("topic-text");
+          let topic_input = document.getElementById("topic-input");
           let num_answers = document.getElementById("num-answers");
           if (el.value == "palm" || el.value == "gpt") {
             mdc_mode_select.selectedIndex = 1;
@@ -53,6 +54,7 @@
             mode_multiple_choice.classList.remove("mdc-deprecated-list-item--disabled");
             topic_select.style.display = "none";
             topic_text.style.display = "inline-flex";
+            mdc_topic_select.selectedIndex = 0
             num_answers.value = 4;
           } else {
             if (el.value == "jeopardy") {
@@ -68,6 +70,7 @@
             }
             topic_select.style.display = "inline-flex";
             topic_text.style.display = "none";
+            topic_input.value = "";
             if (prev_gen) {
               updateDisplay(prev_gen, "none");
             }
@@ -113,7 +116,8 @@
 
         <!-- Quiz Generator -->
         {% if gens %}
-          <div id="gen-select" name="generator" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <div id="gen-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+            <input type="hidden" name="generator">
             <div class="mdc-select__anchor"
                  role="button"
                  aria-haspopup="listbox"
@@ -165,6 +169,7 @@
 
         <!-- Quiz Mode -->
         <div id="mode-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <input type="hidden" name="modeSelect">
           <div class="mdc-select__anchor"
                role="button"
                aria-haspopup="listbox"
@@ -216,6 +221,7 @@
 
         <!-- Quiz Topic (select) -->
         <div id="topic-select" style="display: none" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <input type="hidden" name="topicSelect">
           <div class="mdc-select__anchor"
                role="button"
                aria-haspopup="listbox"
@@ -247,7 +253,7 @@
             <span class="mdc-line-ripple"></span>
           </div>
 
-          <div name="topicSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
               <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
                 <span class="mdc-deprecated-list-item__ripple"></span>
@@ -270,7 +276,7 @@
         <label id="topic-text" style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Quiz topic</span>
-          <input value="{{ quiz.topic }}" required type="text" id="topic" name="topicText" class="mdc-text-field__input" aria-labelledby="name">
+          <input id="topic-input" value="{{ quiz.topic }}" type="text" id="topic" name="topicText" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
