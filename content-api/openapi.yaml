@@ -1515,24 +1515,6 @@ components:
           type: string
           readOnly: true
           description: unique, system-assigned identifier
-        name:
-          type: string
-          description: the display name of this quiz
-        description:
-          type: string
-          description: a short description of the quiz
-        freeform:
-          type: boolean
-          nullable: true
-          description: whether this quiz supports free-form answers
-        runCount:
-          type: integer
-          nullable: true
-          description: number of times quiz has been run
-        host:
-          type: string
-          nullable: true
-          description: the id of the host
         playUrl:
           type: string
           nullable: true
@@ -1541,49 +1523,69 @@ components:
           type: string
           nullable: true
           description: pin code for playing this quiz
+        name:
+          type: string
+          description: the display name of this quiz
+        description:
+          type: string
+          description: a short description of the quiz
+        generator:
+          type: string 
+          description: quiz generator type
+        mode:
+          type: string 
+          description: quiz mode, "freeform" or "multiple choice"
         topic:
           type: string
           nullable: true
           description: the topic of this quiz
-        anonymous:
-          type: boolean
-          description: whether players may be anonymous
-          nullable: true
-          default: true
         imageUrl:
           type: string
           description: string containing URL of an image to display for this quiz
           nullable: true
           default: ""
-        difficulty:
-          type: string 
-          description: integer level of difficulty (1-10)
-          default: "5"
-        timeLimit:
-          type: string
-          description: number of seconds to respond to each question in this quiz (3-300)
-          default: "60"
         numQuestions:
           type: string
           description: number of questions included in this quiz
           default: "10"
         numAnswers:
           type: string
-          description: number of answers possible for each question in this quiz (0 == free form)
+          description: number of answers for each question in this quiz (1 == free form)
           default: "4"
+        timeLimit:
+          type: string
+          description: number of seconds to respond to each question in this quiz (3-300)
+          default: "30"
+        difficulty:
+          type: string 
+          description: integer level of difficulty (1-10)
+          default: "5"
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)
           default: true
+        anonymous:
+          type: boolean
+          description: whether players may be anonymous
+          nullable: true
+          default: true
+        QandA:
+          type: string 
+          nullable: true
+          description: json string representation of questions, correct answers, and options
+        host:
+          type: string
+          nullable: true
+          description: the id of the host
         active:
           type: boolean
           description: is this quiz currently being played?
           nullable: true
           default: false
-        QandA:
-          type: string 
+        runCount:
+          type: integer
           nullable: true
-          description: json string representation of questions, correct answers, and options
+          description: number of times quiz has been run
         timeCreated:
           type: string
           format: date-time

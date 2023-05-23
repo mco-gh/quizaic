@@ -153,32 +153,26 @@ def update_quiz():
 def save_quiz():
     try:
         pin = str(random.randint(1, 9999))
-        #log(f"gen: {request.form['generator']}");
-        #log(f"topicSelect: {request.form['topicSelect']}");
-        #log(f"topicText: {request.form['topicText']}");
         g.api.quizzes_post(
             {
-                "name":         request.form["name"],
                 "pin":          pin,
                 "playUrl":      "/" + pin,
+                "name":         request.form["name"],
                 "description":  request.form["description"],
+                "generator":    request.form["generator"],
+                "mode":         request.form["modeSelect"],
+                "topic":        request.form["topicText"] or request.form["topicSelect"],
                 "imageUrl":     request.form["imageUrl"],
-                "timeLimit":    request.form["timeLimit"],
-                "difficulty":   request.form["difficulty"],
                 "numQuestions": request.form["numQuestions"],
                 "numAnswers":   request.form["numAnswers"],
-                "sync":         request.form["sync"] == "true",
-                "anonymous":    request.form["anonymous"] == "true",
+                "timeLimit":    request.form["timeLimit"],
+                "difficulty":   request.form["difficulty"],
+                "sync":         request.form["syncSelect"] == "true",
+                "anonymous":    request.form["anonSelect"] == "true",
                 "QandA":        request.form['QandA'],
-                #"freeform":     request.form["freeform"],
-                #"topic":        request.form["topic"],
                 # host | the id of the *host* of this *quiz*
-                # playUrl | direct URL for playing this *quiz*
-                # pin | pin code for playing this *quiz*
                 # randomQ | boolean; whether to randomize question order |"
                 # randomA | boolean; whether to randomize answer order |
-                # QandA | array of questions, associated answers, and correct answers comprising this *quiz* |
-                # active | boolean; whether this *quiz* is currently available to be played |
             }
         )
     except Exception as e:

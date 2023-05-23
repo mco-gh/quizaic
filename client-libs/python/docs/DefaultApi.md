@@ -3885,23 +3885,24 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | Quiz Id
     quiz = Quiz(
-        name="name_example",
-        description="description_example",
-        freeform=True,
-        run_count=1,
-        host="host_example",
         play_url="play_url_example",
         pin="pin_example",
+        name="name_example",
+        description="description_example",
+        generator="generator_example",
+        mode="mode_example",
         topic="topic_example",
-        anonymous=True,
         image_url="",
-        difficulty="5",
-        time_limit="60",
         num_questions="10",
         num_answers="4",
+        time_limit="30",
+        difficulty="5",
         sync=True,
-        active=False,
+        anonymous=True,
         qand_a="qand_a_example",
+        host="host_example",
+        active=False,
+        run_count=1,
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set
@@ -3981,23 +3982,24 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     quiz = Quiz(
-        name="name_example",
-        description="description_example",
-        freeform=True,
-        run_count=1,
-        host="host_example",
         play_url="play_url_example",
         pin="pin_example",
+        name="name_example",
+        description="description_example",
+        generator="generator_example",
+        mode="mode_example",
         topic="topic_example",
-        anonymous=True,
         image_url="",
-        difficulty="5",
-        time_limit="60",
         num_questions="10",
         num_answers="4",
+        time_limit="30",
+        difficulty="5",
         sync=True,
-        active=False,
+        anonymous=True,
         qand_a="qand_a_example",
+        host="host_example",
+        active=False,
+        run_count=1,
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set
