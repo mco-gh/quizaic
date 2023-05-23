@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | the display name of this quiz | 
 **id** | **str** | unique, system-assigned identifier | [optional] [readonly] 
-**play_url** | **str, none_type** | URL for playing this quiz | [optional] 
 **pin** | **str, none_type** | pin code for playing this quiz | [optional] 
+**play_url** | **str, none_type** | URL for playing this quiz | [optional] 
 **description** | **str** | a short description of the quiz | [optional] 
 **generator** | **str** | quiz generator type | [optional] 
-**mode** | **str** | quiz mode, \&quot;freeform\&quot; or \&quot;multiple choice\&quot; | [optional] 
+**mode** | **str** | quiz mode, freeform or multiple-choice | [optional] 
 **topic** | **str, none_type** | the topic of this quiz | [optional] 
 **image_url** | **str, none_type** | string containing URL of an image to display for this quiz | [optional]  if omitted the server will use the default value of ""
 **num_questions** | **str** | number of questions included in this quiz | [optional]  if omitted the server will use the default value of "10"
@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **difficulty** | **str** | integer level of difficulty (1-10) | [optional]  if omitted the server will use the default value of "5"
 **sync** | **bool** | is this quiz synchronous (false &#x3D;&#x3D; asynchronous) | [optional]  if omitted the server will use the default value of True
 **anonymous** | **bool, none_type** | whether players may be anonymous | [optional]  if omitted the server will use the default value of True
+**random_q** | **bool, none_type** | whether to present questions in random order | [optional]  if omitted the server will use the default value of True
+**random_a** | **bool, none_type** | whether to present answers in random order | [optional]  if omitted the server will use the default value of True
 **qand_a** | **str, none_type** | json string representation of questions, correct answers, and options | [optional] 
 **host** | **str, none_type** | the id of the host | [optional] 
 **active** | **bool, none_type** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False

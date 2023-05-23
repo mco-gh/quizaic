@@ -83,8 +83,8 @@ class Quiz(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'play_url': (str, none_type,),  # noqa: E501
             'pin': (str, none_type,),  # noqa: E501
+            'play_url': (str, none_type,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'generator': (str,),  # noqa: E501
             'mode': (str,),  # noqa: E501
@@ -96,6 +96,8 @@ class Quiz(ModelNormal):
             'difficulty': (str,),  # noqa: E501
             'sync': (bool,),  # noqa: E501
             'anonymous': (bool, none_type,),  # noqa: E501
+            'random_q': (bool, none_type,),  # noqa: E501
+            'random_a': (bool, none_type,),  # noqa: E501
             'qand_a': (str, none_type,),  # noqa: E501
             'host': (str, none_type,),  # noqa: E501
             'active': (bool, none_type,),  # noqa: E501
@@ -113,8 +115,8 @@ class Quiz(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'play_url': 'playUrl',  # noqa: E501
         'pin': 'pin',  # noqa: E501
+        'play_url': 'playUrl',  # noqa: E501
         'description': 'description',  # noqa: E501
         'generator': 'generator',  # noqa: E501
         'mode': 'mode',  # noqa: E501
@@ -126,6 +128,8 @@ class Quiz(ModelNormal):
         'difficulty': 'difficulty',  # noqa: E501
         'sync': 'sync',  # noqa: E501
         'anonymous': 'anonymous',  # noqa: E501
+        'random_q': 'randomQ',  # noqa: E501
+        'random_a': 'randomA',  # noqa: E501
         'qand_a': 'QandA',  # noqa: E501
         'host': 'host',  # noqa: E501
         'active': 'active',  # noqa: E501
@@ -184,11 +188,11 @@ class Quiz(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
+            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
             description (str): a short description of the quiz. [optional]  # noqa: E501
             generator (str): quiz generator type. [optional]  # noqa: E501
-            mode (str): quiz mode, \"freeform\" or \"multiple choice\". [optional]  # noqa: E501
+            mode (str): quiz mode, freeform or multiple-choice. [optional]  # noqa: E501
             topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
             num_questions (str): number of questions included in this quiz. [optional] if omitted the server will use the default value of "10"  # noqa: E501
@@ -197,6 +201,8 @@ class Quiz(ModelNormal):
             difficulty (str): integer level of difficulty (1-10). [optional] if omitted the server will use the default value of "5"  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             anonymous (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
+            random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
             host (str, none_type): the id of the host. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
@@ -290,11 +296,11 @@ class Quiz(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
+            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
             description (str): a short description of the quiz. [optional]  # noqa: E501
             generator (str): quiz generator type. [optional]  # noqa: E501
-            mode (str): quiz mode, \"freeform\" or \"multiple choice\". [optional]  # noqa: E501
+            mode (str): quiz mode, freeform or multiple-choice. [optional]  # noqa: E501
             topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
             num_questions (str): number of questions included in this quiz. [optional] if omitted the server will use the default value of "10"  # noqa: E501
@@ -303,6 +309,8 @@ class Quiz(ModelNormal):
             difficulty (str): integer level of difficulty (1-10). [optional] if omitted the server will use the default value of "5"  # noqa: E501
             sync (bool): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             anonymous (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
+            random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
             host (str, none_type): the id of the host. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501

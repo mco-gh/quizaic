@@ -1515,14 +1515,14 @@ components:
           type: string
           readOnly: true
           description: unique, system-assigned identifier
-        playUrl:
-          type: string
-          nullable: true
-          description: URL for playing this quiz
         pin:
           type: string
           nullable: true
           description: pin code for playing this quiz
+        playUrl:
+          type: string
+          nullable: true
+          description: URL for playing this quiz
         name:
           type: string
           description: the display name of this quiz
@@ -1567,6 +1567,16 @@ components:
         anonymous:
           type: boolean
           description: whether players may be anonymous
+          nullable: true
+          default: true
+        randomQ:
+          type: boolean
+          description: whether to present questions in random order
+          nullable: true
+          default: true
+        randomA:
+          type: boolean
+          description: whether to present answers in random order
           nullable: true
           default: true
         QandA:

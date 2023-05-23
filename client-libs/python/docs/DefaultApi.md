@@ -3885,8 +3885,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | Quiz Id
     quiz = Quiz(
-        play_url="play_url_example",
         pin="pin_example",
+        play_url="play_url_example",
         name="name_example",
         description="description_example",
         generator="generator_example",
@@ -3899,6 +3899,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         difficulty="5",
         sync=True,
         anonymous=True,
+        random_q=True,
+        random_a=True,
         qand_a="qand_a_example",
         host="host_example",
         active=False,
@@ -3982,8 +3984,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     quiz = Quiz(
-        play_url="play_url_example",
         pin="pin_example",
+        play_url="play_url_example",
         name="name_example",
         description="description_example",
         generator="generator_example",
@@ -3996,6 +3998,8 @@ with openapi_client.ApiClient(configuration) as api_client:
         difficulty="5",
         sync=True,
         anonymous=True,
+        random_q=True,
+        random_a=True,
         qand_a="qand_a_example",
         host="host_example",
         active=False,

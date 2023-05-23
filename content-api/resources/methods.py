@@ -26,8 +26,8 @@ resource_fields = {
     "hosts": ["name", "email"],
     "players": ["name", "email"],
     "quizzes": [
-        "playUrl",
         "pin",
+        "playUrl",
         "name",
         "description",
         "generator",
@@ -40,6 +40,8 @@ resource_fields = {
         "difficulty",
         "sync",
         "anonymous",
+        "randomQ",
+        "randomA",
         "QandA",
         "runCount",
         "host",
