@@ -97,8 +97,10 @@ def edit_quiz():
         log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
+    gens = gen.Generator.get_gens()
+    qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
-    return render_template("create-quiz.html", op="Update", quiz=quiz_instance, questions=questions, current_user=current_user)
+    return render_template("create-quiz.html", op="Update", quiz=quiz_instance, questions=questions, qa=qa, current_user=current_user, gens=gens)
 
 
 @quizzes_bp.route("/deleteQuiz", methods=["GET"])
