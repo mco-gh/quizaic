@@ -186,7 +186,7 @@
         {% endif %}
 
         <!-- Quiz Topic (select) -->
-        {% if quiz.topicFormat == "multiple-choice" %}
+        {% if quiz.topic_format == "multiple-choice" %}
           <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
         {% else %}
           <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
@@ -249,7 +249,7 @@
         </div>
 
         <!-- Quiz Topic (text) -->
-        {% if quiz.topicFormat == "freeform" %}
+        {% if quiz.topic_format == "freeform" %}
           <label id="topic-text" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
         {% else %}
           <label id="topic-text" style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
@@ -296,7 +296,7 @@
 
           <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="topic format chooser">
-              {% if quiz.topicFormat == "freeform" %}
+              {% if quiz.topic_format == "freeform" %}
                 <li id="topic-format-freeform" class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="freeform" role="option">
               {% else %}
                 <li id="topic-format-freeform" class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled" aria-selected="false" data-value="freeform" role="option">
@@ -306,7 +306,7 @@
                   freeform
                 </span>
               </li>
-              {% if quiz.topicFormat == "multiple-choice" %}
+              {% if quiz.topic_format == "multiple-choice" %}
                 <li id="topic-format-multiple-choice" class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="multiple-choice" role="option">
               {% else %}
                 <li id="topic-format-multiple-choice" class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled" aria-selected="false" data-value="multiple-choice" role="option">
@@ -356,7 +356,7 @@
 
           <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="answer format chooser">
-              {% if quiz.answerFormat == "freeform" %}
+              {% if quiz.answer_format == "freeform" %}
                 <li id="answer-format-freeform" class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="freeform" role="option">
               {% else %}
                 <li id="answer-format-freeform" class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled" aria-selected="false" data-value="freeform" role="option">
@@ -366,7 +366,7 @@
                   freeform
                 </span>
               </li>
-              {% if quiz.answerFormat == "multiple-choice" %}
+              {% if quiz.answer_format == "multiple-choice" %}
                 <li id="answer-format-multiple-choice" class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="multiple-choice" role="option">
               {% else %}
                 <li id="answer-format-multiple-choice" class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled" aria-selected="false" data-value="multiple-choice" role="option">
@@ -456,7 +456,7 @@
 
           <div name="syncSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if not quiz.sync or quiz.sync == "true" %}
+              {% if not quiz.sync or quiz.sync == "True" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -464,7 +464,7 @@
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">synchronous</span>
               </li>
-              {% if quiz.sync == "false" %}
+              {% if quiz.sync == "False" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="false" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
@@ -567,7 +567,7 @@
           </div>
           <div name="randomASelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if not quiz.randomQ or quiz.randomQ == "true" %}
+              {% if not quiz.random_q or quiz.random_q == "True" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -575,7 +575,7 @@
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">Yes</span>
               </li>
-              {% if quiz.randomQ == "false" %}
+              {% if quiz.random_q == "False" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="false" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
@@ -621,10 +621,9 @@
             <span class="mdc-line-ripple"></span>
           </div>
 
-{{quiz}}
           <div name="randomQSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if not quiz.randomA or quiz.randomA == "true" %}
+              {% if not quiz.random_a or quiz.random_a == "True" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -632,7 +631,7 @@
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">Yes</span>
               </li>
-              {% if quiz.randomA == "false" %}
+              {% if quiz.random_a == "False" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="false" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
