@@ -40,7 +40,7 @@ resource_fields = {
         "timeLimit",
         "difficulty",
         "sync",
-        "anonymous",
+        "anon",
         "randomQ",
         "randomA",
         "QandA",

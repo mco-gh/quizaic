@@ -512,7 +512,7 @@
 
           <div name="anonSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if not quiz.anon or quiz.anon == "true" %}
+              {% if quiz.anon == "" or quiz.anon == "True" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -520,7 +520,7 @@
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">players may be anonymous</span>
               </li>
-              {% if quiz.anon == "false" %}
+              {% if quiz.anon == "False" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="false" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
@@ -621,6 +621,7 @@
             <span class="mdc-line-ripple"></span>
           </div>
 
+{{quiz}}
           <div name="randomQSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
               {% if not quiz.randomA or quiz.randomA == "true" %}

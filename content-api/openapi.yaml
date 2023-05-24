@@ -1568,7 +1568,7 @@ components:
           description: is this quiz synchronous (false == asynchronous)
           nullable: true
           default: true
-        anonymous:
+        anon:
           type: boolean
           description: whether players may be anonymous
           nullable: true
