@@ -1558,8 +1558,8 @@ components:
           default: "30"
         difficulty:
           type: string 
-          description: integer level of difficulty (1-10)
-          default: "5"
+          description: integer level of difficulty (1-5)
+          default: "3"
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)

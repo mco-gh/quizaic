@@ -47,13 +47,13 @@
             {% else %}
               login
             {% endif %}
-            /
+             / 
             {% if quiz.sync %}
               synchronous
             {% else %}
               asynchronous
             {% endif %}
-            /
+             / 
             {% if quiz.mode == "freeform" %}
               freeform
             {% else %}
@@ -64,47 +64,37 @@
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Generator</span>
-          <span class="mdc-list-item__meta">{{ quiz.generator }}</span>
+          <span class="mdc-list-item__text">Generator / Topic</span>
+          <span class="mdc-list-item__meta">
+            {{ quiz.generator }} / {{ quiz.topic}}
+          </span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Topic</span>
-          <span class="mdc-list-item__meta">{{ quiz.topic }}</span>
-        </li>
-
-        <li role="separator" class="mdc-list-divider"></li>
-        <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Number of questions/answers per question</span>
+          <span class="mdc-list-item__text">Questions / Answers</span>
           <span class="mdc-list-item__meta">
           <span class="mdc-list-item__meta">
             {{ quiz.num_questions }}
-            /
+             / 
             {{ quiz.num_answers }}
           </span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Randomize order of questions/answers</span>
+          <span class="mdc-list-item__text">Randomly order questions / answers</span>
           <span class="mdc-list-item__meta">
-            {{ quiz.random_q }}
-            /
-            {{ quiz.random_a }}
+            {{ quiz.random_q }} / {{ quiz.random_a }}
           </span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Level of difficulty (1-10)</span>
-          <span class="mdc-list-item__meta">{{ quiz.difficulty }}</span>
-        </li>
-
-        <li role="separator" class="mdc-list-divider"></li>
-        <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Seconds to respond</span>
-          <span class="mdc-list-item__meta">{{ quiz.time_limit }}</span>
+          <span class="mdc-list-item__text">Difficulty (1-5) / Timeout</span>
+          <span class="mdc-list-item__meta">
+            {{ quiz.difficulty }} / {{ quiz.time_limit}}
+          </span>
         </li>
 
       <span>
