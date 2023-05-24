@@ -40,7 +40,33 @@
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Quiz type</span>
+          <span class="mdc-list-item__text">Generator / Topic</span>
+          <span class="mdc-list-item__meta">
+            {{ quiz.generator.title() }} / {{ quiz.topic}}
+          </span>
+        </li>
+
+        <li role="separator" class="mdc-list-divider"></li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__text">Topic Format / Answer Format</span>
+          <span class="mdc-list-item__meta">
+            {% if quiz.topic_format == "freeform" %}
+              freeform
+            {% else %}
+              multiple choice
+            {% endif %}
+             / 
+            {% if quiz.answer_format == "freeform" %}
+              freeform
+            {% else %}
+              multiple choice
+            {% endif %}
+          </span>
+        </li>
+
+        <li role="separator" class="mdc-list-divider"></li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__text">Anonynous / Synchronous</span>
           <span class="mdc-list-item__meta">
             {% if quiz.anonymous %}
               anonymous
@@ -53,20 +79,6 @@
             {% else %}
               asynchronous
             {% endif %}
-             / 
-            {% if quiz.mode == "freeform" %}
-              freeform
-            {% else %}
-              multiple choice
-            {% endif %}
-          </span>
-        </li>
-
-        <li role="separator" class="mdc-list-divider"></li>
-        <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Generator / Topic</span>
-          <span class="mdc-list-item__meta">
-            {{ quiz.generator }} / {{ quiz.topic}}
           </span>
         </li>
 
@@ -169,7 +181,7 @@
             </textarea>
 -->
             {% for q in qa %}
-              {% if quiz.mode == "freeform" %}
+              {% if quiz.answer_format == "freeform" %}
                 <tr class="mdc-data-table__row">
                   <td class="mdc-data-table__cell">
                     {{ q.question }}

@@ -31,7 +31,7 @@ resource_fields = {
         "name",
         "description",
         "generator",
-        "topipFormat",
+        "topicFormat",
         "answerFormat",
         "topic",
         "imageUrl",
