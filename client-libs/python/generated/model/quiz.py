@@ -87,7 +87,8 @@ class Quiz(ModelNormal):
             'play_url': (str, none_type,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'generator': (str,),  # noqa: E501
-            'mode': (str,),  # noqa: E501
+            'topic_format': (str,),  # noqa: E501
+            'answer_format': (str,),  # noqa: E501
             'topic': (str, none_type,),  # noqa: E501
             'image_url': (str, none_type,),  # noqa: E501
             'num_questions': (str,),  # noqa: E501
@@ -119,7 +120,8 @@ class Quiz(ModelNormal):
         'play_url': 'playUrl',  # noqa: E501
         'description': 'description',  # noqa: E501
         'generator': 'generator',  # noqa: E501
-        'mode': 'mode',  # noqa: E501
+        'topic_format': 'topicFormat',  # noqa: E501
+        'answer_format': 'answerFormat',  # noqa: E501
         'topic': 'topic',  # noqa: E501
         'image_url': 'imageUrl',  # noqa: E501
         'num_questions': 'numQuestions',  # noqa: E501
@@ -192,13 +194,14 @@ class Quiz(ModelNormal):
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
             description (str): a short description of the quiz. [optional]  # noqa: E501
             generator (str): quiz generator type. [optional]  # noqa: E501
-            mode (str): quiz mode, freeform or multiple-choice. [optional]  # noqa: E501
+            topic_format (str): topic input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
+            answer_format (str): response input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
             topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
             num_questions (str): number of questions included in this quiz. [optional] if omitted the server will use the default value of "10"  # noqa: E501
             num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
             time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
-            difficulty (str): integer level of difficulty (1-10). [optional] if omitted the server will use the default value of "5"  # noqa: E501
+            difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
             sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             anonymous (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
@@ -300,13 +303,14 @@ class Quiz(ModelNormal):
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
             description (str): a short description of the quiz. [optional]  # noqa: E501
             generator (str): quiz generator type. [optional]  # noqa: E501
-            mode (str): quiz mode, freeform or multiple-choice. [optional]  # noqa: E501
+            topic_format (str): topic input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
+            answer_format (str): response input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
             topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
             image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
             num_questions (str): number of questions included in this quiz. [optional] if omitted the server will use the default value of "10"  # noqa: E501
             num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
             time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
-            difficulty (str): integer level of difficulty (1-10). [optional] if omitted the server will use the default value of "5"  # noqa: E501
+            difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
             sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             anonymous (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501

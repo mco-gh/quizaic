@@ -1532,9 +1532,12 @@ components:
         generator:
           type: string 
           description: quiz generator type
-        mode:
+        topicFormat:
           type: string 
-          description: quiz mode, freeform or multiple-choice
+          description: topic input ("freeform" or "multiple-choice")
+        answerFormat:
+          type: string 
+          description: response input ("freeform" or "multiple-choice")
         topic:
           type: string
           nullable: true
