@@ -9,7 +9,7 @@ def test_topics():
 
 def test_get_gens():
     gens = gen.Generator.get_gens(".")
-    assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt"]))
+    assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt", "manual"]))
 
 def test_create_jeopardy_gen():
     g = gen.Generator("jeopardy", root=".")
