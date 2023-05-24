@@ -55,7 +55,7 @@
           let num_answers = document.getElementById("num-answers");
 
           topic_input.value = "";
-          if (el.value == "palm" || el.value == "gpt") {
+          if (el.value == "palm" || el.value == "gpt" || el.value == "manual") {
             mdc_topic_format_select.selectedIndex = 0;
             topic_format_freeform.classList.remove("mdc-deprecated-list-item--disabled");
             topic_format_multiple_choice.classList.add("mdc-deprecated-list-item--disabled");

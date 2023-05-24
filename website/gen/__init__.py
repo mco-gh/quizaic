@@ -26,8 +26,9 @@ class Generator:
         gens = {}
         for g in generators:
            gens[g] = {
-               "mode":   gen.Generator(g, root).get_mode(),
-               "topics": gen.Generator(g, root).get_topics()
+               "topic_formats":  gen.Generator(g, root).get_topic_formats(),
+               "answer_formats": gen.Generator(g, root).get_answer_formats(),
+               "topics":         gen.Generator(g, root).get_topics()
            }
         return gens
 
@@ -37,8 +38,11 @@ class Generator:
     def get_topics(self, num=100):
         return self._gen.get_topics(num)
 
-    def get_mode(self):
-        return self._gen.get_mode()
+    def get_topic_formats(self):
+        return self._gen.get_topic_formats()
+
+    def get_answer_formats(self):
+        return self._gen.get_answer_formats()
 
     def gen_quiz(self, topic, numQuestions, numAnswers):
         return self._gen.gen_quiz(topic, numQuestions, numAnswers)

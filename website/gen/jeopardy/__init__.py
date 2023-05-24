@@ -3,7 +3,8 @@ import json
 
 class Generator:
     def __init__(self, root):
-        self.db = pd.read_json(root + "/jeopardy/jeopardy.json")
+        self.root = root
+        self.db = pd.read_json(self.root + "/jeopardy/jeopardy.json")
         self.db["category"] = self.db["category"].str.title()
 
     def __str__(self):
@@ -12,8 +13,11 @@ class Generator:
     def get_topics(self, num=100):
         return sorted(self.db["category"].value_counts()[:num].index.tolist())
 
-    def get_mode(self):
-        return "freeform"
+    def get_topic_formats(self):
+        return ["multiple-choice"]
+
+    def get_answer_formats(self):
+        return ["freeform"]
 
     def gen_quiz(self, topic, numQuestions, numAnswers):
         filtered = self.db[self.db.category == topic]
