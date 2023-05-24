@@ -225,7 +225,7 @@
               </li>
               {% for gen in gens %}
                 {% for topic in gens[gen]["topics"] %}
-                  {% if quiz.topic == topic %}
+                  {% if quiz.generator == gen and quiz.topic == topic %}
                     <li class="{{gen}}-topics mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="{{topic}}" role="option">
                   {% elif quiz.generator == gen %}
                     <li class="{{gen}}-topics mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
