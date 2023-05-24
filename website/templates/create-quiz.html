@@ -220,7 +220,7 @@
   
           <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
+              <li class="mdc-deprecated-list-item" aria-selected="false" data-value="" role="option">
                 <span class="mdc-deprecated-list-item__ripple"></span>
               </li>
               {% for gen in gens %}
@@ -232,11 +232,11 @@
                   {% else %}
                     <li style="display: none" class="{{gen}}-topics mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
                   {% endif %}
-                    <span class="mdc-deprecated-list-item__ripple"></span>
-                    <span class="mdc-deprecated-list-item__text">
-                      {{ topic }}
-                    </span>
-                  </li>
+                      <span class="mdc-deprecated-list-item__ripple"></span>
+                      <span class="mdc-deprecated-list-item__text">
+                        {{ topic }}
+                      </span>
+                    </li>
                 {% endfor %}
               {% endfor %}
             </ul>
