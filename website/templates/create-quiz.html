@@ -456,7 +456,7 @@
 
           <div name="syncSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if quiz.sync == "true" %}
+              {% if not quiz.sync or quiz.sync == "true" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -512,7 +512,7 @@
 
           <div name="anonSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if quiz.anon == "true" %}
+              {% if not quiz.anon or quiz.anon == "true" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -567,7 +567,7 @@
           </div>
           <div name="randomASelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if quiz.randomQ == "true" %}
+              {% if not quiz.randomQ or quiz.randomQ == "true" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
@@ -623,7 +623,7 @@
 
           <div name="randomQSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              {% if quiz.randomA == "true" %}
+              {% if not quiz.randomA or quiz.randomA == "true" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="true" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
