@@ -126,6 +126,10 @@ def update_quiz():
         return render_template("errors/500.html"), 500
 
     try:
+        if request.form["topicFormatSelect"] == "freeform":
+          topic_field = "topicText"
+        else:
+          topic_field = "topicSelect"
         g.api.quizzes_id_patch(quiz_id, 
             {
                 "name":         request.form["name"],
@@ -133,7 +137,7 @@ def update_quiz():
                 "generator":    request.form["generator"],
                 "topicFormat":  request.form["topicFormatSelect"],
                 "answerFormat": request.form["answerFormatSelect"],
-                "topic":        request.form["topicText"] or request.form["topicSelect"],
+                "topic":        request.form[topic_field],
                 "imageUrl":     request.form["imageUrl"],
                 "numQuestions": request.form["numQuestions"],
                 "numAnswers":   request.form["numAnswers"],
