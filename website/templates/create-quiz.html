@@ -56,9 +56,9 @@
           if (el.value == "palm" || el.value == "gpt") {
             mdc_topic_format_select.selectedIndex = 0;
             topic_format_freeform.classList.remove("mdc-deprecated-list-item--disabled");
-            topic_format_multiple_choice.classList.add("mdc-deprecated-list-item--disabled");
+            topic_format_multiple_choice.classList.remove("mdc-deprecated-list-item--disabled");
             mdc_answer_format_select.selectedIndex = 1;
-            answer_format_freeform.classList.add("mdc-deprecated-list-item--disabled");
+            answer_format_freeform.classList.remove("mdc-deprecated-list-item--disabled");
             answer_format_multiple_choice.classList.remove("mdc-deprecated-list-item--disabled");
             topic_select.style.display = "none";
             topic_text.style.display = "inline-flex";
@@ -185,6 +185,81 @@
           </div>
         {% endif %}
 
+        <!-- Quiz Topic (select) -->
+        {% if quiz.topicFormat == "multiple-choice" %}
+          <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+        {% else %}
+          <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+        {% endif %}
+          <input type="hidden" name="topicSelect">
+          <div class="mdc-select__anchor"
+               role="button"
+               aria-haspopup="listbox"
+               aria-expanded="false"
+               aria-labelledby="demo-label demo-selected-text">
+            <span class="mdc-select__ripple"></span>
+            <span id="demo-label" class="mdc-floating-label">Quiz topic</span>
+            <span class="mdc-select__selected-text-container">
+              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+            </span>
+           <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5" focusable="false">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-line-ripple"></span>
+          </div>
+
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
+                <span class="mdc-deprecated-list-item__ripple"></span>
+              </li>
+              {% for gen in gens %}
+                {% for topic in gens[gen]["topics"] %}
+                  {% if quiz.topic and quiz.topic == topic %}
+                    <li class="{{gen}}-topics mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="{{topic}}" role="option">
+                  {% elif quiz.topic and quiz.gen == gen %}
+                    <li class="{{gen}}-topics mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
+                  {% else %}
+                    <li style="display: none" class="{{gen}}-topics mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
+                  {% endif %}
+                    <span class="mdc-deprecated-list-item__ripple"></span>
+                    <span class="mdc-deprecated-list-item__text">
+                      {{ topic }}
+                    </span>
+                  </li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quiz Topic (text) -->
+        {% if quiz.topicFormat == "freeform" %}
+          <label id="topic-text" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+        {% else %}
+          <label id="topic-text" style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
+        {% endif %}
+          <span class="mdc-text-field__ripple"></span>
+          <span class="mdc-floating-label" id="campaign-image-label">Quiz topic</span>
+          <input id="topic-input" value="{{ quiz.topic }}" type="text" id="topic" name="topicText" class="mdc-text-field__input" aria-labelledby="name">
+          <span class="mdc-line-ripple"></span>
+        </label>
+
         <!-- Topic Format -->
         <div id="topic-format-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
           <input type="hidden" name="topicFormatSelect">
@@ -305,86 +380,11 @@
           </div>
         </div>
 
-        <!-- Quiz Topic (select) -->
-        {% if quiz.topicFormat == "multiple-choice" %}
-          <div id="topic-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
-        {% else %}
-          <div id="topic-select" style="display: none" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
-        {% endif %}
-          <input type="hidden" name="topicSelect">
-          <div class="mdc-select__anchor"
-               role="button"
-               aria-haspopup="listbox"
-               aria-expanded="false"
-               aria-labelledby="demo-label demo-selected-text">
-            <span class="mdc-select__ripple"></span>
-            <span id="demo-label" class="mdc-floating-label">Quiz topic</span>
-            <span class="mdc-select__selected-text-container">
-              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
-            </span>
-           <span class="mdc-select__dropdown-icon">
-              <svg
-                  class="mdc-select__dropdown-icon-graphic"
-                  viewBox="7 10 10 5" focusable="false">
-                <polygon
-                    class="mdc-select__dropdown-icon-inactive"
-                    stroke="none"
-                    fill-rule="evenodd"
-                    points="7 10 12 15 17 10">
-                </polygon>
-                <polygon
-                    class="mdc-select__dropdown-icon-active"
-                    stroke="none"
-                    fill-rule="evenodd"
-                    points="7 15 12 10 17 15">
-                </polygon>
-              </svg>
-            </span>
-            <span class="mdc-line-ripple"></span>
-          </div>
-
-          <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
-            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
-              <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="" role="option">
-                <span class="mdc-deprecated-list-item__ripple"></span>
-              </li>
-              {% for gen in gens %}
-                {% for topic in gens[gen]["topics"] %}
-                  {% if quiz.topic and quiz.topic == topic %}
-                    <li class="{{gen}}-topics mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="{{topic}}" role="option">
-                  {% elif quiz.topic and quiz.gen == gen %}
-                    <li class="{{gen}}-topics mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
-                  {% else %}
-                    <li style="display: none" class="{{gen}}-topics mdc-deprecated-list-item" aria-selected="false" data-value="{{topic}}" role="option">
-                  {% endif %}
-                    <span class="mdc-deprecated-list-item__ripple"></span>
-                    <span class="mdc-deprecated-list-item__text">
-                      {{ topic }}
-                    </span>
-                  </li>
-                {% endfor %}
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-
-        <!-- Quiz Topic (text) -->
-        {% if quiz.topicFormat == "freeform" %}
-          <label id="topic-text" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-        {% else %}
-          <label id="topic-text" style="display: none" class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-        {% endif %}
-          <span class="mdc-text-field__ripple"></span>
-          <span class="mdc-floating-label" id="campaign-image-label">Quiz topic</span>
-          <input id="topic-input" value="{{ quiz.topic }}" type="text" id="topic" name="topicText" class="mdc-text-field__input" aria-labelledby="name">
-          <span class="mdc-line-ripple"></span>
-        </label>
-
         <!-- Quiz Image -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
           <span class="mdc-floating-label" id="campaign-image-label">Quiz image</span>
-          <input value="{{ quiz.image_url }}" required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
+          <input value="{{ quiz.image_url or "/static/logo.png" }}" required type="text" id="imageUrl" name="imageUrl" class="mdc-text-field__input" aria-labelledby="name">
           <span class="mdc-line-ripple"></span>
         </label>
 
