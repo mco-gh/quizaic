@@ -288,11 +288,12 @@
             </span>
             <span class="mdc-line-ripple"></span>
           </div>
-
           <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="topic format chooser">
               {% if quiz.topic_format == "freeform" %}
                 <li id="topic-format-freeform" class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="freeform" role="option">
+              {% elif quiz.generator and "freeform" in gens[quiz.generator]["topic_formats"] %}
+                <li id="topic-format-freeform" class="mdc-deprecated-list-item" aria-selected="false" data-value="freeform" role="option">
               {% else %}
                 <li id="topic-format-freeform" class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled" aria-selected="false" data-value="freeform" role="option">
               {% endif %}
@@ -303,6 +304,8 @@
               </li>
               {% if quiz.topic_format == "multiple-choice" %}
                 <li id="topic-format-multiple-choice" class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="multiple-choice" role="option">
+              {% elif quiz.generator and "multiple-choice" in gens[quiz.generator]["topic_formats"] %}
+                <li id="topic-format-multiple-choice" class="mdc-deprecated-list-item" aria-selected="false" data-value="multiple-choice" role="option">
               {% else %}
                 <li id="topic-format-multiple-choice" class="mdc-deprecated-list-item mdc-deprecated-list-item--disabled" aria-selected="false" data-value="multiple-choice" role="option">
               {% endif %}

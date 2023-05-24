@@ -13,7 +13,7 @@ class Generator:
         return self.topics
 
     def get_topic_formats(self):
-        return []
+        return ["freeform"]
 
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
