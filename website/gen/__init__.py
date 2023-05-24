@@ -7,6 +7,7 @@ generators = {
     "palm":       None, 
     "gpt":        None,
     "opentrivia": None,
+    "manual":     None,
 }
 
 class Generator:
