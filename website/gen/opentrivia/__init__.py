@@ -9,9 +9,6 @@ class Generator:
     def __str__(self):
         return "OpenTrivia quiz generator for quizrd.io"
 
-    def gen_quiz(self):
-        return "I'm a quiz made by the Open Trivia Generator."
-
     def get_topics(self, num=None):
         return self.topics
 
@@ -20,3 +17,17 @@ class Generator:
 
     def get_answer_formats(self):
         return ["multiple-choice"]
+
+    def gen_quiz(self, topic, numQuestions, numAnswers):
+        return '''[
+                    {
+                      "question":  "opentrivia question",
+                      "correct":   "opentrivia answer",
+                      "responses": [
+                                     "opentrivia answer 1",
+                                     "opentrivia answer 2",
+                                     "opentrivia answer 3",
+                                     "opentrivia answer 4"
+                                   ]
+                    }
+                  ]'''

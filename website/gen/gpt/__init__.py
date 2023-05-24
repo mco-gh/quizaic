@@ -15,5 +15,16 @@ class Generator:
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
 
-    def gen_quiz(self):
-        return "I'm a quiz made by the ChatGPT Generator."
+    def gen_quiz(self, topic, numQuestions, numAnswers):
+        return '''[ 
+                    {
+                      "question":  "gpt question",
+                      "correct":   "gpt answer",
+                      "responses": [ 
+                                     "gpt answer 1",
+                                     "gpt answer 2",
+                                     "gpt answer 3",
+                                     "gpt answer 4"
+                                   ]
+                    }
+                  ]'''

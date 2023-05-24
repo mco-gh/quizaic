@@ -160,6 +160,17 @@ def update_quiz():
 def save_quiz():
     try:
         pin = str(random.randint(1, 9999))
+        if request.form["topicFormatSelect"] == "freeform":
+          topic = request.form["topicText"]
+        else:
+          topic = request.form["topicSelect"]
+        numQuestions = request.form["numQuestions"]
+        numAnswers = request.form["numAnswers"]
+        generator = gen.Generator(request.form["generator"])
+        if generator == "manual":
+            quiz = request.form["QandA"]
+        else:
+            quiz = generator.gen_quiz(generator, numQuestions, numAnswers) 
         g.api.quizzes_post(
             {
                 "pin":          pin,
@@ -169,17 +180,17 @@ def save_quiz():
                 "generator":    request.form["generator"],
                 "topicFormat":  request.form["topicFormatSelect"],
                 "answerFormat": request.form["answerFormatSelect"],
-                "topic":        request.form["topicText"] or request.form["topicSelect"],
+                "topic":        topic,
                 "imageUrl":     request.form["imageUrl"],
-                "numQuestions": request.form["numQuestions"],
-                "numAnswers":   request.form["numAnswers"],
+                "numQuestions": numQuestions,
+                "numAnswers":   numAnswers,
                 "timeLimit":    request.form["timeLimit"],
                 "difficulty":   request.form["difficulty"],
                 "sync":         request.form["syncSelect"] == "true",
                 "anon":         request.form["anonSelect"] == "true",
                 "randomQ":      request.form["randomQSelect"] == "true",
                 "randomA":      request.form["randomASelect"] == "true",
-                "QandA":        request.form["QandA"],
+                "QandA":        quiz,
             }
         )
     except Exception as e:

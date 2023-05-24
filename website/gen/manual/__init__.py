@@ -19,4 +19,4 @@ class Generator:
         return ["freeform", "multiple-choice"]
 
     def gen_quiz(self, topic, numQuestions, numAnswers):
-        return None
+        return "[]"

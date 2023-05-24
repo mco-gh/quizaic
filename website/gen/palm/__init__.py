@@ -15,5 +15,16 @@ class Generator:
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
 
-    def gen_quiz(self):
-        return "I'm a quiz made by the Palm Generator."
+    def gen_quiz(self, topic, numQuestions, numAnswers):
+        return '''[   
+                    { 
+                      "question":  "palm question",
+                      "correct":   "palm answer",
+                      "responses": [   
+                                     "palm answer 1",
+                                     "palm answer 2",
+                                     "palm answer 3",
+                                     "palm answer 4"
+                                   ]
+                    }
+                  ]'''
