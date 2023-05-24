@@ -168,18 +168,13 @@
           </tr>
         </thead>
         <tbody class="mdc-data-table__content">
-          {% if quiz.qand_a == null %}
+          {% if quiz.qand_a == "" %}
             <tr class="mdc-data-table__row">
               <td class="mdc-data-table__cell">
                 No questions yet
               </td>
             </tr>
           {% else %}
-<!--
-            <textarea readonly rows="20" cols="80">
-{{ questions }}
-            </textarea>
--->
             {% for q in qa %}
               {% if quiz.answer_format == "freeform" %}
                 <tr class="mdc-data-table__row">

@@ -128,8 +128,6 @@ def update_quiz():
     try:
         g.api.quizzes_id_patch(quiz_id, 
             {
-                "pin":          pin,
-                "playUrl":      "/" + pin,
                 "name":         request.form["name"],
                 "description":  request.form["description"],
                 "generator":    request.form["generator"],
