@@ -1,9 +1,10 @@
 const data = document.currentScript.dataset;
 let quizid = data.quizid;
 let player = data.name;
+let async = data.async;
 console.log("player: ", player);
 console.log("quizid: ", quizid);
-console.log("qanda: ", data.qanda);
+console.log("async: ", async);
 const questions = JSON.parse(data.qanda);
 console.log("questions: ", questions);
 const timelimit = data.timelimit;
@@ -18,6 +19,7 @@ const tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 const crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 const question_text = document.querySelector(".question-text");
 const option_list = document.querySelector(".option-list");
+const freeform_response = document.querySelector(".freeform-response");
 const next_btn = document.querySelector(".next-btn");
 const scoreText = document.querySelector(".results .score-text");
 
@@ -45,7 +47,6 @@ function showNextQuestion(questionNum) {
   
   console.log("questionNum", questionNum, "questions", questions);
   document.qnum = questionNum;
-  correctAnswer = questions[questionNum].correct;
   displayQuestionCount(questionNum);
   startTimer(timelimit); //calling startTimer function
   startTimerLine(widthValue); //calling startTimerLine function
@@ -55,20 +56,59 @@ function showNextQuestion(questionNum) {
   question_text.innerHTML = question;
 
   let responses = '';
-  for (let i=0; i < questions[questionNum].responses.length; i++) {
-    let response = questions[questionNum].responses[i];
-    responses += '<div class="option"><span>' + response + "</span></div>";
-  };
+  if ("responses" in questions[questionNum]) {
+    for (let i=0; i < questions[questionNum].responses.length; i++) {
+      let response = questions[questionNum].responses[i];
+      responses += '<div class="option"><span>' + response + "</span></div>";
+    };
 
-  option_list.innerHTML = responses;
-  const options = option_list.querySelectorAll(".option");
-  for (i = 0; i < options.length; i++) {
-    options[i].qnum = questionNum;
-    options[i].addEventListener("click", optionSelected, this);
+    option_list.innerHTML = responses;
+    const options = option_list.querySelectorAll(".option");
+    for (i = 0; i < options.length; i++) {
+      options[i].qnum = questionNum;
+      options[i].addEventListener("click", optionSelected, this);
+    }
+  } else {
+    response = `
+      <form id="answer-input-form" onsubmit="return onSubmit(this)">
+        <label for="name">Your answer:</label>&nbsp;
+        <input id="answer-input" type="text" id="name" name="name"><br><br>
+        <input id="answer-input-button" class="mdc-button mdc-button--raised" type="submit" value="Submit">
+      </form>
+      <div id="answer-input-feedback" class="option disabled"></div>
+    `;
+    option_list.innerHTML = response;
   }
-
   elem = document.querySelector(".question");
   elem.classList.add("show");
+}
+
+function onSubmit() {
+  let answer_input = document.getElementById("answer-input");
+  let answer_input_feedback = document.getElementById("answer-input-feedback");
+  let userAns = answer_input.value;
+  let qnum = document.qnum;
+  let correctAns = questions[qnum].correct;
+  let feedback = "";
+  let indicator = "";
+  console.log("answer: ", userAns, "correct:", correctAns);
+  clearInterval(counter);
+  clearInterval(counterLine);
+  if (userAns == correctAns) {
+    numCorrect += 1;
+    console.log("Correct! numCorrect: ", numCorrect);
+    feedback = `<span>Well done - You guessed the correct answer!</span>` + tickIconTag;
+    answer_input_feedback.classList.add("correct");
+  } else {
+    console.log("Wrong Answer");
+    feedback = `<span>Sorry, the correct answer was ${correctAns}.</span>` + crossIconTag;
+    answer_input_feedback.classList.add("incorrect");
+  }
+  let button = document.getElementById("answer-input-button");
+  disable(button);
+  answer_input.disabled = true;
+  answer_input_feedback.innerHTML = feedback;
+  return false;
 }
 
 function optionSelected(event) {
@@ -108,7 +148,9 @@ function optionSelected(event) {
   for (i = 0; i < allOptions; i++) {
     option_list.children[i].classList.add("disabled");
   }
-  //next_btn.classList.add("show");
+  // if (quiz.async) {
+  //   next_btn.classList.add("show");
+  // };
 }
 
 function startTimer(time) {
