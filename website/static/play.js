@@ -205,7 +205,8 @@ function displayQuestionCount(qnum) {
 }
 
 next_btn.onclick = (ev) => {
-  showNextQuestion();
+  let qnum = document.qnum + 1;
+  showNextQuestion(qnum);
 }
 
 function enable(elem) {
