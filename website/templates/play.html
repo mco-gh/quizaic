@@ -79,11 +79,38 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const unsub = onSnapshot(doc(db, "QuizManagement", "{{ quiz.id }}"), (doc) => {
-            console.log("currentQuestion:", doc.data().currentQuestion)
-            showNextQuestion(doc.data().currentQuestion);
+            if (doc.data()) {
+                let question = doc.data().currentQuestion;
+                if (question == -1) {
+                    console.log("Error - Quiz not started yet");
+                }
+                if ("{{ quiz.sync }}" != "True") {
+console.log("calling getCurrentQuestion");
+                    getCurrentQuestion("{{player}}", "{{quiz.id}}")
+                    .then((question) => {
+                        console.log("CurrentQuestion:", question);
+                        showNextQuestion(question);
+                    })
+                    .catch((err) => console.log("can't get current question:", err));
+                }
+            } else {
+                console.log("Error - Quiz not started yet");
+            }
         });
 
-        async function postResults(player, quiz, answers) {
+        async function getCurrentQuestion(player, quiz) {
+            const results = collection(db, "results");
+            const q = query(results, where("player", "==", player), where("quiz", "==", quiz));
+            const snap = await getDocs(q);
+            let currentQuestion = 0;
+            snap.forEach((d) => {
+                currentQuestion = d.data().currentQuestion;
+            });
+	    console.log("marc:", currentQuestion);
+            return currentQuestion;
+        }
+
+        async function postResults(player, quiz, answers, currentQuestion) {
             const results = collection(db, "results");
             const q = query(results, where("player", "==", player), where("quiz", "==", quiz));
             const snap = await getDocs(q);
@@ -91,7 +118,7 @@
                 // doc.data() is never undefined for query doc snapshots
                 let data = d.data();
                 console.log("results id: ", d.id)
-                let docData = { answers: answers }
+                let docData = { answers: answers, currentQuestion: currentQuestion }
                 setDoc(doc(db, "results", d.id), docData,  { merge: true });
             });
         }
@@ -105,7 +132,7 @@
             snap.forEach((d) => {
                 // A results object already exists for this player/quiz combo, so reset answers.
                 found = true;
-                let docData = { answers: [] }
+                let docData = { answers: [], currentQuestion: -1 }
                 let data = d.data();
                 console.log("results id: ", d.id)
                 setDoc(doc(db, "results", d.id), docData,  { merge: true });
@@ -128,7 +155,7 @@
         link.media = "screen,print";
         document.getElementsByTagName("head")[0].appendChild(link);
     </script>
-    <script src="/static/play.js" data-quizid="{{ quiz.id }}" data-name="{{ name }}" data-timelimit="{{ quiz.time_limit }}" data-qanda="{{ quiz.qand_a }}" data-sync="{{ quiz.sync}}" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
+    <script src="/static/play.js" data-quizid="{{ quiz.id }}" data-name="{{ name }}" data-timelimit="{{ quiz.time_limit }}" data-qanda="{{ quiz.qand_a }}" data-sync="{{ quiz.sync }}" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
 
 {% endif %}
 {% endblock %}

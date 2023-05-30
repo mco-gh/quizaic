@@ -105,7 +105,6 @@ function onSubmit() {
   answer_input.disabled = true;
   answer_input_feedback.innerHTML = feedback;
   answer_input_feedback.style.display = "inline-flex";
-  console.log("sync:", sync);
   if (sync == "False") {
     console.log('show next button');
     enable(next_btn);
@@ -127,7 +126,7 @@ function optionSelected(event) {
   }
   answers.push(userAns);
   console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
-  document.postResults(player, quizid, answers);
+  document.postResults(player, quizid, answers, qnum + 1);
 
   if (userAns == correctAns) {
     numCorrect += 1;
@@ -150,6 +149,10 @@ function optionSelected(event) {
   for (i = 0; i < allOptions; i++) {
     option_list.children[i].classList.add("disabled");
   }
+  if (sync == "False") {
+    console.log('show next button');
+    enable(next_btn);
+  };
 }
 
 function startTimer(time) {
@@ -179,7 +182,7 @@ function startTimer(time) {
           answers.push("N/A");
         }
         console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
-        document.postResults(player, quizid, answers);
+        document.postResults(player, quizid, answers, document.qnum + 1);
       }
       for (i = 0; i < allOptions; i++) {
         option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
