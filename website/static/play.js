@@ -1,12 +1,8 @@
 const data = document.currentScript.dataset;
 let quizid = data.quizid;
 let player = data.name;
-let async = data.async;
-console.log("player: ", player);
-console.log("quizid: ", quizid);
-console.log("async: ", async);
+let sync = data.sync;
 const questions = JSON.parse(data.qanda);
-console.log("questions: ", questions);
 const timelimit = data.timelimit;
 
 const questionView = document.querySelector(".question");
@@ -108,6 +104,11 @@ function onSubmit() {
   disable(button);
   answer_input.disabled = true;
   answer_input_feedback.innerHTML = feedback;
+  console.log("sync:", sync);
+  if (sync == "False") {
+    console.log('show next button');
+    next_btn.classList.add("show");
+  };
   return false;
 }
 
@@ -148,9 +149,6 @@ function optionSelected(event) {
   for (i = 0; i < allOptions; i++) {
     option_list.children[i].classList.add("disabled");
   }
-  // if (quiz.async) {
-  //   next_btn.classList.add("show");
-  // };
 }
 
 function startTimer(time) {
