@@ -43,6 +43,7 @@ resource_fields = {
         "anon",
         "randomQ",
         "randomA",
+        "survey",
         "QandA",
         "runCount",
         "host",
