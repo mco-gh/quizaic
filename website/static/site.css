@@ -15,7 +15,8 @@
 **/
 
 :root {
-  --mdc-theme-primary: #306DFD;
+  /* --mdc-theme-primary: #306DFD; */
+  --mdc-theme-primary: #F68D2D;
 }
 
 /*TODO: related issue https://github.com/GoogleCloudPlatform/emblem/issues/373 */
