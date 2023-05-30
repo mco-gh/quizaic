@@ -96,9 +96,10 @@ class Quiz(ModelNormal):
             'time_limit': (str,),  # noqa: E501
             'difficulty': (str,),  # noqa: E501
             'sync': (bool, none_type,),  # noqa: E501
-            'anonymous': (bool, none_type,),  # noqa: E501
+            'anon': (bool, none_type,),  # noqa: E501
             'random_q': (bool, none_type,),  # noqa: E501
             'random_a': (bool, none_type,),  # noqa: E501
+            'survey': (bool, none_type,),  # noqa: E501
             'qand_a': (str, none_type,),  # noqa: E501
             'host': (str, none_type,),  # noqa: E501
             'active': (bool, none_type,),  # noqa: E501
@@ -129,9 +130,10 @@ class Quiz(ModelNormal):
         'time_limit': 'timeLimit',  # noqa: E501
         'difficulty': 'difficulty',  # noqa: E501
         'sync': 'sync',  # noqa: E501
-        'anonymous': 'anonymous',  # noqa: E501
+        'anon': 'anon',  # noqa: E501
         'random_q': 'randomQ',  # noqa: E501
         'random_a': 'randomA',  # noqa: E501
+        'survey': 'survey',  # noqa: E501
         'qand_a': 'QandA',  # noqa: E501
         'host': 'host',  # noqa: E501
         'active': 'active',  # noqa: E501
@@ -203,9 +205,10 @@ class Quiz(ModelNormal):
             time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
             difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
             sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
-            anonymous (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
+            anon (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
             host (str, none_type): the id of the host. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
@@ -312,9 +315,10 @@ class Quiz(ModelNormal):
             time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
             difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
             sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
-            anonymous (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
+            anon (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
             host (str, none_type): the id of the host. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501

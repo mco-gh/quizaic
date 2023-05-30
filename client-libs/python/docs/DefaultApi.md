@@ -3899,9 +3899,10 @@ with openapi_client.ApiClient(configuration) as api_client:
         time_limit="30",
         difficulty="3",
         sync=True,
-        anonymous=True,
+        anon=True,
         random_q=True,
         random_a=True,
+        survey=False,
         qand_a="qand_a_example",
         host="host_example",
         active=False,
@@ -3999,9 +4000,10 @@ with openapi_client.ApiClient(configuration) as api_client:
         time_limit="30",
         difficulty="3",
         sync=True,
-        anonymous=True,
+        anon=True,
         random_q=True,
         random_a=True,
+        survey=False,
         qand_a="qand_a_example",
         host="host_example",
         active=False,
@@ -4308,6 +4310,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     results = Results(
         quiz="quiz_example",
         player="player_example",
+        current_question=1,
         answers=[
             "answers_example",
         ],
@@ -4392,6 +4395,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     results = Results(
         quiz="quiz_example",
         player="player_example",
+        current_question=1,
         answers=[
             "answers_example",
         ],

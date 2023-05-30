@@ -84,6 +84,7 @@ class Results(ModelNormal):
             'id': (str,),  # noqa: E501
             'quiz': (str,),  # noqa: E501
             'player': (str,),  # noqa: E501
+            'current_question': (int,),  # noqa: E501
             'answers': ([str],),  # noqa: E501
         }
 
@@ -96,6 +97,7 @@ class Results(ModelNormal):
         'id': 'id',  # noqa: E501
         'quiz': 'quiz',  # noqa: E501
         'player': 'player',  # noqa: E501
+        'current_question': 'currentQuestion',  # noqa: E501
         'answers': 'answers',  # noqa: E501
     }
 
@@ -144,6 +146,7 @@ class Results(ModelNormal):
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             quiz (str): id of the quiz associated with these results. [optional]  # noqa: E501
             player (str): id or name of the player associated with these results. [optional]  # noqa: E501
+            current_question (int): for async mode, number of current question for this player/quiz. [optional]  # noqa: E501
             answers ([str]): array of responses. [optional]  # noqa: E501
         """
 
@@ -229,6 +232,7 @@ class Results(ModelNormal):
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             quiz (str): id of the quiz associated with these results. [optional]  # noqa: E501
             player (str): id or name of the player associated with these results. [optional]  # noqa: E501
+            current_question (int): for async mode, number of current question for this player/quiz. [optional]  # noqa: E501
             answers ([str]): array of responses. [optional]  # noqa: E501
         """
 
