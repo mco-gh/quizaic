@@ -48,7 +48,7 @@
 
         <li role="separator" class="mdc-list-divider"></li>
         <li class="mdc-list-item">
-          <span class="mdc-list-item__text">Topic Format / Answer Format</span>
+          <span class="mdc-list-item__text">Topic Format / Answer Format / Mode</span>
           <span class="mdc-list-item__meta">
             {% if quiz.topic_format == "freeform" %}
               freeform
@@ -60,6 +60,12 @@
               freeform
             {% else %}
               multiple choice
+            {% endif %}
+             / 
+            {% if quiz.survey %}
+              survey
+            {% else %}
+              quiz
             {% endif %}
           </span>
         </li>
