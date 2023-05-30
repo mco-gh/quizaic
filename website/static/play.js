@@ -15,7 +15,6 @@ const tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 const crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 const question_text = document.querySelector(".question-text");
 const option_list = document.querySelector(".option-list");
-const freeform_response = document.querySelector(".freeform-response");
 const next_btn = document.querySelector(".next-btn");
 const scoreText = document.querySelector(".results .score-text");
 
@@ -47,7 +46,7 @@ function showNextQuestion(questionNum) {
   startTimer(timelimit); //calling startTimer function
   startTimerLine(widthValue); //calling startTimerLine function
   timeText.textContent = "Time Left"; //change the timeText to Time Left
-  next_btn.classList.remove("show"); //hide the next button
+  disable(next_btn);
   let question = "<span>" + (questionNum+1) + ". " + questions[questionNum].question + "</span>";
   question_text.innerHTML = question;
 
@@ -71,7 +70,7 @@ function showNextQuestion(questionNum) {
         <input id="answer-input" type="text" id="name" name="name"><br><br>
         <input id="answer-input-button" class="mdc-button mdc-button--raised" type="submit" value="Submit">
       </form>
-      <div id="answer-input-feedback" class="option disabled"></div>
+      <div id="answer-input-feedback" style="display: none" class="option disabled"></div>
     `;
     option_list.innerHTML = response;
   }
@@ -90,24 +89,26 @@ function onSubmit() {
   console.log("answer: ", userAns, "correct:", correctAns);
   clearInterval(counter);
   clearInterval(counterLine);
+  let pad = "&nbsp;&nbsp;&nbsp;"
   if (userAns == correctAns) {
     numCorrect += 1;
     console.log("Correct! numCorrect: ", numCorrect);
-    feedback = `<span>Well done - You guessed the correct answer!</span>` + tickIconTag;
+    feedback = `<span>Well done - You guessed the correct answer!${pad}</span>` + tickIconTag;
     answer_input_feedback.classList.add("correct");
   } else {
     console.log("Wrong Answer");
-    feedback = `<span>Sorry, the correct answer was ${correctAns}.</span>` + crossIconTag;
+    feedback = `<span>Sorry, the correct answer was ${correctAns}.${pad}</span>` + crossIconTag;
     answer_input_feedback.classList.add("incorrect");
   }
   let button = document.getElementById("answer-input-button");
   disable(button);
   answer_input.disabled = true;
   answer_input_feedback.innerHTML = feedback;
+  answer_input_feedback.style.display = "inline-flex";
   console.log("sync:", sync);
   if (sync == "False") {
     console.log('show next button');
-    next_btn.classList.add("show");
+    enable(next_btn);
   };
   return false;
 }
