@@ -30,8 +30,6 @@ class Generator:
                     {
                       "question":  "jeopardy question",
                       "correct":   "jeopardy answer",
-                      "responses": [
-                                     "jeopardy answer 1"
-                                   ]
+                      "responses": []
                     }
                   ]'''
