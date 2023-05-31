@@ -20,16 +20,9 @@ class Generator:
         return ["freeform"]
 
     def gen_quiz(self, topic, numQuestions, numAnswers):
-        #filtered = self.db[self.db.category == topic]
-        #filtered = filtered[["question", "answer"]]
-        #filtered = filtered.rename(columns={"answer":"correct"})
-        #filtered = filtered.sample(numQuestions)
-        #filtered["responses"] = "[]"
-        #return filtered.to_json(orient="records")
-        return '''[
-                    {
-                      "question":  "jeopardy question",
-                      "correct":   "jeopardy answer",
-                      "responses": []
-                    }
-                  ]'''
+        filtered = self.db[self.db.category == topic]
+        filtered = filtered[["question", "answer"]]
+        filtered = filtered.rename(columns={"answer": "correct"})
+        filtered = filtered.sample(numQuestions)
+        filtered["responses"] = "[]"
+        return filtered.to_json(orient="records")
