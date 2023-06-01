@@ -4,7 +4,7 @@ import json
 class Generator:
     def __init__(self, root):
         self.root = root
-        self.db = pd.read_json(self.root + "/jeopardy/jeopardy.json")
+        self.db = pd.read_json(self.root + "/jeopardy/pruned_jeopardy.json")
         self.db.category = self.db.category.str.title().str.strip()
 
     def __str__(self):
