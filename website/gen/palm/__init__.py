@@ -26,35 +26,67 @@ class Generator:
         model = models[0].name
 
         prompt = f"""
-Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". I'd like {num_questions} questions and {num_answers} possible responses. Format the quiz in json document like this, with no internal single quotes or escaped double quotes and no line breaks:
+Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". I'd like {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks.
+
+An example quiz for the topic "History" might look something like this:
 
 [
-          {{
-              "question": "Question 1",
-              "correct": "response 2",
-              "responses": [
-                  "response 1",
-                  "response 2",
-                  "response 3",
-                  "response 4"
-              ]
-          }},
-          {{
-              "question": "Question 2",
-              "correct": "response 4",
-              "responses": [
-                  "response 1",
-                  "response 2",
-                  "response 3",
-                  "response 4"
-              ]
-          }},
-...
+    {{
+        "question": "Who was the first emperor of the Holy Roman Empire?",
+        "correct": "Charlemagne",
+        "responses": [
+            "Otto I",
+            "Frederick Barbarossa",
+            "Charles V",
+            "Charlemagne"
+        ]
+    }},
+    {{
+        "question": "What was the name of the English king who conquered Normandy?",
+        "correct": "William the Conqueror",
+        "responses": [
+            "Edward the Confessor",
+            "Richard I",
+            "Henry II",
+            "William the Conqueror"
+        ]
+    }},
+    {{
+        "question": "What was the name of the French revolutionary who was executed during the Reign of Terror?",
+        "correct": "Marie Antoinette",
+        "responses": [
+            "Georges Danton",
+            "Louis XVI",
+            "Marie Antoinette",
+            "Maximilien Robespierre"
+        ]
+    }},
+    {{
+        "question": "What was the name of the British prime minister who led the country during World War II?",
+        "correct": "Winston Churchill",
+        "responses": [
+            "Joseph Stalin",
+            "Adolf Hitler",
+            "Winston Churchill",
+            "Neville Chamberlain"
+        ]
+    }},
+    {{
+        "question": "What was the name of the American president who led the country during the Cold War?",
+        "correct": "Ronald Reagan",
+        "responses": [
+            "Harry S. Truman",
+            "Ronald Reagan",
+            "John F. Kennedy",
+            "Franklin D. Roosevelt"
+        ]
+    }}
+]
 ]"""
         completion = palm.generate_text(
             model=model,
             prompt=prompt,
-            temperature=.6,
+            temperature=.3,
             max_output_tokens=800,
         )
         quiz = completion.result
