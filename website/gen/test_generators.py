@@ -36,6 +36,16 @@ def test_create_opentriva_gen():
     assert(g != None)
     assert(s == "OpenTrivia quiz generator for quizrd.io")
 
+def test_create_manual_gen():
+    g = gen.Generator("manual", root=".")
+    s = str(g)
+    assert(g != None)
+    assert(s == "Manual quiz generator for quizrd.io")
+
 def test_create_unsupported_gen():
     with pytest.raises(Exception):
         g = gen.Generator("unsupported")
+
+def test_jeopardy_gen_quiz():
+    g = gen.Generator("jeopardy", root=".")
+    q = g.gen_quiz("History", 10, 1)
