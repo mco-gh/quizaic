@@ -15,35 +15,24 @@ class Generator:
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
 
-    def gen_quiz(self, topic, numQuestions, numAnswers):
+    def gen_quiz(self, topic, num_questions, num_answers):
         import pprint
         import google.generativeai as palm
         palm.configure(api_key="AIzaSyB_3DiddpC5Y53jHD3Sc_E8EWCgKwUeyNk")
         models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
         model = models[0].name
 
-        prompt = """
-Generate a trivia quiz about popular music. I'd like 10 questions, each with four multiple choice answers. One answer to each question may be funny or silly. Please format the quiz in json document like this, with no internal single quotes or escaped double quotes and no line breaks:
-
-[
-          {
-              "question": "Which band sold the most records of all time?",
-              "correct": "The Beatles",
-              "responses": [
-                  "The Rolling Stones",
-                  "The Beatles",
-                  "Oasis",
-                  "Spinal Tap"
-              ]
-          },
-          ...
-]
-"""
+        prompt = f'''
+Generate a trivia quiz about {topic} represented in json as an array of {num_questions} object, where each object contains a question string associated with key "question", a correct answer string associated with key "correct", and an array of {num_answers} multiple choice answers associated with key "responses".
+        '''
         completion = palm.generate_text(
             model=model,
             prompt=prompt,
-            temperature=0,
+            temperature=.5,
             max_output_tokens=800,
         )
+        quiz = completion.result
+        quiz = quiz.replace("```json", "")
+        quiz = quiz.replace("```", "")
 
-        return completion.result
+        return quiz
