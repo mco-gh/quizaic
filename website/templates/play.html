@@ -84,8 +84,9 @@
                 if (question == -1) {
                     console.log("Error - Quiz not started yet");
                 }
-                if ("{{ quiz.sync }}" != "True") {
-console.log("calling getCurrentQuestion");
+                if ("{{ quiz.sync }}" == "True") {
+                    showNextQuestion(question);
+                } else {
                     getCurrentQuestion("{{player}}", "{{quiz.id}}")
                     .then((question) => {
                         console.log("CurrentQuestion:", question);
