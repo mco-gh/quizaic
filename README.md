@@ -1,4 +1,4 @@
-# 💠 Emblem Giving
+# Quizrd
 
 Emblem Giving is a sample application intended to demonstrate a complex, end-to-end serverless architecture. It showcases serverless continuous delivery as a donation sample app hosted on Google Cloud.   
 
