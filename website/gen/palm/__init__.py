@@ -86,7 +86,7 @@ An example quiz for the topic "History" might look something like this:
         completion = palm.generate_text(
             model=model,
             prompt=prompt,
-            temperature=.5,
+            temperature=.75,
             max_output_tokens=800,
         )
         quiz = completion.result
