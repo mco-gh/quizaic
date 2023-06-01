@@ -170,7 +170,7 @@ def save_quiz():
         if generator == "manual":
             quiz = request.form["QandA"]
         else:
-            quiz = generator.gen_quiz(generator, numQuestions, numAnswers) 
+            quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
         g.api.quizzes_post(
             {
                 "pin":          pin,
