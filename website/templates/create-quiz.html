@@ -53,8 +53,14 @@
           let topic_text = document.getElementById("topic-text");
           let topic_input = document.getElementById("topic-input");
           let num_answers = document.getElementById("num-answers");
+          let qanda_json = document.getElementById("qanda-json");
 
           topic_input.value = "";
+          if (el.value == "manual") {
+              qanda_json.style.display = "inline-flex";
+          } else {
+              qanda_json.style.display = "none";
+          }
           if (el.value == "palm" || el.value == "gpt" || el.value == "manual") {
             mdc_topic_format_select.selectedIndex = 0;
             topic_format_freeform.classList.remove("mdc-deprecated-list-item--disabled");
@@ -641,8 +647,25 @@
           </div>
         </div>
 
+        {% if op == "Update" and quiz.generator != "manual" %}
+          <div class="mdc-form-field">
+            <div class="mdc-checkbox">
+              <input id="regen" name="regen" type="checkbox" class="mdc-checkbox__native-control" />
+              <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                  <path class="mdc-checkbox__checkmark-path" fill="none" 
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+              </div>
+              <div class="mdc-checkbox__ripple"></div>
+            </div>
+            <label for="regen">Regenerate Quiz</label>
+          </div>
+        {% endif %}
+
         <!-- Quiz Q and A -->
-        <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
+        <label id="qanda-json" style="display: none" class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
             Q&A Specification (in JSON)
           <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>

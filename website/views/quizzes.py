@@ -127,9 +127,16 @@ def update_quiz():
 
     try:
         if request.form["topicFormatSelect"] == "freeform":
-          topic_field = "topicText"
+          topic = request.form["topicText"]
         else:
-          topic_field = "topicSelect"
+          topic = request.form["topicSelect"]
+        numQuestions = request.form["numQuestions"]
+        numAnswers = request.form["numAnswers"]
+        if request.form["generator"] == "manual" or "regen" not in request.form:
+            quiz = request.form["QandA"]
+        else:
+            generator = gen.Generator(request.form["generator"])
+            quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
         g.api.quizzes_id_patch(quiz_id, 
             {
                 "name":         request.form["name"],
@@ -137,17 +144,17 @@ def update_quiz():
                 "generator":    request.form["generator"],
                 "topicFormat":  request.form["topicFormatSelect"],
                 "answerFormat": request.form["answerFormatSelect"],
-                "topic":        request.form[topic_field],
+                "topic":        topic,
                 "imageUrl":     request.form["imageUrl"],
-                "numQuestions": request.form["numQuestions"],
-                "numAnswers":   request.form["numAnswers"],
+                "numQuestions": numQuestions,
+                "numAnswers":   numAnswers,
                 "timeLimit":    request.form["timeLimit"],
                 "difficulty":   request.form["difficulty"],
                 "sync":         request.form["syncSelect"] == "true",
                 "anon":         request.form["anonSelect"] == "true",
                 "randomQ":      request.form["randomQSelect"] == "true",
                 "randomA":      request.form["randomASelect"] == "true",
-                "QandA":        request.form["QandA"],
+                "QandA":        quiz,
             }
         )
     except Exception as e:
@@ -166,10 +173,10 @@ def save_quiz():
           topic = request.form["topicSelect"]
         numQuestions = request.form["numQuestions"]
         numAnswers = request.form["numAnswers"]
-        generator = gen.Generator(request.form["generator"])
-        if generator == "manual":
+        if request.form["generator"] == "manual" :
             quiz = request.form["QandA"]
         else:
+            generator = gen.Generator(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
         g.api.quizzes_post(
             {
