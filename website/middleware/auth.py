@@ -149,7 +149,10 @@ def get_refreshed_token(refresh_token):
         return None, None
 
     id_token = updates.get("id_token")
+    increment = updates.get("expires_in")
+    if not increment:
+        increment = 0
 
-    expiration = datetime.timestamp(datetime.now()) + updates.get("expires_in")
+    expiration = datetime.timestamp(datetime.now()) + increment
 
     return id_token, expiration

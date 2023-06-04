@@ -184,7 +184,7 @@
             {% for q in qa %}
               {% if quiz.answer_format == "freeform" %}
                 <tr class="mdc-data-table__row">
-                  <td class="mdc-data-table__cell">
+                  <td style="width: 50%" class="mdc-data-table__cell">
                     {{ q.question }}
                   </td>
                   <td class="mdc-data-table__cell">
@@ -195,7 +195,7 @@
                 {% for response in q.responses %}
                   <tr class="mdc-data-table__row">
                     {% if loop.index == 1 %}
-                      <td rowspan="{{ quiz.num_answers }}" class="mdc-data-table__cell">{{ q.question }}</td>
+                      <td style="width: 50%" rowspan="{{ quiz.num_answers }}" class="mdc-data-table__cell">{{ q.question }}</td>
                     {% endif %}
                     <td class="mdc-data-table__cell">
                       {% if response == q.correct %}
