@@ -45,5 +45,5 @@ class Generator:
     def get_answer_formats(self):
         return self._gen.get_answer_formats()
 
-    def gen_quiz(self, topic, numQuestions, numAnswers):
-        return self._gen.gen_quiz(topic, numQuestions, numAnswers)
+    def gen_quiz(self, topic, num_questions, num_answers):
+        return self._gen.gen_quiz(topic, num_questions, num_answers)

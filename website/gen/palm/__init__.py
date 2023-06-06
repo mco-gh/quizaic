@@ -2,35 +2,43 @@ import json
 import pprint
 import google.generativeai as palm
 import random
+import vertexai
+from vertexai.preview.language_models import TextGenerationModel
 
 class Generator:
-    def __init__(self, root):
+    def __init__(self, root, project="cloud-llm-preview2", location="us-central1"):
         self.root = root
         self.topics = []
+        vertexai.init(project=project, location=location)
+        self.prompt = """
+Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". Generate {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks.
 
-    def __str__(self):
-        return "Palm quiz generator for quizrd.io"
+input: geography, 2 questions
+output: [
+    {{
+        "question": "What is the name of the largest continent in the world?",
+        "correct": "Asia",
+        "responses": [
+            "Antarctica",
+            "Africa",
+            "North America",
+            "Asia"
+        ]
+    }},
+    {{
+        "question": "What is the name of the largest country in the world?",
+        "correct": "Russia",
+        "responses": [
+            "Russia",
+            "India",
+            "China",
+            "United States"
+        ]
+    }}
+]
 
-    def get_topics(self, num=None):
-        return self.topics
-
-    def get_topic_formats(self):
-        return ["free-form"]
-
-    def get_answer_formats(self):
-        return ["freeform", "multiple-choice"]
-
-    def gen_quiz(self, topic, num_questions, num_answers):
-        palm.configure(api_key="AIzaSyB_3DiddpC5Y53jHD3Sc_E8EWCgKwUeyNk")
-        models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-        model = models[0].name
-
-        prompt = f"""
-Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". I'd like {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks.
-
-An example quiz for the topic "History" might look something like this:
-
-[
+input: history, 4 questions
+output: [
     {{
         "question": "Who was the first emperor of the Holy Roman Empire?",
         "correct": "Charlemagne",
@@ -70,28 +78,37 @@ An example quiz for the topic "History" might look something like this:
             "Winston Churchill",
             "Neville Chamberlain"
         ]
-    }},
-    {{
-        "question": "What was the name of the American president who led the country during the Cold War?",
-        "correct": "Ronald Reagan",
-        "responses": [
-            "Harry S. Truman",
-            "Ronald Reagan",
-            "John F. Kennedy",
-            "Franklin D. Roosevelt"
-        ]
     }}
 ]
-]"""
-        completion = palm.generate_text(
-            model=model,
-            prompt=prompt,
-            temperature=.75,
-            max_output_tokens=800,
-        )
-        quiz = completion.result
-        quiz = quiz.replace("```json", "")
-        quiz = quiz.replace("```", "")
+
+input: {topic}, {num_questions} questions
+output:
+"""
+
+    def __str__(self):
+        return "Palm quiz generator for quizrd.io"
+
+    def get_topics(self, num=None):
+        return self.topics
+
+    def get_topic_formats(self):
+        return ["free-form"]
+
+    def get_answer_formats(self):
+        return ["freeform", "multiple-choice"]
+
+    def predict_llm(self, model, temp, tokens, top_p, top_k, content, tuned_model=""):
+      m = TextGenerationModel.from_pretrained(model)
+      if tuned_model:
+          m = model.get_tuned_model(tuned_model)
+      response = m.predict(content, temperature=temp, max_output_tokens=tokens,
+          top_k=top_k, top_p=top_p)
+      return response.text
+
+    def gen_quiz(self, topic, num_questions, num_answers):
+        prompt = self.prompt.format(topic=topic, num_questions=num_questions,
+                 num_answers=num_answers)
+        quiz = self.predict_llm("text-bison@001", 0.5, 1024, 0.8, 40, prompt)
         # randomize responses
         json_quiz = json.loads(quiz)
         for i in json_quiz:
