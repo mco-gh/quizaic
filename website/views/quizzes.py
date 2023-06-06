@@ -137,7 +137,7 @@ def update_quiz():
         else:
             generator = gen.Generator(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
-        g.api.quizzes_id_patch(quiz_id, 
+        resp = g.api.quizzes_id_patch(quiz_id, 
             {
                 "name":         request.form["name"],
                 "description":  request.form["description"],
@@ -161,7 +161,7 @@ def update_quiz():
         log(f"Exception when updating a quiz: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    return redirect("/")
+    return redirect("/viewQuiz?quiz_id=" + resp.id)
 
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
@@ -178,7 +178,7 @@ def save_quiz():
         else:
             generator = gen.Generator(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
-        g.api.quizzes_post(
+        resp = g.api.quizzes_post(
             {
                 "pin":          pin,
                 "playUrl":      "/" + pin,
@@ -199,12 +199,13 @@ def save_quiz():
                 "randomA":      request.form["randomASelect"] == "true",
                 "QandA":        quiz,
             }
+        
         )
     except Exception as e:
         log(f"Exception when creating a quiz: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    return redirect("/")
+    return redirect("/viewQuiz?quiz_id=" + resp.id)
 
 
 @quizzes_bp.route("/viewQuiz", methods=["GET"])
