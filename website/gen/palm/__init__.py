@@ -6,7 +6,7 @@ import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 class Generator:
-    def __init__(self, root, project="cloud-llm-preview2", location="us-central1"):
+    def __init__(self, root, project="quizrd-prod-382117", location="us-central1"):
         self.root = root
         self.topics = []
         vertexai.init(project=project, location=location)
