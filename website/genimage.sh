@@ -1,7 +1,7 @@
 #!/bin/sh
 
-TOPIC=$1
-OUTPUT=$2
+TOPIC="$1"
+FILENAME=$(echo $2 | tr ' ' '-') 
 
 cat >image-request.json <<!EOF
 {
@@ -31,9 +31,9 @@ IMAGE_NUM=0
 IMAGE_TYPE=$(cat image-output.json | jq .predictions[$IMAGE_NUM].mimeType)
 if [ '"image/png"' = "$IMAGE_TYPE" ] ; then
     cat image-output.json | jq -r .predictions[$IMAGE_NUM].bytesBase64Encoded > t.base64
-    base64 -d -i t.base64 -o $OUTPUT.jpg
-    gsutil cp $OUTPUT.jpg gs://quizrd-img/$OUTPUT.jpg
-    gsutil acl set public-read gs://quizrd-img/$OUTPUT.jpg
+    base64 -d -i t.base64 -o $FILENAME.jpg
+    gsutil -q cp $FILENAME.jpg gs://quizrd-img/$FILENAME.jpg
+    gsutil -q acl set public-read gs://quizrd-img/$FILENAME.jpg
 else
     echo NO: IMAGE_TYPE=$IMAGE_TYPE
 fi

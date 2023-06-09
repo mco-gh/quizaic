@@ -26,6 +26,7 @@ import gen
 import json
 import random
 import re
+import subprocess
 
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
 
@@ -165,6 +166,10 @@ def update_quiz():
 
     return redirect("/viewQuiz?quiz_id=" + resp.id)
 
+def gen_image(topic, filename):
+    subprocess.call(['sh', 'genimage.sh', topic, filename])
+    return f"https://storage.googleapis.com/quizrd-img/{filename}.jpg"
+
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
     try:
@@ -204,9 +209,13 @@ def save_quiz():
             }
         
         )
+        if not request.form["imageUrl"]:
+            image_url = gen_image(topic, resp.id)
+            g.api.quizzes_id_patch(resp.id, { "imageUrl":  image_url })
     except Exception as e:
         log(f"Exception when creating a quiz: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
+
 
     return redirect("/viewQuiz?quiz_id=" + resp.id)
 
