@@ -1563,6 +1563,10 @@ components:
           type: string 
           description: integer level of difficulty (1-5)
           default: "3"
+        temperature:
+          type: string 
+          description: generator temperature (0-1.0)
+          default: ".5"
         sync:
           type: boolean
           description: is this quiz synchronous (false == asynchronous)

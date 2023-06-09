@@ -95,6 +95,7 @@ class Quiz(ModelNormal):
             'num_answers': (str,),  # noqa: E501
             'time_limit': (str,),  # noqa: E501
             'difficulty': (str,),  # noqa: E501
+            'temperature': (str,),  # noqa: E501
             'sync': (bool, none_type,),  # noqa: E501
             'anon': (bool, none_type,),  # noqa: E501
             'random_q': (bool, none_type,),  # noqa: E501
@@ -129,6 +130,7 @@ class Quiz(ModelNormal):
         'num_answers': 'numAnswers',  # noqa: E501
         'time_limit': 'timeLimit',  # noqa: E501
         'difficulty': 'difficulty',  # noqa: E501
+        'temperature': 'temperature',  # noqa: E501
         'sync': 'sync',  # noqa: E501
         'anon': 'anon',  # noqa: E501
         'random_q': 'randomQ',  # noqa: E501
@@ -204,6 +206,7 @@ class Quiz(ModelNormal):
             num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
             time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
             difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
+            temperature (str): generator temperature (0-1.0). [optional] if omitted the server will use the default value of ".5"  # noqa: E501
             sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             anon (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
@@ -314,6 +317,7 @@ class Quiz(ModelNormal):
             num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
             time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
             difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
+            temperature (str): generator temperature (0-1.0). [optional] if omitted the server will use the default value of ".5"  # noqa: E501
             sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
             anon (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
             random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
