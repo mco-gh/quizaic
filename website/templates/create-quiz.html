@@ -115,6 +115,8 @@
     <div class="emblem-new-campaign-form mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
       <form method="POST">
 
+{{quiz}}
+
         <!-- Quiz Name -->
         <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
           <span class="mdc-text-field__ripple"></span>
@@ -593,6 +595,22 @@
               {% endif %}
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">3</span>
+              </li>
+              {% if quiz.difficulty == "4" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="4" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="4" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">4</span>
+              </li>
+              {% if quiz.difficulty == "5" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="5" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="5" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">5</span>
               </li>
             </ul>
           </div>

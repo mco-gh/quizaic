@@ -39,6 +39,7 @@ resource_fields = {
         "numAnswers",
         "timeLimit",
         "difficulty",
+        "temperature",
         "sync",
         "anon",
         "randomQ",
