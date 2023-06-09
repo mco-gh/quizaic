@@ -11,7 +11,7 @@ class Generator:
         self.topics = []
         vertexai.init(project=project, location=location)
         self.prompt = """
-Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". Generate {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks.
+Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". Generate {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks. Vary the question structure and the possible responses so that there's very little repetition throughout the quiz. Avoid obvious questions, of the "Who was buried in Grant's Tomb?" variety.
 
 input: geography, 2 questions
 output: [
