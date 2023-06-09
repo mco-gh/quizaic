@@ -151,7 +151,7 @@ def update_quiz():
                 "numAnswers":   numAnswers,
                 "timeLimit":    request.form["timeLimit"],
                 "difficulty":   request.form["difficulty"],
-                "termperature": request.form["temperature"],
+                "temperature":  request.form["temperature"],
                 "sync":         request.form["syncSelect"] == "true",
                 "anon":         request.form["anonSelect"] == "true",
                 "randomQ":      request.form["randomQSelect"] == "true",
