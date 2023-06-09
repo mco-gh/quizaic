@@ -209,9 +209,12 @@ def save_quiz():
             }
         
         )
-        if not request.form["imageUrl"]:
+        if request.form["imageUrl"] == "/static/logo.png":
             image_url = gen_image(topic, resp.id)
-            g.api.quizzes_id_patch(resp.id, { "imageUrl":  image_url })
+            g.api.quizzes_id_patch(resp.id, { 
+                "name":      request.form["name"],
+                "imageUrl":  image_url
+            })
     except Exception as e:
         log(f"Exception when creating a quiz: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
