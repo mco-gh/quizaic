@@ -262,7 +262,7 @@
         </label>
 
         <!-- Topic Format -->
-        <div id="topic-format-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+        <div style="display: none" id="topic-format-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
           <input type="hidden" name="topicFormatSelect">
           <div class="mdc-select__anchor"
                role="button"
@@ -325,7 +325,7 @@
         </div>
 
         <!-- Answer Format -->
-        <div id="answer-format-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+        <div style="display: none" id="answer-format-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
           <input type="hidden" name="answerFormatSelect">
           <div class="mdc-select__anchor"
                role="button"
@@ -416,13 +416,187 @@
           <span class="mdc-line-ripple"></span>
         </label>
 
-        <!-- Quiz Difficulty Level -->
-        <label class="emblem-new-campaign-input mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-          <span class="mdc-text-field__ripple"></span>
-          <span class="mdc-floating-label" id="campaign-image-label">Difficulty level (1-5)</span>
-          <input value="{{ quiz.difficulty or 3 }}" required type="text" id="difficulty" name="difficulty" class="mdc-text-field__input" aria-labelledby="name">
-          <span class="mdc-line-ripple"></span>
-        </label>
+        <!-- Quiz Temperature -->
+        <div id="temperature-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <input type="hidden" name="temperatureSelect">
+          <div class="mdc-select__anchor"
+               role="button"
+               aria-haspopup="listbox"
+               aria-expanded="false"
+               aria-labelledby="demo-label demo-selected-text">
+            <span class="mdc-select__ripple"></span>
+            <span id="demo-label" class="mdc-floating-label">Generator Temperature (randomness 0-1.0)</span>
+            <span class="mdc-select__selected-text-container">
+              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+            </span>
+           <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5" focusable="false">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-line-ripple"></span>
+          </div>
+          <div name="temperatureSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              {% if quiz.temperature == ".1" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".1" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.1</span>
+              </li>
+              {% if quiz.temperature == ".2" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".2" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.2</span>
+              </li>
+              {% if quiz.temperature == ".3" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".3" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.3</span>
+              </li>
+              {% if quiz.temperature == ".4" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".4" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.4</span>
+              </li>
+              {% if quiz.temperature == ".5" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".5" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.5</span>
+              </li>
+              {% if quiz.temperature == ".6" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".6" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.6</span>
+              </li>
+              {% if quiz.temperature == ".7" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".7" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.7</span>
+              </li>
+              {% if quiz.temperature == ".8" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".8" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.8</span>
+              </li>
+              {% if quiz.temperature == ".9" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".9" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">.9</span>
+              </li>
+              {% if quiz.temperature == "1.0" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="1.0" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">1.0</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quiz Difficulty -->
+        <div id="difficulty-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
+          <input type="hidden" name="syncSelect">
+          <div class="mdc-select__anchor"
+               role="button"
+               aria-haspopup="listbox"
+               aria-expanded="false"
+               aria-labelledby="demo-label demo-selected-text">
+            <span class="mdc-select__ripple"></span>
+            <span id="demo-label" class="mdc-floating-label">Difficulty Level</span>
+            <span class="mdc-select__selected-text-container">
+              <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+            </span>
+           <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5" focusable="false">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-line-ripple"></span>
+          </div>
+          <div name="difficultySelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              {% if quiz.difficulty == "1" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="1" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="true" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">1</span>
+              </li>
+              {% if quiz.difficulty == "2" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="2" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">2</span>
+              </li>
+              {% if quiz.difficulty == "3" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="3" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="false" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">3</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
         <!-- Quiz Synchronicity -->
         <div id="sync-select" class="emblem-new-campaign-input mdc-select mdc-select--required mdc-select--filled">
