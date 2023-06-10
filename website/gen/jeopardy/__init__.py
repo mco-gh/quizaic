@@ -23,6 +23,13 @@ class Generator:
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
         filtered = self.db.loc[self.db["category"] == topic]
+        if difficulty <= 2:
+            round = "Jeopardy!"
+        elif difficulty <= 4:
+            round = "Double Jeopardy!"
+        else:
+            round = "Final Jeopardy!"
+        filtered = self.db.loc[self.db["round"] == round]
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer": "correct"})
         filtered = filtered.sample(numQuestions)
