@@ -3,12 +3,7 @@
 .travis.yml
 README.md
 docs/Admin.md
-docs/Approver.md
-docs/Campaign.md
-docs/Cause.md
 docs/DefaultApi.md
-docs/Donation.md
-docs/Donor.md
 docs/Generator.md
 docs/Host.md
 docs/Player.md
@@ -24,11 +19,6 @@ openapi_client/configuration.py
 openapi_client/exceptions.py
 openapi_client/model/__init__.py
 openapi_client/model/admin.py
-openapi_client/model/approver.py
-openapi_client/model/campaign.py
-openapi_client/model/cause.py
-openapi_client/model/donation.py
-openapi_client/model/donor.py
 openapi_client/model/generator.py
 openapi_client/model/host.py
 openapi_client/model/player.py

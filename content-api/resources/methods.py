@@ -53,20 +53,6 @@ resource_fields = {
     ],
     "results": ["quiz", "player", "answers"],
     "generators": ["name"],
-    # legacy emblem support follows...
-    "approvers": ["name", "email", "active"],
-    "campaigns": [
-        "name",
-        "description",
-        "cause",
-        "managers",
-        "goal",
-        "imageUrl",
-        "active",
-    ],
-    "causes": ["name", "description", "imageUrl", "active"],
-    "donations": ["campaign", "donor", "amount"],
-    "donors": ["name", "email", "mailing_address"],
 }
 
 

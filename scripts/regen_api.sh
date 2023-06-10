@@ -10,5 +10,5 @@ rm -rf client-libs
 cp -r ../client-libs .
 pip install -r requirements.txt
 pwd
-rm ../openapitools.json
+rm -f ../openapitools.json
 openapi-generator-cli version-manager set 5.2.1

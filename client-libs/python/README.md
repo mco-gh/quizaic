@@ -51,11 +51,6 @@ import openapi_client
 from pprint import pprint
 from openapi_client.api import default_api
 from openapi_client.model.admin import Admin
-from openapi_client.model.approver import Approver
-from openapi_client.model.campaign import Campaign
-from openapi_client.model.cause import Cause
-from openapi_client.model.donation import Donation
-from openapi_client.model.donor import Donor
 from openapi_client.model.generator import Generator
 from openapi_client.model.host import Host
 from openapi_client.model.player import Player
@@ -102,33 +97,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**admins_id_get**](docs/DefaultApi.md#admins_id_get) | **GET** /admins/{id} | returns a single admin
 *DefaultApi* | [**admins_id_patch**](docs/DefaultApi.md#admins_id_patch) | **PATCH** /admins/{id} | updates a single admin
 *DefaultApi* | [**admins_post**](docs/DefaultApi.md#admins_post) | **POST** /admins | Create a new admin
-*DefaultApi* | [**approvers_get**](docs/DefaultApi.md#approvers_get) | **GET** /approvers | Returns a list of approvers
-*DefaultApi* | [**approvers_id_delete**](docs/DefaultApi.md#approvers_id_delete) | **DELETE** /approvers/{id} | deletes a single approver
-*DefaultApi* | [**approvers_id_get**](docs/DefaultApi.md#approvers_id_get) | **GET** /approvers/{id} | returns a single approver
-*DefaultApi* | [**approvers_id_patch**](docs/DefaultApi.md#approvers_id_patch) | **PATCH** /approvers/{id} | updates a single approver
-*DefaultApi* | [**approvers_post**](docs/DefaultApi.md#approvers_post) | **POST** /approvers | Create a new approver
-*DefaultApi* | [**campaigns_get**](docs/DefaultApi.md#campaigns_get) | **GET** /campaigns | Returns a list of campaigns
-*DefaultApi* | [**campaigns_id_delete**](docs/DefaultApi.md#campaigns_id_delete) | **DELETE** /campaigns/{id} | deletes a single campaign
-*DefaultApi* | [**campaigns_id_donations_get**](docs/DefaultApi.md#campaigns_id_donations_get) | **GET** /campaigns/{id}/donations | lists all donations for the specified campaign
-*DefaultApi* | [**campaigns_id_get**](docs/DefaultApi.md#campaigns_id_get) | **GET** /campaigns/{id} | returns a single campaign
-*DefaultApi* | [**campaigns_id_patch**](docs/DefaultApi.md#campaigns_id_patch) | **PATCH** /campaigns/{id} | updates a single campaign
-*DefaultApi* | [**campaigns_post**](docs/DefaultApi.md#campaigns_post) | **POST** /campaigns | Create a new campaign
-*DefaultApi* | [**causes_get**](docs/DefaultApi.md#causes_get) | **GET** /causes | Returns a list of causes
-*DefaultApi* | [**causes_id_delete**](docs/DefaultApi.md#causes_id_delete) | **DELETE** /causes/{id} | deletes a single cause
-*DefaultApi* | [**causes_id_get**](docs/DefaultApi.md#causes_id_get) | **GET** /causes/{id} | returns a single cause
-*DefaultApi* | [**causes_id_patch**](docs/DefaultApi.md#causes_id_patch) | **PATCH** /causes/{id} | updates a single cause
-*DefaultApi* | [**causes_post**](docs/DefaultApi.md#causes_post) | **POST** /causes | Create a new cause
-*DefaultApi* | [**donations_get**](docs/DefaultApi.md#donations_get) | **GET** /donations | Returns a list of donations
-*DefaultApi* | [**donations_id_delete**](docs/DefaultApi.md#donations_id_delete) | **DELETE** /donations/{id} | deletes a single donation
-*DefaultApi* | [**donations_id_get**](docs/DefaultApi.md#donations_id_get) | **GET** /donations/{id} | returns a single donation
-*DefaultApi* | [**donations_id_patch**](docs/DefaultApi.md#donations_id_patch) | **PATCH** /donations/{id} | updates a single donation
-*DefaultApi* | [**donations_post**](docs/DefaultApi.md#donations_post) | **POST** /donations | Create a new donation
-*DefaultApi* | [**donors_get**](docs/DefaultApi.md#donors_get) | **GET** /donors | Returns a list of donors
-*DefaultApi* | [**donors_id_delete**](docs/DefaultApi.md#donors_id_delete) | **DELETE** /donors/{id} | deletes a single donor
-*DefaultApi* | [**donors_id_donations_get**](docs/DefaultApi.md#donors_id_donations_get) | **GET** /donors/{id}/donations | lists all donations for the specified donor
-*DefaultApi* | [**donors_id_get**](docs/DefaultApi.md#donors_id_get) | **GET** /donors/{id} | returns a single donor
-*DefaultApi* | [**donors_id_patch**](docs/DefaultApi.md#donors_id_patch) | **PATCH** /donors/{id} | updates a single donor
-*DefaultApi* | [**donors_post**](docs/DefaultApi.md#donors_post) | **POST** /donors | Create a new donor or update existing donor with matching email address. Email address should uniquely specify a donor.
 *DefaultApi* | [**generators_get**](docs/DefaultApi.md#generators_get) | **GET** /generators | Returns a list of generators
 *DefaultApi* | [**generators_id_delete**](docs/DefaultApi.md#generators_id_delete) | **DELETE** /generators/{id} | deletes a single generator
 *DefaultApi* | [**generators_id_get**](docs/DefaultApi.md#generators_id_get) | **GET** /generators/{id} | returns a single generator
@@ -159,11 +127,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Admin](docs/Admin.md)
- - [Approver](docs/Approver.md)
- - [Campaign](docs/Campaign.md)
- - [Cause](docs/Cause.md)
- - [Donation](docs/Donation.md)
- - [Donor](docs/Donor.md)
  - [Generator](docs/Generator.md)
  - [Host](docs/Host.md)
  - [Player](docs/Player.md)
