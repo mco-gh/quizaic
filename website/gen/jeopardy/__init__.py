@@ -19,7 +19,7 @@ class Generator:
     def get_answer_formats(self):
         return ["freeform"]
 
-    def gen_quiz(self, topic, numQuestions, numAnswers=1):
+    def gen_quiz(self, topic, numQuestions, numAnswers=1, difficulty=3, temperature=None):
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
         filtered = self.db.loc[self.db["category"] == topic]

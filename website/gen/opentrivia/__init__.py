@@ -18,7 +18,7 @@ class Generator:
     def get_answer_formats(self):
         return ["multiple-choice"]
 
-    def gen_quiz(self, topic, numQuestions, numAnswers):
+    def gen_quiz(self, topic, numQuestions, numAnswers, difficulty=3, temperature=None):
         return '''[
                     {
                       "question":  "opentrivia question",

@@ -11,7 +11,7 @@ class Generator:
         self.topics = []
         vertexai.init(project=project, location=location)
         self.prompt = """
-Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". Generate {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks. Vary the question structure and the possible responses so that there's very little repetition throughout the quiz. Avoid obvious questions, of the "Who was buried in Grant's Tomb?" variety.
+Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". The difficulty level should be {difficulty} on a 1-5 scale, where 1 is easiest and 5 is most difficult. Generate {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks. Vary the question structure and the possible responses so that there's very little repetition throughout the quiz. Avoid obvious questions, of the "Who was buried in Grant's Tomb?" variety.
 
 input: geography, 2 questions
 output: [
@@ -105,10 +105,12 @@ output:
           top_k=top_k, top_p=top_p)
       return response.text
 
-    def gen_quiz(self, topic, num_questions, num_answers):
-        prompt = self.prompt.format(topic=topic, num_questions=num_questions,
-                 num_answers=num_answers)
-        quiz = self.predict_llm("text-bison@001", 0.5, 1024, 0.8, 40, prompt)
+    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
+        prompt = self.prompt.format(topic=topic,
+            num_questions=num_questions,
+            num_answers=num_answers,
+            difficulty=difficulty)
+        quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
         # randomize responses
         json_quiz = json.loads(quiz)
         for i in json_quiz:

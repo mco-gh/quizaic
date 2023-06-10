@@ -451,6 +451,14 @@
           </div>
           <div name="temperatureSelect" class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-deprecated-list" role="listbox" aria-label="generator chooser">
+              {% if quiz.temperature == ".0" %}
+                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="0" role="option">
+              {% else %}
+                <li class="mdc-deprecated-list-item" aria-selected="false" data-value="0.0" role="option">
+              {% endif %}
+                <span class="mdc-deprecated-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__text">0</span>
+              </li>
               {% if quiz.temperature == ".1" %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".1" role="option">
               {% else %}
@@ -483,7 +491,7 @@
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">.4</span>
               </li>
-              {% if quiz.temperature == ".5" %}
+              {% if quiz.temperature == ".5" or not quiz.temperature %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value=".5" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value=".5" role="option">
@@ -586,7 +594,7 @@
                 <span class="mdc-deprecated-list-item__ripple"></span>
                 <span class="mdc-deprecated-list-item__text">2</span>
               </li>
-              {% if quiz.difficulty == "3" %}
+              {% if quiz.difficulty == "3" or not quiz.difficulty %}
                 <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected" aria-selected="true" data-value="3" role="option">
               {% else %}
                 <li class="mdc-deprecated-list-item" aria-selected="false" data-value="3" role="option">

@@ -134,11 +134,13 @@ def update_quiz():
           topic = request.form["topicSelect"]
         numQuestions = request.form["numQuestions"]
         numAnswers = request.form["numAnswers"]
+        difficulty = request.form["difficulty"]
+        temperature = request.form["temperature"]
         if request.form["generator"] == "manual" or "regen" not in request.form:
             quiz = request.form["QandA"]
         else:
             generator = gen.Generator(request.form["generator"])
-            quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
+            quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         resp = g.api.quizzes_id_patch(quiz_id, 
             {
                 "name":         request.form["name"],
@@ -151,8 +153,8 @@ def update_quiz():
                 "numQuestions": numQuestions,
                 "numAnswers":   numAnswers,
                 "timeLimit":    request.form["timeLimit"],
-                "difficulty":   request.form["difficulty"],
-                "temperature":  request.form["temperature"],
+                "difficulty":   difficulty,
+                "temperature":  temperature,
                 "sync":         request.form["syncSelect"] == "true",
                 "anon":         request.form["anonSelect"] == "true",
                 "randomQ":      request.form["randomQSelect"] == "true",
@@ -180,11 +182,13 @@ def save_quiz():
           topic = request.form["topicSelect"]
         numQuestions = request.form["numQuestions"]
         numAnswers = request.form["numAnswers"]
+        difficulty = request.form["difficulty"]
+        temperature = request.form["temperature"]
         if request.form["generator"] == "manual" :
             quiz = request.form["QandA"]
         else:
             generator = gen.Generator(request.form["generator"])
-            quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers)) 
+            quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         resp = g.api.quizzes_post(
             {
                 "pin":          pin,
@@ -198,9 +202,9 @@ def save_quiz():
                 "imageUrl":     request.form["imageUrl"],
                 "numQuestions": numQuestions,
                 "numAnswers":   numAnswers,
+                "difficulty":   difficulty,
+                "temperature":  temperature,
                 "timeLimit":    request.form["timeLimit"],
-                "difficulty":   request.form["difficulty"],
-                "temperature":  request.form["temperature"],
                 "sync":         request.form["syncSelect"] == "true",
                 "anon":         request.form["anonSelect"] == "true",
                 "randomQ":      request.form["randomQSelect"] == "true",
