@@ -37,3 +37,4 @@ if [ '"image/png"' = "$IMAGE_TYPE" ] ; then
 else
     echo NO: IMAGE_TYPE=$IMAGE_TYPE
 fi
+rm -f image-request.json image-output.json t.base64 $FILENAME.jpg
