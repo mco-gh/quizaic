@@ -29,7 +29,7 @@ class Generator:
             round = "Double Jeopardy!"
         else:
             round = "Final Jeopardy!"
-        filtered = self.db.loc[self.db["round"] == round]
+        filtered = filtered[self.db["round"] == round]
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer": "correct"})
         filtered = filtered.sample(numQuestions)
