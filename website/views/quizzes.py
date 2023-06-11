@@ -211,8 +211,8 @@ def save_quiz():
                 "randomA":      request.form["randomASelect"] == "true",
                 "QandA":        quiz,
             }
-        
         )
+
         if request.form["imageUrl"] == "/static/logo.png":
             image_url = gen_image(topic, resp.id)
             g.api.quizzes_id_patch(resp.id, { 
