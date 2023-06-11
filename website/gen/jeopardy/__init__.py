@@ -25,11 +25,13 @@ class Generator:
         filtered = self.db.loc[self.db["category"] == topic]
         round1 = "Jeopardy!"
         round2 = "Double Jeopardy!"
+        round3 = "Final Jeopardy!"
         value1 = f"${difficulty * 100}"
         value2 = f"${difficulty * 200}"
         filtered = filtered.loc[
             (filtered["round"] == round1) & (filtered["value"] == value1) |
-            (filtered["round"] == round2) & (filtered["value"] == value2)
+            (filtered["round"] == round2) & (filtered["value"] == value2) |
+            (filtered["round"] == round3) & (difficulty == 5)
         ]
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer": "correct"})
