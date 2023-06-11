@@ -29,10 +29,10 @@ class Generator:
             round = "Double Jeopardy!"
         else:
             round = "Final Jeopardy!"
-        filtered = filtered[self.db["round"] == round]
+        filtered = filtered.loc[self.db["round"] == round]
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer": "correct"})
         filtered = filtered.sample(numQuestions)
         if numQuestions < len(filtered.index):
             filtered = filtered.sample(n=numQuestions)
-        return filtered.to_json(orient="records")
+        return filtered.to_json(orient="records", indent=4)
