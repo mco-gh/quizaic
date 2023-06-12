@@ -1,5 +1,7 @@
 import glob
 
+# https://opentdb.com/
+
 class Generator:
     def __init__(self, root):
         self.root = root
