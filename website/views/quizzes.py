@@ -190,7 +190,6 @@ def save_quiz():
             generator = gen.Generator(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         creator = g.session_data.get("email")
-        print("creator:", creator)
         resp = g.api.quizzes_post(
             {
                 "creator":      creator,
