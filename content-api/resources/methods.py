@@ -46,7 +46,6 @@ resource_fields = {
         "survey",
         "QandA",
         "runCount",
-        "host",
         "active",
         "results",
     ],
@@ -56,9 +55,6 @@ resource_fields = {
 
 
 # List all entities of the given resource_kind, if allowed,
-# UNLESS the resource_kind is "donations". In that case, either
-# list all donations (if the user is an approver) or only the
-# authenticated user's donations
 def list(resource_kind):
     log(f"Request to list {resource_kind}", severity="INFO")
     if resource_kind not in resource_fields:
@@ -67,36 +63,17 @@ def list(resource_kind):
     if not auth.allowed("GET", resource_kind):
         return "Forbidden", 403
 
-    # Listing donations or donors are allowed for all,
-    # but for non-approvers only a subset should return
-    if resource_kind not in ["donations", "donors"]:
-        # Already checked that this is allowed, so return all items
+    # Anyone can list quizzes and generators.
+    if resource_kind in ["quizzes", "generators"]:
         results = db.list(resource_kind, resource_fields[resource_kind])
 
-    elif auth.user_is_approver(g.verified_email):
-        # Approvers get all donors or donations, no matter what
-        results = db.list(resource_kind, resource_fields[resource_kind])
-
+    # Only admins can list admins and results.
+    elif resource_kind in ["admins", "results"]:
+        if auth.user_is_admin(g.verified_email):
+            # Must be an admin to list admins or results.
+            results = db.list(resource_kind, resource_fields[resource_kind])
     else:
-        # The verified user should see only their own records
-        matching_donors = db.list_matching(
-            "donors", resource_fields["donors"], "email", g.verified_email
-        )
-
-        if resource_kind == "donors":
-            results = matching_donors
-        else:
-            # Find the donations matching the donors just found. Ideally,
-            # one email address should match at most one donor, but more
-            # are possible
-            matching_donor_ids = set([donor["id"] for donor in matching_donors])
-
-            # If we knew there was only one donor_id, then we could use
-            # list_matching here instead of getting all then filtering.
-            all_donations = db.list("donations", resource_fields["donations"])
-            results = [
-                item for item in all_donations if item["donor"] in matching_donor_ids
-            ]
+        return "Forbidden", 403
 
     return json.dumps(results), 200, {"Content-Type": "application/json"}
 
@@ -112,7 +89,7 @@ def list_subresource(resource_kind, id, subresource_kind):
     # Only match subresources that match the resource
     match_field = resource_kind[:-1]  # Chop off the "s" to get the field name
 
-    # e.g, fetch donations whose campaign/donor field matches the campaign's/donor's id
+    # e.g, fetch quizzes whose quiz/creator field matches the quiz/creator id
     matching_children = db.list_matching(
         subresource_kind,
         resource_fields[subresource_kind],
@@ -122,19 +99,19 @@ def list_subresource(resource_kind, id, subresource_kind):
 
     email = g.verified_email
 
-    if auth.user_is_approver(email):
+    if auth.user_is_admin(email):
         return json.dumps(matching_children), 200, {"Content-Type": "application/json"}
 
-    if resource_kind == "campaigns" and auth.user_is_manager(email, id):
+    if resource_kind == "quizzes" and auth.user_is_creator(email, id):
         return json.dumps(matching_children), 200, {"Content-Type": "application/json"}
 
-    matching_donors = db.list_matching(
-        "donors", resource_fields["donors"], "email", email
-    )
-    matching_donor_ids = set([donor["id"] for donor in matching_donors])
-    results = [
-        item for item in matching_children if item["donor"] in matching_donor_ids
-    ]
+    #matching_donors = db.list_matching(
+        #"donors", resource_fields["donors"], "email", email
+    #)
+    #matching_donor_ids = set([donor["id"] for donor in matching_donors])
+    #results = [
+        #item for item in matching_children if item["donor"] in matching_donor_ids
+    #]
 
     return json.dumps(results), 200, {"Content-Type": "application/json"}
 
@@ -162,57 +139,9 @@ def insert(resource_kind, representation):
     if not auth.allowed("POST", resource_kind, representation):
         return "Forbidden", 403
 
-    if resource_kind == "donors":  # Special case: enforce unique email
-        if "email" not in representation:
-            return "Bad request", 400
-
-        matches = db.list_matching(
-            "donors", resource_fields["donors"], "email", representation["email"]
-        )
-        if len(matches) == 0:
-            resource = db.insert(
-                resource_kind, representation, resource_fields[resource_kind]
-            )
-        else:  # Should be exactly one. If more, just take the first
-            donor_id = matches[0]["id"]
-            resource, status = db.update(
-                "donors", donor_id, representation, resource_fields["donors"], None
-            )
-            if status != 200:
-                return resource, status
-
-        return (
-            json.dumps(resource),
-            201,
-            {
-                "Content-Type": "application/json",
-                "ETag": base.etag(resource),
-            },
-        )
-
-    if resource_kind == "donations":  # Special case: enforce referential integrity
-        if (
-            representation.get("campaign") is None
-            or representation.get("donor") is None
-        ):
-            return "Bad request", 400
-
-        _, status, _ = get("donors", representation["donor"])
-        if status != 200:
-            return "Not found", 404
-
-        _, status, _ = get("campaigns", representation["campaign"])
-        if status != 200:
-            return "Not found", 404
-
-        resource = db.insert(
-            resource_kind, representation, resource_fields[resource_kind]
-        )
-
-    else:
-        resource = db.insert(
-            resource_kind, representation, resource_fields[resource_kind]
-        )
+    resource = db.insert(
+        resource_kind, representation, resource_fields[resource_kind]
+    )
 
     return (
         json.dumps(resource),

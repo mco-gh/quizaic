@@ -20,6 +20,12 @@ from resources import methods
 from data import cloud_firestore as db
 
 
+def user_logged_in():
+    return True
+
+def user_created_quiz(user, quiz):
+    return True
+
 def user_is_admin(email):
     if email is None:
         return False
@@ -28,42 +34,39 @@ def user_is_admin(email):
     )
     return len(matching_admins) > 0
 
-
 def allowed(operation, resource_kind, representation=None):
     email = g.get("verified_email", None)
 
     # Check for everything requiring auth and handle
 
     is_admin = user_is_admin(email)
-    is_host = user_is_host(email, "any")
 
     # Admins (and only admins) can do any operation on the admins collection.
     if resource_kind == "admins":
         return is_admin
 
     if resource_kind == "quizzes":
-        # Must be an admin or a host to create a quiz.
+        # Must be logged in to create a quiz.
         if operation == "POST":
-            return is_admin or is_host
-        # Must be an admin or the host associated with a quiz
-        # to modify, or delete a quiz.
+            return user_logged_in()
+        # Must be an admin or quiz creator to modify or delete a quiz.
         if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
-            id = path_parts[1]
-            return is_admin or user_created_quiz(email, id)
+            quiz = path_parts[1]
+            return is_admin or user_created_quiz(email, quiz)
         # Anyone can read all quiz records (even unauthenticated players).
         if operation == "GET":
             return True
         return False
 
     if resource_kind == "results":
-        # Must be an admin or quiz host to do anything with results.
+        # Must be an admin or quiz creator to do anything with results.
         # Posting results by a player for a given quiz is done
         # directly from the web client to firestore.
         if operation in ["POST", "PATCH", "GET", "DELETE"]:
             path_parts = request.path.split("/")
-            id = path_parts[1]
-            return is_admin or user_is_host(email, id)
+            quiz = path_parts[1]
+            return is_admin or user_created_quiz(email, quiz)
         return False
 
     if resource_kind == "generators":
