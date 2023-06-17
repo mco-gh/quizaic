@@ -23,8 +23,6 @@ from utils.logging import log
 
 resource_fields = {
     "admins": ["name", "email"],
-    "hosts": ["name", "email"],
-    "players": ["name", "email"],
     "quizzes": [
         "pin",
         "playUrl",

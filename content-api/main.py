@@ -52,8 +52,6 @@ propagate.set_global_textmap(
 trace.set_tracer_provider(provider)
 
 resource = [
-    "players",
-    "hosts",
     "admins",
     "quizzes",
     "results",

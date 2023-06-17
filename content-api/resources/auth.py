@@ -19,14 +19,6 @@ from main import g, request
 from resources import methods
 from data import cloud_firestore as db
 
-# legecy emblem support
-def user_is_approver(email):
-    return True
-def user_is_manager(email, campaign_id):
-    return True
-def user_is_donor(email, donor_id):
-    return True
-# end of legecy emblem support
 
 def user_is_admin(email):
     if email is None:
@@ -37,79 +29,17 @@ def user_is_admin(email):
     return len(matching_admins) > 0
 
 
-def user_is_host(email, quiz_id):
-    if email is None:
-        return False
-    if quiz_id == "any":
-        matching_hosts = db.list_matching(
-            "hosts", methods.resource_fields["hosts"], "email", email
-        )
-        return len(matching_hosts) > 0
-    quiz = db.fetch("quizzes", quiz_id, methods.resource_fields["quizzes"])
-    if quiz is None or quiz.get("host") is None:
-        return False
-    return quiz.get("host") == email
-
-
-def user_is_player(email, player_id):
-    if email is None:
-        return False
-    if player_id == "any":
-        matching_players = db.list_matching(
-            "players", methods.resource_fields["players"], "email", email
-        )
-        return len(matching_players) > 0
-    player = db.fetch("players", player_id, methods.resource_fields["players"])
-    if player is None or player.get("email") is None:
-        return False
-    return player.get("email") == email
-
-
 def allowed(operation, resource_kind, representation=None):
     email = g.get("verified_email", None)
-
-    # legacy requests get carte blanche
-    if (resource_kind == "approvers" or
-       resource_kind == "campaigns" or
-       resource_kind == "causes" or
-       resource_kind == "donations" or
-       resource_kind == "donors"):
-      return True
 
     # Check for everything requiring auth and handle
 
     is_admin = user_is_admin(email)
     is_host = user_is_host(email, "any")
-    
+
     # Admins (and only admins) can do any operation on the admins collection.
     if resource_kind == "admins":
         return is_admin
-
-    if resource_kind == "hosts":
-        # Any admin or authenticated user can create a host record for themself
-        if operation == "POST":
-            host_email = representation.get("email")
-            return is_admin or host_email == email
-        # A host record can be read, updated, or deleted only by the
-        # host associated with that record or an admin.
-        if operation in ["GET", "PATCH", "DELETE"]:
-            path_parts = request.path.split("/")
-            id = path_parts[1]
-            return is_admin or user_is_host(email, id)
-        return False
-
-    if resource_kind == "players":
-        # Any authenticated user can create a player record for themself
-        if operation == "POST":
-            player_email = representation.get("email")
-            return is_admin or player_email == email
-        # A player record can be read, updated, or deleted only by the
-        # player associated with that record or an admin.
-        if operation in ["GET", "PATCH", "DELETE"]:
-            path_parts = request.path.split("/")
-            id = path_parts[1]
-            return is_admin or user_is_player(email, id)
-        return False
 
     if resource_kind == "quizzes":
         # Must be an admin or a host to create a quiz.
@@ -120,14 +50,21 @@ def allowed(operation, resource_kind, representation=None):
         if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             id = path_parts[1]
-            return is_admin or user_is_host(email, id)
-        # Anyone can read all quiz records (for unauthenticated players).
+            return is_admin or user_created_quiz(email, id)
+        # Anyone can read all quiz records (even unauthenticated players).
         if operation == "GET":
             return True
         return False
 
     if resource_kind == "results":
-        return True
+        # Must be an admin or quiz host to do anything with results.
+        # Posting results by a player for a given quiz is done
+        # directly from the web client to firestore.
+        if operation in ["POST", "PATCH", "GET", "DELETE"]:
+            path_parts = request.path.split("/")
+            id = path_parts[1]
+            return is_admin or user_is_host(email, id)
+        return False
 
     if resource_kind == "generators":
         # Must be an admin to do anything with generators
