@@ -27,6 +27,7 @@
     "collection": "quizzes",
     "id": "12343afa140f40ff9e70",
     "data": {
+      "creator": "marcacohen@gmail.com",
       "pin": "0",
       "playUrl": "https://quizrd.io/0",
       "name": "Audience Survey",
@@ -47,7 +48,6 @@
       "randomA": true,
       "survey": true,
       "runCount": 17,
-      "host": "1b271fa397f14c2b9582",
       "active": false,
       "QandA": [
 	{
@@ -107,6 +107,7 @@
     "collection": "quizzes",
     "id": "f7723afa140f40ff9e70",
     "data": {
+      "creator": "marcacohen@gmail.com",
       "pin": "1",
       "playUrl": "https://quizrd.io/1",
       "name": "US History Quiz",
@@ -127,7 +128,6 @@
       "randomA": true,
       "survey": false,
       "runCount": 17,
-      "host": "1b271fa397f14c2b9582",
       "active": false,
       "QandA": [
           {
@@ -149,6 +149,7 @@
     "collection": "quizzes",
     "id": "6e4f3afa140f40ff9e70",
     "data": {
+      "creator": "marcacohen@gmail.com",
       "pin": "5",
       "playUrl": "https://quizrd.io/5",
       "name": "Who Wrote It?",
@@ -169,7 +170,6 @@
       "randomA": true,
       "survey": false,
       "runCount": 17,
-      "host": "1b271fa397f14c2b9582",
       "active": false,
       "QandA": [
 {
@@ -279,6 +279,7 @@
     "collection": "quizzes",
     "id": "078ba4bfce324ced8586",
     "data": {
+      "creator": "marcacohen@gmail.com",
       "pin": "2",
       "playUrl": "https://quizrd.io/2",
       "name": "Rock and Roll!",
@@ -299,7 +300,6 @@
       "randomA": true,
       "survey": false,
       "runCount": 2,
-      "host": "1b271fa397f14c2b9582",
       "active": false,
       "QandA": [
           {
@@ -329,6 +329,7 @@
     "collection": "quizzes",
     "id": "d5816cdf8b3949429c23",
     "data": {
+      "creator": "marcacohen@gmail.com",
       "pin": "3",
       "playUrl": "https://quizrd.io/3",
       "name": "Cat Trivia by حسین رضایی",
@@ -349,7 +350,6 @@
       "randomA": true,
       "survey": false,
       "runCount": 23,
-      "host": "1b271fa397f14c2b9582",
       "active": false,
       "QandA": [
           {
@@ -379,6 +379,7 @@
     "collection": "quizzes",
     "id": "Gc34g8db0wCrroLUxJeA",
     "data": {
+      "creator": "marcacohen@gmail.com",
       "pin": "4",
       "playUrl": "https://quizrd.io/4",
       "name": "Pop Music",
@@ -399,7 +400,6 @@
       "randomA": true,
       "survey": false,
       "runCount": 23,
-      "host": "1b271fa397f14c2b9582",
       "active": false,
       "QandA": [
   {
