@@ -18,7 +18,8 @@ cat >request-$FILENAME.json <<!EOF
 }
 !EOF
 
-PROJECT_ID=cloud-llm-preview2
+#PROJECT_ID=cloud-llm-preview2
+PROJECT_ID=quizrd-prod-382117
 
 curl -s -X POST \
     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
