@@ -11,7 +11,5 @@
 
 from openapi_client.model.admin import Admin
 from openapi_client.model.generator import Generator
-from openapi_client.model.host import Host
-from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
 from openapi_client.model.results import Results

@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **random_a** | **bool, none_type** | whether to present answers in random order | [optional]  if omitted the server will use the default value of True
 **survey** | **bool, none_type** | whether this quiz is an info gathering survey | [optional]  if omitted the server will use the default value of False
 **qand_a** | **str, none_type** | json string representation of questions, correct answers, and options | [optional] 
-**host** | **str, none_type** | the id of the host | [optional] 
+**creator** | **str, none_type** | the identity of the quiz creator | [optional] 
 **active** | **bool, none_type** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False
 **run_count** | **int, none_type** | number of times quiz has been run | [optional] 
 **time_created** | **datetime** | system-assigned creation timestamp | [optional] [readonly] 

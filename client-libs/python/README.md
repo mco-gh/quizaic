@@ -52,8 +52,6 @@ from pprint import pprint
 from openapi_client.api import default_api
 from openapi_client.model.admin import Admin
 from openapi_client.model.generator import Generator
-from openapi_client.model.host import Host
-from openapi_client.model.player import Player
 from openapi_client.model.quiz import Quiz
 from openapi_client.model.results import Results
 # Defining the host is optional and defaults to https://example.com
@@ -102,16 +100,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**generators_id_get**](docs/DefaultApi.md#generators_id_get) | **GET** /generators/{id} | returns a single generator
 *DefaultApi* | [**generators_id_patch**](docs/DefaultApi.md#generators_id_patch) | **PATCH** /generators/{id} | updates a single generator
 *DefaultApi* | [**generators_post**](docs/DefaultApi.md#generators_post) | **POST** /generators | Create a new generator
-*DefaultApi* | [**hosts_get**](docs/DefaultApi.md#hosts_get) | **GET** /hosts | Returns a list of hosts
-*DefaultApi* | [**hosts_id_delete**](docs/DefaultApi.md#hosts_id_delete) | **DELETE** /hosts/{id} | deletes a single host
-*DefaultApi* | [**hosts_id_get**](docs/DefaultApi.md#hosts_id_get) | **GET** /hosts/{id} | returns a single host
-*DefaultApi* | [**hosts_id_patch**](docs/DefaultApi.md#hosts_id_patch) | **PATCH** /hosts/{id} | updates a single host
-*DefaultApi* | [**hosts_post**](docs/DefaultApi.md#hosts_post) | **POST** /hosts | Create a new host
-*DefaultApi* | [**players_get**](docs/DefaultApi.md#players_get) | **GET** /players | Returns a list of players
-*DefaultApi* | [**players_id_delete**](docs/DefaultApi.md#players_id_delete) | **DELETE** /players/{id} | deletes a single player
-*DefaultApi* | [**players_id_get**](docs/DefaultApi.md#players_id_get) | **GET** /players/{id} | returns a single player
-*DefaultApi* | [**players_id_patch**](docs/DefaultApi.md#players_id_patch) | **PATCH** /players/{id} | updates a single player
-*DefaultApi* | [**players_post**](docs/DefaultApi.md#players_post) | **POST** /players | Create a new player
 *DefaultApi* | [**quizzes_get**](docs/DefaultApi.md#quizzes_get) | **GET** /quizzes | Returns a list of quizzes
 *DefaultApi* | [**quizzes_id_delete**](docs/DefaultApi.md#quizzes_id_delete) | **DELETE** /quizzes/{id} | deletes a single quiz
 *DefaultApi* | [**quizzes_id_get**](docs/DefaultApi.md#quizzes_id_get) | **GET** /quizzes/{id} | returns a single quiz
@@ -128,8 +116,6 @@ Class | Method | HTTP request | Description
 
  - [Admin](docs/Admin.md)
  - [Generator](docs/Generator.md)
- - [Host](docs/Host.md)
- - [Player](docs/Player.md)
  - [Quiz](docs/Quiz.md)
  - [Results](docs/Results.md)
 

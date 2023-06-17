@@ -102,7 +102,7 @@ class Quiz(ModelNormal):
             'random_a': (bool, none_type,),  # noqa: E501
             'survey': (bool, none_type,),  # noqa: E501
             'qand_a': (str, none_type,),  # noqa: E501
-            'host': (str, none_type,),  # noqa: E501
+            'creator': (str, none_type,),  # noqa: E501
             'active': (bool, none_type,),  # noqa: E501
             'run_count': (int, none_type,),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
@@ -137,7 +137,7 @@ class Quiz(ModelNormal):
         'random_a': 'randomA',  # noqa: E501
         'survey': 'survey',  # noqa: E501
         'qand_a': 'QandA',  # noqa: E501
-        'host': 'host',  # noqa: E501
+        'creator': 'creator',  # noqa: E501
         'active': 'active',  # noqa: E501
         'run_count': 'runCount',  # noqa: E501
         'time_created': 'timeCreated',  # noqa: E501
@@ -213,7 +213,7 @@ class Quiz(ModelNormal):
             random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
             survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
-            host (str, none_type): the id of the host. [optional]  # noqa: E501
+            creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             run_count (int, none_type): number of times quiz has been run. [optional]  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
@@ -324,7 +324,7 @@ class Quiz(ModelNormal):
             random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
             survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
-            host (str, none_type): the id of the host. [optional]  # noqa: E501
+            creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
             run_count (int, none_type): number of times quiz has been run. [optional]  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
