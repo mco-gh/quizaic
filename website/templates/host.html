@@ -365,6 +365,17 @@
         elem.style.display = "none";
     }
 
+    async function incrementRunCount() {
+        const docRef = doc(db, "quizzes", "{{quiz.id}}");
+        const docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+            console.log("Error, no such quiz: ", "{{quiz.id}}");
+            return;
+        }
+        let docData = { runCount: docSnap.data().runCount + 1}
+        setDoc(doc(db, "quizzes", "{{quiz.id}}"), docData, { merge: true });
+    }
+
     async function removeResults() {
         const results = collection(db, "results");
         const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
@@ -377,6 +388,7 @@
 
     async function startQuiz() {
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
+        incrementRunCount();
         removeResults();
         disable("start-button");
         enable("stop-button");

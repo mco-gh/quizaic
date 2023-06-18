@@ -195,6 +195,7 @@ def save_quiz():
                 "creator":      creator,
                 "pin":          pin,
                 "playUrl":      "/" + pin,
+                "run_count":    0,
                 "name":         request.form["name"],
                 "description":  request.form["description"],
                 "generator":    request.form["generator"],
