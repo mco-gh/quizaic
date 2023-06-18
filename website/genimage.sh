@@ -1,9 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 
-TOPIC="$1"
-FILENAME=$(echo $2 | tr ' ' '-') 
+set -x
 
-cat >request-$FILENAME.json <<!EOF
+#export PROJECT=cloud-llm-preview2
+export PROJECT=quizrd-prod-382117
+export REGION=us-central1
+export MODEL=imagegeneration
+export URL="https://us-central1-aiplatform.googleapis.com"
+export URLPATH="/v1/projects/$PROJECT/locations/$REGION/publishers/google/models/$MODEL:predict"
+
+export TOPIC="$1"
+export FILE="$(echo $2 | tr ' ' '-')"
+
+if [ "$KSERVICE" = "" ]
+then
+    export TOKEN=$(gcloud auth print-access-token)
+else
+    export TOKEN=$(curl "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=$URL" -H "Metadata-Flavor: Google")
+fi
+
+cat >request-$FILE.json <<!EOF
 {
     "instances": [
         {
@@ -18,23 +34,21 @@ cat >request-$FILENAME.json <<!EOF
 }
 !EOF
 
-#PROJECT_ID=cloud-llm-preview2
-PROJECT_ID=quizrd-prod-382117
-
-curl -s -X POST \
-    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+curl -X POST \
+    -H "Authorization: Bearer $TOKEN" \
     -H "Content-Type: application/json; charset=utf-8" \
-    -d @request-$FILENAME.json \
-    "https://us-central1-aiplatform.googleapis.com/v1/projects/$PROJECT_ID/locations/us-central1/publishers/google/models/imagegeneration:predict" \
-    > output-$FILENAME.json
+    -d @request-$FILE.json \
+    "$URL/$URLPATH" \
+    > output-$FILE.json
 
 IMAGE_NUM=0
-IMAGE_TYPE=$(cat output-$FILENAME.json | jq .predictions[$IMAGE_NUM].mimeType)
-if [ '"image/png"' = "$IMAGE_TYPE" ] ; then
-    cat output-$FILENAME.json | jq -r .predictions[$IMAGE_NUM].bytesBase64Encoded > $FILENAME.base64
-    base64 -d -i $FILENAME.base64 -o $FILENAME.jpg
-    gsutil -q cp -a public-read $FILENAME.jpg gs://quizrd-img/$FILENAME.jpg
+IMAGE_TYPE=$(cat output-$FILE.json | jq .predictions[$IMAGE_NUM].mimeType)
+if [ '"image/png"' = "$IMAGE_TYPE" ]
+then
+    cat output-$FILE.json | jq -r .predictions[$IMAGE_NUM].bytesBase64Encoded > $FILE.base64
+    base64 -d -i $FILE.base64 -o $FILE.jpg
+    gsutil -q cp -a public-read $FILE.jpg gs://quizrd-img/$FILE.jpg
 else
-    echo NO: IMAGE_TYPE=$IMAGE_TYPE
+    echo Error: IMAGE_TYPE=$IMAGE_TYPE
 fi
-rm -f request-$FILENAME.json output-$FILENAME.json $FILENAME.base64 $FILENAME.jpg
+rm -f request-$FILE.json output-$FILE.json $FILE.base64 $FILE.jpg

@@ -31,6 +31,8 @@ COPY requirements.txt ./
 COPY client-libs client-libs/
 
 # Install production dependencies.
+RUN apt-get update
+RUN apt-get install -y curl jq
 RUN pip install -r requirements.txt
 
 # Copy local code to the container image.

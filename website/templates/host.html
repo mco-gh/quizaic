@@ -29,33 +29,39 @@
       <span class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
         <h2>You are hosting quiz "{{ quiz.name }}", pin {{ pin }}</h2>
         <h2>Current question: <span id="current-question">N/A</span></h2>
-        <a onclick="document.startQuiz()" class="mdc-button mdc-button--raised">
+        <a id="start-button" onclick="document.startQuiz()" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__label">Start</span>
         </a>
-        <a onclick="document.stopQuiz()" class="mdc-button mdc-button--raised">
+        <a id="stop-button" onclick="document.stopQuiz()" style="display: none" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__label">Stop</span>
         </a>
-        <a onclick="document.incrementQuiz()" class="mdc-button mdc-button--raised">
+        <a id="next-button" style="display: none" onclick="document.incrementQuiz()" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__label">Next</span>
         </a>
+        <a id="reveal-button" style="display: none" onclick="document.revealResults()" class="mdc-button mdc-button--raised">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__label">Reveal</span>
+        </a>
         <br><br><br><br>
-        <div style="margin-left: -200px; height: 1000px; width: 1000px">
+        <div id="results-summary" style="margin-left: -200px; height: 1000px; width: 1000px">
           <canvas id="myChart"></canvas>
         </div>
       </span>
-      <span class="leaderboard">
-        <h1>
-          <svg class="ico-cup">
-            <use xlink:href="#cup"></use>
-          </svg>
-          Top Scorers
-        </h1>
-        <ol>
-        </ol>
-      </span>
+      <div id="leaderboard" style="display: none">
+        <span class="leaderboard">
+          <h1>
+            <svg class="ico-cup">
+              <use xlink:href="#cup"></use>
+            </svg>
+            Top Scorers
+          </h1>
+          <ol>
+          </ol>
+        </span>
+      </div>
     </span>
   </span>
 
@@ -334,6 +340,16 @@
         }
     });
 
+    function enable(id) {
+        let elem = document.getElementById(id);
+        elem.style.display = "inline-flex";
+    }
+
+    function disable(id) {
+        let elem = document.getElementById(id);
+        elem.style.display = "none";
+    }
+
     async function startQuiz() {
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
         const results = collection(db, "results");
@@ -343,10 +359,24 @@
             console.log("doc.ref:", d.ref);
             deleteDoc(d.ref);
         });
+        disable("start-button");
+        enable("stop-button");
+        enable("reveal-button");
+        disable("next-button");
+        disable("results-summary");
+        disable("leaderboard");
+        document.startPolling()
     };
 
     async function stopQuiz() {
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: -1 });
+        enable("start-button");
+        disable("stop-button");
+        disable("reveal-button");
+        disable("next-button");
+        disable("results-summary");
+        enable("leaderboard");
+        document.stopPolling()
     }
 
     async function incrementQuiz() {
@@ -354,13 +384,39 @@
         const snap = await getDoc(docRef);
         let num = snap.data().currentQuestion + 1;
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: num });
+        enable("reveal-button");
+        disable("next-button");
+        disable("results-summary");
+        disable("leaderboard");
+        document.startPolling()
+    }
+
+    async function revealResults() {
+        const docRef = doc(db, "QuizManagement", "{{ quiz.id }}");
+        const snap = await getDoc(docRef);
+        let num = snap.data().currentQuestion + 1;
+        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: num });
+        disable("reveal-button");
+        enable("next-button");
+        enable("results-summary");
+        enable("leaderboard");
+        document.stopPolling()
+    }
+
+    function startPolling() {
+        document.interval = setInterval(getResults, 1000);
+    }
+
+    function stopPolling() {
+        clearInterval(document.interval);
     }
 
     document.startQuiz = startQuiz;
     document.stopQuiz = stopQuiz;
     document.incrementQuiz = incrementQuiz;
-
-    setInterval(getResults, 1000);
+    document.revealResults = revealResults;
+    document.startPolling = startPolling;
+    document.stopPolling = stopPolling;
 
     function resetLeaderboard(leaders) {
         let entries = Object.entries(leaders);
