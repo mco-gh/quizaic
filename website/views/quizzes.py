@@ -33,7 +33,6 @@ quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
 @quizzes_bp.route("/")
 def list_quizzes():
     current_user = None
-
     if g.session_data:
         current_user = g.session_data.get("email")
 
@@ -49,7 +48,6 @@ def list_quizzes():
 @quizzes_bp.route("/createQuiz", methods=["GET"])
 def new_quiz():
     current_user = None
-
     if g.session_data:
         current_user = g.session_data.get("email")
 
@@ -78,7 +76,6 @@ def new_quiz():
 @quizzes_bp.route("/editQuiz", methods=["GET"])
 def edit_quiz():
     current_user = None
-
     if g.session_data:
         current_user = g.session_data.get("email")
 
@@ -232,6 +229,10 @@ def save_quiz():
 
 @quizzes_bp.route("/viewQuiz", methods=["GET"])
 def webapp_view_quiz():
+    current_user = None
+    if g.session_data:
+        current_user = g.session_data.get("email")
+
     quiz_id = request.args.get("quiz_id")
 
     if quiz_id is None:
@@ -252,13 +253,11 @@ def webapp_view_quiz():
 
     qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
-    return render_template("view-quiz.html", quiz=quiz_instance, qa=qa, questions=questions)
+    return render_template("view-quiz.html", current_user=current_user, quiz=quiz_instance, qa=qa, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
 def start(pin):
     current_user = None
-    log(f"pin: {pin}")
-
     if g.session_data:
         current_user = g.session_data.get("email")
 
@@ -282,8 +281,6 @@ def start(pin):
 @quizzes_bp.route("/playQuiz/<int:pin>", methods=["POST"])
 def play(pin):
     current_user = None
-    log(f"pin: {pin}")
-
     if g.session_data:
         current_user = g.session_data.get("email")
 

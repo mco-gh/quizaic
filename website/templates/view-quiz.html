@@ -114,6 +114,7 @@
           </span>
         </li>
 
+      {% if current_user %}
       <span>
         <a href="/deleteQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
@@ -134,6 +135,7 @@
           <span class="mdc-button__label">Manage Quiz</span>
         </a>
       </span>
+      {% endif %}
     </div>
   </div>
 
