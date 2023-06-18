@@ -27,10 +27,10 @@
     <span class="mdc-layout-grid__inner">
       <span class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></span>
       <span class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-        <h2>You are hosting quiz "{{ quiz.name }}" 
+        <h2>You are hosting quiz "{{ quiz.name }}" (pin {{quiz.pin}}) 
         <h2><span id="current-question">Quiz not running</span></h2>
         <h2 id="players-answered" style="display: none"></h2>
-        <h2>pin {{ pin }}, url <a href="https://quizrd.io/{{pin}}">quizrd.io/{{pin}}</a></h2>
+        <h2>URL: <a href="https://quizrd.io/{{pin}}">quizrd.io/{{pin}}</a></h2>
         <a id="start-button" onclick="document.startQuiz()" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__label">Start</span>
@@ -341,12 +341,11 @@
                 suffix = "";
             }
             console.log("respCount:", document.responseCount, "suffix:", suffix)
-            elem.textContent = "Question " + 
-                                (document.currentQuestion + 1) +
-                                " of {{ quiz.num_questions }}, " +
-                                document.responseCount +
-                                " response" + suffix + " from " +
-                                document.playerCount + " players";
+            let responseCount = document.responseCount || 0;
+            let playerCount = document.playerCount || 0;
+            elem.textContent = "Question " + (document.currentQuestion + 1) +
+                               " of {{ quiz.num_questions }}, " + responseCount +
+                               " response" + suffix + " from " + playerCount + " players";
         }
     }
 
@@ -408,6 +407,10 @@
         const docRef = doc(db, "QuizManagement", "{{ quiz.id }}");
         const snap = await getDoc(docRef);
         let num = snap.data().currentQuestion + 1;
+        if (num >= {{ quiz.num_questions }}) {
+            stopQuiz();
+            return;
+        }
         document.responseCount = 0;
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: num });
         enable("reveal-button");

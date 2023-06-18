@@ -23,11 +23,10 @@
     <!-- Quiz overview (top left quadrant) -->
     <div class="emblem-campaign-overview mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
       <div class="emblem-campaign-image" style="max-width: 250px; height: 150px; border-radius: 5px; background-image: url({{ quiz.image_url }}); background-size: cover;"></div>
-      <h2>{{ quiz.name }}</h2>
+      <h2>{{ quiz.name }} (pin: {{quiz.pin}})</h2>
       <p>{{ quiz.description }}</p>
       <p>This quiz has been run {{ quiz.run_count }} times.</p>
-      <p>URL for playing this quiz: <strong><a href="{{ quiz.play_url }}" target="_blank">{{ quiz.play_url }}</a></strong>
-      <p>PIN for playing this quiz: <strong>{{ quiz.pin }}</strong></span>
+      <p>URL for playing this quiz: <strong><a href="{{ quiz.play_url }}" target="_blank">quizrd.io{{ quiz.play_url }}</a></strong>
       </li>
     </div>
     <!-- Quiz info (top right quadrant) -->
