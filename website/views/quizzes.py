@@ -51,27 +51,45 @@ def new_quiz():
     if g.session_data:
         current_user = g.session_data.get("email")
 
-    empty_quiz = {
-        "name": "",
-        "description": "",
-        "generator": "",
-        "topic_format": "",
-        "answer_format": "",
-        "topic": "",
-        "image_url": "",
-        "num_questions": "",
-        "num_answers": "",
-        "time_limit": "",
-	"difficulty": "",
-	"temperature": "",
-        "sync": "",
-	"anon": "",
-	"random_q": "",
-	"random_a": "",
-        "qand_a": "",
-    };
+    quiz_id = request.args.get("quiz_id")
+    if quiz_id:
+        try:
+            quiz_instance = g.api.quizzes_id_get(quiz_id)
+            quiz_instance["formattedDateCreated"] = convert_utc(
+                quiz_instance.time_created
+            )
+            quiz_instance["formattedDateUpdated"] = convert_utc(
+                quiz_instance.updated
+            )
+            qa = json.loads(quiz_instance.qand_a)
+            questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
+        except Exception as e:
+            log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
+            return render_template("errors/403.html"), 403
+    else:
+        quiz_instance = {
+            "name": "",
+            "description": "",
+            "generator": "",
+            "topic_format": "",
+            "answer_format": "",
+            "topic": "",
+            "image_url": "",
+            "num_questions": "",
+            "num_answers": "",
+            "time_limit": "",
+	    "difficulty": "",
+	    "temperature": "",
+            "sync": "",
+	    "anon": "",
+	    "random_q": "",
+	    "random_a": "",
+            "qand_a": "",
+        };
+        qa = None
+        questions = None
     gens = gen.Generator.get_gens()
-    return render_template("create-quiz.html", op="Create", quiz=empty_quiz, current_user=current_user, gens=gens)
+    return render_template("create-quiz.html", op="Create", quiz=quiz_instance, current_user=current_user, questions=questions, qa=qa, gens=gens)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])
 def edit_quiz():
@@ -80,7 +98,6 @@ def edit_quiz():
         current_user = g.session_data.get("email")
 
     quiz_id = request.args.get("quiz_id")
-
     if quiz_id is None:
         log(f"/editQuiz is missing quiz_id", severity="ERROR")
         return render_template("errors/500.html"), 500

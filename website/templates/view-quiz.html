@@ -34,7 +34,7 @@
       <ul class="mdc-list">
         <li class="mdc-list-item">
           <span class="mdc-list-item__text">Status</span>
-          <span class="mdc-list-item__meta">{{ 'Active' if quiz.active else 'Closed' }}</span>
+          <span class="mdc-list-item__meta">{{ 'Active' if quiz.active else 'Not running' }}</span>
         </li>
 
         <li role="separator" class="mdc-list-divider"></li>
@@ -130,9 +130,16 @@
       </span>
 
       <span>
+        <a href="/createQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
+          <span class="mdc-button__ripple"></span>
+          <span class="mdc-button__label">Clone Quiz</span>
+        </a>
+      </span>
+
+      <span>
         <a href="/host/{{ quiz.pin }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
-          <span class="mdc-button__label">Manage Quiz</span>
+          <span class="mdc-button__label">Run Quiz</span>
         </a>
       </span>
       {% endif %}
