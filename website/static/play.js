@@ -34,6 +34,7 @@ function showNextQuestion(questionNum) {
     console.log("Quiz not started");
   } else if (questionNum == 0) {
     console.log("first question of a quiz so creating or resetting results for player " + player + " and quiz " + quizid + ".")
+    answers = [];
     document.resetResults(player, quizid);
   } else if (questionNum >= questions.length) {
     showResults();

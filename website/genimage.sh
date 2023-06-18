@@ -12,7 +12,7 @@ export URLPATH="/v1/projects/$PROJECT/locations/$REGION/publishers/google/models
 export TOPIC="$1"
 export FILE="$(echo $2 | tr ' ' '-')"
 
-if [ "$KSERVICE" = "" ]
+if [ "$K_SERVICE" = "" ]
 then
     export TOKEN=$(gcloud auth print-access-token)
 else

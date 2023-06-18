@@ -27,8 +27,10 @@
     <span class="mdc-layout-grid__inner">
       <span class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></span>
       <span class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-        <h2>You are hosting quiz "{{ quiz.name }}", pin {{ pin }}</h2>
-        <h2>Current question: <span id="current-question">N/A</span></h2>
+        <h2>You are hosting quiz "{{ quiz.name }}" 
+        <h2><span id="current-question">Quiz not running</span></h2>
+        <h2 id="players-answered" style="display: none"></h2>
+        <h2>pin {{ pin }}, url <a href="https://quizrd.io/{{pin}}">quizrd.io/{{pin}}</a></h2>
         <a id="start-button" onclick="document.startQuiz()" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__label">Start</span>
@@ -50,7 +52,7 @@
           <canvas id="myChart"></canvas>
         </div>
       </span>
-      <div id="leaderboard" style="display: none">
+      <div id="leaderboard" style="width: 400px; display: none">
         <span class="leaderboard">
           <h1>
             <svg class="ico-cup">
@@ -93,7 +95,7 @@
 <style>
 .leaderboard {
   float: right;
-  width: 400px;
+  width: 100%;
   height: 400px;
   background: #F68d2D;
   border-radius: 10px;
@@ -329,15 +331,29 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    function show_quiz_status() {
+        let elem = document.getElementById("current-question");
+        if (document.currentQuestion < 0) {
+            elem.textContent = "Quiz not running";
+        } else {
+            let suffix = "s";
+            if (document.responseCount == 1) {
+                suffix = "";
+            }
+            console.log("respCount:", document.responseCount, "suffix:", suffix)
+            elem.textContent = "Question " + 
+                                (document.currentQuestion + 1) +
+                                " of {{ quiz.num_questions }}, " +
+                                document.responseCount +
+                                " response" + suffix + " from " +
+                                document.playerCount + " players";
+        }
+    }
+
     const unsub = onSnapshot(doc(db, "QuizManagement", "{{ quiz.id }}"), (doc) => {
         console.log("currentQuestion:", doc.data().currentQuestion);
         document.currentQuestion = doc.data().currentQuestion;
-        let elem = document.getElementById("current-question");
-        if (document.currentQuestion < 0) {
-            elem.textContent = "N/A";
-        } else {
-            elem.textContent = doc.data().currentQuestion + 1;
-        }
+        show_quiz_status();
     });
 
     function enable(id) {
@@ -350,8 +366,7 @@
         elem.style.display = "none";
     }
 
-    async function startQuiz() {
-        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
+    async function removeResults() {
         const results = collection(db, "results");
         const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
         const snap = await getDocs(q);
@@ -359,17 +374,26 @@
             console.log("doc.ref:", d.ref);
             deleteDoc(d.ref);
         });
+    }
+
+    async function startQuiz() {
+        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
+        removeResults();
         disable("start-button");
         enable("stop-button");
         enable("reveal-button");
         disable("next-button");
         disable("results-summary");
         disable("leaderboard");
+        document.playerCount = 0;
+        document.responseCount = 0;
+        show_quiz_status();
         document.startPolling()
     };
 
     async function stopQuiz() {
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: -1 });
+        removeResults();
         enable("start-button");
         disable("stop-button");
         disable("reveal-button");
@@ -377,12 +401,14 @@
         disable("results-summary");
         enable("leaderboard");
         document.stopPolling()
+        show_quiz_status();
     }
 
     async function incrementQuiz() {
         const docRef = doc(db, "QuizManagement", "{{ quiz.id }}");
         const snap = await getDoc(docRef);
         let num = snap.data().currentQuestion + 1;
+        document.responseCount = 0;
         await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: num });
         enable("reveal-button");
         disable("next-button");
@@ -392,10 +418,6 @@
     }
 
     async function revealResults() {
-        const docRef = doc(db, "QuizManagement", "{{ quiz.id }}");
-        const snap = await getDoc(docRef);
-        let num = snap.data().currentQuestion + 1;
-        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: num });
         disable("reveal-button");
         enable("next-button");
         enable("results-summary");
@@ -404,7 +426,7 @@
     }
 
     function startPolling() {
-        document.interval = setInterval(getResults, 1000);
+        document.interval = setInterval(getResults, 500);
     }
 
     function stopPolling() {
@@ -451,13 +473,22 @@
         const snap = await getDocs(q);
         let counters = {};
         let leaders = {};
+        let responseCount = 0;
+        let playerCount = 0;
         snap.forEach((d) => {
+            playerCount++;
+            document.playerCount = playerCount;
             let data = d.data();
             let player = data.player;
             let answers = data.answers;
             console.log("player:", player, "answers:", answers);
             let currentPlayerScore = 0;
             for (let i=0; i < answers.length; i++) {
+              console.log("i: ", i, "curQ: ", document.currentQuestion);
+              if (i == document.currentQuestion) {
+                responseCount++;
+                document.responseCount = responseCount;
+              }
               if (answers[i] == correct[i]) {
                 currentPlayerScore++;
               }
@@ -474,6 +505,7 @@
         console.log("leaders: ", leaders);
         console.log("counters: ", counters);
         resetLeaderboard(leaders);
+        show_quiz_status();
         graph(Object.keys(counters), Object.values(counters))
     }   
 
