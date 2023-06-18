@@ -19,6 +19,12 @@
   --mdc-theme-primary: #F68D2D;
 }
 
+@media (max-width: 700px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
 /*TODO: related issue https://github.com/GoogleCloudPlatform/emblem/issues/373 */
 th, 
 td, 
