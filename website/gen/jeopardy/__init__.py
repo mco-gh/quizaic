@@ -19,7 +19,7 @@ class Generator:
     def get_answer_formats(self):
         return ["freeform"]
 
-    def gen_quiz(self, topic, numQuestions, numAnswers=1, difficulty=3, temperature=None):
+    def gen_quiz(self, topic, num_questions, num_answers=1, difficulty=3, temperature=None):
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
         filtered = self.db.loc[self.db["category"] == topic]
@@ -35,7 +35,7 @@ class Generator:
         ]
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer": "correct"})
-        filtered = filtered.sample(numQuestions)
-        if numQuestions < len(filtered.index):
-            filtered = filtered.sample(n=numQuestions)
+        filtered = filtered.sample(num_questions)
+        if num_questions < len(filtered.index):
+            filtered = filtered.sample(n=num_questions)
         return filtered.to_json(orient="records", indent=4)

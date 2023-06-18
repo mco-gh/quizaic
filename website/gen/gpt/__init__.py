@@ -15,7 +15,7 @@ class Generator:
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
 
-    def gen_quiz(self, topic, numQuestions, numAnswers, difficulty=3, temperature=.5):
+    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
         return '''[ 
                     {
                       "question":  "gpt question",

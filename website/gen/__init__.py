@@ -5,7 +5,6 @@ import os
 generators = {
     "jeopardy":   None,
     "palm":       None, 
-    "gpt":        None,
     "opentrivia": None,
     "manual":     None,
 }

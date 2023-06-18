@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 #export PROJECT=cloud-llm-preview2
 export PROJECT=quizrd-prod-382117
 export REGION=us-central1
