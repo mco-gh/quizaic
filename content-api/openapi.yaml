@@ -556,9 +556,9 @@ components:
       - name
       properties:
         curQuestion:
-          type: string
+          type: integer
           description: current question number for active quiz or -1 for inactive 
-          default: "-1"
+          default: -1
         id:
           type: string
           readOnly: true
@@ -655,8 +655,8 @@ components:
           default: false
         runCount:
           type: integer
-          nullable: true
           description: number of times quiz has been run
+          default: 0
         timeCreated:
           type: string
           format: date-time
