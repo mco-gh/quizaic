@@ -349,9 +349,10 @@
         }
     }
 
-    const unsub = onSnapshot(doc(db, "QuizManagement", "{{ quiz.id }}"), (doc) => {
-        console.log("currentQuestion:", doc.data().currentQuestion);
-        document.currentQuestion = doc.data().currentQuestion;
+    const unsub = onSnapshot(doc(db, "quizzes", "{{ quiz.id }}"), (doc) => {
+        console.log("currentQuestion:", doc.data().curQuestion);
+        document.currentQuestion = parseInt(doc.data().curQuestion);
+        console.log("doc.curQ:", document.currentQuestion)
         show_quiz_status();
     });
 
@@ -373,8 +374,8 @@
             return;
         }
         let run_count = parseInt(docSnap.data().runCount) + 1
-        let docData = { runCount: run_count.toString() }
-        setDoc(doc(db, "quizzes", "{{quiz.id}}"), docData, { merge: true });
+        let docData = {runCount: run_count.toString()};
+        await setDoc(doc(db, "quizzes", "{{quiz.id}}"), docData, { merge: true });
     }
 
     async function removeResults() {
@@ -388,7 +389,8 @@
     }
 
     async function startQuiz() {
-        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: 0 });
+        let docData = {curQuestion: "0"};
+        await setDoc(doc(db, "quizzes", "{{ quiz.id }}"), docData, {merge: true});
         incrementRunCount();
         removeResults();
         disable("start-button");
@@ -404,7 +406,8 @@
     };
 
     async function stopQuiz() {
-        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: -1 });
+        let docData = {curQuestion: "-1"};
+        await setDoc(doc(db, "quizzes", "{{ quiz.id }}"), docData, {merge: true});
         removeResults();
         enable("start-button");
         disable("stop-button");
@@ -417,15 +420,18 @@
     }
 
     async function incrementQuiz() {
-        const docRef = doc(db, "QuizManagement", "{{ quiz.id }}");
+        const docRef = doc(db, "quizzes", "{{ quiz.id }}");
         const snap = await getDoc(docRef);
-        let num = snap.data().currentQuestion + 1;
+        console.log("num1:", snap.data().curQuestion)
+        let num = parseInt(snap.data().curQuestion) + 1;
+        console.log("num2:", num)
         if (num >= {{ quiz.num_questions }}) {
             stopQuiz();
             return;
         }
         document.responseCount = 0;
-        await setDoc(doc(db, "QuizManagement", "{{ quiz.id }}"), { currentQuestion: num });
+        let docData = {curQuestion: num.toString()};
+        await setDoc(doc(db, "quizzes", "{{ quiz.id }}"), docData, {merge: true});
         enable("reveal-button");
         disable("next-button");
         disable("results-summary");
