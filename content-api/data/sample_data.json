@@ -27,7 +27,7 @@
     "collection": "quizzes",
     "id": "12343afa140f40ff9e70",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": "-1",
       "creator": "marcacohen@gmail.com",
       "pin": "1",
       "playUrl": "https://quizrd.io/1",
@@ -48,7 +48,7 @@
       "randomQ": true,
       "randomA": true,
       "survey": true,
-      "runCount": 17,
+      "runCount": "10",
       "active": false,
       "QandA": [
 	{
@@ -108,7 +108,7 @@
     "collection": "quizzes",
     "id": "f7723afa140f40ff9e70",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": "-1",
       "creator": "marcacohen@gmail.com",
       "pin": "2",
       "playUrl": "https://quizrd.io/2",
@@ -129,7 +129,7 @@
       "randomQ": true,
       "randomA": true,
       "survey": false,
-      "runCount": 17,
+      "runCount": "7",
       "active": false,
       "QandA": [
           {
@@ -151,7 +151,7 @@
     "collection": "quizzes",
     "id": "6e4f3afa140f40ff9e70",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": "-1",
       "creator": "marcacohen@gmail.com",
       "pin": "3",
       "playUrl": "https://quizrd.io/3",
@@ -172,7 +172,7 @@
       "randomQ": true,
       "randomA": true,
       "survey": false,
-      "runCount": 17,
+      "runCount": "17",
       "active": false,
       "QandA": [
 {
@@ -282,7 +282,7 @@
     "collection": "quizzes",
     "id": "078ba4bfce324ced8586",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": "-1",
       "creator": "marcacohen@gmail.com",
       "pin": "4",
       "playUrl": "https://quizrd.io/4",
@@ -303,7 +303,7 @@
       "randomQ": true,
       "randomA": true,
       "survey": false,
-      "runCount": 2,
+      "runCount": "2",
       "active": false,
       "QandA": [
           {
@@ -333,7 +333,7 @@
     "collection": "quizzes",
     "id": "d5816cdf8b3949429c23",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": "-1",
       "creator": "marcacohen@gmail.com",
       "pin": "5",
       "playUrl": "https://quizrd.io/5",
@@ -354,7 +354,7 @@
       "randomQ": true,
       "randomA": true,
       "survey": false,
-      "runCount": 23,
+      "runCount": "23",
       "active": false,
       "QandA": [
           {
@@ -384,7 +384,7 @@
     "collection": "quizzes",
     "id": "Gc34g8db0wCrroLUxJeA",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": "-1",
       "creator": "marcacohen@gmail.com",
       "pin": "6",
       "playUrl": "https://quizrd.io/6",
@@ -405,7 +405,7 @@
       "randomQ": true,
       "randomA": true,
       "survey": false,
-      "runCount": 23,
+      "runCount": "13",
       "active": false,
       "QandA": [
   {

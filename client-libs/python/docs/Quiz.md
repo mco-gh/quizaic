@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | the display name of this quiz | 
-**cur_question** | **int, none_type** | current question number for active quiz or -1 for inactive | [optional]  if omitted the server will use the default value of -1
+**cur_question** | **str, none_type** | current question number for active quiz or -1 for inactive | [optional]  if omitted the server will use the default value of "-1"
 **id** | **str** | unique, system-assigned identifier | [optional] [readonly] 
 **pin** | **str, none_type** | pin code for playing this quiz | [optional] 
 **play_url** | **str, none_type** | URL for playing this quiz | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **qand_a** | **str, none_type** | json string representation of questions, correct answers, and options | [optional] 
 **creator** | **str, none_type** | the identity of the quiz creator | [optional] 
 **active** | **bool, none_type** | is this quiz currently being played? | [optional]  if omitted the server will use the default value of False
-**run_count** | **int, none_type** | number of times quiz has been run | [optional]  if omitted the server will use the default value of 0
+**run_count** | **str, none_type** | number of times quiz has been run | [optional]  if omitted the server will use the default value of "0"
 **time_created** | **datetime** | system-assigned creation timestamp | [optional] [readonly] 
 **updated** | **datetime** | system-assigned update timestamp | [optional] [readonly] 
 **self_link** | **str** | full URI of the resource | [optional] [readonly] 
