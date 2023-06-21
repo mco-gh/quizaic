@@ -555,9 +555,9 @@ components:
       required:
       - name
       properties:
-        currentQuestion:
+        curQuestion:
           type: string
-          description: question number for active quiz or -1 for inactive 
+          description: current question number for active quiz or -1 for inactive 
           default: "-1"
         id:
           type: string
