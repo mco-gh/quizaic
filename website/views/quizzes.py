@@ -206,11 +206,9 @@ def save_quiz():
         creator = g.session_data.get("email")
         resp = g.api.quizzes_post(
             {
-                "curQuestion":  "-1",
                 "creator":      creator,
                 "pin":          pin,
                 "playUrl":      "/" + pin,
-                "runCount":     0,
                 "name":         request.form["name"],
                 "description":  request.form["description"],
                 "generator":    request.form["generator"],

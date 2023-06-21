@@ -82,7 +82,7 @@ class Quiz(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
-            'cur_question': (int,),  # noqa: E501
+            'cur_question': (int, none_type,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'pin': (str, none_type,),  # noqa: E501
             'play_url': (str, none_type,),  # noqa: E501
@@ -105,7 +105,7 @@ class Quiz(ModelNormal):
             'qand_a': (str, none_type,),  # noqa: E501
             'creator': (str, none_type,),  # noqa: E501
             'active': (bool, none_type,),  # noqa: E501
-            'run_count': (int,),  # noqa: E501
+            'run_count': (int, none_type,),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
             'self_link': (str,),  # noqa: E501
@@ -195,7 +195,7 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cur_question (int): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of -1  # noqa: E501
+            cur_question (int, none_type): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of -1  # noqa: E501
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
@@ -218,7 +218,7 @@ class Quiz(ModelNormal):
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
             creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
-            run_count (int): number of times quiz has been run. [optional] if omitted the server will use the default value of 0  # noqa: E501
+            run_count (int, none_type): number of times quiz has been run. [optional] if omitted the server will use the default value of 0  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501
@@ -307,7 +307,7 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cur_question (int): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of -1  # noqa: E501
+            cur_question (int, none_type): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of -1  # noqa: E501
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
@@ -330,7 +330,7 @@ class Quiz(ModelNormal):
             qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
             creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
             active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
-            run_count (int): number of times quiz has been run. [optional] if omitted the server will use the default value of 0  # noqa: E501
+            run_count (int, none_type): number of times quiz has been run. [optional] if omitted the server will use the default value of 0  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501

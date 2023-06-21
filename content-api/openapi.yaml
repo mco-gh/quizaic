@@ -557,6 +557,7 @@ components:
       properties:
         curQuestion:
           type: integer
+          nullable: true
           description: current question number for active quiz or -1 for inactive 
           default: -1
         id:
@@ -656,6 +657,7 @@ components:
         runCount:
           type: integer
           description: number of times quiz has been run
+          nullable: true
           default: 0
         timeCreated:
           type: string
