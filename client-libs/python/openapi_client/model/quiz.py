@@ -82,6 +82,7 @@ class Quiz(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
+            'current_question': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'pin': (str, none_type,),  # noqa: E501
             'play_url': (str, none_type,),  # noqa: E501
@@ -117,6 +118,7 @@ class Quiz(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
+        'current_question': 'currentQuestion',  # noqa: E501
         'id': 'id',  # noqa: E501
         'pin': 'pin',  # noqa: E501
         'play_url': 'playUrl',  # noqa: E501
@@ -193,6 +195,7 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            current_question (str): question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
@@ -304,6 +307,7 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            current_question (str): question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
