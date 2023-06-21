@@ -80,7 +80,7 @@
         const db = getFirestore(app);
         const unsub = onSnapshot(doc(db, "quizzes", "{{ quiz.id }}"), (doc) => {
             if (doc.data()) {
-                let question = parseInt(doc.data().curQuestion)r
+                let question = parseInt(doc.data().curQuestion)
                 if (question == -1) {
                     console.log("Error - Quiz not started yet");
                 }
