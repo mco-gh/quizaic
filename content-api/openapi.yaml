@@ -556,7 +556,7 @@ components:
       - name
       properties:
         curQuestion:
-          type: integer 
+          type: string
           description: current question number for active quiz or -1 for inactive 
           default: -1
         id:
