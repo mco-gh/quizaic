@@ -1057,7 +1057,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | Quiz Id
     quiz = Quiz(
-        cur_question=-1,
+        cur_question="-1",
         pin="pin_example",
         play_url="play_url_example",
         name="name_example",
@@ -1160,7 +1160,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     quiz = Quiz(
-        cur_question=-1,
+        cur_question="-1",
         pin="pin_example",
         play_url="play_url_example",
         name="name_example",
