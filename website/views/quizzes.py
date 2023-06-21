@@ -206,7 +206,7 @@ def save_quiz():
         creator = g.session_data.get("email")
         resp = g.api.quizzes_post(
             {
-                "curQuestion":  "-1",
+                "curQuestion":  -1,
                 "creator":      creator,
                 "pin":          pin,
                 "playUrl":      "/" + pin,
