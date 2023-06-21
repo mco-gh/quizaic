@@ -372,7 +372,8 @@
             console.log("Error, no such quiz: ", "{{quiz.id}}");
             return;
         }
-        let docData = { runCount: docSnap.data().runCount + 1}
+        let run_count = parseInt(docSnap.data().runCount) + 1
+        let docData = { runCount: run_count.toString() }
         setDoc(doc(db, "quizzes", "{{quiz.id}}"), docData, { merge: true });
     }
 
