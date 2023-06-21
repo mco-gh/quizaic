@@ -82,7 +82,7 @@ class Quiz(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
-            'cur_question': (str,),  # noqa: E501
+            'cur_question': (int,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'pin': (str, none_type,),  # noqa: E501
             'play_url': (str, none_type,),  # noqa: E501
@@ -195,7 +195,7 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cur_question (str): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
+            cur_question (int): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of -1  # noqa: E501
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
@@ -307,7 +307,7 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cur_question (str): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
+            cur_question (int): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of -1  # noqa: E501
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
             pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
             play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501

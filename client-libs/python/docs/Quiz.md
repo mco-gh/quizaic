@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | the display name of this quiz | 
-**cur_question** | **str** | current question number for active quiz or -1 for inactive | [optional]  if omitted the server will use the default value of "-1"
+**cur_question** | **int** | current question number for active quiz or -1 for inactive | [optional]  if omitted the server will use the default value of -1
 **id** | **str** | unique, system-assigned identifier | [optional] [readonly] 
 **pin** | **str, none_type** | pin code for playing this quiz | [optional] 
 **play_url** | **str, none_type** | URL for playing this quiz | [optional] 
