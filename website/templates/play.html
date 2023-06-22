@@ -30,7 +30,10 @@
         </div>
     </div>
 {% else %}
-    <div class="question show">
+    <div class="standby show">
+       <h3 style="margin-left: 50px">Standby...quiz {{quiz.name}} has not started yet.</h3>
+    </div>
+    <div class="question hide">
         <div class="play-header">
             <div class="title">{{ quiz.name }}</div>
             <div class="timer">
@@ -82,7 +85,7 @@
             if (doc.data()) {
                 let question = parseInt(doc.data().curQuestion)
                 if (question == -1) {
-                    console.log("Error - Quiz not started yet");
+                    console.log("Quiz not started yet");
                 }
                 if ("{{ quiz.sync }}" == "True") {
                     showNextQuestion(question);

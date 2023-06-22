@@ -5,6 +5,7 @@ let sync = data.sync;
 const questions = JSON.parse(data.qanda);
 const timelimit = data.timelimit;
 
+const standby = document.querySelector(".standby");
 const questionView = document.querySelector(".question");
 const resultsView = document.querySelector(".results");
 const totalQuestions = document.querySelector(".play-footer .total-questions");
@@ -32,11 +33,17 @@ function showNextQuestion(questionNum) {
 
   if (questionNum == -1) {
     console.log("Quiz not started");
+    enable(standby);
+    disable(questionView);
   } else if (questionNum == 0) {
+    disable(standby);
+    enable(questionView);
     console.log("first question of a quiz so creating or resetting results for player " + player + " and quiz " + quizid + ".")
     answers = [];
     document.resetResults(player, quizid);
   } else if (questionNum >= questions.length) {
+    enable(standby);
+    disable(questionView);
     showResults();
     return;
   }
