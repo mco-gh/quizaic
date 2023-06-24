@@ -1,6 +1,7 @@
 import glob
 import json
 import requests
+import random
 
 # https://opentdb.com/
 
@@ -43,13 +44,17 @@ class Generator:
 
         r = requests.get(url)
         quiz = r.json()["results"]
-        quizrd_quiz = []
+        json_quiz = []
         
         for question in quiz:
-            quizrd_quiz.append({
+            json_quiz.append({
                 "question": question["question"],
                 "correct": question["correct_answer"],
                 "responses": [question["correct_answer"]] + question["incorrect_answers"]
             })
-        quizrd_quiz = json.dumps(quizrd_quiz)
-        return quizrd_quiz
+        # randomize responses
+        for i in json_quiz:
+            random.shuffle(i["responses"])
+        quiz = json.dumps(json_quiz, indent=4)
+        return quiz
+
