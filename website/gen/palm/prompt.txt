@@ -1,9 +1,9 @@
-Generate a trivia quiz about {topic} represented in json as an array of objects, where each object contains a question string associated with key "question", an array of possible responses associated with key "responses", and a correct answer associated with key "correct". The difficulty level should be {difficulty} on a 1-5 scale, where 1 is easiest and 5 is most difficult. Generate {num_questions} questions and {num_answers} possible responses. Format the quiz in json document with no internal single quotes or escaped double quotes and no line breaks. Vary the question structure and the possible responses so that there's very little repetition throughout the quiz. Avoid obvious questions, of the "Who was buried in Grant's Tomb?" variety.
+Generate a multiple choice trivia quiz containing {num_questions} questions about {topic}, represented in json. Make the questions diverse, avoid repetitive formats, and make sure the correct answers are accurate.
 
-input: geography, 2 questions
+input: geography, 2 questions, easy
 output: [
     {{
-        "question": "What is the name of the largest continent in the world?",
+        "question": "Which is the largest continent?",
         "correct": "Asia",
         "responses": [
             "Antarctica",
@@ -13,18 +13,18 @@ output: [
         ]
     }},
     {{
-        "question": "What is the name of the largest country in the world?",
+        "question": "What is the capital of Italy?",
         "correct": "Russia",
         "responses": [
-            "Russia",
-            "India",
-            "China",
-            "United States"
+            "Venice",
+            "Florence",
+            "Rome",
+            "Naples"
         ]
     }}
 ]
 
-input: history, 4 questions
+input: World History, 3 questions, difficult
 output: [
     {{
         "question": "Who was the first emperor of the Holy Roman Empire?",
@@ -47,26 +47,16 @@ output: [
         ]
     }},
     {{
-        "question": "What was the name of the French revolutionary who was executed during the Reign of Terror?",
-        "correct": "Marie Antoinette",
+        "question": "Who was King of England when the Magna Carta was created?",
+        "correct": "John",
         "responses": [
-            "Georges Danton",
-            "Louis XVI",
-            "Marie Antoinette",
-            "Maximilien Robespierre"
-        ]
-    }},
-    {{
-        "question": "What was the name of the British prime minister who led the country during World War II?",
-        "correct": "Winston Churchill",
-        "responses": [
-            "Joseph Stalin",
-            "Adolf Hitler",
-            "Winston Churchill",
-            "Neville Chamberlain"
+            "Richard I",
+            "John",
+            "Edward I",
+            "Henry III"
         ]
     }}
 ]
 
-input: {topic}, {num_questions} questions
+input: {topic}, {num_questions} questions, difficulty {difficulty}
 output:

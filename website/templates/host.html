@@ -331,10 +331,16 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    function show_quiz_status() {
+    async function show_quiz_status() {
+        console.log("show_quiz_status()");
         let elem = document.getElementById("current-question");
+        let players = await getQuizPlayers();
         if (document.currentQuestion < 0) {
-            elem.textContent = "Quiz not running";
+            let suffix = "";
+            if (players[0] > 1) {
+                suffix = "s";
+            }
+            elem.textContent = "Not started, " + players[0] + " player" + suffix + ": " + players[1];
         } else {
             let suffix = "s";
             if (document.responseCount == 1) {
@@ -378,6 +384,30 @@
         await setDoc(doc(db, "quizzes", "{{quiz.id}}"), docData, { merge: true });
     }
 
+    async function getQuizPlayers() {
+        console.log("getQuizPlayers()");
+        const results = collection(db, "results");
+        const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
+        const snap = await getDocs(q);
+        let players = "";
+        let count = 0;
+        let limit = 10;
+        await snap.forEach((d) => {
+            let data = d.data();
+            if (count < limit) {
+                if (count == 0) {
+                    players = data.player;
+                } else {
+                    players += ",  " + data.player;
+                }
+            }
+            count += 1;
+        });
+        let ret = [ count, players ];
+        console.log("ret: ", ret);
+        return ret;
+    }
+
     async function removeResults() {
         const results = collection(db, "results");
         const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
@@ -392,7 +422,7 @@
         let docData = {curQuestion: "0"};
         await setDoc(doc(db, "quizzes", "{{ quiz.id }}"), docData, {merge: true});
         incrementRunCount();
-        removeResults();
+        //removeResults();
         disable("start-button");
         enable("stop-button");
         enable("reveal-button");
@@ -402,7 +432,8 @@
         document.playerCount = 0;
         document.responseCount = 0;
         show_quiz_status();
-        document.startPolling()
+        document.stopPolling()
+        document.startPolling(500)
     };
 
     async function stopQuiz() {
@@ -416,6 +447,7 @@
         disable("results-summary");
         enable("leaderboard");
         document.stopPolling()
+        document.startPolling(2000);
         show_quiz_status();
     }
 
@@ -436,7 +468,7 @@
         disable("next-button");
         disable("results-summary");
         disable("leaderboard");
-        document.startPolling()
+        document.startPolling(500)
     }
 
     async function revealResults() {
@@ -447,8 +479,8 @@
         document.stopPolling()
     }
 
-    function startPolling() {
-        document.interval = setInterval(getResults, 500);
+    function startPolling(interval) {
+        document.interval = setInterval(getResults, interval);
     }
 
     function stopPolling() {
@@ -576,6 +608,7 @@
             });
         };
     };
+    document.startPolling(2000);
 </script>
 
 {% endblock %}

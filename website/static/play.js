@@ -46,7 +46,10 @@ function showNextQuestion(questionNum) {
     disable(questionView);
     showResults();
     return;
-  }
+  } else {
+    disable(standby);
+    enable(questionView);
+  };
   
   console.log("questionNum", questionNum, "questions", questions);
   document.qnum = questionNum;

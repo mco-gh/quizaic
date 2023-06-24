@@ -132,21 +132,21 @@
             const q = query(results, where("player", "==", player), where("quiz", "==", quiz));
             const snap = await getDocs(q);
             let found = false;
-            snap.forEach((d) => {
+            await snap.forEach((d) => {
                 // A results object already exists for this player/quiz combo, so reset answers.
                 found = true;
                 let docData = { answers: [], currentQuestion: -1 }
                 let data = d.data();
-                console.log("results id: ", d.id)
+                console.log("updating results id: ", d.id)
                 setDoc(doc(db, "results", d.id), docData,  { merge: true });
             });
             if (!found) {
                 // No results object for this player/quiz combo, so create one.
+                console.log("creating results id: ", d.id)
                 let docData = { player: player, quiz: quiz, answers: [] }
                 const docRef = await addDoc(collection(db, "results"), docData);
             }
         }
-        document.postResults = postResults;
         document.resetResults = resetResults;
     </script>
 

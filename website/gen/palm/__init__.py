@@ -33,12 +33,18 @@ class Generator:
       return response.text
 
     def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
+        if difficulty <= 2:
+            difficulty_word = "easy"
+        elif difficulty <= 4:
+            difficulty_word = "medium"
+        elif difficulty <= 5:
+            difficulty_word = "difficult"
+
         prompt = self.prompt.format(topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
             difficulty=difficulty)
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
-        print(quiz)
         # randomize responses
         json_quiz = json.loads(quiz)
         for i in json_quiz:

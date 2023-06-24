@@ -39,7 +39,10 @@
                     <li>You will have {{ quiz.time_limit }} seconds to answer each question.</li>
                     <li>For correct answers, more points are awarded for speedy responses.</li>
                 </ol>
-                <form action="/playQuiz/{{ pin }}" method="post">
+                <div id="unique-error" style="color: red; display: none">
+                    Player name not unique - try again
+                </div>
+                <form onsubmit="document.check(this); return false" action="/playQuiz/{{ pin }}" method="post">
                     <label for="name">Enter your name:</label>&nbsp;
                     <input type="text" id="name" name="name"><br><br>
                     <input class="mdc-button mdc-button--raised" type="submit" value="Start Quiz">
@@ -48,13 +51,54 @@
         </div>
     </div>
 
-    <script type="text/javascript" nonce="{{ g.csp_nonce }}">
+    <script type="module" nonce="{{ g.csp_nonce }}">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { doc, where, query, getFirestore, collection, getDocs, setDoc, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWY14Mna0pyz15Jcv2jLSq5eVxc2XCHfU",
+            authDomain: "quizrd-prod-382117.firebaseapp.com",
+            projectId: "quizrd-prod-382117",
+            storageBucket: "quizrd-prod-382117.appspot.com",
+            messagingSenderId: "338739261213",
+            appId: "1:338739261213:web:49d62e4552ffaabcbe7bf4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         let link = document.createElement( "link" );
         link.href = "/static/play.css";
         link.type = "text/css";
         link.rel = "stylesheet";
         link.media = "screen,print";
         document.getElementsByTagName("head")[0].appendChild(link);
+
+        async function check(elem) {
+            let unique = true; // assume unique by default
+            const name = elem.elements["name"].value;
+            const results = collection(db, "results");
+            const q = query(results, where("quiz", "==", "{{ quiz.id }}"));
+            const snap = await getDocs(q);
+            await snap.forEach((d) => {
+                let data = d.data();
+                if (!unique) { // already found non-unique, skip check
+                    return;
+                }
+                if (data.player == name) {
+                    unique = false;
+                }
+            });
+            console.log("unique: ", unique);
+            if (unique) {
+                elem.submit(); 
+            } else {
+                let unique_err = document.getElementById("unique-error");
+                unique_err.style.display = "inline-flex";
+            };
+        };
+        document.check = check;
     </script>
  
 {% endif %}
