@@ -475,7 +475,10 @@
         disable("reveal-button");
         enable("next-button");
         enable("results-summary");
-        enable("leaderboard");
+        console.log("survey:", "{{ quiz.survey }}" == "True");
+        if ("{{ quiz.survey }}" != "True") {
+            enable("leaderboard");
+        }
         document.stopPolling()
     }
 

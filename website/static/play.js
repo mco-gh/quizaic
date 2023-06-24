@@ -2,6 +2,7 @@ const data = document.currentScript.dataset;
 let quizid = data.quizid;
 let player = data.name;
 let sync = data.sync;
+let survey = data.survey;
 const questions = JSON.parse(data.qanda);
 const timelimit = data.timelimit;
 
@@ -139,7 +140,7 @@ function optionSelected(event) {
   console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
   document.postResults(player, quizid, answers, qnum + 1);
 
-  if (userAns == correctAns) {
+  if (userAns == correctAns || survey) {
     numCorrect += 1;
     answer.classList.add("correct");
     answer.insertAdjacentHTML("beforeend", tickIconTag);
