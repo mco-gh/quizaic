@@ -140,7 +140,8 @@ function optionSelected(event) {
   console.log("posting results for player " + player + " and quiz " + quizid + ": " + answers + ".")
   document.postResults(player, quizid, answers, qnum + 1);
 
-  if (userAns == correctAns || survey) {
+  console.log("survey:", survey == "True");
+  if (userAns == correctAns || survey == "True") {
     numCorrect += 1;
     answer.classList.add("correct");
     answer.insertAdjacentHTML("beforeend", tickIconTag);

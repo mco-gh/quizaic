@@ -336,9 +336,9 @@
         let elem = document.getElementById("current-question");
         let players = await getQuizPlayers();
         if (document.currentQuestion < 0) {
-            let suffix = "";
-            if (players[0] > 1) {
-                suffix = "s";
+            let suffix = "s";
+            if (players[0] == 1) {
+                suffix = "";
             }
             elem.textContent = "Not started, " + players[0] + " player" + suffix + ": " + players[1];
         } else {
