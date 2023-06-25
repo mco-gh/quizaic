@@ -23,6 +23,7 @@ from views.helpers.time import convert_utc
 from functools import reduce
 
 import gen
+import hashlib
 import json
 import random
 import re
@@ -207,7 +208,7 @@ def save_quiz():
         else:
             generator = gen.Generator(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
-        creator = g.session_data.get("email")
+        creator = hashlib.sha256(g.session_data.get("email").encode("utf-8")).hexdigest()
         resp = g.api.quizzes_post(
             {
                 "curQuestion":  "-1",
