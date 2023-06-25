@@ -164,7 +164,6 @@ def update_quiz():
                 "topicFormat":  request.form["topicFormatSelect"],
                 "answerFormat": request.form["answerFormatSelect"],
                 "topic":        topic,
-                "imageUrl":     request.form["imageUrl"],
                 "numQuestions": numQuestions,
                 "numAnswers":   numAnswers,
                 "timeLimit":    request.form["timeLimit"],
@@ -185,8 +184,11 @@ def update_quiz():
     return redirect("/viewQuiz?quiz_id=" + resp.id)
 
 def gen_image(topic, filename):
-    subprocess.call(['sh', 'genimage.sh', topic, filename])
-    return f"https://storage.googleapis.com/quizrd-img/{filename}.jpg"
+    url = "/static/logo.png"
+    ret = subprocess.call(['sh', 'genimage.sh', topic, filename])
+    if ret == 0:
+        url = f"https://storage.googleapis.com/quizrd-img/{filename}.jpg"
+    return url
 
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
@@ -218,7 +220,6 @@ def save_quiz():
                 "topicFormat":  request.form["topicFormatSelect"],
                 "answerFormat": request.form["answerFormatSelect"],
                 "topic":        topic,
-                "imageUrl":     request.form["imageUrl"],
                 "numQuestions": numQuestions,
                 "numAnswers":   numAnswers,
                 "difficulty":   difficulty,
@@ -234,12 +235,12 @@ def save_quiz():
             }
         )
 
-        if request.form["imageUrl"] == "/static/logo.png":
-            image_url = gen_image(topic, resp.id)
-            g.api.quizzes_id_patch(resp.id, { 
-                "name":      request.form["name"],
-                "imageUrl":  image_url
-            })
+        image_url = gen_image(topic, resp.id)
+        print("image_url:", image_url)
+        g.api.quizzes_id_patch(resp.id, { 
+            "name":      request.form["name"],
+            "imageUrl":  image_url
+        })
     except Exception as e:
         log(f"Exception when creating a quiz: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403

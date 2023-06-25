@@ -50,3 +50,7 @@ else
     echo Error: IMAGE_TYPE=$IMAGE_TYPE
 fi
 rm -f request-$FILE.json output-$FILE.json $FILE.base64 $FILE.jpg
+if [ "$IMAGE_TYPE" = "null" ]
+then
+    exit 1
+fi
