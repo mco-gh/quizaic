@@ -55,10 +55,12 @@ section .option-list .option:last-child{
     margin-bottom: 0px;
 }
 
-section .option-list .option:hover{
-    color: #004085;
-    background: #cce5ff;
-    border: 1px solid #b8daff;
+@media (hover: hover) {
+    section .option-list .option:hover{
+        color: #004085;
+        background: #cce5ff;
+        border: 1px solid #b8daff;
+    }
 }
 
 section .option-list .option.correct {
