@@ -12,19 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+import hashlib
 import json
 
 from main import g, request
 from resources import methods
 from data import cloud_firestore as db
+from utils.logging import log
 
+def user_logged_in(email):
+    return email != None
 
-def user_logged_in():
-    return True
-
-def user_created_quiz(user, quiz):
-    return True
+def user_created_quiz(hashed_email, quiz_id):
+    if hashed_email is None:
+        return False
+    quiz = db.fetch("quizzes", quiz_id, ["creator"])
+    if quiz and quiz["creator"] == hashed_email:
+        return True
+    return False
 
 def user_is_admin(email):
     if email is None:
@@ -36,27 +41,29 @@ def user_is_admin(email):
 
 def allowed(operation, resource_kind, representation=None):
     email = g.get("verified_email", None)
+    hashed_email = None
+    if email:
+        hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
 
     # Check for everything requiring auth and handle
 
-    is_admin = user_is_admin(email)
-
-    # Admins (and only admins) can do any operation on the admins collection.
-    if resource_kind == "admins":
-        return is_admin
+    # Admins (and only admins) can do any operation on the admins and generators collections.
+    if resource_kind == "admins" or resource_kind == "generators":
+        return user_is_admin(email)
 
     if resource_kind == "quizzes":
-        # Must be logged in to create a quiz.
-        if operation == "POST":
-            return user_logged_in()
-        # Must be an admin or quiz creator to modify or delete a quiz.
-        if operation in ["PATCH", "DELETE"]:
-            path_parts = request.path.split("/")
-            quiz = path_parts[1]
-            return is_admin or user_created_quiz(email, quiz)
         # Anyone can read all quiz records (even unauthenticated players).
         if operation == "GET":
             return True
+        # Must be logged in to create a quiz.
+        if operation == "POST":
+            return user_logged_in(email)
+        # Must be an admin or quiz creator to modify or delete a quiz.
+        if operation in ["PATCH", "DELETE"]:
+            path_parts = request.path.split("/")
+            quiz_id = path_parts[2]
+            print(f"admin: {user_is_admin(email)}, creator: {user_created_quiz(hashed_email, quiz_id)}")
+            return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
         return False
 
     if resource_kind == "results":
@@ -65,13 +72,9 @@ def allowed(operation, resource_kind, representation=None):
         # directly from the web client to firestore.
         if operation in ["POST", "PATCH", "GET", "DELETE"]:
             path_parts = request.path.split("/")
-            quiz = path_parts[1]
-            return is_admin or user_created_quiz(email, quiz)
+            quiz_id = path_parts[1]
+            return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
         return False
-
-    if resource_kind == "generators":
-        # Must be an admin to do anything with generators
-        return is_admin
 
     # All other accesses are disallowed. This prevents unanticipated access.
     return False
