@@ -62,7 +62,6 @@ def allowed(operation, resource_kind, representation=None):
         if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             quiz_id = path_parts[2]
-            print(f"admin: {user_is_admin(email)}, creator: {user_created_quiz(hashed_email, quiz_id)}")
             return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
         return False
 
@@ -71,9 +70,10 @@ def allowed(operation, resource_kind, representation=None):
         # Posting results by a player for a given quiz is done
         # directly from the web client to firestore.
         if operation in ["POST", "PATCH", "GET", "DELETE"]:
-            path_parts = request.path.split("/")
-            quiz_id = path_parts[1]
-            return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
+            return True
+            #path_parts = request.path.split("/")
+            #quiz_id = path_parts[1]
+            #return user_is_admin(email) or user_can_post_results()
         return False
 
     # All other accesses are disallowed. This prevents unanticipated access.
