@@ -27,6 +27,10 @@ def host(pin):
     if g.session_data:
         current_user = g.session_data.get("email")
 
+    if current_user != "marcacohen@gmail.com" and current_user != "ksprashanth@google.com":
+        log(f"user not authoriozed to run quiz", severity="ERROR")
+        return render_template("errors/403.html"), 403
+
     try:
         quizzes = g.api.quizzes_get()
     except Exception as e:

@@ -432,8 +432,8 @@
         document.playerCount = 0;
         document.responseCount = 0;
         show_quiz_status();
-        document.stopPolling()
-        document.startPolling(500)
+        //document.stopPolling()
+        //document.startPolling(500)
     };
 
     async function stopQuiz() {
@@ -446,8 +446,8 @@
         disable("next-button");
         disable("results-summary");
         enable("leaderboard");
-        document.stopPolling()
-        document.startPolling(2000);
+        //document.stopPolling()
+        //document.startPolling(1000);
         show_quiz_status();
     }
 
@@ -468,7 +468,7 @@
         disable("next-button");
         disable("results-summary");
         disable("leaderboard");
-        document.startPolling(500)
+        //document.startPolling(500)
     }
 
     async function revealResults() {
@@ -479,7 +479,7 @@
         if ("{{ quiz.survey }}" != "True") {
             enable("leaderboard");
         }
-        document.stopPolling()
+        //document.stopPolling()
     }
 
     function startPolling(interval) {
@@ -611,7 +611,7 @@
             });
         };
     };
-    document.startPolling(2000);
+    document.startPolling(1000);
 </script>
 
 {% endblock %}
