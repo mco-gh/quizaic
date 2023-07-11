@@ -30,9 +30,11 @@ import re
 import subprocess
 
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
+restrict = False
 
 @quizzes_bp.route("/")
 def list_quizzes():
+    if restrict: return render_template("errors/403.html"), 403
     current_user = None
     if g.session_data:
         current_user = g.session_data.get("email")
@@ -48,6 +50,7 @@ def list_quizzes():
 
 @quizzes_bp.route("/createQuiz", methods=["GET"])
 def new_quiz():
+    if restrict: return render_template("errors/403.html"), 403
     current_user = None
     if g.session_data:
         current_user = g.session_data.get("email")
@@ -95,6 +98,7 @@ def new_quiz():
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])
 def edit_quiz():
+    if restrict: return render_template("errors/403.html"), 403
     current_user = None
     if g.session_data:
         current_user = g.session_data.get("email")
@@ -124,6 +128,7 @@ def edit_quiz():
 
 @quizzes_bp.route("/deleteQuiz", methods=["GET"])
 def delete_quiz():
+    if restrict: return render_template("errors/403.html"), 403
     try:
         quiz_id = request.args.get("quiz_id")
         if quiz_id is None:
@@ -137,6 +142,7 @@ def delete_quiz():
 
 @quizzes_bp.route("/editQuiz", methods=["POST"])
 def update_quiz():
+    if restrict: return render_template("errors/403.html"), 403
     quiz_id = request.args.get("quiz_id")
 
     if quiz_id is None:
@@ -193,6 +199,7 @@ def gen_image(topic, filename):
 
 @quizzes_bp.route("/createQuiz", methods=["POST"])
 def save_quiz():
+    if restrict: return render_template("errors/403.html"), 403
     try:
         pin = str(random.randint(1, 9999))
         if request.form["topicFormatSelect"] == "freeform":
@@ -252,6 +259,7 @@ def save_quiz():
 
 @quizzes_bp.route("/viewQuiz", methods=["GET"])
 def webapp_view_quiz():
+    if restrict: return render_template("errors/403.html"), 403
     current_user = None
     if g.session_data:
         current_user = g.session_data.get("email")

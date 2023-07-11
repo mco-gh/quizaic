@@ -18,9 +18,11 @@ from views.helpers.time import convert_utc
 
 host_bp = Blueprint("host", __name__, template_folder="templates")
 
+restrict = False
 
 @host_bp.route("/host/<int:pin>")
 def host(pin):
+    if restrict: return render_template("errors/403.html"), 403
     current_user = None
     log(f"pin: {pin}")
 
