@@ -1,6 +1,6 @@
 export APP=quizrd
 export REGION=us-central1
-export PROD_PROJECT=$APP-prod-382117
+export PROD_PROJECT=quizrd-test
 export STAGE_PROJECT=$APP-stage-382117
 export OPS_PROJECT=$APP-ops-382117
 export GOOGLE_CLOUD_PROJECT=$(gcloud config get-value project)
