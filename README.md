@@ -65,7 +65,7 @@ We recommend running through setup steps using Google Cloud Shell, which has the
     gcloud services enable run.googleapis.com
     gcloud services enable cloudbuild.googleapis.com
     gcloud services enable firestore.googleapis.com
-    gcloud firestore databases create --location nam5 # this may need to change!
+    gcloud firestore databases create --location <loc> # use nam5 for US, eur3 for EU
     ```
 
 1. Edit `scripts/env.sh` to reflect your preferred region and production project and "dot" that file into your environment by running this command:
