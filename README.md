@@ -77,10 +77,12 @@ We recommend running through setup steps using Google Cloud Shell, which has the
     ```bash
     cd content-api/data
     python3 seed_database.py seed <your-email-address.gmail.com>
+    cd -
     ```
 
 1. Run the following command to generate the content API using [OpenAPI](https://www.openapis.org):
     ```bash
+    npm install @openapitools/openapi-generator-cli -g
     scripts/regen_api.sh
     ```
 
@@ -88,12 +90,15 @@ We recommend running through setup steps using Google Cloud Shell, which has the
     ```bash
     cd content-api
     ./deploy.sh
+    cd -
     ```
 
 1. Run the following commands to build the website and deploy it to Cloud Run: 
     ```bash
-    cd ../website
+    cd website
+    pip install -r requirements.txt
     ./deploy.sh
+    cd -
     ```
   
 1. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
