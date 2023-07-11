@@ -2,7 +2,7 @@
 
 Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
-## Credit
+## Foundation
 
 Quizrd is built on top of [Emblem Giving](https://github.com/GoogleCloudPlatform/emblem), which is a sample application intended to demonstrate a complex, end-to-end serverless architecture. It showcases serverless continuous delivery as a donation sample app hosted on Google Cloud.
 
@@ -103,6 +103,21 @@ We recommend running through setup steps using Google Cloud Shell, which has the
   
 1. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
 <img src="website/static/website.png" height="300">
+
+## Local Testing
+
+### Content API
+```bash
+cd content-api
+python3 main.py
+./test.sh path
+```
+
+### Website
+```bash
+cd website
+./test.sh
+```
 
 ---
 
