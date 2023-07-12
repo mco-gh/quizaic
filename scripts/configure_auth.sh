@@ -112,6 +112,7 @@ read -p "Once you've configured secret versions, press $(tput bold)Enter$(tput s
 
 # Update website Cloud Run services with required secrets
 PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} --format "value(projectNumber)")
+GCP_SVC_ACC="${PROJECT_NUMBER}-compute@developer.gserviceaccount.com"
 
 AUTH_SECRETS="CLIENT_ID=projects/${PROJECT_NUMBER}/secrets/client_id_secret:latest"
 AUTH_SECRETS="${AUTH_SECRETS},CLIENT_SECRET=projects/${PROJECT_NUMBER}/secrets/client_secret_secret:latest"
@@ -119,6 +120,10 @@ AUTH_SECRETS="${AUTH_SECRETS},CLIENT_SECRET=projects/${PROJECT_NUMBER}/secrets/c
 # TODO: fetch the redirect URI dynamically (from HTTP headers) instead of 
 #       using env vars, for things like custom domains and load balancers.
 #       See https://github.com/GoogleCloudPlatform/emblem/issues/277
+
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+    --member=serviceAccount:${GCP_SVC_ACC} \
+    --role=roles/secretmanager.secretAccessor
 
 gcloud run services update website \
     --update-env-vars "REDIRECT_URI=${CALLBACK_URL}" \
