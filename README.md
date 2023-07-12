@@ -62,6 +62,8 @@ The machine that you will run the setup from will need the following installed:
 
 1. Run `./setup.sh`
 
+2. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets.
+
 ### Manual Setup
 
 1. Enable the required services by running these commands:
@@ -98,7 +100,9 @@ The machine that you will run the setup from will need the following installed:
     cd -
     ```
 
-6. Run the following commands to build the website and deploy it to Cloud Run: 
+6. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets.
+
+7. Run the following commands to build the website and deploy it to Cloud Run: 
     ```bash
     cd website
     pip install -r requirements.txt
@@ -106,7 +110,7 @@ The machine that you will run the setup from will need the following installed:
     cd -
     ```
   
-7. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
+8. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
 <img src="website/static/website.png" height="300">
 
 ## Incremental Deployment
