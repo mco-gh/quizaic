@@ -11,6 +11,7 @@ if [ "$?" != "0" ]
 then
     gcloud firestore databases create --location nam5
 fi
+gsutil mb gs://${PROJECT_ID}-sessions
 
 echo -e "=====\nSetting environment...\n=====\n"
 . scripts/env.sh

@@ -33,7 +33,7 @@
 
     The session data will be stored in Google Cloud Storage. A bucket must already
     exist for this use, and the name of the bucket provided in the environment
-    variable EMBLEM_SESSION_BUCKET. The website should be using a service
+    variable SESSION_BUCKET. The website should be using a service
     account that has object read and write permission in the bucket. Access to
     the bucket and its contents should be tightly controlled.
 
@@ -64,10 +64,10 @@ from middleware.logging import log
 
 
 # Initialize data that's not specific to an http request.
-session_bucket_name = os.environ.get("EMBLEM_SESSION_BUCKET")
+session_bucket_name = os.environ.get("SESSION_BUCKET")
 if session_bucket_name is None:
     log("Could not initialize session module.", severity="ERROR")
-    raise Exception("Environment variable EMBLEM_SESSION_BUCKET is required")
+    raise Exception("Environment variable SESSION_BUCKET is required")
 
 # Create a storage client that will be used over multiple requests
 BUCKET = storage.Client().bucket(session_bucket_name)
