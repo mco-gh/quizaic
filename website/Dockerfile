@@ -22,6 +22,8 @@ ENV PYTHONUNBUFFERED True
 # Hide auth warnings on Cloud Run
 ENV HIDE_AUTH_WARNINGS True
 
+ENV SESSION_BUCKET ${SESSION_BUCKET}
+
 # Copy application dependency manifests to the container image.
 # Copying this separately prevents re-running pip install on every code change.
 COPY requirements.txt ./
