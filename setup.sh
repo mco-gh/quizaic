@@ -1,8 +1,16 @@
+
+. scripts/env.sh
+
 echo -e "=====\nEnabling cloud services...\n=====\n"
 gcloud services enable run.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable firestore.googleapis.com
-gcloud firestore databases create --location nam5
+DBNAME="projects/$PROJECT_ID/databases/(default)"
+gcloud firestore databases list | grep $DBNAME >/dev/null 2>&1
+if [ "$?" != "0" ]
+then
+    gcloud firestore databases create --location nam5
+fi
 
 echo -e "=====\nSetting environment...\n=====\n"
 . scripts/env.sh
