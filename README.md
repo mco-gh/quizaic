@@ -49,7 +49,7 @@ We recommend running through setup steps using Google Cloud Shell, which has the
 
  [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fmco-gh%2Fquizrd&cloudshell_tutorial=docs%2Ftutorials%2Fsetup-walkthrough.md)
 
-### Setup Instructions
+### Directory and Configuration
 
 1. All of the following should be done from the repo's root directory.
 
@@ -58,6 +58,12 @@ We recommend running through setup steps using Google Cloud Shell, which has the
     gcloud config set account <your-account@gmail.com>
     gcloud config set project <your-project-id>
     ```
+
+### Quick Setup
+
+1. Run `./setup.sh`
+
+### Manual Setup
 
 1. Enable the required services by running these commands:
 
@@ -68,32 +74,32 @@ We recommend running through setup steps using Google Cloud Shell, which has the
     gcloud firestore databases create --location <loc> # use nam5 for US, eur3 for EU
     ```
 
-1. Edit `scripts/env.sh` to reflect your preferred region and production project and "dot" that file into your environment by running this command:
+2. Edit `scripts/env.sh` to reflect your preferred region and production project and "dot" that file into your environment by running this command:
     ```bash
     . scripts/env.sh # Don't miss the leading dot!
     ```
 
-1. Run the following commands to populate the Firestore database: 
+3. Run the following commands to populate the Firestore database: 
     ```bash
     cd content-api/data
     python3 seed_database.py seed <your-email-address.gmail.com>
     cd -
     ```
 
-1. Run the following command to generate the content API using [OpenAPI](https://www.openapis.org):
+4. Run the following command to generate the content API using [OpenAPI](https://www.openapis.org):
     ```bash
     npm install @openapitools/openapi-generator-cli -g
     scripts/regen_api.sh
     ```
 
-1. Run the following commands to build the content API and deploy it to Cloud Run: 
+5. Run the following commands to build the content API and deploy it to Cloud Run: 
     ```bash
     cd content-api
     ./deploy.sh
     cd -
     ```
 
-1. Run the following commands to build the website and deploy it to Cloud Run: 
+6. Run the following commands to build the website and deploy it to Cloud Run: 
     ```bash
     cd website
     pip install -r requirements.txt
@@ -101,7 +107,7 @@ We recommend running through setup steps using Google Cloud Shell, which has the
     cd -
     ```
   
-1. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
+7. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
 <img src="website/static/website.png" height="300">
 
 ## Local Testing
