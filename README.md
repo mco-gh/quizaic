@@ -70,7 +70,7 @@ We recommend running through setup steps using Google Cloud Shell, which has the
 
 1. Edit `scripts/env.sh` to reflect your preferred region and production project and "dot" that file into your environment by running this command:
     ```bash
-    . scripts/env.sh` # Don't miss the leading dot!
+    . scripts/env.sh # Don't miss the leading dot!
     ```
 
 1. Run the following commands to populate the Firestore database: 
