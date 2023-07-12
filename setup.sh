@@ -2,10 +2,10 @@
 . scripts/env.sh
 
 echo -e "=====\nUncompressing generator data...\n=====\n"
-JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json.Z"
+JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
 then
-    uncompress $JEP_FILE
+    uncompress ${JEP_FILE}.Z
 fi
 
 echo -e "=====\nEnabling cloud services...\n=====\n"
