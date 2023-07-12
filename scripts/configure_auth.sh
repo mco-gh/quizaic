@@ -14,41 +14,27 @@
 # limitations under the License.
 
 # This file will provision end-user authentication
-# resources in an already-deployed Emblem instance.
+# resources in an already-deployed Quizrd instance.
 
 # Check input env variables
-if [[ -z "${PROD_PROJECT}" ]]; then
-    echo "Please set the $(tput bold)PROD_PROJECT$(tput sgr0) variable"
-    exit 1
-elif [[ -z "${STAGE_PROJECT}" ]]; then
-    echo "Please set the $(tput bold)STAGE_PROJECT$(tput sgr0) variable"
-    exit 1
-elif [[ -z "${OPS_PROJECT}" ]]; then
-    echo "Please set the $(tput bold)OPS_PROJECT$(tput sgr0) variable"
-    exit 1
-elif [[ -z "${REGION}" ]]; then
-    echo "Please set the $(tput bold)REGION$(tput sgr0) variable"
+if [[ -z "${PROJECT_ID}" ]]; then
+    echo "Please set the $(tput bold)PROJECT_ID$(tput sgr0) variable"
     exit 1
 fi
 
 # Declare variables (calculated from env-var inputs)
-STAGE_WEBSITE_URL=$(gcloud run services describe website --project "${STAGE_PROJECT}" --region "${REGION}" --format "value(status.address.url)")
-STAGE_CALLBACK_URL="${STAGE_WEBSITE_URL}/callback"
+WEBSITE_URL=$(gcloud run services describe website --project "${PROJECT_ID}" --region "${REGION}" --format "value(status.address.url)") 
+CALLBACK_URL="${WEBSITE_URL}/callback"
 
-if [ "${PROD_PROJECT}" != "${STAGE_PROJECT}" ]; then
-PROD_WEBSITE_URL=$(gcloud run services describe website --project "${PROD_PROJECT}" --region "${REGION}" --format "value(status.address.url)") 
-PROD_CALLBACK_URL="${PROD_WEBSITE_URL}/callback"
-fi
-
-AUTH_CLIENT_CREATION_URL="https://console.cloud.google.com/apis/credentials/oauthclient?project=${OPS_PROJECT}"
-AUTH_CLIENT_CONSENT_SCREEN_URL="https://console.cloud.google.com/apis/credentials/consent?project=${OPS_PROJECT}"
+AUTH_CLIENT_CREATION_URL="https://console.cloud.google.com/apis/credentials/oauthclient?project=${PROJECT_ID}"
+AUTH_CLIENT_CONSENT_SCREEN_URL="https://console.cloud.google.com/apis/credentials/consent?project=${PROJECT_ID}"
 
 # Configure consent screen
 echo "--------------------------------------------"
 echo "$(tput setaf 6)Configure OAuth 2.0 consent screen$(tput sgr0)"
 echo ""
 if [[ $CLOUD_SHELL ]]; then
-    echo "  Open the Cloud Console by clicking this URL: $(tput bold)https://console.cloud.google.com/?project=${OPS_PROJECT}&cloudshell=true$(tput sgr0)"
+    echo "  Open the Cloud Console by clicking this URL: $(tput bold)https://console.cloud.google.com/?project=${PROJECT_ID}&cloudshell=true$(tput sgr0)"
     echo "  In the Cloud Console Search bar, search for 'OAuth Consent Screen' and click on the $(tput bold)OAuth consent screen$(tput sgr0) page. "
 else
     echo "  Visit this URL in the Cloud Console: $(tput bold)${AUTH_CLIENT_CONSENT_SCREEN_URL}$(tput sgr0)"
@@ -83,12 +69,8 @@ echo "  Click CREATE CREDENTIALS and select $(tput bold)OAuth client ID$(tput sg
 echo "  For Application Type, select $(tput bold)Web Application$(tput sgr0)."
 echo "  Under Authorized Redirect URIs, add the following URLs:"
 echo ""
+echo "    ${CALLBACK_URL}"
 
-if [ "${PROD_PROJECT}" != "${STAGE_PROJECT}" ]; then
-echo "    ${PROD_CALLBACK_URL}"
-fi
-
-echo "    ${STAGE_CALLBACK_URL}"
 echo ""
 echo "  Click $(tput bold)Create$(tput sgr0). You will see a pop-up displaying your client ID and client secret values. You'll need these values in the next step."
 echo "  To retrieve the values after closing the pop-up, click on the name of your client under $(tput bold)OAuth 2.0 Client IDs$(tput sgr0). The client ID and client secret are located in the upper right corner of the page." 
@@ -101,7 +83,7 @@ fi
 read -p "Once you've configured an OAuth client, press $(tput bold)Enter$(tput sgr0) to continue."
 
 # Prompt user to create secret versions
-SECRETS_URL="https://console.cloud.google.com/security/secret-manager?project=${OPS_PROJECT}"
+SECRETS_URL="https://console.cloud.google.com/security/secret-manager?project=${PROJECT_ID}"
 echo "--------------------------------------------"
 echo "$(tput setaf 6)Configure secret values$(tput sgr0)"
 echo ""
@@ -127,28 +109,20 @@ fi
 read -p "Once you've configured secret versions, press $(tput bold)Enter$(tput sgr0) to continue."
 
 # Update website Cloud Run services with required secrets
-OPS_PROJECT_NUMBER=$(gcloud projects describe ${OPS_PROJECT} --format "value(projectNumber)")
+PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} --format "value(projectNumber)")
 
-AUTH_SECRETS="CLIENT_ID=projects/${OPS_PROJECT_NUMBER}/secrets/client_id_secret:latest"
-AUTH_SECRETS="${AUTH_SECRETS},CLIENT_SECRET=projects/${OPS_PROJECT_NUMBER}/secrets/client_secret_secret:latest"
+AUTH_SECRETS="CLIENT_ID=projects/${PROJECT_NUMBER}/secrets/client_id_secret:latest"
+AUTH_SECRETS="${AUTH_SECRETS},CLIENT_SECRET=projects/${PROJECT_NUMBER}/secrets/client_secret_secret:latest"
 
 # TODO: fetch the redirect URI dynamically (from HTTP headers) instead of 
 #       using env vars, for things like custom domains and load balancers.
 #       See https://github.com/GoogleCloudPlatform/emblem/issues/277
 
 gcloud run services update website \
-    --update-env-vars "REDIRECT_URI=${STAGE_CALLBACK_URL}" \
+    --update-env-vars "REDIRECT_URI=${CALLBACK_URL}" \
     --update-secrets "${AUTH_SECRETS}" \
     --region "${REGION}" \
-    --project "${STAGE_PROJECT}"
-
-if [ "${PROD_PROJECT}" != "${STAGE_PROJECT}" ]; then
-gcloud run services update website \
-    --update-env-vars "REDIRECT_URI=${PROD_CALLBACK_URL}" \
-    --update-secrets "${AUTH_SECRETS}" \
-    --region "${REGION}" \
-    --project "${PROD_PROJECT}"
-fi
+    --project "${PROJECT_ID}"
 
 echo
 echo "The application is now configured for end-user authentication."
