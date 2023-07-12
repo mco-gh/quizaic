@@ -1,6 +1,13 @@
 
 . scripts/env.sh
 
+echo -e "=====\nUncompressing generator data...\n=====\n"
+JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json.Z"
+if [ ! -f "$JEP_FILE" ]
+then
+    uncompress $JEP_FILE
+fi
+
 echo -e "=====\nEnabling cloud services...\n=====\n"
 gcloud services enable run.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
