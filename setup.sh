@@ -1,6 +1,3 @@
-
-. scripts/env.sh
-
 echo -e "=====\nUncompressing generator data...\n=====\n"
 JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
