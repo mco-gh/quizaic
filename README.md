@@ -27,11 +27,10 @@ Quizrd is built on top of [Emblem Giving](https://github.com/GoogleCloudPlatform
 ## Contributing
 
 * Become a [CONTRIBUTOR](./CONTRIBUTING.md)!
-* Check out our shovel-ready [Good First Issues](https://github.com/GoogleCloudPlatform/emblem/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22good+first+issue%22) or go a bit deeper in [Help Wanted](https://github.com/GoogleCloudPlatform/emblem/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22help+wanted%22)
 
 ## Getting Started
 
-Quizrd is made of a combination of resources created and managed by Terraform and resources created via the Google Cloud CLI or Google Cloud Console. You may deploy Quizrd by running `setup.sh` (see [streamlined setup instructions](#streamlined-setup)). 
+Quizrd is made of a combination of resources created via the Google Cloud CLI or Google Cloud Console. You may deploy Quizrd by running `setup.sh` (see [Quick Setup](#quick-setup)). 
 
 ### Prerequisites
 
@@ -45,18 +44,17 @@ The machine that you will run the setup from will need the following installed:
   * [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
   * [Python3](https://www.python.org/downloads)
 
-We recommend running through setup steps using Google Cloud Shell, which has the required softare pre-installed. The following will open Cloud Shell Editor and clone this repo:
-
- [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fmco-gh%2Fquizrd&cloudshell_tutorial=docs%2Ftutorials%2Fsetup-walkthrough.md)
-
-### Directory and Configuration
-
-1. All of the following should be done from the repo's root directory.
+### Gcloud Configuration and Github Repo
 
 1. Set your account and project in the gcloud CLI using these commands:
     ```bash
     gcloud config set account <your-account@gmail.com>
     gcloud config set project <your-project-id>
+    ```
+
+2. Clone the source code from github with this command:
+    ```bash
+    git clone https://github.com/mco-gh/quizrd
     ```
 
 ### Quick Setup
@@ -110,7 +108,7 @@ We recommend running through setup steps using Google Cloud Shell, which has the
 7. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
 <img src="website/static/website.png" height="300">
 
-## Local Testing
+## Local Development and Testing
 
 ### Content API
 ```bash
