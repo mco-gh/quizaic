@@ -2,7 +2,7 @@ echo -e "=====\nEnabling cloud services...\n=====\n"
 gcloud services enable run.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable firestore.googleapis.com
-gcloud firestore databases create --location nam3
+gcloud firestore databases create --location nam5
 
 echo -e "=====\nSetting environment...\n=====\n"
 . scripts/env.sh
