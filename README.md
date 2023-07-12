@@ -109,7 +109,21 @@ The machine that you will run the setup from will need the following installed:
 7. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
 <img src="website/static/website.png" height="300">
 
-## Local Development and Testing
+## Incremental Deployment
+
+### Content API
+```bash
+cd content-api
+./deploy.sh
+```
+
+### Website
+```bash
+cd website
+./deploy.sh
+```
+
+## Local Testing
 
 ### Content API
 ```bash
