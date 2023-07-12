@@ -16,6 +16,8 @@
 # This file will provision end-user authentication
 # resources in an already-deployed Quizrd instance.
 
+. scripts/env.sh
+
 # Check input env variables
 if [[ -z "${PROJECT_ID}" ]]; then
     echo "Please set the $(tput bold)PROJECT_ID$(tput sgr0) variable"
