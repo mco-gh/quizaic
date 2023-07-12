@@ -1,3 +1,5 @@
+export PROJECT_ID=$(gcloud config get-value project)
+
 echo -e "=====\nUncompressing generator data...\n=====\n"
 JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
@@ -9,6 +11,8 @@ echo -e "=====\nEnabling cloud services...\n=====\n"
 gcloud services enable run.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable firestore.googleapis.com
+gcloud services enable secretmanager.googleapis.com
+
 DBNAME="projects/$PROJECT_ID/databases/(default)"
 gcloud firestore databases list | grep $DBNAME >/dev/null 2>&1
 if [ "$?" != "0" ]
