@@ -1,6 +1,5 @@
 . ../scripts/env.sh
 export REPO=gcr.io
-export PROJECT_ID=$PROD_PROJECT
 export SERVICE=flutterapp
 export TAG=$REPO/$PROJECT_ID/$SERVICE
 gcloud config set project $PROJECT_ID
