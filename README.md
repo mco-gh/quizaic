@@ -52,9 +52,10 @@ The machine that you will run the setup from will need the following installed:
     gcloud config set project <your-project-id>
     ```
 
-2. Clone the source code from github with this command:
+2. Clone the source code from github and change to the new directory with these commands:
     ```bash
     git clone https://github.com/mco-gh/quizrd
+    cd quizrd
     ```
 
 ### Quick Setup
