@@ -31,7 +31,7 @@ python3 seed_database.py seed marcacohen@gmail.com
 cd -
 
 printf "=====\nGenerating content API...\n=====\n"
-npm install @openapitools/openapi-generator-cli -g
+#npm install @openapitools/openapi-generator-cli -g
 scripts/regen_api.sh
 
 printf "=====\nBuilding and deploying content API...\n=====\n"
