@@ -22,7 +22,7 @@ fi
 gsutil mb gs://${PROJECT_ID}-sessions
 
 printf "=====\nSetting environment...\n=====\n"
-. scripts/env.sh
+./scripts/env.sh
 
 printf "=====\nResetting firestore database...\n=====\n"
 cd content-api/data
