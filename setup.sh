@@ -32,7 +32,7 @@ cd -
 
 printf "=====\nGenerating content API...\n=====\n"
 #npm install @openapitools/openapi-generator-cli -g
-scripts/regen_api.sh
+./scripts/regen_api.sh
 
 printf "=====\nBuilding and deploying content API...\n=====\n"
 cd content-api
@@ -41,7 +41,7 @@ cd -
 
 printf "=====\nBuilding and deploying website...\n=====\n"
 cd website
-. scripts/env.sh # reload env to get API_URL from deployed content-apis service
+../scripts/env.sh # reload env to get API_URL from deployed content-apis service
 pip install -r requirements.txt
 ./deploy.sh
 cd -
