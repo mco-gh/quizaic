@@ -143,7 +143,7 @@ python3 main.py
 ```
 
 ### Website
-For local testing you need to store your oauth web client's id and secret as environment variables in $HOME/keys.sh, like this:
+For local testing you need to store your oauth web client's id and secret (which can be obtained from the APIs & Services -> Credentials page on the Cloud console) as environment variables in $HOME/keys.sh, like this:
 
 ```
 export CLIENT_ID=<your-client-id>
