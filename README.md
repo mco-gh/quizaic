@@ -60,6 +60,12 @@ The machine that you will run the setup from will need the following installed:
 
 ### Quick Setup
 
+1. Run the following commands to install the [OpenAPI](https://www.openapis.org) command line tool:
+
+    ```bash
+    sudo npm install @openapitools/openapi-generator-cli -g
+    ```
+
 1. Run `./setup.sh`
 
 2. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets.
@@ -87,9 +93,9 @@ The machine that you will run the setup from will need the following installed:
     cd -
     ```
 
-4. Run the following command to generate the content API using [OpenAPI](https://www.openapis.org):
+4. Run the following commands to generate the content API using [OpenAPI](https://www.openapis.org):
     ```bash
-    npm install @openapitools/openapi-generator-cli -g
+    sudo npm install @openapitools/openapi-generator-cli -g
     scripts/regen_api.sh
     ```
 
