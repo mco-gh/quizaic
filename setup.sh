@@ -41,6 +41,7 @@ cd -
 
 echo -e "=====\nBuilding and deploying website...\n=====\n"
 cd website
+. scripts/env.sh # reload env to get API_URL from deployed content-apis service
 pip install -r requirements.txt
 ./deploy.sh
 cd -
