@@ -1,13 +1,13 @@
 export PROJECT_ID=$(gcloud config get-value project)
 
-echo -e "=====\nUncompressing generator data...\n=====\n"
+printf "=====\nUncompressing generator data...\n=====\n"
 JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
 then
     uncompress ${JEP_FILE}.Z
 fi
 
-echo -e "=====\nEnabling cloud services...\n=====\n"
+printf "=====\nEnabling cloud services...\n=====\n"
 gcloud services enable run.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable firestore.googleapis.com
@@ -21,25 +21,25 @@ then
 fi
 gsutil mb gs://${PROJECT_ID}-sessions
 
-echo -e "=====\nSetting environment...\n=====\n"
+printf "=====\nSetting environment...\n=====\n"
 . scripts/env.sh
 
-echo -e "=====\nResetting firestore database...\n=====\n"
+printf "=====\nResetting firestore database...\n=====\n"
 cd content-api/data
 python3 seed_database.py unseed
 python3 seed_database.py seed marcacohen@gmail.com
 cd -
 
-echo -e "=====\nGenerating content API...\n=====\n"
+printf "=====\nGenerating content API...\n=====\n"
 npm install @openapitools/openapi-generator-cli -g
 scripts/regen_api.sh
 
-echo -e "=====\nBuilding and deploying content API...\n=====\n"
+printf "=====\nBuilding and deploying content API...\n=====\n"
 cd content-api
 ./deploy.sh
 cd -
 
-echo -e "=====\nBuilding and deploying website...\n=====\n"
+printf "=====\nBuilding and deploying website...\n=====\n"
 cd website
 . scripts/env.sh # reload env to get API_URL from deployed content-apis service
 pip install -r requirements.txt
