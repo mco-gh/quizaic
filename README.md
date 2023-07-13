@@ -143,6 +143,14 @@ python3 main.py
 ```
 
 ### Website
+For local testing you need to store your oauth web client's id and secret as environment variables in $HOME/keys.sh, like this:
+
+```
+export CLIENT_ID=<your-client-id>
+export CLIENT_SECRET=<your-client-secret>
+```
+
+With that setup, you should be able to test the web server locally with these commands:
 ```bash
 cd website
 ./test.sh
