@@ -30,7 +30,7 @@ Quizrd is built on top of [Emblem Giving](https://github.com/GoogleCloudPlatform
 
 ## Getting Started
 
-Quizrd is made of a combination of resources created via the Google Cloud CLI or Google Cloud Console. You may deploy Quizrd by running `setup.sh` (see [Quick Setup](#quick-setup)). 
+Quizrd is made of a combination of resources created via the Google Cloud CLI or Google Cloud Console. You may deploy Quizrd by running `setup.sh` (see [Setup](#setup)). 
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ The machine that you will run the setup from will need the following installed:
     cd quizrd
     ```
 
-### Quick Setup
+### Setup
 
 1. Run the following commands to install the [OpenAPI](https://www.openapis.org) command line tool:
 
@@ -72,57 +72,6 @@ The machine that you will run the setup from will need the following installed:
 
 1. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets
    needed for users to log into the application.
-
-### Manual Setup
-
-1. Enable the required services by running these commands:
-
-    ```bash
-    gcloud services enable run.googleapis.com
-    gcloud services enable cloudbuild.googleapis.com
-    gcloud services enable firestore.googleapis.com
-    gcloud firestore databases create --location <loc> # use nam5 for US, eur3 for EU
-    ```
-
-2. Edit `scripts/env.sh` to reflect your preferred region and production project and "dot" that file into your environment by running this command:
-
-    ```bash
-    . scripts/env.sh # Don't miss the leading dot!
-    ```
-
-3. Run the following commands to populate the Firestore database:
-
-    ```bash
-    cd content-api/data
-    python3 seed_database.py seed <your-email-address.gmail.com>
-    cd -
-    ```
-
-4. Run the following commands to generate the content API using [OpenAPI](https://www.openapis.org):
-
-    ```bash
-    sudo npm install @openapitools/openapi-generator-cli -g
-    scripts/regen_api.sh
-    ```
-
-5. Run the following commands to build the content API and deploy it to Cloud Run: 
-
-    ```bash
-    cd content-api
-    ./deploy.sh
-    cd -
-    ```
-
-6. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets.
-
-7. Run the following commands to build the website and deploy it to Cloud Run: 
-
-    ```bash
-    cd website
-    pip install -r requirements.txt
-    ./deploy.sh
-    cd -
-    ```
 
 ## Verify Setup
 
