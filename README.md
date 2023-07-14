@@ -175,7 +175,10 @@ export CLIENT_ID=<your-client-id>
 export CLIENT_SECRET=<your-client-secret>
 ```
 
-With that setup, you should be able to test the web server locally with these commands:
+You also need to add `http://localhost:8080/callback` under `APIs & Services` ->
+`Credentials` -> `Authorized redirect URIs`.
+
+You should be able to test the web server locally now:
 
 ```bash
 cd website
