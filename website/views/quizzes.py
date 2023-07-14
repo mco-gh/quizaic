@@ -284,7 +284,8 @@ def webapp_view_quiz():
 
     qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
-    return render_template("view-quiz.html", current_user=current_user, quiz=quiz_instance, qa=qa, questions=questions)
+    creator = hashlib.sha256(current_user.encode("utf-8")).hexdigest()
+    return render_template("view-quiz.html", creator=creator, quiz=quiz_instance, qa=qa, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
 def start(pin):

@@ -114,7 +114,9 @@
           </span>
         </li>
 
-      {% if current_user %}
+      <!-- Delete and Edit only allowed for quiz creators -->
+      <!-- TODO: Also allow admins -->
+      {% if creator == quiz.creator %}
       <span>
         <a href="/deleteQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
@@ -128,7 +130,10 @@
           <span class="mdc-button__label">Edit Quiz</span>
         </a>
       </span>
+      {% endif %}
 
+      <!-- Clone and Run allowed for all logged in users -->
+      {% if creator %}
       <span>
         <a href="/createQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
