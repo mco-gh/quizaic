@@ -261,8 +261,10 @@ def save_quiz():
 def webapp_view_quiz():
     if restrict: return render_template("errors/403.html"), 403
     current_user = None
+    creator = None
     if g.session_data:
         current_user = g.session_data.get("email")
+        creator = hashlib.sha256(current_user.encode("utf-8")).hexdigest()
 
     user_is_admin = False
     try:
@@ -294,7 +296,6 @@ def webapp_view_quiz():
 
     qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
-    creator = hashlib.sha256(current_user.encode("utf-8")).hexdigest()
     return render_template("view-quiz.html", creator=creator, user_is_admin=user_is_admin, quiz=quiz_instance, qa=qa, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
