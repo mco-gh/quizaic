@@ -22,7 +22,7 @@ Quizrd is built on top of [Emblem Giving](https://github.com/GoogleCloudPlatform
 ## Project Status
 
 * **Release Stage:** Alpha
-* **Self-service / Independent Setup:** Follow the instructions to set up Quizrd in the [Getting Started](#getting-started) section below. 
+* **Self-service / Independent Setup:** Follow the instructions to set up Quizrd in the [Getting Started](#getting-started) section below.
 
 ## Contributing
 
@@ -36,23 +36,25 @@ Quizrd is made of a combination of resources created via the Google Cloud CLI or
 
 To deploy Quizrd, you will need:
 <!-- * 3 Google Cloud projects (ops, stage, prod) with billing enabled on each) -->
-  * A Google Cloud project with billing enabled
-  * A fork of this repo
+* A Google Cloud project with billing enabled
+* A clone of this repo
 
 The machine that you will run the setup from will need the following installed:
 <!-- * [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli) -->
-  * [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
-  * [Python3](https://www.python.org/downloads)
+* [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
+* [Python3](https://www.python.org/downloads)
 
 ### Gcloud Configuration and Github Repo
 
 1. Set your account and project in the gcloud CLI using these commands:
+
     ```bash
     gcloud config set account <your-account@gmail.com>
     gcloud config set project <your-project-id>
     ```
 
-2. Clone the source code from github and change to the new directory with these commands:
+1. Clone the source code from github and change to the new directory with these commands:
+
     ```bash
     git clone https://github.com/mco-gh/quizrd
     cd quizrd
@@ -66,9 +68,10 @@ The machine that you will run the setup from will need the following installed:
     sudo npm install @openapitools/openapi-generator-cli -g
     ```
 
-1. Run `./setup.sh`
+1. Run `./setup.sh` to deploy backend services.
 
-2. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets.
+1. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets
+   needed for users to log into the application.
 
 ### Manual Setup
 
@@ -82,11 +85,13 @@ The machine that you will run the setup from will need the following installed:
     ```
 
 2. Edit `scripts/env.sh` to reflect your preferred region and production project and "dot" that file into your environment by running this command:
+
     ```bash
     . scripts/env.sh # Don't miss the leading dot!
     ```
 
-3. Run the following commands to populate the Firestore database: 
+3. Run the following commands to populate the Firestore database:
+
     ```bash
     cd content-api/data
     python3 seed_database.py seed <your-email-address.gmail.com>
@@ -94,12 +99,14 @@ The machine that you will run the setup from will need the following installed:
     ```
 
 4. Run the following commands to generate the content API using [OpenAPI](https://www.openapis.org):
+
     ```bash
     sudo npm install @openapitools/openapi-generator-cli -g
     scripts/regen_api.sh
     ```
 
 5. Run the following commands to build the content API and deploy it to Cloud Run: 
+
     ```bash
     cd content-api
     ./deploy.sh
@@ -109,25 +116,37 @@ The machine that you will run the setup from will need the following installed:
 6. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets.
 
 7. Run the following commands to build the website and deploy it to Cloud Run: 
+
     ```bash
     cd website
     pip install -r requirements.txt
     ./deploy.sh
     cd -
     ```
-  
-8. Connect to the URL given by the output from the previous deployment script and verify the website looks something like this:
+
+## Verify Setup
+
+Connect to the URL given by the output from the previous deployment script and
+verify the website looks something like this:
+
 <img src="website/static/website.png" height="300">
+
+Also, try to log in as a user to make sure OAuth is setup correctly and create &
+run quizzes to make sure everything works.
 
 ## Incremental Deployment
 
+You can incrementally deploy services (instead of redeploying everyting).
+
 ### Content API
+
 ```bash
 cd content-api
 ./deploy.sh
 ```
 
 ### Website
+
 ```bash
 cd website
 ./deploy.sh
@@ -135,7 +154,10 @@ cd website
 
 ## Local Testing
 
+You can make changes in services and test them locally without deploying.
+
 ### Content API
+
 ```bash
 cd content-api
 python3 main.py
@@ -143,14 +165,18 @@ python3 main.py
 ```
 
 ### Website
-For local testing you need to store your oauth web client's id and secret (which can be obtained from the APIs & Services -> Credentials page on the Cloud console) as environment variables in $HOME/keys.sh, like this:
 
-```
+For local testing you need to store your oauth web client's id and secret (which
+can be obtained from the `APIs & Services` -> `Credentials` page on the Cloud
+console) as environment variables in `$HOME/keys.sh`, like this:
+
+```bash
 export CLIENT_ID=<your-client-id>
 export CLIENT_SECRET=<your-client-secret>
 ```
 
 With that setup, you should be able to test the web server locally with these commands:
+
 ```bash
 cd website
 ./test.sh
