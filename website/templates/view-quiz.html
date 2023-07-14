@@ -115,8 +115,7 @@
         </li>
 
       <!-- Delete and Edit only allowed for quiz creators -->
-      <!-- TODO: Also allow admins -->
-      {% if creator == quiz.creator %}
+      {% if (creator == quiz.creator) or user_is_admin %}
       <span>
         <a href="/deleteQuiz?quiz_id={{ quiz.id }}" class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>

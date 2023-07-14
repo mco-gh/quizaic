@@ -264,6 +264,16 @@ def webapp_view_quiz():
     if g.session_data:
         current_user = g.session_data.get("email")
 
+    user_is_admin = False
+    try:
+       admins = g.api.admins_get()
+       for i in admins:
+           if current_user == i.email:
+               user_is_admin = True
+               break
+    except:
+       pass
+
     quiz_id = request.args.get("quiz_id")
 
     if quiz_id is None:
@@ -285,7 +295,7 @@ def webapp_view_quiz():
     qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
     creator = hashlib.sha256(current_user.encode("utf-8")).hexdigest()
-    return render_template("view-quiz.html", creator=creator, quiz=quiz_instance, qa=qa, questions=questions)
+    return render_template("view-quiz.html", creator=creator, user_is_admin=user_is_admin, quiz=quiz_instance, qa=qa, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])
 def start(pin):
