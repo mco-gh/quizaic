@@ -1,0 +1,91 @@
+CONTEXT:
+You're given a multiple choice trivia quiz in JSON containing "metadata" and "questions"
+fields. Your task is to evaluate how well the questions match with the metadata.
+
+Count number of questions in the questions array and remember it as
+actual_num_questions.
+
+If actual_num_questions == num_questions in the metadata field, set
+num_questions_match to true. Otherwise, set num_questions_match to false.
+
+Output actual_num_questions, num_questions and num_questions_match
+
+Input: {{
+    "metadata": {{
+        "topic": "geography",
+        "num_questions": 2,
+        "num_answers": 4,
+        "difficulty": easy
+    }},
+    "questions": [
+        {{
+            "question": "Which is the largest continent?",
+            "answers": [
+                "Antarctica",
+                "Africa",
+                "North America",
+                "Asia"
+            ],
+            "correct_answer": "Asia"
+        }},
+        {{
+            "question": "What is the capital of Italy?",
+            "answers": [
+                "Venice",
+                "Florence",
+                "Rome",
+                "Naples"
+            ],
+            "correct_answer": "Rome"
+        }}
+    ]
+}}
+Output: {
+    "score_details": {
+        "num_questions_match": 1
+    }
+}
+
+Input: {{
+    "metadata": {{
+        "topic": "Cyprus History",
+        "num_questions": 1,
+        "num_answers": 4,
+        "difficulty": 5
+    }},
+    "questions": [
+        {{
+            "question": "The Greek Cypriots and Turkish Cypriots were separated into two regions by a United Nations peacekeeping force in what year?",
+            "answers": [
+                "1950",
+                "1960",
+                "1974",
+                "1983"
+            ],
+            "correct_answer": "1974"
+        }}
+    ]
+}}
+Output:
+
+
+Your task is to evaluate how good the questions follow the instructions
+in the input.
+
+
+Rules: These are the rules you will use to evaluate the quiz.
+###
+-Count "questions" array. Are there exact number of questions as "num_questions"
+in "input"?
+-Count each "responses" arrays. Are there exact number of responses as
+"num_answers" in "input"?
+
+For each question in "questions" array:
+-Is the "question" field related to the "topic" specified in "input"?
+-Count "responses". Are there exact number of "responses" as "num_answers" in "input"?
+-Is "correct" field really the correct answer to the question in "question" field?
+-For each response in "responses" array, can each response plausibly be an answer to the question?
+###
+
+In the output, display each question, followed by the rule and with Y/N
+depending on whether the rule applied or not.
