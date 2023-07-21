@@ -20,6 +20,17 @@ Extract num_answers from metadata field.
 If actual_num_answers is equal to num_answers in the metadata field, set
 num_answers_match to true. Otherwise, set num_answers_match to false.
 
+Output the following:
+Check1:
+Actual number of questions: actual_num_questions
+Requested number of questions: num_questions_match
+Do they match (0/1)? num_questions_match
+
+Check2:
+Actual number of answers: actual_num_answers
+Requested number of answers: num_answers
+Do they match (0/1)? num_answers_match
+
 {{
     "score_details": {{
         num_questions_match: num_questions_match,
