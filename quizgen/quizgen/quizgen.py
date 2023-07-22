@@ -4,18 +4,22 @@ import glob
 import os
 
 class Quizgen:
-    def __init__(self, type, root="quizgen"):
-        self.generators = {}
-        for i in glob.glob("*/__init__.py", root_dir=root):
-            self.generators[i.split("/")[0]] = None
-        print(f"{self.generators}=")
+    def __init__(self, type):
+        self.generators = {
+            "gpt":        None,
+            "jeopardy":   None,
+            "manual":     None,
+            "opentrivia": None,
+            "palm":       None
+        }
         if type not in self.generators:
             raise Exception(f"Unsupported generator type {type}.")
         if not self.generators[type]:
-            self.generators[type] = importlib.import_module(root + "." + type + "." + type)
+            mod = importlib.import_module(".." + type + "." + type, package="quizgen.quizgen")
+            self.generators[type] = mod
         self.type = type
         print(f"{self.generators[type]=}")
-        self._gen = self.generators[type].Quizgen(root)
+        self._gen = self.generators[type].Quizgen()
 
     def __str__(self):
         return self._gen.__str__()

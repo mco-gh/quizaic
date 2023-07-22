@@ -1,56 +1,51 @@
 import pytest
-from quizgen.quizgen import Generator
-
-
-@pytest.fixture
-def validator():
-    return Generator(api_key="test_api_key")
+from quizgen.quizgen import Quizgen
 
 
 def test_topics():
-    g = gen.Generator("jeopardy", root=".")
+    g = Quizgen("jeopardy")
     print(g.get_topics(10))
     assert(g.get_topics(10) == ['American History', 'Before & After', 'Colleges & Universities', 'History', 'Literature', 'Potpourri', 'Science', 'Sports', 'Word Origins', 'World History'])
 
 def test_get_gens():
-    gens = gen.Generator.get_gens(".")
+    gens = Quizgen.get_gens(".")
     assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt", "manual"]))
 
 def test_create_jeopardy_gen():
-    g = gen.Generator("jeopardy", root=".")
+    g = Quizgen("jeopardy", root=".")
     topics = g.get_topics()
     s = str(g)
     assert(g != None)
     assert(s == "Jeopardy quiz generator for quizrd.io")
 
 def test_create_palm_gen():
-    g = gen.Generator("palm", root=".")
+    g = Quizgen("palm", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "Palm quiz generator for quizrd.io")
 
 def test_create_gpt_gen():
-    g = gen.Generator("gpt", root=".")
+    g = Quizgen("gpt", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "GPT quiz generator for quizrd.io")
 
 def test_create_opentriva_gen():
-    g = gen.Generator("opentrivia", root=".")
+    g = Quizgen("opentrivia", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "OpenTrivia quiz generator for quizrd.io")
 
 def test_create_manual_gen():
-    g = gen.Generator("manual", root=".")
+    g = Quizgen("manual", root=".")
     s = str(g)
     assert(g != None)
     assert(s == "Manual quiz generator for quizrd.io")
 
 def test_create_unsupported_gen():
     with pytest.raises(Exception):
-        g = gen.Generator("unsupported")
+        g = Quizgen("unsupported")
 
 def test_jeopardy_gen_quiz():
-    g = gen.Generator("jeopardy", root=".")
+    g = Quizgen("jeopardy", root=".")
     q = g.gen_quiz("History", 10, 1)

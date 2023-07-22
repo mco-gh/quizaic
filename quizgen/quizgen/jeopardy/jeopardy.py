@@ -2,9 +2,8 @@ import pandas as pd
 import json
 
 class Quizgen:
-    def __init__(self, root):
-        self.root = root
-        self.db = pd.read_json(self.root + "/jeopardy/pruned_jeopardy.json")
+    def __init__(self):
+        self.db = pd.read_json("/jeopardy/pruned_jeopardy.json")
         self.db.category = self.db.category.str.title().str.strip()
 
     def __str__(self):
