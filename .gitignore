@@ -157,3 +157,6 @@ node_modules/
 
 # Copy of openapi generated code
 website/client-libs/
+
+# uncompressed jeopardy data file
+quizgen/quizgen/jeopardy/pruned_jeopardy.json
