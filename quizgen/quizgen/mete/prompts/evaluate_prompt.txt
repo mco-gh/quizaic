@@ -1,0 +1,41 @@
+CONTEXT:
+You're given a multiple choice trivia quiz in JSON format containing "metadata"
+and "questions" fields. Perform some checks against it and output some results.
+
+Check1:
+Count number of questions in the questions array and remember it as
+actual_num_questions.
+
+Extract num_questions from metadata field.
+
+If actual_num_questions is equal to num_questions in the metadata field, set
+num_questions_match to true. Otherwise, set num_questions_match to false.
+
+Check2:
+Count the length of answers arrays for each question and remember as
+actual_num_answers.
+
+Extract num_answers from metadata field.
+
+If actual_num_answers is equal to num_answers in the metadata field, set
+num_answers_match to true. Otherwise, set num_answers_match to false.
+
+Output the following:
+Check1:
+Actual number of questions: actual_num_questions
+Requested number of questions: num_questions_match
+Do they match (0/1)? num_questions_match
+
+Check2:
+Actual number of answers: actual_num_answers
+Requested number of answers: num_answers
+Do they match (0/1)? num_answers_match
+
+{{
+    "score_details": {{
+        num_questions_match: num_questions_match,
+        num_answers_match: num_answers_match,
+    }}
+}}
+
+Input: {quiz}
