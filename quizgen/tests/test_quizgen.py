@@ -43,3 +43,4 @@ def test_create_unsupported_gen():
 def test_jeopardy_gen_quiz():
     g = Quizgen("jeopardy")
     q = g.gen_quiz("History", 10, 1, 3, .5)
+    print(q)

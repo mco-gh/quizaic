@@ -11,7 +11,6 @@ GENERATORS = {
     "palm":       None
 }
 
-print(os.getcwd())
 class Quizgen:
     def __init__(self, type):
         if type not in GENERATORS:
@@ -20,7 +19,6 @@ class Quizgen:
             mod = importlib.import_module(".." + type + "." + type, package="quizgen.quizgen")
             GENERATORS[type] = mod
         self.type = type
-        print(f"{GENERATORS[type]=}")
         self._gen = GENERATORS[type].Quizgen()
 
     def __str__(self):
