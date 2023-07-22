@@ -2,45 +2,39 @@ import pytest
 from quizgen.quizgen import Quizgen
 
 
-def test_topics():
-    g = Quizgen("jeopardy")
-    print(g.get_topics(10))
-    assert(g.get_topics(10) == ['American History', 'Before & After', 'Colleges & Universities', 'History', 'Literature', 'Potpourri', 'Science', 'Sports', 'Word Origins', 'World History'])
+GENS = {"jeopardy", "opentrivia", "palm", "gpt", "manual"}
+TOPICS = {
+    "gpt": set(),
+    "jeopardy": {"American History", "Before & After", "Colleges & Universities",
+                 "History", "Literature", "Potpourri", "Science", "Sports",
+                 "Word Origins", "World History"},
+    "manual": set(),
+    "opentrivia": {"General Knowledge", "Books", "Film", "Music",
+            "Musicals & Theatres", "Television", "Video Games", "Board Games",
+            "Science & Nature", "Computers", "Mathematics", "Mythology",
+            "Sports", "Geography", "History", "Politics", "Art", "Celebrities",
+            "Animals", "Vehicles", "Comics", "Gadgets", "Japanese Anime & Manga",
+            "Cartoons &  Animations"},
+    "palm": set()
+}
 
 def test_get_gens():
     gens = Quizgen.get_gens()
-    assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt", "manual"]))
+    assert(set(gens.keys()) == GENS)
 
-def test_create_jeopardy_gen():
-    g = Quizgen("jeopardy")
-    topics = g.get_topics()
-    s = str(g)
-    assert(g != None)
-    assert(s == "Jeopardy quiz generator for quizrd.io")
+def test_create_generator():
+    for g in GENS:
+        gen = Quizgen(g)
+        assert(gen != None)
+        s = str(gen)
+        assert(s == f"{g} quiz generator")
 
-def test_create_palm_gen():
-    g = Quizgen("palm")
-    s = str(g)
-    assert(g != None)
-    assert(s == "Palm quiz generator for quizrd.io")
-
-def test_create_gpt_gen():
-    g = Quizgen("gpt")
-    s = str(g)
-    assert(g != None)
-    assert(s == "GPT quiz generator for quizrd.io")
-
-def test_create_opentriva_gen():
-    g = Quizgen("opentrivia")
-    s = str(g)
-    assert(g != None)
-    assert(s == "OpenTrivia quiz generator for quizrd.io")
-
-def test_create_manual_gen():
-    g = Quizgen("manual")
-    s = str(g)
-    assert(g != None)
-    assert(s == "Manual quiz generator for quizrd.io")
+def test_get_topics():
+    for g in GENS:
+        gen = Quizgen(g)
+        assert(gen != None)
+        topics = gen.get_topics(10)
+        assert(set(topics) == TOPICS[g]) 
 
 def test_create_unsupported_gen():
     with pytest.raises(Exception):

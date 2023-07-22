@@ -7,12 +7,12 @@ from vertexai.preview.language_models import TextGenerationModel
 
 class Quizgen:
     def __init__(self, project="quizrd-prod-382117", location="us-central1"):
-        self.topics = []
+        self.topics = set()
         vertexai.init(project=project, location=location)
         self.prompt = open("quizgen/palm/prompt.txt").read()
 
     def __str__(self):
-        return "Palm quiz generator for quizrd.io"
+        return "palm quiz generator"
 
     def get_topics(self, num=None):
         return self.topics

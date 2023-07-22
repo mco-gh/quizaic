@@ -15,7 +15,7 @@ class Quizgen:
             "Cartoons &  Animations")
 
     def __str__(self):
-        return "OpenTrivia quiz generator for quizrd.io"
+        return "opentrivia quiz generator"
 
     def get_topics(self, num=None):
         return self.topics

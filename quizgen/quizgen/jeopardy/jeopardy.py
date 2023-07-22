@@ -7,7 +7,7 @@ class Quizgen:
         self.db.category = self.db.category.str.title().str.strip()
 
     def __str__(self):
-        return "Jeopardy quiz generator for quizrd.io"
+        return "jeopardy quiz generator"
 
     def get_topics(self, num=100):
         return sorted(self.db.category.value_counts()[:num].index.tolist())

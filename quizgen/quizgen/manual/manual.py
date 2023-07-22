@@ -3,10 +3,10 @@ import json
 
 class Quizgen:
     def __init__(self):
-        self.topics = []
+        self.topics = set()
 
     def __str__(self):
-        return "Manual quiz generator for quizrd.io"
+        return "manual quiz generator"
 
     def get_topics(self, num=100):
         return self.topics

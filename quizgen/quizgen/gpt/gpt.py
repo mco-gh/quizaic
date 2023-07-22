@@ -1,9 +1,9 @@
 class Quizgen:
     def __init__(self):
-        self.topics = []
+        self.topics = set()
 
     def __str__(self):
-        return "GPT quiz generator for quizrd.io"
+        return "gpt quiz generator"
 
     def get_topics(self, num=None):
         return self.topics
