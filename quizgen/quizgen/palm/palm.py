@@ -5,12 +5,11 @@ import random
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
-class Generator:
-    def __init__(self, root, project="quizrd-prod-382117", location="us-central1"):
-        self.root = root
+class Quizgen:
+    def __init__(self, project="quizrd-prod-382117", location="us-central1"):
         self.topics = []
         vertexai.init(project=project, location=location)
-        self.prompt = open(self.root + "/palm/prompt.txt").read()
+        self.prompt = open("quizgen/palm/prompt.txt").read()
 
     def __str__(self):
         return "Palm quiz generator for quizrd.io"

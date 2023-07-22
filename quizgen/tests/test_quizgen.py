@@ -8,36 +8,36 @@ def test_topics():
     assert(g.get_topics(10) == ['American History', 'Before & After', 'Colleges & Universities', 'History', 'Literature', 'Potpourri', 'Science', 'Sports', 'Word Origins', 'World History'])
 
 def test_get_gens():
-    gens = Quizgen.get_gens(".")
+    gens = Quizgen.get_gens()
     assert(set(gens.keys()) == set(["jeopardy", "opentrivia", "palm", "gpt", "manual"]))
 
 def test_create_jeopardy_gen():
-    g = Quizgen("jeopardy", root=".")
+    g = Quizgen("jeopardy")
     topics = g.get_topics()
     s = str(g)
     assert(g != None)
     assert(s == "Jeopardy quiz generator for quizrd.io")
 
 def test_create_palm_gen():
-    g = Quizgen("palm", root=".")
+    g = Quizgen("palm")
     s = str(g)
     assert(g != None)
     assert(s == "Palm quiz generator for quizrd.io")
 
 def test_create_gpt_gen():
-    g = Quizgen("gpt", root=".")
+    g = Quizgen("gpt")
     s = str(g)
     assert(g != None)
     assert(s == "GPT quiz generator for quizrd.io")
 
 def test_create_opentriva_gen():
-    g = Quizgen("opentrivia", root=".")
+    g = Quizgen("opentrivia")
     s = str(g)
     assert(g != None)
     assert(s == "OpenTrivia quiz generator for quizrd.io")
 
 def test_create_manual_gen():
-    g = Quizgen("manual", root=".")
+    g = Quizgen("manual")
     s = str(g)
     assert(g != None)
     assert(s == "Manual quiz generator for quizrd.io")
@@ -47,5 +47,5 @@ def test_create_unsupported_gen():
         g = Quizgen("unsupported")
 
 def test_jeopardy_gen_quiz():
-    g = Quizgen("jeopardy", root=".")
-    q = g.gen_quiz("History", 10, 1)
+    g = Quizgen("jeopardy")
+    q = g.gen_quiz("History", 10, 1, 3, .5)

@@ -5,9 +5,8 @@ import random
 
 # https://opentdb.com/
 
-class Generator:
-    def __init__(self, root):
-        self.root = root
+class Quizgen:
+    def __init__(self):
         self.topics = ("General Knowledge", "Books", "Film", "Music",
             "Musicals & Theatres", "Television", "Video Games", "Board Games",
             "Science & Nature", "Computers", "Mathematics", "Mythology",

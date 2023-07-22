@@ -3,35 +3,36 @@ import quizgen
 import glob
 import os
 
+GENERATORS = {
+    "gpt":        None,
+    "jeopardy":   None,
+    "manual":     None,
+    "opentrivia": None,
+    "palm":       None
+}
+
+print(os.getcwd())
 class Quizgen:
     def __init__(self, type):
-        self.generators = {
-            "gpt":        None,
-            "jeopardy":   None,
-            "manual":     None,
-            "opentrivia": None,
-            "palm":       None
-        }
-        if type not in self.generators:
+        if type not in GENERATORS:
             raise Exception(f"Unsupported generator type {type}.")
-        if not self.generators[type]:
+        if not GENERATORS[type]:
             mod = importlib.import_module(".." + type + "." + type, package="quizgen.quizgen")
-            self.generators[type] = mod
+            GENERATORS[type] = mod
         self.type = type
-        print(f"{self.generators[type]=}")
-        self._gen = self.generators[type].Quizgen()
+        print(f"{GENERATORS[type]=}")
+        self._gen = GENERATORS[type].Quizgen()
 
     def __str__(self):
         return self._gen.__str__()
 
-    @staticmethod
-    def get_gens(root="quizgen"):
+    def get_gens():
         gens = {}
-        for g in self.generators:
+        for g in GENERATORS:
            gens[g] = {
-               "topic_formats":  gen.Quizgen(g, root).get_topic_formats(),
-               "answer_formats": gen.Quizgen(g, root).get_answer_formats(),
-               "topics":         gen.Quizgen(g, root).get_topics()
+               "topic_formats":  Quizgen(g).get_topic_formats(),
+               "answer_formats": Quizgen(g).get_answer_formats(),
+               "topics":         Quizgen(g).get_topics()
            }
         return gens
 

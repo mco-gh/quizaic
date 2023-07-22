@@ -1,6 +1,5 @@
-class Generator:
-    def __init__(self, root):
-        self.root = root
+class Quizgen:
+    def __init__(self):
         self.topics = []
 
     def __str__(self):
