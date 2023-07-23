@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pyquizrd"
+version = "0.1.4"
+description = ""
+authors = ["marcacohen <marcacohen@gmail.com>"]
+readme = "README.md"
+include = ["pyquizrd/jeopardy/pruned_jeopardy.json"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.0.240"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+requests-mock = "^1.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
