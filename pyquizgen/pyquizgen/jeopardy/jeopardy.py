@@ -3,7 +3,7 @@ import json
 
 class Quizgen:
     def __init__(self):
-        self.db = pd.read_json("quizgen/jeopardy/pruned_jeopardy.json")
+        self.db = pd.read_json("pyquizgen/jeopardy/pruned_jeopardy.json")
         self.db.category = self.db.category.str.title().str.strip()
 
     def __str__(self):

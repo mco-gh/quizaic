@@ -1,5 +1,5 @@
 import importlib
-import quizgen
+import pyquizgen
 import glob
 import os
 
@@ -16,7 +16,7 @@ class Quizgen:
         if type not in GENERATORS:
             raise Exception(f"Unsupported generator type {type}.")
         if not GENERATORS[type]:
-            mod = importlib.import_module(".." + type + "." + type, package="quizgen.quizgen")
+            mod = importlib.import_module(".." + type + "." + type, package="pyquizgen.pyquizgen")
             GENERATORS[type] = mod
         self.type = type
         self._gen = GENERATORS[type].Quizgen()

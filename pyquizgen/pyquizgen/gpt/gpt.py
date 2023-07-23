@@ -1,6 +1,6 @@
 import json
 import pprint
-from langchain.llms import OpenAI
+#from langchain.llms import OpenAI
 import random
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
@@ -8,11 +8,11 @@ from vertexai.preview.language_models import TextGenerationModel
 class Quizgen:
     def __init__(self, project="quizrd-prod-382117", location="us-central1"):
         self.topics = set()
-        llm = OpenAI(temperature=0.9)
-        self.prompt = open("quizgen/gpt/prompt.txt").read()
+        #llm = OpenAI(temperature=0.9)
+        self.prompt = open("pyquizgen/gpt/prompt.txt").read()
 
     def __str__(self):
-        return "palm quiz generator"
+        return "gpt quiz generator"
 
     def get_topics(self, num=None):
         return self.topics
@@ -23,13 +23,13 @@ class Quizgen:
     def get_answer_formats(self):
         return ["free-form", "multiple-choice"]
 
-    def predict_llm(self, model, temp, tokens, top_p, top_k, content, tuned_model=""):
-      m = TextGenerationModel.from_pretrained(model)
-      if tuned_model:
-          m = model.get_tuned_model(tuned_model)
-      response = m.predict(content, temperature=temp, max_output_tokens=tokens,
-          top_k=top_k, top_p=top_p)
-      return response.text
+    #def predict_llm(self, model, temp, tokens, top_p, top_k, content, tuned_model=""):
+      #m = TextGenerationModel.from_pretrained(model)
+      #if tuned_model:
+          #m = model.get_tuned_model(tuned_model)
+      #response = m.predict(content, temperature=temp, max_output_tokens=tokens,
+          #top_k=top_k, top_p=top_p)
+      #return response.text
 
     def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
         if difficulty <= 2:
@@ -43,13 +43,13 @@ class Quizgen:
             num_questions=num_questions,
             num_answers=num_answers,
             difficulty=difficulty)
-        quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
+        #quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
         # randomize responses
-        json_quiz = json.loads(quiz)
-        for i in json_quiz:
-            random.shuffle(i["responses"])
-        quiz = json.dumps(json_quiz, indent=4)
-        #return quiz
+        #json_quiz = json.loads(quiz)
+        #for i in json_quiz:
+            #random.shuffle(i["responses"])
+        #quiz = json.dumps(json_quiz, indent=4)
+        ##return quiz
         return '''[ 
                     {
                       "question":  "gpt question",

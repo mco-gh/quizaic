@@ -1,5 +1,5 @@
 import pytest
-from quizgen.quizgen import Quizgen
+from pyquizgen.pyquizgen import Quizgen
 
 
 GENS = {"jeopardy", "opentrivia", "palm", "gpt", "manual"}

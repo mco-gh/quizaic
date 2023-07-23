@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "quizgen"
+name = "pyquizgen"
 version = "0.1.0"
 description = ""
 authors = ["marcacohen <marcacohen@gmail.com>"]

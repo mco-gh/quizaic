@@ -9,7 +9,7 @@ class Quizgen:
     def __init__(self, project="quizrd-prod-382117", location="us-central1"):
         self.topics = set()
         vertexai.init(project=project, location=location)
-        self.prompt = open("quizgen/palm/prompt.txt").read()
+        self.prompt = open("pyquizgen/palm/prompt.txt").read()
 
     def __str__(self):
         return "palm quiz generator"
