@@ -1,5 +1,6 @@
-import gen
+from pyquizrd.pyquizrd import Quizgen
+import pytest
 
-g = gen.Generator("palm", root="gen")
-q = g.gen_quiz(topic="Rock History", num_questions=3, num_answers=1, difficulty=5, temperature=.5)
+g = Quizgen("palm")
+q = g.gen_quiz("History", 3, 1, 3, .5)
 print(q)
