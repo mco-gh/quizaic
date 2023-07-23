@@ -10,4 +10,5 @@ importlib-metadata==5.1.0
 pandas==2.0.1
 google-generativeai
 google-cloud-aiplatform==1.25.0
+pyquizrd
 ../client-libs/python
