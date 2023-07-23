@@ -1,0 +1,62 @@
+Generate a multiple choice trivia quiz containing {num_questions} questions about {topic}, represented in json. Make the questions diverse, avoid repetitive formats, and make sure the correct answers are accurate.
+
+input: geography, 2 questions, easy
+output: [
+    {{
+        "question": "Which is the largest continent?",
+        "correct": "Asia",
+        "responses": [
+            "Antarctica",
+            "Africa",
+            "North America",
+            "Asia"
+        ]
+    }},
+    {{
+        "question": "What is the capital of Italy?",
+        "correct": "Russia",
+        "responses": [
+            "Venice",
+            "Florence",
+            "Rome",
+            "Naples"
+        ]
+    }}
+]
+
+input: World History, 3 questions, difficult
+output: [
+    {{
+        "question": "Who was the first emperor of the Holy Roman Empire?",
+        "correct": "Charlemagne",
+        "responses": [
+            "Otto I",
+            "Frederick Barbarossa",
+            "Charles V",
+            "Charlemagne"
+        ]
+    }},
+    {{
+        "question": "What was the name of the English king who conquered Normandy?",
+        "correct": "William the Conqueror",
+        "responses": [
+            "Edward the Confessor",
+            "Richard I",
+            "Henry II",
+            "William the Conqueror"
+        ]
+    }},
+    {{
+        "question": "Who was King of England when the Magna Carta was created?",
+        "correct": "John",
+        "responses": [
+            "Richard I",
+            "John",
+            "Edward I",
+            "Henry III"
+        ]
+    }}
+]
+
+input: {topic}, {num_questions} questions, difficulty {difficulty}
+output:

@@ -21,7 +21,7 @@ class Quizgen:
         return ["free-form"]
 
     def get_answer_formats(self):
-        return ["freeform", "multiple-choice"]
+        return ["free-form", "multiple-choice"]
 
     def predict_llm(self, model, temp, tokens, top_p, top_k, content, tuned_model=""):
       m = TextGenerationModel.from_pretrained(model)
