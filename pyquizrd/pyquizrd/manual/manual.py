@@ -1,5 +1,4 @@
 import pandas as pd
-import json
 
 class Quizgen:
     def __init__(self):

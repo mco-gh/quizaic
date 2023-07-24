@@ -1,4 +1,3 @@
-import glob
 import json
 import requests
 import random

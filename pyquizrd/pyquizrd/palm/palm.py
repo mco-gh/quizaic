@@ -1,15 +1,15 @@
 import json
-import pprint
-import google.generativeai as palm
 import os
 import random
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 class Quizgen:
+    # TODO - project, location should be settable from pyquizrd.py Quizgen
     def __init__(self, project="quizrd-prod-382117", location="us-central1"):
         self.topics = set()
         vertexai.init(project=project, location=location)
+        # TODO - prompt.txt should be settable to test different prompts
         data_path = os.path.join(os.path.dirname(__file__), "prompt.txt")
         with open(data_path, encoding='utf-8') as fp:
             self.prompt = fp.read()
@@ -45,9 +45,9 @@ class Quizgen:
         prompt = self.prompt.format(topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
-            difficulty=difficulty)
+            difficulty=difficulty_word)
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
-        # randomize responses
+        # TODO: This is not needed? - randomize responses
         json_quiz = json.loads(quiz)
         for i in json_quiz:
             random.shuffle(i["responses"])

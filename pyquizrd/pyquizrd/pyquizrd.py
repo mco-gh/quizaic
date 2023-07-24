@@ -46,5 +46,7 @@ class Quizgen:
     def get_answer_formats(self):
         return self._gen.get_answer_formats()
 
+    # TODO - One problem with this approach is that, all the parameters are required
+    # This means optional parameters are uselss in subclasses
     def gen_quiz(self, topic, num_questions, num_answers, difficulty, temperature):
         return self._gen.gen_quiz(topic, num_questions, num_answers, difficulty, temperature)
