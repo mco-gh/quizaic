@@ -47,7 +47,7 @@ Output: [
     }},
     {{
         "question": "What was the name of the English king who conquered Normandy?",
-        "answers": [
+        "responses": [
             "Henry II",
             "William the Conqueror"
         ],

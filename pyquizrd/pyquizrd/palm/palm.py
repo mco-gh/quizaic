@@ -1,6 +1,4 @@
-import json
 import os
-import random
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
@@ -47,9 +45,4 @@ class Quizgen:
             num_answers=num_answers,
             difficulty=difficulty_word)
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
-        # TODO: This is not needed? - randomize responses
-        json_quiz = json.loads(quiz)
-        for i in json_quiz:
-            random.shuffle(i["responses"])
-        quiz = json.dumps(json_quiz, indent=4)
         return quiz

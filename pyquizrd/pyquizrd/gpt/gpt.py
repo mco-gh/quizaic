@@ -45,7 +45,7 @@ class Quizgen:
         prompt = self.prompt.format(topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
-            difficulty=difficulty)
+            difficulty=difficulty_word)
         #quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
         # randomize responses
         #json_quiz = json.loads(quiz)

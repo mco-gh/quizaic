@@ -25,7 +25,7 @@ class Quizgen:
     def get_answer_formats(self):
         return ["multiple-choice", "true/false"]
 
-    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=None):
+    def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
         if difficulty <= 2:
             difficulty_word = "easy"
         elif difficulty <= 4:
@@ -33,7 +33,7 @@ class Quizgen:
         elif difficulty == 5:
             difficulty_word = "hard"
         topic_num = self.topics.index(topic) + 9
-       
+
         url = "https://opentdb.com/api.php?"
         url += f"amount={num_questions}"
         url += f"&category={topic_num}"
@@ -43,7 +43,7 @@ class Quizgen:
         r = requests.get(url)
         quiz = r.json()["results"]
         json_quiz = []
-        
+
         for question in quiz:
             json_quiz.append({
                 "question": question["question"],

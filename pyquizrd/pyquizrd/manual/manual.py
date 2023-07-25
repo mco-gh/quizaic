@@ -1,5 +1,3 @@
-import pandas as pd
-
 class Quizgen:
     def __init__(self):
         self.topics = set()
@@ -16,5 +14,5 @@ class Quizgen:
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
 
-    def gen_quiz(self, topic, num_questions, num_answers, difficulty, temperature=None):
+    def gen_quiz(self, topic=None, num_questions=None, num_answers=None, difficulty=3, temperature=.5):
         return "[]"

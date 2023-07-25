@@ -50,16 +50,14 @@ def test_gen_quiz_gpt():
     # TODO - Currently GPT returns a generic response.
     # Add more checks once it's properly implemented
     gen = Quizgen("gpt")
-    quiz = gen.gen_quiz("American History", 1, 1, 3, .5)
+    quiz = gen.gen_quiz("American History", 1, 1)
     print(quiz)
     assert(quiz != None)
 
 def test_gen_quiz_jeopardy():
     expected_num_questions = 5
     gen = Quizgen("jeopardy")
-    # TODO - num_answers=1 should not be settable because it's not used
-    # difficulty=3, temperature=.5 should be optional but they're not
-    quiz = gen.gen_quiz("American History", expected_num_questions, 1, 3, .5)
+    quiz = gen.gen_quiz("American History", expected_num_questions)
     print(quiz)
     assert(quiz != None)
 
@@ -73,16 +71,14 @@ def test_gen_quiz_jeopardy():
 
 def test_gen_quiz_manual():
     gen = Quizgen("manual")
-    quiz = gen.gen_quiz("American History", 1, 1, 1, 0)
+    quiz = gen.gen_quiz()
     print(quiz)
     assert(quiz != None)
 
 def test_gen_quiz_opentrivia():
     expected_num_questions = 5
     gen = Quizgen("opentrivia")
-    # TODO - num_answers=1 should not be settable because it's not used
-    # difficulty=3, temperature=.5 should be optional but they're not
-    quiz = gen.gen_quiz("General Knowledge", expected_num_questions, 1, 3, .5)
+    quiz = gen.gen_quiz("General Knowledge", expected_num_questions)
     print(quiz)
     assert(quiz != None)
 
@@ -100,8 +96,7 @@ def test_gen_quiz_palm():
     expected_num_questions = 5
     expected_num_answers = 3
     gen = Quizgen("palm")
-    # TODO - difficulty=3, temperature=.5 should be optional but they're not
-    quiz = gen.gen_quiz("American History", expected_num_questions, expected_num_answers, 3, .5)
+    quiz = gen.gen_quiz("American History", expected_num_questions, expected_num_answers)
     print(quiz)
     assert(quiz != None)
 
