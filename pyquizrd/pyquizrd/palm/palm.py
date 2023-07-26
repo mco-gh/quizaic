@@ -1,3 +1,4 @@
+import json
 import os
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
@@ -6,7 +7,7 @@ class Quizgen:
 
     DEFAULT_PROJECT = "quizrd-prod-382117"
     DEFAULT_LOCATION = "us-central1"
-    DEFAULT_PROMPT_FILE = "prompt2.txt"
+    DEFAULT_PROMPT_FILE = "prompts/prompt_generate2.txt"
 
     def __init__(self, config=None):
         project = Quizgen.DEFAULT_PROJECT
@@ -62,3 +63,55 @@ class Quizgen:
             difficulty=self.get_difficulty_word(difficulty))
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
         return quiz
+
+    # Load quiz from quiz.json, mainly for testing
+    def load_quiz(self):
+        #file = open('quiz.json')
+        file = open(os.path.join(os.path.dirname(__file__), "quiz.json"))
+        quiz = json.load(file)
+        #quiz = json.dumps(quiz, indent=4) # format nicely
+        return quiz
+
+    # Given a quiz, check if it's a valid quiz:
+    # 1. It has right number of questions
+    # 2. It has right number of answers per question
+    # 3. The correct answer is in the answers list
+    # 4. The question is on the right topic
+    # 5. The question has the right correct answer
+    # 6. The question has the right wrong answers
+    def eval_quiz(self, quiz, topic, num_questions, num_answers):
+        # 1. It has right number of questions
+        actual_num_questions = len(quiz)
+        if actual_num_questions != num_questions:
+            return False, f"Number of questions - actual: {actual_num_questions}, expected: {num_questions}"
+
+        for question in quiz:
+            # 2. It has right number of answers per question
+            actual_num_answers = len(question["responses"])
+            if actual_num_answers != num_answers:
+                return False, f"Number of responses in question '{question}' - actual: {actual_num_answers}, expected: {num_answers}"
+            # 3. The correct answer is in the answers list
+            correct = question["correct"]
+            responses = question["responses"]
+            if not correct in responses:
+                return False, f"The correct answer '{correct}' for question '{question} is not in responses list: {responses}"
+
+        # TODO: Implement #4, #5, #6 
+        return True, "Valid quiz"
+
+if __name__ == "__main__":
+    topic = "American History"
+    num_questions = 2
+    num_answers = 3
+
+    # config = {"project": "quizrd-atamel"}
+    # gen = Quizgen(config)
+    # quiz = gen.gen_quiz("American History", 2, 3)
+    # print(quiz)
+
+    gen = Quizgen()
+    quiz = gen.load_quiz()
+    print(quiz)
+
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(valid, details)

@@ -1,0 +1,20 @@
+[
+    {
+        "question": "Who was the first president of the United States?",
+        "responses": [
+            "George Washington",
+            "Benjamin Franklin",
+            "Thomas Jefferson"
+        ],
+        "correct": "George Washington"
+    },
+    {
+        "question": "Which state was the first to secede from the Union during the Civil War?",
+        "responses": [
+            "South Carolina",
+            "Georgia",
+            "Texas"
+        ],
+        "correct": "South Carolina"
+    }
+]

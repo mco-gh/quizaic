@@ -39,7 +39,7 @@ def test_create_unsupported_gen():
     with pytest.raises(Exception):
         g = Quizgen("unsupported")
 
-def test_gen_quiz_gpt():
+def test_gpt_gen_quiz():
     # TODO - Currently GPT returns a generic response.
     # Add more checks once it's properly implemented
     gen = Quizgen("gpt")
@@ -47,7 +47,7 @@ def test_gen_quiz_gpt():
     print(quiz)
     assert(quiz != None)
 
-def test_gen_quiz_jeopardy():
+def test_jeopardy_gen_quiz():
     expected_num_questions = 5
     gen = Quizgen("jeopardy")
     quiz = gen.gen_quiz("American History", expected_num_questions)
@@ -62,13 +62,13 @@ def test_gen_quiz_jeopardy():
     for question in quiz:
         assert(isinstance(question["correct"], str))
 
-def test_gen_quiz_manual():
+def test_manual_gen_quiz():
     gen = Quizgen("manual")
     quiz = gen.gen_quiz()
     print(quiz)
     assert(quiz != None)
 
-def test_gen_quiz_opentrivia():
+def test_opentrivia_gen_quiz():
     expected_num_questions = 5
     gen = Quizgen("opentrivia")
     quiz = gen.gen_quiz("General Knowledge", expected_num_questions)
@@ -85,38 +85,75 @@ def test_gen_quiz_opentrivia():
         actual_num_answers = len(question["responses"])
         assert(expected_num_answers == actual_num_answers)
 
-def test_gen_quiz_palm_noconfig():
+def test_palm_noconfig():
     # This test passes only if you have access to the project defined in DEFAULT_PROJECT in palm.py
     gen = Quizgen("palm")
-    quiz = gen.gen_quiz("American History", 1, 1)
-    print(quiz)
-    assert(quiz != None)
+    assert(gen != None)
 
-def test_gen_quiz_palm_withconfig():
+def test_palm_withconfig():
     # This test passes only if you have access to project defined below
     config = {"project": "quizrd-atamel"}
     gen = Quizgen("palm", config)
-    quiz = gen.gen_quiz("American History", 1, 1)
-    print(quiz)
-    assert(quiz != None)
+    assert(gen != None)
 
-def test_gen_quiz_palm_num_questions_answers():
-    expected_num_questions = 5
-    expected_num_answers = 3
+def test_palm_eval_quiz_num_questions():
+    topic = "American History"
+    num_questions = 2
+    num_answers = 3
 
-    # This test passes only if you have access to project defined below
-    config = {"project": "quizrd-atamel"}
-    gen = Quizgen("palm", config)
-    quiz = gen.gen_quiz("American History", expected_num_questions, expected_num_answers)
-    print(quiz)
-    assert(quiz != None)
+    gen = Quizgen("palm")
+    quiz = gen.load_quiz()
+    print(json.dumps(quiz, indent=4))
 
-    quiz = json.loads(quiz)
-    actual_num_questions = len(quiz)
-    assert(expected_num_questions == actual_num_questions)
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    assert(valid)
 
-    for question in quiz:
-        actual_num_answers = len(question["responses"])
-        assert(expected_num_answers == actual_num_answers)
+    # Remove a question
+    quiz.pop()
+    print(json.dumps(quiz, indent=4))
 
-        assert(question["correct"] in question["responses"])
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    assert(not valid)
+
+def test_palm_eval_quiz_num_answers():
+    topic = "American History"
+    num_questions = 2
+    num_answers = 3
+
+    gen = Quizgen("palm")
+    quiz = gen.load_quiz()
+    print(json.dumps(quiz, indent=4))
+
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(details)
+    assert valid
+
+    # Remove an answer
+    quiz[0]["responses"].pop()
+    print(json.dumps(quiz, indent=4))
+
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(details)
+    assert not valid
+
+def test_palm_eval_quiz_correct_answer_inlist():
+    topic = "American History"
+    num_questions = 2
+    num_answers = 3
+
+    gen = Quizgen("palm")
+    quiz = gen.load_quiz()
+    print(json.dumps(quiz, indent=4))
+
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(details)
+    assert valid
+
+    # Change correct answer to foo
+    quiz[0]["correct"] = "foo"
+    print(json.dumps(quiz, indent=4))
+
+    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(details)
+    assert not valid
+

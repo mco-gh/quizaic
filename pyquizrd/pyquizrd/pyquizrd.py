@@ -46,3 +46,11 @@ class Quizgen:
 
     def gen_quiz(self, topic=None, num_questions=None, num_answers=None, difficulty=3, temperature=.5):
         return self._gen.gen_quiz(topic, num_questions, num_answers, difficulty, temperature)
+
+    # Load quiz from a file, mainly for testing
+    def load_quiz(self):
+        return self._gen.load_quiz()
+
+    # Check that the quiz is valid, mainly for testing
+    def eval_quiz(self, quiz, topic, num_questions, num_answers):
+        return self._gen.eval_quiz(quiz, topic, num_questions, num_answers)
