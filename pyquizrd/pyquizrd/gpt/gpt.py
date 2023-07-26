@@ -2,7 +2,7 @@ import os
 
 # TODO: Implement
 class Quizgen:
-    def __init__(self, project="quizrd-prod-382117", location="us-central1"):
+    def __init__(self):
         self.topics = set()
 
     def __str__(self):

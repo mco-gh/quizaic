@@ -1,29 +1,30 @@
 import importlib
 
-GENERATORS = {
-    "gpt":        None,
-    "jeopardy":   None,
-    "manual":     None,
-    "opentrivia": None,
-    "palm":       None
-}
-
 class Quizgen:
+
+    GENERATORS = {
+        "gpt":        None,
+        "jeopardy":   None,
+        "manual":     None,
+        "opentrivia": None,
+        "palm":       None
+    }
+
     def __init__(self, type):
-        if type not in GENERATORS:
+        if type not in Quizgen.GENERATORS:
             raise Exception(f"Unsupported generator type {type}.")
-        if not GENERATORS[type]:
+        if not Quizgen.GENERATORS[type]:
             mod = importlib.import_module(".." + type + "." + type, package="pyquizrd.pyquizrd")
-            GENERATORS[type] = mod
+            Quizgen.GENERATORS[type] = mod
         self.type = type
-        self._gen = GENERATORS[type].Quizgen()
+        self._gen = Quizgen.GENERATORS[type].Quizgen()
 
     def __str__(self):
         return self._gen.__str__()
 
     def get_gens():
         gens = {}
-        for g in GENERATORS:
+        for g in Quizgen.GENERATORS:
            gens[g] = {
                "topic_formats":  Quizgen(g).get_topic_formats(),
                "answer_formats": Quizgen(g).get_answer_formats(),

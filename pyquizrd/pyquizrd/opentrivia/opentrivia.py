@@ -5,19 +5,22 @@ import random
 # https://opentdb.com/
 
 class Quizgen:
-    def __init__(self):
-        self.topics = ("General Knowledge", "Books", "Film", "Music",
+
+    TOPICS = ("General Knowledge", "Books", "Film", "Music",
             "Musicals & Theatres", "Television", "Video Games", "Board Games",
             "Science & Nature", "Computers", "Mathematics", "Mythology",
             "Sports", "Geography", "History", "Politics", "Art", "Celebrities",
             "Animals", "Vehicles", "Comics", "Gadgets", "Japanese Anime & Manga",
             "Cartoons &  Animations")
 
+    def __init__(self):
+        pass
+
     def __str__(self):
         return "opentrivia quiz generator"
 
     def get_topics(self, num=None):
-        return self.topics
+        return set(Quizgen.TOPICS)
 
     def get_topic_formats(self):
         return ["multiple-choice"]
@@ -37,7 +40,7 @@ class Quizgen:
             return "hard"
 
     def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
-        topic_num = self.topics.index(topic) + 9
+        topic_num = Quizgen.TOPICS.index(topic) + 9
 
         url = "https://opentdb.com/api.php?"
         url += f"amount={num_questions}"
