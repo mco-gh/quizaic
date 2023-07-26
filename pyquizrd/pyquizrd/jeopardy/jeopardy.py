@@ -3,7 +3,7 @@ import os
 
 class Quizgen:
 
-    def __init__(self):
+    def __init__(self, config=None):
         data_path = os.path.join(os.path.dirname(__file__), "pruned_jeopardy.json")
         self.db = pd.read_json(data_path)
         self.db.category = self.db.category.str.title().str.strip()

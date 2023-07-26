@@ -85,10 +85,28 @@ def test_gen_quiz_opentrivia():
         actual_num_answers = len(question["responses"])
         assert(expected_num_answers == actual_num_answers)
 
-def test_gen_quiz_palm():
+def test_gen_quiz_palm_noconfig():
+    # This test passes only if you have access to the project defined in DEFAULT_PROJECT in palm.py
+    gen = Quizgen("palm")
+    quiz = gen.gen_quiz("American History", 1, 1)
+    print(quiz)
+    assert(quiz != None)
+
+def test_gen_quiz_palm_withconfig():
+    # This test passes only if you have access to project defined below
+    config = {"project": "quizrd-atamel"}
+    gen = Quizgen("palm", config)
+    quiz = gen.gen_quiz("American History", 1, 1)
+    print(quiz)
+    assert(quiz != None)
+
+def test_gen_quiz_palm_num_questions_answers():
     expected_num_questions = 5
     expected_num_answers = 3
-    gen = Quizgen("palm")
+
+    # This test passes only if you have access to project defined below
+    config = {"project": "quizrd-atamel"}
+    gen = Quizgen("palm", config)
     quiz = gen.gen_quiz("American History", expected_num_questions, expected_num_answers)
     print(quiz)
     assert(quiz != None)
@@ -102,5 +120,3 @@ def test_gen_quiz_palm():
         assert(expected_num_answers == actual_num_answers)
 
         assert(question["correct"] in question["responses"])
-
-

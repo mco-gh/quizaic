@@ -4,12 +4,20 @@ from vertexai.preview.language_models import TextGenerationModel
 
 class Quizgen:
 
-    DEFAULT_PROJECT = "quizrd-prod-382117" # "quizrd-atamel"
+    DEFAULT_PROJECT = "quizrd-prod-382117"
     DEFAULT_LOCATION = "us-central1"
     DEFAULT_PROMPT_FILE = "prompt2.txt"
 
-    # TODO - project, location should be settable from pyquizrd.py Quizgen
-    def __init__(self, project=DEFAULT_PROJECT, location=DEFAULT_LOCATION, prompt_file=DEFAULT_PROMPT_FILE):
+    def __init__(self, config=None):
+        project = Quizgen.DEFAULT_PROJECT
+        location = Quizgen.DEFAULT_LOCATION
+        prompt_file = Quizgen.DEFAULT_PROMPT_FILE
+
+        if config:
+            project = config.get("project", Quizgen.DEFAULT_PROJECT)
+            location = config.get("location", Quizgen.DEFAULT_LOCATION)
+            prompt_file = config.get("prompt_file", Quizgen.DEFAULT_PROMPT_FILE)
+
         self.topics = set()
         vertexai.init(project=project, location=location)
         data_path = os.path.join(os.path.dirname(__file__), prompt_file)

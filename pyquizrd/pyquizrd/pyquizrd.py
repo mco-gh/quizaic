@@ -10,14 +10,14 @@ class Quizgen:
         "palm":       None
     }
 
-    def __init__(self, type):
+    def __init__(self, type, config=None):
         if type not in Quizgen.GENERATORS:
             raise Exception(f"Unsupported generator type {type}.")
         if not Quizgen.GENERATORS[type]:
             mod = importlib.import_module(".." + type + "." + type, package="pyquizrd.pyquizrd")
             Quizgen.GENERATORS[type] = mod
         self.type = type
-        self._gen = Quizgen.GENERATORS[type].Quizgen()
+        self._gen = Quizgen.GENERATORS[type].Quizgen(config)
 
     def __str__(self):
         return self._gen.__str__()

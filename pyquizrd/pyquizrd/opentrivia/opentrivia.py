@@ -13,7 +13,7 @@ class Quizgen:
             "Animals", "Vehicles", "Comics", "Gadgets", "Japanese Anime & Manga",
             "Cartoons &  Animations")
 
-    def __init__(self):
+    def __init__(self, config=None):
         pass
 
     def __str__(self):
