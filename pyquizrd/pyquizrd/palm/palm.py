@@ -32,17 +32,21 @@ class Quizgen:
           top_k=top_k, top_p=top_p)
       return response.text
 
-    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
-        if difficulty <= 2:
-            difficulty_word = "easy"
-        elif difficulty <= 4:
-            difficulty_word = "medium"
-        elif difficulty <= 5:
-            difficulty_word = "difficult"
+    def get_difficulty_word(self, difficulty):
+        if difficulty < 1 or difficulty > 5:
+            raise Exception("Difficulty cannot be less than 1 or more than 5")
 
+        if difficulty <= 2:
+            return "easy"
+        elif difficulty <= 4:
+            return "medium"
+        elif difficulty <= 5:
+            return "difficult"
+
+    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
         prompt = self.prompt.format(topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
-            difficulty=difficulty_word)
+            difficulty=self.get_difficulty_word(difficulty))
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
         return quiz

@@ -25,19 +25,24 @@ class Quizgen:
     def get_answer_formats(self):
         return ["multiple-choice", "true/false"]
 
-    def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
+    def get_difficulty_word(self, difficulty):
+        if difficulty < 1 or difficulty > 5:
+            raise Exception("Difficulty cannot be less than 1 or more than 5")
+
         if difficulty <= 2:
-            difficulty_word = "easy"
+            return "easy"
         elif difficulty <= 4:
-            difficulty_word = "medium"
-        elif difficulty == 5:
-            difficulty_word = "hard"
+            return "medium"
+        elif difficulty <= 5:
+            return "hard"
+
+    def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
         topic_num = self.topics.index(topic) + 9
 
         url = "https://opentdb.com/api.php?"
         url += f"amount={num_questions}"
         url += f"&category={topic_num}"
-        url += f"&difficulty={difficulty_word}"
+        url += f"&difficulty={self.get_difficulty_word(difficulty)}"
         url += f"&type=multiple"
 
         r = requests.get(url)
