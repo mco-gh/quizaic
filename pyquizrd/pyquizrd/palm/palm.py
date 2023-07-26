@@ -3,12 +3,16 @@ import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 class Quizgen:
+
+    DEFAULT_PROJECT = "quizrd-prod-382117" # "quizrd-atamel"
+    DEFAULT_LOCATION = "us-central1"
+    DEFAULT_PROMPT_FILE = "prompt2.txt"
+
     # TODO - project, location should be settable from pyquizrd.py Quizgen
-    def __init__(self, project="quizrd-prod-382117", location="us-central1"):
+    def __init__(self, project=DEFAULT_PROJECT, location=DEFAULT_LOCATION, prompt_file=DEFAULT_PROMPT_FILE):
         self.topics = set()
         vertexai.init(project=project, location=location)
-        # TODO - prompt.txt should be settable to test different prompts
-        data_path = os.path.join(os.path.dirname(__file__), "prompt.txt")
+        data_path = os.path.join(os.path.dirname(__file__), prompt_file)
         with open(data_path, encoding='utf-8') as fp:
             self.prompt = fp.read()
 

@@ -98,7 +98,6 @@ def test_gen_quiz_palm():
     assert(expected_num_questions == actual_num_questions)
 
     for question in quiz:
-        # TODO - This currently fails with prompt.txt, passes with prompt2.txt
         actual_num_answers = len(question["responses"])
         assert(expected_num_answers == actual_num_answers)
 
