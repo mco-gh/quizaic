@@ -5,19 +5,22 @@ import random
 # https://opentdb.com/
 
 class Quizgen:
-    def __init__(self):
-        self.topics = ("General Knowledge", "Books", "Film", "Music",
+
+    TOPICS = ("General Knowledge", "Books", "Film", "Music",
             "Musicals & Theatres", "Television", "Video Games", "Board Games",
             "Science & Nature", "Computers", "Mathematics", "Mythology",
             "Sports", "Geography", "History", "Politics", "Art", "Celebrities",
             "Animals", "Vehicles", "Comics", "Gadgets", "Japanese Anime & Manga",
             "Cartoons &  Animations")
 
+    def __init__(self, config=None):
+        pass
+
     def __str__(self):
         return "opentrivia quiz generator"
 
     def get_topics(self, num=None):
-        return self.topics
+        return set(Quizgen.TOPICS)
 
     def get_topic_formats(self):
         return ["multiple-choice"]
@@ -25,19 +28,24 @@ class Quizgen:
     def get_answer_formats(self):
         return ["multiple-choice", "true/false"]
 
-    def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
+    def get_difficulty_word(self, difficulty):
+        if difficulty < 1 or difficulty > 5:
+            raise Exception("Difficulty cannot be less than 1 or more than 5")
+
         if difficulty <= 2:
-            difficulty_word = "easy"
+            return "easy"
         elif difficulty <= 4:
-            difficulty_word = "medium"
-        elif difficulty == 5:
-            difficulty_word = "hard"
-        topic_num = self.topics.index(topic) + 9
+            return "medium"
+        elif difficulty <= 5:
+            return "hard"
+
+    def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
+        topic_num = Quizgen.TOPICS.index(topic) + 9
 
         url = "https://opentdb.com/api.php?"
         url += f"amount={num_questions}"
         url += f"&category={topic_num}"
-        url += f"&difficulty={difficulty_word}"
+        url += f"&difficulty={self.get_difficulty_word(difficulty)}"
         url += f"&type=multiple"
 
         r = requests.get(url)

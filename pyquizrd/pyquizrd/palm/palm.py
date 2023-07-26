@@ -3,12 +3,24 @@ import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 class Quizgen:
-    # TODO - project, location should be settable from pyquizrd.py Quizgen
-    def __init__(self, project="quizrd-prod-382117", location="us-central1"):
+
+    DEFAULT_PROJECT = "quizrd-prod-382117"
+    DEFAULT_LOCATION = "us-central1"
+    DEFAULT_PROMPT_FILE = "prompt2.txt"
+
+    def __init__(self, config=None):
+        project = Quizgen.DEFAULT_PROJECT
+        location = Quizgen.DEFAULT_LOCATION
+        prompt_file = Quizgen.DEFAULT_PROMPT_FILE
+
+        if config:
+            project = config.get("project", Quizgen.DEFAULT_PROJECT)
+            location = config.get("location", Quizgen.DEFAULT_LOCATION)
+            prompt_file = config.get("prompt_file", Quizgen.DEFAULT_PROMPT_FILE)
+
         self.topics = set()
         vertexai.init(project=project, location=location)
-        # TODO - prompt.txt should be settable to test different prompts
-        data_path = os.path.join(os.path.dirname(__file__), "prompt.txt")
+        data_path = os.path.join(os.path.dirname(__file__), prompt_file)
         with open(data_path, encoding='utf-8') as fp:
             self.prompt = fp.read()
 
@@ -32,17 +44,21 @@ class Quizgen:
           top_k=top_k, top_p=top_p)
       return response.text
 
-    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
-        if difficulty <= 2:
-            difficulty_word = "easy"
-        elif difficulty <= 4:
-            difficulty_word = "medium"
-        elif difficulty <= 5:
-            difficulty_word = "difficult"
+    def get_difficulty_word(self, difficulty):
+        if difficulty < 1 or difficulty > 5:
+            raise Exception("Difficulty cannot be less than 1 or more than 5")
 
+        if difficulty <= 2:
+            return "easy"
+        elif difficulty <= 4:
+            return "medium"
+        elif difficulty <= 5:
+            return "difficult"
+
+    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
         prompt = self.prompt.format(topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
-            difficulty=difficulty_word)
+            difficulty=self.get_difficulty_word(difficulty))
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
         return quiz

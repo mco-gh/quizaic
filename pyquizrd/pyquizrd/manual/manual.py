@@ -1,5 +1,5 @@
 class Quizgen:
-    def __init__(self):
+    def __init__(self, config=None):
         self.topics = set()
 
     def __str__(self):
