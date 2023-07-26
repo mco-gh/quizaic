@@ -62,6 +62,7 @@ class Quizgen:
             num_answers=num_answers,
             difficulty=self.get_difficulty_word(difficulty))
         quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
+        quiz = json.loads(quiz)
         return quiz
 
     # Load quiz from quiz.json, mainly for testing
@@ -100,18 +101,18 @@ class Quizgen:
         return True, "Valid quiz"
 
 if __name__ == "__main__":
-    topic = "American History"
+    topic = "Cyprus"
     num_questions = 2
     num_answers = 3
 
     # config = {"project": "quizrd-atamel"}
     # gen = Quizgen(config)
-    # quiz = gen.gen_quiz("American History", 2, 3)
-    # print(quiz)
+    # quiz = gen.gen_quiz(topic, num_questions, num_answers)
+    # print(json.dumps(quiz, indent=4))
 
     gen = Quizgen()
     quiz = gen.load_quiz()
-    print(quiz)
+    print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
     print(valid, details)
