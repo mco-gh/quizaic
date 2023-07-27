@@ -1,0 +1,93 @@
+CONTEXT:
+
+You're given a multiple choice trivia quiz containing questions and responses in
+JSON on a topic. You will check the validity of the quiz by following these rules.
+
+RULES:
+-Is question on the provided topic? Capture as question_on_topic: true/false
+-Is correct answer the actual correct answer to the question? Capture as
+correct_is_correct: true/false
+
+EXAMPLES:
+
+Input: topic: geography, quiz:[
+    {{
+        "question": "Which is the largest continent?",
+        "responses": [
+            "Antarctica",
+            "Africa",
+            "North America",
+            "Asia"
+        ],
+        "correct": "Asia",
+    }},
+    {{
+        "question": "What is the capital of Italy?",
+        "responses": [
+            "Venice",
+            "Florence",
+            "Rome",
+            "Naples"
+        ],
+        "correct": "Venice"
+    }}
+]
+Output: [
+    {{
+        "question": "Which is the largest continent?",
+        "responses": [
+            "Antarctica",
+            "Africa",
+            "North America",
+            "Asia"
+        ],
+        "correct": "Asia",
+        "validity": {
+            "question_on_topic": true
+            "correct_is_correct": true
+        }
+    }},
+    {{
+        "question": "What is the capital of Italy?",
+        "responses": [
+            "Venice",
+            "Florence",
+            "Rome",
+            "Naples"
+        ],
+        "correct": "Venice",
+        "validity": {
+            "question_on_topic": true
+            "correct_is_correct": false
+        }
+    }}
+]
+
+Input: topic: world history, quiz:
+[
+    {{
+        "question": "Who was the first emperor of the Holy Roman Empire?",
+        "responses": [
+            "Charles V",
+            "Charlemagne"
+        ],
+        "correct": "Charlemagne"
+    }},
+    {{
+        "question": "What was the name of the English king who conquered Normandy?",
+        "responses": [
+            "Henry II",
+            "William the Conqueror"
+        ],
+        "correct": "William the Conqueror"
+    }},
+    {{
+        "question": "Who was King of England when the Magna Carta was created?",
+        "responses": [
+            "Richard I",
+            "John"
+        ],
+        "correct": "John"
+    }}
+]
+Output:

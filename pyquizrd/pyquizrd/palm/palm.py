@@ -7,23 +7,32 @@ class Quizgen:
 
     DEFAULT_PROJECT = "quizrd-prod-382117"
     DEFAULT_LOCATION = "us-central1"
-    DEFAULT_PROMPT_FILE = "prompts/prompt_generate2.txt"
+    DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
+    DEFAULT_PROMPT_EVAL_FILE = "prompt_eval2.txt"
 
     def __init__(self, config=None):
         project = Quizgen.DEFAULT_PROJECT
         location = Quizgen.DEFAULT_LOCATION
-        prompt_file = Quizgen.DEFAULT_PROMPT_FILE
+        prompt_gen_file = Quizgen.DEFAULT_PROMPT_GEN_FILE
+        prompt_eval_file = Quizgen.DEFAULT_PROMPT_EVAL_FILE
 
         if config:
             project = config.get("project", Quizgen.DEFAULT_PROJECT)
             location = config.get("location", Quizgen.DEFAULT_LOCATION)
-            prompt_file = config.get("prompt_file", Quizgen.DEFAULT_PROMPT_FILE)
+            prompt_gen_file = config.get("prompt_gen_file", Quizgen.DEFAULT_PROMPT_GEN_FILE)
+            prompt_eval_file = config.get("prompt_eval_file", Quizgen.DEFAULT_PROMPT_EVAL_FILE)
+
+        vertexai.init(project=project, location=location)
 
         self.topics = set()
-        vertexai.init(project=project, location=location)
-        data_path = os.path.join(os.path.dirname(__file__), prompt_file)
-        with open(data_path, encoding='utf-8') as fp:
-            self.prompt = fp.read()
+
+        file_path = os.path.join(os.path.dirname(__file__), "prompts/" + prompt_gen_file)
+        with open(file_path, encoding='utf-8') as fp:
+            self.prompt_gen = fp.read()
+
+        file_path = os.path.join(os.path.dirname(__file__), "prompts/" + prompt_eval_file)
+        with open(file_path, encoding='utf-8') as fp:
+            self.prompt_eval = fp.read()
 
     def __str__(self):
         return "palm quiz generator"
@@ -57,7 +66,7 @@ class Quizgen:
             return "difficult"
 
     def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
-        prompt = self.prompt.format(topic=topic,
+        prompt = self.prompt_gen.format(topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
             difficulty=self.get_difficulty_word(difficulty))
@@ -66,52 +75,55 @@ class Quizgen:
         return quiz
 
     # Load quiz from quiz.json, mainly for testing
-    def load_quiz(self):
-        #file = open('quiz.json')
-        file = open(os.path.join(os.path.dirname(__file__), "quiz.json"))
+    def load_quiz(self, quiz_file):
+        file = open(os.path.join(os.path.dirname(__file__), "quizzes/" + quiz_file))
         quiz = json.load(file)
         #quiz = json.dumps(quiz, indent=4) # format nicely
         return quiz
 
     # Given a quiz, check if it's a valid quiz:
-    # 1. It has right number of questions
-    # 2. It has right number of answers per question
-    # 3. The correct answer is in the answers list
-    # 4. The question is on the right topic
-    # 5. The question has the right correct answer
-    # 6. The question has the right wrong answers
     def eval_quiz(self, quiz, topic, num_questions, num_answers):
         # 1. It has right number of questions
         actual_num_questions = len(quiz)
         if actual_num_questions != num_questions:
             return False, f"Number of questions - actual: {actual_num_questions}, expected: {num_questions}"
 
-        for question in quiz:
+        for value in quiz:
             # 2. It has right number of answers per question
-            actual_num_answers = len(question["responses"])
+            actual_num_answers = len(value["responses"])
             if actual_num_answers != num_answers:
-                return False, f"Number of responses in question '{question}' - actual: {actual_num_answers}, expected: {num_answers}"
+                return False, f"Number of responses in question '{value['question']}' - actual: {actual_num_answers}, expected: {num_answers}"
             # 3. The correct answer is in the answers list
-            correct = question["correct"]
-            responses = question["responses"]
+            correct = value["correct"]
+            responses = value["responses"]
             if not correct in responses:
-                return False, f"The correct answer '{correct}' for question '{question} is not in responses list: {responses}"
+                return False, f"The correct answer '{correct}' for question '{value['question']}' is not in responses list: {responses}"
 
-        # TODO: Implement #4, #5, #6 
-        return True, "Valid quiz"
+        prompt_eval = self.prompt_eval.format(quiz=quiz, topic=topic)
+        temperature = 0 # To get consistent results in evaluation
+        eval = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt_eval)
+        questions = json.loads(eval)
+
+        for value in questions:
+            # 4. The question is on the right topic
+            if not value["validity"]["is_question_on_topic"]:
+                return False, f"Question '{value['question']}' is not on topic: {topic}"
+            # 5. The question has the right correct answer
+            if not value["validity"]["is_correct_correct"]:
+                return False, f"Question '{value['question']}' does not have a correct answer: {value.correct}"
+
+        # TODO - 6. The question has the right wrong answers
+        return True, f"Valid quiz: {eval}"
 
 if __name__ == "__main__":
-    topic = "Cyprus"
+    topic = "American History"
     num_questions = 2
     num_answers = 3
 
-    # config = {"project": "quizrd-atamel"}
-    # gen = Quizgen(config)
-    # quiz = gen.gen_quiz(topic, num_questions, num_answers)
-    # print(json.dumps(quiz, indent=4))
-
     gen = Quizgen()
-    quiz = gen.load_quiz()
+
+    # quiz = gen.gen_quiz(topic, num_questions, num_answers)
+    quiz = gen.load_quiz("quiz_cyprus_valid.json")
     print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)

@@ -1,0 +1,118 @@
+CONTEXT:
+
+You're given a topic and a quiz in JSON containing a list of questions and
+responses. You need to determine validity of the questions and responses
+using some rules.
+
+The input is in this format:
+
+topic: <topic>, quiz:
+[
+    {{
+        "question": <question>,
+        "responses": [
+            <response1>,
+            <response2>
+            ...
+        ],
+        "correct": <correctanswer>
+    }}
+]
+
+For each <question>, determine the following:
+1. Is question: <question> on topic: <topic>? is_question_on_topic: true/false
+2. Is <correctanswer> really the correct answer to question: <question>? is_correct_correct:true/false
+
+Output in this format:
+
+[
+    {{
+        "question": <question>,
+        "responses": [
+            <response1>,
+            <response2>
+        ],
+        "correct": <correctanswer>,
+        "validity": {{
+            "is_question_on_topic": true/false,
+            "is_correct_correct": true/false
+        }}
+    }}
+]
+
+EXAMPLE:
+Input: topic: geography, quiz:[
+    {{
+        "question": "Which is the largest continent?",
+        "responses": [
+            "Antarctica",
+            "Africa",
+            "North America",
+            "Asia"
+        ],
+        "correct": "Asia",
+    }},
+    {{
+        "question": "What is the capital of Italy?",
+        "responses": [
+            "Venice",
+            "Florence",
+            "Rome",
+            "Naples"
+        ],
+        "correct": "Venice"
+    }},
+    {{
+        "question": "Who was the first emperor of the Holy Roman Empire?",
+        "responses": [
+            "Charles V",
+            "Charlemagne"
+        ],
+        "correct": "Charlemagne"
+    }}
+]
+Output: [
+    {{
+        "question": "Which is the largest continent?",
+        "responses": [
+            "Antarctica",
+            "Africa",
+            "North America",
+            "Asia"
+        ],
+        "correct": "Asia",
+        "validity": {{
+            "is_question_on_topic": true,
+            "is_correct_correct": true
+        }}
+    }},
+    {{
+        "question": "What is the capital of Italy?",
+        "responses": [
+            "Venice",
+            "Florence",
+            "Rome",
+            "Naples"
+        ],
+        "correct": "Venice",
+        "validity": {{
+            "is_question_on_topic": true,
+            "is_correct_correct": false
+        }}
+    }},
+    {{
+        "question": "Who was the first emperor of the Holy Roman Empire?",
+        "responses": [
+            "Charles V",
+            "Charlemagne"
+        ],
+        "correct": "Charlemagne",
+        "validity": {{
+            "is_question_on_topic": false,
+            "is_correct_correct": true
+        }}
+    }}
+]
+
+Input: topic: {topic}, quiz: {quiz}
+Output: 
