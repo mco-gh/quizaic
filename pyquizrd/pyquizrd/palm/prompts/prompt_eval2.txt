@@ -15,13 +15,13 @@ topic: <topic>, quiz:
             <response2>
             ...
         ],
-        "correct": <correctanswer>
+        "correct": <answer>
     }}
 ]
 
 For each <question>, determine the following:
-1. Is question: <question> on topic: <topic>? is_question_on_topic: true/false
-2. Is <correctanswer> really the correct answer to question: <question>? is_correct_correct:true/false
+1. Is <question> about the topic of <topic>? question_on_topic: true/false
+2. Is <answer> the correct answer to <question>? correct_is_correct:true/false
 
 Output in this format:
 
@@ -34,8 +34,8 @@ Output in this format:
         ],
         "correct": <correctanswer>,
         "validity": {{
-            "is_question_on_topic": true/false,
-            "is_correct_correct": true/false
+            "question_on_topic": true/false,
+            "correct_is_correct": true/false
         }}
     }}
 ]
@@ -82,8 +82,8 @@ Output: [
         ],
         "correct": "Asia",
         "validity": {{
-            "is_question_on_topic": true,
-            "is_correct_correct": true
+            "question_on_topic": true,
+            "correct_is_correct": true
         }}
     }},
     {{
@@ -96,8 +96,8 @@ Output: [
         ],
         "correct": "Venice",
         "validity": {{
-            "is_question_on_topic": true,
-            "is_correct_correct": false
+            "question_on_topic": true,
+            "correct_is_correct": false
         }}
     }},
     {{
@@ -108,8 +108,8 @@ Output: [
         ],
         "correct": "Charlemagne",
         "validity": {{
-            "is_question_on_topic": false,
-            "is_correct_correct": true
+            "question_on_topic": false,
+            "correct_is_correct": true
         }}
     }}
 ]
