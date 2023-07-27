@@ -1,0 +1,29 @@
+[
+    {
+        "question": "Which country was Cyprus a part of before 1960?",
+        "responses": [
+            "United Kingdom",
+            "Greece",
+            "Turkey"
+        ],
+        "correct": "United Kingdom"
+    },
+    {
+        "question": "What is the capital of Cyprus?",
+        "responses": [
+            "Nicosia",
+            "Limassol",
+            "Paphos"
+        ],
+        "correct": "Nicosia"
+    },
+    {
+        "question": "Which state was the first to secede from the Union during the Civil War?",
+        "responses": [
+            "South Carolina",
+            "Georgia",
+            "Texas"
+        ],
+        "correct": "South Carolina"
+    }
+]
