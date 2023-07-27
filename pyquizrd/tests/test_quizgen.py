@@ -97,35 +97,20 @@ def test_palm_withconfig():
     assert(gen != None)
 
 def test_palm_eval_quiz_num_questions():
-    topic = "American History"
-    num_questions = 2
-    num_answers = 3
-
     gen = Quizgen("palm")
-    quiz = gen.load_quiz()
-    print(json.dumps(quiz, indent=4))
-
-    # valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    # assert(valid)
+    quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Remove a question
     quiz.pop()
     print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(details)
     assert not valid
 
 def test_palm_eval_quiz_num_answers():
-    topic = "American History"
-    num_questions = 2
-    num_answers = 3
-
     gen = Quizgen("palm")
-    quiz = gen.load_quiz()
-    print(json.dumps(quiz, indent=4))
-
-    # valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    # assert valid
+    quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Remove an answer
     quiz[0]["responses"].pop()
@@ -136,18 +121,10 @@ def test_palm_eval_quiz_num_answers():
     assert not valid
 
 def test_palm_eval_quiz_correct_answer_inlist():
-    topic = "American History"
-    num_questions = 2
-    num_answers = 3
-
     gen = Quizgen("palm")
-    quiz = gen.load_quiz()
-    print(json.dumps(quiz, indent=4))
+    quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
-    # valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    # assert valid
-
-    # Change correct answer to foo
+    # Change correct answer to a value not in responses
     quiz[0]["correct"] = "foo"
     print(json.dumps(quiz, indent=4))
 
@@ -156,25 +133,44 @@ def test_palm_eval_quiz_correct_answer_inlist():
     assert not valid
 
 def test_palm_eval_quiz_question_on_topic():
-    topic = "Cyprus"
-    num_questions = 3
-    num_answers = 3
-
     gen = Quizgen("palm")
-    quiz = gen.load_quiz("quiz_cyprus_wrongtopic.json")
+    quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
+
+    # Add a question on an unrelated topic
+    quiz.append(
+        {
+        "question": "What is the capital of Cyprus?",
+        "responses": [
+            "Nicosia",
+            "Limassol",
+            "Paphos"
+        ],
+        "correct": "Nicosia"
+    })
+    num_questions += 1
     print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
     print(details)
     assert not valid
 
-def test_palm_eval_quiz_correct_is_correct():
-    topic = "Cyprus"
-    num_questions = 2
-    num_answers = 3
+def test_palm_eval_quiz_correct_is_correct_cyprus():
+    quiz_file = "quiz_cyprus.json"
+    wrong_answer = "Paphos"
+    do_palm_eval_quiz_correct_is_correct(quiz_file, wrong_answer)
 
+def test_palm_eval_quiz_correct_is_correct_americanhistory():
+    # TODO - This fails with the current prompt
+    quiz_file = "quiz_americanhistory.json"
+    wrong_answer = "Georgia"
+    do_palm_eval_quiz_correct_is_correct(quiz_file, wrong_answer)
+
+def do_palm_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
     gen = Quizgen("palm")
-    quiz = gen.load_quiz("quiz_cyprus_wronganswer.json")
+    quiz, topic, num_questions, num_answers = gen.load_quiz(quiz_file)
+
+    # Change the second question's answer to a wrong answer in responses
+    quiz[1]["correct"] = wrong_answer
     print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)

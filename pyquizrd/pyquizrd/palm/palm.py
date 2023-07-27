@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
@@ -74,12 +75,17 @@ class Quizgen:
         quiz = json.loads(quiz)
         return quiz
 
-    # Load quiz from quiz.json, mainly for testing
+    # Load quiz from a quiz_<topic>.json file, mainly for testing
     def load_quiz(self, quiz_file):
         file = open(os.path.join(os.path.dirname(__file__), "quizzes/" + quiz_file))
         quiz = json.load(file)
-        #quiz = json.dumps(quiz, indent=4) # format nicely
-        return quiz
+        #print(json.dumps(quiz, indent=4))
+
+        topic = re.search(r"_(.*)\.json", quiz_file).group(1)
+        num_questions = len(quiz)
+        num_answers = len(quiz[0]["responses"])
+
+        return quiz, topic, num_questions, num_answers
 
     # Given a quiz, check if it's a valid quiz:
     def eval_quiz(self, quiz, topic, num_questions, num_answers):
@@ -100,30 +106,27 @@ class Quizgen:
                 return False, f"The correct answer '{correct}' for question '{value['question']}' is not in responses list: {responses}"
 
         prompt_eval = self.prompt_eval.format(quiz=quiz, topic=topic)
-        temperature = 0 # To get consistent results in evaluation
-        eval = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt_eval)
+        temp = 0 # To get consistent results in evaluation
+        eval = self.predict_llm("text-bison@001", temp, 1024, 0.8, 40, prompt_eval)
+
         questions = json.loads(eval)
 
-        for value in questions:
-            # 4. The question is on the right topic
-            if not value["validity"]["is_question_on_topic"]:
-                return False, f"Question '{value['question']}' is not on topic: {topic}"
-            # 5. The question has the right correct answer
-            if not value["validity"]["is_correct_correct"]:
-                return False, f"Question '{value['question']}' does not have a correct answer: {value.correct}"
-
+        # 4. The question is on the right topic
+        # 5. The question has the right correct answer
         # TODO - 6. The question has the right wrong answers
+        for value in questions:
+            validity = value["validity"]
+            if any(not validity_value for validity_value in validity.values()):
+                   return False, f"Invalid quiz: {eval}"
+
         return True, f"Valid quiz: {eval}"
 
 if __name__ == "__main__":
-    topic = "American History"
-    num_questions = 2
-    num_answers = 3
-
     gen = Quizgen()
 
     # quiz = gen.gen_quiz(topic, num_questions, num_answers)
-    quiz = gen.load_quiz("quiz_cyprus_valid.json")
+    quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_cyprus.json")
+    print(topic)
     print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
