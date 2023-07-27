@@ -106,9 +106,8 @@ class Quizgen:
                 return False, f"The correct answer '{correct}' for question '{value['question']}' is not in responses list: {responses}"
 
         prompt_eval = self.prompt_eval.format(quiz=quiz, topic=topic)
-        temperature = 0 # To get consistent results in evaluation
-        eval = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt_eval)
-        print(f'eval: {eval}')
+        temp = 0 # To get consistent results in evaluation
+        eval = self.predict_llm("text-bison@001", temp, 1024, 0.8, 40, prompt_eval)
 
         questions = json.loads(eval)
 
