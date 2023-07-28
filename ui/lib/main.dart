@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'Quizrd',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color(0xfff68d2d)),
         ),
         home: MyHomePage(),
       ),
@@ -71,8 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    var primary = colorScheme.primary;
-    var onPrimary = colorScheme.onPrimary;
 
     Widget page;
     switch (selectedIndex) {
@@ -113,12 +111,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-          leading: Image.asset('assets/images/quizrd_logo.png'),
-          backgroundColor: primary,
-          centerTitle: true,
-          title: Text(
-            'Quizrd - AI Powered Infinite Trivia',
-            style: TextStyle(color: onPrimary),
+          backgroundColor: Color(0xfff68d2d),
+          centerTitle: false,
+          title: Row(
+            children: [
+              Image.asset('assets/images/quizrd_logo.png', height: 40),
+              Text(
+                'Quizrd - AI Powered Infinite Trivia',
+                style: theme.textTheme.titleLarge!.copyWith(
+                  color: colorScheme.onPrimary,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           )),
       drawer: Drawer(),
       body: LayoutBuilder(
@@ -133,12 +139,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: BottomNavigationBar(
                     items: [
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        label: 'Home',
+                        icon: Icon(Icons.sports_esports),
+                        label: 'Play',
                       ),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.quiz),
-                        label: 'New Quiz',
+                        icon: Icon(Icons.settings),
+                        label: 'Settings',
                       ),
                       BottomNavigationBarItem(
                         icon: Icon(Icons.favorite),
@@ -168,19 +174,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.sports_esports),
-                        label: Text('Play a Quiz'),
+                        label: Text('Play'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.grid_view),
-                        label: Text('View Quizzes'),
+                        label: Text('Browse'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.quiz),
-                        label: Text('Create a Quiz'),
+                        label: Text('Create'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.play_circle),
-                        label: Text('Host a Quiz'),
+                        label: Text('Host'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.favorite),
