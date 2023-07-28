@@ -1,0 +1,52 @@
+CONTEXT:
+Given a topic and a list of questions with responses, determine the following:
+1- Is question on the topic?
+2- Which response is correct and incorrect for each question?
+
+INPUT: topic: science, quiz: [
+    {{
+        "question": "What is the name of the largest planet in the solar system?",
+        "responses": [
+            "Jupiter",
+            "Saturn",
+            "Uranus",
+            "Neptune"
+        ]
+    }},
+    {{
+        "question": "What is the name of the smallest planet in the solar system?",
+        "responses": [
+            "Venus",
+            "Earth",
+            "Mercury",
+            "Mars"
+        ]
+    }},
+    {{
+        "question": "Who was the first president of the United States?",
+        "responses": [
+            "George Washington",
+            "Benjamin Franklin",
+            "Thomas Jefferson"
+        ]
+    }},
+    {{
+        "question": "What is the name of the element that has the atomic number 1?",
+        "responses": [
+            "Helium",
+            "Hydrogen",
+            "Lithium",
+            "Beryllium"
+        ]
+    }}
+]
+
+OUTPUT: [
+   {{"on_topic": true, "correct": "Jupiter", "incorrect": ["Saturn", "Uranus", "Neptune"]}},
+   {{"on_topic": true, "correct": "Mercury", "incorrect": ["Venus", "Earth", "Mars"]}},
+   {{"on_topic": false, "correct": "George Washington", "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]}},
+   {{"on_topic": true, "correct": "Hydrogen", "incorrect": ["Helium", "Lithium", "Beryllium"]}}
+]
+
+INPUT: topic: {topic}, quiz: {quiz}
+OUTPUT: 

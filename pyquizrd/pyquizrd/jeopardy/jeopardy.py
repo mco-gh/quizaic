@@ -40,3 +40,6 @@ class Quizgen:
         if num_questions < len(filtered.index):
             filtered = filtered.sample(n=num_questions)
         return filtered.to_json(orient="records", indent=4)
+
+    def eval_quiz(self, quiz, topic, num_questions, num_answers) -> tuple[bool, str]:
+        return True, f"Valid quiz"
