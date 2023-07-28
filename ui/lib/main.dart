@@ -71,6 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
+    var primary = colorScheme.primary;
+    var onPrimary = colorScheme.onPrimary;
 
     Widget page;
     switch (selectedIndex) {
@@ -111,14 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        //Image.asset('assets/images/quizrd_logo.png'),
-        backgroundColor: colorScheme.primary,
-        centerTitle: true,
-        title: const Text(
-          'Quizrd - AI Powered Infinite Trivia',
-          //selectionColor: colorScheme.onPrimary,
-        ),
-      ),
+          leading: Image.asset('assets/images/quizrd_logo.png'),
+          backgroundColor: primary,
+          centerTitle: true,
+          title: Text(
+            'Quizrd - AI Powered Infinite Trivia',
+            style: TextStyle(color: onPrimary),
+          )),
       drawer: Drawer(),
       body: LayoutBuilder(
         builder: (context, constraints) {
