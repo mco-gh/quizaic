@@ -92,8 +92,8 @@ class Quizgen:
 
         return quiz, topic, num_questions, num_answers
 
-    # Given a quiz, check if it's a valid quiz:
-    def eval_quiz(self, quiz, topic, num_questions, num_answers):
+    # Given a quiz, check if it's a valid quiz
+    def eval_quiz(self, quiz, topic, num_questions, num_answers) -> tuple[bool, str]:
         # 1. It has right number of questions
         actual_num_questions = len(quiz)
         if actual_num_questions != num_questions:
@@ -141,8 +141,11 @@ class Quizgen:
 if __name__ == "__main__":
     gen = Quizgen()
 
-    #quiz = gen.gen_quiz("science", 3, 4)
-    quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_cyprus.json")
+    topic = "science"
+    num_questions = 3
+    num_answers = 4
+    quiz = gen.gen_quiz("science", num_questions, num_answers)
+    #quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_cyprus.json")
     print(json.dumps(quiz, indent=4))
 
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)

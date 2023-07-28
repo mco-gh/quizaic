@@ -30,3 +30,6 @@ class Quizgen:
                                    ]
                     }
                   ]'''
+
+    def eval_quiz(self, quiz, topic, num_questions, num_answers) -> tuple[bool, str]:
+        return True, f"Valid quiz"
