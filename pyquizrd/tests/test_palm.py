@@ -1,5 +1,6 @@
 import json
 from pyquizrd.pyquizrd import Quizgen
+import random
 
 def test_noconfig():
     # This test passes only if you have access to the project defined in DEFAULT_PROJECT in palm.py
@@ -99,3 +100,27 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
     valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
     print(details)
     assert not valid
+
+@pytest.mark.skip(reason="takes a long time to run, only use occasionally for integration testing")
+def test_eval_quiz_with_opentrivia_data():
+    gen_opentrivia = Quizgen("opentrivia")
+    gen_palm = Quizgen("palm")
+
+    num_questions = 1
+    num_answers = 4 # opentrivia always has 4 responses
+    num_quiz = 20
+
+    num_valid = 0
+    num_invalid = 0
+    for i in range(0, num_quiz):
+        topic = random.choice(list(gen_opentrivia.get_topics()))
+
+        quiz = gen_opentrivia.gen_quiz(topic, num_questions)
+        print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
+
+        valid, details = gen_palm.eval_quiz(quiz, topic, num_questions, num_answers)
+        print(details)
+
+        num_valid += 1 if valid else (num_invalid + 1)
+        print(f"total quiz: {num_valid + num_invalid}, valid quiz: {num_valid}, invalid quiz: {num_invalid}")
+        #assert valid
