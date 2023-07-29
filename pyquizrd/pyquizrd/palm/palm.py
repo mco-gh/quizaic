@@ -97,46 +97,49 @@ class Quizgen:
         # 1. It has right number of questions
         actual_num_questions = len(quiz)
         if actual_num_questions != num_questions:
-            return False, f"Number of questions - actual: {actual_num_questions}, expected: {num_questions}"
+            return False, f"Invalid #1: Number of questions - actual: {actual_num_questions}, expected: {num_questions}"
 
         for item in quiz:
             # 2. It has right number of answers per question
             responses = item["responses"]
             actual_num_answers = len(responses)
             if actual_num_answers != num_answers:
-                return False, f"Number of responses in question '{item['question']}' - actual: {actual_num_answers}, expected: {num_answers}"
+                return False, f"Invalid #2: Number of responses in question '{item['question']}' - actual: {actual_num_answers}, expected: {num_answers}"
             # 3. The correct answer is in the answers list
             correct = item["correct"]
             if not correct in responses:
-                return False, f"The correct answer '{correct}' for question '{item['question']}' is not in responses list: {responses}"
+                return False, f"Invalid #3: The correct answer '{correct}' for question '{item['question']}' is not in responses list: {responses}"
 
         # Remove correct answer from each question to not bias the LLM during eval
         quiz_eval = copy.deepcopy(quiz)
         for item in quiz_eval:
             item.pop("correct")
 
-        prompt_eval = self.prompt_eval.format(quiz=quiz_eval, topic=topic)
+        prompt_eval = self.prompt_eval.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
+        #print(f'prompt_eval: {prompt_eval}')
         temp = 0 # To get consistent results in evaluation
         eval = self.predict_llm("text-bison@001", temp, 1024, 0.8, 40, prompt_eval)
+        #print(f'eval1: {eval}')
         eval = json.loads(eval)
+        #print(f'eval2: {eval}')
 
         # [{"on_topic": true, "correct": ["George Washington"], "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
         for index, item in enumerate(eval):
             # 4. The question is on the right topic
             if not item["on_topic"]:
-                return False, f"Invalid quiz: {eval}"
+                return False, f"Invalid #4: {eval}"
             # 5. The correct answer is indeed correct
             if item["correct"] != quiz[index]["correct"]:
-                return False, f"Invalid quiz: {eval}"
+                return False, f"Invalid #5: {eval}"
             # 6. The rest of responses are incorrect
             responses = quiz_eval[index]["responses"]
             responses.remove(item["correct"])
             for incorrect in item["incorrect"]:
                 responses.remove(incorrect)
             if len(responses) != 0:
-                False, f"Invalid quiz: {eval}"
+                False, f"Invalid #6: {eval}"
 
-        return True, f"Valid quiz: {eval}"
+        return True, f"Valid: {eval}"
 
 if __name__ == "__main__":
     gen = Quizgen()

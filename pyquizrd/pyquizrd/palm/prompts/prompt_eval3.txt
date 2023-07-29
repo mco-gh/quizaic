@@ -3,6 +3,9 @@ Given a topic and a list of questions with responses, determine the following:
 1- Is question on the topic?
 2- Which response is correct and incorrect for each question?
 
+RULES:
+-Always return a list even if there's only one item.
+
 INPUT: topic: science, quiz: [
     {{
         "question": "What is the name of the largest planet in the solar system?",
