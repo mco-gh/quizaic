@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Quizrd',
+        title: 'Quizrdx',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Color(0xfff68d2d)),
@@ -66,6 +66,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
+  var appBarTitle = 'Quizrd';
+  var appBarSeperator = ' | ';
+  var appBarTitleExtended = 'AI Powered Infinite Trivia';
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +112,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+    var appBarTextStyle = theme.textTheme.titleLarge!.copyWith(
+      color: colorScheme.onPrimary,
+      fontSize: 25,
+      fontWeight: FontWeight.w500,
+    );
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xfff68d2d),
@@ -116,19 +125,43 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Row(
             children: [
               Image.asset('assets/images/quizrd_logo.png', height: 40),
-              Text(
-                'Quizrd - AI Powered Infinite Trivia',
-                style: theme.textTheme.titleLarge!.copyWith(
-                  color: colorScheme.onPrimary,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
-                ),
+              Row(
+                children: [
+                  Text(
+                    appBarTitle,
+                    style: appBarTextStyle,
+                  ),
+                  Text(
+                    appBarSeperator,
+                    style: appBarTextStyle,
+                  ),
+                  Text(
+                    appBarTitleExtended,
+                    style: appBarTextStyle,
+                  ),
+                ],
               ),
             ],
           )),
       drawer: Drawer(),
       body: LayoutBuilder(
         builder: (context, constraints) {
+          if (constraints.maxWidth < 600) {
+            Future.delayed(Duration.zero, () {
+              setState(() {
+                appBarSeperator = '';
+                appBarTitleExtended = '';
+              });
+            });
+          } else {
+            Future.delayed(Duration.zero, () {
+              setState(() {
+                appBarSeperator = ' | ';
+                appBarTitleExtended = 'AI Powered Infinite Trivia';
+              });
+            });
+          }
+
           if (constraints.maxWidth < 450) {
             // Use a more mobile-friendly layout with BottomNavigationBar
             // on narrow screens.
@@ -166,6 +199,8 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SafeArea(
                   child: NavigationRail(
+                    minWidth: 70,
+                    minExtendedWidth: 150,
                     extended: constraints.maxWidth >= 600,
                     destinations: [
                       NavigationRailDestination(
@@ -205,7 +240,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                 ),
-                Expanded(child: mainArea),
+                Expanded(
+                  flex: 5,
+                  child: mainArea,
+                ),
               ],
             );
           }
