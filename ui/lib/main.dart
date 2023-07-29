@@ -3,8 +3,15 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'auth_gate.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -16,7 +23,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Quizrdx',
+        title: 'Quizrd',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Color(0xfff68d2d)),
@@ -96,6 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
         page = FavoritesPage();
         break;
       case 6:
+        page = AuthGate();
+        break;
+      case 7:
         page = Placeholder();
         break;
       default:
@@ -124,7 +134,10 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: false,
           title: Row(
             children: [
-              Image.asset('assets/images/quizrd_logo.png', height: 40),
+              Image.asset(
+                'assets/images/quizrd_logo.png',
+                height: 40,
+              ),
               Row(
                 children: [
                   Text(
@@ -226,6 +239,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       NavigationRailDestination(
                         icon: Icon(Icons.favorite),
                         label: Text('Favorites'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.login),
+                        label: Text('Login'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.settings),
