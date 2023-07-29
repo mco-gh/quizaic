@@ -185,16 +185,36 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: BottomNavigationBar(
                     items: [
                       BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: 'Home',
+                      ),
+                      BottomNavigationBarItem(
                         icon: Icon(Icons.sports_esports),
                         label: 'Play',
                       ),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.settings),
-                        label: 'Settings',
+                        icon: Icon(Icons.grid_view),
+                        label: 'Browse',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.quiz),
+                        label: 'Create',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.play_circle),
+                        label: 'Host',
                       ),
                       BottomNavigationBarItem(
                         icon: Icon(Icons.favorite),
                         label: 'Favorites',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.login),
+                        label: 'Login',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.settings),
+                        label: 'Settings',
                       ),
                     ],
                     currentIndex: selectedIndex,
