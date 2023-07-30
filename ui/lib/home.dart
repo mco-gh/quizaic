@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
+import 'settings.dart';
 import 'wordpairs.dart';
 
 class HomePage extends StatefulWidget {
