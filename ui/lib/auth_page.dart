@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 
-import 'signin.dart';
-
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -12,6 +10,7 @@ class AuthPage extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
+        // If user is not signed in, show the sign in screen.
         if (!snapshot.hasData) {
           return SignInScreen(
             providerConfigs: const [
@@ -27,7 +26,7 @@ class AuthPage extends StatelessWidget {
                   aspectRatio: 1,
                   child: Image.asset(
                     'assets/images/quizrd_logo.png',
-                    height: 20,
+                    height: 40,
                   ),
                 ),
               );
@@ -64,7 +63,24 @@ class AuthPage extends StatelessWidget {
           );
         }
 
-        return const SigninScreen();
+        // Otherwise, the user is signed in, so show the signout option.
+        return Scaffold(
+          body: Center(
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/images/quizrd_logo.png',
+                  height: 40,
+                ),
+                Text(
+                  'Welcome!',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+                const SignOutButton(),
+              ],
+            ),
+          ),
+        );
       },
     );
   }
