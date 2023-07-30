@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   var selectedIndex = 0;
   var selectedPageIndex = 0;
+  Widget page = Placeholder();
   var appBarTitle = 'Quizrd';
   var appBarSeperator = ' | ';
   var appBarTitleExtended = 'AI Powered Infinite Trivia';
@@ -22,7 +23,6 @@ class _MyHomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    Widget page = Placeholder();
     switch (selectedPageIndex) {
       case -1:
         break;
