@@ -8,7 +8,7 @@ class CreatePage extends StatelessWidget {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
-    print('play: $theme $appState');
+    //print('play: $theme $appState');
     return Center(
       child: Text('Create'),
     );

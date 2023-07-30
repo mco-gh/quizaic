@@ -4,7 +4,6 @@ import 'package:quizrd/create.dart';
 import 'package:quizrd/play.dart';
 import 'auth.dart';
 import 'settings.dart';
-import 'wordpairs.dart';
 
 class HomePage extends StatefulWidget {
   @override

@@ -65,6 +65,9 @@ class AuthPage extends StatelessWidget {
           );
         }
 
+        var user = FirebaseAuth.instance.currentUser;
+        print(user!.uid);
+
         // Otherwise, the user is signed in, so show the signout option.
         return Scaffold(
           body: Center(
