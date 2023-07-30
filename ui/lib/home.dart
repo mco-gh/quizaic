@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
-import 'favorites.dart';
 import 'auth.dart';
 import 'wordpairs.dart';
 
@@ -35,12 +33,6 @@ class _MyHomePageState extends State<HomePage> {
         page = Placeholder();
         break;
       case 4:
-        page = FavoritesPage();
-        break;
-      case 5:
-        page = AuthPage();
-        break;
-      case 6:
         page = Placeholder();
         break;
       default:
@@ -74,6 +66,10 @@ class _MyHomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
+                  MaterialPageRoute<AuthPage>(
+                    builder: (context) => AuthPage(),
+                  ),
+                  /*
                   MaterialPageRoute<ProfileScreen>(
                     builder: (context) => ProfileScreen(
                       actions: [
@@ -82,6 +78,20 @@ class _MyHomePageState extends State<HomePage> {
                         })
                       ],
                     ),
+                  ), */
+                ); // do something
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<SettingsPage>(
+                    builder: (context) => SettingsPage(),
                   ),
                 ); // do something
               },
@@ -158,14 +168,6 @@ class _MyHomePageState extends State<HomePage> {
                         label: 'Create',
                       ),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.favorite),
-                        label: 'Favorites',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.login),
-                        label: 'Login',
-                      ),
-                      BottomNavigationBarItem(
                         icon: Icon(Icons.settings),
                         label: 'Settings',
                       ),
@@ -204,14 +206,6 @@ class _MyHomePageState extends State<HomePage> {
                       NavigationRailDestination(
                         icon: Icon(Icons.quiz),
                         label: Text('Create'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.favorite),
-                        label: Text('Favorites'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.login),
-                        label: Text('Login'),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.settings),
