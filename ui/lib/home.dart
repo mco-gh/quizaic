@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizrd/browse.dart';
+import 'package:quizrd/create.dart';
+import 'package:quizrd/play.dart';
 import 'auth.dart';
 import 'settings.dart';
 import 'wordpairs.dart';
@@ -10,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   var selectedIndex = 0;
+  var selectedPageIndex = 0;
   var appBarTitle = 'Quizrd';
   var appBarSeperator = ' | ';
   var appBarTitleExtended = 'AI Powered Infinite Trivia';
@@ -18,28 +22,24 @@ class _MyHomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    Widget page;
-    switch (selectedIndex) {
+    Widget page = Placeholder();
+    switch (selectedPageIndex) {
+      case -1:
+        break;
       case 0:
         page = WordPairPage();
         break;
       case 1:
-        page = Placeholder();
+        page = PlayPage();
         break;
       case 2:
-        page = Placeholder();
+        page = BrowsePage();
         break;
       case 3:
-        page = Placeholder();
-        break;
-      case 4:
-        page = AuthPage();
-        break;
-      case 5:
-        page = SettingsPage();
+        page = CreatePage();
         break;
       default:
-        throw UnimplementedError('no widget for $selectedIndex');
+        throw UnimplementedError('no widget for $selectedPageIndex');
     }
 
     // The container for the current page, with its background color
@@ -67,9 +67,9 @@ class _MyHomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                print('auth pressed');
                 setState(() {
-                  selectedIndex = 4;
+                  selectedPageIndex = -1;
+                  page = AuthPage();
                 });
               },
             ),
@@ -79,9 +79,9 @@ class _MyHomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                print('settings pressed');
                 setState(() {
-                  selectedIndex = 5;
+                  selectedPageIndex = -1;
+                  page = SettingsPage();
                 });
               },
             )
@@ -156,14 +156,6 @@ class _MyHomePageState extends State<HomePage> {
                         icon: Icon(Icons.quiz),
                         label: 'Create',
                       ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.person),
-                        label: 'Login',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.settings),
-                        label: 'Settings',
-                      ),
                     ],
                     currentIndex: selectedIndex,
                     onTap: (value) {
@@ -200,19 +192,12 @@ class _MyHomePageState extends State<HomePage> {
                         icon: Icon(Icons.quiz),
                         label: Text('Create'),
                       ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.person, size: 0),
-                        label: Text('Login', style: TextStyle(fontSize: 0)),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.settings, size: 0),
-                        label: Text('Settings', style: TextStyle(fontSize: 0)),
-                      ),
                     ],
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {
                       setState(() {
                         selectedIndex = value;
+                        selectedPageIndex = value;
                       });
                     },
                   ),
