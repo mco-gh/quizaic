@@ -18,7 +18,6 @@ class _MyHomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-
     Widget page;
     switch (selectedIndex) {
       case 0:
@@ -34,7 +33,10 @@ class _MyHomePageState extends State<HomePage> {
         page = Placeholder();
         break;
       case 4:
-        page = Placeholder();
+        page = AuthPage();
+        break;
+      case 5:
+        page = SettingsPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -65,22 +67,10 @@ class _MyHomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<AuthPage>(
-                    builder: (context) => AuthPage(),
-                  ),
-                  /*
-                  MaterialPageRoute<ProfileScreen>(
-                    builder: (context) => ProfileScreen(
-                      actions: [
-                        SignedOutAction((context) {
-                          Navigator.of(context).pop();
-                        })
-                      ],
-                    ),
-                  ), */
-                ); // do something
+                print('auth pressed');
+                setState(() {
+                  selectedIndex = 4;
+                });
               },
             ),
             IconButton(
@@ -89,12 +79,10 @@ class _MyHomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<SettingsPage>(
-                    builder: (context) => SettingsPage(),
-                  ),
-                ); // do something
+                print('settings pressed');
+                setState(() {
+                  selectedIndex = 5;
+                });
               },
             )
           ],
@@ -169,6 +157,10 @@ class _MyHomePageState extends State<HomePage> {
                         label: 'Create',
                       ),
                       BottomNavigationBarItem(
+                        icon: Icon(Icons.person),
+                        label: 'Login',
+                      ),
+                      BottomNavigationBarItem(
                         icon: Icon(Icons.settings),
                         label: 'Settings',
                       ),
@@ -209,8 +201,24 @@ class _MyHomePageState extends State<HomePage> {
                         label: Text('Create'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.settings),
-                        label: Text('Settings'),
+                        icon: Visibility(
+                          visible: false,
+                          child: Icon(Icons.person),
+                        ),
+                        label: Visibility(
+                          visible: false,
+                          child: Text('Login'),
+                        ),
+                      ),
+                      NavigationRailDestination(
+                        icon: Visibility(
+                          visible: false,
+                          child: Icon(Icons.settings),
+                        ),
+                        label: Visibility(
+                          visible: false,
+                          child: Text('Settings'),
+                        ),
                       ),
                     ],
                     selectedIndex: selectedIndex,
