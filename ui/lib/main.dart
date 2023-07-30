@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'home.dart';
-import 'app_state.dart';
+import 'state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
