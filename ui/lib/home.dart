@@ -27,15 +27,12 @@ class _MyHomePageState extends State<HomePage> {
       case -1:
         break;
       case 0:
-        page = WordPairPage();
-        break;
-      case 1:
         page = PlayPage();
         break;
-      case 2:
+      case 1:
         page = BrowsePage();
         break;
-      case 3:
+      case 2:
         page = CreatePage();
         break;
       default:
@@ -112,7 +109,7 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ],
           )),
-      drawer: Drawer(),
+      //drawer: Drawer(),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
@@ -140,10 +137,6 @@ class _MyHomePageState extends State<HomePage> {
                 SafeArea(
                   child: BottomNavigationBar(
                     items: [
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        label: 'Home',
-                      ),
                       BottomNavigationBarItem(
                         icon: Icon(Icons.sports_esports),
                         label: 'Play',
@@ -176,10 +169,6 @@ class _MyHomePageState extends State<HomePage> {
                     minExtendedWidth: 150,
                     extended: constraints.maxWidth >= 600,
                     destinations: [
-                      NavigationRailDestination(
-                        icon: Icon(Icons.home),
-                        label: Text('Home'),
-                      ),
                       NavigationRailDestination(
                         icon: Icon(Icons.sports_esports),
                         label: Text('Play'),
