@@ -23,12 +23,13 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Quizrd',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Color(0xfff68d2d)),
         ),
-        home: MyHomePage(),
+        home: HomePage(),
       ),
     );
   }

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/auth.dart';
 import 'favorites.dart';
 import 'auth.dart';
 import 'wordpairs.dart';
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   var selectedIndex = 0;
   var appBarTitle = 'Quizrd';
   var appBarSeperator = ' | ';
@@ -64,6 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // do something
+              },
+            )
+          ],
           backgroundColor: Color(0xfff68d2d),
           centerTitle: false,
           title: Row(
