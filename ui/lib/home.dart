@@ -72,7 +72,18 @@ class _MyHomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                // do something
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<ProfileScreen>(
+                    builder: (context) => ProfileScreen(
+                      actions: [
+                        SignedOutAction((context) {
+                          Navigator.of(context).pop();
+                        })
+                      ],
+                    ),
+                  ),
+                ); // do something
               },
             )
           ],
