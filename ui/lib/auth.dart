@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-//import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:provider/provider.dart';
 import 'state.dart';
 
@@ -21,13 +21,11 @@ class AuthPage extends StatelessWidget {
           return SignInScreen(
             providers: [
               EmailAuthProvider(),
-              /*
-              GoogleProviderConfiguration(
+              GoogleProvider(
                 clientId:
                     '338739261213-fcueeb1c9rthjjklu7aj58n3vjetsnrg.apps.googleusercontent.com',
                 scopes: ['email', 'profile'],
               )
-              */
             ],
             headerBuilder: (context, constraints, shrinkOffset) {
               return Padding(
