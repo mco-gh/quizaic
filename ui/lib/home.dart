@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:quizrd/browse.dart';
+import 'package:provider/provider.dart';
 import 'package:quizrd/create.dart';
 import 'package:quizrd/play.dart';
 import 'auth.dart';
 import 'settings.dart';
+import 'state.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,6 +22,8 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<AppState>();
+
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
     switch (selectedPageIndex) {
@@ -54,14 +58,22 @@ class _MyHomePageState extends State<HomePage> {
       fontWeight: FontWeight.w500,
     );
 
+    dynamic icon;
+    if (appState.photoUrl != '') {
+      print(appState.photoUrl);
+      icon = Image.network(appState.photoUrl, height: 40, headers: {
+        "corsImageModified.crossOrigin": "Anonymous",
+        "corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
+      });
+    } else {
+      icon = Icon(Icons.person, color: Colors.white);
+    }
+
     return Scaffold(
       appBar: AppBar(
           actions: <Widget>[
             IconButton(
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
+              icon: icon,
               onPressed: () {
                 setState(() {
                   selectedPageIndex = -1;

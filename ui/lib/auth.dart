@@ -1,12 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:provider/provider.dart';
+import 'state.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<AppState>();
+
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
@@ -66,8 +70,7 @@ class AuthPage extends StatelessWidget {
         }
 
         var user = FirebaseAuth.instance.currentUser;
-        print(user!.uid);
-
+        appState.photoUrl = user!.photoURL as String;
         // Otherwise, the user is signed in, so show the signout option.
         return Scaffold(
           body: Center(
