@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+//import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:provider/provider.dart';
 import 'state.dart';
 
@@ -18,13 +19,15 @@ class AuthPage extends StatelessWidget {
         if (!snapshot.hasData) {
           appState.photoURL = '';
           return SignInScreen(
-            providerConfigs: const [
-              EmailProviderConfiguration(),
+            providers: [
+              EmailAuthProvider(),
+              /*
               GoogleProviderConfiguration(
                 clientId:
                     '338739261213-fcueeb1c9rthjjklu7aj58n3vjetsnrg.apps.googleusercontent.com',
                 scopes: ['email', 'profile'],
               )
+              */
             ],
             headerBuilder: (context, constraints, shrinkOffset) {
               return Padding(
@@ -71,8 +74,9 @@ class AuthPage extends StatelessWidget {
         }
 
         var user = FirebaseAuth.instance.currentUser;
-        var photo = user!.photoURL;
-        appState.photoURL = photo as String;
+        if ((user != null) && (user.photoURL != null)) {
+          appState.photoURL = user.photoURL as String;
+        }
 
         // Otherwise, the user is signed in, so show the signout option.
         return Scaffold(
