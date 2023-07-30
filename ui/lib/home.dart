@@ -201,24 +201,12 @@ class _MyHomePageState extends State<HomePage> {
                         label: Text('Create'),
                       ),
                       NavigationRailDestination(
-                        icon: Visibility(
-                          visible: false,
-                          child: Icon(Icons.person),
-                        ),
-                        label: Visibility(
-                          visible: false,
-                          child: Text('Login'),
-                        ),
+                        icon: Icon(Icons.person, size: 0),
+                        label: Text('Login', style: TextStyle(fontSize: 0)),
                       ),
                       NavigationRailDestination(
-                        icon: Visibility(
-                          visible: false,
-                          child: Icon(Icons.settings),
-                        ),
-                        label: Visibility(
-                          visible: false,
-                          child: Text('Settings'),
-                        ),
+                        icon: Icon(Icons.settings, size: 0),
+                        label: Text('Settings', style: TextStyle(fontSize: 0)),
                       ),
                     ],
                     selectedIndex: selectedIndex,
