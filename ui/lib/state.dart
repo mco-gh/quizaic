@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppState extends ChangeNotifier {
   var current = WordPair.random();
   var history = <WordPair>[];
-  var photoUrl = '';
+  var photoURL = '';
 
   GlobalKey? historyListKey;
 

@@ -16,6 +16,7 @@ class AuthPage extends StatelessWidget {
       builder: (context, snapshot) {
         // If user is not signed in, show the sign in screen.
         if (!snapshot.hasData) {
+          appState.photoURL = '';
           return SignInScreen(
             providerConfigs: const [
               EmailProviderConfiguration(),
@@ -70,7 +71,9 @@ class AuthPage extends StatelessWidget {
         }
 
         var user = FirebaseAuth.instance.currentUser;
-        appState.photoUrl = user!.photoURL as String;
+        var photo = user!.photoURL;
+        appState.photoURL = photo as String;
+
         // Otherwise, the user is signed in, so show the signout option.
         return Scaffold(
           body: Center(
@@ -81,7 +84,7 @@ class AuthPage extends StatelessWidget {
                   height: 40,
                 ),
                 Text(
-                  'Welcome!',
+                  'Welcome to Quizrd!',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 const SignOutButton(),

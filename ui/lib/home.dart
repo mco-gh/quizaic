@@ -58,15 +58,12 @@ class _MyHomePageState extends State<HomePage> {
       fontWeight: FontWeight.w500,
     );
 
-    dynamic icon;
-    if (appState.photoUrl != '') {
-      print(appState.photoUrl);
-      icon = Image.network(appState.photoUrl, height: 40, headers: {
+    dynamic icon = Icon(Icons.person, color: Colors.white);
+    if (appState.photoURL != '') {
+      icon = Image.network(appState.photoURL, height: 40, headers: {
         "corsImageModified.crossOrigin": "Anonymous",
-        "corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
+        "corsImageModified.src": '${appState.photoURL}?not-from-cache-please',
       });
-    } else {
-      icon = Icon(Icons.person, color: Colors.white);
     }
 
     return Scaffold(
