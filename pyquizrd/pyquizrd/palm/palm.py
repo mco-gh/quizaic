@@ -100,15 +100,17 @@ class Quizgen:
             "valid_quiz": True,
             "valid_questions": set(),
             "invalid_questions": set(),
+            "unknown_questions": 0,
             "details": []
         }
 
         actual_num_questions = len(quiz)
         if actual_num_questions != num_questions:
             validity["valid_quiz"] = False
-            validity["details"].append("Invalid #1: Number of questions does not match - expected: {num_questions} actual: {actual_num_questions}")
+            validity["unknown_questions"] = num_questions
+            validity["details"].append(f"Invalid #1: Number of questions does not match - expected: {num_questions} actual: {actual_num_questions}")
             if shortcircuit_validity:
-                return validity
+                return get_validity_compact(validity)
 
         for item in quiz:
             question = item['question']
@@ -116,9 +118,10 @@ class Quizgen:
             actual_num_answers = len(responses)
             if actual_num_answers != num_answers:
                 validity["valid_quiz"] = False
+                validity["unknown_questions"] = num_questions
                 validity["details"].append(f"Invalid #2: Number of answers does not match - question: '{question}' expected: {num_answers}, actual: {actual_num_answers}")
                 if shortcircuit_validity:
-                    return validity
+                    return get_validity_compact(validity)
 
             correct = item["correct"]
             if not correct in responses:
@@ -126,7 +129,7 @@ class Quizgen:
                 validity["invalid_questions"].add(question)
                 validity["details"].append(f"Invalid #3: The correct answer is not in the responses list - question: '{question}', correct:{correct} responses: {responses}")
                 if shortcircuit_validity:
-                    return validity
+                    return get_validity_compact(validity)
 
         # Remove correct answer from each question to not bias the LLM during eval
         quiz_eval = copy.deepcopy(quiz)
@@ -137,12 +140,16 @@ class Quizgen:
         temp = 0 # To get consistent results in evaluation
         eval = self.predict_llm("text-bison@001", temp, 1024, 0.8, 40, prompt_eval)
         try:
+            if eval == "": # Happens when a question is not safe according to LLM
+                validity["valid_quiz"] = False
+                validity["unknown_questions"] = num_questions
+                validity["details"].append("Invalid #4: Cannot evaluate quiz due to unsafe questions")
+                return get_validity_compact(validity)
+
             eval = json.loads(eval)
-        except:
-            print(f"An exception occurred during JSON parsing, eval:{eval}")
-            validity["valid_quiz"] = False
-            validity["details"].append(f"An exception occurred during JSON parsing, eval:{eval}")
-            return validity
+        except ValueError as e:
+            print(f'eval:"{eval}"')
+            raise ValueError("An exception occurred during JSON parsing", e)
 
         # [{"on_topic": true, "correct": ["George Washington"], "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
         for index, item in enumerate(eval):
@@ -151,18 +158,18 @@ class Quizgen:
             if not item["on_topic"]:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #4: The question is not on the topic - question: '{question}', topic: {topic}")
+                validity["details"].append(f"Invalid #5: The question is not on the topic - question: '{question}', topic: {topic}")
                 if shortcircuit_validity:
-                    return validity
+                    return get_validity_compact(validity)
 
             expected_correct = item["correct"]
             actual_correct = quiz[index]["correct"]
             if expected_correct != actual_correct:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #5: The correct answer is not correct - question: '{question}', expected: {expected_correct}, actual: {actual_correct}")
+                validity["details"].append(f"Invalid #6: The correct answer is not correct - question: '{question}', expected: {expected_correct}, actual: {actual_correct}")
                 if shortcircuit_validity:
-                    return validity
+                    return get_validity_compact(validity)
 
             responses = quiz_eval[index]["responses"]
             if item["correct"] in responses:
@@ -173,17 +180,31 @@ class Quizgen:
             if len(responses) != 0:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #6: The rest of responses are not in question: '{question}'")
+                validity["details"].append(f"Invalid #7: The rest of responses are not incorrect in question: '{question}'")
                 if shortcircuit_validity:
-                    return validity
+                    return get_validity_compact(validity)
 
             if question not in validity["invalid_questions"]:
                 validity["valid_questions"].add(question)
 
-        return validity
+        return get_validity_compact(validity)
+
+def get_validity_compact(validity):
+    return {
+        "valid_quiz": validity["valid_quiz"],
+        "valid_questions": len(validity["valid_questions"]),
+        "invalid_questions": len(validity["invalid_questions"]),
+        "unknown_questions": validity["unknown_questions"],
+        "details": validity["details"]
+    }
 
 if __name__ == "__main__":
     gen = Quizgen()
+
+    prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
+    result = gen.predict_llm("text-bison@001", 0, 1024, 0.8, 40, prompt)
+    print(f'result:{result == ""}')
+    exit()
 
     topic = "science"
     num_questions = 3

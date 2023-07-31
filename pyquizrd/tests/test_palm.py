@@ -115,15 +115,17 @@ def test_eval_quiz_with_opentrivia_data():
     invalid_quiz = 0
     valid_questions = 0
     invalid_questions = 0
+    unknown_questions = 0
 
     for i in range(0, num_quiz):
         topic = random.choice(list(gen_opentrivia.get_topics()))
+        #topic = "Comics"
 
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
         print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
 
         validity = gen_palm.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity=False)
-        print(validity)
+        print(f'validity: {validity}')
 
         if validity["valid_quiz"]:
             valid_quiz += 1
@@ -131,8 +133,10 @@ def test_eval_quiz_with_opentrivia_data():
             invalid_quiz += 1
         print(f"total quiz: {valid_quiz + invalid_quiz}, valid: {valid_quiz}, invalid: {invalid_quiz}")
 
-        valid_questions += len(validity["valid_questions"])
-        invalid_questions += len(validity["invalid_questions"])
-        print(f"total questions: {valid_questions + invalid_questions}, valid: {valid_questions}, invalid: {invalid_questions}")
+        valid_questions += validity["valid_questions"]
+        invalid_questions += validity["invalid_questions"]
+        unknown_questions += validity["unknown_questions"]
+
+        print(f"total questions: {valid_questions + invalid_questions + unknown_questions}, valid: {valid_questions}, invalid: {invalid_questions}, unknown: {unknown_questions}")
 
         #assert validity["valid_quiz"]

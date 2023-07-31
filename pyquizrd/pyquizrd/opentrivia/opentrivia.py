@@ -42,10 +42,14 @@ class Quizgen:
     def gen_quiz(self, topic, num_questions, num_answers=None, difficulty=3, temperature=None):
         topic_num = Quizgen.TOPICS.index(topic) + 9
 
+        # Example: https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple
         url = "https://opentdb.com/api.php?"
         url += f"amount={num_questions}"
         url += f"&category={topic_num}"
-        url += f"&difficulty={self.get_difficulty_word(difficulty)}"
+        # TODO - Hack: For some categories (eg. Art, Gadget), there are not
+        # enough questions. Ignore difficulty in that case.
+        if not (topic_num == 25 or topic_num == 30):
+            url += f"&difficulty={self.get_difficulty_word(difficulty)}"
         url += f"&type=multiple"
 
         r = requests.get(url)

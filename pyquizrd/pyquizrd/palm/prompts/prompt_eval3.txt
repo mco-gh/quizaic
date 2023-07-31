@@ -4,6 +4,7 @@ Given a topic and a list of questions with responses, determine the following:
 2- Which response is correct and incorrect for each question?
 
 RULES:
+-The output should be a valid JSON.
 -Always return a list even if there's only one item.
 -Make sure the last item in the list does not have a trailing comma.
 
