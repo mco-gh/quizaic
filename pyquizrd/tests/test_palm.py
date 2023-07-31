@@ -1,5 +1,6 @@
 import json
 from pyquizrd.pyquizrd import Quizgen
+import pytest
 import random
 
 def test_noconfig():
@@ -29,9 +30,9 @@ def test_eval_quiz_num_questions():
     quiz.pop()
     print(json.dumps(quiz, indent=4))
 
-    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    print(details)
-    assert not valid
+    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(validity["details"])
+    assert not validity["valid_quiz"]
 
 def test_eval_quiz_num_answers():
     gen = Quizgen("palm")
@@ -41,9 +42,9 @@ def test_eval_quiz_num_answers():
     quiz[0]["responses"].pop()
     print(json.dumps(quiz, indent=4))
 
-    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    print(details)
-    assert not valid
+    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(validity["details"])
+    assert not validity["valid_quiz"]
 
 def test_eval_quiz_correct_answer_inlist():
     gen = Quizgen("palm")
@@ -53,9 +54,9 @@ def test_eval_quiz_correct_answer_inlist():
     quiz[0]["correct"] = "foo"
     print(json.dumps(quiz, indent=4))
 
-    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    print(details)
-    assert not valid
+    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(validity["details"])
+    assert not validity["valid_quiz"]
 
 def test_eval_quiz_question_on_topic():
     gen = Quizgen("palm")
@@ -75,9 +76,9 @@ def test_eval_quiz_question_on_topic():
     num_questions += 1
     print(json.dumps(quiz, indent=4))
 
-    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    print(details)
-    assert not valid
+    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(validity["details"])
+    assert not validity["valid_quiz"]
 
 def test_eval_quiz_correct_is_correct_cyprus():
     quiz_file = "quiz_cyprus.json"
@@ -97,30 +98,41 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
     quiz[1]["correct"] = wrong_answer
     print(json.dumps(quiz, indent=4))
 
-    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    print(details)
-    assert not valid
+    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    print(validity["details"])
+    assert not validity["valid_quiz"]
 
 @pytest.mark.skip(reason="takes a long time to run, only use occasionally for integration testing")
 def test_eval_quiz_with_opentrivia_data():
     gen_opentrivia = Quizgen("opentrivia")
     gen_palm = Quizgen("palm")
 
-    num_questions = 1
+    num_quiz = 10
+    num_questions = 10
     num_answers = 4 # opentrivia always has 4 responses
-    num_quiz = 20
 
-    num_valid = 0
-    num_invalid = 0
+    valid_quiz = 0
+    invalid_quiz = 0
+    valid_questions = 0
+    invalid_questions = 0
+
     for i in range(0, num_quiz):
         topic = random.choice(list(gen_opentrivia.get_topics()))
 
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
         print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
 
-        valid, details = gen_palm.eval_quiz(quiz, topic, num_questions, num_answers)
-        print(details)
+        validity = gen_palm.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity=False)
+        print(validity)
 
-        num_valid += 1 if valid else (num_invalid + 1)
-        print(f"total quiz: {num_valid + num_invalid}, valid quiz: {num_valid}, invalid quiz: {num_invalid}")
-        #assert valid
+        if validity["valid_quiz"]:
+            valid_quiz += 1
+        else:
+            invalid_quiz += 1
+        print(f"total quiz: {valid_quiz + invalid_quiz}, valid: {valid_quiz}, invalid: {invalid_quiz}")
+
+        valid_questions += len(validity["valid_questions"])
+        invalid_questions += len(validity["invalid_questions"])
+        print(f"total questions: {valid_questions + invalid_questions}, valid: {valid_questions}, invalid: {invalid_questions}")
+
+        #assert validity["valid_quiz"]

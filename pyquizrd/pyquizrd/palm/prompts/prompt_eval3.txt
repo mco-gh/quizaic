@@ -5,6 +5,7 @@ Given a topic and a list of questions with responses, determine the following:
 
 RULES:
 -Always return a list even if there's only one item.
+-Make sure the last item in the list does not have a trailing comma.
 
 INPUT: topic: science, quiz: [
     {{

@@ -92,23 +92,41 @@ class Quizgen:
 
         return quiz, topic, num_questions, num_answers
 
-    # Given a quiz, check if it's a valid quiz
-    def eval_quiz(self, quiz, topic, num_questions, num_answers) -> tuple[bool, str]:
-        # 1. It has right number of questions
+    # Given a quiz, check if it's a valid quiz and returns a validity map with
+    # details. shortcircuit_validity determines if the validity check returns
+    # immediately when an invalid question is found. Set it to false, for testing.
+    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
+        validity = {
+            "valid_quiz": True,
+            "valid_questions": set(),
+            "invalid_questions": set(),
+            "details": []
+        }
+
         actual_num_questions = len(quiz)
         if actual_num_questions != num_questions:
-            return False, f"Invalid #1: Number of questions - actual: {actual_num_questions}, expected: {num_questions}"
+            validity["valid_quiz"] = False
+            validity["details"].append("Invalid #1: Number of questions does not match - expected: {num_questions} actual: {actual_num_questions}")
+            if shortcircuit_validity:
+                return validity
 
         for item in quiz:
-            # 2. It has right number of answers per question
+            question = item['question']
             responses = item["responses"]
             actual_num_answers = len(responses)
             if actual_num_answers != num_answers:
-                return False, f"Invalid #2: Number of responses in question '{item['question']}' - actual: {actual_num_answers}, expected: {num_answers}"
-            # 3. The correct answer is in the answers list
+                validity["valid_quiz"] = False
+                validity["details"].append(f"Invalid #2: Number of answers does not match - question: '{question}' expected: {num_answers}, actual: {actual_num_answers}")
+                if shortcircuit_validity:
+                    return validity
+
             correct = item["correct"]
             if not correct in responses:
-                return False, f"Invalid #3: The correct answer '{correct}' for question '{item['question']}' is not in responses list: {responses}"
+                validity["valid_quiz"] = False
+                validity["invalid_questions"].add(question)
+                validity["details"].append(f"Invalid #3: The correct answer is not in the responses list - question: '{question}', correct:{correct} responses: {responses}")
+                if shortcircuit_validity:
+                    return validity
 
         # Remove correct answer from each question to not bias the LLM during eval
         quiz_eval = copy.deepcopy(quiz)
@@ -116,30 +134,53 @@ class Quizgen:
             item.pop("correct")
 
         prompt_eval = self.prompt_eval.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
-        #print(f'prompt_eval: {prompt_eval}')
         temp = 0 # To get consistent results in evaluation
         eval = self.predict_llm("text-bison@001", temp, 1024, 0.8, 40, prompt_eval)
-        #print(f'eval1: {eval}')
-        eval = json.loads(eval)
-        #print(f'eval2: {eval}')
+        try:
+            eval = json.loads(eval)
+        except:
+            print(f"An exception occurred during JSON parsing, eval:{eval}")
+            validity["valid_quiz"] = False
+            validity["details"].append(f"An exception occurred during JSON parsing, eval:{eval}")
+            return validity
 
         # [{"on_topic": true, "correct": ["George Washington"], "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
         for index, item in enumerate(eval):
-            # 4. The question is on the right topic
-            if not item["on_topic"]:
-                return False, f"Invalid #4: {eval}"
-            # 5. The correct answer is indeed correct
-            if item["correct"] != quiz[index]["correct"]:
-                return False, f"Invalid #5: {eval}"
-            # 6. The rest of responses are incorrect
-            responses = quiz_eval[index]["responses"]
-            responses.remove(item["correct"])
-            for incorrect in item["incorrect"]:
-                responses.remove(incorrect)
-            if len(responses) != 0:
-                False, f"Invalid #6: {eval}"
+            question = quiz[index]['question']
 
-        return True, f"Valid: {eval}"
+            if not item["on_topic"]:
+                validity["valid_quiz"] = False
+                validity["invalid_questions"].add(question)
+                validity["details"].append(f"Invalid #4: The question is not on the topic - question: '{question}', topic: {topic}")
+                if shortcircuit_validity:
+                    return validity
+
+            expected_correct = item["correct"]
+            actual_correct = quiz[index]["correct"]
+            if expected_correct != actual_correct:
+                validity["valid_quiz"] = False
+                validity["invalid_questions"].add(question)
+                validity["details"].append(f"Invalid #5: The correct answer is not correct - question: '{question}', expected: {expected_correct}, actual: {actual_correct}")
+                if shortcircuit_validity:
+                    return validity
+
+            responses = quiz_eval[index]["responses"]
+            if item["correct"] in responses:
+                responses.remove(item["correct"])
+            for incorrect in item["incorrect"]:
+                if incorrect in responses:
+                    responses.remove(incorrect)
+            if len(responses) != 0:
+                validity["valid_quiz"] = False
+                validity["invalid_questions"].add(question)
+                validity["details"].append(f"Invalid #6: The rest of responses are not in question: '{question}'")
+                if shortcircuit_validity:
+                    return validity
+
+            if question not in validity["invalid_questions"]:
+                validity["valid_questions"].add(question)
+
+        return validity
 
 if __name__ == "__main__":
     gen = Quizgen()

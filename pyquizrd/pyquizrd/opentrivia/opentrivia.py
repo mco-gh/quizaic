@@ -71,7 +71,7 @@ class Quizgen:
         return json_quiz
 
     # Given a quiz, check if it's a valid quiz
-    def eval_quiz(self, quiz, topic, num_questions, num_answers) -> tuple[bool, str]:
+    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
         # 1. It has right number of questions
         actual_num_questions = len(quiz)
         if actual_num_questions != num_questions:

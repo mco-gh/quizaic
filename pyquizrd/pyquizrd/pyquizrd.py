@@ -52,5 +52,5 @@ class Quizgen:
         return self._gen.load_quiz(quiz_file)
 
     # Check that the quiz is valid, mainly for testing
-    def eval_quiz(self, quiz, topic=None, num_questions=None, num_answers=None) -> tuple[bool, str]:
-        return self._gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    def eval_quiz(self, quiz, topic=None, num_questions=None, num_answers=None, shortcircuit_validity=True):
+        return self._gen.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity)

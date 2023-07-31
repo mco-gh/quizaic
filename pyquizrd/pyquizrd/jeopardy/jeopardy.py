@@ -41,5 +41,5 @@ class Quizgen:
             filtered = filtered.sample(n=num_questions)
         return filtered.to_json(orient="records", indent=4)
 
-    def eval_quiz(self, quiz, topic, num_questions, num_answers) -> tuple[bool, str]:
+    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
         return True, f"Valid quiz"
