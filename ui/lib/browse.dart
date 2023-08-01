@@ -8,6 +8,7 @@ class BrowsePage extends StatelessWidget {
     //var theme = Theme.of(context);
     //var appState = context.watch<AppState>();
 
+    //https://content-api-w75476cq7a-uc.a.run.app/quizzes
     return Center(
       child: Text('Browse'),
     );
