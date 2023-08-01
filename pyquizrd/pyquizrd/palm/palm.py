@@ -5,25 +5,26 @@ import random
 import re
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
+from pyquizrd.pyquizrd import Quizgen
 
-class Quizgen:
+DEFAULT_PROJECT = "quizrd-prod-382117"
+DEFAULT_LOCATION = "us-central1"
+DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
+DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"
 
-    DEFAULT_PROJECT = "quizrd-prod-382117"
-    DEFAULT_LOCATION = "us-central1"
-    DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
-    DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"
+class PalmQuizgen(Quizgen):
 
     def __init__(self, config=None):
-        project = Quizgen.DEFAULT_PROJECT
-        location = Quizgen.DEFAULT_LOCATION
-        prompt_gen_file = Quizgen.DEFAULT_PROMPT_GEN_FILE
-        prompt_eval_file = Quizgen.DEFAULT_PROMPT_EVAL_FILE
+        project = DEFAULT_PROJECT
+        location = DEFAULT_LOCATION
+        prompt_gen_file = DEFAULT_PROMPT_GEN_FILE
+        prompt_eval_file = DEFAULT_PROMPT_EVAL_FILE
 
         if config:
-            project = config.get("project", Quizgen.DEFAULT_PROJECT)
-            location = config.get("location", Quizgen.DEFAULT_LOCATION)
-            prompt_gen_file = config.get("prompt_gen_file", Quizgen.DEFAULT_PROMPT_GEN_FILE)
-            prompt_eval_file = config.get("prompt_eval_file", Quizgen.DEFAULT_PROMPT_EVAL_FILE)
+            project = config.get("project", DEFAULT_PROJECT)
+            location = config.get("location", DEFAULT_LOCATION)
+            prompt_gen_file = config.get("prompt_gen_file", DEFAULT_PROMPT_GEN_FILE)
+            prompt_eval_file = config.get("prompt_eval_file", DEFAULT_PROMPT_EVAL_FILE)
 
         vertexai.init(project=project, location=location)
 
@@ -205,7 +206,7 @@ def get_validity_compact(validity):
     }
 
 if __name__ == "__main__":
-    gen = Quizgen()
+    gen = PalmQuizgen()
 
     prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
     result = gen.predict_llm("text-bison@001", 0, 1024, 0.8, 40, prompt)
