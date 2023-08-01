@@ -1,5 +1,6 @@
 import importlib
 
+# TODO: Change to proper inheritance
 class Quizgen:
 
     GENERATORS = {
