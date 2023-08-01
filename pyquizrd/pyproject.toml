@@ -9,6 +9,8 @@ include = ["pyquizrd/jeopardy/pruned_jeopardy.json"]
 [tool.poetry.dependencies]
 python = "^3.11"
 langchain = "^0.0.240"
+vertexai = "^0.0.1"
+google-cloud-aiplatform = "^1.28.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
