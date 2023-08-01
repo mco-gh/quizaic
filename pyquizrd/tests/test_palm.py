@@ -1,11 +1,12 @@
 import json
 from pyquizrd.pyquizrd import Quizgen
+from pyquizrd.palm.palm import PalmQuizgen
 import pytest
 import random
 
 def test_noconfig():
     # This test passes only if you have access to the project defined in DEFAULT_PROJECT in palm.py
-    gen = Quizgen("palm")
+    gen = PalmQuizgen()
     assert(gen != None)
 
 def test_withconfig():

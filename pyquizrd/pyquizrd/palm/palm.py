@@ -15,6 +15,7 @@ DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"
 class PalmQuizgen(Quizgen):
 
     def __init__(self, config=None):
+        print("hi marc")
         project = DEFAULT_PROJECT
         location = DEFAULT_LOCATION
         prompt_gen_file = DEFAULT_PROMPT_GEN_FILE
