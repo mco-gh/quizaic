@@ -146,6 +146,12 @@ class Quizgen:
                 validity["details"].append("Invalid #4: Cannot evaluate quiz due to unsafe questions")
                 return get_validity_compact(validity)
 
+            # Hack: Sometimes the LLM returns invalid JSON with a
+            # trailing comma. Until the prompt is fixed, remove it.
+            if eval[:-3] == ",\n]":
+                # Replace the last three characters with "\n]"
+                eval = eval[:-3] + "\n]"
+
             eval = json.loads(eval)
         except ValueError as e:
             print(f'eval:"{eval}"')

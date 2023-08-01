@@ -125,7 +125,7 @@ def test_eval_quiz_with_opentrivia_data():
         print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
 
         validity = gen_palm.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity=False)
-        print(f'validity: {validity}')
+        print(f'validity: {json.dumps(validity, indent=4)}')
 
         if validity["valid_quiz"]:
             valid_quiz += 1
