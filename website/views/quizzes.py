@@ -17,6 +17,9 @@ from middleware.logging import log
 from views.helpers.donors import get_donor_name
 from views.helpers.time import convert_utc
 from functools import reduce
+
+import sys
+sys.path.append("../")
 from pyquizrd.generators.quizgenfactory import QuizgenFactory
 
 import hashlib
@@ -212,6 +215,7 @@ def save_quiz():
             generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         creator = hashlib.sha256(g.session_data.get("email").encode("utf-8")).hexdigest()
+        quiz = json.dumps(quiz)  # convert object to json text
         resp = g.api.quizzes_post(
             {
                 "curQuestion":  "-1",
