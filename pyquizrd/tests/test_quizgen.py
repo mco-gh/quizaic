@@ -1,22 +1,23 @@
 import pytest
 import json
-from pyquizrd.pyquizrd import Quizgen
-from pyquizrd.jeopardy.jeopardy import Quizgen as JeopardyQuizgen
-from pyquizrd.opentrivia.opentrivia import Quizgen as OpenTriviaQuizgen
+
+from generators.quizgenfactory import QuizgenFactory
+from generators.jeopardy.quizgen import Quizgen as JeopardyQuizgen
+from generators.opentrivia.quizgen import Quizgen as OpenTriviaQuizgen
 
 # An example of running individual tests with print outputs and verbose testing output:
 # pytest test_quizgen.py -v -s -k test_get_gens
 
 def test_get_gens():
-    gens = Quizgen.get_gens()
-    assert(set(gens.keys()) == Quizgen.GENERATORS.keys())
+    gens = QuizgenFactory.get_gens()
+    assert(set(gens.keys()) == QuizgenFactory.GENERATORS.keys())
 
 def test_create_generator():
-    for g in Quizgen.GENERATORS:
-        gen = Quizgen(g)
+    for type in QuizgenFactory.GENERATORS:
+        gen = QuizgenFactory.get_gen(type)
         assert(gen != None)
         s = str(gen)
-        assert(s == f"{g} quiz generator")
+        assert(s == f"{type} quiz generator")
 
 def test_get_topics():
     TOPICS = {
@@ -27,28 +28,28 @@ def test_get_topics():
         "palm": set()
     }
 
-    for g in Quizgen.GENERATORS:
-        gen = Quizgen(g)
+    for type in QuizgenFactory.GENERATORS:
+        gen = QuizgenFactory.get_gen(type)
         assert(gen != None)
         topics = gen.get_topics(10)
         print(f'gen:{gen} topics:{topics}')
-        assert(topics == TOPICS[g])
+        assert(topics == TOPICS[type])
 
 def test_create_unsupported_gen():
     with pytest.raises(Exception):
-        g = Quizgen("unsupported")
+        g = QuizgenFactory.get_gen("unsupported")
 
 def test_gpt_gen_quiz():
     # TODO - Currently GPT returns a generic response.
     # Add more checks once it's properly implemented
-    gen = Quizgen("gpt")
+    gen = QuizgenFactory.get_gen("gpt")
     quiz = gen.gen_quiz("American History", 1, 1)
     print(quiz)
     assert(quiz != None)
 
 def test_jeopardy_gen_quiz():
     expected_num_questions = 5
-    gen = Quizgen("jeopardy")
+    gen = QuizgenFactory.get_gen("jeopardy")
     quiz = gen.gen_quiz("American History", expected_num_questions)
     print(quiz)
     assert(quiz != None)
@@ -62,7 +63,7 @@ def test_jeopardy_gen_quiz():
         assert(isinstance(question["correct"], str))
 
 def test_manual_gen_quiz():
-    gen = Quizgen("manual")
+    gen = QuizgenFactory.get_gen("manual")
     quiz = gen.gen_quiz()
     print(quiz)
     assert(quiz != None)

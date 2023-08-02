@@ -5,17 +5,19 @@ import random
 import re
 import vertexai
 from vertexai.preview.language_models import TextGenerationModel
-from pyquizrd.pyquizrd import Quizgen
+
+import sys
+sys.path.append("../../") # Needed for the main method to work in this class
+from generators.basequizgen import BaseQuizgen
 
 DEFAULT_PROJECT = "quizrd-prod-382117"
 DEFAULT_LOCATION = "us-central1"
 DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
 DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"
 
-class PalmQuizgen(Quizgen):
+class Quizgen(BaseQuizgen):
 
     def __init__(self, config=None):
-        print("hi marc")
         project = DEFAULT_PROJECT
         location = DEFAULT_LOCATION
         prompt_gen_file = DEFAULT_PROMPT_GEN_FILE
@@ -70,18 +72,6 @@ class PalmQuizgen(Quizgen):
         elif difficulty <= 5:
             return "difficult"
 
-    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
-        prompt = self.prompt_gen.format(topic=topic,
-            num_questions=num_questions,
-            num_answers=num_answers,
-            difficulty=self.get_difficulty_word(difficulty))
-        quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
-        quiz = json.loads(quiz)
-        # Make sure the correct answer appears randomly in responses
-        for i in quiz:
-            random.shuffle(i["responses"])
-        return quiz
-
     # Load quiz from a quiz_<topic>.json file, mainly for testing
     def load_quiz(self, quiz_file):
         file = open(os.path.join(os.path.dirname(__file__), "quizzes/" + quiz_file))
@@ -93,6 +83,18 @@ class PalmQuizgen(Quizgen):
         num_answers = len(quiz[0]["responses"])
 
         return quiz, topic, num_questions, num_answers
+
+    def gen_quiz(self, topic, num_questions, num_answers, difficulty=3, temperature=.5):
+        prompt = self.prompt_gen.format(topic=topic,
+            num_questions=num_questions,
+            num_answers=num_answers,
+            difficulty=self.get_difficulty_word(difficulty))
+        quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
+        quiz = json.loads(quiz)
+        # Make sure the correct answer appears randomly in responses
+        for i in quiz:
+            random.shuffle(i["responses"])
+        return quiz
 
     # Given a quiz, check if it's a valid quiz and returns a validity map with
     # details. shortcircuit_validity determines if the validity check returns
@@ -207,7 +209,9 @@ def get_validity_compact(validity):
     }
 
 if __name__ == "__main__":
-    gen = PalmQuizgen()
+    gen = Quizgen()
+    print(f'gen:{gen}')
+    exit(0)
 
     prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
     result = gen.predict_llm("text-bison@001", 0, 1024, 0.8, 40, prompt)

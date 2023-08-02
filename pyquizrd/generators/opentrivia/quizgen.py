@@ -1,10 +1,14 @@
-import html
 import random
 import requests
 
 # https://opentdb.com/
 
-class Quizgen:
+import sys
+sys.path.append("../../") # Needed for the main method to work in this class
+from generators.basequizgen import BaseQuizgen
+
+
+class Quizgen(BaseQuizgen):
 
     TOPICS = ("General Knowledge", "Books", "Film", "Music",
             "Musicals & Theatres", "Television", "Video Games", "Board Games",
@@ -93,3 +97,7 @@ class Quizgen:
                 return False, f"The correct answer '{correct}' for question '{item['question']}' is not in responses list: {responses}"
 
         return True, f"Valid quiz: {eval}"
+
+if __name__ == "__main__":
+    gen = Quizgen()
+    print(f'gen:{gen}')

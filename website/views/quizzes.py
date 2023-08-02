@@ -17,7 +17,7 @@ from middleware.logging import log
 from views.helpers.donors import get_donor_name
 from views.helpers.time import convert_utc
 from functools import reduce
-from pyquizrd.pyquizrd import Quizgen
+from pyquizrd.generators.quizgenfactory import QuizgenFactory
 
 import hashlib
 import json
@@ -89,7 +89,7 @@ def new_quiz():
         };
         qa = None
         questions = None
-    gens = Quizgen.get_gens()
+    gens = QuizgenFactory.get_gens()
     return render_template("create-quiz.html", op="Create", quiz=quiz_instance, current_user=current_user, questions=questions, qa=qa, gens=gens)
 
 @quizzes_bp.route("/editQuiz", methods=["GET"])
@@ -116,7 +116,7 @@ def edit_quiz():
         log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    gens = Quizgen.get_gens()
+    gens = QuizgenFactory.get_gens()
     qa = json.loads(quiz_instance.qand_a)
     questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
     return render_template("create-quiz.html", op="Update", quiz=quiz_instance, questions=questions, qa=qa, current_user=current_user, gens=gens)
@@ -157,7 +157,7 @@ def update_quiz():
         if request.form["generator"] == "manual" or "regen" not in request.form:
             quiz = request.form["QandA"]
         else:
-            generator = Quizgen(request.form["generator"])
+            generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         resp = g.api.quizzes_id_patch(quiz_id, 
             {
@@ -209,7 +209,7 @@ def save_quiz():
         if request.form["generator"] == "manual" :
             quiz = request.form["QandA"]
         else:
-            generator = Quizgen(request.form["generator"])
+            generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         creator = hashlib.sha256(g.session_data.get("email").encode("utf-8")).hexdigest()
         resp = g.api.quizzes_post(

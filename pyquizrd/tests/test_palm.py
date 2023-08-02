@@ -1,30 +1,30 @@
 import json
-from pyquizrd.pyquizrd import Quizgen
-from pyquizrd.palm.palm import PalmQuizgen
 import pytest
 import random
 
+from generators.quizgenfactory import QuizgenFactory
+
 def test_noconfig():
     # This test passes only if you have access to the project defined in DEFAULT_PROJECT in palm.py
-    gen = PalmQuizgen()
+    gen = QuizgenFactory.get_gen("palm")
     assert(gen != None)
 
 def test_withconfig():
     # This test passes only if you have access to project defined below
     config = {"project": "quizrd-atamel"}
-    gen = Quizgen("palm", config)
+    gen = QuizgenFactory.get_gen("palm", config)
     assert(gen != None)
 
 def test_gen_quiz():
     num_questions = 2
     num_answers = 4
-    gen = Quizgen("palm")
+    gen = QuizgenFactory.get_gen("palm")
     quiz = gen.gen_quiz("World History", num_questions, num_answers)
     print(json.dumps(quiz, indent=4))
     assert(quiz != None)
 
 def test_eval_quiz_num_questions():
-    gen = Quizgen("palm")
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Remove a question
@@ -36,7 +36,7 @@ def test_eval_quiz_num_questions():
     assert not validity["valid_quiz"]
 
 def test_eval_quiz_num_answers():
-    gen = Quizgen("palm")
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Remove an answer
@@ -48,7 +48,7 @@ def test_eval_quiz_num_answers():
     assert not validity["valid_quiz"]
 
 def test_eval_quiz_correct_answer_inlist():
-    gen = Quizgen("palm")
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Change correct answer to a value not in responses
@@ -60,7 +60,7 @@ def test_eval_quiz_correct_answer_inlist():
     assert not validity["valid_quiz"]
 
 def test_eval_quiz_question_on_topic():
-    gen = Quizgen("palm")
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Add a question on an unrelated topic
@@ -92,7 +92,7 @@ def test_eval_quiz_correct_is_correct_americanhistory():
     do_eval_quiz_correct_is_correct(quiz_file, wrong_answer)
 
 def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
-    gen = Quizgen("palm")
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz(quiz_file)
 
     # Change the second question's answer to a wrong answer in responses
@@ -105,8 +105,8 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
 
 @pytest.mark.skip(reason="takes a long time to run, only use occasionally for integration testing")
 def test_eval_quiz_with_opentrivia_data():
-    gen_opentrivia = Quizgen("opentrivia")
-    gen_palm = Quizgen("palm")
+    gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
+    gen_palm = QuizgenFactory.get_gen("palm")
 
     num_quiz = 10
     num_questions = 10

@@ -1,4 +1,9 @@
-class Quizgen:
+import sys
+sys.path.append("../../") # Needed for the main method to work in this class
+from generators.basequizgen import BaseQuizgen
+
+class Quizgen(BaseQuizgen):
+
     def __init__(self, config=None):
         self.topics = set()
 
@@ -19,3 +24,7 @@ class Quizgen:
 
     def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
         return True, f"Valid quiz"
+
+if __name__ == "__main__":
+    gen = Quizgen()
+    print(f'gen:{gen}')
