@@ -4,9 +4,8 @@ import requests
 # https://opentdb.com/
 
 import sys
-sys.path.append("../../") # Needed for the main method to work in this class
-from generators.basequizgen import BaseQuizgen
-
+sys.path.append("../../../") # Needed for the main method to work in this class
+from pyquizrd.generators.basequizgen import BaseQuizgen
 
 class Quizgen(BaseQuizgen):
 

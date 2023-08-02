@@ -1,6 +1,6 @@
 import importlib
 import sys
-sys.path.append("../") # Needed for the main method to work in this class
+sys.path.append("../../") # Needed for the main method to work in this class
 
 class QuizgenFactory():
 
@@ -17,7 +17,7 @@ class QuizgenFactory():
         if type not in QuizgenFactory.GENERATORS:
             raise Exception(f"Unsupported generator type {type}.")
         if not QuizgenFactory.GENERATORS[type]:
-            mod = importlib.import_module(f"generators.{type}.quizgen")
+            mod = importlib.import_module(f"pyquizrd.generators.{type}.quizgen")
             QuizgenFactory.GENERATORS[type] = mod
         return QuizgenFactory.GENERATORS[type].Quizgen(config)
 
@@ -34,8 +34,20 @@ class QuizgenFactory():
 
 
 if __name__ == "__main__":
+    gen = QuizgenFactory.get_gen("gpt")
+    print(f'gen:{gen}')
+
+    gen = QuizgenFactory.get_gen("jeopardy")
+    print(f'gen:{gen}')
+
+    gen = QuizgenFactory.get_gen("manual")
+    print(f'gen:{gen}')
+
     gen = QuizgenFactory.get_gen("opentrivia")
     print(f'gen:{gen}')
 
-    # gens = QuizgenFactory.get_gens()
-    # print(f'gens:{gens}')
+    gen = QuizgenFactory.get_gen("palm")
+    print(f'gen:{gen}')
+
+    gens = QuizgenFactory.get_gens()
+    print(f'gens:{gens}')

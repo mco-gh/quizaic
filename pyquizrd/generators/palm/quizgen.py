@@ -7,8 +7,8 @@ import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 import sys
-sys.path.append("../../") # Needed for the main method to work in this class
-from generators.basequizgen import BaseQuizgen
+sys.path.append("../../../") # Needed for the main method to work in this class
+from pyquizrd.generators.basequizgen import BaseQuizgen
 
 DEFAULT_PROJECT = "quizrd-prod-382117"
 DEFAULT_LOCATION = "us-central1"
