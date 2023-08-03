@@ -190,9 +190,9 @@ def update_quiz():
 def gen_image(topic, filename):
     url = "/static/logo.png"
 
-    file_url = ImageGen.generate_and_upload_image(topic, filename)
-    if file_url:
-        url = file_url
+    #file_url = ImageGen.generate_and_upload_image(topic, filename)
+    #if file_url:
+        #url = file_url
 
     return url
 
