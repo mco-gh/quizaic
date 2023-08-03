@@ -26,8 +26,6 @@ from pyquizrd.generators.palm.imagegen import ImageGen
 import hashlib
 import json
 import random
-import re
-import subprocess
 
 quizzes_bp = Blueprint("quizzes", __name__, template_folder="templates")
 restrict = False
@@ -193,14 +191,10 @@ def update_quiz():
 def gen_image(topic, filename):
     url = "/static/logo.png"
 
-    # TODO - Add it in, once verified
-    # file_url = ImageGen.generate_and_upload_image(topic, filename)
-    # if file_url:
-    #     url = file_url
+    file_url = ImageGen.generate_and_upload_image(topic, filename)
+    if file_url:
+        url = file_url
 
-    ret = subprocess.call(['sh', 'genimage.sh', topic, filename])
-    if ret == 0:
-        url = f"https://storage.googleapis.com/quizrd-img/{filename}.jpg"
     return url
 
 @quizzes_bp.route("/createQuiz", methods=["POST"])
