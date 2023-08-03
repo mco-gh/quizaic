@@ -1,8 +1,9 @@
 WEBSITE_VERSION := 0.0.1
 TAG             := ${REGION}-docker.pkg.dev/${PROJECT_ID}/quizrd/website:v${WEBSITE_VERSION}
 
+# env vars need work
+
 fe-test:
-	. scripts/env.sh && \
 	. ~/keys.sh && \
 	export REDIRECT_URI=http://localhost:8080/callback && \
 	cd website && \
@@ -11,7 +12,7 @@ fe-test:
 be-test:
 
 fe-deploy:
-	echo gcloud config set project ${PROJECT_ID}
+	gcloud config set project ${PROJECT_ID}
 	docker build -f website/Dockerfile -t ${TAG} .
 	docker push ${TAG}
 	gcloud run deploy website --region ${REGION} --image=${TAG} \
