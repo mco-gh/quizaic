@@ -43,7 +43,7 @@ class Quizgen(BaseQuizgen):
         filtered = filtered.sample(num_questions)
         if num_questions < len(filtered.index):
             filtered = filtered.sample(n=num_questions)
-        return filtered.to_json(orient="records", indent=4)
+        return filtered.to_dict(orient="records")
 
     def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
         return True, f"Valid quiz"

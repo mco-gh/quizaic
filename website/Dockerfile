@@ -16,6 +16,11 @@
 # https://hub.docker.com/_/python
 FROM python:3.11-slim
 
+ENV PORT 8080
+ENV SESSION_BUCKET quizrd-prod-382117-sessions
+ENV REDIRECT_URI https://quizrd.io/callback
+ENV API_URL https://content-api-w75476cq7a-uc.a.run.app
+
 # Allow statements and log messages to immediately appear in the Cloud Run logs
 ENV PYTHONUNBUFFERED True
 
@@ -24,25 +29,26 @@ ENV HIDE_AUTH_WARNINGS True
 
 # Copy application dependency manifests to the container image.
 # Copying this separately prevents re-running pip install on every code change.
-COPY requirements.txt ./
+COPY website/requirements.txt .
 
 # See ops/web-build.cloudbuild.yaml.  client-libs/ is copied into the website directory.
 # Here we copy it from the Docker context into the container.
-COPY client-libs client-libs/
+COPY website/client-libs client-libs/
 
 # Install production dependencies.
-RUN apt-get update
+RUN apt-get update --allow-insecure-repositories
 RUN apt-get install -y curl jq
 RUN pip install -r requirements.txt
 
 # Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
-COPY . ./
+COPY website/. ./
+COPY pyquizrd ../pyquizrd
 
 # Run the web service on container startup. 
 # Use gunicorn webserver with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available. To increase CPU cores in Cloud Run, see 
 # https://cloud.google.com/run/docs/configuring/cpu
-CMD exec opentelemetry-instrument gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
