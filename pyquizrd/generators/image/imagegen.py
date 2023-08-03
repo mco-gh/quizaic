@@ -164,8 +164,8 @@ if __name__ == "__main__":
     # ImageGen.save_images(images, "images")
 
     # topic = "American History" # This does not generate any images
-    topic = "Cyprus"  # This does not generate any images
-    file_name = "image_6.png"
+    topic = "Cyprus"
+    file_name = "image_test.png"
 
     file_url = ImageGen.generate_and_upload_image(topic, file_name)
     print(f'file_url: {file_url}')

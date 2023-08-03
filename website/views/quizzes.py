@@ -14,14 +14,12 @@
 
 from flask import Blueprint, g, redirect, request, render_template
 from middleware.logging import log
-from views.helpers.donors import get_donor_name
 from views.helpers.time import convert_utc
-from functools import reduce
 
 import sys
 sys.path.append("../")
 from pyquizrd.generators.quizgenfactory import QuizgenFactory
-from pyquizrd.generators.palm.imagegen import ImageGen
+from pyquizrd.generators.image.imagegen import ImageGen
 
 import hashlib
 import json
