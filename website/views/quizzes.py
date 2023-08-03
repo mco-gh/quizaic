@@ -159,6 +159,7 @@ def update_quiz():
         else:
             generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
+        quiz = json.dumps(quiz)  # convert object to json text
         resp = g.api.quizzes_id_patch(quiz_id, 
             {
                 "name":         request.form["name"],

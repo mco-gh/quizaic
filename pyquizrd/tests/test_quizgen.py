@@ -54,13 +54,13 @@ def test_jeopardy_gen_quiz():
     print(quiz)
     assert(quiz != None)
 
-    quiz = json.loads(quiz)
-    actual_num_questions = len(quiz)
-    assert(expected_num_questions == actual_num_questions)
-
     # jeopardy always has a single correct answer
     for question in quiz:
         assert(isinstance(question["correct"], str))
+
+    actual_num_questions = len(quiz)
+    assert(expected_num_questions == actual_num_questions)
+
 
 def test_manual_gen_quiz():
     gen = QuizgenFactory.get_gen("manual")
