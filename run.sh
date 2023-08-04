@@ -21,6 +21,7 @@ then
         export REDIRECT_URI=http://localhost:8080/callback
         cd website
         flask run --port 8080 --debugger --reload
+        cd -
     elif [ "$2" = "deploy" ]
     then
         . scripts/env.sh
@@ -35,7 +36,11 @@ elif [ "$1" = "api" ]
 then
     if [ "$2" = "test" ]
     then
-        echo Not implemented yet
+        . scripts/env.sh
+        . ~/keys.sh
+        cd content-api
+        FLASK_APP=main.py flask run --port 8080 --debugger --reload
+        cd -
     elif [ "$2" = "deploy" ]
     then
         . scripts/env.sh
@@ -51,3 +56,14 @@ else
     echo "Usage: $USAGE"
     exit 1
 fi
+
+# curl testing of content-api
+#export URL="localhost:8080"
+#if [ "$REDIRECT_URI" = "" ]; then
+  #. ../scripts/env.sh
+#fi
+#if [ "$METHOD" = "" ]; then
+  #export METHOD=GET
+#fi
+#export ID_TOKEN=$(gcloud auth print-identity-token)
+#curl -X $METHOD -s $URL/$1 -H "Authorization: Bearer $ID_TOKEN"
