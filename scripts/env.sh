@@ -2,11 +2,15 @@
 # Project level environment variable settings. These may be reused in other scripts by
 # running ". <path-to-project-root>/scripts/env.sh".
 #
-# DEPENDENCY: You are expected to have set your project via "gcloud config set project blah".
+# DEPENDENCY: You are expected to have set your account, project, and region via:
+#
+#     - gcloud config set account <your-account>
+#     - gcloud config set project <your-project>
+#     - gcloud config set compute/region <your-region>
 #
 
 export APP=quizrd
-export REGION=us-central1
+export REGION=$(gcloud config get-value compute/region)
 export GOOGLE_CLOUD_PROJECT=$(gcloud config get-value project)
 export PROJECT_ID=$GOOGLE_CLOUD_PROJECT
 export SESSION_BUCKET=${PROJECT_ID}-sessions
