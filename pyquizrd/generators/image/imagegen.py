@@ -1,5 +1,7 @@
 import base64
 import json
+import google.auth
+import google.auth.transport.requests
 import os
 import requests
 import subprocess
@@ -18,9 +20,12 @@ PREDICT_URL = f"{AI_PLATFORM_URL}/v1/projects/{PROJECT_ID}/locations/{LOCATION}/
 PROMPT_TEMPLATE= "photorealistic image about {topic}"
 NEGATIVE_PROMPT = "blurry"
 
+# Option1
 METADATA_URL = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity"
 ACCESS_TOKEN_URL = f"{METADATA_URL}?audience={AI_PLATFORM_URL}"
 
+# Option2
+#ACCESS_TOKEN_URL = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token"
 
 class ImageGen:
 
@@ -34,23 +39,32 @@ class ImageGen:
 
     @staticmethod
     def get_access_token():
-        if os.getenv("K_SERVICE"):  # TODO - Make sure it works from Cloud Run
+        # TODO: This currently works from local but not from Cloud Run
+        #credentials, your_project_id = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        credentials, your_project_id = google.auth.default()
+        auth_req = google.auth.transport.requests.Request()
+        credentials.refresh(auth_req)
+        print(f"Returning token: {credentials.token}")
+        return credentials.token
+
+        # Remove old code below, once above works for Cloud Run
+        if os.getenv("K_SERVICE"):  # TODO - This doesn't work for Cloud Run
+            print(f"Getting access token from the metadata service for {CLOUD_RUN_URL}")
             response = requests.get(ACCESS_TOKEN_URL, headers={"Metadata-Flavor": "Google"})
-            if response.status_code != 200:
-                raise requests.exceptions.HTTPError(
-                    f"Error: {response.status_code} ({response.reason})")
-            access_token = response.content
+            response.raise_for_status()
+            print(f"response.content: {response.content}")
+            print(f"response.text: {response.text}")
+            access_token = response.text # Option1 ACCESS_TOKEN_URL
+            #access_token = response.json()["access_token"] # Option2 ACCESS_TOKEN_URL
         else:
+            print("Getting access token with gcloud")
             access_token = subprocess.run(
                 ["gcloud", "auth", "print-access-token"],
                 capture_output=True,
                 text=True,
             ).stdout.strip()
 
-        if access_token.startswith("ya29"):
-            return access_token
-
-        raise Exception(f"Something went wrong with getting the access token: {access_token}")
+        return access_token
 
     @staticmethod
     def send_request(headers, data):
