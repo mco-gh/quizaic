@@ -73,7 +73,10 @@ class ImageGen:
         except Exception as err:
             print(f"image generation error: {err}")
             raise err
-        print(f"post succeeded: {response.status_code}, {response.reason}, {response.content}")
+        try:
+            print(f"post succeeded: {response.status_code}, {response.reason}, {response.content[:100]}")
+        except:
+            print("can't print!")
 
         if response.status_code != 200:
             raise requests.exceptions.HTTPError(f"Error: {response.status_code} ({response.reason})")
