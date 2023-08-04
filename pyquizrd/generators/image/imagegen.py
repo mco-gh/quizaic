@@ -10,9 +10,10 @@ from io import BytesIO
 from google.cloud import storage
 from PIL import Image
 
+# TO FIX
 PROJECT_ID = "mco-quizrd"
 LOCATION = "us-central1"
-BUCKET_NAME = "quizrd-img"
+BUCKET_NAME = PROJECT_ID + "-sessions"
 
 AI_PLATFORM_URL = f"https://{LOCATION}-aiplatform.googleapis.com"
 IMAGE_MODEL_NAME = "imagegeneration"
@@ -73,14 +74,9 @@ class ImageGen:
         except Exception as err:
             print(f"image generation error: {err}")
             raise err
-        try:
-            print(f"post succeeded: {response.status_code}, {response.reason}, {response.content[:100]}")
-        except:
-            print("can't print!")
 
         if response.status_code != 200:
             raise requests.exceptions.HTTPError(f"Error: {response.status_code} ({response.reason})")
-
         return response.json()
 
     @staticmethod
