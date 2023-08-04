@@ -33,7 +33,18 @@ then
     fi
 elif [ "$1" = "api" ]
 then
-    echo not implemented yet
+    if [ "$2" = "test" ]
+    then
+        echo Not implemented yet
+    elif [ "$2" = "deploy" ]
+    then
+        . scripts/env.sh
+        VERSION=$(cat content-api/version)
+	TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/quizrd/content_api:v${VERSION}"
+        docker build -f content_api/Dockerfile -t ${TAG} .
+        docker push ${TAG}
+        gcloud run deploy content-api --region ${REGION} --image=${TAG} --allow-unauthenticated
+    fi
 else
     echo "Usage: $USAGE"
     exit 1
