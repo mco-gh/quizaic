@@ -1,6 +1,6 @@
 #
 # Project level environment variable settings. These may be reused in other scripts by
-# running ". scripts/env.sh".
+# running ". <path-to-project-root>/scripts/env.sh".
 #
 # DEPENDENCY: You are expected to have set your project via "gcloud config set project blah".
 #
