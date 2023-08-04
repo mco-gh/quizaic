@@ -10,7 +10,7 @@ from io import BytesIO
 from google.cloud import storage
 from PIL import Image
 
-PROJECT_ID = "quizrd-prod-382117"
+PROJECT_ID = "mco-quizrd"
 LOCATION = "us-central1"
 BUCKET_NAME = "quizrd-img"
 
@@ -68,7 +68,12 @@ class ImageGen:
 
     @staticmethod
     def send_request(headers, data):
-        response = requests.post(PREDICT_URL, headers=headers, data=data)
+        try:
+            response = requests.post(PREDICT_URL, headers=headers, data=data)
+        except Exception as err:
+            print(f"image generation error: {err}")
+            raise err
+        print(f"post succeeded: {response.status_code}, {response.reason}, {response.content}")
 
         if response.status_code != 200:
             raise requests.exceptions.HTTPError(f"Error: {response.status_code} ({response.reason})")

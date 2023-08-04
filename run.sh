@@ -20,7 +20,7 @@ then
         . ~/keys.sh
         export REDIRECT_URI=http://localhost:8080/callback
         cd website
-        flask run --port 8080 --debugger --reload
+        FLASK_APP=app.py flask run --port 8080 --debugger --reload
         cd -
     elif [ "$2" = "deploy" ]
     then
