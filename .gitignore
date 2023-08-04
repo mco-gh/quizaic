@@ -163,3 +163,6 @@ website/client-libs/
 
 # uncompressed jeopardy data file
 quizgen/quizgen/jeopardy/pruned_jeopardy.json
+
+# vscode config stuff
+*.vscode
