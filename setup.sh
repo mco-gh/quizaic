@@ -24,6 +24,7 @@ fi
 
 printf "=====\nCreating Cloud Storage bucket...\n=====\n"
 gsutil mb gs://${PROJECT_ID}-sessions
+gsutil acl set public-read gs://${PROJECT_ID}-sessions
 
 printf "=====\nCreating Cloud Artifacts repo...\n=====\n"
 gcloud artifacts repositories create quizrd --location=$REGION --repository-format=docker
