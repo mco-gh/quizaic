@@ -2,7 +2,7 @@
 
 Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
-<!--
+
 ## Architecture
 
 ### Data/User Model
@@ -13,7 +13,6 @@ Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to ge
 
 ### Player Flow
 <img src="website/static/player.png" height="300">
--->
 
 ## Project Status
 
@@ -65,9 +64,11 @@ The machine that you will run the setup from will need the following installed:
     sudo npm install @openapitools/openapi-generator-cli -g
     ```
 
-1. Run `./setup.sh` to deploy backend services.
+1. Edit scripts/env.sh to match your environment settings.
 
-1. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets
+2. Run `./setup.sh` to deploy backend services.
+
+3. Run `./scripts/configure_auth.sh` to setup Oauth credentials and secrets
    needed for users to log into the application.
 
 ## Verify Setup
@@ -80,22 +81,20 @@ verify the website looks something like this:
 Also, try to log in as a user to make sure OAuth is setup correctly and create &
 run quizzes to make sure everything works.
 
-## Incremental Deployment
+## Deployment
 
-You can incrementally deploy services (instead of redeploying everyting).
+You can incrementally deploy services (instead of redeploying everything).
 
 ### Content API
 
 ```bash
-cd content-api
-./deploy.sh
+./run.sh api deploy
 ```
 
 ### Website
 
 ```bash
-cd website
-./deploy.sh
+./run.sh ui deploy
 ```
 
 ## Local Testing
@@ -105,9 +104,7 @@ You can make changes in services and test them locally without deploying.
 ### Content API
 
 ```bash
-cd content-api
-python3 main.py
-./test.sh path
+./run.sh api test
 ```
 
 ### Website
@@ -127,8 +124,7 @@ You also need to add `http://localhost:8080/callback` under `APIs & Services` ->
 You should be able to test the web server locally now:
 
 ```bash
-cd website
-./test.sh
+./run.sh api test
 ```
 
 ---
