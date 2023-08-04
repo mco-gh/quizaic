@@ -13,13 +13,19 @@ gcloud services enable cloudbuild.googleapis.com
 gcloud services enable firestore.googleapis.com
 gcloud services enable secretmanager.googleapis.com
 
+printf "=====\nCreating Cloud Firestore database...\n=====\n"
 DBNAME="projects/$PROJECT_ID/databases/(default)"
 gcloud firestore databases list | grep $DBNAME >/dev/null 2>&1
 if [ "$?" != "0" ]
 then
     gcloud firestore databases create --location nam5
 fi
+
+printf "=====\nCreating Cloud Storage bucket...\n=====\n"
 gsutil mb gs://${PROJECT_ID}-sessions
+
+printf "=====\nCreating Cloud Artifacts repo...\n=====\n"
+gcloud artifacts repositories create quizrd --location=$REGION --repository-format=docker
 
 printf "=====\nSetting environment...\n=====\n"
 ./scripts/env.sh
