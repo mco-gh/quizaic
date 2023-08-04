@@ -41,13 +41,8 @@ printf "=====\nGenerating content API...\n=====\n"
 ./scripts/regen_api.sh
 
 printf "=====\nBuilding and deploying content API...\n=====\n"
-cd content-api
-./deploy.sh
-cd -
+./run.sh api deploy
 
 printf "=====\nBuilding and deploying website...\n=====\n"
-cd website
-../scripts/env.sh # reload env to get API_URL from deployed content-apis service
-pip install -r requirements.txt
-./deploy.sh
-cd -
+./scripts/env.sh # reload env to get API_URL from deployed content-apis service
+./run.sh ui deploy

@@ -2,10 +2,6 @@
 
 Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
-## Foundation
-
-Quizrd is built on top of [Emblem Giving](https://github.com/GoogleCloudPlatform/emblem), which is a sample application intended to demonstrate a complex, end-to-end serverless architecture. It showcases serverless continuous delivery as a donation sample app hosted on Google Cloud.
-
 <!--
 ## Architecture
 
@@ -46,11 +42,12 @@ The machine that you will run the setup from will need the following installed:
 
 ### Gcloud Configuration and Github Repo
 
-1. Set your account and project in the gcloud CLI using these commands:
+1. Set your account, project, and region in the gcloud CLI using these commands:
 
     ```bash
     gcloud config set account <your-account@gmail.com>
     gcloud config set project <your-project-id>
+    gcloud config set compute/region <your-region>
     ```
 
 1. Clone the source code from github and change to the new directory with these commands:

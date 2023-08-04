@@ -39,11 +39,13 @@ then
     elif [ "$2" = "deploy" ]
     then
         . scripts/env.sh
-        VERSION=$(cat content-api/version)
+        cd content-api
+        VERSION=$(cat version)
 	TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/quizrd/content_api:v${VERSION}"
-        docker build -f content_api/Dockerfile -t ${TAG} .
+        docker build -t ${TAG} .
         docker push ${TAG}
         gcloud run deploy content-api --region ${REGION} --image=${TAG} --allow-unauthenticated
+        cd -
     fi
 else
     echo "Usage: $USAGE"
