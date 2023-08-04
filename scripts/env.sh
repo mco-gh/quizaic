@@ -20,8 +20,8 @@ export API_URL=$(gcloud run services describe content-api --region=$REGION --pro
 
 # This line auto-detects the redirect URI for the quizrd website Cloud Run service,
 # but is now superceded by the next setting, which uses the quizrd app's domain name.
-#export REDIRECT_URI=$(gcloud run services describe website --region=$REGION --project $PROJECT_ID --format "value(status.url)")/callback
-export REDIRECT_URI=https://quizrd.io/callback
+export REDIRECT_URI=$(gcloud run services describe website --region=$REGION --project $PROJECT_ID --format "value(status.url)")/callback
+#export REDIRECT_URI=https://quizrd.io/callback
 
 # Variable settings passed into the website docker container when deploying to Cloud Run.
 export SITE_VARS="API_URL=$API_URL, SESSION_BUCKET=$SESSION_BUCKET, REDIRECT_URI=$REDIRECT_URI"
