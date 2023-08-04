@@ -12,6 +12,7 @@ gcloud services enable run.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable firestore.googleapis.com
 gcloud services enable secretmanager.googleapis.com
+gcloud services enable aiplatform.googleapis.com
 
 printf "=====\nCreating Cloud Firestore database...\n=====\n"
 DBNAME="projects/$PROJECT_ID/databases/(default)"
