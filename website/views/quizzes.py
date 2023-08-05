@@ -18,7 +18,7 @@ from views.helpers.time import convert_utc
 
 import sys
 sys.path.append("../")
-from pyquizrd.generators.quizgenfactory import QuizgenFactory
+from pyquizrd.generators.quiz.quizgenfactory import QuizgenFactory
 from pyquizrd.generators.image.imagegen import ImageGen
 
 import hashlib

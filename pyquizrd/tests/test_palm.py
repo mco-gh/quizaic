@@ -2,7 +2,7 @@ import json
 import pytest
 import random
 
-from generators.quizgenfactory import QuizgenFactory
+from generators.quiz.quizgenfactory import QuizgenFactory
 
 def test_noconfig():
     # This test passes only if you have access to the project defined in DEFAULT_PROJECT in palm.py

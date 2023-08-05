@@ -1,5 +1,5 @@
 import json
-from generators.quizgenfactory import QuizgenFactory
+from generators.quiz.quizgenfactory import QuizgenFactory
 
 def test_opentrivia_gen_quiz():
     topic = "General Knowledge"

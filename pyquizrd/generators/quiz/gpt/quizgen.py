@@ -1,6 +1,6 @@
 import sys
-sys.path.append("../../../") # Needed for the main method to work in this class
-from pyquizrd.generators.basequizgen import BaseQuizgen
+sys.path.append("../../../../") # Needed for the main method to work in this class
+from pyquizrd.generators.quiz.basequizgen import BaseQuizgen
 
 # TODO: Implement
 class Quizgen(BaseQuizgen):

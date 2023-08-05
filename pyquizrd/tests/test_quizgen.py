@@ -1,9 +1,9 @@
 import pytest
 import json
 
-from generators.quizgenfactory import QuizgenFactory
-from generators.jeopardy.quizgen import Quizgen as JeopardyQuizgen
-from generators.opentrivia.quizgen import Quizgen as OpenTriviaQuizgen
+from generators.quiz.quizgenfactory import QuizgenFactory
+from generators.quiz.jeopardy.quizgen import Quizgen as JeopardyQuizgen
+from generators.quiz.opentrivia.quizgen import Quizgen as OpenTriviaQuizgen
 
 # An example of running individual tests with print outputs and verbose testing output:
 # pytest test_quizgen.py -v -s -k test_get_gens

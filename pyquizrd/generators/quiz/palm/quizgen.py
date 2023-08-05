@@ -7,10 +7,10 @@ import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 import sys
-sys.path.append("../../../") # Needed for the main method to work in this class
-from pyquizrd.generators.basequizgen import BaseQuizgen
+sys.path.append("../../../../") # Needed for the main method to work in this class
+from pyquizrd.generators.quiz.basequizgen import BaseQuizgen
 
-DEFAULT_PROJECT = "quizrd-prod-382117"
+DEFAULT_PROJECT = "mco-quizrd"
 DEFAULT_LOCATION = "us-central1"
 DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
 DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"

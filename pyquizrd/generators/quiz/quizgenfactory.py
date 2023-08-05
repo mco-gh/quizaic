@@ -17,7 +17,7 @@ class QuizgenFactory():
         if type not in QuizgenFactory.GENERATORS:
             raise Exception(f"Unsupported generator type {type}.")
         if not QuizgenFactory.GENERATORS[type]:
-            mod = importlib.import_module(f"pyquizrd.generators.{type}.quizgen")
+            mod = importlib.import_module(f"pyquizrd.generators.quiz.{type}.quizgen")
             QuizgenFactory.GENERATORS[type] = mod
         return QuizgenFactory.GENERATORS[type].Quizgen(config)
 
