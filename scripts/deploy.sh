@@ -1,8 +1,8 @@
 #
 # deploy.sh <component>
-#	- component is one of ui (quizrd website) or api (quizrd backend)
+#	- component is one of website or content-api
 #
-USAGE="$0 ui|api"
+USAGE="$0 website|content-api"
 
 if [ $# != 1 ]
 then
@@ -10,7 +10,7 @@ then
     exit 1
 fi
 
-if [ "$1" = "ui" ]
+if [ "$1" = "website" ]
 then
     . scripts/env.sh
     VERSION=$(cat website/version)
@@ -19,7 +19,7 @@ then
     docker push ${TAG}
     gcloud run deploy website --region ${REGION} --image=${TAG} \
         --set-env-vars "${SITE_VARS}" --allow-unauthenticated
-elif [ "$1" = "api" ]
+elif [ "$1" = "content-api" ]
 then
     . scripts/env.sh
     cd content-api

@@ -1,8 +1,8 @@
 #
 # run.sh <component>
-#	- component is one of ui (quizrd website) or api (quizrd backend)
+#	- component is one of website or content-api
 #
-USAGE="$0 ui|api"
+USAGE="$0 website|content-api"
 
 if [ $# != 1 ]
 then
@@ -10,7 +10,7 @@ then
     exit 1
 fi
 
-if [ "$1" = "ui" ]
+if [ "$1" = "website" ]
 then
     . scripts/env.sh
     . ~/keys.sh
@@ -18,7 +18,7 @@ then
     cd website
     FLASK_APP=app.py flask run --port 8080 --debugger --reload
     cd -
-elif [ "$1" = "api" ]
+elif [ "$1" = "content-api" ]
 then
     . scripts/env.sh
     . ~/keys.sh
