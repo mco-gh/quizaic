@@ -157,6 +157,8 @@ def update_quiz():
         if request.form["generator"] == "manual" or "regen" not in request.form:
             quiz = request.form["QandA"]
         else:
+            # TODO - current_app.config does not seem to work when deployed to Cloud Run
+            # because PROJECT_ID and REGION are not set as env variables
             generator = QuizgenFactory.get_gen(request.form["generator"],
                                                {"project_id": current_app.config["PROJECT_ID"], "region": current_app.config["REGION"]})
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
@@ -188,11 +190,16 @@ def update_quiz():
 
     return redirect("/viewQuiz?quiz_id=" + resp.id)
 
+
 def gen_image(topic, filename):
     url = "/static/logo.png"
-
     try:
-        file_url = ImageGen.generate_and_upload_image(topic, filename)
+        # TODO - current_app.config does not seem to work when deployed to Cloud Run
+        # because PROJECT_ID and REGION are not set as env variables
+        generator = ImageGen({"project_id": current_app.config["PROJECT_ID"],
+                              "region": current_app.config["REGION"]})
+        bucket_name = current_app.config["IMAGES_BUCKET"]
+        file_url = generator.generate_and_upload_image(topic, filename, bucket_name)
         if file_url:
             url = file_url
     except:
@@ -216,6 +223,8 @@ def save_quiz():
         if request.form["generator"] == "manual" :
             quiz = request.form["QandA"]
         else:
+            # TODO - current_app.config does not seem to work when deployed to Cloud Run
+            # because PROJECT_ID and REGION are not set as env variables
             generator = QuizgenFactory.get_gen(request.form["generator"],
                                                {"project_id": current_app.config["PROJECT_ID"], "region": current_app.config["REGION"]})
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 

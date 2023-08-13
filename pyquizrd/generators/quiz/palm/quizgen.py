@@ -22,6 +22,7 @@ class Quizgen(BaseQuizgen):
         if config:
             project_id = config.get("project_id")
             region = config.get("region")
+            print(f"quizgen init with {project_id}, {region}")
             prompt_gen_file = config.get("prompt_gen_file", DEFAULT_PROMPT_GEN_FILE)
             prompt_eval_file = config.get("prompt_eval_file", DEFAULT_PROMPT_EVAL_FILE)
             vertexai.init(project=project_id, location=region)
