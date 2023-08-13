@@ -194,12 +194,8 @@ def update_quiz():
 def gen_image(topic, filename):
     url = "/static/logo.png"
     try:
-        # TODO - current_app.config does not seem to work when deployed to Cloud Run
-        # because PROJECT_ID and REGION are not set as env variables
-        generator = ImageGen({"project_id": current_app.config["PROJECT_ID"],
-                              "region": current_app.config["REGION"]})
         bucket_name = current_app.config["IMAGES_BUCKET"]
-        file_url = generator.generate_and_upload_image(topic, filename, bucket_name)
+        file_url = ImageGen.generate_and_upload_image(topic, filename, bucket_name)
         if file_url:
             url = file_url
     except:

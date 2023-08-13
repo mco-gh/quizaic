@@ -12,28 +12,26 @@ IMAGE_MODEL_NAME = "imagegeneration"
 PROMPT_TEMPLATE= "photorealistic image about {topic}"
 NEGATIVE_PROMPT = "blurry"
 
+REGION = "us-central1" # Hardcoded because AI platform API only works in us-central1 for now
+AI_PLATFORM_URL = f"https://{REGION}-aiplatform.googleapis.com"
+
 
 class ImageGen:
 
-    def __init__(self, config):
-        project_id = config.get("project_id")
-        region = config.get("region")
-
-        ai_platform_url = f"https://{region}-aiplatform.googleapis.com"
-        self.predict_url = f"{ai_platform_url}/v1/projects/{project_id}/locations/{region}/publishers/google/models/{IMAGE_MODEL_NAME}:predict"
-        print(f"imagegen init with {project_id}, {region})
+    def __init__(self):
+        pass
 
     def __str__(self):
         return "Google Cloud image generator"
 
     @staticmethod
-    def get_access_token():
-        print("Getting access token")
-        credentials, your_project_id = google.auth.default()
+    def get_access_token_and_project_id():
+        print("Getting access token and project id")
+        credentials, project_id = google.auth.default()
         auth_req = google.auth.transport.requests.Request()
         credentials.refresh(auth_req)
-        print("Returning token")
-        return credentials.token
+        print("Returning token and project id")
+        return credentials.token, project_id
 
     @staticmethod
     def send_request(url, headers, data):
@@ -109,18 +107,21 @@ class ImageGen:
         print(f"Uploaded file: {file_name} to bucket: {bucket_name} with file url: {file_url}")
         return file_url
 
-    def generate_image(self, topic):
+    @staticmethod
+    def generate_image(topic):
         prompt = PROMPT_TEMPLATE.format(topic=topic)
         print(f'Generating image with prompt: {prompt}')
-        images = self.generate_images(prompt, negative_prompt=NEGATIVE_PROMPT, sample_count=1)
+        images = ImageGen.generate_images(prompt, negative_prompt=NEGATIVE_PROMPT, sample_count=1)
         if len(images) > 0:
             return images[0]
         return None
 
-    def generate_images(self, prompt, **kwargs):
-        access_token = ImageGen.get_access_token()
+    @staticmethod
+    def generate_images(prompt, **kwargs):
+        access_token, project_id = ImageGen.get_access_token_and_project_id()
         headers, data = ImageGen.generate_payload_json(access_token, prompt, **kwargs)
-        response = ImageGen.send_request(self.predict_url, headers, data)
+        predict_url = f"{AI_PLATFORM_URL}/v1/projects/{project_id}/locations/{REGION}/publishers/google/models/{IMAGE_MODEL_NAME}:predict"
+        response = ImageGen.send_request(predict_url, headers, data)
 
         images = []
         if response:
@@ -134,8 +135,9 @@ class ImageGen:
                 print(f"No predictions for prompt: {prompt}")
         return images
 
-    def generate_and_upload_image(self, topic, file_name, bucket_name):
-        image = self.generate_image(topic)
+    @staticmethod
+    def generate_and_upload_image(topic, file_name, bucket_name):
+        image = ImageGen.generate_image(topic)
         if image:
             file_url = ImageGen.upload_to_gcs(image, file_name, bucket_name)
             return file_url
@@ -151,10 +153,7 @@ if __name__ == "__main__":
     REGION = "us-central1"
     BUCKET_NAME = PROJECT_ID + "-images"
 
-    config = {"project_id": PROJECT_ID,
-              "region": REGION}
-    gen = ImageGen(config)
-    file_url = gen.generate_and_upload_image(topic, file_name, BUCKET_NAME)
+    file_url = ImageGen.generate_and_upload_image(topic, file_name, BUCKET_NAME)
     print(f'file_url: {file_url}')
 
 
