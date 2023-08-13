@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'state.dart';
+import 'package:quizrd/models/old_state.dart';
 
 class FavoritesPage extends StatelessWidget {
   @override

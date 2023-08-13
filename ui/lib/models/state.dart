@@ -1,35 +1,40 @@
-import 'package:english_words/english_words.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:quizrd/models/quiz.dart';
 
 class AppState extends ChangeNotifier {
-  var current = WordPair.random();
-  var history = <WordPair>[];
-  var photoURL = '';
+  late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
+  var photoUrl = '';
+  var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app/quizzes';
+  List<Quiz> quizzes = [];
 
-  GlobalKey? historyListKey;
-
-  void getNext() {
-    history.insert(0, current);
-    var animatedList = historyListKey?.currentState as AnimatedListState?;
-    animatedList?.insertItem(0);
-    current = WordPair.random();
+  createQuiz(id) async {
     notifyListeners();
   }
 
-  var favorites = <WordPair>[];
+  cloneQuiz(quiz) async {
+    notifyListeners();
+  }
 
-  void toggleFavorite([WordPair? pair]) {
-    pair = pair ?? current;
-    if (favorites.contains(pair)) {
-      favorites.remove(pair);
+  updateQuiz(quiz) async {
+    notifyListeners();
+  }
+
+  deleteQuiz(id) async {
+    notifyListeners();
+  }
+
+  Future<List<Quiz>> fetchQuizzes() async {
+    final response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      Iterable l = json.decode(response.body);
+      quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
     } else {
-      favorites.add(pair);
+      throw Exception('Failed to fetch quizzes');
     }
     notifyListeners();
-  }
-
-  void removeFavorite(WordPair pair) {
-    favorites.remove(pair);
-    notifyListeners();
+    return quizzes;
   }
 }

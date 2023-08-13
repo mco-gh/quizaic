@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'config/firebase_options.dart';
-import 'views/home.dart';
-import 'models/state.dart';
+import 'package:quizrd/views/home.dart';
+import 'package:quizrd/models/state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

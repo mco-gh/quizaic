@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:provider/provider.dart';
-import 'package:quizrd/auth/auth.dart';
 import 'package:quizrd/models/state.dart';
 
 class AuthPage extends StatelessWidget {
@@ -18,7 +17,7 @@ class AuthPage extends StatelessWidget {
       builder: (context, snapshot) {
         // If user is not signed in, show the sign in screen.
         if (!snapshot.hasData) {
-          appState.photoURL = '';
+          appState.photoUrl = '';
           return SignInScreen(
             providers: [
               EmailAuthProvider(),
@@ -76,7 +75,7 @@ class AuthPage extends StatelessWidget {
         print('id token: $idToken}');
         var user = FirebaseAuth.instance.currentUser;
         if ((user != null) && (user.photoURL != null)) {
-          appState.photoURL = user.photoURL as String;
+          appState.photoUrl = user.photoURL as String;
         }
 
         // Otherwise, the user is signed in, so show the signout option.

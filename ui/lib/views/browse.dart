@@ -1,109 +1,88 @@
-/*
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:quizrd/models/state.dart';
+import 'package:quizrd/models/quiz.dart';
+import 'package:provider/provider.dart';
 
-Future<Album> fetchAlbum() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-class Album {
-  final int userId;
-  final int id;
-  final String title;
-
-  const Album({
-    required this.userId,
-    required this.id,
-    required this.title,
-  });
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
+class BrowsePage extends StatefulWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<BrowsePage> createState() => _BrowsePageState();
 }
 
-class _MyAppState extends State<MyApp> {
-  late Future<Album> futureAlbum;
-
+class _BrowsePageState extends State<BrowsePage> {
+  /*
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureQuiz = fetchQuiz();
   }
+  */
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Fetch Data Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Fetch Data Example'),
-        ),
-        body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data!.title);
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
+    var theme = Theme.of(context);
+    var appState = context.watch<AppState>();
 
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
-            },
+    return Scaffold(
+      body: Center(
+        child: FutureBuilder<List<Quiz>>(
+          future: appState.futureFetchQuizzes,
+          builder: (context, snapshot) {
+            //print("snapshot: $snapshot");
+            if (snapshot.hasData) {
+              if (snapshot.data!.isEmpty) {
+                return Text('No quizzes yet.');
+              }
+              var s = '';
+              for (var quiz in snapshot.data!) {
+                s += '${quiz.name}\n';
+              }
+              return Text(s);
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
+    );
+    /*
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(30),
+          child: Text('You have '
+              '${quizzes.length} quizzes:'),
+        ),
+        Expanded(
+          // Make better use of wide windows with a grid.
+          child: GridView(
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 400,
+              childAspectRatio: 400 / 80,
+            ),
+            children: [
+              for (var quiz in quizzes)
+                ListTile(
+                  leading: IconButton(
+                    icon: Icon(Icons.delete_outline, semanticLabel: 'Delete'),
+                    color: theme.colorScheme.primary,
+                    onPressed: () {
+                      appState.deleteQuiz(quiz.id);
+                    },
+                  ),
+                  title: Text(
+                    quiz.name,
+                    semanticsLabel: quiz.name,
+                  ),
+                ),
+            ],
           ),
         ),
-      ),
+      ],
     );
-  }
-}
-
-*/
-
-import 'package:flutter/material.dart';
-//import 'package:provider/provider.dart';
-//import 'state.dart';
-
-class BrowsePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //var theme = Theme.of(context);
-    //var appState = context.watch<AppState>();
-
-    //https://content-api-w75476cq7a-uc.a.run.app/quizzes
-    return Center(
-      child: Text('Browse'),
-    );
+    */
   }
 }
