@@ -1,0 +1,9 @@
+steps:
+- name: "gcr.io/cloud-builders/docker"
+  args:
+  - build
+  - "--tag=us-central1-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_VERSION}"
+  - "--file=./${_IMAGE}/Dockerfile"
+  - .
+images:
+- "us-central1-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_VERSION}"

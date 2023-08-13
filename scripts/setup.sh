@@ -1,50 +1,56 @@
-export PROJECT_ID=$(gcloud config get-value project)
+#
+# This script needs to run at the top level:
+# ./scripts/setup.sh
+#
 
-printf "=====\nUncompressing generator data...\n=====\n"
+. scripts/env.sh
+
+printf "=====\nUncompressing generator data\n=====\n"
 JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
 then
     uncompress ${JEP_FILE}.Z
 fi
 
-printf "=====\nEnabling cloud services...\n=====\n"
-gcloud services enable run.googleapis.com
-gcloud services enable cloudbuild.googleapis.com
-gcloud services enable firestore.googleapis.com
-gcloud services enable secretmanager.googleapis.com
-gcloud services enable aiplatform.googleapis.com
+printf "=====\nEnabling required cloud services\n=====\n"
+gcloud services enable \
+  aiplatform.googleapis.com \
+  cloudbuild.googleapis.com \
+  firestore.googleapis.com \
+  run.googleapis.com \
+  secretmanager.googleapis.com
 
-printf "=====\nCreating Cloud Firestore database...\n=====\n"
+printf "=====\nCreating Cloud Firestore database\n=====\n"
 DBNAME="projects/$PROJECT_ID/databases/(default)"
 gcloud firestore databases list | grep $DBNAME >/dev/null 2>&1
 if [ "$?" != "0" ]
 then
-    gcloud firestore databases create --location nam5
+    gcloud firestore databases create --location $FIRESTORE_DB_LOCATION
 fi
 
-printf "=====\nCreating Cloud Storage bucket...\n=====\n"
-gsutil mb gs://${PROJECT_ID}-sessions
-gsutil acl set public-read gs://${PROJECT_ID}-sessions
+printf "=====\nCreating Cloud Storage bucket for sessions\n=====\n"
+gsutil mb gs://${SESSION_BUCKET}
+gsutil acl set public-read gs://${SESSION_BUCKET}
 
-printf "=====\nCreating Cloud Artifacts repo...\n=====\n"
-gcloud artifacts repositories create quizrd --location=$REGION --repository-format=docker
+printf "=====\nCreating Cloud Storage bucket for images\n=====\n"
+gsutil mb gs://${IMAGES_BUCKET}
+gsutil acl set public-read gs://${IMAGES_BUCKET}
 
-printf "=====\nSetting environment...\n=====\n"
-./scripts/env.sh
+printf "=====\nCreating Cloud Artifacts repository\n=====\n"
+gcloud artifacts repositories create ${APP} --location=$REGION --repository-format=docker
 
-printf "=====\nResetting firestore database...\n=====\n"
+printf "=====\nResetting firestore database\n=====\n"
 cd content-api/data
+python3 -m pip install -r requirements.txt
 python3 seed_database.py unseed
 python3 seed_database.py seed marcacohen@gmail.com
 cd -
 
-printf "=====\nGenerating content API...\n=====\n"
-#npm install @openapitools/openapi-generator-cli -g
-./scripts/regen_api.sh
+printf "=====\nGenerating content API\n=====\n"
+sudo ./scripts/regen_api.sh
 
-printf "=====\nBuilding and deploying content API...\n=====\n"
-./run.sh api deploy
+printf "=====\nBuilding and deploying content-api service\n=====\n"
+./scripts/deploy.sh content-api
 
-printf "=====\nBuilding and deploying website...\n=====\n"
-./scripts/env.sh # reload env to get API_URL from deployed content-apis service
-./run.sh ui deploy
+printf "=====\nBuilding and deploying website service\n=====\n"
+./scripts/deploy.sh website

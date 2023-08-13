@@ -125,6 +125,11 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --member=serviceAccount:${GCP_SVC_ACC} \
     --role=roles/secretmanager.secretAccessor
 
+# This is needed for the default service account to be able to write to the sessions bucket
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member=serviceAccount:${GCP_SVC_ACC} \
+    --role=roles/storage.objectCreator
+
 gcloud run services update website \
     --update-env-vars "REDIRECT_URI=${CALLBACK_URL}" \
     --update-secrets "${AUTH_SECRETS}" \

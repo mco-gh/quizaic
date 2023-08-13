@@ -16,10 +16,10 @@
 # https://hub.docker.com/_/python
 FROM python:3.11-slim
 
-ENV PORT 8080
-ENV SESSION_BUCKET quizrd-prod-382117-sessions
-ENV REDIRECT_URI https://quizrd.io/callback
-ENV API_URL https://content-api-w75476cq7a-uc.a.run.app
+# ENV PORT 8080
+# ENV SESSION_BUCKET quizrd-prod-382117-sessions
+# ENV REDIRECT_URI https://quizrd.io/callback
+# ENV API_URL https://content-api-w75476cq7a-uc.a.run.app
 
 # Allow statements and log messages to immediately appear in the Cloud Run logs
 ENV PYTHONUNBUFFERED True
@@ -33,7 +33,8 @@ COPY website/requirements.txt .
 
 # See ops/web-build.cloudbuild.yaml.  client-libs/ is copied into the website directory.
 # Here we copy it from the Docker context into the container.
-COPY website/client-libs client-libs/
+#COPY website/client-libs client-libs/
+COPY client-libs client-libs/
 
 # Install production dependencies.
 RUN apt-get update --allow-insecure-repositories
