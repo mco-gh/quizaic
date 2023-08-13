@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quizrd/browse.dart';
 import 'package:provider/provider.dart';
-import 'package:quizrd/create.dart';
-import 'package:quizrd/play.dart';
-import 'auth.dart';
-import 'settings.dart';
-import 'state.dart';
+import 'package:quizrd/auth/auth.dart';
+import 'package:quizrd/models/state.dart';
+import 'package:quizrd/views/browse.dart';
+import 'package:quizrd/views/create.dart';
+import 'package:quizrd/views/play.dart';
+import 'package:quizrd/views/settings.dart';
 
 class HomePage extends StatefulWidget {
   @override

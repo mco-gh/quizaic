@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:provider/provider.dart';
-import 'state.dart';
+import 'package:quizrd/auth/auth.dart';
+import 'package:quizrd/models/state.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
