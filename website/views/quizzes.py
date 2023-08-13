@@ -157,10 +157,7 @@ def update_quiz():
         if request.form["generator"] == "manual" or "regen" not in request.form:
             quiz = request.form["QandA"]
         else:
-            # TODO - current_app.config does not seem to work when deployed to Cloud Run
-            # because PROJECT_ID and REGION are not set as env variables
-            generator = QuizgenFactory.get_gen(request.form["generator"],
-                                               {"project_id": current_app.config["PROJECT_ID"], "region": current_app.config["REGION"]})
+            generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         quiz = json.dumps(quiz)  # convert object to json text
         resp = g.api.quizzes_id_patch(quiz_id, 
@@ -219,10 +216,7 @@ def save_quiz():
         if request.form["generator"] == "manual" :
             quiz = request.form["QandA"]
         else:
-            # TODO - current_app.config does not seem to work when deployed to Cloud Run
-            # because PROJECT_ID and REGION are not set as env variables
-            generator = QuizgenFactory.get_gen(request.form["generator"],
-                                               {"project_id": current_app.config["PROJECT_ID"], "region": current_app.config["REGION"]})
+            generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         creator = hashlib.sha256(g.session_data.get("email").encode("utf-8")).hexdigest()
         quiz = json.dumps(quiz)  # convert object to json text

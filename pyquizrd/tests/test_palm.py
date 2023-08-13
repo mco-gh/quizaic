@@ -4,25 +4,16 @@ import random
 
 from generators.quiz.quizgenfactory import QuizgenFactory
 
-# Change to your own project for tests to pass
-PROJECT_ID = "quizrd-prod-atamel"
-REGION = "us-central1"
-
-def get_gen():
-    config = {"project_id": PROJECT_ID,
-              "region": REGION}
-    return QuizgenFactory.get_gen("palm", config)
-
 def test_gen_quiz():
     num_questions = 2
     num_answers = 4
-    gen = get_gen()
+    gen = QuizgenFactory.get_gen("palm")
     quiz = gen.gen_quiz("World History", num_questions, num_answers)
     print(json.dumps(quiz, indent=4))
     assert(quiz != None)
 
 def test_eval_quiz_num_questions():
-    gen = get_gen()
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Remove a question
@@ -34,7 +25,7 @@ def test_eval_quiz_num_questions():
     assert not validity["valid_quiz"]
 
 def test_eval_quiz_num_answers():
-    gen = get_gen()
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Remove an answer
@@ -47,7 +38,7 @@ def test_eval_quiz_num_answers():
 
 
 def test_eval_quiz_correct_answer_inlist():
-    gen = get_gen()
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Change correct answer to a value not in responses
@@ -60,7 +51,7 @@ def test_eval_quiz_correct_answer_inlist():
 
 
 def test_eval_quiz_question_on_topic():
-    gen = get_gen()
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
 
     # Add a question on an unrelated topic
@@ -95,7 +86,7 @@ def test_eval_quiz_correct_is_correct_americanhistory():
 
 
 def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
-    gen = get_gen()
+    gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz(quiz_file)
 
     # Change the second question's answer to a wrong answer in responses
@@ -109,7 +100,7 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
 @pytest.mark.skip(reason="takes a long time to run, only use occasionally for integration testing")
 def test_eval_quiz_with_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
-    gen_palm = get_gen()
+    gen_palm = QuizgenFactory.get_gen("palm")
 
     num_quiz = 10
     num_questions = 10

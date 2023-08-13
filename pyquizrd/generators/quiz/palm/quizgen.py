@@ -3,7 +3,6 @@ import json
 import os
 import random
 import re
-import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 import sys
@@ -20,12 +19,10 @@ class Quizgen(BaseQuizgen):
         prompt_eval_file = DEFAULT_PROMPT_EVAL_FILE
 
         if config:
-            project_id = config.get("project_id")
-            region = config.get("region")
-            print(f"quizgen init with {project_id}, {region}")
             prompt_gen_file = config.get("prompt_gen_file", DEFAULT_PROMPT_GEN_FILE)
             prompt_eval_file = config.get("prompt_eval_file", DEFAULT_PROMPT_EVAL_FILE)
-            vertexai.init(project=project_id, location=region)
+            # This doesn't seem to be needed
+            # vertexai.init(project=project_id, location=region)
 
         self.topics = set()
 
@@ -206,13 +203,13 @@ def get_validity_compact(validity):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    print(f'gen:{gen}')
-    exit(0)
+    # print(f'gen:{gen}')
+    # exit(0)
 
-    prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
-    result = gen.predict_llm("text-bison@001", 0, 1024, 0.8, 40, prompt)
-    print(f'result:{result == ""}')
-    exit()
+    # prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
+    # result = gen.predict_llm("text-bison@001", 0, 1024, 0.8, 40, prompt)
+    # print(f'result:{result == ""}')
+    # exit()
 
     topic = "science"
     num_questions = 3
@@ -221,5 +218,5 @@ if __name__ == "__main__":
     #quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_cyprus.json")
     print(json.dumps(quiz, indent=4))
 
-    valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    print(valid, details)
+    # valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    # print(valid, details)
