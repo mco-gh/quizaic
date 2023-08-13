@@ -10,26 +10,21 @@ import sys
 sys.path.append("../../../../") # Needed for the main method to work in this class
 from pyquizrd.generators.quiz.basequizgen import BaseQuizgen
 
-DEFAULT_PROJECT = "mco-quizrd"
-DEFAULT_LOCATION = "us-central1"
 DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
 DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"
 
 class Quizgen(BaseQuizgen):
 
     def __init__(self, config=None):
-        project = DEFAULT_PROJECT
-        location = DEFAULT_LOCATION
         prompt_gen_file = DEFAULT_PROMPT_GEN_FILE
         prompt_eval_file = DEFAULT_PROMPT_EVAL_FILE
 
         if config:
-            project = config.get("project", DEFAULT_PROJECT)
-            location = config.get("location", DEFAULT_LOCATION)
+            project_id = config.get("project_id")
+            region = config.get("region")
             prompt_gen_file = config.get("prompt_gen_file", DEFAULT_PROMPT_GEN_FILE)
             prompt_eval_file = config.get("prompt_eval_file", DEFAULT_PROMPT_EVAL_FILE)
-
-        vertexai.init(project=project, location=location)
+            vertexai.init(project=project_id, location=region)
 
         self.topics = set()
 

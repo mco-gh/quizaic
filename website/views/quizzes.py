@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from flask import Blueprint, g, redirect, request, render_template
+from flask import Blueprint, current_app, g, redirect, request, render_template
 from middleware.logging import log
 from views.helpers.time import convert_utc
 
@@ -157,7 +157,8 @@ def update_quiz():
         if request.form["generator"] == "manual" or "regen" not in request.form:
             quiz = request.form["QandA"]
         else:
-            generator = QuizgenFactory.get_gen(request.form["generator"])
+            generator = QuizgenFactory.get_gen(request.form["generator"],
+                                               {"project_id": current_app.config["PROJECT_ID"], "region": current_app.config["REGION"]})
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         quiz = json.dumps(quiz)  # convert object to json text
         resp = g.api.quizzes_id_patch(quiz_id, 
@@ -215,7 +216,8 @@ def save_quiz():
         if request.form["generator"] == "manual" :
             quiz = request.form["QandA"]
         else:
-            generator = QuizgenFactory.get_gen(request.form["generator"])
+            generator = QuizgenFactory.get_gen(request.form["generator"],
+                                               {"project_id": current_app.config["PROJECT_ID"], "region": current_app.config["REGION"]})
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
         creator = hashlib.sha256(g.session_data.get("email").encode("utf-8")).hexdigest()
         quiz = json.dumps(quiz)  # convert object to json text

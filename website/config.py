@@ -18,8 +18,11 @@ import os
 ####################################################
 # TODO(developer): set these environment variables #
 ####################################################
+PROJECT_ID=os.getenv("PROJECT_ID")
+REGION=os.getenv("REGION")
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
 API_URL = os.getenv("API_URL")
 SESSION_BUCKET = os.getenv("SESSION_BUCKET")
+IMAGES_BUCKET=os.getenv("IMAGES_BUCKET")
