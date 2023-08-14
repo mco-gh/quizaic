@@ -154,7 +154,7 @@ class _MyHomePageState extends State<HomePage> {
                         label: 'Browse',
                       ),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.quiz),
+                        icon: Icon(Icons.add_circle),
                         label: 'Create',
                       ),
                     ],
@@ -186,7 +186,7 @@ class _MyHomePageState extends State<HomePage> {
                         label: Text('Browse'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.quiz),
+                        icon: Icon(Icons.add_circle),
                         label: Text('Create'),
                       ),
                     ],

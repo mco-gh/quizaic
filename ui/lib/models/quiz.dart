@@ -62,7 +62,6 @@ class Quiz {
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
-    print("json: $json");
     return Quiz(
       id: json['id'],
       timeCreated: json['timeCreated'],

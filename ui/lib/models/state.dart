@@ -6,7 +6,7 @@ import 'package:quizrd/models/quiz.dart';
 class AppState extends ChangeNotifier {
   late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
   var photoUrl = '';
-  var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app/quizzes';
+  var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app';
   List<Quiz> quizzes = [];
 
   createQuiz(id) async {
@@ -17,16 +17,49 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  editQuiz(quiz) async {
+    notifyListeners();
+  }
+
   updateQuiz(quiz) async {
     notifyListeners();
   }
 
-  deleteQuiz(id) async {
+  Future<bool> deleteQuiz(id) async {
+    final response = await http.post(Uri.parse('$apiUrl/quizzes/$id/delete'));
+
+    if (response.statusCode == 200) {
+      Iterable l = json.decode(response.body);
+      quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
+    } else {
+      throw Exception('Failed to delete quiz $id');
+    }
+    notifyListeners();
+    return true;
+  }
+
+  favoriteQuiz(id) async {
     notifyListeners();
   }
 
+  hostQuiz(id) async {
+    notifyListeners();
+  }
+
+  playQuiz(id) async {
+    notifyListeners();
+  }
+
+/*
+  @override
+  void initState() {
+    super.initState();
+    futureQuiz = fetchQuiz();
+  }
+*/
+
   Future<List<Quiz>> fetchQuizzes() async {
-    final response = await http.get(Uri.parse(apiUrl));
+    final response = await http.get(Uri.parse('$apiUrl/quizzes'));
 
     if (response.statusCode == 200) {
       Iterable l = json.decode(response.body);
