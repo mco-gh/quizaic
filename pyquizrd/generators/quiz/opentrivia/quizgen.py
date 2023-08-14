@@ -1,3 +1,4 @@
+import html
 import random
 import requests
 
@@ -60,17 +61,12 @@ class Quizgen(BaseQuizgen):
         json_quiz = []
 
         for question in quiz:
-            # json_quiz.append({
-            #     "question": html.unescape(question["question"]),
-            #     "correct": html.unescape(question["correct_answer"]),
-            #     "responses": [html.unescape(question["correct_answer"])] + [html.unescape(s) for s in question["incorrect_answers"]]
-            # })
-
             json_quiz.append({
-                "question": question["question"].strip(),
-                "correct": question["correct_answer"].strip(),
-                "responses": [question["correct_answer"].strip()] + [s.strip() for s in question["incorrect_answers"]]
+                "question": html.unescape(question["question"]).strip(),
+                "correct": html.unescape(question["correct_answer"]).strip(),
+                "responses": [html.unescape(question["correct_answer"]).strip()] + [html.unescape(s).strip() for s in question["incorrect_answers"]]
             })
+
         # randomize responses
         for i in json_quiz:
             random.shuffle(i["responses"])

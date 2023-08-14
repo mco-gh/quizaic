@@ -9,8 +9,14 @@ import sys
 sys.path.append("../../../../") # Needed for the main method to work in this class
 from pyquizrd.generators.quiz.basequizgen import BaseQuizgen
 
+MODEL = "text-bison"
+
 DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
+
 DEFAULT_PROMPT_EVAL_FILE = "prompt_eval3.txt"
+EVAL_TEMPERATURE = 0.2
+EVAL_TOP_K = 40
+EVAL_TOP_P = 0.8
 
 class Quizgen(BaseQuizgen):
 
@@ -82,7 +88,7 @@ class Quizgen(BaseQuizgen):
             num_questions=num_questions,
             num_answers=num_answers,
             difficulty=self.get_difficulty_word(difficulty))
-        quiz = self.predict_llm("text-bison@001", temperature, 1024, 0.8, 40, prompt)
+        quiz = self.predict_llm(MODEL, temperature, 1024, 0.8, 40, prompt)
         quiz = json.loads(quiz)
         # Make sure the correct answer appears randomly in responses
         for i in quiz:
@@ -134,8 +140,7 @@ class Quizgen(BaseQuizgen):
             item.pop("correct")
 
         prompt_eval = self.prompt_eval.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
-        temp = 0 # To get consistent results in evaluation
-        eval = self.predict_llm("text-bison@001", temp, 1024, 0.8, 40, prompt_eval)
+        eval = self.predict_llm(MODEL, EVAL_TEMPERATURE, 1024, EVAL_TOP_P, EVAL_TOP_K, prompt_eval)
         try:
             if eval == "": # Happens when a question is not safe according to LLM
                 validity["valid_quiz"] = False
@@ -143,19 +148,21 @@ class Quizgen(BaseQuizgen):
                 validity["details"].append("Invalid #4: Cannot evaluate quiz due to unsafe questions")
                 return get_validity_compact(validity)
 
-            # Hack: Sometimes the LLM returns invalid JSON with a
-            # trailing comma. Until the prompt is fixed, remove it.
-            if eval[:-3] == ",\n]":
+            # Hack: Sometimes the LLM returns invalid JSON with a trailing comma.
+            if eval[-3:] == ",\n]":
                 # Replace the last three characters with "\n]"
                 eval = eval[:-3] + "\n]"
 
-            eval = json.loads(eval)
+            eval_json = json.loads(eval)
         except ValueError as e:
             print(f'eval:"{eval}"')
             raise ValueError("An exception occurred during JSON parsing", e)
 
+        if len(eval_json) != len(quiz):
+            raise(f"Eval and quiz have different lengths \neval_json: {eval_json} \nquiz: {quiz}")
+
         # [{"on_topic": true, "correct": ["George Washington"], "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
-        for index, item in enumerate(eval):
+        for index, item in enumerate(eval_json):
             question = quiz[index]['question']
 
             if not item["on_topic"]:
@@ -207,7 +214,7 @@ if __name__ == "__main__":
     # exit(0)
 
     # prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
-    # result = gen.predict_llm("text-bison@001", 0, 1024, 0.8, 40, prompt)
+    # result = gen.predict_llm(MODEL, 0, 1024, 0.8, 40, prompt)
     # print(f'result:{result == ""}')
     # exit()
 

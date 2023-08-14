@@ -97,12 +97,11 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
     print(validity["details"])
     assert not validity["valid_quiz"]
 
-@pytest.mark.skip(reason="takes a long time to run, only use occasionally for integration testing")
 def test_eval_quiz_with_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
     gen_palm = QuizgenFactory.get_gen("palm")
 
-    num_quiz = 10
+    num_quiz = 1
     num_questions = 10
     num_answers = 4 # opentrivia always has 4 responses
 

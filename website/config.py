@@ -18,8 +18,8 @@ import os
 ####################################################
 # TODO(developer): set these environment variables #
 ####################################################
-PROJECT_ID=os.getenv("PROJECT_ID")
-REGION=os.getenv("REGION")
+# PROJECT_ID=os.getenv("PROJECT_ID")
+# REGION=os.getenv("REGION")
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
