@@ -24,6 +24,14 @@
     }
   },
   {
+    "collection": "admins",
+    "id": "1de769d313ec4d0b8701",
+    "data": {
+      "name": "Mete Atamel",
+      "email": "atameldev@gmail.com"
+    }
+  },
+  {
     "collection": "quizzes",
     "id": "12343afa140f40ff9e70",
     "data": {
