@@ -51,7 +51,7 @@ resource_fields = {
         "results",
     ],
     "results": ["quiz", "player", "answers"],
-    "generators": ["name"],
+    "generators": ["name", "topic_list"],
 }
 
 
