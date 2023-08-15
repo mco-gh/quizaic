@@ -35,25 +35,32 @@ class Quizeval(BaseQuizeval):
                                  top_p=top_p)
         return response.text
 
-    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
-        validity = super().eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity)
-        if not validity["valid_quiz"] and shortcircuit_validity:
+    @staticmethod
+    def check_prediction_safe(validity, prediction, num_questions):
+        if prediction == "":  # Happens when a question is not safe according to LLM
+            validity["valid_quiz"] = False
+            validity["unknown_questions"] = num_questions
+            validity["details"].append("Invalid #4: Cannot evaluate quiz due to unsafe questions")
+        return validity
+
+    def eval_quiz(self, quiz, topic, num_questions, num_answers):
+        validity = super().eval_quiz(quiz, topic, num_questions, num_answers)
+        if not validity["valid_quiz"]: # if not valid, return before calling LLM
             return self.get_validity_compact(validity)
 
         # Remove correct answer from each question to not bias the LLM during eval
         quiz_eval = copy.deepcopy(quiz)
         for item in quiz_eval:
             item.pop("correct")
-
         prompt = self.prompt_template.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
-        prediction = self.predict_llm(MODEL, prompt, TEMPERATURE, 1024, TOP_P, TOP_K)
-        try:
-            if prediction == "":  # Happens when a question is not safe according to LLM
-                validity["valid_quiz"] = False
-                validity["unknown_questions"] = num_questions
-                validity["details"].append("Invalid #4: Cannot evaluate quiz due to unsafe questions")
-                return self.get_validity_compact(validity)
 
+        prediction = self.predict_llm(MODEL, prompt, TEMPERATURE, 1024, TOP_P, TOP_K)
+
+        validity = self.check_prediction_safe(validity, prediction, num_questions)
+        if not validity["valid_quiz"]:
+            return self.get_validity_compact(validity)
+
+        try:
             # Sometimes the model returns invalid JSON with a trailing comma, remove it.
             if prediction[-3:] == ",\n]":
                 prediction = prediction[:-3] + "\n]"
@@ -72,8 +79,6 @@ class Quizeval(BaseQuizeval):
                 validity["invalid_questions"].add(question)
                 validity["details"].append(f"Invalid #5: The question is not on the topic - question: '{question}'"
                                            f", topic: {topic}")
-                if shortcircuit_validity:
-                    return self.get_validity_compact(validity)
 
             expected_correct = item["correct"]
             actual_correct = quiz[index]["correct"]
@@ -82,9 +87,6 @@ class Quizeval(BaseQuizeval):
                 validity["invalid_questions"].add(question)
                 validity["details"].append(f"Invalid #6: The correct answer is not correct - question: '{question}"
                                            f"', expected: {expected_correct}, actual: {actual_correct}")
-                if shortcircuit_validity:
-                    return self.get_validity_compact(validity)
-
             # Only add for eval_3.txt
             # responses = quiz_eval[index]["responses"]
             # if item["correct"] in responses:
@@ -96,8 +98,6 @@ class Quizeval(BaseQuizeval):
             #     validity["valid_quiz"] = False
             #     validity["invalid_questions"].add(question)
             #     validity["details"].append(f"Invalid #7: The rest of responses are not incorrect in question: '{question}'")
-            #     if shortcircuit_validity:
-            #         return get_validity_compact(validity)
 
             if question not in validity["invalid_questions"]:
                 validity["valid_questions"].add(question)

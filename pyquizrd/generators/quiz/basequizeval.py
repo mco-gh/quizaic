@@ -6,10 +6,8 @@ class BaseQuizeval:
     def __str__(self):
         return "base quiz evaluator"
 
-    # Given a quiz, check if it's a valid quiz and returns a validity map with
-    # details. shortcircuit_validity determines if the validity check returns
-    # immediately when an invalid question is found. Set it to false, for testing.
-    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
+    # Given a quiz, check if it's a valid quiz and returns a validity map with details
+    def eval_quiz(self, quiz, topic, num_questions, num_answers):
         validity = {
             "valid_quiz": True,
             "valid_questions": set(),
@@ -19,17 +17,14 @@ class BaseQuizeval:
         }
 
         validity = self.check_num_questions(validity, quiz, num_questions)
-        if not validity["valid_quiz"] and shortcircuit_validity:
+        if not validity["valid_quiz"]:
             return validity
 
         validity = self.check_num_answers(validity, quiz, num_questions, num_answers)
-        if not validity["valid_quiz"] and shortcircuit_validity:
+        if not validity["valid_quiz"]:
             return validity
 
         validity = self.check_correct_in_answers(validity, quiz)
-        if not validity["valid_quiz"] and shortcircuit_validity:
-            return validity
-
         return validity
 
     @staticmethod

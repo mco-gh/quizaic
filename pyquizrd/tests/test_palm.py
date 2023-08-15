@@ -109,7 +109,7 @@ def test_eval_quiz_with_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
     eval_palm = Quizeval()
 
-    num_quiz = 1
+    num_quiz = 2
     num_questions = 10
     num_answers = 4 # opentrivia always has 4 responses
 
@@ -126,7 +126,7 @@ def test_eval_quiz_with_opentrivia_data():
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
         print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
 
-        validity = eval_palm.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity=False)
+        validity = eval_palm.eval_quiz(quiz, topic, num_questions, num_answers)
         print(f'validity: {json.dumps(validity, indent=4)}')
 
         if validity["valid_quiz"]:
@@ -140,5 +140,3 @@ def test_eval_quiz_with_opentrivia_data():
         unknown_questions += validity["unknown_questions"]
 
         print(f"total questions: {valid_questions + invalid_questions + unknown_questions}, valid: {valid_questions}, invalid: {invalid_questions}, unknown: {unknown_questions}")
-
-        #assert validity["valid_quiz"]
