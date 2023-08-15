@@ -1,6 +1,5 @@
-import copy
 import json
-import os
+import importlib
 from vertexai.preview.language_models import TextGenerationModel
 
 import sys
@@ -8,20 +7,18 @@ sys.path.append("../../../../") # Needed for the main method to work in this cla
 from pyquizrd.generators.quiz.basequizeval import BaseQuizeval
 from pyquizrd.generators.quiz.palm.quizgen import Quizgen
 
+# Assumes there's a eval_*.txt for prompt template and corresponding eval_*.py file to prepare input and output
+PROMPT_VERSION = "eval_4"
 MODEL = "text-bison"
-PROMPT_FILE = "eval_4.txt"
-TEMPERATURE = 0.3
+TEMPERATURE = 0
 TOP_K = 40
-TOP_P = 1
+TOP_P = 0.8
 
 
 class Quizeval(BaseQuizeval):
 
     def __init__(self):
         super().__init__()
-        file_path = os.path.join(os.path.dirname(__file__), "prompts/" + PROMPT_FILE)
-        with open(file_path, encoding='utf-8') as fp:
-            self.prompt_template = fp.read()
 
     def __str__(self):
         return "palm quiz evaluator"
@@ -45,14 +42,15 @@ class Quizeval(BaseQuizeval):
 
     def eval_quiz(self, quiz, topic, num_questions, num_answers):
         validity = super().eval_quiz(quiz, topic, num_questions, num_answers)
-        if not validity["valid_quiz"]: # if not valid, return before calling LLM
+        if not validity["valid_quiz"]:  # if not valid, return before calling LLM
             return self.get_validity_compact(validity)
 
-        # Remove correct answer from each question to not bias the LLM during eval
-        quiz_eval = copy.deepcopy(quiz)
-        for item in quiz_eval:
-            item.pop("correct")
-        prompt = self.prompt_template.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
+        module = importlib.import_module(f"pyquizrd.generators.quiz.palm.prompts.{PROMPT_VERSION}")
+        eval_helper = module.QuizevalHelper(f"{PROMPT_VERSION}.txt")
+        print(f"{eval_helper}")
+
+        # Prepare the input prompt
+        prompt = eval_helper.prepare_prompt(quiz, topic)
 
         prediction = self.predict_llm(MODEL, prompt, TEMPERATURE, 1024, TOP_P, TOP_K)
 
@@ -60,47 +58,8 @@ class Quizeval(BaseQuizeval):
         if not validity["valid_quiz"]:
             return self.get_validity_compact(validity)
 
-        try:
-            # Sometimes the model returns invalid JSON with a trailing comma, remove it.
-            if prediction[-3:] == ",\n]":
-                prediction = prediction[:-3] + "\n]"
-
-            evaluation = json.loads(prediction)
-        except ValueError as e:
-            print(f'prediction:"{prediction}"')
-            raise ValueError("An exception occurred during JSON parsing", e)
-
-        # [{"on_topic": true, "correct": ["George Washington"], "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
-        for index, item in enumerate(evaluation):
-            question = quiz[index]['question']
-
-            if not item["on_topic"]:
-                validity["valid_quiz"] = False
-                validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #5: The question is not on the topic - question: '{question}'"
-                                           f", topic: {topic}")
-
-            expected_correct = item["correct"]
-            actual_correct = quiz[index]["correct"]
-            if expected_correct != actual_correct:
-                validity["valid_quiz"] = False
-                validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #6: The correct answer is not correct - question: '{question}"
-                                           f"', expected: {expected_correct}, actual: {actual_correct}")
-            # Only add for eval_3.txt
-            # responses = quiz_eval[index]["responses"]
-            # if item["correct"] in responses:
-            #     responses.remove(item["correct"])
-            # for incorrect in item["incorrect"]:
-            #     if incorrect in responses:
-            #         responses.remove(incorrect)
-            # if len(responses) != 0:
-            #     validity["valid_quiz"] = False
-            #     validity["invalid_questions"].add(question)
-            #     validity["details"].append(f"Invalid #7: The rest of responses are not incorrect in question: '{question}'")
-
-            if question not in validity["invalid_questions"]:
-                validity["valid_questions"].add(question)
+        # Parse the output and evaluate
+        validity = eval_helper.parse_output_and_eval_quiz(validity, prediction, quiz, topic)
 
         return self.get_validity_compact(validity)
 
