@@ -19,20 +19,6 @@ from google.cloud import firestore
 
 # Firebase client uses GOOGLE_CLOUD_PROJECT env var to choose its project.
 
-def seed_admin(email):
-    client = firestore.Client()
-    print("Seeding admin into Google Cloud Project '{}'.".format(client.project))
-
-    admin = {
-        "kind": "admins",
-        "email": email,
-        "name": "Seeded test user",
-    }
-
-    doc_ref = client.collection("admins").document()
-    doc_ref.set(admin)
-
-
 def seed_database(content):
 
     client = firestore.Client()
@@ -69,19 +55,14 @@ def unseed_database():
 
 parser = argparse.ArgumentParser(description="Seed or unseed firestore database")
 parser.add_argument("seed_or_unseed")
-parser.add_argument("email", help="email for admin", nargs="?")
 
 args = parser.parse_args()
 
 if args.seed_or_unseed == "unseed":
     unseed_database()
 elif args.seed_or_unseed == "seed":
-    if not args.email:
-        print("email must be provided as the second arg")
-    else:
-        seed_admin(args.email)
-        with open("sample_data.json", "r") as f:
-            seed_content = json.load(f)
-        seed_database(seed_content)
+    with open("sample_data.json", "r") as f:
+        seed_content = json.load(f)
+    seed_database(seed_content)
 else:
     print('first arg must be specified as "seed" or "unseed"')

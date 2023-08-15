@@ -3,24 +3,24 @@
     "collection": "admins",
     "id": "2d3d990ffe194827a1e6",
     "data": {
-      "name": "Milena Haukenes",
-      "email": "milena.haukenes@example.com"
+      "name": "Marc Cohen",
+      "email": "marccohen@google.com"
     }
   },
   {
     "collection": "admins",
     "id": "ddea1c4f74294ef59dcc",
     "data": {
-      "name": "Peyton Li",
-      "email": "peyton.li@example.com"
+      "name": "Marc Cohen",
+      "email": "marcacohen@gmail.com"
     }
   },
   {
     "collection": "admins",
     "id": "1dd769f312ec4d0b8701",
     "data": {
-      "name": "Stanley Ramirez",
-      "email": "stanley.ramirez@example.com"
+      "name": "Mete Atamel",
+      "email": "atamel@google.com"
     }
   },
   {
@@ -489,21 +489,32 @@
     "collection": "generators",
     "id": "57d62f566516411e98eb",
     "data": {
-      "name": "ChatGPT"
+      "name": "Palm",
+      "topic_list": ""
     }
   },
   {
     "collection": "generators",
     "id": "13c75dcc33124f618209",
     "data": {
-      "name": "Bard"
+      "name": "OpenTrivia",
+      "topic_list": "\"Television\", \"Gadgets\", \"Video Games\", \"Japanese Anime & Manga\", \"Cartoons &  Animations\", \"History\", \"Geography\", \"Books\", \"Board Games\", \"Musicals & Theatres\", \"Science & Nature\", \"Sports\", \"Music\", \"Vehicles\", \"Mathematics\", \"Comics\", \"Animals\", \"Computers\", \"Politics\", \"Celebrities\", \"Film\", \"Mythology\", \"General Knowledge\", \"Art\""
+    }
+  },
+  {
+    "collection": "generators",
+    "id": "f6d00e4de6c5c7e86d1",
+    "data": {
+      "name": "Jeopardy",
+      "topic_list": "\"Fruits & Vegetables\", \"World Cities\", \"Americana\", \"Scientists\", \"Abbrev.\", \"Food\", \"Nature\", \"Organizations\", \"Science\", \"Islands\", \"Languages\", \"U.S. History\", \"The Body Human\", \"Government & Politics\", \"Weights & Measures\", \"Architecture\", \"Notable Names\", \"Ballet\", \"Travel & Tourism\", \"Fashion\", \"Art\", \"Television\", \"Transportation\", \"Nonfiction\", \"Common Bonds\", \"Astronomy\", \"Famous Americans\", \"Art & Artists\", \"World Capitals\", \"Chemistry\", \"U.S. States\", \"The Movies\", \"Poets & Poetry\", \"Artists\", \"Holidays & Observances\", \"Fictional Characters\", \"Annual Events\", \"Word Origins\", \"4-Letter Words\", \"Theatre\", \"Foreign Words & Phrases\", \"Bodies Of Water\", \"Zoology\", \"Museums\", \"Colleges & Universities\", \"Around The World\", \"Potpourri\", \"U.S. Cities\", \"Food & Drink\", \"Sports\", \"Music\", \"Vocabulary\", \"5-Letter Words\", \"Hodgepodge\", \"First Ladies\", \"Mountains\", \"Potent Potables\", \"Homophones\", \"Stupid Answers\", \"U.S. Geography\", \"People\", \"World Geography\", \"World Leaders\", \"Pop Music\", \"Historic Names\", \"Authors\", \"Medicine\", \"Biology\", \"Mythology\", \"3-Letter Words\", \"Religion\", \"Quotations\", \"In The Dictionary\", \"Classical Music\", \"World History\", \"State Capitals\", \"U.S. Presidents\", \"History\", \"Geography\", \"Physics\", \"Science & Nature\", \"Opera\", \"Musical Instruments\", \"American History\", \"Business & Industry\", \"Awards\", \"Books & Authors\", \"American Literature\", \"Composers\", \"19Th Century America\", \"Animals\", \"Literature\", \"Shakespeare\", \"Rhyme Time\", \"Explorers\", \"The Bible\", \"Before & After\", \"Magazines\", \"The Civil War\", \"European History\""
     }
   },
   {
     "collection": "generators",
     "id": "f6d00e41de6c4c7e86d1",
     "data": {
-      "name": "Jeopardy"
+      "name": "Manual",
+      "topic_list": ""
     }
   }
 ]
