@@ -1,0 +1,53 @@
+CONTEXT:
+Given a topic and a quiz with a list of questions and responses, determine the following:
+1- Is question on the topic? Captured as on_topic: true/false
+2- Which response is the right answer for the question? Captured as correct: <>
+
+RULES:
+-The output should be a valid JSON.
+-Always return a list even if there's only one item.
+
+INPUT: topic: science, quiz: [
+    {{
+        "question": "What is the name of the largest planet in the solar system?",
+        "responses": [
+            "Jupiter",
+            "Saturn",
+            "Uranus",
+            "Neptune"
+        ]
+    }},
+    {{
+        "question": "What is the name of the smallest planet in the solar system?",
+        "responses": [
+            "Venus",
+            "Earth",
+            "Mercury",
+            "Mars"
+        ]
+    }},
+    {{
+        "question": "Who was the first president of the United States?",
+        "responses": [
+            "George Washington",
+            "Benjamin Franklin",
+            "Thomas Jefferson"
+        ]
+    }},
+    {{
+        "question": "What is the name of the element that has the atomic number 1?",
+        "responses": [
+            "Helium",
+            "Hydrogen",
+            "Lithium",
+            "Beryllium"
+        ]
+    }}]
+
+OUTPUT: [{{"on_topic": true, "correct": "Jupiter"}},
+   {{"on_topic": true, "correct": "Mercury"}},
+   {{"on_topic": false, "correct": "George Washington"}},
+   {{"on_topic": true, "correct": "Hydrogen"}}]
+
+INPUT: topic: {topic}, quiz: {quiz}
+OUTPUT: 

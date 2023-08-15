@@ -1,5 +1,4 @@
 import json
-import pytest
 import random
 
 from generators.quiz.quizgenfactory import QuizgenFactory
