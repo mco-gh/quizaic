@@ -22,8 +22,6 @@ class Quizgen(BaseQuizgen):
     def gen_quiz(self, topic=None, num_questions=None, num_answers=None, difficulty=3, temperature=.5):
         return "[]"
 
-    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
-        return True, f"Valid quiz"
 
 if __name__ == "__main__":
     gen = Quizgen()

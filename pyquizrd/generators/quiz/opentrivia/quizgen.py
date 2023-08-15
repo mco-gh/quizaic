@@ -73,25 +73,6 @@ class Quizgen(BaseQuizgen):
         #quiz = json.dumps(json_quiz, indent=4)
         return json_quiz
 
-    # Given a quiz, check if it's a valid quiz
-    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
-        # 1. It has right number of questions
-        actual_num_questions = len(quiz)
-        if actual_num_questions != num_questions:
-            return False, f"Number of questions - actual: {actual_num_questions}, expected: {num_questions}"
-
-        for item in quiz:
-            # 2. It has right number of answers per question
-            responses = item["responses"]
-            actual_num_answers = len(responses)
-            if actual_num_answers != num_answers:
-                return False, f"Number of responses in question '{item['question']}' - actual: {actual_num_answers}, expected: {num_answers}"
-            # 3. The correct answer is in the answers list
-            correct = item["correct"]
-            if not correct in responses:
-                return False, f"The correct answer '{correct}' for question '{item['question']}' is not in responses list: {responses}"
-
-        return True, f"Valid quiz: {eval}"
 
 if __name__ == "__main__":
     gen = Quizgen()

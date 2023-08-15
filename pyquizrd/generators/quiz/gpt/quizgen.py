@@ -33,8 +33,6 @@ class Quizgen(BaseQuizgen):
                     }
                   ]'''
 
-    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
-        return True, f"Valid quiz"
 
 if __name__ == "__main__":
     gen = Quizgen()

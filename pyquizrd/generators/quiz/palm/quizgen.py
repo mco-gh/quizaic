@@ -13,20 +13,13 @@ MODEL = "text-bison"
 
 DEFAULT_PROMPT_GEN_FILE = "prompt_gen2.txt"
 
-DEFAULT_PROMPT_EVAL_FILE = "prompt_eval4.txt"
-EVAL_TEMPERATURE = 0.3
-EVAL_TOP_K = 40
-EVAL_TOP_P = 1
-
 class Quizgen(BaseQuizgen):
 
     def __init__(self, config=None):
         prompt_gen_file = DEFAULT_PROMPT_GEN_FILE
-        prompt_eval_file = DEFAULT_PROMPT_EVAL_FILE
 
         if config:
             prompt_gen_file = config.get("prompt_gen_file", DEFAULT_PROMPT_GEN_FILE)
-            prompt_eval_file = config.get("prompt_eval_file", DEFAULT_PROMPT_EVAL_FILE)
             # This doesn't seem to be needed
             # vertexai.init(project=project_id, location=region)
 
@@ -35,10 +28,6 @@ class Quizgen(BaseQuizgen):
         file_path = os.path.join(os.path.dirname(__file__), "prompts/" + prompt_gen_file)
         with open(file_path, encoding='utf-8') as fp:
             self.prompt_gen = fp.read()
-
-        file_path = os.path.join(os.path.dirname(__file__), "prompts/" + prompt_eval_file)
-        with open(file_path, encoding='utf-8') as fp:
-            self.prompt_eval = fp.read()
 
     def __str__(self):
         return "palm quiz generator"
@@ -52,7 +41,8 @@ class Quizgen(BaseQuizgen):
     def get_answer_formats(self):
         return ["free-form", "multiple-choice"]
 
-    def predict_llm(self, model, temp, tokens, top_p, top_k, content, tuned_model=""):
+    @staticmethod
+    def predict_llm(model, temp, tokens, top_p, top_k, content, tuned_model=""):
         model = TextGenerationModel.from_pretrained(model)
         if tuned_model:
             model = model.get_tuned_model(tuned_model)
@@ -96,142 +86,6 @@ class Quizgen(BaseQuizgen):
             random.shuffle(i["responses"])
         return quiz
 
-    # Given a quiz, check if it's a valid quiz and returns a validity map with
-    # details. shortcircuit_validity determines if the validity check returns
-    # immediately when an invalid question is found. Set it to false, for testing.
-    def eval_quiz(self, quiz, topic, num_questions, num_answers, shortcircuit_validity=True):
-        validity = {
-            "valid_quiz": True,
-            "valid_questions": set(),
-            "invalid_questions": set(),
-            "unknown_questions": 0,
-            "details": []
-        }
-
-        validity = self.check_num_questions(validity, quiz, num_questions)
-        if not validity["valid_quiz"] and shortcircuit_validity:
-            return self.get_validity_compact(validity)
-
-        validity = self.check_num_answers(validity, quiz, num_questions, num_answers)
-        if not validity["valid_quiz"] and shortcircuit_validity:
-            return self.get_validity_compact(validity)
-
-        validity = self.check_correct_in_answers(validity, quiz)
-        if not validity["valid_quiz"] and shortcircuit_validity:
-            return self.get_validity_compact(validity)
-
-        # Remove correct answer from each question to not bias the LLM during eval
-        quiz_eval = copy.deepcopy(quiz)
-        for item in quiz_eval:
-            item.pop("correct")
-
-        prompt_eval = self.prompt_eval.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
-        eval = self.predict_llm(MODEL, EVAL_TEMPERATURE, 1024, EVAL_TOP_P, EVAL_TOP_K, prompt_eval)
-        try:
-            if eval == "":  # Happens when a question is not safe according to LLM
-                validity["valid_quiz"] = False
-                validity["unknown_questions"] = num_questions
-                validity["details"].append("Invalid #4: Cannot evaluate quiz due to unsafe questions")
-                return self.get_validity_compact(validity)
-
-            # Sometimes the model returns invalid JSON with a trailing comma, remove it.
-            if eval[-3:] == ",\n]":
-                eval = eval[:-3] + "\n]"
-
-            eval_json = json.loads(eval)
-        except ValueError as e:
-            print(f'eval:"{eval}"')
-            raise ValueError("An exception occurred during JSON parsing", e)
-
-        # [{"on_topic": true, "correct": ["George Washington"], "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
-        for index, item in enumerate(eval_json):
-            question = quiz[index]['question']
-
-            if not item["on_topic"]:
-                validity["valid_quiz"] = False
-                validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #5: The question is not on the topic - question: '{question}'"
-                                           f", topic: {topic}")
-                if shortcircuit_validity:
-                    return self.get_validity_compact(validity)
-
-            expected_correct = item["correct"]
-            actual_correct = quiz[index]["correct"]
-            if expected_correct != actual_correct:
-                validity["valid_quiz"] = False
-                validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #6: The correct answer is not correct - question: '{question}"
-                                           f"', expected: {expected_correct}, actual: {actual_correct}")
-                if shortcircuit_validity:
-                    return self.get_validity_compact(validity)
-
-            # Only add for prompt_eval3.txt
-            # responses = quiz_eval[index]["responses"]
-            # if item["correct"] in responses:
-            #     responses.remove(item["correct"])
-            # for incorrect in item["incorrect"]:
-            #     if incorrect in responses:
-            #         responses.remove(incorrect)
-            # if len(responses) != 0:
-            #     validity["valid_quiz"] = False
-            #     validity["invalid_questions"].add(question)
-            #     validity["details"].append(f"Invalid #7: The rest of responses are not incorrect in question: '{question}'")
-            #     if shortcircuit_validity:
-            #         return get_validity_compact(validity)
-
-            if question not in validity["invalid_questions"]:
-                validity["valid_questions"].add(question)
-
-        return self.get_validity_compact(validity)
-
-    @staticmethod
-    def check_num_questions(validity, quiz, num_questions):
-        actual_num_questions = len(quiz)
-        if actual_num_questions != num_questions:
-            validity["valid_quiz"] = False
-            validity["unknown_questions"] = num_questions
-            validity["details"].append(f"Invalid #1: Number of questions does not match - expected: {num_questions}"
-                                       f", actual: {actual_num_questions}")
-        return validity
-
-    @staticmethod
-    def check_num_answers(validity, quiz, num_questions, num_answers):
-        for item in quiz:
-            question = item['question']
-            responses = item["responses"]
-            actual_num_answers = len(responses)
-            if actual_num_answers != num_answers:
-                validity["valid_quiz"] = False
-                validity["unknown_questions"] = num_questions
-                validity["details"].append(f"Invalid #2: Number of answers does not match - question: '{question}"
-                                           f", expected: {num_answers}, actual: {actual_num_answers}")
-                return validity
-        return validity
-
-    @staticmethod
-    def check_correct_in_answers(validity, quiz):
-        for item in quiz:
-            question = item['question']
-            responses = item["responses"]
-            correct = item["correct"]
-            if correct not in responses:
-                validity["valid_quiz"] = False
-                validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #3: The correct answer is not in the responses list - question: '{question}'"
-                                           f", correct:{correct} responses: {responses}")
-                return validity
-        return validity
-
-    @staticmethod
-    def get_validity_compact(validity):
-        return {
-            "valid_quiz": validity["valid_quiz"],
-            "valid_questions": len(validity["valid_questions"]),
-            "invalid_questions": len(validity["invalid_questions"]),
-            "unknown_questions": validity["unknown_questions"],
-            "details": validity["details"]
-        }
-
 
 if __name__ == "__main__":
     gen = Quizgen()
@@ -249,6 +103,3 @@ if __name__ == "__main__":
     quiz = gen.gen_quiz("science", num_questions, num_answers)
     #quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_cyprus.json")
     print(json.dumps(quiz, indent=4))
-
-    # valid, details = gen.eval_quiz(quiz, topic, num_questions, num_answers)
-    # print(valid, details)

@@ -2,6 +2,8 @@ import json
 import random
 
 from generators.quiz.quizgenfactory import QuizgenFactory
+from generators.quiz.palm.quizeval import Quizeval
+
 
 def test_gen_quiz():
     num_questions = 2
@@ -11,6 +13,7 @@ def test_gen_quiz():
     print(json.dumps(quiz, indent=4))
     assert(quiz != None)
 
+
 def test_eval_quiz_num_questions():
     gen = QuizgenFactory.get_gen("palm")
     quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_americanhistory.json")
@@ -19,9 +22,11 @@ def test_eval_quiz_num_questions():
     quiz.pop()
     print(json.dumps(quiz, indent=4))
 
-    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    eval = Quizeval()
+    validity = Quizeval().eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
+
 
 def test_eval_quiz_num_answers():
     gen = QuizgenFactory.get_gen("palm")
@@ -31,7 +36,8 @@ def test_eval_quiz_num_answers():
     quiz[0]["responses"].pop()
     print(json.dumps(quiz, indent=4))
 
-    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    eval = Quizeval()
+    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -44,7 +50,8 @@ def test_eval_quiz_correct_answer_inlist():
     quiz[0]["correct"] = "foo"
     print(json.dumps(quiz, indent=4))
 
-    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    eval = Quizeval()
+    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -67,7 +74,8 @@ def test_eval_quiz_question_on_topic():
     num_questions += 1
     print(json.dumps(quiz, indent=4))
 
-    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    eval = Quizeval()
+    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -92,13 +100,14 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
     quiz[1]["correct"] = wrong_answer
     print(json.dumps(quiz, indent=4))
 
-    validity = gen.eval_quiz(quiz, topic, num_questions, num_answers)
+    eval = Quizeval()
+    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
 def test_eval_quiz_with_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
-    gen_palm = QuizgenFactory.get_gen("palm")
+    eval_palm = Quizeval()
 
     num_quiz = 1
     num_questions = 10
@@ -117,7 +126,7 @@ def test_eval_quiz_with_opentrivia_data():
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
         print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
 
-        validity = gen_palm.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity=False)
+        validity = eval_palm.eval_quiz(quiz, topic, num_questions, num_answers, shortcircuit_validity=False)
         print(f'validity: {json.dumps(validity, indent=4)}')
 
         if validity["valid_quiz"]:

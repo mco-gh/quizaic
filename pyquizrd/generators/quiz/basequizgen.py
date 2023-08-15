@@ -25,8 +25,3 @@ class BaseQuizgen(ABC):
     @abstractmethod
     def gen_quiz(self, topic=None, num_questions=None, num_answers=None, difficulty=3, temperature=.5):
         pass
-
-    # Check that the quiz is valid, mainly for testing
-    @abstractmethod
-    def eval_quiz(self, quiz, topic=None, num_questions=None, num_answers=None, shortcircuit_validity=True):
-        pass
