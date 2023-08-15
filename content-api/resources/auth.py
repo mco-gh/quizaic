@@ -47,8 +47,8 @@ def allowed(operation, resource_kind, representation=None):
 
     # Check for everything requiring auth and handle
 
-    # Admins (and only admins) can do any operation on the admins and generators collections.
-    if resource_kind == "admins" or resource_kind == "generators":
+    # Admins (and only admins) can do any operation on the admins collection.
+    if resource_kind == "admins":
         return user_is_admin(email)
 
     if resource_kind == "quizzes":
@@ -60,6 +60,17 @@ def allowed(operation, resource_kind, representation=None):
             return user_logged_in(email)
         # Must be an admin or quiz creator to modify or delete a quiz.
         if operation in ["PATCH", "DELETE"]:
+            path_parts = request.path.split("/")
+            quiz_id = path_parts[2]
+            return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
+        return False
+
+    if resource_kind == "generators":
+        # Anyone can read all generator records (even unauthenticated players).
+        if operation == "GET":
+            return True
+        # Must be an admin to create, modify or delete a generator.
+        if operation in ["POST", "PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             quiz_id = path_parts[2]
             return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
