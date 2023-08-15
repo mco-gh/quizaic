@@ -22,8 +22,8 @@ def test_eval_quiz_num_questions():
     quiz.pop()
     print(json.dumps(quiz, indent=4))
 
-    eval = Quizeval()
-    validity = Quizeval().eval_quiz(quiz, topic, num_questions, num_answers)
+    evaluator = Quizeval()
+    validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -36,8 +36,8 @@ def test_eval_quiz_num_answers():
     quiz[0]["responses"].pop()
     print(json.dumps(quiz, indent=4))
 
-    eval = Quizeval()
-    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
+    evaluator = Quizeval()
+    validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -50,8 +50,8 @@ def test_eval_quiz_correct_answer_inlist():
     quiz[0]["correct"] = "foo"
     print(json.dumps(quiz, indent=4))
 
-    eval = Quizeval()
-    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
+    evaluator = Quizeval()
+    validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -74,8 +74,8 @@ def test_eval_quiz_question_on_topic():
     num_questions += 1
     print(json.dumps(quiz, indent=4))
 
-    eval = Quizeval()
-    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
+    evaluator = Quizeval()
+    validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
@@ -100,15 +100,15 @@ def do_eval_quiz_correct_is_correct(quiz_file, wrong_answer):
     quiz[1]["correct"] = wrong_answer
     print(json.dumps(quiz, indent=4))
 
-    eval = Quizeval()
-    validity = eval.eval_quiz(quiz, topic, num_questions, num_answers)
+    evaluator = Quizeval()
+    validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
     print(validity["details"])
     assert not validity["valid_quiz"]
 
 
 def test_eval_quiz_with_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
-    eval_palm = Quizeval()
+    evaluator = Quizeval()
 
     num_quiz = 1
     num_questions = 10
@@ -127,7 +127,7 @@ def test_eval_quiz_with_opentrivia_data():
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
         print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
 
-        validity = eval_palm.eval_quiz(quiz, topic, num_questions, num_answers)
+        validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
         print(f'validity: {json.dumps(validity, indent=4)}')
 
         if validity["valid_quiz"]:
