@@ -9,18 +9,15 @@ class BrowsePage extends StatefulWidget {
 }
 
 class _BrowsePageState extends State<BrowsePage> {
-/*
   @override
   void initState() {
     super.initState();
-    appfutureQuiz = fetchQuiz();
   }
-*/
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var appState = context.watch<AppState>();
+    var appState = context.watch<MyAppState>();
 
     return Scaffold(
       body: Center(

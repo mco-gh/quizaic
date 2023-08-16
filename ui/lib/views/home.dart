@@ -22,7 +22,7 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<AppState>();
+    var appState = context.watch<MyAppState>();
 
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;

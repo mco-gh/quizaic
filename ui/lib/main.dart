@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'config/firebase_options.dart';
-import 'package:quizrd/views/home.dart';
-import 'package:quizrd/models/state.dart';
+import 'views/home.dart';
+import 'models/state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AppState(),
+      create: (context) => MyAppState(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Quizrd',
