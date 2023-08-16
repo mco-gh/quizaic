@@ -3,7 +3,7 @@ import json
 import os
 
 
-# eval4 prompt finds only correct answers, seems to be as good as eval3
+# eval5 prompt keeps the "correct" field as a hint but seems to bias the LLM
 
 class QuizevalHelper:
 
@@ -13,13 +13,13 @@ class QuizevalHelper:
             self.prompt_template = fp.read()
 
     def __str__(self):
-        return "eval_4"
+        return "eval_5"
 
     def prepare_prompt(self, quiz, topic):
-        # Remove correct answer from each question to not bias the LLM during eval
+        # Use correct answer as a hint to the model
         quiz_eval = copy.deepcopy(quiz)
-        for item in quiz_eval:
-            item.pop("correct")
+        # for item in quiz_eval:
+        #     item.pop("correct")
         prompt = self.prompt_template.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
         return prompt
 

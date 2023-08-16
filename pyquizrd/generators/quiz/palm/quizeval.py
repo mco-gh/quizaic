@@ -47,7 +47,7 @@ class Quizeval(BaseQuizeval):
 
         module = importlib.import_module(f"pyquizrd.generators.quiz.palm.prompts.{PROMPT_VERSION}")
         eval_helper = module.QuizevalHelper(f"{PROMPT_VERSION}.txt")
-        print(f"{eval_helper}")
+        print(f"Using quiz eval helper: {eval_helper}")
 
         # Prepare the input prompt
         prompt = eval_helper.prepare_prompt(quiz, topic)
