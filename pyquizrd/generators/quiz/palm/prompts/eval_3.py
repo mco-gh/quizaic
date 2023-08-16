@@ -6,8 +6,9 @@ import os
 
 class QuizevalHelper:
 
-    def __init__(self, prompt_file):
-        file_path = os.path.join(os.path.dirname(__file__), f"../prompts/{prompt_file}")
+    def __init__(self):
+        prompt_version = os.path.basename(__file__)[:-3]
+        file_path = os.path.join(os.path.dirname(__file__), f"{prompt_version}.txt")
         with open(file_path, encoding='utf-8') as fp:
             self.prompt_template = fp.read()
 

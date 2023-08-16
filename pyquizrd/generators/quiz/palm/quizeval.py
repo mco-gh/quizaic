@@ -7,7 +7,7 @@ sys.path.append("../../../../") # Needed for the main method to work in this cla
 from pyquizrd.generators.quiz.basequizeval import BaseQuizeval
 from pyquizrd.generators.quiz.palm.quizgen import Quizgen
 
-# Assumes there's a eval_*.txt for prompt template and corresponding eval_*.py file to prepare input and output
+# Assumes there's a corresponding eval_*.py for input/output parsing and possibly eval_*.txt if a prompt template exists
 PROMPT_VERSION = "eval_4"
 MODEL = "text-bison"
 TEMPERATURE = 0
@@ -46,13 +46,14 @@ class Quizeval(BaseQuizeval):
             return self.get_validity_compact(validity)
 
         module = importlib.import_module(f"pyquizrd.generators.quiz.palm.prompts.{PROMPT_VERSION}")
-        eval_helper = module.QuizevalHelper(f"{PROMPT_VERSION}.txt")
+        eval_helper = module.QuizevalHelper()
         print(f"Using quiz eval helper: {eval_helper}")
 
         # Prepare the input prompt
         prompt = eval_helper.prepare_prompt(quiz, topic)
 
         prediction = self.predict_llm(MODEL, prompt, TEMPERATURE, 1024, TOP_P, TOP_K)
+        print(f"prediction: {prediction}")
 
         validity = self.check_prediction_safe(validity, prediction, num_questions)
         if not validity["valid_quiz"]:
