@@ -16,6 +16,7 @@ class CreatePage extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+int _topicListKey = 0;
 
 class _CreatePageState extends State<CreatePage> {
   @override
@@ -26,7 +27,7 @@ class _CreatePageState extends State<CreatePage> {
   List<String> getSelectedGeneratorsTopicList(appState) {
     for (var generator in appState.generators) {
       if (generator.name == appState.selectedGenerator) {
-        return generator.topicList.split(',');
+        return generator.topicList;
       }
     }
     return [];
@@ -38,6 +39,8 @@ class _CreatePageState extends State<CreatePage> {
     var appState = context.watch<MyAppState>();
     // Build a Form widget using the _formKey created
     const padding = 6.0;
+    const columnWidth = 285.0;
+    const rowHeight = 52.0;
 
     return FutureBuilder(
         future: appState.futureFetchGenerators,
@@ -86,8 +89,10 @@ class _CreatePageState extends State<CreatePage> {
                             initialSelection: appState.selectedGenerator,
                             onSelected: (value) => setState(() {
                               appState.selectedGenerator = value.toString();
+                              appState.selectedTopic = '';
+                              _topicListKey++;
                             }),
-                            width: 285,
+                            width: columnWidth,
                             label: const Text('Quiz generator'),
                             dropdownMenuEntries: [
                               for (var generator in snapshot.data!)
@@ -97,23 +102,67 @@ class _CreatePageState extends State<CreatePage> {
                                 ),
                             ],
                           ),
-                          SizedBox(width: 18),
-                          DropdownMenu<String>(
-                            initialSelection: appState.selectedTopic,
-                            onSelected: (value) => setState(() {
-                              appState.selectedTopic = value.toString();
-                            }),
-                            width: 285,
-                            label: const Text('Quiz Topic'),
-                            dropdownMenuEntries: [
-                              for (var topic
-                                  in getSelectedGeneratorsTopicList(appState))
-                                DropdownMenuEntry(
-                                  label: topic,
-                                  value: topic,
+                          if (appState.selectedGenerator == '')
+                            Row(children: [
+                              SizedBox(width: 16),
+                              SizedBox(
+                                width: columnWidth,
+                                child: Text('Select generator to choose topic',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                              )
+                            ])
+                          else if (getSelectedGeneratorsTopicList(appState)
+                              .isNotEmpty)
+                            Row(children: [
+                              SizedBox(width: 16),
+                              DropdownMenu<String>(
+                                  key: ValueKey(_topicListKey),
+                                  initialSelection: appState.selectedTopic,
+                                  onSelected: (value) => setState(() {
+                                        appState.selectedTopic =
+                                            value.toString();
+                                      }),
+                                  width: columnWidth,
+                                  label: const Text('Quiz Topic'),
+                                  dropdownMenuEntries: [
+                                    for (var topic
+                                        in getSelectedGeneratorsTopicList(
+                                            appState))
+                                      DropdownMenuEntry(
+                                        label: topic,
+                                        value: topic,
+                                      ),
+                                  ]),
+                            ])
+                          else
+                            Row(children: [
+                              SizedBox(width: 16),
+                              SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: TextFormField(
+                                  key: ValueKey(_topicListKey),
+                                  initialValue: appState.selectedTopic,
+                                  onChanged: (value) => setState(() {
+                                    appState.selectedTopic = value.toString();
+                                  }),
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Quiz Topic',
+                                  ),
+                                  // The validator receives the text that the user has entered.
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Missing quiz topic';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                            ],
-                          ),
+                              ),
+                            ])
                         ],
                       ),
                     ),
@@ -123,7 +172,8 @@ class _CreatePageState extends State<CreatePage> {
                           padding: const EdgeInsets.all(padding),
                           child: Align(
                             child: SizedBox(
-                              width: 285,
+                              width: columnWidth,
+                              height: rowHeight,
                               child: TextFormField(
                                 initialValue:
                                     appState.selectedNumQuestions?.toString(),
@@ -154,7 +204,7 @@ class _CreatePageState extends State<CreatePage> {
                             onSelected: (value) => setState(() {
                               appState.selectedDifficulty = value.toString();
                             }),
-                            width: 285,
+                            width: columnWidth,
                             label: const Text('Difficulty Level'),
                             dropdownMenuEntries: [
                               DropdownMenuEntry(
@@ -182,6 +232,7 @@ class _CreatePageState extends State<CreatePage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: Align(
