@@ -16,8 +16,7 @@ class CreatePage extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
-int _typeListKey = 0;
-int _topicListKey = 0;
+int _answerFormatKey = 0;
 
 class _CreatePageState extends State<CreatePage> {
   @override
@@ -25,19 +24,19 @@ class _CreatePageState extends State<CreatePage> {
     super.initState();
   }
 
-  List<String> getSelectedGeneratorsTopicList(appState) {
+  List<String> getSelectedGeneratorsTopics(appState) {
     for (var generator in appState.generators) {
       if (generator.name == appState.selectedGenerator) {
-        return generator.topicList;
+        return generator.topics;
       }
     }
     return [];
   }
 
-  List<String> getSelectedGeneratorsTypeList(appState) {
+  List<String> getSelectedGeneratorsAnswerFormats(appState) {
     for (var generator in appState.generators) {
       if (generator.name == appState.selectedGenerator) {
-        return generator.typeList;
+        return generator.answerFormats;
       }
     }
     return [];
@@ -62,10 +61,10 @@ class _CreatePageState extends State<CreatePage> {
             return Form(
                 key: _formKey,
                 child: SizedBox(
-                  width: 600,
+                  width: 650,
                   child: ListView(children: [
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(padding),
                       child: Text('Create a New Quiz',
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -97,92 +96,15 @@ class _CreatePageState extends State<CreatePage> {
                             ),
                           ),
                         ),
-                        if (appState.selectedGenerator == '')
-                          Row(children: [
-                            SizedBox(width: 16),
-                            SizedBox(
-                              width: columnWidth,
-                              child: Text(
-                                  'Select generator to choose quiz type',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ])
-                        else if (getSelectedGeneratorsTypeList(appState)
-                                .length ==
-                            1)
-                          Row(children: [
-                            SizedBox(width: 16),
-                            DropdownMenu<String>(
-                                key: ValueKey(_typeListKey),
-                                initialSelection: appState.selectedQuizType,
-                                onSelected: (value) => setState(() {
-                                      appState.selectedQuizType =
-                                          value.toString();
-                                    }),
-                                width: columnWidth,
-                                label: const Text('Quiz Type'),
-                                dropdownMenuEntries: [
-                                  for (var type
-                                      in getSelectedGeneratorsTypeList(
-                                          appState))
-                                    DropdownMenuEntry(
-                                      label: type,
-                                      value: type,
-                                    ),
-                                ]),
-                          ])
-                        else if (getSelectedGeneratorsTypeList(appState)
-                                .length >
-                            1)
-                          Row(children: [
-                            SizedBox(width: 16),
-                            DropdownMenu<String>(
-                                key: ValueKey(_typeListKey),
-                                initialSelection: appState.selectedQuizType,
-                                onSelected: (value) => setState(() {
-                                      appState.selectedQuizType =
-                                          value.toString();
-                                    }),
-                                width: columnWidth,
-                                label: const Text('Quiz Type'),
-                                dropdownMenuEntries: [
-                                  for (var type
-                                      in getSelectedGeneratorsTypeList(
-                                          appState))
-                                    DropdownMenuEntry(
-                                      label: type,
-                                      value: type,
-                                    ),
-                                ]),
-                          ])
-                        else
-                          Row(children: [
-                            SizedBox(width: 16),
-                            SizedBox(
-                              width: columnWidth,
-                              child: Text(
-                                  'No quiz types available for ${appState.selectedGenerator}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ]),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: Row(
-                        children: [
-                          DropdownMenu<String>(
+                        SizedBox(width: 10),
+                        Padding(
+                          padding: const EdgeInsets.all(padding),
+                          child: DropdownMenu<String>(
                             initialSelection: appState.selectedGenerator,
                             onSelected: (value) => setState(() {
                               appState.selectedGenerator = value.toString();
                               appState.selectedTopic = '';
-                              _topicListKey++;
+                              _answerFormatKey++;
                             }),
                             width: columnWidth,
                             label: const Text('Quiz generator'),
@@ -194,9 +116,15 @@ class _CreatePageState extends State<CreatePage> {
                                 ),
                             ],
                           ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(padding),
+                      child: Row(
+                        children: [
                           if (appState.selectedGenerator == '')
                             Row(children: [
-                              SizedBox(width: 16),
                               SizedBox(
                                 width: columnWidth,
                                 child: Text('Select generator to choose topic',
@@ -206,12 +134,11 @@ class _CreatePageState extends State<CreatePage> {
                                         fontWeight: FontWeight.bold)),
                               ),
                             ])
-                          else if (getSelectedGeneratorsTopicList(appState)
+                          else if (getSelectedGeneratorsTopics(appState)
                               .isNotEmpty)
                             Row(children: [
-                              SizedBox(width: 16),
                               DropdownMenu<String>(
-                                  key: ValueKey(_topicListKey),
+                                  key: ValueKey(_answerFormatKey),
                                   initialSelection: appState.selectedTopic,
                                   onSelected: (value) => setState(() {
                                         appState.selectedTopic =
@@ -221,7 +148,7 @@ class _CreatePageState extends State<CreatePage> {
                                   label: const Text('Quiz Topic'),
                                   dropdownMenuEntries: [
                                     for (var topic
-                                        in getSelectedGeneratorsTypeList(
+                                        in getSelectedGeneratorsTopics(
                                             appState))
                                       DropdownMenuEntry(
                                         label: topic,
@@ -231,12 +158,11 @@ class _CreatePageState extends State<CreatePage> {
                             ])
                           else
                             Row(children: [
-                              SizedBox(width: 16),
                               SizedBox(
                                 width: columnWidth,
                                 height: rowHeight,
                                 child: TextFormField(
-                                  key: ValueKey(_topicListKey),
+                                  key: ValueKey(_answerFormatKey),
                                   initialValue: appState.selectedTopic,
                                   onChanged: (value) => setState(() {
                                     appState.selectedTopic = value.toString();
@@ -254,7 +180,90 @@ class _CreatePageState extends State<CreatePage> {
                                   },
                                 ),
                               ),
+                            ]),
+                          if (appState.selectedGenerator == '')
+                            Row(children: [
+                              SizedBox(width: 10),
+                              SizedBox(
+                                width: columnWidth,
+                                child: Text(
+                                    'Select generator to choose answer format',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                              ),
                             ])
+                          else if (getSelectedGeneratorsAnswerFormats(appState)
+                                  .length ==
+                              1)
+                            Row(children: [
+                              SizedBox(width: 16),
+                              SizedBox(
+                                width: columnWidth,
+                                child: DropdownMenu<String>(
+                                    key: ValueKey(_answerFormatKey),
+                                    initialSelection:
+                                        getSelectedGeneratorsAnswerFormats(
+                                            appState)[0],
+                                    onSelected: (value) => setState(() {
+                                          appState.selectedAnswerFormat =
+                                              value.toString();
+                                        }),
+                                    width: columnWidth,
+                                    label: const Text('Answer Format'),
+                                    dropdownMenuEntries: [
+                                      for (var type
+                                          in getSelectedGeneratorsAnswerFormats(
+                                              appState))
+                                        DropdownMenuEntry(
+                                          label: type,
+                                          value: type,
+                                        ),
+                                    ]),
+                              ),
+                            ])
+                          else if (getSelectedGeneratorsAnswerFormats(appState)
+                                  .length >
+                              1)
+                            Row(children: [
+                              SizedBox(width: 16),
+                              SizedBox(
+                                width: columnWidth,
+                                child: DropdownMenu<String>(
+                                    key: ValueKey(_answerFormatKey),
+                                    initialSelection:
+                                        appState.selectedAnswerFormat,
+                                    onSelected: (value) => setState(() {
+                                          appState.selectedAnswerFormat =
+                                              value.toString();
+                                        }),
+                                    width: columnWidth,
+                                    label: const Text('Answer Format'),
+                                    dropdownMenuEntries: [
+                                      for (var type
+                                          in getSelectedGeneratorsAnswerFormats(
+                                              appState))
+                                        DropdownMenuEntry(
+                                          label: type,
+                                          value: type,
+                                        ),
+                                    ]),
+                              ),
+                            ])
+                          else
+                            Row(children: [
+                              SizedBox(width: 16),
+                              SizedBox(
+                                width: columnWidth,
+                                child: Text(
+                                    'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ]),
                         ],
                       ),
                     ),
