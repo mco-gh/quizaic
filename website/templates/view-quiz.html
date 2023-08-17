@@ -73,13 +73,13 @@
         <li class="mdc-list-item">
           <span class="mdc-list-item__text">Anonynous / Synchronous</span>
           <span class="mdc-list-item__meta">
-            {% if quiz.anon %}
+            {% if quiz.anonymous %}
               anonymous
             {% else %}
               login
             {% endif %}
              / 
-            {% if quiz.sync %}
+            {% if quiz.synchronous %}
               synchronous
             {% else %}
               asynchronous
@@ -102,7 +102,7 @@
         <li class="mdc-list-item">
           <span class="mdc-list-item__text">Randomly order questions / answers</span>
           <span class="mdc-list-item__meta">
-            {{ quiz.random_q }} / {{ quiz.random_a }}
+            {{ quiz.randomize_questions }} / {{ quiz.randomize_answers }}
           </span>
         </li>
 
@@ -186,7 +186,7 @@
           </tr>
         </thead>
         <tbody class="mdc-data-table__content">
-          {% if quiz.qand_a == "" %}
+          {% if quiz.q_and_a == "" %}
             <tr class="mdc-data-table__row">
               <td class="mdc-data-table__cell">
                 No questions yet

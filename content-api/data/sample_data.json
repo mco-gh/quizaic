@@ -42,7 +42,6 @@
       "name": "Audience Survey",
       "description": "Getting to know you...",
       "generator": "manual",
-      "topicFormat": "freeform", 
       "answerFormat": "multiple-choice", 
       "topic": "Cloud Computing",
       "imageUrl": "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
@@ -51,14 +50,14 @@
       "timeLimit": "20",
       "difficulty": "1",
       "temperature": ".1",
-      "sync": true,
-      "anon": true,
-      "randomQ": true,
-      "randomA": true,
+      "synchronous": true,
+      "anonymous": true,
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
       "survey": true,
       "runCount": "10",
       "active": false,
-      "QandA": [
+      "qAndA": [
 	{
 		"question": "How much experience do you have with cloud computing?",
 		"correct": "N/A",
@@ -123,7 +122,6 @@
       "name": "US History Quiz",
       "description": "Fun facts you might not have learned in high school",
       "generator": "jeopardy",
-      "topicFormat": "multiple-choice", 
       "answerFormat": "freeform", 
       "topic": "U.S. History",
       "imageUrl": "https://images.unsplash.com/photo-1597701974172-3a99fbb4b5c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
@@ -132,14 +130,14 @@
       "timeLimit": "30",
       "difficulty": "5",
       "temperature": ".3",
-      "sync": true,
-      "anon": true,
-      "randomQ": true,
-      "randomA": true,
+      "synchronous": true,
+      "anonymous": true,
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
       "survey": false,
       "runCount": "7",
       "active": false,
-      "QandA": [
+      "qAndA": [
           {
               "question":  "Who was buried in Grants Tomb?",
               "correct": "Grant"
@@ -166,7 +164,6 @@
       "name": "Who Wrote It?",
       "description": "Trivia about French writers",
       "generator": "gpt",
-      "topicFormat": "freeform", 
       "answerFormat": "multiple-choice", 
       "topic": "French Literature",
       "imageUrl": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
@@ -175,14 +172,14 @@
       "timeLimit": "30",
       "difficulty": "3",
       "temperature": ".5",
-      "sync": true,
-      "anon": true,
-      "randomQ": true,
-      "randomA": true,
+      "synchronous": true,
+      "anonymous": true,
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
       "survey": false,
       "runCount": "17",
       "active": false,
-      "QandA": [
+      "qAndA": [
 {
 		"question": "Who wrote Le Petit Prince?",
 		"correct": "St-Exupery",
@@ -297,7 +294,6 @@
       "name": "Rock and Roll!",
       "description": "See how well you know modern rock history",
       "generator": "opentrivia",
-      "topicFormat": "multiple-choice", 
       "answerFormat": "multiple-choice", 
       "topic": "Music",
       "imageUrl": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
@@ -306,14 +302,14 @@
       "timeLimit": "30",
       "difficulty": "4",
       "temperature": ".7",
-      "sync": true,
-      "anon": true,
-      "randomQ": true,
-      "randomA": true,
+      "synchronous": true,
+      "anonymous": true,
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
       "survey": false,
       "runCount": "2",
       "active": false,
-      "QandA": [
+      "qAndA": [
           {
               "question": "Which is the greatest band of all time?",
               "correct": "The Beatles",
@@ -348,7 +344,6 @@
       "name": "Cat Trivia by حسین رضایی",
       "description": "So you think you know cats?",
       "generator": "palm",
-      "topicFormat": "freeform", 
       "answerFormat": "freeform", 
       "topic": "Pets",
       "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1686&q=80",
@@ -357,14 +352,14 @@
       "timeLimit": "30",
       "difficulty": "2",
       "temperature": ".8",
-      "sync": true,
-      "anon": true,
-      "randomQ": true,
-      "randomA": true,
+      "synchronous": true,
+      "anonymous": true,
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
       "survey": false,
       "runCount": "23",
       "active": false,
-      "QandA": [
+      "qAndA": [
           {
               "question": "Best cat ever?",
               "correct": "Clyro",
@@ -399,7 +394,6 @@
       "name": "Pop Music",
       "description": "Top Music industry trivia",
       "generator": "gpt",
-      "topicFormat": "freeform", 
       "answerFormat": "multiple-choice", 
       "topic": "Pop Music",
       "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
@@ -408,14 +402,14 @@
       "timeLimit": "30",
       "difficulty": "3",
       "temperature": "1.0",
-      "sync": true,
-      "anon": true,
-      "randomQ": true,
-      "randomA": true,
+      "synchronous": true,
+      "anonymous": true,
+      "randomizeQuestions": true,
+      "randomizeAnswers": true,
       "survey": false,
       "runCount": "13",
       "active": false,
-      "QandA": [
+      "qAndA": [
   {
     "question": "Which artist won the most Grammy Awards in a single night?",
     "correct": "Beyoncé",
@@ -498,7 +492,8 @@
     "id": "57d62f566516411e98eb",
     "data": {
       "name": "Palm",
-      "topic_list": []
+      "answerFormats": ["multiple choice", "free form"],
+      "topics": []
     }
   },
   {
@@ -506,7 +501,8 @@
     "id": "13c75dcc33124f618209",
     "data": {
       "name": "OpenTrivia",
-      "topic_list": [ "Television", "Gadgets", "Video Games", "Japanese Anime & Manga", "Cartoons &  Animations", "History", "Geography", "Books", "Board Games", "Musicals & Theatres", "Science & Nature", "Sports", "Music", "Vehicles", "Mathematics", "Comics", "Animals", "Computers", "Politics", "Celebrities", "Film", "Mythology", "General Knowledge", "Art" ]
+      "answerFormats": ["multiple choice"],
+      "topics": [ "Television", "Gadgets", "Video Games", "Japanese Anime & Manga", "Cartoons &  Animations", "History", "Geography", "Books", "Board Games", "Musicals & Theatres", "Science & Nature", "Sports", "Music", "Vehicles", "Mathematics", "Comics", "Animals", "Computers", "Politics", "Celebrities", "Film", "Mythology", "General Knowledge", "Art" ]
     }
   },
   {
@@ -514,7 +510,8 @@
     "id": "f6d00e4de6c5c7e86d1",
     "data": {
       "name": "Jeopardy",
-      "topic_list": [ "Fruits & Vegetables", "World Cities", "Americana", "Scientists", "Abbrev.", "Food", "Nature", "Organizations", "Science", "Islands", "Languages", "U.S. History", "The Body Human", "Government & Politics", "Weights & Measures", "Architecture", "Notable Names", "Ballet", "Travel & Tourism", "Fashion", "Art", "Television", "Transportation", "Nonfiction", "Common Bonds", "Astronomy", "Famous Americans", "Art & Artists", "World Capitals", "Chemistry", "U.S. States", "The Movies", "Poets & Poetry", "Artists", "Holidays & Observances", "Fictional Characters", "Annual Events", "Word Origins", "4-Letter Words", "Theatre", "Foreign Words & Phrases", "Bodies Of Water", "Zoology", "Museums", "Colleges & Universities", "Around The World", "Potpourri", "U.S. Cities", "Food & Drink", "Sports", "Music", "Vocabulary", "5-Letter Words", "Hodgepodge", "First Ladies", "Mountains", "Potent Potables", "Homophones", "Stupid Answers", "U.S. Geography", "People", "World Geography", "World Leaders", "Pop Music", "Historic Names", "Authors", "Medicine", "Biology", "Mythology", "3-Letter Words", "Religion", "Quotations", "In The Dictionary", "Classical Music", "World History", "State Capitals", "U.S. Presidents", "History", "Geography", "Physics", "Science & Nature", "Opera", "Musical Instruments", "American History", "Business & Industry", "Awards", "Books & Authors", "American Literature", "Composers", "19Th Century America", "Animals", "Literature", "Shakespeare", "Rhyme Time", "Explorers", "The Bible", "Before & After", "Magazines", "The Civil War", "European History" ]
+      "answerFormats": ["free form"],
+      "topics": [ "Fruits & Vegetables", "World Cities", "Americana", "Scientists", "Abbrev.", "Food", "Nature", "Organizations", "Science", "Islands", "Languages", "U.S. History", "The Body Human", "Government & Politics", "Weights & Measures", "Architecture", "Notable Names", "Ballet", "Travel & Tourism", "Fashion", "Art", "Television", "Transportation", "Nonfiction", "Common Bonds", "Astronomy", "Famous Americans", "Art & Artists", "World Capitals", "Chemistry", "U.S. States", "The Movies", "Poets & Poetry", "Artists", "Holidays & Observances", "Fictional Characters", "Annual Events", "Word Origins", "4-Letter Words", "Theatre", "Foreign Words & Phrases", "Bodies Of Water", "Zoology", "Museums", "Colleges & Universities", "Around The World", "Potpourri", "U.S. Cities", "Food & Drink", "Sports", "Music", "Vocabulary", "5-Letter Words", "Hodgepodge", "First Ladies", "Mountains", "Potent Potables", "Homophones", "Stupid Answers", "U.S. Geography", "People", "World Geography", "World Leaders", "Pop Music", "Historic Names", "Authors", "Medicine", "Biology", "Mythology", "3-Letter Words", "Religion", "Quotations", "In The Dictionary", "Classical Music", "World History", "State Capitals", "U.S. Presidents", "History", "Geography", "Physics", "Science & Nature", "Opera", "Musical Instruments", "American History", "Business & Industry", "Awards", "Books & Authors", "American Literature", "Composers", "19Th Century America", "Animals", "Literature", "Shakespeare", "Rhyme Time", "Explorers", "The Bible", "Before & After", "Magazines", "The Civil War", "European History" ]
     }
   },
   {
@@ -522,7 +519,8 @@
     "id": "f6d00e41de6c4c7e86d1",
     "data": {
       "name": "Manual",
-      "topic_list": []
+      "answerFormats": ["multiple choice", "free form"],
+      "topics": []
     }
   }
 ]

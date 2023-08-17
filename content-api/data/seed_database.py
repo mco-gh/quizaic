@@ -19,14 +19,14 @@ from google.cloud import firestore
 
 # Firebase client uses GOOGLE_CLOUD_PROJECT env var to choose its project.
 
-def seed_database(content):
 
+def seed_database(content):
     client = firestore.Client()
     print("Seeding data into Google Cloud Project '{}'.".format(client.project))
     print("This may take a few minutes...")
     for item in content:
         if item["collection"] == "quizzes":
-            item["data"]["QandA"] = json.dumps(item["data"]["QandA"])
+            item["data"]["qAndA"] = json.dumps(item["data"]["qAndA"])
         doc_ref = client.collection(item["collection"]).document(item["id"])
         try:
             doc_ref.set(item["data"])
@@ -38,7 +38,6 @@ def seed_database(content):
 
 
 def unseed_database():
-
     client = firestore.Client()
     print("Deleting seed data from Google Cloud Project '{}'.".format(client.project))
     print("This may take a few minutes...")

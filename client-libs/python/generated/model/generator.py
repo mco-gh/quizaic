@@ -83,8 +83,8 @@ class Generator(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'freeform': (bool,),  # noqa: E501
-            'topic_list': ([str],),  # noqa: E501
+            'answer_formats': ([str],),  # noqa: E501
+            'topics': ([str],),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
             'self_link': (str,),  # noqa: E501
@@ -98,8 +98,8 @@ class Generator(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'freeform': 'freeform',  # noqa: E501
-        'topic_list': 'topic_list',  # noqa: E501
+        'answer_formats': 'answer_formats',  # noqa: E501
+        'topics': 'topics',  # noqa: E501
         'time_created': 'timeCreated',  # noqa: E501
         'updated': 'updated',  # noqa: E501
         'self_link': 'selfLink',  # noqa: E501
@@ -154,8 +154,8 @@ class Generator(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            freeform (bool): whether this generator supports free-form answers. [optional] if omitted the server will use the default value of False  # noqa: E501
-            topic_list ([str]): array of topics supported by this generator (empty == unlimited). [optional]  # noqa: E501
+            answer_formats ([str]): array of quiz types supported by this generator. [optional]  # noqa: E501
+            topics ([str]): array of topics supported by this generator (empty == unlimited). [optional]  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501
@@ -245,8 +245,8 @@ class Generator(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            freeform (bool): whether this generator supports free-form answers. [optional] if omitted the server will use the default value of False  # noqa: E501
-            topic_list ([str]): array of topics supported by this generator (empty == unlimited). [optional]  # noqa: E501
+            answer_formats ([str]): array of quiz types supported by this generator. [optional]  # noqa: E501
+            topics ([str]): array of topics supported by this generator (empty == unlimited). [optional]  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
             self_link (str): full URI of the resource. [optional]  # noqa: E501

@@ -37,7 +37,6 @@ def list_quizzes():
 
     try:
         quizzes = g.api.quizzes_get()
-        log(quizzes[0].results)
     except Exception as e:
         log(f"Exception when listing quizzes view: {e}", severity="ERROR")
         quizzes = []
@@ -61,8 +60,8 @@ def new_quiz():
             quiz_instance["formattedDateUpdated"] = convert_utc(
                 quiz_instance.updated
             )
-            qa = json.loads(quiz_instance.qand_a)
-            questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
+            qa = json.loads(quiz_instance.q_and_a)
+            questions = json.dumps(json.loads(quiz_instance.q_and_a), indent=2)
         except Exception as e:
             log(f"Exception when editing quiz {quiz_id}: {e}", severity="ERROR")
             return render_template("errors/403.html"), 403
@@ -80,12 +79,12 @@ def new_quiz():
             "time_limit": "",
 	    "difficulty": "",
 	    "temperature": "",
-            "sync": "",
-	    "anon": "",
+            "synchronous": "",
+	    "anonymous": "",
             "survey": "",
-	    "random_q": "",
-	    "random_a": "",
-            "qand_a": "",
+	    "randomize_questions": "",
+	    "randomize_answers": "",
+            "q_and_a": "",
         };
         qa = None
         questions = None
@@ -117,8 +116,8 @@ def edit_quiz():
         return render_template("errors/403.html"), 403
 
     gens = QuizgenFactory.get_gens()
-    qa = json.loads(quiz_instance.qand_a)
-    questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
+    qa = json.loads(quiz_instance.q_and_a)
+    questions = json.dumps(json.loads(quiz_instance.q_and_a), indent=2)
     return render_template("create-quiz.html", op="Update", quiz=quiz_instance, questions=questions, qa=qa, current_user=current_user, gens=gens)
 
 
@@ -156,29 +155,31 @@ def update_quiz():
         temperature = request.form["temperature"]
         if request.form["generator"] == "manual" or "regen" not in request.form:
             quiz = request.form["QandA"]
+            quiz = json.dumps(json.loads(quiz), indent=2)
         else:
             generator = QuizgenFactory.get_gen(request.form["generator"])
             quiz = generator.gen_quiz(topic, int(numQuestions), int(numAnswers), int(difficulty), float(temperature)) 
-        quiz = json.dumps(quiz)  # convert object to json text
+            quiz = json.dumps(quiz)  # convert object to json text
+        print(f"marc: {quiz=}")
         resp = g.api.quizzes_id_patch(quiz_id, 
             {
                 "name":         request.form["name"],
                 "description":  request.form["description"],
                 "generator":    request.form["generator"],
-                "topicFormat":  request.form["topicFormatSelect"],
-                "answerFormat": request.form["answerFormatSelect"],
+                "topic_format":  request.form["topicFormatSelect"],
+                "answer_format": request.form["answerFormatSelect"],
                 "topic":        topic,
-                "numQuestions": numQuestions,
-                "numAnswers":   numAnswers,
-                "timeLimit":    request.form["timeLimit"],
+                "num_questions": numQuestions,
+                "num_answers":   numAnswers,
+                "time_limit":    request.form["timeLimit"],
                 "difficulty":   difficulty,
                 "temperature":  temperature,
-                "sync":         request.form["syncSelect"] == "true",
-                "anon":         request.form["anonSelect"] == "true",
+                "synchronous":  request.form["syncSelect"] == "true",
+                "anonymous":    request.form["anonSelect"] == "true",
                 "survey":       request.form["surveySelect"] == "true",
-                "randomQ":      request.form["randomQSelect"] == "true",
-                "randomA":      request.form["randomASelect"] == "true",
-                "QandA":        quiz,
+                "randomize_questions": request.form["randomQSelect"] == "true",
+                "randomize_answers":   request.form["randomASelect"] == "true",
+                "q_and_a":        quiz,
             }
         )
     except Exception as e:
@@ -222,28 +223,28 @@ def save_quiz():
         quiz = json.dumps(quiz)  # convert object to json text
         resp = g.api.quizzes_post(
             {
-                "curQuestion":  "-1",
+                "cur_question":  "-1",
                 "creator":      creator,
                 "pin":          pin,
-                "playUrl":      "/" + pin,
+                "play_url":      "/" + pin,
                 "name":         request.form["name"],
                 "description":  request.form["description"],
                 "generator":    request.form["generator"],
-                "topicFormat":  request.form["topicFormatSelect"],
-                "answerFormat": request.form["answerFormatSelect"],
+                "topic_format":  request.form["topicFormatSelect"],
+                "answer_format": request.form["answerFormatSelect"],
                 "topic":        topic,
-                "numQuestions": numQuestions,
-                "numAnswers":   numAnswers,
+                "num_questions": numQuestions,
+                "num_answers":   numAnswers,
                 "difficulty":   difficulty,
                 "temperature":  temperature,
-                "timeLimit":    request.form["timeLimit"],
-                "sync":         request.form["syncSelect"] == "true",
-                "anon":         request.form["anonSelect"] == "true",
+                "time_limit":    request.form["timeLimit"],
+                "synchronous":  request.form["syncSelect"] == "true",
+                "anonymous":    request.form["anonSelect"] == "true",
                 "survey":       request.form["surveySelect"] == "true",
-                "randomQ":      request.form["randomQSelect"] == "true",
-                "randomA":      request.form["randomASelect"] == "true",
-                "QandA":        quiz,
-                "runCount":     "0",
+                "randomize_questions": request.form["randomQSelect"] == "true",
+                "randomize_answers":   request.form["randomASelect"] == "true",
+                "q_and_a":        quiz,
+                "run_count":     "0",
             }
         )
 
@@ -298,8 +299,8 @@ def webapp_view_quiz():
         log(f"Exception when fetching quizzes {quiz_id}: {e}", severity="ERROR")
         return render_template("errors/403.html"), 403
 
-    qa = json.loads(quiz_instance.qand_a)
-    questions = json.dumps(json.loads(quiz_instance.qand_a), indent=2)
+    qa = json.loads(quiz_instance.q_and_a)
+    questions = json.dumps(json.loads(quiz_instance.q_and_a), indent=2)
     return render_template("view-quiz.html", creator=creator, user_is_admin=user_is_admin, quiz=quiz_instance, qa=qa, questions=questions)
 
 @quizzes_bp.route("/<int:pin>", methods=["GET"])

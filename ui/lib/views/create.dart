@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:provider/provider.dart';
 
-enum Synch { synchronous, asynchronous }
+enum Synchronous { synchronous, asynchronous }
 
-enum Anon { anonymous, authenticated }
+enum Anonymous { anonymous, authenticated }
 
 enum ActivityType { quiz, survey }
 
@@ -16,6 +16,7 @@ class CreatePage extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+int _typeListKey = 0;
 int _topicListKey = 0;
 
 class _CreatePageState extends State<CreatePage> {
@@ -28,6 +29,15 @@ class _CreatePageState extends State<CreatePage> {
     for (var generator in appState.generators) {
       if (generator.name == appState.selectedGenerator) {
         return generator.topicList;
+      }
+    }
+    return [];
+  }
+
+  List<String> getSelectedGeneratorsTypeList(appState) {
+    for (var generator in appState.generators) {
+      if (generator.name == appState.selectedGenerator) {
+        return generator.typeList;
       }
     }
     return [];
@@ -61,25 +71,107 @@ class _CreatePageState extends State<CreatePage> {
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold)),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: TextFormField(
-                        initialValue: appState.selectedQuizName,
-                        onChanged: (value) => setState(() {
-                          appState.selectedQuizName = value.toString();
-                        }),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Quiz name',
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(padding),
+                          child: SizedBox(
+                            width: columnWidth,
+                            height: rowHeight,
+                            child: TextFormField(
+                              initialValue: appState.selectedQuizName,
+                              onChanged: (value) => setState(() {
+                                appState.selectedQuizName = value.toString();
+                              }),
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Quiz name',
+                              ),
+                              // The validator receives the text that the user has entered.
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Missing quiz name';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
                         ),
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Missing quiz name';
-                          }
-                          return null;
-                        },
-                      ),
+                        if (appState.selectedGenerator == '')
+                          Row(children: [
+                            SizedBox(width: 16),
+                            SizedBox(
+                              width: columnWidth,
+                              child: Text(
+                                  'Select generator to choose quiz type',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ])
+                        else if (getSelectedGeneratorsTypeList(appState)
+                                .length ==
+                            1)
+                          Row(children: [
+                            SizedBox(width: 16),
+                            DropdownMenu<String>(
+                                key: ValueKey(_typeListKey),
+                                initialSelection: appState.selectedQuizType,
+                                onSelected: (value) => setState(() {
+                                      appState.selectedQuizType =
+                                          value.toString();
+                                    }),
+                                width: columnWidth,
+                                label: const Text('Quiz Type'),
+                                dropdownMenuEntries: [
+                                  for (var type
+                                      in getSelectedGeneratorsTypeList(
+                                          appState))
+                                    DropdownMenuEntry(
+                                      label: type,
+                                      value: type,
+                                    ),
+                                ]),
+                          ])
+                        else if (getSelectedGeneratorsTypeList(appState)
+                                .length >
+                            1)
+                          Row(children: [
+                            SizedBox(width: 16),
+                            DropdownMenu<String>(
+                                key: ValueKey(_typeListKey),
+                                initialSelection: appState.selectedQuizType,
+                                onSelected: (value) => setState(() {
+                                      appState.selectedQuizType =
+                                          value.toString();
+                                    }),
+                                width: columnWidth,
+                                label: const Text('Quiz Type'),
+                                dropdownMenuEntries: [
+                                  for (var type
+                                      in getSelectedGeneratorsTypeList(
+                                          appState))
+                                    DropdownMenuEntry(
+                                      label: type,
+                                      value: type,
+                                    ),
+                                ]),
+                          ])
+                        else
+                          Row(children: [
+                            SizedBox(width: 16),
+                            SizedBox(
+                              width: columnWidth,
+                              child: Text(
+                                  'No quiz types available for ${appState.selectedGenerator}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ]),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.all(padding),
@@ -112,7 +204,7 @@ class _CreatePageState extends State<CreatePage> {
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold)),
-                              )
+                              ),
                             ])
                           else if (getSelectedGeneratorsTopicList(appState)
                               .isNotEmpty)
@@ -129,7 +221,7 @@ class _CreatePageState extends State<CreatePage> {
                                   label: const Text('Quiz Topic'),
                                   dropdownMenuEntries: [
                                     for (var topic
-                                        in getSelectedGeneratorsTopicList(
+                                        in getSelectedGeneratorsTypeList(
                                             appState))
                                       DropdownMenuEntry(
                                         label: topic,

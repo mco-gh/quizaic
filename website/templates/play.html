@@ -158,7 +158,7 @@
         link.media = "screen,print";
         document.getElementsByTagName("head")[0].appendChild(link);
     </script>
-    <script src="/static/play.js" data-quizid="{{ quiz.id }}" data-name="{{ name }}" data-timelimit="{{ quiz.time_limit }}" data-qanda="{{ quiz.qand_a }}" data-sync="{{ quiz.sync }}" data-survey="{{ quiz.survey }}" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
+    <script src="/static/play.js" data-quizid="{{ quiz.id }}" data-name="{{ name }}" data-timelimit="{{ quiz.time_limit }}" data-qanda="{{ quiz.q_and_a }}" data-sync="{{ quiz.synchronous }}" data-survey="{{ quiz.survey }}" type="text/javascript" nonce="{{ g.csp_nonce }}"></script>
 
 {% endif %}
 {% endblock %}

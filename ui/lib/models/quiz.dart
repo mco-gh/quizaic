@@ -1,8 +1,8 @@
 class Quiz {
   // provided by quiz creator (in order of appearance on create quiz form)
   final String name;
-  final String answerFormat;
   final String generator;
+  final String answerFormat;
   final String topic;
   final String numQuestions;
   final String difficulty;
@@ -13,7 +13,7 @@ class Quiz {
   final String? timeCreated;
   final String? updated;
 
-  //. managed by backend api (in alphabetical order)
+  // managed by backend api (in alphabetical order)
   final bool? active;
   final bool? anonymous;
   final String? creator;
@@ -22,7 +22,6 @@ class Quiz {
   final String? pin;
   final String? playUrl;
   final String? qAndA;
-  final String? results;
   final String? runCount;
   final String? temperature; // surface to quiz creator?
 
@@ -33,16 +32,15 @@ class Quiz {
   final bool? synchronous;
   final String? timeLimit;
 
-  // obsolete?
+  // Obsolete?
   final String? description;
   final String? numAnswers;
-  final String? topicFormat;
 
   const Quiz({
     // provided by quiz creator (in order of appearance on create quiz form)
     required this.name,
-    required this.answerFormat,
     required this.generator,
+    required this.answerFormat,
     required this.topic,
     required this.numQuestions,
     required this.difficulty,
@@ -62,7 +60,6 @@ class Quiz {
     this.pin,
     this.playUrl,
     this.qAndA,
-    this.results,
     this.runCount,
     this.temperature,
 
@@ -73,18 +70,17 @@ class Quiz {
     this.synchronous,
     this.timeLimit,
 
-    // obsolete?
+    // Obsolete?
     this.description,
     this.numAnswers,
-    this.topicFormat,
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
     return Quiz(
       // provided by quiz creator (in order of appearance on create quiz form)
       name: json['name'],
-      answerFormat: json['answerFormat'],
       generator: json['generator'],
+      answerFormat: json['answerFormat'],
       topic: json['topic'],
       numQuestions: json['numQuestions'],
       difficulty: json['difficulty'],
@@ -97,28 +93,26 @@ class Quiz {
 
       //. managed by backend api (in alphabetical order)
       active: json['active'],
-      anonymous: json['anon'],
+      anonymous: json['anonymous'],
       creator: json['creator'],
       curQuestion: json['curQuestion'],
       imageUrl: json['imageUrl'],
       pin: json['pin'],
       playUrl: json['playUrl'],
-      qAndA: json['QandA'],
-      results: json['results'],
+      qAndA: json['qAndA'],
       runCount: json['runCount'],
       temperature: json['temperature'],
 
       // quiz runtime settings (in alphabetical order)
-      randomizeQuestions: json['randomQ'],
-      randomizeAnswers: json['randomA'],
+      randomizeQuestions: json['randomizeQuestions'],
+      randomizeAnswers: json['randomizeAnswers'],
       survey: json['survey'],
-      synchronous: json['sync'],
+      synchronous: json['synchronous'],
       timeLimit: json['timeLimit'],
 
-      // obsolete?
+      // Obsolete?
       description: json['description'],
       numAnswers: json['numAnswers'],
-      topicFormat: json['topicFormat'],
     );
   }
 }

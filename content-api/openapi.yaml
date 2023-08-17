@@ -555,110 +555,36 @@ components:
       required:
       - name
       properties:
-        curQuestion:
-          type: string
-          nullable: true
-          description: current question number for active quiz or -1 for inactive 
-          default: "-1"
-        id:
-          type: string
-          readOnly: true
-          description: unique, system-assigned identifier
-        pin:
-          type: string
-          nullable: true
-          description: pin code for playing this quiz
-        playUrl:
-          type: string
-          nullable: true
-          description: URL for playing this quiz
+        # provided by quiz creator
         name:
           type: string
           description: the display name of this quiz
-        description:
-          type: string
-          description: a short description of the quiz
         generator:
           type: string 
           description: quiz generator type
-        topicFormat:
-          type: string 
-          description: topic input ("freeform" or "multiple-choice")
         answerFormat:
           type: string 
           description: response input ("freeform" or "multiple-choice")
         topic:
           type: string
-          nullable: true
           description: the topic of this quiz
-        imageUrl:
-          type: string
-          description: string containing URL of an image to display for this quiz
-          nullable: true
-          default: ""
         numQuestions:
           type: string
           description: number of questions included in this quiz
-          default: "10"
-        numAnswers:
-          type: string
-          description: number of answers for each question in this quiz (1 == free form)
-          default: "4"
-        timeLimit:
-          type: string
-          description: number of seconds to respond to each question in this quiz (3-300)
-          default: "30"
         difficulty:
           type: string 
           description: integer level of difficulty (1-5)
-          default: "3"
-        temperature:
-          type: string 
-          description: generator temperature (0-1.0)
-          default: ".5"
-        sync:
-          type: boolean
-          description: is this quiz synchronous (false == asynchronous)
-          nullable: true
-          default: true
-        anon:
-          type: boolean
-          description: whether players may be anonymous
-          nullable: true
-          default: true
-        randomQ:
-          type: boolean
-          description: whether to present questions in random order
-          nullable: true
-          default: true
-        randomA:
-          type: boolean
-          description: whether to present answers in random order
-          nullable: true
-          default: true
-        survey:
-          type: boolean
-          description: whether this quiz is an info gathering survey
-          nullable: true
-          default: false
-        QandA:
-          type: string 
-          nullable: true
-          description: json string representation of questions, correct answers, and options
-        creator:
+
+        # managed by firestore (in alphabetical order)
+        id:
           type: string
-          nullable: true
-          description: the identity of the quiz creator
-        active:
-          type: boolean
-          description: is this quiz currently being played?
-          nullable: true
-          default: false
-        runCount:
+          readOnly: true
+          description: unique, system-assigned identifier
+        selfLink:
           type: string
-          description: number of times quiz has been run
-          nullable: true
-          default: "0"
+          format: uri
+          readOnly: true
+          description: full URI of the resource
         timeCreated:
           type: string
           format: date-time
@@ -669,11 +595,85 @@ components:
           format: date-time
           readOnly: true
           description: system-assigned update timestamp
-        selfLink:
+
+        # managed by backend api (in alphabetical order) 
+        active:
+          type: boolean
+          description: is this quiz currently being played?
+          nullable: true
+          default: false
+        anonymous:
+          type: boolean
+          description: whether players may be anonymous
+          nullable: true
+        creator:
           type: string
-          format: uri
-          readOnly: true
-          description: full URI of the resource
+          nullable: true
+          description: the identity of the quiz creator
+        curQuestion:
+          type: string
+          nullable: true
+          description: current question number for active quiz or -1 for inactive 
+          default: "-1"
+        imageUrl:
+          type: string
+          description: string containing URL of an image to display for this quiz
+          nullable: true
+        pin:
+          type: string
+          nullable: true
+          description: pin code for playing this quiz
+        playUrl:
+          type: string
+          nullable: true
+          description: URL for playing this quiz
+        qAndA:
+          type: string 
+          nullable: true
+          description: json string representation of questions, correct answers, and options
+        runCount:
+          type: string
+          description: number of times quiz has been run
+          nullable: true
+          default: "0"
+        temperature:
+          type: string 
+          description: generator temperature (0-1.0)
+          default: ".5"
+
+        # quiz runtime settings (in alphabetical order)
+        randomizeQuestions:
+          type: boolean
+          description: whether to present questions in random order
+          nullable: true
+          default: true
+        randomizeAnswers:
+          type: boolean
+          description: whether to present answers in random order
+          nullable: true
+          default: true
+        survey:
+          type: boolean
+          description: whether this quiz is an info gathering survey
+          nullable: true
+          default: false
+        synchronous:
+          type: boolean
+          description: is this quiz synchronous (false == asynchronous)
+          nullable: true
+          default: true
+        timeLimit:
+          type: string
+          description: number of seconds to respond to each question in this quiz (3-300)
+
+        # Obsolete?
+        description:
+          type: string
+          description: a short description of the quiz
+        numAnswers:
+          type: string
+          description: number of answers for each question in this quiz (1 == free form)
+          default: "4"
 
     Results:
       properties:
@@ -707,11 +707,12 @@ components:
         name:
           type: string
           description: the display name of this generator
-        freeform:
-          type: boolean
-          description: whether this generator supports free-form answers
-          default: false
-        topic_list:
+        answer_formats:
+          type: array
+          description: array of quiz types supported by this generator
+          items: 
+            type: string
+        topics:
           type: array
           description: array of topics supported by this generator (empty == unlimited)
           items: 

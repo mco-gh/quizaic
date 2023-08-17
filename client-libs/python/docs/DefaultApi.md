@@ -669,9 +669,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     id = "id_example" # str | Generator Id
     generator = Generator(
         name="name_example",
-        freeform=False,
-        topic_list=[
-            "topic_list_example",
+        answer_formats=[
+            "answer_formats_example",
+        ],
+        topics=[
+            "topics_example",
         ],
     ) # Generator | JSON representation of a single generator
 
@@ -753,9 +755,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     generator = Generator(
         name="name_example",
-        freeform=False,
-        topic_list=[
-            "topic_list_example",
+        answer_formats=[
+            "answer_formats_example",
+        ],
+        topics=[
+            "topics_example",
         ],
     ) # Generator | JSON representation of a single generator
 
@@ -1057,30 +1061,29 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     id = "id_example" # str | Quiz Id
     quiz = Quiz(
-        cur_question="-1",
-        pin="pin_example",
-        play_url="play_url_example",
         name="name_example",
-        description="description_example",
         generator="generator_example",
-        topic_format="topic_format_example",
         answer_format="answer_format_example",
         topic="topic_example",
-        image_url="",
-        num_questions="10",
-        num_answers="4",
-        time_limit="30",
-        difficulty="3",
-        temperature=".5",
-        sync=True,
-        anon=True,
-        random_q=True,
-        random_a=True,
-        survey=False,
-        qand_a="qand_a_example",
-        creator="creator_example",
+        num_questions="num_questions_example",
+        difficulty="difficulty_example",
         active=False,
+        anonymous=True,
+        creator="creator_example",
+        cur_question="-1",
+        image_url="image_url_example",
+        pin="pin_example",
+        play_url="play_url_example",
+        q_and_a="q_and_a_example",
         run_count="0",
+        temperature=".5",
+        randomize_questions=True,
+        randomize_answers=True,
+        survey=False,
+        synchronous=True,
+        time_limit="time_limit_example",
+        description="description_example",
+        num_answers="4",
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set
@@ -1160,30 +1163,29 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     quiz = Quiz(
-        cur_question="-1",
-        pin="pin_example",
-        play_url="play_url_example",
         name="name_example",
-        description="description_example",
         generator="generator_example",
-        topic_format="topic_format_example",
         answer_format="answer_format_example",
         topic="topic_example",
-        image_url="",
-        num_questions="10",
-        num_answers="4",
-        time_limit="30",
-        difficulty="3",
-        temperature=".5",
-        sync=True,
-        anon=True,
-        random_q=True,
-        random_a=True,
-        survey=False,
-        qand_a="qand_a_example",
-        creator="creator_example",
+        num_questions="num_questions_example",
+        difficulty="difficulty_example",
         active=False,
+        anonymous=True,
+        creator="creator_example",
+        cur_question="-1",
+        image_url="image_url_example",
+        pin="pin_example",
+        play_url="play_url_example",
+        q_and_a="q_and_a_example",
         run_count="0",
+        temperature=".5",
+        randomize_questions=True,
+        randomize_answers=True,
+        survey=False,
+        synchronous=True,
+        time_limit="time_limit_example",
+        description="description_example",
+        num_answers="4",
     ) # Quiz | JSON representation of a single quiz
 
     # example passing only required values which don't have defaults set

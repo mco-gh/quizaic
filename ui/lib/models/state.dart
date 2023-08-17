@@ -19,6 +19,7 @@ class MyAppState extends ChangeNotifier {
   String selectedQuizName = '';
   String selectedAnswerFormat = '';
   String selectedGenerator = '';
+  String selectedQuizType = '';
   String selectedTopic = '';
   int? selectedNumQuestions;
   String selectedDifficulty = '';

@@ -31,7 +31,6 @@ resource_fields = {
         "name",
         "description",
         "generator",
-        "topicFormat",
         "answerFormat",
         "topic",
         "imageUrl",
@@ -40,18 +39,17 @@ resource_fields = {
         "timeLimit",
         "difficulty",
         "temperature",
-        "sync",
-        "anon",
-        "randomQ",
-        "randomA",
+        "synchronous",
+        "anonymous",
+        "randomizeQuestions",
+        "randomizeAnswers",
         "survey",
-        "QandA",
+        "qAndA",
         "runCount",
         "active",
-        "results",
     ],
     "results": ["quiz", "player", "answers"],
-    "generators": ["name", "topic_list"],
+    "generators": ["name", "answerFormats", "topics"],
 }
 
 
@@ -135,9 +133,7 @@ def insert(resource_kind, representation):
     if not auth.allowed("POST", resource_kind, representation):
         return "Forbidden", 403
 
-    resource = db.insert(
-        resource_kind, representation, resource_fields[resource_kind]
-    )
+    resource = db.insert(resource_kind, representation, resource_fields[resource_kind])
 
     return (
         json.dumps(resource),

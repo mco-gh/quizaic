@@ -82,33 +82,32 @@ class Quiz(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
-            'cur_question': (str, none_type,),  # noqa: E501
-            'id': (str,),  # noqa: E501
-            'pin': (str, none_type,),  # noqa: E501
-            'play_url': (str, none_type,),  # noqa: E501
-            'description': (str,),  # noqa: E501
             'generator': (str,),  # noqa: E501
-            'topic_format': (str,),  # noqa: E501
             'answer_format': (str,),  # noqa: E501
-            'topic': (str, none_type,),  # noqa: E501
-            'image_url': (str, none_type,),  # noqa: E501
+            'topic': (str,),  # noqa: E501
             'num_questions': (str,),  # noqa: E501
-            'num_answers': (str,),  # noqa: E501
-            'time_limit': (str,),  # noqa: E501
             'difficulty': (str,),  # noqa: E501
-            'temperature': (str,),  # noqa: E501
-            'sync': (bool, none_type,),  # noqa: E501
-            'anon': (bool, none_type,),  # noqa: E501
-            'random_q': (bool, none_type,),  # noqa: E501
-            'random_a': (bool, none_type,),  # noqa: E501
-            'survey': (bool, none_type,),  # noqa: E501
-            'qand_a': (str, none_type,),  # noqa: E501
-            'creator': (str, none_type,),  # noqa: E501
-            'active': (bool, none_type,),  # noqa: E501
-            'run_count': (str, none_type,),  # noqa: E501
+            'id': (str,),  # noqa: E501
+            'self_link': (str,),  # noqa: E501
             'time_created': (datetime,),  # noqa: E501
             'updated': (datetime,),  # noqa: E501
-            'self_link': (str,),  # noqa: E501
+            'active': (bool, none_type,),  # noqa: E501
+            'anonymous': (bool, none_type,),  # noqa: E501
+            'creator': (str, none_type,),  # noqa: E501
+            'cur_question': (str, none_type,),  # noqa: E501
+            'image_url': (str, none_type,),  # noqa: E501
+            'pin': (str, none_type,),  # noqa: E501
+            'play_url': (str, none_type,),  # noqa: E501
+            'q_and_a': (str, none_type,),  # noqa: E501
+            'run_count': (str, none_type,),  # noqa: E501
+            'temperature': (str,),  # noqa: E501
+            'randomize_questions': (bool, none_type,),  # noqa: E501
+            'randomize_answers': (bool, none_type,),  # noqa: E501
+            'survey': (bool, none_type,),  # noqa: E501
+            'synchronous': (bool, none_type,),  # noqa: E501
+            'time_limit': (str,),  # noqa: E501
+            'description': (str,),  # noqa: E501
+            'num_answers': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -118,40 +117,39 @@ class Quiz(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'cur_question': 'curQuestion',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'pin': 'pin',  # noqa: E501
-        'play_url': 'playUrl',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'generator': 'generator',  # noqa: E501
-        'topic_format': 'topicFormat',  # noqa: E501
         'answer_format': 'answerFormat',  # noqa: E501
         'topic': 'topic',  # noqa: E501
-        'image_url': 'imageUrl',  # noqa: E501
         'num_questions': 'numQuestions',  # noqa: E501
-        'num_answers': 'numAnswers',  # noqa: E501
-        'time_limit': 'timeLimit',  # noqa: E501
         'difficulty': 'difficulty',  # noqa: E501
-        'temperature': 'temperature',  # noqa: E501
-        'sync': 'sync',  # noqa: E501
-        'anon': 'anon',  # noqa: E501
-        'random_q': 'randomQ',  # noqa: E501
-        'random_a': 'randomA',  # noqa: E501
-        'survey': 'survey',  # noqa: E501
-        'qand_a': 'QandA',  # noqa: E501
-        'creator': 'creator',  # noqa: E501
-        'active': 'active',  # noqa: E501
-        'run_count': 'runCount',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'self_link': 'selfLink',  # noqa: E501
         'time_created': 'timeCreated',  # noqa: E501
         'updated': 'updated',  # noqa: E501
-        'self_link': 'selfLink',  # noqa: E501
+        'active': 'active',  # noqa: E501
+        'anonymous': 'anonymous',  # noqa: E501
+        'creator': 'creator',  # noqa: E501
+        'cur_question': 'curQuestion',  # noqa: E501
+        'image_url': 'imageUrl',  # noqa: E501
+        'pin': 'pin',  # noqa: E501
+        'play_url': 'playUrl',  # noqa: E501
+        'q_and_a': 'qAndA',  # noqa: E501
+        'run_count': 'runCount',  # noqa: E501
+        'temperature': 'temperature',  # noqa: E501
+        'randomize_questions': 'randomizeQuestions',  # noqa: E501
+        'randomize_answers': 'randomizeAnswers',  # noqa: E501
+        'survey': 'survey',  # noqa: E501
+        'synchronous': 'synchronous',  # noqa: E501
+        'time_limit': 'timeLimit',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'num_answers': 'numAnswers',  # noqa: E501
     }
 
     read_only_vars = {
         'id',  # noqa: E501
+        'self_link',  # noqa: E501
         'time_created',  # noqa: E501
         'updated',  # noqa: E501
-        'self_link',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -195,33 +193,32 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cur_question (str, none_type): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
-            id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
-            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
-            description (str): a short description of the quiz. [optional]  # noqa: E501
             generator (str): quiz generator type. [optional]  # noqa: E501
-            topic_format (str): topic input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
             answer_format (str): response input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
-            topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
-            image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
-            num_questions (str): number of questions included in this quiz. [optional] if omitted the server will use the default value of "10"  # noqa: E501
-            num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
-            time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
-            difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
-            temperature (str): generator temperature (0-1.0). [optional] if omitted the server will use the default value of ".5"  # noqa: E501
-            sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
-            anon (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
-            random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
-            random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
-            survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
-            qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
-            creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
-            active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
-            run_count (str, none_type): number of times quiz has been run. [optional] if omitted the server will use the default value of "0"  # noqa: E501
+            topic (str): the topic of this quiz. [optional]  # noqa: E501
+            num_questions (str): number of questions included in this quiz. [optional]  # noqa: E501
+            difficulty (str): integer level of difficulty (1-5). [optional]  # noqa: E501
+            id (str): unique, system-assigned identifier. [optional]  # noqa: E501
+            self_link (str): full URI of the resource. [optional]  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
-            self_link (str): full URI of the resource. [optional]  # noqa: E501
+            active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
+            anonymous (bool, none_type): whether players may be anonymous. [optional]  # noqa: E501
+            creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
+            cur_question (str, none_type): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
+            image_url (str, none_type): string containing URL of an image to display for this quiz. [optional]  # noqa: E501
+            pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
+            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
+            q_and_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
+            run_count (str, none_type): number of times quiz has been run. [optional] if omitted the server will use the default value of "0"  # noqa: E501
+            temperature (str): generator temperature (0-1.0). [optional] if omitted the server will use the default value of ".5"  # noqa: E501
+            randomize_questions (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            randomize_answers (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
+            synchronous (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
+            time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
+            description (str): a short description of the quiz. [optional]  # noqa: E501
+            num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -307,33 +304,32 @@ class Quiz(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cur_question (str, none_type): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
-            id (str): unique, system-assigned identifier. [optional]  # noqa: E501
-            pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
-            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
-            description (str): a short description of the quiz. [optional]  # noqa: E501
             generator (str): quiz generator type. [optional]  # noqa: E501
-            topic_format (str): topic input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
             answer_format (str): response input (\"freeform\" or \"multiple-choice\"). [optional]  # noqa: E501
-            topic (str, none_type): the topic of this quiz. [optional]  # noqa: E501
-            image_url (str, none_type): string containing URL of an image to display for this quiz. [optional] if omitted the server will use the default value of ""  # noqa: E501
-            num_questions (str): number of questions included in this quiz. [optional] if omitted the server will use the default value of "10"  # noqa: E501
-            num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
-            time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional] if omitted the server will use the default value of "30"  # noqa: E501
-            difficulty (str): integer level of difficulty (1-5). [optional] if omitted the server will use the default value of "3"  # noqa: E501
-            temperature (str): generator temperature (0-1.0). [optional] if omitted the server will use the default value of ".5"  # noqa: E501
-            sync (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
-            anon (bool, none_type): whether players may be anonymous. [optional] if omitted the server will use the default value of True  # noqa: E501
-            random_q (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
-            random_a (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
-            survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
-            qand_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
-            creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
-            active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
-            run_count (str, none_type): number of times quiz has been run. [optional] if omitted the server will use the default value of "0"  # noqa: E501
+            topic (str): the topic of this quiz. [optional]  # noqa: E501
+            num_questions (str): number of questions included in this quiz. [optional]  # noqa: E501
+            difficulty (str): integer level of difficulty (1-5). [optional]  # noqa: E501
+            id (str): unique, system-assigned identifier. [optional]  # noqa: E501
+            self_link (str): full URI of the resource. [optional]  # noqa: E501
             time_created (datetime): system-assigned creation timestamp. [optional]  # noqa: E501
             updated (datetime): system-assigned update timestamp. [optional]  # noqa: E501
-            self_link (str): full URI of the resource. [optional]  # noqa: E501
+            active (bool, none_type): is this quiz currently being played?. [optional] if omitted the server will use the default value of False  # noqa: E501
+            anonymous (bool, none_type): whether players may be anonymous. [optional]  # noqa: E501
+            creator (str, none_type): the identity of the quiz creator. [optional]  # noqa: E501
+            cur_question (str, none_type): current question number for active quiz or -1 for inactive. [optional] if omitted the server will use the default value of "-1"  # noqa: E501
+            image_url (str, none_type): string containing URL of an image to display for this quiz. [optional]  # noqa: E501
+            pin (str, none_type): pin code for playing this quiz. [optional]  # noqa: E501
+            play_url (str, none_type): URL for playing this quiz. [optional]  # noqa: E501
+            q_and_a (str, none_type): json string representation of questions, correct answers, and options. [optional]  # noqa: E501
+            run_count (str, none_type): number of times quiz has been run. [optional] if omitted the server will use the default value of "0"  # noqa: E501
+            temperature (str): generator temperature (0-1.0). [optional] if omitted the server will use the default value of ".5"  # noqa: E501
+            randomize_questions (bool, none_type): whether to present questions in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            randomize_answers (bool, none_type): whether to present answers in random order. [optional] if omitted the server will use the default value of True  # noqa: E501
+            survey (bool, none_type): whether this quiz is an info gathering survey. [optional] if omitted the server will use the default value of False  # noqa: E501
+            synchronous (bool, none_type): is this quiz synchronous (false == asynchronous). [optional] if omitted the server will use the default value of True  # noqa: E501
+            time_limit (str): number of seconds to respond to each question in this quiz (3-300). [optional]  # noqa: E501
+            description (str): a short description of the quiz. [optional]  # noqa: E501
+            num_answers (str): number of answers for each question in this quiz (1 == free form). [optional] if omitted the server will use the default value of "4"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
