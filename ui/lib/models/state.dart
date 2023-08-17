@@ -12,6 +12,8 @@ class MyAppState extends ChangeNotifier {
 
   var photoUrl = '';
   var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app';
+
+  String? idToken = '';
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
   String selectedQuizName = '';
@@ -65,11 +67,11 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> deleteQuiz(id) async {
-    final response = await http.post(Uri.parse('$apiUrl/quizzes/$id/delete'));
+    final response = await http.delete(Uri.parse('$apiUrl/quizzes/$id'),
+        headers: {'Authorization': "Bearer $idToken"});
 
     if (response.statusCode == 200) {
-      Iterable l = json.decode(response.body);
-      quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
+      print("Quiz id $id deleted.");
     } else {
       throw Exception('Failed to delete quiz $id');
     }

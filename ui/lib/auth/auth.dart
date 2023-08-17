@@ -71,9 +71,12 @@ class AuthPage extends StatelessWidget {
           );
         }
 
-        var idToken = FirebaseAuth.instance.currentUser?.getIdToken();
-        print('id token: $idToken}');
-        var user = FirebaseAuth.instance.currentUser;
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          user.getIdTokenResult().then((result) {
+            appState.idToken = result.token;
+          });
+        }
         if ((user != null) && (user.photoURL != null)) {
           appState.photoUrl = user.photoURL as String;
         }
