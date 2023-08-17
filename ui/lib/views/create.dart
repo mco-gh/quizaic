@@ -246,6 +246,7 @@ class _CreatePageState extends State<CreatePage> {
                                 const SnackBar(
                                     content: Text('Creating quiz...')),
                               );
+                              print('calling createQuiz(data)');
                             }
                           },
                           child: const Text('Submit'),
@@ -263,55 +264,3 @@ class _CreatePageState extends State<CreatePage> {
         });
   }
 }
-
-/*
-// The following form fields are quiz run-time, not create-time,
-// so they should be presented to the host when starting a quiz.
-const SizedBox(width: 22),
-SizedBox(
-width: 281,
-child: TextFormField(
-  decoration: const InputDecoration(
-    border: OutlineInputBorder(),
-    labelText: 'Seconds to respond',
-  ),
-  // The validator receives the text that the user has entered.
-  validator: (value) {
-    if (value == null || value.isEmpty) {
-      return 'Must be an integer greater than zero';
-    }
-    return null;
-  },
-),
-),
-const SizedBox(width: 20),
-DropdownMenu<YN>(
-  width: 181,
-  label: const Text('Randomize Questions'),
-  dropdownMenuEntries: [
-    DropdownMenuEntry(
-      label: 'Yes',
-      value: YN.yes,
-    ),
-    DropdownMenuEntry(
-      label: 'No',
-      value: YN.no,
-    ),
-  ],
-),
-const SizedBox(width: 20),
-DropdownMenu<YN>(
-  width: 181,
-  label: const Text('Randomize Answers'),
-  dropdownMenuEntries: [
-    DropdownMenuEntry(
-      label: 'Yes',
-      value: YN.yes,
-    ),
-    DropdownMenuEntry(
-      label: 'No',
-      value: YN.no,
-    ),
-  ],
-),
-*/

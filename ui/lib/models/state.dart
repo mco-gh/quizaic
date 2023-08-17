@@ -15,6 +15,7 @@ class MyAppState extends ChangeNotifier {
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
   String selectedQuizName = '';
+  String selectedAnswerFormat = '';
   String selectedGenerator = '';
   String selectedTopic = '';
   int? selectedNumQuestions;
@@ -26,7 +27,29 @@ class MyAppState extends ChangeNotifier {
   }
 
   createQuiz(id) async {
+    var quiz = Quiz(
+        name: selectedQuizName,
+        answerFormat: selectedAnswerFormat,
+        generator: selectedGenerator,
+        topic: selectedTopic,
+        numQuestions: selectedNumQuestions.toString(),
+        difficulty: selectedDifficulty,
+        qAndA: '');
+
+    final response = await http.post(
+      Uri.parse('$apiUrl/quizzes'),
+      body: quiz,
+    );
+
+    if (response.statusCode == 200) {
+      Iterable l = json.decode(response.body);
+      generators =
+          List<Generator>.from(l.map((model) => Generator.fromJson(model)));
+    } else {
+      throw Exception('Failed to create quiz');
+    }
     notifyListeners();
+    return generators;
   }
 
   cloneQuiz(quiz) async {

@@ -58,7 +58,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold)),
                                     Ink.image(
-                                      image: NetworkImage(quiz.imageUrl),
+                                      image:
+                                          NetworkImage(quiz.imageUrl as String),
                                       height: 220,
                                     ),
                                     Row(
