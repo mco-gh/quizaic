@@ -28,7 +28,7 @@ class MyAppState extends ChangeNotifier {
     futureFetchGenerators = fetchGenerators();
   }
 
-  createQuiz(id) async {
+  Future<bool> createQuiz(id) async {
     var quiz = Quiz(
         name: selectedQuizName,
         answerFormat: selectedAnswerFormat,
@@ -44,14 +44,12 @@ class MyAppState extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      Iterable l = json.decode(response.body);
-      generators =
-          List<Generator>.from(l.map((model) => Generator.fromJson(model)));
+      print("Quiz id $id deleted.");
     } else {
       throw Exception('Failed to create quiz');
     }
     notifyListeners();
-    return generators;
+    return true;
   }
 
   cloneQuiz(quiz) async {
