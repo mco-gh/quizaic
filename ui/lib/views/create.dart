@@ -17,6 +17,32 @@ class CreatePage extends StatefulWidget {
 
 final _formKey = GlobalKey<FormState>();
 int _answerFormatKey = 0;
+int _topicListKey = 0;
+const padding = 6.0;
+const columnWidth = 285.0;
+const rowHeight = 52.0;
+
+String? strValidator(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Missing value';
+  }
+  return null;
+}
+
+String? intValidator(String? value) {
+  debugPrint('value=$value');
+
+  if (value == null || value.isEmpty) {
+    return 'Missing value';
+  }
+  if (int.tryParse(value) == null) {
+    return 'Must be an integer';
+  }
+  if (int.parse(value) <= 0) {
+    return 'Must be an integer greater than zero';
+  }
+  return null;
+}
 
 class _CreatePageState extends State<CreatePage> {
   @override
@@ -24,93 +50,125 @@ class _CreatePageState extends State<CreatePage> {
     super.initState();
   }
 
-  String? strValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Missing value';
-    }
-    return null;
-  }
-
-  String? intValidator(String? value) {
-    debugPrint('value=$value');
-
-    if (value == null || value.isEmpty) {
-      return 'Missing value';
-    }
-    if (int.tryParse(value) == null) {
-      return 'Must be an integer';
-    }
-    if (int.parse(value) <= 0) {
-      return 'Must be an integer greater than zero';
-    }
-    return null;
-  }
-
-  Text genText(String text, {size = 14, weight = FontWeight.normal}) {
-    return Text(text,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: size, fontWeight: weight));
-  }
-
-  TextFormField genTextFormField(appState, label, validator) {
-    return TextFormField(
-      initialValue: appState.selectedQuizName,
-      onChanged: (value) => setState(() {
-        appState.selectedQuizName = value.toString();
-      }),
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: label,
-      ),
-      // The validator receives the text that the user has entered.
-      validator: validator,
-    );
-  }
-
-  List<String> getSelectedGeneratorsTopics(appState) {
-    for (var generator in appState.generators) {
-      if (generator.name == appState.selectedGenerator) {
-        return generator.topics;
-      }
-    }
-    return [];
-  }
-
-  List<String> getSelectedGeneratorsAnswerFormats(appState) {
-    for (var generator in appState.generators) {
-      if (generator.name == appState.selectedGenerator) {
-        return generator.answerFormats;
-      }
-    }
-    return [];
-  }
-
   @override
   Widget build(BuildContext context) {
     //var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     // Build a Form widget using the _formKey created
-    const padding = 6.0;
-    const columnWidth = 285.0;
-    const rowHeight = 52.0;
+
+    Text genText(String text, {size = 14, weight = FontWeight.normal}) {
+      return Text(text,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: size, fontWeight: weight));
+    }
+
+    TextFormField genTextFormField(label, validator) {
+      return TextFormField(
+        initialValue: appState.selectedQuizName,
+        onChanged: (value) => setState(() {
+          appState.selectedQuizName = value.toString();
+        }),
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: label,
+        ),
+        // The validator receives the text that the user has entered.
+        validator: validator,
+      );
+    }
+
+    DropdownMenu<String> genDropdownMenu(key, text, getter, setter) {
+      return DropdownMenu<String>(
+          key: ValueKey(key),
+          initialSelection: getter()[0],
+          onSelected: setter,
+          width: columnWidth,
+          label: genText(text),
+          dropdownMenuEntries: [
+            for (var type in getter())
+              DropdownMenuEntry(
+                label: type,
+                value: type,
+              ),
+          ]);
+    }
+
+    List<String> getGenerators() {
+      List<String> generatorNames = [];
+      for (var generator in appState.generators) {
+        generatorNames.add(generator.name);
+      }
+      return generatorNames;
+    }
+
+    void setGenerator(value) {
+      return setState(() {
+        appState.selectedGenerator = value.toString();
+        appState.selectedTopic = '';
+        _answerFormatKey++;
+        _topicListKey++;
+      });
+    }
+
+    List<String> getGeneratorTopics() {
+      for (var generator in appState.generators) {
+        if (generator.name == appState.selectedGenerator) {
+          return generator.topics;
+        }
+      }
+      return [];
+    }
+
+    void setGeneratorTopic(value) {
+      return setState(() {
+        appState.selectedTopic = value.toString();
+      });
+    }
+
+    List<String> getAnswerFormats() {
+      for (var generator in appState.generators) {
+        if (generator.name == appState.selectedGenerator) {
+          return generator.answerFormats;
+        }
+      }
+      return [];
+    }
+
+    void setAnswerFormat(value) {
+      return setState(() {
+        appState.selectedAnswerFormat = value.toString();
+      });
+    }
+
+    List<String> getDifficulties() {
+      return ['Trivial', 'Easy', 'Medium', 'Hard', 'Killer'];
+    }
+
+    void setDifficulty(value) {
+      return setState(() {
+        appState.selectedDifficulty = value.toString();
+      });
+    }
 
     return FutureBuilder(
         future: appState.futureFetchGenerators,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.isEmpty) {
-              return Text('No generators found.');
+              return genText('No generators found.');
             }
             return Form(
                 key: _formKey,
                 child: SizedBox(
                   width: 650,
                   child: ListView(children: [
+                    // Page title
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: genText('Create a New Quiz',
                           size: 24, weight: FontWeight.bold),
                     ),
+                    // Quiz Name and Generator
                     Row(
                       children: [
                         Padding(
@@ -118,33 +176,18 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genTextFormField(
-                                appState, 'Quiz Name', strValidator),
+                            child: genTextFormField('Quiz Name', strValidator),
                           ),
                         ),
                         SizedBox(width: 10),
                         Padding(
                           padding: const EdgeInsets.all(padding),
-                          child: DropdownMenu<String>(
-                            initialSelection: appState.selectedGenerator,
-                            onSelected: (value) => setState(() {
-                              appState.selectedGenerator = value.toString();
-                              appState.selectedTopic = '';
-                              _answerFormatKey++;
-                            }),
-                            width: columnWidth,
-                            label: genText('Quiz generator'),
-                            dropdownMenuEntries: [
-                              for (var generator in snapshot.data!)
-                                DropdownMenuEntry(
-                                  label: generator.name,
-                                  value: generator.name,
-                                ),
-                            ],
-                          ),
+                          child: genDropdownMenu(
+                              0, 'Quiz generator', getGenerators, setGenerator),
                         ),
                       ],
                     ),
+                    // Quiz Topic and Answer Format
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: Row(
@@ -156,27 +199,10 @@ class _CreatePageState extends State<CreatePage> {
                                   child: genText(
                                       'Select generator to choose topic')),
                             ])
-                          else if (getSelectedGeneratorsTopics(appState)
-                              .isNotEmpty)
+                          else if (getGeneratorTopics().isNotEmpty)
                             Row(children: [
-                              DropdownMenu<String>(
-                                  key: ValueKey(_answerFormatKey),
-                                  initialSelection: appState.selectedTopic,
-                                  onSelected: (value) => setState(() {
-                                        appState.selectedTopic =
-                                            value.toString();
-                                      }),
-                                  width: columnWidth,
-                                  label: genText('Quiz Topic'),
-                                  dropdownMenuEntries: [
-                                    for (var topic
-                                        in getSelectedGeneratorsTopics(
-                                            appState))
-                                      DropdownMenuEntry(
-                                        label: topic,
-                                        value: topic,
-                                      ),
-                                  ]),
+                              genDropdownMenu(_topicListKey, 'Quiz Topic',
+                                  getGeneratorTopics, setGeneratorTopic),
                             ])
                           else
                             Row(children: [
@@ -184,7 +210,7 @@ class _CreatePageState extends State<CreatePage> {
                                 width: columnWidth,
                                 height: rowHeight,
                                 child: genTextFormField(
-                                    appState, "Quiz Topic", strValidator),
+                                    "Quiz Topic", strValidator),
                               ),
                             ]),
                           if (appState.selectedGenerator == '')
@@ -196,61 +222,28 @@ class _CreatePageState extends State<CreatePage> {
                                     'Select generator to choose answer format'),
                               ),
                             ])
-                          else if (getSelectedGeneratorsAnswerFormats(appState)
-                                  .length ==
-                              1)
+                          else if (getAnswerFormats().length == 1)
                             Row(children: [
                               SizedBox(width: 16),
                               SizedBox(
                                 width: columnWidth,
-                                child: DropdownMenu<String>(
-                                    key: ValueKey(_answerFormatKey),
-                                    initialSelection:
-                                        getSelectedGeneratorsAnswerFormats(
-                                            appState)[0],
-                                    onSelected: (value) => setState(() {
-                                          appState.selectedAnswerFormat =
-                                              value.toString();
-                                        }),
-                                    width: columnWidth,
-                                    label: genText('Answer Format'),
-                                    dropdownMenuEntries: [
-                                      for (var type
-                                          in getSelectedGeneratorsAnswerFormats(
-                                              appState))
-                                        DropdownMenuEntry(
-                                          label: type,
-                                          value: type,
-                                        ),
-                                    ]),
+                                child: genDropdownMenu(
+                                    _answerFormatKey,
+                                    'Answer Format',
+                                    getAnswerFormats,
+                                    setAnswerFormat),
                               ),
                             ])
-                          else if (getSelectedGeneratorsAnswerFormats(appState)
-                                  .length >
-                              1)
+                          else if (getAnswerFormats().length > 1)
                             Row(children: [
                               SizedBox(width: 16),
                               SizedBox(
                                 width: columnWidth,
-                                child: DropdownMenu<String>(
-                                    key: ValueKey(_answerFormatKey),
-                                    initialSelection:
-                                        appState.selectedAnswerFormat,
-                                    onSelected: (value) => setState(() {
-                                          appState.selectedAnswerFormat =
-                                              value.toString();
-                                        }),
-                                    width: columnWidth,
-                                    label: genText('Answer Format'),
-                                    dropdownMenuEntries: [
-                                      for (var type
-                                          in getSelectedGeneratorsAnswerFormats(
-                                              appState))
-                                        DropdownMenuEntry(
-                                          label: type,
-                                          value: type,
-                                        ),
-                                    ]),
+                                child: genDropdownMenu(
+                                    _answerFormatKey,
+                                    'Answer Format',
+                                    getAnswerFormats,
+                                    setAnswerFormat),
                               ),
                             ])
                           else
@@ -258,17 +251,15 @@ class _CreatePageState extends State<CreatePage> {
                               SizedBox(width: 16),
                               SizedBox(
                                 width: columnWidth,
-                                child: Text(
-                                    'No quiz answer formats available for ${appState.selectedGenerator} generator',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold)),
+                                child: genText(
+                                  'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                                ),
                               ),
                             ]),
                         ],
                       ),
                     ),
+                    // Number of Questions and Difficulty Level
                     Row(
                       children: [
                         Padding(
@@ -277,7 +268,7 @@ class _CreatePageState extends State<CreatePage> {
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child: genTextFormField(appState,
+                              child: genTextFormField(
                                   'Number of Questions', intValidator),
                             ),
                           ),
@@ -285,39 +276,12 @@ class _CreatePageState extends State<CreatePage> {
                         SizedBox(width: 6),
                         Padding(
                           padding: const EdgeInsets.all(padding),
-                          child: DropdownMenu<String>(
-                            initialSelection: appState.selectedDifficulty,
-                            onSelected: (value) => setState(() {
-                              appState.selectedDifficulty = value.toString();
-                            }),
-                            width: columnWidth,
-                            label: const Text('Difficulty Level'),
-                            dropdownMenuEntries: [
-                              DropdownMenuEntry(
-                                label: 'Trivial',
-                                value: 'Trivial',
-                              ),
-                              DropdownMenuEntry(
-                                label: 'Easy',
-                                value: 'Easy',
-                              ),
-                              DropdownMenuEntry(
-                                label: 'Medium',
-                                value: 'Medium',
-                              ),
-                              DropdownMenuEntry(
-                                label: 'Hard',
-                                value: 'Hard',
-                              ),
-                              DropdownMenuEntry(
-                                label: 'Killer',
-                                value: 'Killer',
-                              ),
-                            ],
-                          ),
+                          child: genDropdownMenu(0, 'Difficulty Level',
+                              getDifficulties, setDifficulty),
                         ),
                       ],
                     ),
+                    // Submit button
                     SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(padding),
@@ -329,8 +293,7 @@ class _CreatePageState extends State<CreatePage> {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Creating quiz...')),
+                                SnackBar(content: genText('Creating quiz...')),
                               );
                               print('calling createQuiz(data)');
                             }
