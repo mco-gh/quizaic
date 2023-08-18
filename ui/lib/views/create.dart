@@ -19,7 +19,7 @@ final _formKey = GlobalKey<FormState>();
 int _answerFormatKey = 0;
 int _topicListKey = 0;
 const padding = 6.0;
-const columnWidth = 285.0;
+const columnWidth = 325.0;
 const rowHeight = 52.0;
 
 String? strValidator(String? value) {
@@ -52,14 +52,15 @@ class _CreatePageState extends State<CreatePage> {
 
   @override
   Widget build(BuildContext context) {
-    //var theme = Theme.of(context);
+    var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     // Build a Form widget using the _formKey created
 
     Text genText(String text, {size = 14, weight = FontWeight.normal}) {
       return Text(text,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: size, fontWeight: weight));
+          style: TextStyle(
+              fontSize: size, fontWeight: weight, color: theme.primaryColor));
     }
 
     TextFormField genTextFormField(label, validator) {
@@ -68,6 +69,7 @@ class _CreatePageState extends State<CreatePage> {
         onChanged: (value) => setState(() {
           appState.selectedQuizName = value.toString();
         }),
+        //style: TextStyle(color: theme.primaryColor),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: label,
@@ -78,9 +80,14 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     DropdownMenu<String> genDropdownMenu(key, text, getter, setter) {
+      var initialSelection = getter()[0];
+      if (text == "Quiz Generator") {
+        initialSelection = null;
+      }
       return DropdownMenu<String>(
+          //textStyle: TextStyle(color: theme.primaryColor),
           key: ValueKey(key),
-          initialSelection: getter()[0],
+          initialSelection: initialSelection,
           onSelected: setter,
           width: columnWidth,
           label: genText(text),
@@ -160,17 +167,19 @@ class _CreatePageState extends State<CreatePage> {
             return Form(
                 key: _formKey,
                 child: SizedBox(
-                  width: 650,
+                  width: 700,
                   child: ListView(children: [
                     // Page title
                     Padding(
-                      padding: const EdgeInsets.all(padding),
+                      padding: const EdgeInsets.all(padding * 3),
                       child: genText('Create a New Quiz',
-                          size: 24, weight: FontWeight.bold),
+                          size: 30, weight: FontWeight.bold),
                     ),
+
                     // Quiz Name and Generator
                     Row(
                       children: [
+                        // Quiz Name
                         Padding(
                           padding: const EdgeInsets.all(padding),
                           child: SizedBox(
@@ -179,108 +188,151 @@ class _CreatePageState extends State<CreatePage> {
                             child: genTextFormField('Quiz Name', strValidator),
                           ),
                         ),
-                        SizedBox(width: 10),
+
+                        // horizontal spacing
+                        SizedBox(width: 16),
+
+                        // Quiz Generator
                         Padding(
                           padding: const EdgeInsets.all(padding),
-                          child: genDropdownMenu(
-                              0, 'Quiz generator', getGenerators, setGenerator),
+                          child: SizedBox(
+                            width: columnWidth,
+                            height: rowHeight,
+                            child: genDropdownMenu(0, 'Quiz Generator',
+                                getGenerators, setGenerator),
+                          ),
                         ),
                       ],
                     ),
+
                     // Quiz Topic and Answer Format
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: Row(
-                        children: [
-                          if (appState.selectedGenerator == '')
-                            Row(children: [
-                              SizedBox(
-                                  width: columnWidth,
-                                  child: genText(
-                                      'Select generator to choose topic')),
-                            ])
-                          else if (getGeneratorTopics().isNotEmpty)
-                            Row(children: [
-                              genDropdownMenu(_topicListKey, 'Quiz Topic',
-                                  getGeneratorTopics, setGeneratorTopic),
-                            ])
-                          else
-                            Row(children: [
-                              SizedBox(
-                                width: columnWidth,
-                                height: rowHeight,
-                                child: genTextFormField(
-                                    "Quiz Topic", strValidator),
-                              ),
-                            ]),
-                          if (appState.selectedGenerator == '')
-                            Row(children: [
-                              SizedBox(width: 16),
-                              SizedBox(
-                                width: columnWidth,
-                                child: genText(
-                                    'Select generator to choose answer format'),
-                              ),
-                            ])
-                          else if (getAnswerFormats().length == 1)
-                            Row(children: [
-                              SizedBox(width: 16),
-                              SizedBox(
-                                width: columnWidth,
-                                child: genDropdownMenu(
-                                    _answerFormatKey,
-                                    'Answer Format',
-                                    getAnswerFormats,
-                                    setAnswerFormat),
-                              ),
-                            ])
-                          else if (getAnswerFormats().length > 1)
-                            Row(children: [
-                              SizedBox(width: 16),
-                              SizedBox(
-                                width: columnWidth,
-                                child: genDropdownMenu(
-                                    _answerFormatKey,
-                                    'Answer Format',
-                                    getAnswerFormats,
-                                    setAnswerFormat),
-                              ),
-                            ])
-                          else
-                            Row(children: [
-                              SizedBox(width: 16),
-                              SizedBox(
-                                width: columnWidth,
-                                child: genText(
-                                  'No quiz answer formats available for ${appState.selectedGenerator} generator',
-                                ),
-                              ),
-                            ]),
-                        ],
-                      ),
-                    ),
-                    // Number of Questions and Difficulty Level
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(padding),
-                          child: Align(
+                        // Quiz Topic
+                        if (appState.selectedGenerator == '')
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child: genTextFormField(
-                                  'Number of Questions', intValidator),
+                              child: genDropdownMenu(
+                                  _topicListKey,
+                                  'Quiz Topic',
+                                  () => ['Select generator to enter topic'],
+                                  setGeneratorTopic),
+                            ),
+                          )
+                        else if (getGeneratorTopics().isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              height: rowHeight,
+                              child: genDropdownMenu(
+                                  _topicListKey,
+                                  'Quiz Topic',
+                                  getGeneratorTopics,
+                                  setGeneratorTopic),
+                            ),
+                          )
+                        else
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              height: rowHeight,
+                              child:
+                                  genTextFormField("Quiz Topic", strValidator),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 6),
+
+                        // horizontal spacing
+                        SizedBox(width: 16),
+
+                        // Answer Format
+                        if (appState.selectedGenerator == '')
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              height: rowHeight,
+                              child: genDropdownMenu(
+                                  _answerFormatKey,
+                                  'Answer Format',
+                                  () => [
+                                        'Select generator to choose answer format'
+                                      ],
+                                  setAnswerFormat),
+                            ),
+                          )
+                        else if (getAnswerFormats().length == 1)
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              height: rowHeight,
+                              child: genDropdownMenu(
+                                  _answerFormatKey,
+                                  'Answer Format',
+                                  getAnswerFormats,
+                                  setAnswerFormat),
+                            ),
+                          )
+                        else if (getAnswerFormats().length > 1)
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              child: genDropdownMenu(
+                                  _answerFormatKey,
+                                  'Answer Format',
+                                  getAnswerFormats,
+                                  setAnswerFormat),
+                            ),
+                          )
+                        else
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              child: genText(
+                                'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                              ),
+                            ),
+                          )
+                      ],
+                    ),
+
+                    // Number of Questions and Difficulty Level
+                    Row(
+                      children: [
+                        // Number of Questions
                         Padding(
                           padding: const EdgeInsets.all(padding),
-                          child: genDropdownMenu(0, 'Difficulty Level',
-                              getDifficulties, setDifficulty),
+                          child: SizedBox(
+                            width: columnWidth,
+                            height: rowHeight,
+                            child: genTextFormField(
+                                'Number of Questions', intValidator),
+                          ),
+                        ),
+
+                        // horizontal spacing
+                        SizedBox(width: 16),
+
+                        // Difficulty Level
+                        Padding(
+                          padding: const EdgeInsets.all(padding),
+                          child: SizedBox(
+                            width: columnWidth,
+                            height: rowHeight,
+                            child: genDropdownMenu(0, 'Difficulty Level',
+                                getDifficulties, setDifficulty),
+                          ),
                         ),
                       ],
                     ),
+
                     // Submit button
                     SizedBox(height: 20),
                     Padding(
@@ -298,14 +350,14 @@ class _CreatePageState extends State<CreatePage> {
                               print('calling createQuiz(data)');
                             }
                           },
-                          child: const Text('Submit'),
+                          child: genText('Submit'),
                         ),
                       ),
                     ),
                   ]),
                 ));
           } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
+            return genText('${snapshot.error}');
           }
 
           // By default, show a loading spinner.
