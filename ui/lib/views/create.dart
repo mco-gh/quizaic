@@ -24,6 +24,49 @@ class _CreatePageState extends State<CreatePage> {
     super.initState();
   }
 
+  String? strValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Missing value';
+    }
+    return null;
+  }
+
+  String? intValidator(String? value) {
+    debugPrint('value=$value');
+
+    if (value == null || value.isEmpty) {
+      return 'Missing value';
+    }
+    if (int.tryParse(value) == null) {
+      return 'Must be an integer';
+    }
+    if (int.parse(value) <= 0) {
+      return 'Must be an integer greater than zero';
+    }
+    return null;
+  }
+
+  Text genText(String text, {size = 14, weight = FontWeight.normal}) {
+    return Text(text,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: size, fontWeight: weight));
+  }
+
+  TextFormField genTextFormField(appState, label, validator) {
+    return TextFormField(
+      initialValue: appState.selectedQuizName,
+      onChanged: (value) => setState(() {
+        appState.selectedQuizName = value.toString();
+      }),
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: label,
+      ),
+      // The validator receives the text that the user has entered.
+      validator: validator,
+    );
+  }
+
   List<String> getSelectedGeneratorsTopics(appState) {
     for (var generator in appState.generators) {
       if (generator.name == appState.selectedGenerator) {
@@ -65,10 +108,8 @@ class _CreatePageState extends State<CreatePage> {
                   child: ListView(children: [
                     Padding(
                       padding: const EdgeInsets.all(padding),
-                      child: Text('Create a New Quiz',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold)),
+                      child: genText('Create a New Quiz',
+                          size: 24, weight: FontWeight.bold),
                     ),
                     Row(
                       children: [
@@ -77,23 +118,8 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: TextFormField(
-                              initialValue: appState.selectedQuizName,
-                              onChanged: (value) => setState(() {
-                                appState.selectedQuizName = value.toString();
-                              }),
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Quiz name',
-                              ),
-                              // The validator receives the text that the user has entered.
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Missing quiz name';
-                                }
-                                return null;
-                              },
-                            ),
+                            child: genTextFormField(
+                                appState, 'Quiz Name', strValidator),
                           ),
                         ),
                         SizedBox(width: 10),
@@ -107,7 +133,7 @@ class _CreatePageState extends State<CreatePage> {
                               _answerFormatKey++;
                             }),
                             width: columnWidth,
-                            label: const Text('Quiz generator'),
+                            label: genText('Quiz generator'),
                             dropdownMenuEntries: [
                               for (var generator in snapshot.data!)
                                 DropdownMenuEntry(
@@ -126,13 +152,9 @@ class _CreatePageState extends State<CreatePage> {
                           if (appState.selectedGenerator == '')
                             Row(children: [
                               SizedBox(
-                                width: columnWidth,
-                                child: Text('Select generator to choose topic',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold)),
-                              ),
+                                  width: columnWidth,
+                                  child: genText(
+                                      'Select generator to choose topic')),
                             ])
                           else if (getSelectedGeneratorsTopics(appState)
                               .isNotEmpty)
@@ -145,7 +167,7 @@ class _CreatePageState extends State<CreatePage> {
                                             value.toString();
                                       }),
                                   width: columnWidth,
-                                  label: const Text('Quiz Topic'),
+                                  label: genText('Quiz Topic'),
                                   dropdownMenuEntries: [
                                     for (var topic
                                         in getSelectedGeneratorsTopics(
@@ -161,37 +183,17 @@ class _CreatePageState extends State<CreatePage> {
                               SizedBox(
                                 width: columnWidth,
                                 height: rowHeight,
-                                child: TextFormField(
-                                  key: ValueKey(_answerFormatKey),
-                                  initialValue: appState.selectedTopic,
-                                  onChanged: (value) => setState(() {
-                                    appState.selectedTopic = value.toString();
-                                  }),
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Quiz Topic',
-                                  ),
-                                  // The validator receives the text that the user has entered.
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Missing quiz topic';
-                                    }
-                                    return null;
-                                  },
-                                ),
+                                child: genTextFormField(
+                                    appState, "Quiz Topic", strValidator),
                               ),
                             ]),
                           if (appState.selectedGenerator == '')
                             Row(children: [
-                              SizedBox(width: 10),
+                              SizedBox(width: 16),
                               SizedBox(
                                 width: columnWidth,
-                                child: Text(
-                                    'Select generator to choose answer format',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold)),
+                                child: genText(
+                                    'Select generator to choose answer format'),
                               ),
                             ])
                           else if (getSelectedGeneratorsAnswerFormats(appState)
@@ -211,7 +213,7 @@ class _CreatePageState extends State<CreatePage> {
                                               value.toString();
                                         }),
                                     width: columnWidth,
-                                    label: const Text('Answer Format'),
+                                    label: genText('Answer Format'),
                                     dropdownMenuEntries: [
                                       for (var type
                                           in getSelectedGeneratorsAnswerFormats(
@@ -239,7 +241,7 @@ class _CreatePageState extends State<CreatePage> {
                                               value.toString();
                                         }),
                                     width: columnWidth,
-                                    label: const Text('Answer Format'),
+                                    label: genText('Answer Format'),
                                     dropdownMenuEntries: [
                                       for (var type
                                           in getSelectedGeneratorsAnswerFormats(
@@ -275,25 +277,8 @@ class _CreatePageState extends State<CreatePage> {
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child: TextFormField(
-                                initialValue:
-                                    appState.selectedNumQuestions?.toString(),
-                                onChanged: (value) => setState(() {
-                                  appState.selectedNumQuestions =
-                                      int.parse(value);
-                                }),
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Number of Questions',
-                                ),
-                                // The validator receives the text that the user has entered.
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Must be an integer greater than zero';
-                                  }
-                                  return null;
-                                },
-                              ),
+                              child: genTextFormField(appState,
+                                  'Number of Questions', intValidator),
                             ),
                           ),
                         ),
