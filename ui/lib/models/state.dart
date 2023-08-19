@@ -30,21 +30,23 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createQuiz() async {
-    var quiz = '''{
-            "name": "$selectedQuizName",
-            "answerFormat": "$selectedAnswerFormat",
-            "generator": "$selectedGenerator",
-            "topic": "$selectedTopic",
-            "numQuestions": "$selectedNumQuestions",
-            "difficulty": "$selectedDifficulty",
-            "qAndA": []
-      }''';
-    print('quiz: $quiz');
+    var quiz = jsonEncode(Quiz(
+        // provided by quiz creator (in order of appearance on create quiz form)
+        name: selectedQuizName,
+        generator: selectedGenerator,
+        answerFormat: selectedAnswerFormat,
+        topic: selectedTopic,
+        numQuestions: selectedNumQuestions,
+        difficulty: selectedDifficulty));
 
-    final response = await http.post(
-      Uri.parse('$apiUrl/quizzes'),
-      body: quiz,
-    );
+    print(quiz);
+
+    final response = await http.post(Uri.parse('$apiUrl/quizzes'),
+        body: quiz,
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': 'Bearer $idToken'
+        });
 
     if (response.statusCode == 200) {
       print("Quiz created.");

@@ -52,27 +52,27 @@ class Quiz {
     this.updated,
 
     //. managed by backend api (in alphabetical order)
-    this.active,
-    this.anonymous,
-    this.creator,
-    this.curQuestion,
-    this.imageUrl,
-    this.pin,
-    this.playUrl,
-    this.qAndA,
-    this.runCount,
-    this.temperature,
+    this.active = false,
+    this.anonymous = true,
+    this.creator = '',
+    this.curQuestion = '',
+    this.imageUrl = '',
+    this.pin = '',
+    this.playUrl = '',
+    this.qAndA = '',
+    this.runCount = '',
+    this.temperature = '',
 
     // quiz runtime settings (in alphabetical order)
-    this.randomizeQuestions,
-    this.randomizeAnswers,
-    this.survey,
-    this.synchronous,
-    this.timeLimit,
+    this.randomizeQuestions = true,
+    this.randomizeAnswers = true,
+    this.survey = false,
+    this.synchronous = true,
+    this.timeLimit = '',
 
     // Obsolete?
-    this.description,
-    this.numAnswers,
+    this.description = '',
+    this.numAnswers = '',
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
@@ -115,4 +115,34 @@ class Quiz {
       numAnswers: json['numAnswers'],
     );
   }
+
+  Map toJson() => {
+        'name': name,
+        'generator': generator,
+        'answerFormat': answerFormat,
+        'topic': topic,
+        'numQuestions': numQuestions,
+        'difficulty': difficulty,
+        'id': id,
+        'selfLink': selfLink,
+        'timeCreated': timeCreated,
+        'updated': updated,
+        'active': active,
+        'anonymous': anonymous,
+        'creator': creator,
+        'curQuestion': curQuestion,
+        'imageUrl': imageUrl,
+        'pin': pin,
+        'playUrl': playUrl,
+        'qAndA': qAndA,
+        'runCount': runCount,
+        'temperature': temperature,
+        'randomizeQuestions': randomizeQuestions,
+        'randomizeAnswers': randomizeAnswers,
+        'survey': survey,
+        'synchronous': synchronous,
+        'timeLimit': timeLimit,
+        'description': description,
+        'numAnswers': numAnswers,
+      };
 }
