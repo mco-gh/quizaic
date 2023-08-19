@@ -11,7 +11,8 @@ class MyAppState extends ChangeNotifier {
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
 
   var photoUrl = '';
-  var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app';
+  //var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app';
+  var apiUrl = 'http://localhost:8081';
 
   String? idToken = '';
   List<Quiz> quizzes = [];
@@ -20,7 +21,7 @@ class MyAppState extends ChangeNotifier {
   String selectedAnswerFormat = '';
   String selectedGenerator = '';
   String selectedTopic = '';
-  int? selectedNumQuestions;
+  String selectedNumQuestions = '';
   String selectedDifficulty = '';
 
   MyAppState() {
@@ -28,15 +29,15 @@ class MyAppState extends ChangeNotifier {
     futureFetchGenerators = fetchGenerators();
   }
 
-  void createQuiz() async {
+  Future<bool> createQuiz() async {
     var quiz = '''{
-            name: $selectedQuizName,
-            answerFormat: $selectedAnswerFormat,
-            generator: $selectedGenerator,
-            topic: $selectedTopic,
-            numQuestions: $selectedNumQuestions,
-            difficulty: $selectedDifficulty,
-            qAndA: '');
+            "name": "$selectedQuizName",
+            "answerFormat": "$selectedAnswerFormat",
+            "generator": "$selectedGenerator",
+            "topic": "$selectedTopic",
+            "numQuestions": "$selectedNumQuestions",
+            "difficulty": "$selectedDifficulty",
+            "qAndA": []
       }''';
     print('quiz: $quiz');
 
@@ -51,6 +52,7 @@ class MyAppState extends ChangeNotifier {
       throw Exception('Failed to create quiz');
     }
     notifyListeners();
+    return true;
   }
 
   cloneQuiz(quiz) async {

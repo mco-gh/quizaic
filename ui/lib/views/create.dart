@@ -18,6 +18,8 @@ class CreatePage extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 int _answerFormatKey = 0;
 int _topicListKey = 0;
+int _fooKey = 0;
+
 const padding = 6.0;
 const columnWidth = 325.0;
 const rowHeight = 52.0;
@@ -63,18 +65,16 @@ class _CreatePageState extends State<CreatePage> {
               fontSize: size, fontWeight: weight, color: theme.primaryColor));
     }
 
-    TextFormField genTextFormField(label, validator) {
+    TextFormField genTextFormField(label, validator, getter, setter) {
       return TextFormField(
-        initialValue: appState.selectedQuizName,
-        onChanged: (value) => setState(() {
-          appState.selectedQuizName = value.toString();
-        }),
         //style: TextStyle(color: theme.primaryColor),
+
+        initialValue: getter(),
+        onChanged: setter,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: label,
         ),
-        // The validator receives the text that the user has entered.
         validator: validator,
       );
     }
@@ -85,8 +85,9 @@ class _CreatePageState extends State<CreatePage> {
         initialSelection = null;
       }
       return DropdownMenu<String>(
-          //textStyle: TextStyle(color: theme.primaryColor),
+          textStyle: TextStyle(color: theme.primaryColor),
           key: ValueKey(key),
+          controller: TextEditingController(),
           initialSelection: initialSelection,
           onSelected: setter,
           width: columnWidth,
@@ -100,6 +101,16 @@ class _CreatePageState extends State<CreatePage> {
           ]);
     }
 
+    String getQuizName() {
+      return appState.selectedQuizName;
+    }
+
+    void setQuizName(value) {
+      return setState(() {
+        appState.selectedQuizName = value.toString();
+      });
+    }
+
     List<String> getGenerators() {
       List<String> generatorNames = [];
       for (var generator in appState.generators) {
@@ -109,7 +120,9 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     void setGenerator(value) {
+      appState.selectedGenerator = value.toString();
       return setState(() {
+        print('selecting generator: $value');
         appState.selectedGenerator = value.toString();
         appState.selectedTopic = '';
         _answerFormatKey++;
@@ -117,7 +130,7 @@ class _CreatePageState extends State<CreatePage> {
       });
     }
 
-    List<String> getGeneratorTopics() {
+    List<String> getTopics() {
       for (var generator in appState.generators) {
         if (generator.name == appState.selectedGenerator) {
           return generator.topics;
@@ -126,7 +139,11 @@ class _CreatePageState extends State<CreatePage> {
       return [];
     }
 
-    void setGeneratorTopic(value) {
+    String getTopic() {
+      return appState.selectedTopic;
+    }
+
+    void setTopic(value) {
       return setState(() {
         appState.selectedTopic = value.toString();
       });
@@ -144,6 +161,16 @@ class _CreatePageState extends State<CreatePage> {
     void setAnswerFormat(value) {
       return setState(() {
         appState.selectedAnswerFormat = value.toString();
+      });
+    }
+
+    String getNumQuestions() {
+      return appState.selectedNumQuestions;
+    }
+
+    void setNumQuestions(value) {
+      return setState(() {
+        appState.selectedNumQuestions = value.toString();
       });
     }
 
@@ -185,7 +212,8 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genTextFormField('Quiz Name', strValidator),
+                            child: genTextFormField('Quiz Name', strValidator,
+                                getQuizName, setQuizName),
                           ),
                         ),
 
@@ -198,7 +226,7 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genDropdownMenu(0, 'Quiz Generator',
+                            child: genDropdownMenu(_fooKey, 'Quiz Generator',
                                 getGenerators, setGenerator),
                           ),
                         ),
@@ -218,21 +246,18 @@ class _CreatePageState extends State<CreatePage> {
                               child: genDropdownMenu(
                                   _topicListKey,
                                   'Quiz Topic',
-                                  () => ['Select generator to enter topic'],
-                                  setGeneratorTopic),
+                                  () => ['Select generator to see topic(s)'],
+                                  setTopic),
                             ),
                           )
-                        else if (getGeneratorTopics().isNotEmpty)
+                        else if (getTopics().isNotEmpty)
                           Padding(
                             padding: const EdgeInsets.all(padding),
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child: genDropdownMenu(
-                                  _topicListKey,
-                                  'Quiz Topic',
-                                  getGeneratorTopics,
-                                  setGeneratorTopic),
+                              child: genDropdownMenu(_topicListKey,
+                                  'Quiz Topic', getTopics, setTopic),
                             ),
                           )
                         else
@@ -241,8 +266,8 @@ class _CreatePageState extends State<CreatePage> {
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child:
-                                  genTextFormField("Quiz Topic", strValidator),
+                              child: genTextFormField("Quiz Topic",
+                                  strValidator, getTopic, setTopic),
                             ),
                           ),
 
@@ -260,7 +285,7 @@ class _CreatePageState extends State<CreatePage> {
                                   _answerFormatKey,
                                   'Answer Format',
                                   () => [
-                                        'Select generator to choose answer format'
+                                        'Select generator to see answer format(s)'
                                       ],
                                   setAnswerFormat),
                             ),
@@ -312,8 +337,8 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genTextFormField(
-                                'Number of Questions', intValidator),
+                            child: genTextFormField('Number of Questions',
+                                intValidator, getNumQuestions, setNumQuestions),
                           ),
                         ),
 
@@ -326,7 +351,7 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genDropdownMenu(0, 'Difficulty Level',
+                            child: genDropdownMenu(_formKey, 'Difficulty Level',
                                 getDifficulties, setDifficulty),
                           ),
                         ),
@@ -355,6 +380,12 @@ class _CreatePageState extends State<CreatePage> {
                         ),
                       ),
                     ),
+                    genText('Quiz Name: ${appState.selectedQuizName}'),
+                    genText('Generator: ${appState.selectedGenerator}'),
+                    genText('Quiz Topic: ${appState.selectedTopic}'),
+                    genText('Answer Format: ${appState.selectedAnswerFormat}'),
+                    genText('Num Questions: ${appState.selectedNumQuestions}'),
+                    genText('Difficulty: ${appState.selectedDifficulty}'),
                   ]),
                 ));
           } else if (snapshot.hasError) {
