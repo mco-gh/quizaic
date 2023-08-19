@@ -28,15 +28,17 @@ class MyAppState extends ChangeNotifier {
     futureFetchGenerators = fetchGenerators();
   }
 
-  Future<bool> createQuiz(id) async {
-    var quiz = Quiz(
-        name: selectedQuizName,
-        answerFormat: selectedAnswerFormat,
-        generator: selectedGenerator,
-        topic: selectedTopic,
-        numQuestions: selectedNumQuestions.toString(),
-        difficulty: selectedDifficulty,
-        qAndA: '');
+  void createQuiz() async {
+    var quiz = '''{
+            name: $selectedQuizName,
+            answerFormat: $selectedAnswerFormat,
+            generator: $selectedGenerator,
+            topic: $selectedTopic,
+            numQuestions: $selectedNumQuestions,
+            difficulty: $selectedDifficulty,
+            qAndA: '');
+      }''';
+    print('quiz: $quiz');
 
     final response = await http.post(
       Uri.parse('$apiUrl/quizzes'),
@@ -44,12 +46,11 @@ class MyAppState extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      print("Quiz id $id deleted.");
+      print("Quiz created.");
     } else {
       throw Exception('Failed to create quiz');
     }
     notifyListeners();
-    return true;
   }
 
   cloneQuiz(quiz) async {

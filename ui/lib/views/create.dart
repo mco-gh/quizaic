@@ -348,6 +348,7 @@ class _CreatePageState extends State<CreatePage> {
                                 SnackBar(content: genText('Creating quiz...')),
                               );
                               print('calling createQuiz(data)');
+                              appState.createQuiz();
                             }
                           },
                           child: genText('Submit'),
