@@ -16,7 +16,10 @@ class AuthPage extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         // If user is not signed in, show the sign in screen.
+        //if (appState.idToken == 'null' || !snapshot.hasData) {
         if (!snapshot.hasData) {
+          print('user not logged in');
+          appState.idToken = '';
           appState.photoUrl = '';
           return SignInScreen(
             providers: [
@@ -70,6 +73,7 @@ class AuthPage extends StatelessWidget {
             },
           );
         }
+        print('user logged in');
 
         User? user = FirebaseAuth.instance.currentUser;
         if (user != null) {

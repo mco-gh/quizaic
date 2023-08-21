@@ -56,7 +56,7 @@ class Quiz {
     this.anonymous = true,
     this.creator = '',
     this.curQuestion = '',
-    this.imageUrl = '',
+    this.imageUrl = 'assets/images/quizrd_logo.png',
     this.pin = '',
     this.playUrl = '',
     this.qAndA = '',

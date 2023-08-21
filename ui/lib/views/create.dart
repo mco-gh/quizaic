@@ -32,8 +32,6 @@ String? strValidator(String? value) {
 }
 
 String? intValidator(String? value) {
-  debugPrint('value=$value');
-
   if (value == null || value.isEmpty) {
     return 'Missing value';
   }
@@ -79,11 +77,11 @@ class _CreatePageState extends State<CreatePage> {
       );
     }
 
-    DropdownMenu<String> genDropdownMenu(key, text, getter, setter) {
-      var initialSelection = getter()[0];
-      if (text == "Quiz Generator") {
-        initialSelection = null;
-      }
+    DropdownMenu<String> genDropdownMenu(key, text, current, getter, setter) {
+      var initialSelection = current; //getter()[0];
+      //if (text == "Quiz Generator") {
+      //initialSelection = null;
+      //}
       return DropdownMenu<String>(
           textStyle: TextStyle(color: theme.primaryColor),
           key: ValueKey(key),
@@ -226,8 +224,12 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genDropdownMenu(_fooKey, 'Quiz Generator',
-                                getGenerators, setGenerator),
+                            child: genDropdownMenu(
+                                _fooKey,
+                                'Quiz Generator',
+                                appState.selectedGenerator,
+                                getGenerators,
+                                setGenerator),
                           ),
                         ),
                       ],
@@ -246,7 +248,8 @@ class _CreatePageState extends State<CreatePage> {
                               child: genDropdownMenu(
                                   _topicListKey,
                                   'Quiz Topic',
-                                  () => ['Select generator to see topic(s)'],
+                                  appState.selectedTopic,
+                                  () => ['Select generator to see topics'],
                                   setTopic),
                             ),
                           )
@@ -256,8 +259,12 @@ class _CreatePageState extends State<CreatePage> {
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child: genDropdownMenu(_topicListKey,
-                                  'Quiz Topic', getTopics, setTopic),
+                              child: genDropdownMenu(
+                                  _topicListKey,
+                                  'Quiz Topic',
+                                  appState.selectedTopic,
+                                  getTopics,
+                                  setTopic),
                             ),
                           )
                         else
@@ -266,8 +273,11 @@ class _CreatePageState extends State<CreatePage> {
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
-                              child: genTextFormField("Quiz Topic",
-                                  strValidator, getTopic, setTopic),
+                              child: genTextFormField(
+                                  'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                                  strValidator,
+                                  getTopic,
+                                  setTopic),
                             ),
                           ),
 
@@ -284,9 +294,8 @@ class _CreatePageState extends State<CreatePage> {
                               child: genDropdownMenu(
                                   _answerFormatKey,
                                   'Answer Format',
-                                  () => [
-                                        'Select generator to see answer format(s)'
-                                      ],
+                                  appState.selectedAnswerFormat,
+                                  () => ['Select generator to see formats'],
                                   setAnswerFormat),
                             ),
                           )
@@ -299,6 +308,7 @@ class _CreatePageState extends State<CreatePage> {
                               child: genDropdownMenu(
                                   _answerFormatKey,
                                   'Answer Format',
+                                  getAnswerFormats()[0],
                                   getAnswerFormats,
                                   setAnswerFormat),
                             ),
@@ -311,6 +321,7 @@ class _CreatePageState extends State<CreatePage> {
                               child: genDropdownMenu(
                                   _answerFormatKey,
                                   'Answer Format',
+                                  appState.selectedAnswerFormat,
                                   getAnswerFormats,
                                   setAnswerFormat),
                             ),
@@ -351,8 +362,12 @@ class _CreatePageState extends State<CreatePage> {
                           child: SizedBox(
                             width: columnWidth,
                             height: rowHeight,
-                            child: genDropdownMenu(_formKey, 'Difficulty Level',
-                                getDifficulties, setDifficulty),
+                            child: genDropdownMenu(
+                                _formKey,
+                                'Difficulty Level',
+                                appState.selectedDifficulty,
+                                getDifficulties,
+                                setDifficulty),
                           ),
                         ),
                       ],
@@ -364,7 +379,7 @@ class _CreatePageState extends State<CreatePage> {
                       padding: const EdgeInsets.all(padding),
                       child: Align(
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()) {
                               // If the form is valid, display a snackbar. In the real world,

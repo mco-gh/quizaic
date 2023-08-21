@@ -18,9 +18,9 @@ class MyAppState extends ChangeNotifier {
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
   String selectedQuizName = '';
-  String selectedAnswerFormat = '';
+  String selectedAnswerFormat = 'Select generator to see formats';
   String selectedGenerator = '';
-  String selectedTopic = '';
+  String selectedTopic = 'Select generator to see topics';
   String selectedNumQuestions = '';
   String selectedDifficulty = '';
 
@@ -39,16 +39,14 @@ class MyAppState extends ChangeNotifier {
         numQuestions: selectedNumQuestions,
         difficulty: selectedDifficulty));
 
-    print(quiz);
-
     final response = await http.post(Uri.parse('$apiUrl/quizzes'),
         body: quiz,
         headers: {
-          'content-type': 'application/json',
+          'Content-Type': 'application/json',
           'Authorization': 'Bearer $idToken'
         });
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print("Quiz created.");
     } else {
       throw Exception('Failed to create quiz');
@@ -71,9 +69,9 @@ class MyAppState extends ChangeNotifier {
 
   Future<bool> deleteQuiz(id) async {
     final response = await http.delete(Uri.parse('$apiUrl/quizzes/$id'),
-        headers: {'Authorization': "Bearer $idToken"});
+        headers: {'Authorization': 'Bearer $idToken'});
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 204) {
       print("Quiz id $id deleted.");
     } else {
       throw Exception('Failed to delete quiz $id');

@@ -63,6 +63,7 @@ class _MyHomePageState extends State<HomePage> {
       icon = Image.network(appState.photoUrl, height: 40, headers: {
         "corsImageModified.crossOrigin": "Anonymous",
         "corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
+        'referrerpolicy': 'no-referrer'
       });
     }
 
