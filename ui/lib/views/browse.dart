@@ -77,7 +77,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                             child: Icon(Icons.edit,
                                                 semanticLabel: 'Edit'),
                                             onPressed: () {
-                                              appState.editQuiz(quiz.id);
+                                              //appState.createQuiz(quiz.id);
                                             }),
                                         TextButton(
                                             child: Icon(Icons.content_copy,
