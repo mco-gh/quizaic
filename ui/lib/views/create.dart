@@ -11,8 +11,12 @@ enum ActivityType { quiz, survey }
 enum YN { yes, no }
 
 class CreatePage extends StatefulWidget {
+  final String quizId;
+
   @override
   State<CreatePage> createState() => _CreatePageState();
+
+  CreatePage({required this.quizId});
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -189,6 +193,11 @@ class _CreatePageState extends State<CreatePage> {
             if (snapshot.data!.isEmpty) {
               return genText('No generators found.');
             }
+            String title = 'Create a New Quiz';
+            if (appState.editQuizId != '') {
+              appState.getQuiz(appState.editQuizId);
+              title = 'Edit a Quiz';
+            }
             return Form(
                 key: _formKey,
                 child: SizedBox(
@@ -197,8 +206,7 @@ class _CreatePageState extends State<CreatePage> {
                     // Page title
                     Padding(
                       padding: const EdgeInsets.all(padding * 3),
-                      child: genText('Create a New Quiz',
-                          size: 30, weight: FontWeight.bold),
+                      child: genText(title, size: 30, weight: FontWeight.bold),
                     ),
 
                     // Quiz Name and Generator
@@ -389,9 +397,12 @@ class _CreatePageState extends State<CreatePage> {
                               );
                               print('calling createQuiz(data)');
                               appState.createQuiz();
+                              setState(() {
+                                appState.editQuizId = '';
+                              });
                             }
                           },
-                          child: genText('Submit'),
+                          child: genText('Save Quiz'),
                         ),
                       ),
                     ),

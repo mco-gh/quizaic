@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:quizrd/models/quiz.dart';
 import 'package:provider/provider.dart';
+import 'package:quizrd/views/create.dart';
 
 class BrowsePage extends StatefulWidget {
   @override
@@ -19,6 +20,9 @@ class _BrowsePageState extends State<BrowsePage> {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
+    if (appState.editQuizId != '') {
+      return CreatePage(quizId: appState.editQuizId);
+    }
     return Scaffold(
       body: Center(
         child: FutureBuilder<List<Quiz>>(
@@ -77,7 +81,9 @@ class _BrowsePageState extends State<BrowsePage> {
                                             child: Icon(Icons.edit,
                                                 semanticLabel: 'Edit'),
                                             onPressed: () {
-                                              //appState.createQuiz(quiz.id);
+                                              return setState(() {
+                                                appState.editQuizId = quiz.id!;
+                                              });
                                             }),
                                         TextButton(
                                             child: Icon(Icons.content_copy,

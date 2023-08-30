@@ -36,7 +36,7 @@ class _MyHomePageState extends State<HomePage> {
         page = BrowsePage();
         break;
       case 2:
-        page = CreatePage();
+        page = CreatePage(quizId: "null");
         break;
       default:
         throw UnimplementedError('no widget for $selectedPageIndex');
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ],
           )),
-      //drawer: Drawer(),
+      drawer: Drawer(),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
@@ -163,6 +163,7 @@ class _MyHomePageState extends State<HomePage> {
                     onTap: (value) {
                       setState(() {
                         selectedIndex = value;
+                        appState.editQuizId = '';
                       });
                     },
                   ),
@@ -196,6 +197,7 @@ class _MyHomePageState extends State<HomePage> {
                       setState(() {
                         selectedIndex = value;
                         selectedPageIndex = value;
+                        appState.editQuizId = '';
                       });
                     },
                   ),

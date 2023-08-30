@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:quizrd/models/quiz.dart';
 import 'package:quizrd/models/generator.dart';
 
-enum Difficulty { trivial, easy, medium, hard, killer }
+List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
 
 class MyAppState extends ChangeNotifier {
   late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
@@ -23,10 +23,24 @@ class MyAppState extends ChangeNotifier {
   String selectedTopic = 'Select generator to see topics';
   String selectedNumQuestions = '';
   String selectedDifficulty = '';
+  String editQuizId = '';
 
   MyAppState() {
     futureFetchQuizzes = fetchQuizzes();
     futureFetchGenerators = fetchGenerators();
+  }
+
+  void getQuiz(id) {
+    for (var quiz in quizzes) {
+      if (quiz.id == id) {
+        selectedQuizName = quiz.name;
+        selectedAnswerFormat = quiz.answerFormat;
+        selectedGenerator = quiz.generator;
+        selectedTopic = quiz.topic;
+        selectedNumQuestions = quiz.numQuestions;
+        selectedDifficulty = difficulty[int.parse(quiz.difficulty) - 1];
+      }
+    }
   }
 
   Future<bool> createQuiz() async {
