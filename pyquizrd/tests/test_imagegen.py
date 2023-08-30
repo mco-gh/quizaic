@@ -8,8 +8,8 @@ PROJECT_ID = "quizrd-prod-atamel"
 BUCKET_NAME = PROJECT_ID + "-images"
 
 def test_generate_image():
-    image = ImageGen.generate_image("Cyprus")
-    assert(image is not None)
+    images = ImageGen.generate_images("Cyprus")
+    assert(images[0] is not None)
 
 
 def test_generate_and_upload_image():

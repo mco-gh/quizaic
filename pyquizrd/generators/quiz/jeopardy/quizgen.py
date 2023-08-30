@@ -1,3 +1,5 @@
+import json
+
 import pandas as pd
 import os
 
@@ -48,4 +50,6 @@ class Quizgen(BaseQuizgen):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    print(f'gen:{gen}')
+    num_questions = 3
+    quiz = gen.gen_quiz("Physics", num_questions)
+    print(json.dumps(quiz, indent=4))
