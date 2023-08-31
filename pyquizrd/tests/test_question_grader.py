@@ -62,3 +62,10 @@ def test_free_form_wrong_order():
     # Wrong order of words should be treated as correct
     grade = grader.grade_answer("correct_answer", "answer correct", AnswerFormat.FREE_FORM)
     assert grade
+
+
+def test_free_form_wrong_answer_low_similarity_threshold():
+    grader = QuestionGrader(20)
+    # This should be graded as correct with the low similarity threshold
+    grade = grader.grade_answer("correct answer", "wrong answer", AnswerFormat.FREE_FORM)
+    assert grade
