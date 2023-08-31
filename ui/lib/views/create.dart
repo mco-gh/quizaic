@@ -20,9 +20,9 @@ class CreatePage extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+int _generatorKey = 0;
 int _answerFormatKey = 0;
 int _topicListKey = 0;
-int _fooKey = 0;
 
 const padding = 6.0;
 const columnWidth = 325.0;
@@ -235,7 +235,7 @@ class _CreatePageState extends State<CreatePage> {
                             width: columnWidth,
                             height: rowHeight,
                             child: genDropdownMenu(
-                                _fooKey,
+                                _generatorKey,
                                 'Quiz Generator',
                                 appState.selectedGenerator,
                                 getGenerators,

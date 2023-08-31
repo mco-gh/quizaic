@@ -29,9 +29,10 @@ class _BrowsePageState extends State<BrowsePage> {
           future: appState.futureFetchQuizzes,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if (snapshot.data!.isEmpty) {
+              if (appState.quizzes.isEmpty) {
                 return Text('No quizzes yet.');
               }
+
               return Padding(
                 padding: const EdgeInsets.all(25),
                 child: Column(
@@ -48,7 +49,7 @@ class _BrowsePageState extends State<BrowsePage> {
                           crossAxisSpacing: 15,
                         ),
                         children: [
-                          for (var quiz in snapshot.data!)
+                          for (var quiz in appState.quizzes)
                             Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16)),
