@@ -173,6 +173,8 @@ class _MyHomePageState extends State<HomePage> {
                     onTap: (value) {
                       setState(() {
                         selectedIndex = value;
+                        selectedPageIndex = value;
+                        appState.cloneQuizId = '';
                         appState.editQuizId = '';
                       });
                     },
@@ -207,6 +209,7 @@ class _MyHomePageState extends State<HomePage> {
                       setState(() {
                         selectedIndex = value;
                         selectedPageIndex = value;
+                        appState.cloneQuizId = '';
                         appState.editQuizId = '';
                       });
                     },

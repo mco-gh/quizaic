@@ -193,12 +193,17 @@ class _CreatePageState extends State<CreatePage> {
             if (snapshot.data!.isEmpty) {
               return genText('No generators found.');
             }
-            String title = 'Create a New Quiz';
-            String snack = 'Creating quiz...';
+            String title = '';
+            String snack = '';
             if (appState.editQuizId != '') {
-              appState.getQuiz(appState.editQuizId);
               title = 'Edit a Quiz';
               snack = 'Updating quiz...';
+            } else if (appState.cloneQuizId != '') {
+              title = 'Clone a Quiz';
+              snack = 'Creating cloned quiz...';
+            } else {
+              title = 'Create a Quiz';
+              snack = 'Creating new quiz...';
             }
             return Form(
                 key: _formKey,
@@ -413,6 +418,7 @@ class _CreatePageState extends State<CreatePage> {
                               );
                               appState.createOrUpdateQuiz();
                               setState(() {
+                                appState.cloneQuizId = '';
                                 appState.editQuizId = '';
                               });
                             }

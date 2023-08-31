@@ -22,6 +22,8 @@ class _BrowsePageState extends State<BrowsePage> {
 
     if (appState.editQuizId != '') {
       return CreatePage(quizId: appState.editQuizId);
+    } else if (appState.cloneQuizId != '') {
+      return CreatePage(quizId: appState.cloneQuizId);
     }
     return Scaffold(
       body: Center(
@@ -83,6 +85,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 semanticLabel: 'Edit'),
                                             onPressed: () {
                                               return setState(() {
+                                                appState.getQuiz(quiz.id);
                                                 appState.editQuizId = quiz.id!;
                                               });
                                             }),
@@ -90,7 +93,10 @@ class _BrowsePageState extends State<BrowsePage> {
                                             child: Icon(Icons.content_copy,
                                                 semanticLabel: 'Clone'),
                                             onPressed: () {
-                                              appState.cloneQuiz(quiz.id);
+                                              return setState(() {
+                                                appState.getQuiz(quiz.id);
+                                                appState.cloneQuizId = quiz.id!;
+                                              });
                                             }),
                                         TextButton(
                                             child: Icon(Icons.delete,

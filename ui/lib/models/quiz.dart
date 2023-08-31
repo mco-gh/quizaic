@@ -1,11 +1,11 @@
 class Quiz {
   // provided by quiz creator (in order of appearance on create quiz form)
-  final String name;
-  final String generator;
-  final String answerFormat;
-  final String topic;
-  final String numQuestions;
-  final String difficulty;
+  String name;
+  String generator;
+  String answerFormat;
+  String topic;
+  String numQuestions;
+  String difficulty;
 
   // managed by firestore (in alphabetical order)
   final String? id;
@@ -36,7 +36,7 @@ class Quiz {
   final String? description;
   final String? numAnswers;
 
-  const Quiz({
+  Quiz({
     // provided by quiz creator (in order of appearance on create quiz form)
     required this.name,
     required this.generator,

@@ -25,6 +25,8 @@ class MyAppState extends ChangeNotifier {
   String selectedNumQuestions = '';
   String selectedDifficulty = '';
   String editQuizId = '';
+  String cloneQuizId = '';
+
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
 
@@ -52,30 +54,60 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createOrUpdateQuiz() async {
-    var quiz = jsonEncode(Quiz(
-        // provided by quiz creator (in order of appearance on create quiz form)
-        name: selectedQuizName,
-        generator: selectedGenerator,
-        answerFormat: selectedAnswerFormat,
-        topic: selectedTopic,
-        numQuestions: selectedNumQuestions,
-        difficulty: selectedDifficulty));
+    int dnum = difficulty.indexOf(selectedDifficulty);
+    String dstr = (dnum + 1).toString();
+    Quiz tmpQuiz = Quiz(
+        name: '',
+        generator: '',
+        answerFormat: '',
+        topic: '',
+        numQuestions: '0',
+        difficulty: '1');
 
-    String url = '$apiUrl/quizzes';
-    String confirmation = 'Quiz created.';
-    String error = 'Failed to create quiz.';
+    if (editQuizId != '' || cloneQuizId != '') {
+      for (var quiz in quizzes) {
+        if (quiz.id == editQuizId || quiz.id == cloneQuizId) {
+          String json = jsonEncode(quiz.toJson());
+          tmpQuiz = Quiz.fromJson(jsonDecode(json));
+        }
+      }
+    }
+
+    tmpQuiz.name = selectedQuizName;
+    tmpQuiz.generator = selectedGenerator;
+    tmpQuiz.answerFormat = selectedAnswerFormat;
+    tmpQuiz.topic = selectedTopic;
+    tmpQuiz.numQuestions = selectedNumQuestions;
+    tmpQuiz.difficulty = dstr;
+
+    print('quiz: $tmpQuiz');
+    String url = '';
+    String confirmation = '';
+    String error = '';
     var method = http.post;
 
     if (editQuizId != '') {
-      url += '/$editQuizId';
+      url = '$apiUrl/quizzes/$editQuizId';
       confirmation = 'Quiz updated.';
       error = 'Failed to update quiz.';
       method = http.patch;
+    } else if (cloneQuizId != '') {
+      url = '$apiUrl/quizzes';
+      confirmation = 'Quiz cloned.';
+      error = 'Failed to clone quiz.';
+      method = http.post;
+    } else {
+      url = '$apiUrl/quizzes';
+      confirmation = 'Quiz created.';
+      error = 'Failed to create quiz.';
+      method = http.post;
     }
-    final response = await method(Uri.parse(url), body: quiz, headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $idToken'
-    });
+    final response = await method(Uri.parse(url),
+        body: jsonEncode(tmpQuiz),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $idToken'
+        });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(confirmation);
@@ -84,10 +116,6 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
     return true;
-  }
-
-  cloneQuiz(quiz) async {
-    notifyListeners();
   }
 
   Future<bool> deleteQuiz(id) async {
