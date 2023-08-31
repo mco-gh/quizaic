@@ -194,9 +194,11 @@ class _CreatePageState extends State<CreatePage> {
               return genText('No generators found.');
             }
             String title = 'Create a New Quiz';
+            String snack = 'Creating quiz...';
             if (appState.editQuizId != '') {
               appState.getQuiz(appState.editQuizId);
               title = 'Edit a Quiz';
+              snack = 'Updating quiz...';
             }
             return Form(
                 key: _formKey,
@@ -307,6 +309,20 @@ class _CreatePageState extends State<CreatePage> {
                                   setAnswerFormat),
                             ),
                           )
+                        else if (appState.selectedAnswerFormat != '')
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              height: rowHeight,
+                              child: genDropdownMenu(
+                                  _answerFormatKey,
+                                  'Answer Format',
+                                  appState.selectedAnswerFormat,
+                                  getAnswerFormats,
+                                  setAnswerFormat),
+                            ),
+                          )
                         else if (getAnswerFormats().length == 1)
                           Padding(
                             padding: const EdgeInsets.all(padding),
@@ -393,10 +409,9 @@ class _CreatePageState extends State<CreatePage> {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: genText('Creating quiz...')),
+                                SnackBar(content: genText(snack)),
                               );
-                              print('calling createQuiz(data)');
-                              appState.createQuiz();
+                              appState.createOrUpdateQuiz();
                               setState(() {
                                 appState.editQuizId = '';
                               });

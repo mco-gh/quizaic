@@ -43,7 +43,7 @@ class MyAppState extends ChangeNotifier {
     }
   }
 
-  Future<bool> createQuiz() async {
+  Future<bool> createOrUpdateQuiz() async {
     var quiz = jsonEncode(Quiz(
         // provided by quiz creator (in order of appearance on create quiz form)
         name: selectedQuizName,
@@ -53,31 +53,32 @@ class MyAppState extends ChangeNotifier {
         numQuestions: selectedNumQuestions,
         difficulty: selectedDifficulty));
 
-    final response = await http.post(Uri.parse('$apiUrl/quizzes'),
-        body: quiz,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $idToken'
-        });
+    String url = '$apiUrl/quizzes';
+    String confirmation = 'Quiz created.';
+    String error = 'Failed to create quiz.';
+    var method = http.post;
+
+    if (editQuizId != '') {
+      url += '/$editQuizId';
+      confirmation = 'Quiz updated.';
+      error = 'Failed to update quiz.';
+      method = http.patch;
+    }
+    final response = await method(Uri.parse(url), body: quiz, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $idToken'
+    });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Quiz created.");
+      print(confirmation);
     } else {
-      throw Exception('Failed to create quiz');
+      throw Exception(error);
     }
     notifyListeners();
     return true;
   }
 
   cloneQuiz(quiz) async {
-    notifyListeners();
-  }
-
-  editQuiz(quiz) async {
-    notifyListeners();
-  }
-
-  updateQuiz(quiz) async {
     notifyListeners();
   }
 
