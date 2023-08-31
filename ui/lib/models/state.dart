@@ -15,6 +15,9 @@ class MyAppState extends ChangeNotifier {
   //var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app';
   var apiUrl = 'http://localhost:8081';
 
+  var selectedIndex = 0;
+  var selectedPageIndex = 0;
+
   String? idToken = '';
   List<Quiz> quizzes = [];
   List<Generator> generators = [];

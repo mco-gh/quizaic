@@ -420,6 +420,8 @@ class _CreatePageState extends State<CreatePage> {
                               setState(() {
                                 appState.cloneQuizId = '';
                                 appState.editQuizId = '';
+                                appState.selectedIndex = 0;
+                                appState.selectedPageIndex = 0;
                               });
                             }
                           },

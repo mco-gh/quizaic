@@ -14,8 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
-  var selectedIndex = 0;
-  var selectedPageIndex = 0;
   Widget page = Placeholder();
   var appBarTitle = 'Quizrd';
   var appBarSeperator = ' | ';
@@ -36,20 +34,20 @@ class _MyHomePageState extends State<HomePage> {
 
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    switch (selectedPageIndex) {
+    switch (appState.selectedPageIndex) {
       case -1:
         break;
       case 0:
-        page = PlayPage();
-        break;
-      case 1:
         page = BrowsePage();
         break;
-      case 2:
+      case 1:
         page = CreatePage(quizId: "null");
         break;
+      case 2:
+        page = PlayPage();
+        break;
       default:
-        throw UnimplementedError('no widget for $selectedPageIndex');
+        throw UnimplementedError('no widget for ${appState.selectedPageIndex}');
     }
 
     // The container for the current page, with its background color
@@ -84,7 +82,7 @@ class _MyHomePageState extends State<HomePage> {
               icon: icon,
               onPressed: () {
                 setState(() {
-                  selectedPageIndex = -1;
+                  appState.selectedPageIndex = -1;
                   page = AuthPage();
                 });
               },
@@ -96,7 +94,7 @@ class _MyHomePageState extends State<HomePage> {
               ),
               onPressed: () {
                 setState(() {
-                  selectedPageIndex = -1;
+                  appState.selectedPageIndex = -1;
                   page = SettingsPage();
                 });
               },
@@ -157,10 +155,6 @@ class _MyHomePageState extends State<HomePage> {
                   child: BottomNavigationBar(
                     items: [
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.sports_esports),
-                        label: 'Play',
-                      ),
-                      BottomNavigationBarItem(
                         icon: Icon(Icons.grid_view),
                         label: 'Browse',
                       ),
@@ -168,12 +162,16 @@ class _MyHomePageState extends State<HomePage> {
                         icon: Icon(Icons.add_circle),
                         label: 'Create',
                       ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.sports_esports),
+                        label: 'Play',
+                      ),
                     ],
-                    currentIndex: selectedIndex,
+                    currentIndex: appState.selectedIndex,
                     onTap: (value) {
                       setState(() {
-                        selectedIndex = value;
-                        selectedPageIndex = value;
+                        appState.selectedIndex = value;
+                        appState.selectedPageIndex = value;
                         appState.cloneQuizId = '';
                         appState.editQuizId = '';
                       });
@@ -192,10 +190,6 @@ class _MyHomePageState extends State<HomePage> {
                     extended: constraints.maxWidth >= 600,
                     destinations: [
                       NavigationRailDestination(
-                        icon: Icon(Icons.sports_esports),
-                        label: Text('Play'),
-                      ),
-                      NavigationRailDestination(
                         icon: Icon(Icons.grid_view),
                         label: Text('Browse'),
                       ),
@@ -203,12 +197,16 @@ class _MyHomePageState extends State<HomePage> {
                         icon: Icon(Icons.add_circle),
                         label: Text('Create'),
                       ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.sports_esports),
+                        label: Text('Play'),
+                      ),
                     ],
-                    selectedIndex: selectedIndex,
+                    selectedIndex: appState.selectedIndex,
                     onDestinationSelected: (value) {
                       setState(() {
-                        selectedIndex = value;
-                        selectedPageIndex = value;
+                        appState.selectedIndex = value;
+                        appState.selectedPageIndex = value;
                         appState.cloneQuizId = '';
                         appState.editQuizId = '';
                       });
