@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizrd/auth/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:quizrd/views/browse.dart';
 import 'package:quizrd/views/create.dart';
@@ -23,6 +24,15 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+
+    FirebaseAuth.instance.authStateChanges().listen((event) {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        user.getIdTokenResult().then((result) {
+          appState.idToken = result.token;
+        });
+      }
+    });
 
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
