@@ -1,4 +1,4 @@
-# <img src="website/static/logo.png" height="40"> Quizrd - AI-powered Infinite Trivia
+# <img src="ui/assets/images/logo.png" height="40"> Quizrd - AI-powered Infinite Trivia
 
 Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
@@ -56,23 +56,17 @@ The machine that you will run the setup from will need the following installed:
 
 ### Setup
 
-1. Run the following commands to install the [OpenAPI](https://www.openapis.org) command line tool:
-
-    ```bash
-    sudo npm install @openapitools/openapi-generator-cli -g
-    ```
-
 1. Run `./scripts/setup.sh` to deploy backend services.
 
-1. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
+2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
    needed for users to log into the application.
 
 ## Verify Setup
 
-Connect to the website URL given by the output from the previous deployment script and
-verify the website looks something like this:
+Connect to the ui URL given by the output from the previous deployment script and
+verify the ui looks something like this:
 
-<img src="website/static/website.png" height="300">
+<img src="ui/assets/images/ui.png" height="300">
 
 Also, try to log in as a user to make sure OAuth is setup correctly and create &
 run quizzes to make sure everything works.
@@ -81,29 +75,29 @@ run quizzes to make sure everything works.
 
 You can incrementally deploy services (instead of redeploying everything).
 
-### Content API
+### API
 
 ```bash
 ./scripts/deploy.sh api
 ```
 
-### Website
+### UI
 
 ```bash
-./scripts/deploy.sh website
+./scripts/deploy.sh ui
 ```
 
 ## Local Testing
 
 You can make changes in services and test them locally without deploying.
 
-### Content API
+### API
 
 ```bash
 ./scripts/test.sh api
 ```
 
-### Website
+### UI
 
 First, you need to store your OAuth web client's id and secret (which
 can be obtained from the `APIs & Services` -> `Credentials` page on the Cloud
@@ -117,16 +111,16 @@ export CLIENT_SECRET=<your-client-secret>
 You also need to add `http://localhost:8080/callback` under `APIs & Services` ->
 `Credentials` -> `Authorized redirect URIs`.
 
-Website depends on api. Make sure api is running locally first:
+The ui depends on the api. Make sure api is running locally first:
 
 ```bash
 ./scripts/test.sh api
 ```
 
-You should be able to test the website locally now:
+You should be able to test the ui locally now:
 
 ```bash
-./scripts/test.sh website
+./scripts/test.sh ui
 ```
 
 ---
