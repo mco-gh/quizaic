@@ -26,7 +26,7 @@ class AuthPage extends StatelessWidget {
               EmailAuthProvider(),
               GoogleProvider(
                 clientId:
-                    '338739261213-fcueeb1c9rthjjklu7aj58n3vjetsnrg.apps.googleusercontent.com',
+                    '841686736797-25ib2nurttbn2p7k1hkqhauqcjet1l8j.apps.googleusercontent.com',
                 scopes: ['email', 'profile'],
               )
             ],
@@ -84,6 +84,11 @@ class AuthPage extends StatelessWidget {
         if ((user != null) && (user.photoURL != null)) {
           appState.photoUrl = user.photoURL as String;
         }
+
+        appState.cloneQuizId = '';
+        appState.editQuizId = '';
+        appState.selectedIndex = 0;
+        appState.selectedPageIndex = 0;
 
         // Otherwise, the user is signed in, so show the signout option.
         return Scaffold(

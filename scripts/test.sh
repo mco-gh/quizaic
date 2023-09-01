@@ -1,5 +1,5 @@
 #
-# run.sh <component>
+# test.sh <component>
 #	- component is one of ui or api
 #
 USAGE="$0 ui|api"
