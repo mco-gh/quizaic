@@ -6,13 +6,13 @@ Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to ge
 ## Architecture
 
 ### Data/User Model
-<img src="website/static/datauser.png" height="300">
+<img src="ui/assets/images/datauser.png" height="300">
 
 ### Creator/Hosting Flow
-<img src="website/static/creator.png" height="300">
+<img src="ui/assets/images/creator.png" height="300">
 
 ### Player Flow
-<img src="website/static/player.png" height="300">
+<img src="ui/assets/images/player.png" height="300">
 
 ## Project Status
 
