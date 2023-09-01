@@ -17,8 +17,7 @@ then
     export API_URL=http://localhost:8081
     export REDIRECT_URI=http://localhost:8080/callback
     cd ui 
-    python3 -m pip install -r requirements.txt
-    FLASK_APP=app.py flask run --port 8080 --debugger --reload
+    flutter run -d chrome
     cd -
 elif [ "$1" = "api" ]
 then
