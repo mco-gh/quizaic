@@ -77,7 +77,7 @@ service cloud.firestore {
       allow list: if true;
     }
     match /generators/{generator} {
-    	allow list: if true;
+      allow list: if true;
     }
   }
 }
