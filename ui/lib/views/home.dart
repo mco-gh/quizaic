@@ -41,7 +41,7 @@ class _MyHomePageState extends State<HomePage> {
         page = BrowsePage();
         break;
       case 1:
-        page = CreatePage(quizId: "null");
+        page = CreatePage(quizId: "");
         break;
       case 2:
         page = PlayPage();
