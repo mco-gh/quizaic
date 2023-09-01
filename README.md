@@ -62,9 +62,27 @@ The machine that you will run the setup from will need the following installed:
 2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
    needed for users to log into the application.
 
-## Populate Firestore Database
+## Populate and Configure Firestore Database
 
 The `setup.sh` script automatically initializes your Cloud Firestore database but if you ever need to reset the database to its initial state, you can run `./scripts/reset_db.sh` from the project level.
+
+On the [Firebase Console](https://console.firebase.google.com/), select your project, then `Firestore Database`, and add the following rules under the `Rules` tab:
+
+```
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /quizzes/{quiz} {
+      allow list: if true;
+    }
+    match /generators/{generator} {
+    	allow list: if true;
+    }
+  }
+}
+```
+These rules allow apps to get real-time updates whenever the quizzes and generators collections change.
 
 ## Verify Setup
 
