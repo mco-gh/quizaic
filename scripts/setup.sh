@@ -6,7 +6,7 @@
 . scripts/env.sh
 
 printf "=====\nUncompressing generator data\n=====\n"
-JEP_FILE="website/gen/jeopardy/pruned_jeopardy.json"
+JEP_FILE="ui/gen/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
 then
     uncompress ${JEP_FILE}.Z
@@ -40,7 +40,7 @@ printf "=====\nCreating Cloud Artifacts repository\n=====\n"
 gcloud artifacts repositories create ${APP} --location=$REGION --repository-format=docker
 
 printf "=====\nResetting firestore database\n=====\n"
-cd content-api/data
+cd api/data
 python3 -m pip install -r requirements.txt
 python3 seed_database.py unseed
 python3 seed_database.py seed marcacohen@gmail.com
@@ -49,8 +49,8 @@ cd -
 printf "=====\nGenerating content API\n=====\n"
 sudo ./scripts/regen_api.sh
 
-printf "=====\nBuilding and deploying content-api service\n=====\n"
-./scripts/deploy.sh content-api
+printf "=====\nBuilding and deploying api service\n=====\n"
+./scripts/deploy.sh api
 
-printf "=====\nBuilding and deploying website service\n=====\n"
-./scripts/deploy.sh website
+printf "=====\nBuilding and deploying ui service\n=====\n"
+./scripts/deploy.sh ui

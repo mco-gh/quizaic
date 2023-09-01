@@ -25,7 +25,7 @@ if [[ -z "${PROJECT_ID}" ]]; then
 fi
 
 # Declare variables (calculated from env-var inputs)
-WEBSITE_URL=$(gcloud run services describe website --project "${PROJECT_ID}" --region "${REGION}" --format "value(status.address.url)") 
+WEBSITE_URL=$(gcloud run services describe ui --project "${PROJECT_ID}" --region "${REGION}" --format "value(status.address.url)") 
 CALLBACK_URL="${WEBSITE_URL}/callback"
 
 AUTH_CLIENT_CREATION_URL="https://console.cloud.google.com/apis/credentials/oauthclient?project=${PROJECT_ID}"
@@ -110,7 +110,7 @@ else
 fi
 read -p "Once you've configured secret versions, press $(tput bold)Enter$(tput sgr0) to continue."
 
-# Update website Cloud Run services with required secrets
+# Update ui Cloud Run services with required secrets
 PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} --format "value(projectNumber)")
 GCP_SVC_ACC="${PROJECT_NUMBER}-compute@developer.gserviceaccount.com"
 
@@ -130,7 +130,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member=serviceAccount:${GCP_SVC_ACC} \
     --role=roles/storage.objectCreator
 
-gcloud run services update website \
+gcloud run services update ui \
     --update-env-vars "REDIRECT_URI=${CALLBACK_URL}" \
     --update-secrets "${AUTH_SECRETS}" \
     --region "${REGION}" \

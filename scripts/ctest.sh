@@ -1,6 +1,6 @@
 # ctest.sh - content API test script
 #
-USAGE="$0 path\n\nexport URL=url-to-content-api # default is http://localhost:8080\nexport METHOD=http-method     # default is GET\nexport BODY=file # default is no body"
+USAGE="$0 path\n\nexport URL=url-to-api # default is http://localhost:8080\nexport METHOD=http-method     # default is GET\nexport BODY=file # default is no body"
 
 if [ "$#" != 1 ]; then
     echo -e "${USAGE}"

@@ -84,7 +84,7 @@ You can incrementally deploy services (instead of redeploying everything).
 ### Content API
 
 ```bash
-./scripts/deploy.sh content-api
+./scripts/deploy.sh api
 ```
 
 ### Website
@@ -100,7 +100,7 @@ You can make changes in services and test them locally without deploying.
 ### Content API
 
 ```bash
-./scripts/test.sh content-api
+./scripts/test.sh api
 ```
 
 ### Website
@@ -117,10 +117,10 @@ export CLIENT_SECRET=<your-client-secret>
 You also need to add `http://localhost:8080/callback` under `APIs & Services` ->
 `Credentials` -> `Authorized redirect URIs`.
 
-Website depends on content-api. Make sure content-api is running locally first:
+Website depends on api. Make sure api is running locally first:
 
 ```bash
-./scripts/test.sh content-api
+./scripts/test.sh api
 ```
 
 You should be able to test the website locally now:
