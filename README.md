@@ -62,6 +62,10 @@ The machine that you will run the setup from will need the following installed:
 2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
    needed for users to log into the application.
 
+## Populate Firestore Database
+
+The `setup.sh` script automatically initializes your Cloud Firestore database but if you ever need to reset the database to its initial state, you can run `./scripts/reset_db.sh` from the project level.
+
 ## Verify Setup
 
 Connect to the ui URL given by the output from the previous deployment script and
