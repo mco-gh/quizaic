@@ -173,6 +173,7 @@ class _MyHomePageState extends State<HomePage> {
                         appState.selectedIndex = value;
                         appState.selectedPageIndex = value;
                         appState.cloneQuizId = '';
+                        appState.hostQuizId = '';
                         appState.editQuizId = '';
                       });
                     },
@@ -208,6 +209,7 @@ class _MyHomePageState extends State<HomePage> {
                         appState.selectedIndex = value;
                         appState.selectedPageIndex = value;
                         appState.cloneQuizId = '';
+                        appState.hostQuizId = '';
                         appState.editQuizId = '';
                       });
                     },

@@ -3,6 +3,7 @@ import 'package:quizrd/models/state.dart';
 import 'package:quizrd/models/quiz.dart';
 import 'package:provider/provider.dart';
 import 'package:quizrd/views/create.dart';
+import 'package:quizrd/views/host.dart';
 
 class BrowsePage extends StatefulWidget {
   @override
@@ -19,8 +20,9 @@ class _BrowsePageState extends State<BrowsePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
-
-    if (appState.editQuizId != '') {
+    if (appState.hostQuizId != '') {
+      return HostPage(quizId: appState.hostQuizId);
+    } else if (appState.editQuizId != '') {
       return CreatePage(quizId: appState.editQuizId);
     } else if (appState.cloneQuizId != '') {
       return CreatePage(quizId: appState.cloneQuizId);
@@ -78,7 +80,10 @@ class _BrowsePageState extends State<BrowsePage> {
                                             child: Icon(Icons.play_circle,
                                                 semanticLabel: 'Start'),
                                             onPressed: () {
-                                              appState.hostQuiz(quiz.id);
+                                              return setState(() {
+                                                appState.getQuiz(quiz.id);
+                                                appState.hostQuizId = quiz.id!;
+                                              });
                                             }),
                                         TextButton(
                                             child: Icon(Icons.edit,

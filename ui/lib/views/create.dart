@@ -419,6 +419,7 @@ class _CreatePageState extends State<CreatePage> {
                               appState.createOrUpdateQuiz();
                               setState(() {
                                 appState.cloneQuizId = '';
+                                appState.hostQuizId = '';
                                 appState.editQuizId = '';
                                 appState.selectedIndex = 0;
                                 appState.selectedPageIndex = 0;

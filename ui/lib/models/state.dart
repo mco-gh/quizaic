@@ -27,8 +27,17 @@ class MyAppState extends ChangeNotifier {
   String selectedTopic = 'Select generator to see topics';
   String selectedNumQuestions = '';
   String selectedDifficulty = '';
+
+  String hostQuizId = '';
   String editQuizId = '';
   String cloneQuizId = '';
+
+  String hostSynch = 'Synchronous';
+  String hostTimeLimit = '30';
+  String hostType = 'Quiz';
+  String hostAnonymous = 'Anonymous';
+  String hostRandomizeQuestions = 'Yes';
+  String hostRandomizeAnswers = 'Yes';
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
