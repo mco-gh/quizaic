@@ -36,6 +36,7 @@ The machine that you will run the setup from will need the following installed:
 <!-- * [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli) -->
 * [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 * [Python3](https://www.python.org/downloads)
+* [Flutter](https://flutter.dev)
 
 ### Gcloud Configuration and Github Repo
 
