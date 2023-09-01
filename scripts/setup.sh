@@ -43,11 +43,8 @@ printf "=====\nResetting firestore database\n=====\n"
 cd api/data
 python3 -m pip install -r requirements.txt
 python3 seed_database.py unseed
-python3 seed_database.py seed marcacohen@gmail.com
+python3 seed_database.py seed
 cd -
-
-printf "=====\nGenerating content API\n=====\n"
-sudo ./scripts/regen_api.sh
 
 printf "=====\nBuilding and deploying api service\n=====\n"
 ./scripts/deploy.sh api
