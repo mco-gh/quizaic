@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:quizrd/models/quiz.dart';
 import 'package:provider/provider.dart';
-import 'package:quizrd/views/create.dart';
-import 'package:quizrd/views/host.dart';
+import 'package:go_router/go_router.dart';
 
 class BrowsePage extends StatefulWidget {
   @override
@@ -20,13 +19,14 @@ class _BrowsePageState extends State<BrowsePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
-    if (appState.hostQuizId != '') {
-      return HostPage(quizId: appState.hostQuizId);
-    } else if (appState.editQuizId != '') {
-      return CreatePage(quizId: appState.editQuizId);
-    } else if (appState.cloneQuizId != '') {
-      return CreatePage(quizId: appState.cloneQuizId);
+
+    Text genText(String text, {size = 14, weight = FontWeight.normal}) {
+      return Text(text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: size, fontWeight: weight, color: theme.primaryColor));
     }
+
     return Scaffold(
       body: Center(
         child: FutureBuilder<List<Quiz>>(
@@ -78,36 +78,46 @@ class _BrowsePageState extends State<BrowsePage> {
                                       children: [
                                         TextButton(
                                             child: Icon(Icons.play_circle,
-                                                semanticLabel: 'Start'),
+                                                semanticLabel: 'Host'),
                                             onPressed: () {
-                                              return setState(() {
+                                              setState(() {
                                                 appState.getQuiz(quiz.id);
                                                 appState.hostQuizId = quiz.id!;
                                               });
+                                              GoRouter.of(context).go('/host');
                                             }),
                                         TextButton(
                                             child: Icon(Icons.edit,
                                                 semanticLabel: 'Edit'),
                                             onPressed: () {
-                                              return setState(() {
+                                              setState(() {
                                                 appState.getQuiz(quiz.id);
                                                 appState.editQuizId = quiz.id!;
                                               });
+                                              GoRouter.of(context).go('/edit');
                                             }),
                                         TextButton(
                                             child: Icon(Icons.content_copy,
                                                 semanticLabel: 'Clone'),
                                             onPressed: () {
-                                              return setState(() {
+                                              setState(() {
                                                 appState.getQuiz(quiz.id);
                                                 appState.cloneQuizId = quiz.id!;
                                               });
+                                              GoRouter.of(context).go('/clone');
                                             }),
                                         TextButton(
                                             child: Icon(Icons.delete,
                                                 semanticLabel: 'Delete'),
                                             onPressed: () {
                                               appState.deleteQuiz(quiz.id);
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                                content:
+                                                    genText('Deleting quiz...'),
+                                              ));
                                             }),
                                       ],
                                     ),

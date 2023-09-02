@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 enum Synchronous { synchronous, asynchronous }
 
@@ -205,239 +206,250 @@ class _CreatePageState extends State<CreatePage> {
               title = 'Create a Quiz';
               snack = 'Creating new quiz...';
             }
-            return Form(
-                key: _formKey,
-                child: SizedBox(
-                  width: 700,
-                  child: ListView(children: [
-                    // Page title
-                    Padding(
-                      padding: const EdgeInsets.all(padding * 3),
-                      child: genText(title, size: 30, weight: FontWeight.bold),
-                    ),
+            return Center(
+              child: Form(
+                  key: _formKey,
+                  child: SizedBox(
+                    width: 700,
+                    child: ListView(children: [
+                      // Page title
+                      Padding(
+                        padding: const EdgeInsets.all(padding * 3),
+                        child:
+                            genText(title, size: 30, weight: FontWeight.bold),
+                      ),
 
-                    // Quiz Name and Generator
-                    Row(
-                      children: [
-                        // Quiz Name
-                        Padding(
-                          padding: const EdgeInsets.all(padding),
-                          child: SizedBox(
-                            width: columnWidth,
-                            height: rowHeight,
-                            child: genTextFormField('Quiz Name', strValidator,
-                                getQuizName, setQuizName),
+                      // Quiz Name and Generator
+                      Row(
+                        children: [
+                          // Quiz Name
+                          Padding(
+                            padding: const EdgeInsets.all(padding),
+                            child: SizedBox(
+                              width: columnWidth,
+                              height: rowHeight,
+                              child: genTextFormField('Quiz Name', strValidator,
+                                  getQuizName, setQuizName),
+                            ),
                           ),
-                        ),
 
-                        // horizontal spacing
-                        SizedBox(width: 16),
+                          // horizontal spacing
+                          SizedBox(width: 16),
 
-                        // Quiz Generator
-                        Padding(
-                          padding: const EdgeInsets.all(padding),
-                          child: SizedBox(
-                            width: columnWidth,
-                            height: rowHeight,
-                            child: genDropdownMenu(
-                                _generatorKey,
-                                'Quiz Generator',
-                                appState.selectedGenerator,
-                                getGenerators,
-                                setGenerator),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    // Quiz Topic and Answer Format
-                    Row(
-                      children: [
-                        // Quiz Topic
-                        if (appState.selectedGenerator == '')
+                          // Quiz Generator
                           Padding(
                             padding: const EdgeInsets.all(padding),
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
                               child: genDropdownMenu(
-                                  _topicListKey,
-                                  'Quiz Topic',
-                                  appState.selectedTopic,
-                                  () => ['Select generator to see topics'],
-                                  setTopic),
+                                  _generatorKey,
+                                  'Quiz Generator',
+                                  appState.selectedGenerator,
+                                  getGenerators,
+                                  setGenerator),
                             ),
-                          )
-                        else if (getTopics().isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.all(padding),
-                            child: SizedBox(
-                              width: columnWidth,
-                              height: rowHeight,
-                              child: genDropdownMenu(
-                                  _topicListKey,
-                                  'Quiz Topic',
-                                  appState.selectedTopic,
-                                  getTopics,
-                                  setTopic),
+                          ),
+                        ],
+                      ),
+
+                      // Quiz Topic and Answer Format
+                      Row(
+                        children: [
+                          // Quiz Topic
+                          if (appState.selectedGenerator == '')
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: genDropdownMenu(
+                                    _topicListKey,
+                                    'Quiz Topic',
+                                    appState.selectedTopic,
+                                    () => ['Select generator to see topics'],
+                                    setTopic),
+                              ),
+                            )
+                          else if (getTopics().isNotEmpty)
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: genDropdownMenu(
+                                    _topicListKey,
+                                    'Quiz Topic',
+                                    appState.selectedTopic,
+                                    getTopics,
+                                    setTopic),
+                              ),
+                            )
+                          else
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: genTextFormField(
+                                    'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                                    strValidator,
+                                    getTopic,
+                                    setTopic),
+                              ),
                             ),
-                          )
-                        else
+
+                          // horizontal spacing
+                          SizedBox(width: 16),
+
+                          // Answer Format
+                          if (appState.selectedGenerator == '')
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: genDropdownMenu(
+                                    _answerFormatKey,
+                                    'Answer Format',
+                                    appState.selectedAnswerFormat,
+                                    () => ['Select generator to see formats'],
+                                    setAnswerFormat),
+                              ),
+                            )
+                          else if (appState.selectedAnswerFormat != '')
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: genDropdownMenu(
+                                    _answerFormatKey,
+                                    'Answer Format',
+                                    appState.selectedAnswerFormat,
+                                    getAnswerFormats,
+                                    setAnswerFormat),
+                              ),
+                            )
+                          else if (getAnswerFormats().length == 1)
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                height: rowHeight,
+                                child: genDropdownMenu(
+                                    _answerFormatKey,
+                                    'Answer Format',
+                                    getAnswerFormats()[0],
+                                    getAnswerFormats,
+                                    setAnswerFormat),
+                              ),
+                            )
+                          else if (getAnswerFormats().length > 1)
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                child: genDropdownMenu(
+                                    _answerFormatKey,
+                                    'Answer Format',
+                                    appState.selectedAnswerFormat,
+                                    getAnswerFormats,
+                                    setAnswerFormat),
+                              ),
+                            )
+                          else
+                            Padding(
+                              padding: const EdgeInsets.all(padding),
+                              child: SizedBox(
+                                width: columnWidth,
+                                child: genText(
+                                  'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                                ),
+                              ),
+                            )
+                        ],
+                      ),
+
+                      // Number of Questions and Difficulty Level
+                      Row(
+                        children: [
+                          // Number of Questions
                           Padding(
                             padding: const EdgeInsets.all(padding),
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
                               child: genTextFormField(
-                                  'No quiz answer formats available for ${appState.selectedGenerator} generator',
-                                  strValidator,
-                                  getTopic,
-                                  setTopic),
+                                  'Number of Questions',
+                                  intValidator,
+                                  getNumQuestions,
+                                  setNumQuestions),
                             ),
                           ),
 
-                        // horizontal spacing
-                        SizedBox(width: 16),
+                          // horizontal spacing
+                          SizedBox(width: 16),
 
-                        // Answer Format
-                        if (appState.selectedGenerator == '')
+                          // Difficulty Level
                           Padding(
                             padding: const EdgeInsets.all(padding),
                             child: SizedBox(
                               width: columnWidth,
                               height: rowHeight,
                               child: genDropdownMenu(
-                                  _answerFormatKey,
-                                  'Answer Format',
-                                  appState.selectedAnswerFormat,
-                                  () => ['Select generator to see formats'],
-                                  setAnswerFormat),
+                                  _formKey,
+                                  'Difficulty Level',
+                                  appState.selectedDifficulty,
+                                  getDifficulties,
+                                  setDifficulty),
                             ),
-                          )
-                        else if (appState.selectedAnswerFormat != '')
-                          Padding(
-                            padding: const EdgeInsets.all(padding),
-                            child: SizedBox(
-                              width: columnWidth,
-                              height: rowHeight,
-                              child: genDropdownMenu(
-                                  _answerFormatKey,
-                                  'Answer Format',
-                                  appState.selectedAnswerFormat,
-                                  getAnswerFormats,
-                                  setAnswerFormat),
-                            ),
-                          )
-                        else if (getAnswerFormats().length == 1)
-                          Padding(
-                            padding: const EdgeInsets.all(padding),
-                            child: SizedBox(
-                              width: columnWidth,
-                              height: rowHeight,
-                              child: genDropdownMenu(
-                                  _answerFormatKey,
-                                  'Answer Format',
-                                  getAnswerFormats()[0],
-                                  getAnswerFormats,
-                                  setAnswerFormat),
-                            ),
-                          )
-                        else if (getAnswerFormats().length > 1)
-                          Padding(
-                            padding: const EdgeInsets.all(padding),
-                            child: SizedBox(
-                              width: columnWidth,
-                              child: genDropdownMenu(
-                                  _answerFormatKey,
-                                  'Answer Format',
-                                  appState.selectedAnswerFormat,
-                                  getAnswerFormats,
-                                  setAnswerFormat),
-                            ),
-                          )
-                        else
-                          Padding(
-                            padding: const EdgeInsets.all(padding),
-                            child: SizedBox(
-                              width: columnWidth,
-                              child: genText(
-                                'No quiz answer formats available for ${appState.selectedGenerator} generator',
-                              ),
-                            ),
-                          )
-                      ],
-                    ),
-
-                    // Number of Questions and Difficulty Level
-                    Row(
-                      children: [
-                        // Number of Questions
-                        Padding(
-                          padding: const EdgeInsets.all(padding),
-                          child: SizedBox(
-                            width: columnWidth,
-                            height: rowHeight,
-                            child: genTextFormField('Number of Questions',
-                                intValidator, getNumQuestions, setNumQuestions),
                           ),
-                        ),
+                        ],
+                      ),
 
-                        // horizontal spacing
-                        SizedBox(width: 16),
-
-                        // Difficulty Level
-                        Padding(
-                          padding: const EdgeInsets.all(padding),
-                          child: SizedBox(
-                            width: columnWidth,
-                            height: rowHeight,
-                            child: genDropdownMenu(
-                                _formKey,
-                                'Difficulty Level',
-                                appState.selectedDifficulty,
-                                getDifficulties,
-                                setDifficulty),
+                      // Submit button
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(padding),
+                        child: Align(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              // Validate returns true if the form is valid, or false otherwise.
+                              if (_formKey.currentState!.validate()) {
+                                // If the form is valid, display a snackbar. In the real world,
+                                // you'd often call a server or save the information in a database.
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      duration: Duration(milliseconds: 500),
+                                      content: genText(snack)),
+                                );
+                                appState.createOrUpdateQuiz();
+                                setState(() {
+                                  appState.cloneQuizId = '';
+                                  appState.hostQuizId = '';
+                                  appState.editQuizId = '';
+                                  appState.selectedIndex = 0;
+                                  appState.selectedPageIndex = 0;
+                                });
+                                GoRouter.of(context).go('/browse');
+                              }
+                            },
+                            child: genText('Save Quiz'),
                           ),
-                        ),
-                      ],
-                    ),
-
-                    // Submit button
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: Align(
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            // Validate returns true if the form is valid, or false otherwise.
-                            if (_formKey.currentState!.validate()) {
-                              // If the form is valid, display a snackbar. In the real world,
-                              // you'd often call a server or save the information in a database.
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: genText(snack)),
-                              );
-                              appState.createOrUpdateQuiz();
-                              setState(() {
-                                appState.cloneQuizId = '';
-                                appState.hostQuizId = '';
-                                appState.editQuizId = '';
-                                appState.selectedIndex = 0;
-                                appState.selectedPageIndex = 0;
-                              });
-                            }
-                          },
-                          child: genText('Save Quiz'),
                         ),
                       ),
-                    ),
-                    genText('Quiz Name: ${appState.selectedQuizName}'),
-                    genText('Generator: ${appState.selectedGenerator}'),
-                    genText('Quiz Topic: ${appState.selectedTopic}'),
-                    genText('Answer Format: ${appState.selectedAnswerFormat}'),
-                    genText('Num Questions: ${appState.selectedNumQuestions}'),
-                    genText('Difficulty: ${appState.selectedDifficulty}'),
-                  ]),
-                ));
+                      //genText('Quiz Name: ${appState.selectedQuizName}'),
+                      //genText('Generator: ${appState.selectedGenerator}'),
+                      //genText('Quiz Topic: ${appState.selectedTopic}'),
+                      //genText(
+                      //    'Answer Format: ${appState.selectedAnswerFormat}'),
+                      //genText(
+                      //    'Num Questions: ${appState.selectedNumQuestions}'),
+                      //genText('Difficulty: ${appState.selectedDifficulty}'),
+                    ]),
+                  )),
+            );
           } else if (snapshot.hasError) {
             return genText('${snapshot.error}');
           }
