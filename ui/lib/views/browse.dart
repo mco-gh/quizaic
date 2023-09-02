@@ -66,11 +66,14 @@ class _BrowsePageState extends State<BrowsePage> {
                                         style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold)),
-                                    Ink.image(
-                                      image: NetworkImage(
-                                        quiz.imageUrl as String,
+                                    Hero(
+                                      tag: 'HostPage',
+                                      child: Ink.image(
+                                        image: NetworkImage(
+                                          quiz.imageUrl as String,
+                                        ),
+                                        height: 220,
                                       ),
-                                      height: 220,
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -84,7 +87,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 appState.getQuiz(quiz.id);
                                                 appState.hostQuizId = quiz.id!;
                                               });
-                                              GoRouter.of(context).go('/host');
+                                              GoRouter.of(context)
+                                                  .push('/host');
                                             }),
                                         TextButton(
                                             child: Icon(Icons.edit,
@@ -94,7 +98,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 appState.getQuiz(quiz.id);
                                                 appState.editQuizId = quiz.id!;
                                               });
-                                              GoRouter.of(context).go('/edit');
+                                              GoRouter.of(context)
+                                                  .push('/edit');
                                             }),
                                         TextButton(
                                             child: Icon(Icons.content_copy,
@@ -104,7 +109,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 appState.getQuiz(quiz.id);
                                                 appState.cloneQuizId = quiz.id!;
                                               });
-                                              GoRouter.of(context).go('/clone');
+                                              GoRouter.of(context)
+                                                  .push('/clone');
                                             }),
                                         TextButton(
                                             child: Icon(Icons.delete,

@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:quizrd/views/browse.dart';
+import 'package:quizrd/views/host.dart';
 import 'package:quizrd/views/create.dart';
 import 'package:quizrd/views/play.dart';
-import 'package:quizrd/views/host.dart';
 import 'package:quizrd/views/settings.dart';
 import 'package:quizrd/auth/auth.dart';
 import 'package:go_router/go_router.dart';
@@ -55,9 +55,17 @@ class _MyHomePageState extends State<HomePage> {
             ),
             GoRoute(
               path: '/host',
-              builder: (BuildContext context, GoRouterState state) {
-                return HostPage(quizId: '');
-              },
+              pageBuilder: (context, state) => CustomTransitionPage<void>(
+                transitionDuration: Duration(milliseconds: 500),
+                key: state.pageKey,
+                child: HostPage(quizId: ''),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        ScaleTransition(scale: animation, child: child),
+              ),
+              //builder: (BuildContext context, GoRouterState state) {
+              //return HostPage(quizId: '');
+              //},
             ),
             GoRoute(
                 path: '/create',

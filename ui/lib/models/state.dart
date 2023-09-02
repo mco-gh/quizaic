@@ -147,14 +147,6 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  hostQuiz(id) async {
-    notifyListeners();
-  }
-
-  playQuiz(id) async {
-    notifyListeners();
-  }
-
   Future<List<Quiz>> fetchQuizzes() async {
     final response = await http.get(Uri.parse('$apiUrl/quizzes'));
 
