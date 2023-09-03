@@ -23,7 +23,8 @@ class HomePage extends StatefulWidget {
 
 CustomTransitionPage genCustomTransitionPage(state, page) {
   return CustomTransitionPage(
-      transitionDuration: Duration(milliseconds: 400),
+      transitionDuration: Duration(milliseconds: 700),
+      reverseTransitionDuration: Duration(milliseconds: 700),
       key: state.pageKey,
       child: page,
       transitionsBuilder: (BuildContext context, Animation<double> animation,

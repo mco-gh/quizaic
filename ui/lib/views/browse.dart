@@ -67,7 +67,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold)),
                                     Hero(
-                                        tag: 'HostPage',
+                                        tag: quiz.id!,
                                         child: Image.network(
                                             quiz.imageUrl as String,
                                             height: 220)),
