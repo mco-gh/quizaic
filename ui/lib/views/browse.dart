@@ -67,14 +67,10 @@ class _BrowsePageState extends State<BrowsePage> {
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold)),
                                     Hero(
-                                      tag: 'HostPage',
-                                      child: Ink.image(
-                                        image: NetworkImage(
-                                          quiz.imageUrl as String,
-                                        ),
-                                        height: 220,
-                                      ),
-                                    ),
+                                        tag: 'HostPage',
+                                        child: Image.network(
+                                            quiz.imageUrl as String,
+                                            height: 220)),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
