@@ -22,6 +22,7 @@ then
 elif [ "$1" = "api" ]
 then
     . scripts/env.sh
+    export PYTHONPATH="$PWD"
     cd api
     python3 -m pip install -r requirements.txt
     FLASK_APP=main.py flask run --port 8081 --debugger --reload

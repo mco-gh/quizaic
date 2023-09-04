@@ -1,5 +1,3 @@
-# Copyright 2021 Google LLC
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,14 +10,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 import json
 
 from main import g, request
 from data import cloud_firestore as db
 from resources import auth, base
 from utils.logging import log
+from pyquizrd.generators.quiz.quizgenfactory import QuizgenFactory
+from pyquizrd.generators.image.imagegen import ImageGen
 
+PROJECT_ID = "mco-quizrd"
+BUCKET_NAME = PROJECT_ID + "-images"
 
 resource_fields = {
     "admins": ["name", "email"],
@@ -133,7 +134,32 @@ def insert(resource_kind, representation):
     if not auth.allowed("POST", resource_kind, representation):
         return "Forbidden", 403
 
+    if resource_kind == "quizzes":
+        print("inserting a quiz so generating a new quiz...")
+
+        generator = representation["generator"]
+        topic = representation["topic"]
+        num_questions = int(representation["numQuestions"])
+        #num_answers = int(representation["numAnswers"])
+        num_answers = 4
+
+        gen = QuizgenFactory.get_gen(generator.lower())
+        quiz = gen.gen_quiz(topic, num_questions, num_answers)
+        print(json.dumps(quiz, indent=4))
+        representation["qAndA"] = json.dumps(quiz, indent=4)
+    
     resource = db.insert(resource_kind, representation, resource_fields[resource_kind])
+    id = resource["id"]
+
+    if resource_kind == "quizzes":
+        print("inserting a quiz so generating a new image...")
+        filename = resource["id"] + ".png"
+        file_url = ImageGen.generate_and_upload_image(topic, filename, BUCKET_NAME)
+        print(f'file_url: {file_url}')
+        patch = { "imageUrl": file_url }
+
+        resource, status = db.update(resource_kind, id, patch, resource_fields[resource_kind], None )
+
 
     return (
         json.dumps(resource),
@@ -153,6 +179,8 @@ def patch(resource_kind, id, representation):
         return "Forbidden", 403
 
     match_etag = request.headers.get("If-Match", None)
+    if resource_kind == "quizzes":
+        print(f"patching quiz id {id}")
     resource, status = db.update(
         resource_kind, id, representation, resource_fields[resource_kind], match_etag
     )

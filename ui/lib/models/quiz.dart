@@ -34,7 +34,7 @@ class Quiz {
 
   // Obsolete?
   final String? description;
-  final String? numAnswers;
+  final String? numAnswers = '4';
 
   Quiz({
     // provided by quiz creator (in order of appearance on create quiz form)
@@ -72,7 +72,7 @@ class Quiz {
 
     // Obsolete?
     this.description = '',
-    this.numAnswers = '',
+    this.numAnswers = '4',
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
