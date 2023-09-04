@@ -213,10 +213,11 @@ class _CreatePageState extends State<CreatePage> {
                 padding: const EdgeInsets.all(padding * 3),
                 child: genText(title, size: 30, weight: FontWeight.bold),
               ),
-              Hero(
-                  tag: widget.quiz!.id as String,
-                  child: Image.network(widget.quiz!.imageUrl as String,
-                      height: 170)),
+              if (widget.quiz != null)
+                Hero(
+                    tag: widget.quiz!.id as String,
+                    child: Image.network(widget.quiz!.imageUrl as String,
+                        height: 170)),
               SizedBox(height: 20),
               // Quiz Name and Generator
               Row(
