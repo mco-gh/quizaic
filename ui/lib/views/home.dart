@@ -9,6 +9,7 @@ import 'package:quizrd/views/play.dart';
 import 'package:quizrd/views/settings.dart';
 import 'package:quizrd/auth/auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizrd/models/quiz.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -70,27 +71,28 @@ class _MyHomePageState extends State<HomePage> {
               ),
               GoRoute(
                 path: '/edit',
-                pageBuilder: (context, state) =>
-                    genCustomTransitionPage(state, CreatePage(quizId: '')),
+                pageBuilder: (context, state) => genCustomTransitionPage(
+                    state, CreatePage(quiz: state.extra as Quiz?)),
               ),
               GoRoute(
                 path: '/clone',
-                pageBuilder: (context, state) =>
-                    genCustomTransitionPage(state, CreatePage(quizId: '')),
+                pageBuilder: (context, state) => genCustomTransitionPage(
+                    state, CreatePage(quiz: state.extra as Quiz?)),
               ),
               GoRoute(
                 path: '/host',
-                pageBuilder: (context, state) =>
-                    genCustomTransitionPage(state, HostPage(quizId: '')),
+                pageBuilder: (context, state) => genCustomTransitionPage(
+                    state, HostPage(quiz: state.extra as Quiz?)),
               ),
               GoRoute(
                   path: '/create',
                   pageBuilder: (context, state) =>
-                      genCustomTransitionPage(state, CreatePage(quizId: ''))),
+                      genCustomTransitionPage(state, CreatePage())),
               GoRoute(
                   path: '/play',
-                  pageBuilder: (context, state) =>
-                      genCustomTransitionPage(state, PlayPage())),
+                  pageBuilder: (context, state) => genCustomTransitionPage(
+                      state,
+                      PlayPage())), //PlayPage(quiz: state.extra as Quiz?))),
               GoRoute(
                   path: '/settings',
                   pageBuilder: (context, state) =>
@@ -273,9 +275,6 @@ class HomePageScaffold extends StatelessWidget {
                       //setState(() {
                       //appState.selectedIndex = value;
                       //appState.selectedPageIndex = value;
-                      //appState.cloneQuizId = '';
-                      //appState.hostQuizId = '';
-                      //appState.editQuizId = '';
                       //});
                       //},
                     ),
@@ -312,9 +311,6 @@ class HomePageScaffold extends StatelessWidget {
                       //setState(() {
                       //appState.selectedIndex = value;
                       //appState.selectedPageIndex = value;
-                      //appState.cloneQuizId = '';
-                      //appState.hostQuizId = '';
-                      //appState.editQuizId = '';
                       //});
                       //},
                     ),

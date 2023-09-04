@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizrd/models/state.dart';
 import 'package:provider/provider.dart';
+import 'package:quizrd/models/quiz.dart';
+import 'package:quizrd/models/state.dart';
 
 enum Synchronous { synchronous, asynchronous }
 
@@ -11,12 +12,12 @@ enum ActivityType { quiz, survey }
 enum YN { yes, no }
 
 class HostPage extends StatefulWidget {
-  final String quizId;
+  final Quiz? quiz;
 
   @override
   State<HostPage> createState() => _HostPageState();
 
-  HostPage({required this.quizId});
+  HostPage({this.quiz});
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -142,16 +143,13 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
-    String? getQuizImageUrl() {
-      for (var quiz in appState.quizzes) {
-        if (quiz.id == appState.hostQuizId) {
-          return quiz.imageUrl;
-        }
-      }
-      return '';
+    if (widget.quiz == null) {
+      return Center(
+        child: genText('No quiz selected for hosting'),
+      );
     }
 
-    String title = 'Hosting Quiz "${appState.selectedQuizName}"';
+    String title = 'Hosting Quiz "${widget.quiz!.name}"';
     return Center(
       child: Form(
           key: _formKey,
@@ -164,9 +162,9 @@ class _HostPageState extends State<HostPage> {
                 child: genText(title, size: 30, weight: FontWeight.bold),
               ),
               Hero(
-                  tag: appState.hostQuizId,
-                  child:
-                      Image.network(getQuizImageUrl() as String, height: 170)),
+                  tag: widget.quiz!.id as String,
+                  child: Image.network(widget.quiz!.imageUrl as String,
+                      height: 170)),
               SizedBox(height: 20),
               // Synch or Asynch and Time Limit
               Row(
@@ -294,11 +292,8 @@ class _HostPageState extends State<HostPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: genText('Starting quiz...')),
                         );
-                        appState.createOrUpdateQuiz();
+                        appState.createOrUpdateQuiz(widget.quiz);
                         setState(() {
-                          appState.cloneQuizId = '';
-                          appState.hostQuizId = '';
-                          appState.editQuizId = '';
                           appState.selectedIndex = 0;
                           appState.selectedPageIndex = 0;
                         });

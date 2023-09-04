@@ -79,34 +79,36 @@ class _BrowsePageState extends State<BrowsePage> {
                                             child: Icon(Icons.play_circle,
                                                 semanticLabel: 'Host'),
                                             onPressed: () {
-                                              setState(() {
-                                                appState.getQuiz(quiz.id);
-                                                appState.hostQuizId = quiz.id!;
-                                              });
-                                              GoRouter.of(context)
-                                                  .push('/host');
+                                              Quiz? quizToHost =
+                                                  appState.getQuiz(quiz.id);
+                                              print(
+                                                  'quizToHost: ${quizToHost!.name}');
+                                              GoRouter.of(context).push('/host',
+                                                  extra: quizToHost);
                                             }),
                                         TextButton(
                                             child: Icon(Icons.edit,
                                                 semanticLabel: 'Edit'),
                                             onPressed: () {
-                                              setState(() {
-                                                appState.getQuiz(quiz.id);
-                                                appState.editQuizId = quiz.id!;
-                                              });
-                                              GoRouter.of(context)
-                                                  .push('/edit');
+                                              Quiz? quizToEdit =
+                                                  appState.getQuiz(quiz.id);
+                                              print(
+                                                  'quizToEdit: ${quizToEdit!.name}');
+                                              GoRouter.of(context).push('/edit',
+                                                  extra: quizToEdit);
                                             }),
                                         TextButton(
                                             child: Icon(Icons.content_copy,
                                                 semanticLabel: 'Clone'),
                                             onPressed: () {
-                                              setState(() {
-                                                appState.getQuiz(quiz.id);
-                                                appState.cloneQuizId = quiz.id!;
-                                              });
-                                              GoRouter.of(context)
-                                                  .push('/clone');
+                                              Quiz? quizToClone =
+                                                  appState.getQuiz(quiz.id);
+                                              print(
+                                                  'quizToClone: ${quizToClone!.name}');
+                                              quizToClone.id = '';
+                                              GoRouter.of(context).push(
+                                                  '/clone',
+                                                  extra: quizToClone);
                                             }),
                                         TextButton(
                                             child: Icon(Icons.delete,

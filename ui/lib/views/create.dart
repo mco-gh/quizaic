@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizrd/models/state.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizrd/models/quiz.dart';
 
 enum Synchronous { synchronous, asynchronous }
 
@@ -12,12 +13,12 @@ enum ActivityType { quiz, survey }
 enum YN { yes, no }
 
 class CreatePage extends StatefulWidget {
-  final String quizId;
+  final Quiz? quiz;
 
   @override
   State<CreatePage> createState() => _CreatePageState();
 
-  CreatePage({required this.quizId});
+  CreatePage({this.quiz});
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -83,10 +84,7 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     DropdownMenu<String> genDropdownMenu(key, text, current, getter, setter) {
-      var initialSelection = current; //getter()[0];
-      //if (text == "Quiz Generator") {
-      //initialSelection = null;
-      //}
+      var initialSelection = current;
       return DropdownMenu<String>(
           textStyle: TextStyle(color: theme.primaryColor),
           key: ValueKey(key),
@@ -196,16 +194,21 @@ class _CreatePageState extends State<CreatePage> {
             }
             String title = '';
             String snack = '';
-            if (appState.editQuizId != '') {
-              title = 'Edit a Quiz';
-              snack = 'Updating quiz...';
-            } else if (appState.cloneQuizId != '') {
-              title = 'Clone a Quiz';
-              snack = 'Creating cloned quiz...';
-            } else {
+            Quiz? quizToCreateOrUpdate;
+            if (widget.quiz == null) {
               title = 'Create a Quiz';
               snack = 'Creating new quiz...';
+              quizToCreateOrUpdate = null;
+            } else if (widget.quiz?.id == '') {
+              title = 'Clone a Quiz';
+              snack = 'Creating cloned quiz...';
+              quizToCreateOrUpdate = widget.quiz;
+            } else {
+              title = 'Edit a Quiz';
+              snack = 'Updating quiz...';
+              quizToCreateOrUpdate = widget.quiz;
             }
+
             return Center(
               child: Form(
                   key: _formKey,
@@ -424,11 +427,9 @@ class _CreatePageState extends State<CreatePage> {
                                       duration: Duration(milliseconds: 500),
                                       content: genText(snack)),
                                 );
-                                appState.createOrUpdateQuiz();
+                                appState
+                                    .createOrUpdateQuiz(quizToCreateOrUpdate);
                                 setState(() {
-                                  appState.cloneQuizId = '';
-                                  appState.hostQuizId = '';
-                                  appState.editQuizId = '';
                                   appState.selectedIndex = 0;
                                   appState.selectedPageIndex = 0;
                                 });
@@ -439,6 +440,9 @@ class _CreatePageState extends State<CreatePage> {
                           ),
                         ),
                       ),
+                      //for (var question in appState.quiz.qAndA)
+                      //genText('Question: ${question.question}'),
+
                       //genText('Quiz Name: ${appState.selectedQuizName}'),
                       //genText('Generator: ${appState.selectedGenerator}'),
                       //genText('Quiz Topic: ${appState.selectedTopic}'),

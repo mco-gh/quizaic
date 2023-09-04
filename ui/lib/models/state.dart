@@ -28,10 +28,6 @@ class MyAppState extends ChangeNotifier {
   String selectedNumQuestions = '';
   String selectedDifficulty = '';
 
-  String hostQuizId = '';
-  String editQuizId = '';
-  String cloneQuizId = '';
-
   String hostSynch = 'Synchronous';
   String hostTimeLimit = '30';
   String hostType = 'Quiz';
@@ -52,7 +48,7 @@ class MyAppState extends ChangeNotifier {
     });
   }
 
-  void getQuiz(id) {
+  Quiz? getQuiz(id) {
     for (var quiz in quizzes) {
       if (quiz.id == id) {
         selectedQuizName = quiz.name;
@@ -61,11 +57,13 @@ class MyAppState extends ChangeNotifier {
         selectedTopic = quiz.topic;
         selectedNumQuestions = quiz.numQuestions;
         selectedDifficulty = difficulty[int.parse(quiz.difficulty) - 1];
+        return quiz;
       }
     }
+    return null;
   }
 
-  Future<bool> createOrUpdateQuiz() async {
+  Future<bool> createOrUpdateQuiz(quiz) async {
     int dnum = difficulty.indexOf(selectedDifficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
@@ -76,13 +74,9 @@ class MyAppState extends ChangeNotifier {
         numQuestions: '0',
         difficulty: '1');
 
-    if (editQuizId != '' || cloneQuizId != '') {
-      for (var quiz in quizzes) {
-        if (quiz.id == editQuizId || quiz.id == cloneQuizId) {
-          String json = jsonEncode(quiz.toJson());
-          tmpQuiz = Quiz.fromJson(jsonDecode(json));
-        }
-      }
+    if (quiz != null && quiz.id != '') {
+      String json = jsonEncode(quiz.toJson());
+      tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
 
     tmpQuiz.name = selectedQuizName;
@@ -98,21 +92,21 @@ class MyAppState extends ChangeNotifier {
     String error = '';
     var method = http.post;
 
-    if (editQuizId != '') {
-      url = '$apiUrl/quizzes/$editQuizId';
-      confirmation = 'Quiz updated.';
-      error = 'Failed to update quiz.';
-      method = http.patch;
-    } else if (cloneQuizId != '') {
+    if (quiz == null) {
+      url = '$apiUrl/quizzes';
+      confirmation = 'Quiz created.';
+      error = 'Failed to create quiz.';
+      method = http.post;
+    } else if (quiz.id == '') {
       url = '$apiUrl/quizzes';
       confirmation = 'Quiz cloned.';
       error = 'Failed to clone quiz.';
       method = http.post;
     } else {
-      url = '$apiUrl/quizzes';
-      confirmation = 'Quiz created.';
-      error = 'Failed to create quiz.';
-      method = http.post;
+      url = '$apiUrl/quizzes/${quiz.id}';
+      confirmation = 'Quiz updated.';
+      error = 'Failed to update quiz.';
+      method = http.patch;
     }
     final response = await method(Uri.parse(url),
         body: jsonEncode(tmpQuiz),

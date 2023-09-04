@@ -8,7 +8,7 @@ class Quiz {
   String difficulty;
 
   // managed by firestore (in alphabetical order)
-  final String? id;
+  String? id;
   final String? selfLink;
   final String? timeCreated;
   final String? updated;

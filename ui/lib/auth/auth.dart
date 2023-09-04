@@ -85,8 +85,6 @@ class AuthPage extends StatelessWidget {
           appState.photoUrl = user.photoURL as String;
         }
 
-        appState.cloneQuizId = '';
-        appState.editQuizId = '';
         appState.selectedIndex = 0;
         appState.selectedPageIndex = 0;
 
