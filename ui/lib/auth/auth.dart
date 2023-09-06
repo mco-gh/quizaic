@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:provider/provider.dart';
-import 'package:quizrd/models/state.dart';
+import 'package:quizaic/models/state.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -36,7 +36,7 @@ class AuthPage extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.asset(
-                    'assets/images/quizrd_logo.png',
+                    'assets/images/quizaic_logo.png',
                     height: 40,
                   ),
                 ),
@@ -46,8 +46,8 @@ class AuthPage extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: action == AuthAction.signIn
-                    ? const Text('Welcome to Quizrd, please sign in!')
-                    : const Text('Welcome to Quizrd, please sign up!'),
+                    ? const Text('Welcome to Quizaic, please sign in!')
+                    : const Text('Welcome to Quizaic, please sign up!'),
               );
             },
             footerBuilder: (context, action) {
@@ -65,7 +65,7 @@ class AuthPage extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.asset(
-                    'assets/images/quizrd_logo.png',
+                    'assets/images/quizaic_logo.png',
                     height: 20,
                   ),
                 ),
@@ -94,11 +94,11 @@ class AuthPage extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  'assets/images/quizrd_logo.png',
+                  'assets/images/quizaic_logo.png',
                   height: 40,
                 ),
                 Text(
-                  'Welcome to Quizrd!',
+                  'Welcome to Quizaic!',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 const SignOutButton(),

@@ -57,7 +57,7 @@ The machine that you will run the setup from will need the following installed:
 
 ### Setup
 
-1. Run `./scripts/setup.sh` to deploy backend services.
+1. Run `./scripts/setup.sh` to initialize everything and deploy the api and ui to cloud run.
 
 2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
    needed for users to log into the application.

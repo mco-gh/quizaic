@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quizrd/models/state.dart';
-import 'package:quizrd/views/browse.dart';
-import 'package:quizrd/views/host.dart';
-import 'package:quizrd/views/create.dart';
-import 'package:quizrd/views/play.dart';
-import 'package:quizrd/views/settings.dart';
-import 'package:quizrd/auth/auth.dart';
+import 'package:/models/state.dart';
+import 'package:/views/browse.dart';
+import 'package:/views/host.dart';
+import 'package:/views/create.dart';
+import 'package:/views/play.dart';
+import 'package:/views/settings.dart';
+import 'package:/auth/auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quizrd/models/quiz.dart';
+import 'package:/models/quiz.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -147,7 +147,7 @@ class HomePageScaffold extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    var appBarTitle = 'Quizrd';
+    var appBarTitle = '';
     var appBarSeperator = ' | ';
     var appBarTitleExtended = 'AI Powered Infinite Trivia';
 
@@ -199,7 +199,7 @@ class HomePageScaffold extends StatelessWidget {
             title: Row(
               children: [
                 Image.asset(
-                  'assets/images/quizrd_logo.png',
+                  'assets/images/_logo.png',
                   height: 40,
                 ),
                 Row(

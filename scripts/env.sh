@@ -16,3 +16,4 @@ export REGION=$(gcloud config get-value compute/region)
 export FIRESTORE_DB_LOCATION=nam5
 export SESSION_BUCKET=${PROJECT_ID}-sessions
 export IMAGES_BUCKET=${PROJECT_ID}-images
+export PYTHONPATH=.:${PYTHONPATH}

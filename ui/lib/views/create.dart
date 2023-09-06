@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quizrd/models/state.dart';
+import 'package:quizaic/models/state.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quizrd/models/quiz.dart';
+import 'package:quizaic/models/quiz.dart';
 import 'dart:convert';
 
 enum Synchronous { synchronous, asynchronous }

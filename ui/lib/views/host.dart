@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizrd/models/quiz.dart';
-import 'package:quizrd/models/state.dart';
+import 'package:quizaic/models/quiz.dart';
+import 'package:quizaic/models/state.dart';
 
 enum Synchronous { synchronous, asynchronous }
 
