@@ -44,42 +44,41 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB9NOZb5cpqexolcfOv2VmdeJVWg7KUcaY',
-    appId: '1:841686736797:web:2cd624703b268d1148d974',
-    messagingSenderId: '841686736797',
-    projectId: 'quizaic',
-    authDomain: 'quizaic.firebaseapp.com',
-    storageBucket: 'quizaic.appspot.com',
-    measurementId: "G-2X66S3160C",
-  );
+      apiKey: "AIzaSyCcHfiNfMhwn7Sny_dlIm8aBkcviX-WlVg",
+      appId: "1:780573810218:web:faaa1bb967007e5f2ced53",
+      messagingSenderId: "780573810218",
+      authDomain: "quizaic.firebaseapp.com",
+      projectId: "quizaic",
+      storageBucket: "quizaic.appspot.com",
+      measurementId: "G-83X2YBX244");
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDjlZAUeGlsFHxTgzO0f0SbvFWPMtSdaVI',
-    appId: '1:841686736797:android:7bf9678db07dd7cd48d974',
-    messagingSenderId: '841686736797',
+    apiKey: 'AIzaSyCcHfiNfMhwn7Sny_dlIm8aBkcviX-WlVg',
+    appId: '1:780573810218:android:749bf30c655a87c62ced53',
+    messagingSenderId: "780573810218",
     projectId: 'quizaic',
     storageBucket: 'quizaic.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCNUJAa1QBAAP6WfgoUI_CwGxdiacZzwKw',
-    appId: '1:338739261213:ios:cfab9adc7d4a1563be7bf4',
-    messagingSenderId: '841686736797',
+    apiKey: 'AIzaSyCcHfiNfMhwn7Sny_dlIm8aBkcviX-WlVg',
+    appId: "1:780573810218:ios:a9c47f91444c69ea2ced53",
+    messagingSenderId: "780573810218",
     projectId: 'quizaic',
     storageBucket: 'quizaic.appspot.com',
     iosClientId:
         '841686736797-25ib2nurttbn2p7k1hkqhauqcjet1l8j.apps.googleusercontent.com',
-    iosBundleId: 'com.example.quizaic',
+    iosBundleId: 'com.google.quizaic',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDGB9uaGkJMnMLcRPISIWjibwfMV8xT-kk',
-    appId: '1:338739261213:ios:8bb9c6349a0308a3be7bf4',
-    messagingSenderId: '841686736797',
+    apiKey: 'AIzaSyCcHfiNfMhwn7Sny_dlIm8aBkcviX-WlVg',
+    appId: "1:780573810218:web:faaa1bb967007e5f2ced53",
+    messagingSenderId: "780573810218",
     projectId: 'quizaic',
     storageBucket: 'quizaic.appspot.com',
     iosClientId:
         '841686736797-25ib2nurttbn2p7k1hkqhauqcjet1l8j.apps.googleusercontent.com',
-    iosBundleId: 'com.example.quizaic',
+    iosBundleId: 'com.google.quizaic',
   );
 }

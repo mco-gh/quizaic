@@ -66,7 +66,7 @@ The machine that you will run the setup from will need the following installed:
 
 The `setup.sh` script automatically initializes your Cloud Firestore database but if you ever need to reset the database to its initial state, you can run `./scripts/reset_db.sh` from the project level.
 
-On the [Firebase Console](https://console.firebase.google.com/), select your project, then `Firestore Database`, and add the following rules under the `Rules` tab:
+On the [Firebase Console](https://console.firebase.google.com/), add your project, then add Cloud Firestore, and setup the following rules under the `Rules` tab:
 
 ```
 rules_version = '2';
@@ -83,6 +83,8 @@ service cloud.firestore {
 }
 ```
 These rules allow apps to get real-time updates whenever the quizzes and generators collections change.
+
+Also on the [Firebase Console](https://console.firebase.google.com/), select "Authentication", then "Get Started", and add the authentication types you want to support (I use email/password and Google). Under `Authentication`->`Settings`->`Authorized Domains`, add the domains for any web apps you want to use authentication services. 
 
 ## Verify Setup
 
