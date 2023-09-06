@@ -12,12 +12,9 @@ class MyAppState extends ChangeNotifier {
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
 
   var photoUrl = '';
-  //var apiUrl = 'https://content-api-754gexfiiq-uc.a.run.app';
   var apiUrl = 'http://localhost:8081';
-
   var selectedIndex = 0;
   var selectedPageIndex = 0;
-
   String? idToken = '';
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
@@ -41,6 +38,11 @@ class MyAppState extends ChangeNotifier {
   MyAppState() {
     futureFetchQuizzes = fetchQuizzes();
     futureFetchGenerators = fetchGenerators();
+    if (const String.fromEnvironment('K_SERVICE', defaultValue: 'NOT') !=
+        'NOT') {
+      // running on cloud run so use public api
+      apiUrl = 'https://api-co24gukjmq-uc.a.run.app';
+    }
     quizzesStream.listen((event) {
       print("quizzes changed!");
       fetchQuizzes();

@@ -32,9 +32,10 @@ printf "=====\nCreating Cloud Storage bucket for sessions\n=====\n"
 gsutil mb gs://${SESSION_BUCKET}
 gsutil acl set public-read gs://${SESSION_BUCKET}
 
-printf "=====\nCreating Cloud Storage bucket for images\n=====\n"
+printf "=====\nCreating Cloud Storage bucket for images with acl and cors\n=====\n"
 gsutil mb gs://${IMAGES_BUCKET}
 gsutil acl set public-read gs://${IMAGES_BUCKET}
+gsutil cors set cors.json gs://${IMAGES_BUCKET}
 
 printf "=====\nCreating Cloud Artifacts repository\n=====\n"
 gcloud artifacts repositories create ${APP} --location=$REGION --repository-format=docker
