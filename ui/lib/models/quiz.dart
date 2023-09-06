@@ -34,7 +34,7 @@ class Quiz {
 
   // Obsolete?
   final String? description;
-  final String? numAnswers = '4';
+  final String? numAnswers;
 
   Quiz({
     // provided by quiz creator (in order of appearance on create quiz form)

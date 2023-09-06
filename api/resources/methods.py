@@ -146,7 +146,7 @@ def insert(resource_kind, representation):
         gen = QuizgenFactory.get_gen(generator.lower())
         quiz = gen.gen_quiz(topic, num_questions, num_answers)
         print(json.dumps(quiz, indent=4))
-        representation["qAndA"] = json.dumps(quiz, indent=4)
+        representation["qAndA"] = json.dumps(quiz)
     
     resource = db.insert(resource_kind, representation, resource_fields[resource_kind])
     id = resource["id"]

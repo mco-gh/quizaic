@@ -3,6 +3,7 @@ import 'package:quizrd/models/state.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizrd/models/quiz.dart';
+import 'dart:convert';
 
 enum Synchronous { synchronous, asynchronous }
 
@@ -183,6 +184,42 @@ class _CreatePageState extends State<CreatePage> {
       return setState(() {
         appState.selectedDifficulty = value.toString();
       });
+    }
+
+    Column genQuestionList() {
+      List<Widget> widgets = [];
+      List<Widget> subwidgets = [];
+      List<String> option = ['A', 'B', 'C', 'D'];
+      int i = 0;
+      int j = 0;
+      if (widget.quiz == null) {
+        return Column();
+      }
+      var qAndA = jsonDecode(widget.quiz?.qAndA as String);
+      for (var question in qAndA) {
+        j = 0;
+        subwidgets = [];
+        widgets.add(genText('question ${i + 1}: ${question["question"]}'));
+        if (widget.quiz?.answerFormat == "multiple choice") {
+          for (var answer in question["responses"]) {
+            subwidgets.add(genText('response ${option[j]}: $answer'));
+            j++;
+          }
+        } else {
+          subwidgets.add(genText('Answer: ${question["correct"]}'));
+        }
+        widgets.add(Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: subwidgets),
+        ));
+        i++;
+      }
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: widgets,
+      );
     }
 
     String title = '';
@@ -429,17 +466,10 @@ class _CreatePageState extends State<CreatePage> {
                   ),
                 ),
               ),
-              //for (var question in appState.quiz.qAndA)
-              //genText('Question: ${question.question}'),
-
-              //genText('Quiz Name: ${appState.selectedQuizName}'),
-              //genText('Generator: ${appState.selectedGenerator}'),
-              //genText('Quiz Topic: ${appState.selectedTopic}'),
-              //genText(
-              //    'Answer Format: ${appState.selectedAnswerFormat}'),
-              //genText(
-              //    'Num Questions: ${appState.selectedNumQuestions}'),
-              //genText('Difficulty: ${appState.selectedDifficulty}'),
+              SizedBox(height: 20),
+              ExpansionTile(
+                  title: genText('Quiz Contents'),
+                  children: [genQuestionList()]),
             ]),
           )),
     );
