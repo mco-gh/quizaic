@@ -1,9 +1,10 @@
 import sys
-sys.path.append("../../../../") # Needed for the main method to work in this class
-from pyquizrd.generators.quiz.basequizgen import BaseQuizgen
+
+sys.path.append("../../../../")  # Needed for the main method to work in this class
+from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
+
 
 class Quizgen(BaseQuizgen):
-
     def __init__(self, config=None):
         self.topics = set()
 
@@ -19,10 +20,17 @@ class Quizgen(BaseQuizgen):
     def get_answer_formats(self):
         return ["freeform", "multiple-choice"]
 
-    def gen_quiz(self, topic=None, num_questions=None, num_answers=None, difficulty=3, temperature=.5):
+    def gen_quiz(
+        self,
+        topic=None,
+        num_questions=None,
+        num_answers=None,
+        difficulty=3,
+        temperature=0.5,
+    ):
         return "[]"
 
 
 if __name__ == "__main__":
     gen = Quizgen()
-    print(f'gen:{gen}')
+    print(f"gen:{gen}")

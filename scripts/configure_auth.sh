@@ -14,7 +14,7 @@
 # limitations under the License.
 
 # This file will provision end-user authentication
-# resources in an already-deployed Quizrd instance.
+# resources in an already-deployed Quizaic instance.
 
 . scripts/env.sh
 

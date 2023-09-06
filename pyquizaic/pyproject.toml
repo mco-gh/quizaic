@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "pyquizrd"
+name = "pyquizaic"
 version = "0.1.6"
 description = ""
 authors = ["marcacohen <marcacohen@gmail.com>"]
 readme = "README.md"
-include = ["pyquizrd/jeopardy/pruned_jeopardy.json"]
+include = ["pyquizaic/jeopardy/pruned_jeopardy.json"]
 
 [tool.poetry.dependencies]
 python = "^3.11"

@@ -1,6 +1,6 @@
 {
-    "name": "quizrd",
-    "short_name": "quizrd",
+    "name": "quizaid",
+    "short_name": "quizaic",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

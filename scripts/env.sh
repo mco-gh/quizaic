@@ -9,7 +9,7 @@
 #     - gcloud config set compute/region <your-region>
 #
 
-export APP=quizrd
+export APP=quizaic
 export GOOGLE_CLOUD_PROJECT=$(gcloud config get-value project)
 export PROJECT_ID=$GOOGLE_CLOUD_PROJECT
 export REGION=$(gcloud config get-value compute/region)

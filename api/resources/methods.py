@@ -16,10 +16,10 @@ from main import g, request
 from data import cloud_firestore as db
 from resources import auth, base
 from utils.logging import log
-from pyquizrd.generators.quiz.quizgenfactory import QuizgenFactory
-from pyquizrd.generators.image.imagegen import ImageGen
+from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
+from pyquizaic.generators.image.imagegen import ImageGen
 
-PROJECT_ID = "mco-quizrd"
+PROJECT_ID = "quizaic"
 BUCKET_NAME = PROJECT_ID + "-images"
 
 resource_fields = {
@@ -140,14 +140,14 @@ def insert(resource_kind, representation):
         generator = representation["generator"]
         topic = representation["topic"]
         num_questions = int(representation["numQuestions"])
-        #num_answers = int(representation["numAnswers"])
+        # num_answers = int(representation["numAnswers"])
         num_answers = 4
 
         gen = QuizgenFactory.get_gen(generator.lower())
         quiz = gen.gen_quiz(topic, num_questions, num_answers)
         print(json.dumps(quiz, indent=4))
         representation["qAndA"] = json.dumps(quiz)
-    
+
     resource = db.insert(resource_kind, representation, resource_fields[resource_kind])
     id = resource["id"]
 
@@ -155,11 +155,12 @@ def insert(resource_kind, representation):
         print("inserting a quiz so generating a new image...")
         filename = resource["id"] + ".png"
         file_url = ImageGen.generate_and_upload_image(topic, filename, BUCKET_NAME)
-        print(f'file_url: {file_url}')
-        patch = { "imageUrl": file_url }
+        print(f"file_url: {file_url}")
+        patch = {"imageUrl": file_url}
 
-        resource, status = db.update(resource_kind, id, patch, resource_fields[resource_kind], None )
-
+        resource, status = db.update(
+            resource_kind, id, patch, resource_fields[resource_kind], None
+        )
 
     return (
         json.dumps(resource),

@@ -1,4 +1,4 @@
-# quizrd
+# quizaic
 
 "A new Flutter project."
 

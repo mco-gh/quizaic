@@ -4,11 +4,12 @@ import pandas as pd
 import os
 
 import sys
-sys.path.append("../../../../") # Needed for the main method to work in this class
-from pyquizrd.generators.quiz.basequizgen import BaseQuizgen
+
+sys.path.append("../../../../")  # Needed for the main method to work in this class
+from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
+
 
 class Quizgen(BaseQuizgen):
-
     def __init__(self, config=None):
         data_path = os.path.join(os.path.dirname(__file__), "pruned_jeopardy.json")
         self.db = pd.read_json(data_path)
@@ -26,7 +27,9 @@ class Quizgen(BaseQuizgen):
     def get_answer_formats(self):
         return ["freeform"]
 
-    def gen_quiz(self, topic, num_questions, num_answers=1, difficulty=3, temperature=None):
+    def gen_quiz(
+        self, topic, num_questions, num_answers=1, difficulty=3, temperature=None
+    ):
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
         filtered = self.db.loc[self.db["category"] == topic]
@@ -36,9 +39,9 @@ class Quizgen(BaseQuizgen):
         value1 = f"${difficulty * 100}"
         value2 = f"${difficulty * 200}"
         filtered = filtered.loc[
-            (filtered["round"] == round1) & (filtered["value"] == value1) |
-            (filtered["round"] == round2) & (filtered["value"] == value2) |
-            (filtered["round"] == round3) & (difficulty == 5)
+            (filtered["round"] == round1) & (filtered["value"] == value1)
+            | (filtered["round"] == round2) & (filtered["value"] == value2)
+            | (filtered["round"] == round3) & (difficulty == 5)
         ]
         filtered = filtered[["question", "answer"]]
         filtered = filtered.rename(columns={"answer": "correct"})

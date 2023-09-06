@@ -51,8 +51,8 @@ The machine that you will run the setup from will need the following installed:
 1. Clone the source code from github and change to the new directory with these commands:
 
     ```bash
-    git clone https://github.com/mco-gh/quizrd
-    cd quizrd
+    git clone https://github.com/mco-gh/quizaic
+    cd quizaic
     ```
 
 ### Setup
@@ -148,4 +148,4 @@ You should be able to test the ui locally now:
 
 ---
 
-Quizrd is not an official Google project.
+Quizaic is not an official Google project.
