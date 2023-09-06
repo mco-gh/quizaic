@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:/models/quiz.dart';
-import 'package:/models/generator.dart';
+import 'package:quizaic/models/quiz.dart';
+import 'package:quizaic/models/generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:/models/state.dart';
-import 'package:/views/browse.dart';
-import 'package:/views/host.dart';
-import 'package:/views/create.dart';
-import 'package:/views/play.dart';
-import 'package:/views/settings.dart';
-import 'package:/auth/auth.dart';
+import 'package:quizaic/models/state.dart';
+import 'package:quizaic/views/browse.dart';
+import 'package:quizaic/views/host.dart';
+import 'package:quizaic/views/create.dart';
+import 'package:quizaic/views/play.dart';
+import 'package:quizaic/views/settings.dart';
+import 'package:quizaic/auth/auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:/models/quiz.dart';
+import 'package:quizaic/models/quiz.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -147,7 +147,7 @@ class HomePageScaffold extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    var appBarTitle = '';
+    var appBarTitle = 'Quizaic';
     var appBarSeperator = ' | ';
     var appBarTitleExtended = 'AI Powered Infinite Trivia';
 
@@ -199,7 +199,7 @@ class HomePageScaffold extends StatelessWidget {
             title: Row(
               children: [
                 Image.asset(
-                  'assets/images/_logo.png',
+                  'assets/images/quizaic_logo.png',
                   height: 40,
                 ),
                 Row(
