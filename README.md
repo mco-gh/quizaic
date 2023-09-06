@@ -1,6 +1,6 @@
-# <img src="ui/assets/images/logo.png" height="40"> Quizrd - AI-powered Infinite Trivia
+# <img src="ui/assets/images/logo.png" height="40"> Quizaic - AI-powered Infinite Trivia
 
-Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
+Quizaic is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
 
 ## Architecture
@@ -17,7 +17,7 @@ Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to ge
 ## Project Status
 
 * **Release Stage:** Alpha
-* **Setup:** Follow the instructions to set up Quizrd in the [Getting Started](#getting-started) section below.
+* **Setup:** Follow the instructions to set up Quizaic in the [Getting Started](#getting-started) section below.
 
 ## Contributing
 
@@ -27,7 +27,7 @@ Quizrd is a trivia quiz app with a twist - it uses Artificial Intelligence to ge
 
 ### Prerequisites
 
-To deploy Quizrd, you will need:
+To deploy Quizaic, you will need:
 <!-- * 3 Google Cloud projects (ops, stage, prod) with billing enabled on each) -->
 * A Google Cloud project with billing enabled
 * A clone of this repo
