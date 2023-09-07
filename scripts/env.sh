@@ -16,12 +16,12 @@ export GOOGLE_CLOUD_PROJECT=$(gcloud config get-value project)
 export PROJECT_ID=$GOOGLE_CLOUD_PROJECT
 export REGION=$(gcloud config get-value compute/region)
 export SESSION_BUCKET=${PROJECT_ID}-sessions
-export IMAGES_BUCKET=${PROJECT_ID}-images
 export PYTHONPATH=.:${PYTHONPATH}
 
 # Config settings for the ui service.
 export APP=quizaic
 export FIRESTORE_DB_LOCATION=nam5
+export IMAGES_BUCKET=${PROJECT_ID}-images
 
 # Environment specific settings.
 if [ "$#" != 1 ]

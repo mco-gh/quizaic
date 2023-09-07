@@ -11,6 +11,7 @@
 # limitations under the License.
 
 import json
+import os
 
 from main import g, request
 from data import cloud_firestore as db
@@ -19,8 +20,7 @@ from utils.logging import log
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 from pyquizaic.generators.image.imagegen import ImageGen
 
-PROJECT_ID = "quizaic"
-BUCKET_NAME = PROJECT_ID + "-images"
+IMAGES_BUCKET = os.getenv("IMAGES_BUCKET")
 
 resource_fields = {
     "admins": ["name", "email"],
@@ -154,7 +154,7 @@ def insert(resource_kind, representation):
     if resource_kind == "quizzes":
         print("inserting a quiz so generating a new image...")
         filename = resource["id"] + ".png"
-        file_url = ImageGen.generate_and_upload_image(topic, filename, BUCKET_NAME)
+        file_url = ImageGen.generate_and_upload_image(topic, filename, IMAGES_BUCKET)
         print(f"file_url: {file_url}")
         patch = {"imageUrl": file_url}
 
