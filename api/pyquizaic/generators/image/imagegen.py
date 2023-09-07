@@ -3,6 +3,7 @@ from io import BytesIO
 from google.cloud import storage
 from vertexai.preview.vision_models import ImageGenerationModel
 
+PROJECT_ID = os.getenv("PROJECT_ID")
 PROMPT_TEMPLATE= "photorealistic image about {topic}"
 NEGATIVE_PROMPT = "blurry"
 
@@ -55,7 +56,9 @@ class ImageGen:
     @staticmethod
     def generate_and_upload_image(topic, file_name, bucket_name):
         images = ImageGen.generate_images(topic)
+
         if images[0]:
+            print(f"image generated, {PROJECT_ID=}, {bucket_name=}")
             file_url = ImageGen.upload_to_gcs(images[0], file_name, bucket_name)
             return file_url
         return None
