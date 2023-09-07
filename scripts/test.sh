@@ -10,20 +10,17 @@ then
     exit 1
 fi
 
+. scripts/env.sh test
+
 if [ "$1" = "ui" ]
 then
-    . scripts/env.sh
-    . ~/keys.sh
-    export API_URL=http://localhost:8081
-    export REDIRECT_URI=http://localhost:8080/callback
     cd ui 
-    flutter run -d chrome
+    flutter run -d chrome $FLUTTER_VARS
     cd -
 elif [ "$1" = "api" ]
 then
-    . scripts/env.sh
-    export PYTHONPATH="$PWD/api"
     cd api
+    . ~/keys.sh
     python3 -m pip install -r requirements.txt
     FLASK_APP=main.py flask run --port 8081 --debugger --reload
     cd -

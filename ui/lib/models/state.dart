@@ -10,9 +10,15 @@ List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
 class MyAppState extends ChangeNotifier {
   late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
-
+  static const apiUrl =
+      bool.hasEnvironment('API_URL') ? String.fromEnvironment('API_URL') : null;
+  static const redirectUri = bool.hasEnvironment('REDIRECT_URI')
+      ? String.fromEnvironment('REDIRECT_URI')
+      : null;
+  static const clientId = bool.hasEnvironment('CLIENT_ID')
+      ? String.fromEnvironment('CLIENT_ID')
+      : null;
   var photoUrl = '';
-  var apiUrl = 'http://localhost:8081';
   var selectedIndex = 0;
   var selectedPageIndex = 0;
   String? idToken = '';
@@ -36,13 +42,12 @@ class MyAppState extends ChangeNotifier {
       FirebaseFirestore.instance.collection('quizzes').snapshots();
 
   MyAppState() {
+    print("apiUrl: $apiUrl");
+    print("redirectUri: $redirectUri");
+    print("clientId: $clientId");
     futureFetchQuizzes = fetchQuizzes();
     futureFetchGenerators = fetchGenerators();
-    if (const String.fromEnvironment('K_SERVICE', defaultValue: 'NOT') !=
-        'NOT') {
-      // running on cloud run so use public api
-      apiUrl = 'https://api-co24gukjmq-uc.a.run.app';
-    }
+
     quizzesStream.listen((event) {
       print("quizzes changed!");
       fetchQuizzes();
@@ -144,6 +149,8 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<List<Quiz>> fetchQuizzes() async {
+    print('fetchQuizzes using apiUrl: $apiUrl');
+
     final response = await http.get(Uri.parse('$apiUrl/quizzes'));
 
     if (response.statusCode == 200) {
@@ -157,6 +164,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<List<Generator>> fetchGenerators() async {
+    print('fetchGenerators using apiUrl: $apiUrl');
     final response = await http.get(Uri.parse('$apiUrl/generators'));
 
     if (response.statusCode == 200) {

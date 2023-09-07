@@ -10,27 +10,23 @@ then
     exit 1
 fi
 
+. scripts/env.sh deploy
+
 if [ "$1" = "ui" ]
 then
-    . scripts/env.sh
     cd ui
-    VERSION=$(cat version)
-    TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/ui:v${VERSION}"
-    API_URL=$(gcloud run services describe api --region=$REGION --project $PROJECT_ID --format "value(status.url)")
-    # I don't think REDIRECT_URI is needed here. It's setup in configure_auth.sh
-    # REDIRECT_URI=$(gcloud run services describe ui --region=$REGION --project $PROJECT_ID --format "value(status.url)")/callback
+    export VERSION=$(cat version)
+    export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/ui:v${VERSION}"
     gcloud builds submit . --tag=$TAG
-    gcloud run deploy ui --region ${REGION} --image=${TAG} \
-        --update-env-vars "API_URL=$API_URL, SESSION_BUCKET=$SESSION_BUCKET, IMAGES_BUCKET=$IMAGES_BUCKET" \
-        --allow-unauthenticated
+    gcloud run deploy ui --region ${REGION} --image=${TAG} --allow-unauthenticated
+    cd -
 elif [ "$1" = "api" ]
 then
-    . scripts/env.sh
     cd api
-    VERSION=$(cat version)
-    TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/content_api:v${VERSION}"
+    export VERSION=$(cat version)
+    export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/content_api:v${VERSION}"
     gcloud builds submit . --tag=$TAG
-    gcloud run deploy api --region ${REGION} --image=${TAG} --allow-unauthenticated
+    gcloud run deploy api --region ${REGION} --image=${TAG} --update-env-vars "${CLOUD_RUN_VARS}" --allow-unauthenticated
     cd -
 else
     echo "Usage: $USAGE"
