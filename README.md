@@ -64,6 +64,8 @@ The machine that you will run the setup from will need the following installed:
 
 3. In ui/lib/auth/auth.dart, set the clientId for the Google provider per the credentials you generated in the previous step.
 
+# Mete: Doesn't step3 require another redeploy of the ui? It'd be great if step 2 took care of this via an env variable
+
 ## Populate and Configure Firestore Database
 
 The `setup.sh` script automatically initializes your Cloud Firestore database but if you ever need to reset the database to its initial state, you can run `./scripts/reset_db.sh` from the project level.
@@ -86,6 +88,9 @@ service cloud.firestore {
 ```
 These rules allow apps to get real-time updates whenever the quizzes and generators collections change.
 
+# Mete: The authentication part in Firebase Console is not clear at all. Questions
+# 1. Is email/password and Google OAuth both needed? We should be clear on what's needed. 
+# 2. I added ui app's Cloud Run's url to the domain list but still OAuth with Google did not work 
 Also on the [Firebase Console](https://console.firebase.google.com/), select "Authentication", then "Get Started", and add the authentication types you want to support (I use email/password and Google). Under `Authentication`->`Settings`->`Authorized Domains`, add the domains for any web apps you want to use authentication services. 
 
 ## Verify Setup

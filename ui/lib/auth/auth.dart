@@ -25,8 +25,9 @@ class AuthPage extends StatelessWidget {
             providers: [
               EmailAuthProvider(),
               GoogleProvider(
+              // Mete: This should really be not hardcoded
                 clientId:
-                    '780573810218-9bofi4nk2odnhh90vn1qnllva0qbujgk.apps.googleusercontent.com',
+                    '290550417489-r1h6obgomelnpgsv1csdh8hknblvbgfs.apps.googleusercontent.com',
                 scopes: ['email', 'profile'],
               )
             ],
