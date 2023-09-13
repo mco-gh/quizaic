@@ -6,7 +6,7 @@ Quizaic is a trivia quiz app with a twist - it uses Artificial Intelligence to g
 ## Architecture
 
 ### Data/User Model
-<img src="ui/assets/images/datauser.png">
+<img src="ui/assets/images/userdata.png">
 
 ### System Block Diagram
 <img src="ui/assets/images/system.png">
