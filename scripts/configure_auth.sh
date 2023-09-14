@@ -16,7 +16,7 @@
 # This file will provision end-user authentication
 # resources in an already-deployed Quizaic instance.
 
-. scripts/env.sh
+. scripts/env.sh test
 
 # Check input env variables
 if [[ -z "${PROJECT_ID}" ]]; then

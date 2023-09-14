@@ -3,7 +3,7 @@
 # ./scripts/setup.sh
 #
 
-. scripts/env.sh
+. scripts/env.sh test
 
 printf "=====\nUncompressing generator data\n=====\n"
 JEP_FILE="ui/gen/jeopardy/pruned_jeopardy.json"

@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/models/generator.dart';
+import 'package:quizaic/models/results.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
@@ -68,6 +70,30 @@ class MyAppState extends ChangeNotifier {
       }
     }
     return null;
+  }
+
+  Future<bool> startQuiz(quiz) async {
+    print('startQuiz: $quiz');
+    Results results = Results(
+      synchronous: hostSynch == 'Synchronous' ? true : false,
+      timeLimit: hostTimeLimit,
+      survey: false,
+      anonymous: hostAnonymous == 'Anonymous' ? true : false,
+      randomizeQuestions: hostRandomizeQuestions == 'Yes' ? true : false,
+      randomizeAnswers: hostRandomizeAnswers == 'Yes' ? true : false,
+    );
+
+    final response = await http.post(Uri.parse('$apiUrl/results'),
+        body: jsonEncode(results),
+        headers: {'Authorization': 'Bearer $idToken'});
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      print("Quiz id ${quiz.id} started.");
+    } else {
+      throw Exception('Failed to start quiz ${quiz.id}');
+    }
+    notifyListeners();
+    return true;
   }
 
   Future<bool> createOrUpdateQuiz(quiz) async {

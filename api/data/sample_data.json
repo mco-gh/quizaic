@@ -35,7 +35,6 @@
     "collection": "quizzes",
     "id": "12343afa140f40ff9e70",
     "data": {
-      "curQuestion": "-1",
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "pin": "1",
       "playUrl": "https://quizaic.com/1",
@@ -115,7 +114,6 @@
     "collection": "quizzes",
     "id": "f7723afa140f40ff9e70",
     "data": {
-      "curQuestion": "-1",
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "pin": "2",
       "playUrl": "https://quizaic.com/2",
@@ -157,7 +155,6 @@
     "collection": "quizzes",
     "id": "6e4f3afa140f40ff9e70",
     "data": {
-      "curQuestion": "-1",
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "pin": "3",
       "playUrl": "https://quizaic.com/3",
@@ -287,7 +284,6 @@
     "collection": "quizzes",
     "id": "078ba4bfce324ced8586",
     "data": {
-      "curQuestion": "-1",
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "pin": "4",
       "playUrl": "https://quizaic.com/4",
@@ -337,7 +333,6 @@
     "collection": "quizzes",
     "id": "d5816cdf8b3949429c23",
     "data": {
-      "curQuestion": "-1",
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "pin": "5",
       "playUrl": "https://quizaic.com/5",
@@ -387,7 +382,6 @@
     "collection": "quizzes",
     "id": "Gc34g8db0wCrroLUxJeA",
     "data": {
-      "curQuestion": "-1",
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "pin": "6",
       "playUrl": "https://quizaic.com/6",

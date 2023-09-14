@@ -53,7 +53,6 @@ resource_fields = {
     "generators": ["name", "answerFormats", "topics"],
 }
 
-
 # List all entities of the given resource_kind, if allowed,
 def list(resource_kind):
     log(f"Request to list {resource_kind}", severity="INFO")
