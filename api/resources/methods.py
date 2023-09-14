@@ -51,6 +51,7 @@ resource_fields = {
         "active",
     ],
     "results": [
+        "active",
         "hostId",
         "quizId",
         "synchronous",

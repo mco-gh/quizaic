@@ -75,6 +75,7 @@ class MyAppState extends ChangeNotifier {
   Future<bool> hostQuiz(quiz) async {
     print('hostQuiz: $quiz');
     Results results = Results(
+      active: false,
       id: quiz.id,
       hostId: 'tmp',
       synchronous: hostSynch == 'Synchronous' ? true : false,
