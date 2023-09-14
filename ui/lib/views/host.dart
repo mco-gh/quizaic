@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/models/state.dart';
-import 'package:go_router/go_router.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum Synchronous { synchronous, asynchronous }
 
@@ -50,13 +51,21 @@ String? intValidator(String? value) {
 class _HostPageState extends State<HostPage> {
   _HostPageState();
 
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
+
   @override
   void initState() {
     super.initState();
+    print('initState - quiz id: ${widget.quiz?.id}');
+    resultsStream = FirebaseFirestore.instance
+        .collection('results')
+        .doc(widget.quiz?.id)
+        .snapshots();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('hosting quiz: ${widget.quiz?.id}');
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     // Build a Form widget using the _formKey created
@@ -104,6 +113,18 @@ class _HostPageState extends State<HostPage> {
           ]);
     }
 
+    void startQuiz() {
+      return setState(() {
+        appState.quizRunning = true;
+      });
+    }
+
+    void stopQuiz() {
+      return setState(() {
+        appState.quizRunning = false;
+      });
+    }
+
     void setHostSynch(value) {
       return setState(() {
         appState.hostSynch = value.toString();
@@ -144,6 +165,12 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
+    void nextQuestion() {
+      return setState(() {
+        appState.curQuestion++;
+      });
+    }
+
     if (widget.quiz == null) {
       return Center(
         child: genText('No quiz selected for hosting'),
@@ -151,6 +178,37 @@ class _HostPageState extends State<HostPage> {
     }
 
     String title = 'Hosting Quiz "${widget.quiz!.name}"';
+
+    if (appState.quizRunning) {
+      return StreamBuilder<DocumentSnapshot>(
+          stream: resultsStream,
+          builder: (context, snapshot) {
+            print('snapshot: ${snapshot.data?.data()}');
+
+            var data = snapshot.data!.data() as Map<String, dynamic>;
+            var curQuestion = int.parse(data['curQuestion']);
+            var question =
+                jsonDecode(widget.quiz!.qAndA!)[curQuestion]['question'];
+            return Column(
+              children: [
+                genText('Question $curQuestion: $question'),
+                ElevatedButton(
+                  onPressed: () {
+                    nextQuestion();
+                  },
+                  child: genText('Next Question'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    stopQuiz();
+                  },
+                  child: genText('Stop Quiz'),
+                ),
+              ],
+            );
+          });
+    }
+
     return Center(
       child: Form(
           key: _formKey,
@@ -295,10 +353,10 @@ class _HostPageState extends State<HostPage> {
                         );
                         print('hosting quiz...');
                         appState.hostQuiz(widget.quiz);
-                        GoRouter.of(context).go('/browse');
+                        startQuiz();
                       }
                     },
-                    child: genText('Host ${appState.hostType}'),
+                    child: genText('Start ${appState.hostType}'),
                   ),
                 ),
               ),

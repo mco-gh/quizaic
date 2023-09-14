@@ -39,6 +39,8 @@ class MyAppState extends ChangeNotifier {
   String hostAnonymous = 'Anonymous';
   String hostRandomizeQuestions = 'Yes';
   String hostRandomizeAnswers = 'Yes';
+  int curQuestion = 0;
+  bool quizRunning = false;
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
