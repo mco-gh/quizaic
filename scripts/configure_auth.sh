@@ -119,7 +119,6 @@ AUTH_SECRETS="${AUTH_SECRETS},CLIENT_SECRET=projects/${PROJECT_NUMBER}/secrets/c
 
 # TODO: fetch the redirect URI dynamically (from HTTP headers) instead of 
 #       using env vars, for things like custom domains and load balancers.
-#       See https://github.com/GoogleCloudPlatform/emblem/issues/277
 
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --member=serviceAccount:${GCP_SVC_ACC} \

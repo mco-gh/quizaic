@@ -11,5 +11,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
-          package-name: emblem
+          package-name: quizaic
           changelog-type: github

@@ -15,7 +15,7 @@
 from flask import g, request
 import secrets
 
-import emblem_client
+# import quizaic_client
 
 
 def init(app):
@@ -40,5 +40,5 @@ def init(app):
             ]
         )
 
-        #response.headers["Content-Security-Policy"] = policy
+        # response.headers["Content-Security-Policy"] = policy
         return response

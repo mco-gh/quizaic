@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-"""The Emblem website-specific logging utility.
+"""Quizaic logging utility.
     
     Usage:
         from middleware.logging import log

@@ -22,7 +22,7 @@ from resources.base import canonical_resource, etag, snapshot_to_resource
 client = firestore.Client()
 
 collection_name_prefix = ""
-db_environment = os.environ.get("EMBLEM_DB_ENVIRONMENT", None)
+db_environment = os.environ.get("QUIZAIC_DB_ENVIRONMENT", None)
 if db_environment == "TEST":
     collection_name_prefix = str(uuid.uuid4())
 
