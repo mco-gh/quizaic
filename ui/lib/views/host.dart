@@ -165,12 +165,6 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
-    void nextQuestion() {
-      return setState(() {
-        appState.curQuestion++;
-      });
-    }
-
     if (widget.quiz == null) {
       return Center(
         child: genText('No quiz selected for hosting'),
@@ -194,7 +188,7 @@ class _HostPageState extends State<HostPage> {
                 genText('Question $curQuestion: $question'),
                 ElevatedButton(
                   onPressed: () {
-                    nextQuestion();
+                    appState.incQuestion(widget.quiz?.id, curQuestion);
                   },
                   child: genText('Next Question'),
                 ),

@@ -74,6 +74,25 @@ class MyAppState extends ChangeNotifier {
     return null;
   }
 
+  Future<bool> incQuestion(resultsId, curQuestion) async {
+    curQuestion++;
+    String body = '{"curQuestion": "$curQuestion"}';
+    print('body: $body');
+    final response = await http
+        .patch(Uri.parse('$apiUrl/results/$resultsId'), body: body, headers: {
+      'Authorization': 'Bearer $idToken',
+      'Content-Type': 'application/json',
+    });
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      print("Question incremented started.");
+    } else {
+      throw Exception('Failed to increment question.');
+    }
+    notifyListeners();
+    return true;
+  }
+
   Future<bool> hostQuiz(quiz) async {
     print('hostQuiz: $quiz');
     Results results = Results(
