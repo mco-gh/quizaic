@@ -458,30 +458,6 @@
     }
   },
   {
-    "collection": "results",
-    "id": "pEBbhO6gWSAVdx492uVi",
-    "data": {
-      "quiz": "078ba4bfce324ced8586",
-      "player": "Marc",
-      "answers": [
-          "The Beatles",
-          "Bob Dylan"
-      ]
-    }
-  },
-  {
-    "collection": "results",
-    "id": "s4kAXRt2anQebfJgLqDC",
-    "data": {
-      "quiz": "078ba4bfce324ced8586",
-      "player": "Maya",
-      "answers": [
-          "Oasis",
-          "Elvis Presley"
-      ]
-    }
-  },
-  {
     "collection": "generators",
     "id": "57d62f566516411e98eb",
     "data": {

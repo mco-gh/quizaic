@@ -72,9 +72,11 @@ class MyAppState extends ChangeNotifier {
     return null;
   }
 
-  Future<bool> startQuiz(quiz) async {
-    print('startQuiz: $quiz');
+  Future<bool> hostQuiz(quiz) async {
+    print('hostQuiz: $quiz');
     Results results = Results(
+      id: quiz.id,
+      hostId: 'tmp',
       synchronous: hostSynch == 'Synchronous' ? true : false,
       timeLimit: hostTimeLimit,
       survey: false,
@@ -85,7 +87,10 @@ class MyAppState extends ChangeNotifier {
 
     final response = await http.post(Uri.parse('$apiUrl/results'),
         body: jsonEncode(results),
-        headers: {'Authorization': 'Bearer $idToken'});
+        headers: {
+          'Authorization': 'Bearer $idToken',
+          'Content-Type': 'application/json',
+        });
 
     if (response.statusCode == 200 || response.statusCode == 204) {
       print("Quiz id ${quiz.id} started.");

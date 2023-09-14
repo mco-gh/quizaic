@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/models/state.dart';
+import 'package:go_router/go_router.dart';
 
 enum Synchronous { synchronous, asynchronous }
 
@@ -290,16 +291,14 @@ class _HostPageState extends State<HostPage> {
                         // If the form is valid, display a snackbar. In the real world,
                         // you'd often call a server or save the information in a database.
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: genText('Starting quiz...')),
+                          SnackBar(content: genText('Hosting quiz...')),
                         );
-                        appState.createOrUpdateQuiz(widget.quiz);
-                        setState(() {
-                          appState.selectedIndex = 0;
-                          appState.selectedPageIndex = 0;
-                        });
+                        print('hosting quiz...');
+                        appState.hostQuiz(widget.quiz);
+                        GoRouter.of(context).go('/browse');
                       }
                     },
-                    child: genText('Start ${appState.hostType}'),
+                    child: genText('Host ${appState.hostType}'),
                   ),
                 ),
               ),

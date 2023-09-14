@@ -73,7 +73,8 @@ def insert(resource_kind, representation, resource_fields, host_url=None):
     for field in resource_fields:
         resource[field] = representation.get(field, None)
 
-    doc_ref = client.collection(collection_name_prefix + resource_kind).document()
+    id = representation.get("id", None)
+    doc_ref = client.collection(collection_name_prefix + resource_kind).document(id)
     doc_ref.set(resource)
 
     if host_url is not None:

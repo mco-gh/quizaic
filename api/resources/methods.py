@@ -10,6 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import hashlib
 import json
 import os
 
@@ -49,8 +50,23 @@ resource_fields = {
         "runCount",
         "active",
     ],
-    "results": ["quiz", "player", "answers"],
-    "generators": ["name", "answerFormats", "topics"],
+    "results": [
+        "hostId",
+        "quizId",
+        "synchronous",
+        "timeLimit",
+        "survey",
+        "anonymous",
+        "randomizeQuestions",
+        "randomizeAnswers",
+        "curQuestion",
+        "pin"
+    ],
+    "generators": [
+        "name",
+        "answerFormats",
+        "topics"
+    ],
 }
 
 # List all entities of the given resource_kind, if allowed,
@@ -133,9 +149,19 @@ def insert(resource_kind, representation):
     if not auth.allowed("POST", resource_kind, representation):
         return "Forbidden", 403
 
+    if resource_kind == "quizzes" or resource_kind == "results":
+        # get the creators hashed email addr so we can define quiz ownership
+        email = g.verified_email
+        hashed_email = None
+        if email:
+            hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
+        key = "creator"
+        if resource_kind == "results":
+            key = "hostId"
+        representation[key] = hashed_email
+
     if resource_kind == "quizzes":
         print("inserting a quiz so generating a new quiz...")
-
         generator = representation["generator"]
         topic = representation["topic"]
         num_questions = int(representation["numQuestions"])
