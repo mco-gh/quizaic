@@ -400,7 +400,7 @@
     "collection": "results",
     "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
     "data": {
-        "active": false,
+        "state": "quizzing",
         "curQuestion": "0",
         "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
         "quizId": "Gc34g8db0wCrroLUxJeA",
