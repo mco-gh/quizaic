@@ -156,10 +156,11 @@ def insert(resource_kind, representation):
         hashed_email = None
         if email:
             hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
-        key = "creator"
         if resource_kind == "results":
-            key = "hostId"
-        representation[key] = hashed_email
+            representation["id"] = hashed_email
+            representation["hostId"] = hashed_email
+        elif resource_kind == "quizzes":
+            representation["creator"] = hashed_email
 
     if resource_kind == "quizzes":
         print("inserting a quiz so generating a new quiz...")

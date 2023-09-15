@@ -40,10 +40,12 @@ class MyAppState extends ChangeNotifier {
   String hostRandomizeQuestions = 'Yes';
   String hostRandomizeAnswers = 'Yes';
   int curQuestion = 0;
-  bool quizRunning = false;
+  String resultsId = '';
+  String runningQuizId = '';
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
 
   MyAppState() {
     print("apiUrl: $apiUrl");
@@ -85,7 +87,7 @@ class MyAppState extends ChangeNotifier {
     });
 
     if (response.statusCode == 200 || response.statusCode == 204) {
-      print("Question incremented started.");
+      print("Question incremented.");
     } else {
       throw Exception('Failed to increment question.');
     }
@@ -93,12 +95,11 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> hostQuiz(quiz) async {
-    print('hostQuiz: $quiz');
+  Future<bool> hostQuiz(quizId) async {
+    print('hostQuiz($quizId)');
     Results results = Results(
       active: false,
-      id: quiz.id,
-      hostId: 'tmp',
+      quizId: quizId,
       synchronous: hostSynch == 'Synchronous' ? true : false,
       timeLimit: hostTimeLimit,
       survey: false,
@@ -114,10 +115,36 @@ class MyAppState extends ChangeNotifier {
           'Content-Type': 'application/json',
         });
 
-    if (response.statusCode == 200 || response.statusCode == 204) {
-      print("Quiz id ${quiz.id} started.");
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("Quiz $quizId started.");
     } else {
-      throw Exception('Failed to start quiz ${quiz.id}');
+      throw Exception('Failed to start quiz $quizId');
+    }
+    var resp = json.decode(response.body);
+    resultsId = resp["id"];
+    runningQuizId = quizId;
+    resultsStream = FirebaseFirestore.instance
+        .collection('results')
+        .doc(resultsId)
+        .snapshots();
+    notifyListeners();
+    return true;
+  }
+
+  Future<bool> stopHostQuiz() async {
+    print('stopHostQuiz()');
+
+    final response =
+        await http.delete(Uri.parse('$apiUrl/results/$resultsId'), headers: {
+      'Authorization': 'Bearer $idToken',
+    });
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      resultsId = '';
+      runningQuizId = '';
+      print("Quiz $runningQuizId stopped.");
+    } else {
+      throw Exception('Failed to stop quiz $runningQuizId');
     }
     notifyListeners();
     return true;

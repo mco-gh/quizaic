@@ -51,16 +51,10 @@ String? intValidator(String? value) {
 class _HostPageState extends State<HostPage> {
   _HostPageState();
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
-
   @override
   void initState() {
     super.initState();
     print('initState - quiz id: ${widget.quiz?.id}');
-    resultsStream = FirebaseFirestore.instance
-        .collection('results')
-        .doc(widget.quiz?.id)
-        .snapshots();
   }
 
   @override
@@ -113,18 +107,6 @@ class _HostPageState extends State<HostPage> {
           ]);
     }
 
-    void startQuiz() {
-      return setState(() {
-        appState.quizRunning = true;
-      });
-    }
-
-    void stopQuiz() {
-      return setState(() {
-        appState.quizRunning = false;
-      });
-    }
-
     void setHostSynch(value) {
       return setState(() {
         appState.hostSynch = value.toString();
@@ -173,10 +155,13 @@ class _HostPageState extends State<HostPage> {
 
     String title = 'Hosting Quiz "${widget.quiz!.name}"';
 
-    if (appState.quizRunning) {
+    if (appState.resultsId != '') {
       return StreamBuilder<DocumentSnapshot>(
-          stream: resultsStream,
+          stream: appState.resultsStream,
           builder: (context, snapshot) {
+            if (snapshot.data?.data() == null) {
+              return Text('Hosting Quiz...');
+            }
             print('snapshot: ${snapshot.data?.data()}');
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
@@ -188,13 +173,13 @@ class _HostPageState extends State<HostPage> {
                 genText('Question $curQuestion: $question'),
                 ElevatedButton(
                   onPressed: () {
-                    appState.incQuestion(widget.quiz?.id, curQuestion);
+                    appState.incQuestion(appState.resultsId, curQuestion);
                   },
                   child: genText('Next Question'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    stopQuiz();
+                    appState.stopHostQuiz();
                   },
                   child: genText('Stop Quiz'),
                 ),
@@ -346,8 +331,9 @@ class _HostPageState extends State<HostPage> {
                           SnackBar(content: genText('Hosting quiz...')),
                         );
                         print('hosting quiz...');
-                        appState.hostQuiz(widget.quiz);
-                        startQuiz();
+                        appState.hostQuiz(widget.quiz?.id);
+
+                        //startQuiz();
                       }
                     },
                     child: genText('Start ${appState.hostType}'),
