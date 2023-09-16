@@ -76,16 +76,19 @@ class _BrowsePageState extends State<BrowsePage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         TextButton(
-                                            child: Icon(Icons.play_circle,
-                                                semanticLabel: 'Host'),
-                                            onPressed: () {
-                                              Quiz? quizToHost =
-                                                  appState.getQuiz(quiz.id);
-                                              print(
-                                                  'quizToHost: ${quizToHost!.name}');
-                                              GoRouter.of(context).push('/host',
-                                                  extra: quizToHost);
-                                            }),
+                                          child: Icon(Icons.play_circle,
+                                              semanticLabel: 'Host'),
+                                          onPressed: () {
+                                            Quiz? quizToHost =
+                                                appState.getQuiz(quiz.id);
+                                            appState
+                                                .checkForSession()
+                                                .whenComplete(() =>
+                                                    GoRouter.of(context).push(
+                                                        '/host',
+                                                        extra: quizToHost));
+                                          },
+                                        ),
                                         TextButton(
                                             child: Icon(Icons.edit,
                                                 semanticLabel: 'Edit'),

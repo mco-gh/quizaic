@@ -95,10 +95,10 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> hostQuiz(quizId) async {
-    print('hostQuiz($quizId)');
-    // first check whether this person is already hosting a quiz.
-    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
+  Future<bool> checkForSession() async {
+    // check whether this person is already hosting a quiz.
+    print('checkForSession()');
+    final response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
       'Authorization': 'Bearer $idToken',
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -106,40 +106,50 @@ class MyAppState extends ChangeNotifier {
       var resp = json.decode(response.body);
       sessionId = resp["hostId"];
       runningQuizId = resp["quizId"];
-      print('Session already in progress for this host: $sessionId.');
-    } else {
-      // No session already running for this user, so create a new one.
-      Session session = Session(
-        state: 'starting',
-        quizId: quizId,
-        synchronous: hostSynch == 'Synchronous' ? true : false,
-        timeLimit: hostTimeLimit,
-        survey: false,
-        anonymous: hostAnonymous == 'Anonymous' ? true : false,
-        randomizeQuestions: hostRandomizeQuestions == 'Yes' ? true : false,
-        randomizeAnswers: hostRandomizeAnswers == 'Yes' ? true : false,
-      );
-
-      response = await http.post(Uri.parse('$apiUrl/sessions'),
-          body: jsonEncode(session),
-          headers: {
-            'Authorization': 'Bearer $idToken',
-            'Content-Type': 'application/json',
-          });
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        var resp = json.decode(response.body);
-        sessionId = resp["id"];
-        runningQuizId = quizId;
-        print('New session created: $sessionId.');
-      } else {
-        throw Exception('Failed to start quiz $quizId');
-      }
+      sessionStream = FirebaseFirestore.instance
+          .collection('sessions')
+          .doc(sessionId)
+          .snapshots();
+      print('Resuming session already in progress for this host: $sessionId.');
+      return true;
     }
-    /*sessionStream = FirebaseFirestore.instance
-        .collection('sessions')
-        .doc(sessionId)
-        .snapshots(); */
+    notifyListeners();
+    return false;
+  }
+
+  Future<bool> createSession(quizId) async {
+    // Create a new session for this user.
+    print('createSession($quizId)');
+    Session session = Session(
+      state: 'starting',
+      quizId: quizId,
+      synchronous: hostSynch == 'Synchronous' ? true : false,
+      timeLimit: hostTimeLimit,
+      survey: false,
+      anonymous: hostAnonymous == 'Anonymous' ? true : false,
+      randomizeQuestions: hostRandomizeQuestions == 'Yes' ? true : false,
+      randomizeAnswers: hostRandomizeAnswers == 'Yes' ? true : false,
+    );
+
+    final response = await http.post(Uri.parse('$apiUrl/sessions'),
+        body: jsonEncode(session),
+        headers: {
+          'Authorization': 'Bearer $idToken',
+          'Content-Type': 'application/json',
+        });
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      var resp = json.decode(response.body);
+      sessionId = resp["id"];
+      runningQuizId = quizId;
+      sessionStream = FirebaseFirestore.instance
+          .collection('sessions')
+          .doc(sessionId)
+          .snapshots();
+      print('New session created: $sessionId.');
+    } else {
+      throw Exception('Failed to start quiz $quizId');
+    }
     notifyListeners();
     return true;
   }

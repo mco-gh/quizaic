@@ -156,10 +156,6 @@ class _HostPageState extends State<HostPage> {
     String title = 'Hosting Quiz "${widget.quiz!.name}"';
     if (appState.sessionId != '') {
       print('appState.sessionId: ${appState.sessionId}');
-      appState.sessionStream = FirebaseFirestore.instance
-          .collection('sessions')
-          .doc(appState.sessionId)
-          .snapshots();
       return StreamBuilder<DocumentSnapshot>(
           stream: appState.sessionStream,
           builder: (context, snapshot) {
@@ -334,10 +330,8 @@ class _HostPageState extends State<HostPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: genText('Hosting quiz...')),
                         );
-                        print('hosting quiz...');
-                        appState.hostQuiz(widget.quiz?.id);
-
-                        //startQuiz();
+                        print('creating session...');
+                        appState.createSession(widget.quiz?.id);
                       }
                     },
                     child: genText('Start ${appState.hostType}'),

@@ -145,7 +145,7 @@ def insert(resource_kind, representation):
 
     if resource_kind == "quizzes" or resource_kind == "sessions":
         hashed_email = get_hashed_email()
-        if resource_kind == "results":
+        if resource_kind == "sessions":
             representation["id"] = hashed_email
             representation["hostId"] = hashed_email
         elif resource_kind == "quizzes":
