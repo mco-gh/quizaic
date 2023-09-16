@@ -13,6 +13,7 @@
 import hashlib
 import json
 import os
+import random
 
 from main import g, request
 from data import cloud_firestore as db
@@ -22,6 +23,8 @@ from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 from pyquizaic.generators.image.imagegen import ImageGen
 
 IMAGES_BUCKET = os.getenv("IMAGES_BUCKET")
+# mco: make this an env var
+MAX_PIN = 999
 
 resource_fields = {
     "admins": ["name", "email"],
@@ -150,6 +153,11 @@ def insert(resource_kind, representation):
             representation["hostId"] = hashed_email
         elif resource_kind == "quizzes":
             representation["creator"] = hashed_email
+
+    if resource_kind == "sessions":
+        print("inserting a session so generating a random pin...")
+        pin = random.randint(1, MAX_PIN)
+        representation["pin"] = pin
 
     if resource_kind == "quizzes":
         print("inserting a quiz so generating a new quiz...")
