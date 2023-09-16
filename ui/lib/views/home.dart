@@ -9,7 +9,6 @@ import 'package:quizaic/views/play.dart';
 import 'package:quizaic/views/settings.dart';
 import 'package:quizaic/auth/auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quizaic/models/quiz.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -24,7 +23,7 @@ class HomePage extends StatefulWidget {
 
   final _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: '/play',
+      initialLocation: '/browse',
       debugLogDiagnostics: true,
       routes: <RouteBase>[
         ShellRoute(
@@ -48,19 +47,19 @@ class HomePage extends StatefulWidget {
                   genCustomTransitionPage(state, BrowsePage()),
             ),
             GoRoute(
-              path: '/edit',
+              path: '/edit/:quizId',
               pageBuilder: (context, state) => genCustomTransitionPage(
-                  state, CreatePage(quiz: state.extra as Quiz?)),
+                  state, CreatePage(quizId: state.pathParameters['quizId'])),
             ),
             GoRoute(
-              path: '/clone',
+              path: '/clone/:quizId',
               pageBuilder: (context, state) => genCustomTransitionPage(
-                  state, CreatePage(quiz: state.extra as Quiz?)),
+                  state, CreatePage(quizId: state.pathParameters['quizId'])),
             ),
             GoRoute(
-              path: '/host',
+              path: '/host/:quizId',
               pageBuilder: (context, state) => genCustomTransitionPage(
-                  state, HostPage(quiz: state.extra as Quiz?)),
+                  state, HostPage(quizId: state.pathParameters['quizId'])),
             ),
             GoRoute(
                 path: '/create',
@@ -68,8 +67,8 @@ class HomePage extends StatefulWidget {
                     genCustomTransitionPage(state, CreatePage())),
             GoRoute(
                 path: '/play',
-                pageBuilder: (context, state) => genCustomTransitionPage(state,
-                    PlayPage())), //PlayPage(quiz: state.extra as Quiz?))),
+                pageBuilder: (context, state) =>
+                    genCustomTransitionPage(state, PlayPage())),
             GoRoute(
                 path: '/settings',
                 pageBuilder: (context, state) =>

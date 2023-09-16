@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,12 +13,12 @@ enum ActivityType { quiz, survey }
 enum YN { yes, no }
 
 class HostPage extends StatefulWidget {
-  final Quiz? quiz;
+  final String? quizId;
 
   @override
   State<HostPage> createState() => _HostPageState();
 
-  HostPage({this.quiz});
+  HostPage({this.quizId});
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -54,14 +53,17 @@ class _HostPageState extends State<HostPage> {
   @override
   void initState() {
     super.initState();
-    print('initState - quiz id: ${widget.quiz?.id}');
+
+    print('initState - quiz id: ${widget.quizId}');
   }
 
   @override
   Widget build(BuildContext context) {
-    print('hosting quiz: ${widget.quiz?.id}');
+    print('hosting quiz: ${widget.quizId}');
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
+    var quiz = appState.getQuiz(widget.quizId);
+
     // Build a Form widget using the _formKey created
 
     Text genText(String text, {size = 14, weight = FontWeight.normal}) {
@@ -147,13 +149,13 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
-    if (widget.quiz == null) {
+    if (quiz == null) {
       return Center(
         child: genText('No quiz selected for hosting'),
       );
     }
 
-    String title = 'Hosting Quiz "${widget.quiz!.name}"';
+    String title = 'Hosting Quiz "${quiz.name}"';
     if (appState.sessionId != '') {
       print('appState.sessionId: ${appState.sessionId}');
       return StreamBuilder<DocumentSnapshot>(
@@ -166,8 +168,7 @@ class _HostPageState extends State<HostPage> {
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = int.parse(data['curQuestion']);
-            var question =
-                jsonDecode(widget.quiz!.qAndA!)[curQuestion]['question'];
+            var question = jsonDecode(quiz.qAndA!)[curQuestion]['question'];
             return Column(
               children: [
                 genText('Question $curQuestion: $question'),
@@ -200,9 +201,8 @@ class _HostPageState extends State<HostPage> {
                 child: genText(title, size: 30, weight: FontWeight.bold),
               ),
               Hero(
-                  tag: widget.quiz!.id as String,
-                  child: Image.network(widget.quiz!.imageUrl as String,
-                      height: 170)),
+                  tag: quiz.id as String,
+                  child: Image.network(quiz.imageUrl as String, height: 170)),
               SizedBox(height: 20),
               // Synch or Asynch and Time Limit
               Row(
@@ -331,7 +331,7 @@ class _HostPageState extends State<HostPage> {
                           SnackBar(content: genText('Hosting quiz...')),
                         );
                         print('creating session...');
-                        appState.createSession(widget.quiz?.id);
+                        appState.createSession(quiz.id);
                       }
                     },
                     child: genText('Start ${appState.hostType}'),

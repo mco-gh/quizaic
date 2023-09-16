@@ -86,14 +86,11 @@ class _BrowsePageState extends State<BrowsePage> {
                                             ],
                                           ),
                                           onPressed: () {
-                                            Quiz? quizToHost =
-                                                appState.getQuiz(quiz.id);
                                             appState
                                                 .checkForSession()
                                                 .whenComplete(() =>
-                                                    GoRouter.of(context).push(
-                                                        '/host',
-                                                        extra: quizToHost));
+                                                    GoRouter.of(context).go(
+                                                        '/host/${quiz.id}'));
                                           },
                                         ),
                                         TextButton(
@@ -105,12 +102,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                               ],
                                             ),
                                             onPressed: () {
-                                              Quiz? quizToEdit =
-                                                  appState.getQuiz(quiz.id);
-                                              print(
-                                                  'quizToEdit: ${quizToEdit!.name}');
-                                              GoRouter.of(context).push('/edit',
-                                                  extra: quizToEdit);
+                                              GoRouter.of(context)
+                                                  .go('/edit/${quiz.id}');
                                             }),
                                         TextButton(
                                             child: Column(
@@ -123,12 +116,9 @@ class _BrowsePageState extends State<BrowsePage> {
                                             onPressed: () {
                                               Quiz? quizToClone =
                                                   appState.getQuiz(quiz.id);
-                                              print(
-                                                  'quizToClone: ${quizToClone!.name}');
-                                              quizToClone.id = '';
-                                              GoRouter.of(context).push(
-                                                  '/clone',
-                                                  extra: quizToClone);
+                                              quizToClone?.id = '';
+                                              GoRouter.of(context)
+                                                  .go('/clone/${quiz.id}');
                                             }),
                                         TextButton(
                                             child: Column(

@@ -14,12 +14,12 @@ enum ActivityType { quiz, survey }
 enum YN { yes, no }
 
 class CreatePage extends StatefulWidget {
-  final Quiz? quiz;
+  final String? quizId;
 
   @override
   State<CreatePage> createState() => _CreatePageState();
 
-  CreatePage({this.quiz});
+  CreatePage({this.quizId});
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -55,6 +55,7 @@ class _CreatePageState extends State<CreatePage> {
   @override
   void initState() {
     super.initState();
+    print('widget.quizId: ${widget.quizId}');
   }
 
   @override
@@ -62,6 +63,8 @@ class _CreatePageState extends State<CreatePage> {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     // Build a Form widget using the _formKey created
+
+    var quiz = appState.getQuiz(widget.quizId);
 
     Text genText(String text, {size = 14, weight = FontWeight.normal}) {
       return Text(text,
@@ -192,15 +195,15 @@ class _CreatePageState extends State<CreatePage> {
       List<String> option = ['A', 'B', 'C', 'D'];
       int i = 0;
       int j = 0;
-      if (widget.quiz == null) {
+      if (quiz == null) {
         return Column();
       }
-      var qAndA = jsonDecode(widget.quiz?.qAndA as String);
+      var qAndA = jsonDecode(quiz.qAndA as String);
       for (var question in qAndA) {
         j = 0;
         subwidgets = [];
         widgets.add(genText('question ${i + 1}: ${question["question"]}'));
-        if (widget.quiz?.answerFormat == "multiple choice") {
+        if (quiz.answerFormat == "multiple choice") {
           for (var answer in question["responses"]) {
             subwidgets.add(genText('response ${option[j]}: $answer'));
             j++;
@@ -225,18 +228,18 @@ class _CreatePageState extends State<CreatePage> {
     String title = '';
     String snack = '';
     Quiz? quizToCreateOrUpdate;
-    if (widget.quiz == null) {
+    if (quiz == null) {
       title = 'Create a Quiz';
       snack = 'Creating new quiz...';
       quizToCreateOrUpdate = null;
-    } else if (widget.quiz?.id == '') {
+    } else if (quiz.id == '') {
       title = 'Clone a Quiz';
       snack = 'Creating cloned quiz...';
-      quizToCreateOrUpdate = widget.quiz;
+      quizToCreateOrUpdate = quiz;
     } else {
       title = 'Edit a Quiz';
       snack = 'Updating quiz...';
-      quizToCreateOrUpdate = widget.quiz;
+      quizToCreateOrUpdate = quiz;
     }
 
     return Center(
@@ -250,11 +253,10 @@ class _CreatePageState extends State<CreatePage> {
                 padding: const EdgeInsets.all(padding * 3),
                 child: genText(title, size: 30, weight: FontWeight.bold),
               ),
-              if (widget.quiz != null)
+              if (quiz != null)
                 Hero(
-                    tag: widget.quiz!.id as String,
-                    child: Image.network(widget.quiz!.imageUrl as String,
-                        height: 170)),
+                    tag: quiz.id as String,
+                    child: Image.network(quiz.imageUrl as String, height: 170)),
               SizedBox(height: 20),
               // Quiz Name and Generator
               Row(
