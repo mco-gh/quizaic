@@ -1,6 +1,6 @@
-class Results {
+class Session {
   // provided by quiz host (in order of appearance on start quiz form)
-  bool? state;
+  String? state; // starting, quizzing, revealing, suspended
   String? quizId;
   bool? synchronous;
   String? timeLimit;
@@ -19,7 +19,7 @@ class Results {
   final String? curQuestion;
   final String? pin;
 
-  Results({
+  Session({
     // provided by quiz host (in order of appearance on create quiz form)
     required this.state,
     required this.quizId,
@@ -41,8 +41,8 @@ class Results {
     this.pin = '',
   });
 
-  factory Results.fromJson(Map<String, dynamic> json) {
-    return Results(
+  factory Session.fromJson(Map<String, dynamic> json) {
+    return Session(
       // provided by quiz host (in order of appearance on start quiz form)
       state: json['state'],
       quizId: json['quizId'],

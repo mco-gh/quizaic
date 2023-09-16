@@ -154,10 +154,14 @@ class _HostPageState extends State<HostPage> {
     }
 
     String title = 'Hosting Quiz "${widget.quiz!.name}"';
-
-    if (appState.resultsId != '') {
+    if (appState.sessionId != '') {
+      print('appState.sessionId: ${appState.sessionId}');
+      appState.sessionStream = FirebaseFirestore.instance
+          .collection('sessions')
+          .doc(appState.sessionId)
+          .snapshots();
       return StreamBuilder<DocumentSnapshot>(
-          stream: appState.resultsStream,
+          stream: appState.sessionStream,
           builder: (context, snapshot) {
             if (snapshot.data?.data() == null) {
               return Text('Hosting Quiz...');
@@ -173,7 +177,7 @@ class _HostPageState extends State<HostPage> {
                 genText('Question $curQuestion: $question'),
                 ElevatedButton(
                   onPressed: () {
-                    appState.incQuestion(appState.resultsId, curQuestion);
+                    appState.incQuestion(appState.sessionId, curQuestion);
                   },
                   child: genText('Next Question'),
                 ),

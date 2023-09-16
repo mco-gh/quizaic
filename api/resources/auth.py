@@ -20,8 +20,10 @@ from resources import methods
 from data import cloud_firestore as db
 from utils.logging import log
 
+
 def user_logged_in(email):
     return email != None
+
 
 def user_created_quiz(hashed_email, quiz_id):
     if hashed_email is None:
@@ -31,6 +33,7 @@ def user_created_quiz(hashed_email, quiz_id):
         return True
     return False
 
+
 def user_is_admin(email):
     if email is None:
         return False
@@ -38,6 +41,7 @@ def user_is_admin(email):
         "admins", methods.resource_fields["admins"], "email", email
     )
     return len(matching_admins) > 0
+
 
 def allowed(operation, resource_kind, representation=None):
     email = g.get("verified_email", None)
@@ -76,15 +80,15 @@ def allowed(operation, resource_kind, representation=None):
             return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
         return False
 
-    if resource_kind == "results":
-        # Must be an admin or quiz creator to do anything with results.
+    if resource_kind == "sessions":
+        # Must be an admin or quiz creator to do anything with sessions.
         # Posting results by a player for a given quiz is done
         # directly from the web client to firestore.
         if operation in ["POST", "PATCH", "GET", "DELETE"]:
             return True
-            #path_parts = request.path.split("/")
-            #quiz_id = path_parts[1]
-            #return user_is_admin(email) or user_can_post_results()
+            # path_parts = request.path.split("/")
+            # quiz_id = path_parts[1]
+            # return user_is_admin(email) or user_can_post_results()
         return False
 
     # All other accesses are disallowed. This prevents unanticipated access.

@@ -36,7 +36,6 @@
     "id": "12343afa140f40ff9e70",
     "data": {
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
-      "pin": "1",
       "name": "Audience Survey",
       "generator": "Manual",
       "answerFormat": "multiple choice", 
@@ -104,7 +103,6 @@
     "id": "f7723afa140f40ff9e70",
     "data": {
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
-      "pin": "2",
       "name": "US History Quiz",
       "generator": "Jeopardy",
       "answerFormat": "free form", 
@@ -135,7 +133,6 @@
     "id": "6e4f3afa140f40ff9e70",
     "data": {
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
-      "pin": "3",
       "name": "Who Wrote It?",
       "generator": "Palm",
       "answerFormat": "multiple choice", 
@@ -254,7 +251,6 @@
     "id": "078ba4bfce324ced8586",
     "data": {
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
-      "pin": "4",
       "name": "Rock and Roll!",
       "generator": "OpenTrivia",
       "answerFormat": "multiple choice", 
@@ -293,7 +289,6 @@
     "id": "d5816cdf8b3949429c23",
     "data": {
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
-      "pin": "5",
       "name": "Cat Trivia by حسین رضایی",
       "generator": "Palm",
       "answerFormat": "free form", 
@@ -332,7 +327,6 @@
     "id": "Gc34g8db0wCrroLUxJeA",
     "data": {
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
-      "pin": "6",
       "name": "Pop Music",
       "generator": "Palm",
       "answerFormat": "multiple choice", 
@@ -397,7 +391,42 @@
     }
   },
   {
+    "collection": "sessions",
+    "id": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
+    "data": {
+        "state": "quizzing",
+        "curQuestion": "0",
+        "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
+        "quizId": "Gc34g8db0wCrroLUxJeA",
+        "synchronous": true,
+        "anonymous": true,
+        "survey": false,
+        "timeLimit": "30",
+        "randomizeAnswers": true,
+        "randomizeQuestions": true,
+        "pin": "123"
+    }
+  },
+  {
     "collection": "results",
+    "id": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
+    "data": {
+        "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
+        "quizId": "Gc34g8db0wCrroLUxJeA",
+        "players": {
+            "Marc": ["A", "B", "n/a"],
+            "Dina": ["B", "n/a", "C"],
+            "Gosia": ["n/a", "C", "A"],
+            "Kimba": ["A", "B", "C"],
+            "Maya": ["C", "n/a"],
+            "Benji": ["n/a", "D"],
+            "Maple": ["n/a", "n/a", "B"],
+            "Darrow": []
+        }
+    }
+  },
+  {
+    "collection": "sessions",
     "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
     "data": {
         "state": "quizzing",
@@ -410,12 +439,24 @@
         "timeLimit": "30",
         "randomizeAnswers": true,
         "randomizeQuestions": true,
-        "pin": "1234",
+        "pin": "456"
+    }
+  },
+  {
+    "collection": "results",
+    "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
+    "data": {
+        "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
+        "quizId": "Gc34g8db0wCrroLUxJeA",
         "players": {
-            "Marc": ["A", "B"],
-            "Dina": ["C"],
-            "Gosia": ["", "D"],
-            "Maya": []
+            "Marc": ["A", "B", "n/a"],
+            "Dina": ["B", "n/a", "C"],
+            "Gosia": ["n/a", "C", "A"],
+            "Kimba": ["A", "B", "C"],
+            "Maya": ["C", "n/a"],
+            "Benji": ["n/a", "D"],
+            "Maple": ["n/a", "n/a", "B"],
+            "Darrow": []
         }
     }
   },

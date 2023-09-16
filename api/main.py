@@ -55,6 +55,7 @@ resource = [
     "admins",
     "quizzes",
     "results",
+    "sessions",
     "generators",
 ]
 
@@ -62,6 +63,7 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 FlaskInstrumentor().instrument_app(app)
+
 
 # Check authentication and remember result in global request context
 #

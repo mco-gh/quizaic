@@ -27,7 +27,6 @@ resource_fields = {
     "admins": ["name", "email"],
     "quizzes": [
         "creator",
-        "pin",
         "name",
         "generator",
         "answerFormat",
@@ -36,9 +35,10 @@ resource_fields = {
         "numQuestions",
         "difficulty",
         "qAndA",
-        "runCount"
+        "runCount",
     ],
-    "results": [
+    "sessions": [
+        "me",
         "active",
         "hostId",
         "quizId",
@@ -49,14 +49,19 @@ resource_fields = {
         "randomizeQuestions",
         "randomizeAnswers",
         "curQuestion",
-        "pin"
+        "pin",
     ],
-    "generators": [
-        "name",
-        "answerFormats",
-        "topics"
-    ],
+    "results": ["hostId", "quizId", "players"],
+    "generators": ["name", "answerFormats", "topics"],
 }
+
+# get the current logged in user's hashed email addr
+def get_hashed_email():
+    hashed_email = None
+    email = g.verified_email
+    if email:
+        hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
+    return hashed_email
 
 # List all entities of the given resource_kind, if allowed,
 def list(resource_kind):
@@ -71,10 +76,10 @@ def list(resource_kind):
     if resource_kind in ["quizzes", "generators"]:
         results = db.list(resource_kind, resource_fields[resource_kind])
 
-    # Only admins can list admins and results.
-    elif resource_kind in ["admins", "results"]:
+    # Only admins can list admins and sessions.
+    elif resource_kind in ["admins", "sessions"]:
         if auth.user_is_admin(g.verified_email):
-            # Must be an admin to list admins or results.
+            # Must be an admin to list admins or sessions.
             results = db.list(resource_kind, resource_fields[resource_kind])
     else:
         return "Forbidden", 403
@@ -101,10 +106,7 @@ def list_subresource(resource_kind, id, subresource_kind):
         id,  # Value must match parent id
     )
 
-    email = g.verified_email
-    hashed_email = None
-    if email:
-        hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
+    hashed_email = get_hashed_email()
 
     if auth.user_is_admin(email):
         return json.dumps(matching_children), 200, {"Content-Type": "application/json"}
@@ -119,6 +121,9 @@ def get(resource_kind, id):
     log(f"Request to get {resource_kind}", severity="INFO")
     if resource_kind not in resource_fields:
         return "Not found", 404, {}
+
+    if resource_kind == "sessions" and id == "me":
+        id = get_hashed_email()
 
     result = db.fetch(resource_kind, id, resource_fields[resource_kind])
     if result is None:
@@ -138,12 +143,8 @@ def insert(resource_kind, representation):
     if not auth.allowed("POST", resource_kind, representation):
         return "Forbidden", 403
 
-    if resource_kind == "quizzes" or resource_kind == "results":
-        # get the creators hashed email addr so we can define quiz ownership
-        email = g.verified_email
-        hashed_email = None
-        if email:
-            hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
+    if resource_kind == "quizzes" or resource_kind == "sessions":
+        hashed_email = get_hashed_email()
         if resource_kind == "results":
             representation["id"] = hashed_email
             representation["hostId"] = hashed_email

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/models/generator.dart';
-import 'package:quizaic/models/results.dart';
+import 'package:quizaic/models/session.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
@@ -40,12 +40,12 @@ class MyAppState extends ChangeNotifier {
   String hostRandomizeQuestions = 'Yes';
   String hostRandomizeAnswers = 'Yes';
   int curQuestion = 0;
-  String resultsId = '';
+  String sessionId = '';
   String runningQuizId = '';
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
-  Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? sessionStream;
 
   MyAppState() {
     print("apiUrl: $apiUrl");
@@ -76,12 +76,12 @@ class MyAppState extends ChangeNotifier {
     return null;
   }
 
-  Future<bool> incQuestion(resultsId, curQuestion) async {
+  Future<bool> incQuestion(sessionId, curQuestion) async {
     curQuestion++;
     String body = '{"curQuestion": "$curQuestion"}';
     print('body: $body');
     final response = await http
-        .patch(Uri.parse('$apiUrl/results/$resultsId'), body: body, headers: {
+        .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
       'Authorization': 'Bearer $idToken',
       'Content-Type': 'application/json',
     });
@@ -97,36 +97,49 @@ class MyAppState extends ChangeNotifier {
 
   Future<bool> hostQuiz(quizId) async {
     print('hostQuiz($quizId)');
-    Results results = Results(
-      state: false,
-      quizId: quizId,
-      synchronous: hostSynch == 'Synchronous' ? true : false,
-      timeLimit: hostTimeLimit,
-      survey: false,
-      anonymous: hostAnonymous == 'Anonymous' ? true : false,
-      randomizeQuestions: hostRandomizeQuestions == 'Yes' ? true : false,
-      randomizeAnswers: hostRandomizeAnswers == 'Yes' ? true : false,
-    );
-
-    final response = await http.post(Uri.parse('$apiUrl/results'),
-        body: jsonEncode(results),
-        headers: {
-          'Authorization': 'Bearer $idToken',
-          'Content-Type': 'application/json',
-        });
-
+    // first check whether this person is already hosting a quiz.
+    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
+      'Authorization': 'Bearer $idToken',
+    });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Quiz $quizId started.");
+      // session already running for this user, set sessionId accordingly.
+      var resp = json.decode(response.body);
+      sessionId = resp["hostId"];
+      runningQuizId = resp["quizId"];
+      print('Session already in progress for this host: $sessionId.');
     } else {
-      throw Exception('Failed to start quiz $quizId');
+      // No session already running for this user, so create a new one.
+      Session session = Session(
+        state: 'starting',
+        quizId: quizId,
+        synchronous: hostSynch == 'Synchronous' ? true : false,
+        timeLimit: hostTimeLimit,
+        survey: false,
+        anonymous: hostAnonymous == 'Anonymous' ? true : false,
+        randomizeQuestions: hostRandomizeQuestions == 'Yes' ? true : false,
+        randomizeAnswers: hostRandomizeAnswers == 'Yes' ? true : false,
+      );
+
+      response = await http.post(Uri.parse('$apiUrl/sessions'),
+          body: jsonEncode(session),
+          headers: {
+            'Authorization': 'Bearer $idToken',
+            'Content-Type': 'application/json',
+          });
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var resp = json.decode(response.body);
+        sessionId = resp["id"];
+        runningQuizId = quizId;
+        print('New session created: $sessionId.');
+      } else {
+        throw Exception('Failed to start quiz $quizId');
+      }
     }
-    var resp = json.decode(response.body);
-    resultsId = resp["id"];
-    runningQuizId = quizId;
-    resultsStream = FirebaseFirestore.instance
-        .collection('results')
-        .doc(resultsId)
-        .snapshots();
+    /*sessionStream = FirebaseFirestore.instance
+        .collection('sessions')
+        .doc(sessionId)
+        .snapshots(); */
     notifyListeners();
     return true;
   }
@@ -135,12 +148,12 @@ class MyAppState extends ChangeNotifier {
     print('stopHostQuiz()');
 
     final response =
-        await http.delete(Uri.parse('$apiUrl/results/$resultsId'), headers: {
+        await http.delete(Uri.parse('$apiUrl/sessions/$sessionId'), headers: {
       'Authorization': 'Bearer $idToken',
     });
 
     if (response.statusCode == 200 || response.statusCode == 204) {
-      resultsId = '';
+      sessionId = '';
       runningQuizId = '';
       print("Quiz $runningQuizId stopped.");
     } else {
