@@ -197,6 +197,7 @@ def patch(resource_kind, id, representation):
 
     match_etag = request.headers.get("If-Match", None)
     if resource_kind == "quizzes":
+        print(f"{id=}, {representation=}")
         print(f"patching quiz id {id}")
     resource, status = db.update(
         resource_kind, id, representation, resource_fields[resource_kind], match_etag

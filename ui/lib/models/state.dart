@@ -64,16 +64,23 @@ class MyAppState extends ChangeNotifier {
   Quiz? getQuiz(id) {
     for (var quiz in quizzes) {
       if (quiz.id == id) {
+        return quiz;
+      }
+    }
+    return null;
+  }
+
+  void selectQuizData(id) {
+    for (var quiz in quizzes) {
+      if (quiz.id == id) {
         selectedQuizName = quiz.name;
         selectedAnswerFormat = quiz.answerFormat;
         selectedGenerator = quiz.generator;
         selectedTopic = quiz.topic;
         selectedNumQuestions = quiz.numQuestions;
         selectedDifficulty = difficulty[int.parse(quiz.difficulty) - 1];
-        return quiz;
       }
     }
-    return null;
   }
 
   Future<bool> incQuestion(sessionId, curQuestion) async {
@@ -196,7 +203,6 @@ class MyAppState extends ChangeNotifier {
     tmpQuiz.numQuestions = selectedNumQuestions;
     tmpQuiz.difficulty = dstr;
 
-    print('quiz: $tmpQuiz');
     String url = '';
     String confirmation = '';
     String error = '';
@@ -218,6 +224,7 @@ class MyAppState extends ChangeNotifier {
       error = 'Failed to update quiz.';
       method = http.patch;
     }
+
     final response = await method(Uri.parse(url),
         body: jsonEncode(tmpQuiz),
         headers: {

@@ -52,9 +52,9 @@ class HomePage extends StatefulWidget {
                   state, CreatePage(quizId: state.pathParameters['quizId'])),
             ),
             GoRoute(
-              path: '/clone/:quizId',
-              pageBuilder: (context, state) => genCustomTransitionPage(
-                  state, CreatePage(quizId: state.pathParameters['quizId'])),
+              path: '/clone',
+              pageBuilder: (context, state) =>
+                  genCustomTransitionPage(state, CreatePage()),
             ),
             GoRoute(
               path: '/host/:quizId',

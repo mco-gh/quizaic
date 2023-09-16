@@ -62,10 +62,7 @@ class _CreatePageState extends State<CreatePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
-    // Build a Form widget using the _formKey created
-
     var quiz = appState.getQuiz(widget.quizId);
-
     Text genText(String text, {size = 14, weight = FontWeight.normal}) {
       return Text(text,
           textAlign: TextAlign.center,

@@ -102,6 +102,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                               ],
                                             ),
                                             onPressed: () {
+                                              appState.selectQuizData(quiz.id);
                                               GoRouter.of(context)
                                                   .go('/edit/${quiz.id}');
                                             }),
@@ -114,11 +115,9 @@ class _BrowsePageState extends State<BrowsePage> {
                                               ],
                                             ),
                                             onPressed: () {
-                                              Quiz? quizToClone =
-                                                  appState.getQuiz(quiz.id);
-                                              quizToClone?.id = '';
-                                              GoRouter.of(context)
-                                                  .go('/clone/${quiz.id}');
+                                              appState.getQuiz(quiz.id);
+                                              appState.selectQuizData(quiz.id);
+                                              GoRouter.of(context).go('/clone');
                                             }),
                                         TextButton(
                                             child: Column(
