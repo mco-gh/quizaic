@@ -18,8 +18,70 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
+
   @override
   State<HomePage> createState() => _MyHomePageState();
+
+  final _router = GoRouter(
+      navigatorKey: _rootNavigatorKey,
+      initialLocation: '/play',
+      debugLogDiagnostics: true,
+      routes: <RouteBase>[
+        ShellRoute(
+          navigatorKey: _shellNavigatorKey,
+          pageBuilder: (context, state, child) {
+            return MaterialPage(
+                child: HeroControllerScope(
+                    controller: MaterialApp.createMaterialHeroController(),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        return HomePageScaffold(
+                          child: child,
+                        );
+                      },
+                    )));
+          },
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/browse',
+              pageBuilder: (context, state) =>
+                  genCustomTransitionPage(state, BrowsePage()),
+            ),
+            GoRoute(
+              path: '/edit',
+              pageBuilder: (context, state) => genCustomTransitionPage(
+                  state, CreatePage(quiz: state.extra as Quiz?)),
+            ),
+            GoRoute(
+              path: '/clone',
+              pageBuilder: (context, state) => genCustomTransitionPage(
+                  state, CreatePage(quiz: state.extra as Quiz?)),
+            ),
+            GoRoute(
+              path: '/host',
+              pageBuilder: (context, state) => genCustomTransitionPage(
+                  state, HostPage(quiz: state.extra as Quiz?)),
+            ),
+            GoRoute(
+                path: '/create',
+                pageBuilder: (context, state) =>
+                    genCustomTransitionPage(state, CreatePage())),
+            GoRoute(
+                path: '/play',
+                pageBuilder: (context, state) => genCustomTransitionPage(state,
+                    PlayPage())), //PlayPage(quiz: state.extra as Quiz?))),
+            GoRoute(
+                path: '/settings',
+                pageBuilder: (context, state) =>
+                    genCustomTransitionPage(state, SettingsPage())),
+            GoRoute(
+                path: '/login',
+                pageBuilder: (context, state) =>
+                    genCustomTransitionPage(state, AuthPage())),
+          ],
+        )
+      ]);
+  GoRouter get router => _router;
 }
 
 CustomTransitionPage genCustomTransitionPage(state, page) {
@@ -43,67 +105,6 @@ class _MyHomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
-    _router = GoRouter(
-        navigatorKey: _rootNavigatorKey,
-        initialLocation: '/browse',
-        debugLogDiagnostics: true,
-        routes: <RouteBase>[
-          ShellRoute(
-            navigatorKey: _shellNavigatorKey,
-            pageBuilder: (context, state, child) {
-              return MaterialPage(
-                  child: HeroControllerScope(
-                      controller: MaterialApp.createMaterialHeroController(),
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          return HomePageScaffold(
-                            child: child,
-                          );
-                        },
-                      )));
-            },
-            routes: <RouteBase>[
-              GoRoute(
-                path: '/browse',
-                pageBuilder: (context, state) =>
-                    genCustomTransitionPage(state, BrowsePage()),
-              ),
-              GoRoute(
-                path: '/edit',
-                pageBuilder: (context, state) => genCustomTransitionPage(
-                    state, CreatePage(quiz: state.extra as Quiz?)),
-              ),
-              GoRoute(
-                path: '/clone',
-                pageBuilder: (context, state) => genCustomTransitionPage(
-                    state, CreatePage(quiz: state.extra as Quiz?)),
-              ),
-              GoRoute(
-                path: '/host',
-                pageBuilder: (context, state) => genCustomTransitionPage(
-                    state, HostPage(quiz: state.extra as Quiz?)),
-              ),
-              GoRoute(
-                  path: '/create',
-                  pageBuilder: (context, state) =>
-                      genCustomTransitionPage(state, CreatePage())),
-              GoRoute(
-                  path: '/play',
-                  pageBuilder: (context, state) => genCustomTransitionPage(
-                      state,
-                      PlayPage())), //PlayPage(quiz: state.extra as Quiz?))),
-              GoRoute(
-                  path: '/settings',
-                  pageBuilder: (context, state) =>
-                      genCustomTransitionPage(state, SettingsPage())),
-              GoRoute(
-                  path: '/login',
-                  pageBuilder: (context, state) =>
-                      genCustomTransitionPage(state, AuthPage())),
-            ],
-          )
-        ]);
   }
 
   @override
