@@ -149,6 +149,17 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
+    Card genCard(widget) {
+      return Card(
+          //shape:
+          //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          color: theme.colorScheme.primaryContainer,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: widget,
+          ));
+    }
+
     if (quiz == null) {
       return Center(
         child: genText('No quiz selected for hosting'),
@@ -164,20 +175,28 @@ class _HostPageState extends State<HostPage> {
             if (snapshot.data?.data() == null) {
               return Text('Hosting Quiz...');
             }
-            print('snapshot: ${snapshot.data?.data()}');
-
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = int.parse(data['curQuestion']);
             var question = jsonDecode(quiz.qAndA!)[curQuestion]['question'];
+
             return Column(
               children: [
-                genText('Question $curQuestion: $question'),
+                SizedBox(height: 20),
+                genCard(genText('Question $curQuestion: $question')),
+                SizedBox(height: 20),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  for (var answer in jsonDecode(quiz.qAndA!)[curQuestion]
+                      ['responses'])
+                    genCard(genText(answer)),
+                ]),
+                SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     appState.incQuestion(appState.sessionId, curQuestion);
                   },
                   child: genText('Next Question'),
                 ),
+                SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     appState.stopHostQuiz();
@@ -201,8 +220,9 @@ class _HostPageState extends State<HostPage> {
                 child: genText(title, size: 30, weight: FontWeight.bold),
               ),
               Hero(
-                  tag: quiz.id as String,
-                  child: Image.network(quiz.imageUrl as String, height: 170)),
+                tag: quiz.id as String,
+                child: Image.network(quiz.imageUrl as String, height: 170),
+              ),
               SizedBox(height: 20),
               // Synch or Asynch and Time Limit
               Row(
