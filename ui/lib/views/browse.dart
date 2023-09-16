@@ -66,18 +66,25 @@ class _BrowsePageState extends State<BrowsePage> {
                                         style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold)),
+                                    SizedBox(height: 15),
                                     Hero(
                                         tag: quiz.id!,
                                         child: Image.network(
                                             quiz.imageUrl as String,
                                             height: 220)),
+                                    SizedBox(height: 15),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         TextButton(
-                                          child: Icon(Icons.play_circle,
-                                              semanticLabel: 'Host'),
+                                          child: Column(
+                                            children: [
+                                              Icon(Icons.play_circle,
+                                                  semanticLabel: 'Host'),
+                                              genText('Host'),
+                                            ],
+                                          ),
                                           onPressed: () {
                                             Quiz? quizToHost =
                                                 appState.getQuiz(quiz.id);
@@ -90,8 +97,13 @@ class _BrowsePageState extends State<BrowsePage> {
                                           },
                                         ),
                                         TextButton(
-                                            child: Icon(Icons.edit,
-                                                semanticLabel: 'Edit'),
+                                            child: Column(
+                                              children: [
+                                                Icon(Icons.edit,
+                                                    semanticLabel: 'Edit'),
+                                                genText('Edit'),
+                                              ],
+                                            ),
                                             onPressed: () {
                                               Quiz? quizToEdit =
                                                   appState.getQuiz(quiz.id);
@@ -101,8 +113,13 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   extra: quizToEdit);
                                             }),
                                         TextButton(
-                                            child: Icon(Icons.content_copy,
-                                                semanticLabel: 'Clone'),
+                                            child: Column(
+                                              children: [
+                                                Icon(Icons.content_copy,
+                                                    semanticLabel: 'Clone'),
+                                                genText('Clone'),
+                                              ],
+                                            ),
                                             onPressed: () {
                                               Quiz? quizToClone =
                                                   appState.getQuiz(quiz.id);
@@ -114,8 +131,13 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   extra: quizToClone);
                                             }),
                                         TextButton(
-                                            child: Icon(Icons.delete,
-                                                semanticLabel: 'Delete'),
+                                            child: Column(
+                                              children: [
+                                                Icon(Icons.delete,
+                                                    semanticLabel: 'Delete'),
+                                                genText('Delete'),
+                                              ],
+                                            ),
                                             onPressed: () {
                                               appState.deleteQuiz(quiz.id);
                                               ScaffoldMessenger.of(context)
