@@ -39,7 +39,7 @@ class QuizPage extends StatelessWidget {
           var letters = ['A', 'B', 'C', 'D'];
           for (var i = 0; i < responses.length; i++) {
             responseList.add(ElevatedButton(
-              onPressed: () => print('pressed'),
+              onPressed: () => appState.sendResponse(curQuestion, i),
               child: Text('${letters[i]}. ${responses[i]}'),
             ));
             if (i < responses.length - 1) {

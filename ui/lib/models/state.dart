@@ -282,6 +282,26 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
+  Future<bool> sendResponse(i, j) async {
+    var body = '{"questionNum": i, "response": j}';
+    print('body: $body');
+    final response = await http.patch(
+        Uri.parse('$apiUrl/results/$playerSessionId/$playerName'),
+        body: body,
+        headers: {
+          'Authorization': 'Bearer $idToken',
+          'Content-Type': 'application/json',
+        });
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("Player $playerName registered.");
+    } else {
+      errorDialog('Failed to register player $playerName');
+    }
+    notifyListeners();
+    return true;
+  }
+
   favoriteQuiz(id) async {
     notifyListeners();
   }
