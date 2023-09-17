@@ -92,10 +92,10 @@ def allowed(operation, resource_kind, representation=None):
             return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
         return False
 
-    # Only admin or host can get, update, or delete results collection.
-    # Players can update their own results via the match method.
+    # Only admin or host can create, get, or delete documents in the results collection.
+    # Players can update their own results via the patch method.
     if resource_kind == "results":
-        if operation in ["GET", "POST", "DELETE"]:
+        if operation in ["POST", "GET", "DELETE"]:
             path_parts = request.path.split("/")
             session_id = path_parts[2]
             return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)

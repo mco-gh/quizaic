@@ -408,16 +408,14 @@
     "data": {
         "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
         "quizId": "Gc34g8db0wCrroLUxJeA",
-        "players": {
-            "Marc": ["A", "B", "n/a"],
-            "Dina": ["B", "n/a", "C"],
-            "Gosia": ["n/a", "C", "A"],
-            "Kimba": ["A", "B", "C"],
-            "Maya": ["C", "n/a"],
-            "Benji": ["n/a", "D"],
-            "Maple": ["n/a", "n/a", "B"],
-            "Darrow": []
-        }
+        "Marc": ["A", "B", "n/a"],
+        "Dina": ["B", "n/a", "C"],
+        "Gosia": ["n/a", "C", "A"],
+        "Kimba": ["A", "B", "C"],
+        "Maya": ["C", "n/a"],
+        "Benji": ["n/a", "D"],
+        "Maple": ["n/a", "n/a", "B"],
+        "Darrow": []
     }
   },
   {
@@ -443,16 +441,14 @@
     "data": {
         "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
         "quizId": "Gc34g8db0wCrroLUxJeA",
-        "players": {
-            "Marc": ["A", "B", "n/a"],
-            "Dina": ["B", "n/a", "C"],
-            "Gosia": ["n/a", "C", "A"],
-            "Kimba": ["A", "B", "C"],
-            "Maya": ["C", "n/a"],
-            "Benji": ["n/a", "D"],
-            "Maple": ["n/a", "n/a", "B"],
-            "Darrow": []
-        }
+        "Marc": ["A", "B", "n/a"],
+        "Dina": ["B", "n/a", "C"],
+        "Gosia": ["n/a", "C", "A"],
+        "Kimba": ["A", "B", "C"],
+        "Maya": ["C", "n/a"],
+        "Benji": ["n/a", "D"],
+        "Maple": ["n/a", "n/a", "B"],
+        "Darrow": []
     }
   },
   {

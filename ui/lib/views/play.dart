@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:quizaic/constants.dart';
 import 'package:pinput/pinput.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -87,7 +87,10 @@ class PlayPage extends StatelessWidget {
                     ),
                     SizedBox(height: space),
                     ElevatedButton(
-                        onPressed: () => GoRouter.of(context).go('/quiz'),
+                        onPressed: () {
+                          appState.registerPlayer();
+                          GoRouter.of(context).go('/quiz');
+                        },
                         child: Text('Play Quiz')),
                   ],
                 ),

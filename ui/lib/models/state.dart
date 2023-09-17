@@ -87,10 +87,9 @@ class MyAppState extends ChangeNotifier {
     }
   }
 
-  Future<bool> incQuestion(context, sessionId, curQuestion) async {
+  Future<bool> incQuestion(sessionId, curQuestion) async {
     curQuestion++;
     String body = '{"curQuestion": "$curQuestion"}';
-    print('body: $body');
     final response = await http
         .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
       'Authorization': 'Bearer $idToken',
@@ -133,7 +132,7 @@ class MyAppState extends ChangeNotifier {
     return false;
   }
 
-  Future<bool> createSession(context, quizId) async {
+  Future<bool> createSession(quizId) async {
     // Create a new session for this user.
     print('createSession($quizId)');
     Session session = Session(
@@ -170,7 +169,7 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> stopHostQuiz(context) async {
+  Future<bool> stopHostQuiz() async {
     print('stopHostQuiz()');
 
     final response =
@@ -258,6 +257,26 @@ class MyAppState extends ChangeNotifier {
       print("Quiz id $id deleted.");
     } else {
       errorDialog('Failed to delete quiz $id');
+    }
+    notifyListeners();
+    return true;
+  }
+
+  Future<bool> registerPlayer() async {
+    var body = '{"$playerName": []}';
+    print('body: $body');
+    final response = await http.patch(
+        Uri.parse('$apiUrl/results/$playerSessionId'),
+        body: body,
+        headers: {
+          'Authorization': 'Bearer $idToken',
+          'Content-Type': 'application/json',
+        });
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("Player $playerName registered.");
+    } else {
+      errorDialog('Failed to register player $playerName');
     }
     notifyListeners();
     return true;
