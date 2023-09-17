@@ -40,12 +40,16 @@ class MyAppState extends ChangeNotifier {
   String hostRandomizeQuestions = 'Yes';
   String hostRandomizeAnswers = 'Yes';
   int curQuestion = 0;
+  String playerSessionId = '';
   String sessionId = '';
   String runningQuizId = '';
+  Quiz? playQuiz;
+  String? playerName;
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
   Stream<DocumentSnapshot<Map<String, dynamic>>>? sessionStream;
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? playerSessionStream;
 
   MyAppState() {
     print("apiUrl: $apiUrl");
@@ -93,13 +97,18 @@ class MyAppState extends ChangeNotifier {
       'Content-Type': 'application/json',
     });
 
-    if (response.statusCode == 200 || response.statusCode == 204) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print("Question incremented.");
     } else {
       errorDialog('Failed to increment question.');
     }
     notifyListeners();
     return true;
+  }
+
+  void setPlayerName(name) {
+    playerName = name;
+    notifyListeners();
   }
 
   Future<bool> checkForSession() async {
@@ -256,6 +265,39 @@ class MyAppState extends ChangeNotifier {
 
   favoriteQuiz(id) async {
     notifyListeners();
+  }
+
+  Quiz? findQuizByPin(pin) {
+    print('findSessionByPin($pin)');
+    FirebaseFirestore.instance
+        .collection('sessions')
+        .where('pin', isEqualTo: pin)
+        .get()
+        .then(
+      (querySnapshot) {
+        if (querySnapshot.docs.isEmpty) {
+          errorDialog('No session found with pin $pin.');
+          playQuiz = null;
+          notifyListeners();
+          return null;
+        } else if (querySnapshot.docs.length > 1) {
+          errorDialog(
+              'Multiple sessions with pin $pin, using first one found.');
+        }
+        var session = querySnapshot.docs[0].data();
+        playerSessionId = session['hostId'];
+        print('pin $pin led to session $playerSessionId');
+        playQuiz = getQuiz(session['quizId']);
+        print('session led to quiz ${playQuiz?.name}');
+        playerSessionStream = FirebaseFirestore.instance
+            .collection('sessions')
+            .doc(playerSessionId)
+            .snapshots();
+        notifyListeners();
+      },
+      onError: (e) => errorDialog("Error completing: $e"),
+    );
+    return null;
   }
 
   Future<List<Quiz>> fetchQuizzes() async {

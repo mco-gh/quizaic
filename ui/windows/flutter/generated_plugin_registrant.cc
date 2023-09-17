@@ -8,10 +8,13 @@
 
 #include <desktop_webview_auth/desktop_webview_auth_plugin.h>
 #include <firebase_core/firebase_core_plugin_c_api.h>
+#include <smart_auth/smart_auth_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   DesktopWebviewAuthPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("DesktopWebviewAuthPlugin"));
   FirebaseCorePluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("FirebaseCorePluginCApi"));
+  SmartAuthPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("SmartAuthPlugin"));
 }

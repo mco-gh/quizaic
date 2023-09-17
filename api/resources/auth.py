@@ -81,23 +81,26 @@ def allowed(operation, resource_kind, representation=None):
             return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
         return False
 
-    # Must be logged in to manipulate the sessions collection and the session id
-    # must match the user's hashed email address (unless caller is an admin).
     if resource_kind == "sessions":
-        if operation in ["GET", "POST", "PATCH", "DELETE"]:
+        # Must be logged in to create a session 
+        if operation in ["GET", "POST"]:
+            return user_logged_in(email) or user_is_admin(email)
+        # must match hashed email address (or be admin) to update or delete a session
+        if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             session_id = path_parts[2]
             return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
         return False
 
-    # Only admin or host can access results collection.
-    # Posting results by a player for a given quiz is done
-    # directly from the web client to firestore.
+    # Only admin or host can get, update, or delete results collection.
+    # Players can update their own results via the match method.
     if resource_kind == "results":
-        if operation in ["GET", "POST", "PATCH", "DELETE"]:
+        if operation in ["GET", "POST", "DELETE"]:
             path_parts = request.path.split("/")
             session_id = path_parts[2]
             return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
+        if operation == "PATCH":
+            return True
 
     # All other accesses are disallowed. This prevents unanticipated access.
     return False

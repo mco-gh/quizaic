@@ -6,6 +6,7 @@ import 'package:quizaic/views/browse.dart';
 import 'package:quizaic/views/host.dart';
 import 'package:quizaic/views/create.dart';
 import 'package:quizaic/views/play.dart';
+import 'package:quizaic/views/quiz.dart';
 import 'package:quizaic/views/settings.dart';
 import 'package:quizaic/auth/auth.dart';
 import 'package:go_router/go_router.dart';
@@ -87,6 +88,10 @@ class HomePage extends StatefulWidget {
                 path: '/play',
                 pageBuilder: (context, state) =>
                     genCustomTransitionPage(state, PlayPage())),
+            GoRoute(
+                path: '/quiz',
+                pageBuilder: (context, state) =>
+                    genCustomTransitionPage(state, QuizPage())),
             GoRoute(
                 path: '/settings',
                 pageBuilder: (context, state) =>

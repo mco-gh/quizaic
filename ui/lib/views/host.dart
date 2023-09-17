@@ -181,6 +181,7 @@ class _HostPageState extends State<HostPage> {
 
             return Column(
               children: [
+                genText('Hosting Quiz "${quiz.name}", Pin: ${data["pin"]}'),
                 SizedBox(height: 20),
                 genCard(genText('Question $curQuestion: $question')),
                 SizedBox(height: 20),

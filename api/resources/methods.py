@@ -23,7 +23,8 @@ from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 from pyquizaic.generators.image.imagegen import ImageGen
 
 IMAGES_BUCKET = os.getenv("IMAGES_BUCKET")
-# mco: make this an env var
+# mco: make these an env var
+MIN_PIN = 100
 MAX_PIN = 999
 
 resource_fields = {
@@ -145,8 +146,8 @@ def insert(resource_kind, representation):
 
     if resource_kind == "sessions":
         print("inserting a session so generating a random pin...")
-        pin = random.randint(1, MAX_PIN)
-        representation["pin"] = pin
+        pin = random.randint(MIN_PIN, MAX_PIN)
+        representation["pin"] = str(pin)
 
     if resource_kind == "quizzes":
         print("inserting a quiz so generating a new quiz...")

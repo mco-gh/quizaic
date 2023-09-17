@@ -28,6 +28,7 @@ dependencies:
   go_router: ^10.1.2
   url_strategy: ^0.2.0
   flutter_svg: ^2.0.7
+  pinput: ^3.0.1
 
 dev_dependencies:
   flutter_test:
