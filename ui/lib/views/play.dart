@@ -77,7 +77,6 @@ class PlayPage extends StatelessWidget {
                         onChanged: (name) => appState.setPlayerName(name),
                         decoration: InputDecoration(
                           filled: true,
-                          //fillColor: Color(0xFF1C2341),
                           hintText: "Name",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(12)),
