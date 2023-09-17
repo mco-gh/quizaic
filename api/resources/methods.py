@@ -75,18 +75,7 @@ def list(resource_kind):
     if not auth.allowed("GET", resource_kind):
         return "Forbidden", 403
 
-    # Anyone can list quizzes and generators.
-    if resource_kind in ["quizzes", "generators"]:
-        results = db.list(resource_kind, resource_fields[resource_kind])
-
-    # Only admins can list admins and sessions.
-    elif resource_kind in ["admins", "sessions"]:
-        if auth.user_is_admin(g.verified_email):
-            # Must be an admin to list admins or sessions.
-            results = db.list(resource_kind, resource_fields[resource_kind])
-    else:
-        return "Forbidden", 403
-
+    results = db.list(resource_kind, resource_fields[resource_kind])
     return json.dumps(results), 200, {"Content-Type": "application/json"}
 
 
