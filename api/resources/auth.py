@@ -49,12 +49,24 @@ def allowed(operation, resource_kind, representation=None):
     if email:
         hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
 
-    # Check for everything requiring auth and handle
+    # Check for everything requiring auth
 
-    # Admins (and only admins) can do any operation on the admins collection.
+    # Admins (and only admins) can access the admins collection.
     if resource_kind == "admins":
         return user_is_admin(email)
 
+    # Generators are public read but only admins can modify them.
+    if resource_kind == "generators":
+        # Anyone can read all generator records.
+        if operation == "GET":
+            return True
+        # Must be an admin to create, modify or delete a generator.
+        if operation in ["POST", "PATCH", "DELETE"]:
+            return user_is_admin(email)
+        return False
+
+    # Quizzes can be read by anyone, created by logged in users, and
+    # updated or deleted only by the quiz creator (or an admin).
     if resource_kind == "quizzes":
         # Anyone can read all quiz records (even unauthenticated players).
         if operation == "GET":
@@ -69,27 +81,23 @@ def allowed(operation, resource_kind, representation=None):
             return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
         return False
 
-    if resource_kind == "generators":
-        # Anyone can read all generator records (even unauthenticated players).
-        if operation == "GET":
-            return True
-        # Must be an admin to create, modify or delete a generator.
-        if operation in ["POST", "PATCH", "DELETE"]:
+    # Must be logged in to manipulate the sessions collection and the session id
+    # must match the user's hashed email address (unless caller is an admin).
+    if resource_kind == "sessions":
+        if operation in ["GET", "POST", "PATCH", "DELETE"]:
             path_parts = request.path.split("/")
-            quiz_id = path_parts[2]
-            return user_is_admin(email) or user_created_quiz(hashed_email, quiz_id)
+            session_id = path_parts[2]
+            return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
         return False
 
-    if resource_kind == "sessions":
-        # Must be an admin or quiz creator to do anything with sessions.
-        # Posting results by a player for a given quiz is done
-        # directly from the web client to firestore.
-        if operation in ["POST", "PATCH", "GET", "DELETE"]:
-            return True
-            # path_parts = request.path.split("/")
-            # quiz_id = path_parts[1]
-            # return user_is_admin(email) or user_can_post_results()
-        return False
+    # Only admin or host can access results collection.
+    # Posting results by a player for a given quiz is done
+    # directly from the web client to firestore.
+    if resource_kind == "results":
+        if operation in ["GET", "POST", "PATCH", "DELETE"]:
+            path_parts = request.path.split("/")
+            session_id = path_parts[2]
+            return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
 
     # All other accesses are disallowed. This prevents unanticipated access.
     return False

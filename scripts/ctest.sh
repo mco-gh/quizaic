@@ -1,16 +1,16 @@
 # ctest.sh - content API test script
 #
-USAGE="$0 path\n\nexport URL=url-to-api # default is http://localhost:8080\nexport METHOD=http-method     # default is GET\nexport BODY=file # default is no body"
+USAGE="$0 path\n\nexport URL=url-to-api # default is http://localhost:8081\nexport METHOD=http-method     # default is GET\nexport BODY=file # default is no body"
 
 if [ "$#" != 1 ]; then
     echo -e "${USAGE}"
     exit 1
 fi
 if [ "$REDIRECT_URI" = "" ]; then
-    . ../scripts/env.sh
+    . scripts/env.sh test
 fi
 if [ "$URL" = "" ]; then
-    export URL="localhost:8080"
+    export URL="localhost:8081"
 fi
 if [ "$METHOD" = "" ]; then
     export METHOD=GET
