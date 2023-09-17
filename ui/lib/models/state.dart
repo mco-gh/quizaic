@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/models/generator.dart';
 import 'package:quizaic/models/session.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:quizaic/views/home.dart';
 
 List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
 
@@ -83,7 +83,7 @@ class MyAppState extends ChangeNotifier {
     }
   }
 
-  Future<bool> incQuestion(sessionId, curQuestion) async {
+  Future<bool> incQuestion(context, sessionId, curQuestion) async {
     curQuestion++;
     String body = '{"curQuestion": "$curQuestion"}';
     print('body: $body');
@@ -96,7 +96,7 @@ class MyAppState extends ChangeNotifier {
     if (response.statusCode == 200 || response.statusCode == 204) {
       print("Question incremented.");
     } else {
-      throw Exception('Failed to increment question.');
+      errorDialog('Failed to increment question.');
     }
     notifyListeners();
     return true;
@@ -124,7 +124,7 @@ class MyAppState extends ChangeNotifier {
     return false;
   }
 
-  Future<bool> createSession(quizId) async {
+  Future<bool> createSession(context, quizId) async {
     // Create a new session for this user.
     print('createSession($quizId)');
     Session session = Session(
@@ -155,13 +155,13 @@ class MyAppState extends ChangeNotifier {
           .snapshots();
       print('New session created: $sessionId.');
     } else {
-      throw Exception('Failed to start quiz $quizId');
+      errorDialog('Failed to start quiz $quizId');
     }
     notifyListeners();
     return true;
   }
 
-  Future<bool> stopHostQuiz() async {
+  Future<bool> stopHostQuiz(context) async {
     print('stopHostQuiz()');
 
     final response =
@@ -174,13 +174,13 @@ class MyAppState extends ChangeNotifier {
       runningQuizId = '';
       print("Quiz $runningQuizId stopped.");
     } else {
-      throw Exception('Failed to stop quiz $runningQuizId');
+      errorDialog('Failed to stop quiz $runningQuizId');
     }
     notifyListeners();
     return true;
   }
 
-  Future<bool> createOrUpdateQuiz(quiz) async {
+  Future<bool> createOrUpdateQuiz(context, quiz) async {
     int dnum = difficulty.indexOf(selectedDifficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
@@ -235,20 +235,20 @@ class MyAppState extends ChangeNotifier {
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(confirmation);
     } else {
-      throw Exception(error);
+      errorDialog(error);
     }
     notifyListeners();
     return true;
   }
 
-  Future<bool> deleteQuiz(id) async {
+  Future<bool> deleteQuiz(context, id) async {
     final response = await http.delete(Uri.parse('$apiUrl/quizzes/$id'),
         headers: {'Authorization': 'Bearer $idToken'});
 
     if (response.statusCode == 200 || response.statusCode == 204) {
       print("Quiz id $id deleted.");
     } else {
-      throw Exception('Failed to delete quiz $id');
+      errorDialog('Failed to delete quiz $id');
     }
     notifyListeners();
     return true;
@@ -267,7 +267,7 @@ class MyAppState extends ChangeNotifier {
       Iterable l = json.decode(response.body);
       quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
     } else {
-      throw Exception('Failed to fetch quizzes');
+      //errorDialog(context, 'Failed to fetch quizzes');
     }
     notifyListeners();
     return quizzes;
@@ -282,7 +282,7 @@ class MyAppState extends ChangeNotifier {
       generators =
           List<Generator>.from(l.map((model) => Generator.fromJson(model)));
     } else {
-      throw Exception('Failed to fetch generators');
+      //errorDialog(context, 'Failed to fetch generators');
     }
     notifyListeners();
     return generators;

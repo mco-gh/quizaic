@@ -192,14 +192,15 @@ class _HostPageState extends State<HostPage> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    appState.incQuestion(appState.sessionId, curQuestion);
+                    appState.incQuestion(
+                        context, appState.sessionId, curQuestion);
                   },
                   child: genText('Next Question'),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    appState.stopHostQuiz();
+                    appState.stopHostQuiz(context);
                   },
                   child: genText('Stop Quiz'),
                 ),
@@ -351,7 +352,7 @@ class _HostPageState extends State<HostPage> {
                           SnackBar(content: genText('Hosting quiz...')),
                         );
                         print('creating session...');
-                        appState.createSession(quiz.id);
+                        appState.createSession(context, quiz.id);
                       }
                     },
                     child: genText('Start ${appState.hostType}'),

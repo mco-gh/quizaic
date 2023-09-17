@@ -12,8 +12,26 @@ import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
+
 final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'shell');
+
+errorDialog(error) {
+  print('errorDialog: $error');
+  var context = _rootNavigatorKey.currentContext!;
+  Widget okButton = TextButton(
+    onPressed: GoRouter.of(context).pop,
+    child: Text("OK"),
+  );
+  AlertDialog alert = AlertDialog(
+    title: Text("Error"),
+    content: Text(error),
+    actions: [
+      okButton,
+    ],
+  );
+  showDialog(context: context, builder: (BuildContext context) => alert);
+}
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});

@@ -453,7 +453,8 @@ class _CreatePageState extends State<CreatePage> {
                               duration: Duration(milliseconds: 500),
                               content: genText(snack)),
                         );
-                        appState.createOrUpdateQuiz(quizToCreateOrUpdate);
+                        appState.createOrUpdateQuiz(
+                            context, quizToCreateOrUpdate);
                         setState(() {
                           appState.selectedIndex = 0;
                           appState.selectedPageIndex = 0;

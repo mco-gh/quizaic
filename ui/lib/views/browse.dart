@@ -128,7 +128,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                               ],
                                             ),
                                             onPressed: () {
-                                              appState.deleteQuiz(quiz.id);
+                                              appState.deleteQuiz(
+                                                  context, quiz.id);
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(SnackBar(
                                                 duration:
