@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
+import 'package:go_router/go_router.dart';
 
 class QuizPage extends StatelessWidget {
   @override
@@ -10,6 +11,10 @@ class QuizPage extends StatelessWidget {
     var theme = Theme.of(context);
     final appState = context.watch<MyAppState>();
 
+    if (appState.revertToPlayPage) {
+      appState.revertToPlayPage = false;
+      GoRouter.of(context).go('/play');
+    }
     Card genCard(text) {
       return Card(
           //shape:

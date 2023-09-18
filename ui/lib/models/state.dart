@@ -45,6 +45,7 @@ class MyAppState extends ChangeNotifier {
   String runningQuizId = '';
   Quiz? playQuiz;
   String? playerName;
+  bool revertToPlayPage = false;
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
@@ -272,11 +273,15 @@ class MyAppState extends ChangeNotifier {
           'Authorization': 'Bearer $idToken',
           'Content-Type': 'application/json',
         });
-
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("Player $playerName registered.");
     } else {
-      errorDialog('Failed to register player $playerName');
+      if (response.statusCode == 409) {
+        errorDialog('Player $playerName already registered for this quiz.');
+      } else {
+        errorDialog('Failed to register player $playerName');
+      }
+      revertToPlayPage = true;
     }
     notifyListeners();
     return true;

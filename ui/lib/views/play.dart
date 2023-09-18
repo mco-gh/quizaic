@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:quizaic/constants.dart';
 import 'package:pinput/pinput.dart';
 import 'package:quizaic/models/state.dart';
+import 'package:quizaic/views/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:bad_words/bad_words.dart';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -20,6 +22,9 @@ final defaultPinTheme = PinTheme(
 );
 
 class PlayPage extends StatelessWidget {
+  final _controller = TextEditingController();
+  final filter = Filter();
+
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<MyAppState>();
@@ -74,6 +79,7 @@ class PlayPage extends StatelessWidget {
                     SizedBox(
                       width: 400,
                       child: TextField(
+                        controller: _controller,
                         onChanged: (name) => appState.setPlayerName(name),
                         decoration: InputDecoration(
                           filled: true,
@@ -87,6 +93,14 @@ class PlayPage extends StatelessWidget {
                     SizedBox(height: space),
                     ElevatedButton(
                         onPressed: () {
+                          bool profane =
+                              filter.isProfane(_controller.value.text);
+                          if (profane) {
+                            errorDialog('Invalid name, please try again.');
+
+                            _controller.setText('');
+                            return;
+                          }
                           appState.registerPlayer();
                           GoRouter.of(context).go('/quiz');
                         },
