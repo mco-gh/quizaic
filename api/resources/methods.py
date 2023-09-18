@@ -194,21 +194,10 @@ def patch(resource_kind, id, representation):
         return "Forbidden", 403
 
     match_etag = request.headers.get("If-Match", None)
-    if resource_kind == "quizzes":
-        print(f"{id=}, {representation=}")
-        print(f"patching quiz id {id}")
-    #elif resource_kind == "results":
-        #if "question" in representation:
-            # single response so need to insert it into the response array
-            #responses = db.fetch(resource_kind, id, resource_fields[resource_kind])
-            #question_num = representation["questionNum"]
-            #response = representation["response"]
-            #responses[question_num] = response
 
     resource, status = db.update(
         resource_kind, id, representation, resource_fields[resource_kind], match_etag
     )
- 
 
     if resource is None:
         return "", status

@@ -263,7 +263,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> registerPlayer() async {
-    var body = '{"$playerName": []}';
+    var body = '{"players.$playerName": {}}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
@@ -283,10 +283,10 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> sendResponse(i, j) async {
-    var body = '{"questionNum": i, "response": j}';
+    var body = '{"players.$playerName.$i": "$j"}';
     print('body: $body');
     final response = await http.patch(
-        Uri.parse('$apiUrl/results/$playerSessionId/$playerName'),
+        Uri.parse('$apiUrl/results/$playerSessionId'),
         body: body,
         headers: {
           'Authorization': 'Bearer $idToken',
@@ -294,9 +294,10 @@ class MyAppState extends ChangeNotifier {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Player $playerName registered.");
+      print("Sent response $i: $j for player $playerName");
     } else {
-      errorDialog('Failed to register player $playerName');
+      errorDialog(
+          'Failed to send response number $i: $j for player $playerName');
     }
     notifyListeners();
     return true;
