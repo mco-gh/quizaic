@@ -17,6 +17,7 @@ import random
 
 from main import g, request
 from data import cloud_firestore as db
+from google.cloud import firestore
 from resources import auth, base
 from utils.logging import log
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
@@ -194,13 +195,41 @@ def patch(resource_kind, id, representation):
         return "Forbidden", 403
 
     match_etag = request.headers.get("If-Match", None)
+   
+    if resource_kind == "results":
+        key = next(iter(representation))
+        val = representation[key]
+        print(f"{key=}, {val=}")
+        if val:
+            representation[key] = firestore.Increment(1)
 
+    print(f"{representation=}")
     resource, status = db.update(
         resource_kind, id, representation, resource_fields[resource_kind], match_etag
     )
 
     if resource is None:
         return "", status
+
+    #if resource_kind == "results":
+        # disallow updating score!
+        # update player's score based on this response
+        #try:
+            #parts = representation.keys()[0]
+            #player_name = parts[1]
+            #question_num = parts[2]
+            #player_response = representation.values()[0]
+            #quiz_id = db.fetch("results", id, ["quizId", "score"])["quizId"]
+            #q_and_a = db.fetch("quizzes", quizId, ["qAndA"])["qAndA"]
+            #correct_answer = q_and_a[question_num]["correct"]
+            #if response == correct_answer:
+                #field = f"players.{player_name}.score" 
+                #resource, status = db.fetch("results", id, [field])
+                #new_score = resource[field] + 1
+                #new_value = {field: new_score}
+                #resource, status = db.update("results", id, new_value, [field])
+        #except err:
+            #return "Server error", 500, {}
 
     return (
         json.dumps(resource),

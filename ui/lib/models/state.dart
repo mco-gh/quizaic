@@ -263,7 +263,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> registerPlayer() async {
-    var body = '{"players.$playerName": {}}';
+    var body = '{"players.$playerName.score": 0}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
@@ -282,8 +282,8 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> sendResponse(i, j) async {
-    var body = '{"players.$playerName.$i": "$j"}';
+  Future<bool> sendResponse(i) async {
+    var body = '{"players.$playerName.score": 1}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
@@ -294,10 +294,9 @@ class MyAppState extends ChangeNotifier {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Sent response $i: $j for player $playerName");
+      print("Sent response $i for player $playerName");
     } else {
-      errorDialog(
-          'Failed to send response number $i: $j for player $playerName');
+      errorDialog('Failed to send response number $i for player $playerName');
     }
     notifyListeners();
     return true;
