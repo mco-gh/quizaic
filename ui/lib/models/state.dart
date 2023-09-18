@@ -46,6 +46,7 @@ class MyAppState extends ChangeNotifier {
   Quiz? playQuiz;
   String? playerName;
   bool revertToPlayPage = false;
+  int respondedQuestion = -1;
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
