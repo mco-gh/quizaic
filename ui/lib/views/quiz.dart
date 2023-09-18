@@ -26,7 +26,12 @@ class QuizPage extends StatelessWidget {
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
+        if (data['curQuestion'] == "-1") {
+          return Center(child: Text('Waiting for quiz to start...'));
+        }
+
         int curQuestion = int.parse(data['curQuestion']);
+        print('curQuestion: $curQuestion');
         var quiz = jsonDecode(appState.playQuiz?.qAndA! as String);
         var question = quiz[curQuestion]['question'];
         var correct = quiz[curQuestion]['correct'];
@@ -62,8 +67,16 @@ class QuizPage extends StatelessWidget {
                 color = Colors.green;
               }
               responseList.add(
-                Text('${letters[i]}. ${responses[i]}',
-                    style: TextStyle(color: color)),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: color),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('${letters[i]}. ${responses[i]}',
+                        style: TextStyle(color: color)),
+                  ),
+                ),
               );
             }
             if (i < responses.length - 1) {
@@ -74,7 +87,7 @@ class QuizPage extends StatelessWidget {
           return responseList;
         }
 
-        bool enable = curQuestion != appState.respondedQuestion;
+        bool enable = (curQuestion != appState.respondedQuestion);
 
         return Column(
           children: [
