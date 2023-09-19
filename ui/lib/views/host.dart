@@ -175,37 +175,78 @@ class _HostPageState extends State<HostPage> {
             if (snapshot.data?.data() == null) {
               return Text('Hosting Quiz...');
             }
+
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = int.parse(data['curQuestion']);
             var question = jsonDecode(quiz.qAndA!)[curQuestion]['question'];
 
-            return Column(
-              children: [
-                genText('Hosting Quiz "${quiz.name}", Pin: ${data["pin"]}'),
-                SizedBox(height: 20),
-                genCard(genText('Question $curQuestion: $question')),
-                SizedBox(height: 20),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  for (var answer in jsonDecode(quiz.qAndA!)[curQuestion]
-                      ['responses'])
-                    genCard(genText(answer)),
-                ]),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    appState.incQuestion(appState.sessionId, curQuestion);
-                  },
-                  child: genText('Next Question'),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    appState.stopHostQuiz();
-                  },
-                  child: genText('Stop Quiz'),
-                ),
-              ],
-            );
+            return StreamBuilder<DocumentSnapshot>(
+                stream: appState.resultsStream,
+                builder: (context, snapshot) {
+                  List<String> registeredPlayers = [];
+                  print('snapshot.data: ${snapshot.data}');
+                  if (snapshot.data?.data() != null) {
+                    var results = snapshot.data!.data() as Map<String, dynamic>;
+                    if (results['players'] != null) {
+                      registeredPlayers = results['players'].keys.toList();
+                    }
+                  }
+                  return Column(
+                    children: [
+                      genText(
+                          'Hosting Quiz "${quiz.name}", Pin: ${data["pin"]}'),
+                      SizedBox(height: 20),
+                      genCard(genText('Question $curQuestion: $question')),
+                      SizedBox(height: 20),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            for (var answer
+                                in jsonDecode(quiz.qAndA!)[curQuestion]
+                                    ['responses'])
+                              genCard(genText(answer)),
+                          ]),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: 400,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                appState.incQuestion(
+                                    appState.sessionId, curQuestion);
+                              },
+                              child: genText('Next Question'),
+                            ),
+                            SizedBox(width: 20),
+                            ElevatedButton(
+                              onPressed: () {
+                                appState.stopHostQuiz();
+                              },
+                              child: genText('Stop Quiz'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: 400,
+                        child: ExpansionTile(
+                          title: Text('Registered Players:'),
+                          children: [
+                            ListView(
+                              children: [
+                                for (var player in registeredPlayers)
+                                  genText(player)
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                });
           });
     }
 

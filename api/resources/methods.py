@@ -166,8 +166,14 @@ def insert(resource_kind, representation):
     resource = db.insert(resource_kind, representation, resource_fields[resource_kind])
     id = resource["id"]
 
+    if resource_kind == "sessions":
+        print("created a session so created a new results document...")
+        results = "results"
+        rep = {"hostId": id, "quizId": id, "players": {}}
+        db.insert(results, representation, resource_fields[results])
+ 
     if resource_kind == "quizzes":
-        print("inserting a quiz so generating a new image...")
+        print("created a quiz so generating a new image...")
         filename = resource["id"] + ".png"
         file_url = ImageGen.generate_and_upload_image(topic, filename, IMAGES_BUCKET)
         print(f"file_url: {file_url}")
@@ -202,40 +208,20 @@ def patch(resource_kind, id, representation):
         val = representation[key]
         if not val:
             # registering a new player for this session so make sure not already there
-            resource = db.fetch(resource_kind, id, resource_fields[resource_kind])
+            resource = db.fetch("sessions", id, resource_fields[resource_kind])
             if not resource:
                 return f"Can't find requested session {id}", 500, {}
-            players = resource["players"].keys()
-            print(f"{player=}, {players=}, {(player in players)=}")
-            if player in players:
-                # player already registered so deny this request
-                return "", 409, {}
+            players = resource["players"]
+            if players:
+                if player in players:
+                    # player already registered so deny this request
+                    return "", 409, {}
         else:
             representation[key] = firestore.Increment(1)
 
     resource, status = db.update(resource_kind, id, representation, resource_fields[resource_kind], match_etag)
     if resource is None:
         return "", status
-
-    #if resource_kind == "results":
-        # disallow updating score!
-        # update player's score based on this response
-        #try:
-            #parts = representation.keys()[0]
-            #player_name = parts[1]
-            #question_num = parts[2]
-            #player_response = representation.values()[0]
-            #quiz_id = db.fetch("results", id, ["quizId", "score"])["quizId"]
-            #q_and_a = db.fetch("quizzes", quizId, ["qAndA"])["qAndA"]
-            #correct_answer = q_and_a[question_num]["correct"]
-            #if response == correct_answer:
-                #field = f"players.{player_name}.score" 
-                #resource, status = db.fetch("results", id, [field])
-                #new_score = resource[field] + 1
-                #new_value = {field: new_score}
-                #resource, status = db.update("results", id, new_value, [field])
-        #except err:
-            #return "Server error", 500, {}
 
     return (
         json.dumps(resource),
@@ -257,5 +243,10 @@ def delete(resource_kind, id):
 
     match_etag = request.headers.get("If-Match", None)
     status = db.delete(resource_kind, id, resource_fields[resource_kind], match_etag)
+
+    if resource_kind == "sessions":
+        print("deleted a session so deleting corresponding results document...")
+        results = "results"
+        db.delete(results, id, resource_fields[results], match_etag)
 
     return "", status

@@ -92,7 +92,7 @@ class QuizPage extends StatelessWidget {
         return Column(
           children: [
             SizedBox(height: 40),
-            genCard('Question: $question'),
+            genCard('Question $curQuestion: $question'),
             SizedBox(height: 40),
             SizedBox(
               width: 1000,

@@ -52,6 +52,7 @@ class MyAppState extends ChangeNotifier {
       FirebaseFirestore.instance.collection('quizzes').snapshots();
   Stream<DocumentSnapshot<Map<String, dynamic>>>? sessionStream;
   Stream<DocumentSnapshot<Map<String, dynamic>>>? playerSessionStream;
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
 
   MyAppState() {
     print("apiUrl: $apiUrl");
@@ -127,6 +128,11 @@ class MyAppState extends ChangeNotifier {
           .collection('sessions')
           .doc(sessionId)
           .snapshots();
+      resultsStream = FirebaseFirestore.instance
+          .collection('results')
+          .doc(sessionId)
+          .snapshots();
+
       print('Resuming session already in progress for this host: $sessionId.');
       return true;
     }
@@ -163,10 +169,20 @@ class MyAppState extends ChangeNotifier {
           .collection('sessions')
           .doc(sessionId)
           .snapshots();
+      //Future.delayed(Duration(seconds: 1)).then((_) {
+      resultsStream = FirebaseFirestore.instance
+          .collection('results')
+          .doc(sessionId)
+          .snapshots();
+      //});
       print('New session created: $sessionId.');
+    } else if (response.statusCode == 403) {
+      errorDialog(
+          'Failed to create session for quiz $quizId due to authorization error, are you logged in?');
     } else {
-      errorDialog('Failed to start quiz $quizId');
+      errorDialog('Failed to create session for quiz $quizId');
     }
+
     notifyListeners();
     return true;
   }
