@@ -235,12 +235,8 @@ class _HostPageState extends State<HostPage> {
                         child: ExpansionTile(
                           title: Text('Registered Players:'),
                           children: [
-                            ListView(
-                              children: [
-                                for (var player in registeredPlayers)
-                                  genText(player)
-                              ],
-                            ),
+                            for (var player in registeredPlayers)
+                              genText(player)
                           ],
                         ),
                       ),
