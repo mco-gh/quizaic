@@ -260,6 +260,8 @@ class MyAppState extends ChangeNotifier {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(confirmation);
+    } else if (response.statusCode == 403) {
+      errorDialog('$error due to permission error, are you logged in?');
     } else {
       errorDialog(error);
     }

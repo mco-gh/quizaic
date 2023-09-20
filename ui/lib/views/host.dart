@@ -183,12 +183,22 @@ class _HostPageState extends State<HostPage> {
             return StreamBuilder<DocumentSnapshot>(
                 stream: appState.resultsStream,
                 builder: (context, snapshot) {
-                  List<String> registeredPlayers = [];
+                  var leaderBoard = {};
                   print('snapshot.data: ${snapshot.data}');
                   if (snapshot.data?.data() != null) {
                     var results = snapshot.data!.data() as Map<String, dynamic>;
                     if (results['players'] != null) {
-                      registeredPlayers = results['players'].keys.toList();
+                      Map players = results['players'];
+                      Map playerScores = {};
+                      players.forEach((k, v) {
+                        print('k: $k, v: $v');
+                        playerScores[k] = v['score'];
+                      });
+                      print('playerScores: $playerScores');
+                      leaderBoard = Map.fromEntries(
+                          playerScores.entries.toList()
+                            ..sort((e1, e2) => e2.value.compareTo(e1.value)));
+                      print('leaderBoard: $leaderBoard');
                     }
                   }
                   return Column(
@@ -235,8 +245,8 @@ class _HostPageState extends State<HostPage> {
                         child: ExpansionTile(
                           title: Text('Registered Players:'),
                           children: [
-                            for (var player in registeredPlayers)
-                              genText(player)
+                            for (var e in leaderBoard.entries)
+                              genText('${e.key} ${e.value}'),
                           ],
                         ),
                       ),
