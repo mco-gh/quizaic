@@ -37,6 +37,7 @@ class QuizPage extends StatelessWidget {
         var question = quiz[curQuestion]['question'];
         var correct = quiz[curQuestion]['correct'];
         var responses = quiz[curQuestion]['responses'];
+        print('responses: $responses');
 
         Card genCard(text) {
           return Card(

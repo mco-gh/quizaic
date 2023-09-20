@@ -182,11 +182,14 @@ class HomePageScaffold extends StatelessWidget {
 
     dynamic icon = Icon(Icons.person, color: Colors.white);
     if (appState.photoUrl != '') {
-      icon = Image.network(appState.photoUrl, height: 40, headers: {
-        "corsImageModified.crossOrigin": "Anonymous",
-        "corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
-        'referrerpolicy': 'no-referrer'
-      });
+      // temp hack to avoid cors error
+      appState.photoUrl = 'https://mco.dev/img/mcouser.jpg';
+      icon = Image.network(appState.photoUrl, height: 40);
+      //, headers: {
+      //"corsImageModified.crossOrigin": "Anonymous",
+      //"corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
+      //'referrerpolicy': 'no-referrer'
+      //});
     }
 
     return Scaffold(

@@ -342,6 +342,7 @@ class MyAppState extends ChangeNotifier {
         .get()
         .then(
       (querySnapshot) {
+        print('querySnapshot.docs: ${querySnapshot.docs}');
         if (querySnapshot.docs.isEmpty) {
           errorDialog('No session found with pin $pin.');
           playQuiz = null;
