@@ -245,8 +245,15 @@ class _HostPageState extends State<HostPage> {
                         child: ExpansionTile(
                           title: Text('Registered Players:'),
                           children: [
-                            for (var e in leaderBoard.entries)
-                              genText('${e.key} ${e.value}'),
+                            Table(children: [
+                              for (var e in leaderBoard.entries)
+                                TableRow(children: [
+                                  TableCell(child: genText(e.key)),
+                                  TableCell(child: genText(e.value.toString())),
+                                ]),
+                            ]),
+                            //for (var e in leaderBoard.entries)
+                            //genText('${e.key} ${e.value}'),
                           ],
                         ),
                       ),
