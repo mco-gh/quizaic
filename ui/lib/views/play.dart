@@ -28,6 +28,18 @@ class PlayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<MyAppState>();
+
+    enterPlayerName(name) {
+      bool profane = filter.isProfane(name);
+      if (profane) {
+        errorDialog('Invalid name, please try again.');
+        _controller.setText('');
+        return;
+      }
+      appState.registerPlayer();
+      GoRouter.of(context).go('/quiz');
+    }
+
     var space = 40.0;
     return Scaffold(
       body: Stack(
@@ -80,6 +92,7 @@ class PlayPage extends StatelessWidget {
                       width: 400,
                       child: TextField(
                         controller: _controller,
+                        onSubmitted: (name) => enterPlayerName(name),
                         onChanged: (name) => appState.setPlayerName(name),
                         decoration: InputDecoration(
                           filled: true,
@@ -92,18 +105,8 @@ class PlayPage extends StatelessWidget {
                     ),
                     SizedBox(height: space),
                     ElevatedButton(
-                        onPressed: () {
-                          bool profane =
-                              filter.isProfane(_controller.value.text);
-                          if (profane) {
-                            errorDialog('Invalid name, please try again.');
-
-                            _controller.setText('');
-                            return;
-                          }
-                          appState.registerPlayer();
-                          GoRouter.of(context).go('/quiz');
-                        },
+                        onPressed: () =>
+                            enterPlayerName(_controller.value.text),
                         child: Text('Play Quiz')),
                   ],
                 ),

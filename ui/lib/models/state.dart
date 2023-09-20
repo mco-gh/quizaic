@@ -90,7 +90,11 @@ class MyAppState extends ChangeNotifier {
     }
   }
 
-  Future<bool> incQuestion(sessionId, curQuestion) async {
+  Future<bool> incQuestion(sessionId, curQuestion, numQuestions) async {
+    if (curQuestion >= numQuestions - 1) {
+      errorDialog('Reached end of quiz, stop quiz to proceed.');
+      return true;
+    }
     curQuestion++;
     String body = '{"curQuestion": "$curQuestion"}';
     final response = await http

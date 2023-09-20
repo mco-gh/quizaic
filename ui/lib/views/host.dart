@@ -224,8 +224,8 @@ class _HostPageState extends State<HostPage> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                appState.incQuestion(
-                                    appState.sessionId, curQuestion);
+                                appState.incQuestion(appState.sessionId,
+                                    curQuestion, int.parse(quiz.numQuestions));
                               },
                               child: genText('Next Question'),
                             ),

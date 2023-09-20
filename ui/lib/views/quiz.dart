@@ -22,12 +22,13 @@ class QuizPage extends StatelessWidget {
       stream: appState.playerSessionStream,
       builder: (context, snapshot) {
         if (snapshot.data?.data() == null) {
-          return Text('Waiting for quiz to start...');
+          return Center(child: Text('Waiting for quiz to start...'));
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
         if (data['curQuestion'] == "-1") {
-          return Center(child: Text('Waiting for quiz to start...'));
+          GoRouter.of(context).go('/play');
+          //return Center(child: Text('Waiting for quiz to start...'));
         }
 
         int curQuestion = int.parse(data['curQuestion']);
@@ -80,7 +81,7 @@ class QuizPage extends StatelessWidget {
               );
             }
             if (i < responses.length - 1) {
-              responseList.add(SizedBox(width: 20));
+              responseList.add(SizedBox(height: 10));
             }
           }
 
@@ -91,17 +92,17 @@ class QuizPage extends StatelessWidget {
 
         return Column(
           children: [
-            SizedBox(height: 40),
+            SizedBox(height: 10),
             genCard('Question $curQuestion: $question'),
-            SizedBox(height: 40),
+            SizedBox(height: 10),
             SizedBox(
               width: 1000,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: genResponse(responses, enable),
               ),
             ),
-            if (!enable) SizedBox(height: 50),
+            if (!enable) SizedBox(height: 20),
             if (!enable) Text('Waiting for next question...')
           ],
         );
