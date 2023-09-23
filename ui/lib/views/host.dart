@@ -4,14 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-enum Synchronous { synchronous, asynchronous }
-
-enum Anonymous { anonymous, authenticated }
-
-enum ActivityType { quiz, survey }
-
-enum YN { yes, no }
-
 class HostPage extends StatefulWidget {
   final String? quizId;
 
@@ -111,41 +103,41 @@ class _HostPageState extends State<HostPage> {
 
     void setHostSynch(value) {
       return setState(() {
-        appState.hostSynch = value.toString();
+        appState.hostedQuiz.synch = value.toString();
       });
     }
 
     String getHostTimeLimit() {
-      return appState.hostTimeLimit;
+      return appState.hostedQuiz.timeLimit;
     }
 
     void setHostTimeLimit(value) {
       return setState(() {
-        appState.hostTimeLimit = value.toString();
+        appState.hostedQuiz.timeLimit = value.toString();
       });
     }
 
     void setHostType(value) {
       return setState(() {
-        appState.hostType = value.toString();
+        appState.hostedQuiz.type = value.toString();
       });
     }
 
     void setHostAnonymous(value) {
       return setState(() {
-        appState.hostAnonymous = value.toString();
+        appState.hostedQuiz.anonymous = value.toString();
       });
     }
 
     void setHostRandomizeQuestions(value) {
       return setState(() {
-        appState.hostRandomizeQuestions = value.toString();
+        appState.hostedQuiz.randomizeQuestions = value.toString();
       });
     }
 
     void setHostRandomizeAnswers(value) {
       return setState(() {
-        appState.hostRandomizeAnswers = value.toString();
+        appState.hostedQuiz.randomizeAnswers = value.toString();
       });
     }
 
@@ -291,7 +283,7 @@ class _HostPageState extends State<HostPage> {
                       child: genDropdownMenu(
                           _formKey,
                           'Synch or Asynch',
-                          appState.hostSynch,
+                          appState.hostedQuiz.synch,
                           () => ['Synchronous', 'Asynchronous'],
                           setHostSynch),
                     ),
@@ -328,7 +320,7 @@ class _HostPageState extends State<HostPage> {
                       child: genDropdownMenu(
                           _formKey,
                           'Quiz or Survey',
-                          appState.hostType,
+                          appState.hostedQuiz.type,
                           () => ['Quiz', 'Survey'],
                           setHostType),
                     ),
@@ -345,7 +337,7 @@ class _HostPageState extends State<HostPage> {
                       child: genDropdownMenu(
                           _formKey,
                           'Anonymous or Authenticated',
-                          appState.hostAnonymous,
+                          appState.hostedQuiz.anonymous,
                           () => ['Anonymous', 'Autheticated'],
                           setHostAnonymous),
                     ),
@@ -365,7 +357,7 @@ class _HostPageState extends State<HostPage> {
                       child: genDropdownMenu(
                           _formKey,
                           'Randomize Questions',
-                          appState.hostRandomizeQuestions,
+                          appState.hostedQuiz.randomizeQuestions,
                           () => ['Yes', 'No'],
                           setHostRandomizeQuestions),
                     ),
@@ -383,7 +375,7 @@ class _HostPageState extends State<HostPage> {
                       child: genDropdownMenu(
                           _formKey,
                           'Randomize Answers',
-                          appState.hostRandomizeAnswers,
+                          appState.hostedQuiz.randomizeAnswers,
                           () => ['Yes', 'No'],
                           setHostRandomizeAnswers),
                     ),
@@ -409,7 +401,7 @@ class _HostPageState extends State<HostPage> {
                         appState.createSession(quiz.id);
                       }
                     },
-                    child: genText('Start ${appState.hostType}'),
+                    child: genText('Start ${appState.hostedQuiz.type}'),
                   ),
                 ),
               ),

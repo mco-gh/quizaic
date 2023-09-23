@@ -33,7 +33,7 @@ class QuizPage extends StatelessWidget {
 
         int curQuestion = int.parse(data['curQuestion']);
         print('curQuestion: $curQuestion');
-        var quiz = jsonDecode(appState.playQuiz?.qAndA! as String);
+        var quiz = jsonDecode(appState.playedQuiz.quiz?.qAndA! as String);
         var question = quiz[curQuestion]['question'];
         var correct = quiz[curQuestion]['correct'];
         var responses = quiz[curQuestion]['responses'];

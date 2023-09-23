@@ -32,4 +32,14 @@ class Generator {
       topics: topics,
     );
   }
+
+  Map toJson() => {
+        'id': id,
+        'timeCreated': timeCreated,
+        'updated': updated,
+        'selfLink': selfLink,
+        'name': name,
+        'answerFormats': answerFormats,
+        'topics': topics,
+      };
 }

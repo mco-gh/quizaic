@@ -60,13 +60,13 @@ class PlayPage extends StatelessWidget {
                       onChanged: (value) => print('value: $value'),
                       onCompleted: (pin) => print('Completed: $pin'),
                       validator: (s) {
-                        appState.playQuiz = null;
+                        appState.playedQuiz.quiz = null;
                         appState.findQuizByPin(s);
                         return;
                       },
                     ),
                     SizedBox(height: space),
-                    if (appState.playQuiz != null)
+                    if (appState.playedQuiz.quiz != null)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -79,7 +79,7 @@ class PlayPage extends StatelessWidget {
                           ),
                           SizedBox(width: 20),
                           Text(
-                            '${appState.playQuiz?.name}',
+                            '${appState.playedQuiz.quiz?.name}',
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium

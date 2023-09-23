@@ -5,14 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:quizaic/models/quiz.dart';
 import 'dart:convert';
 
-enum Synchronous { synchronous, asynchronous }
-
-enum Anonymous { anonymous, authenticated }
-
-enum ActivityType { quiz, survey }
-
-enum YN { yes, no }
-
 class CreatePage extends StatefulWidget {
   final String? quizId;
 
@@ -104,12 +96,12 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     String getQuizName() {
-      return appState.selectedQuizName;
+      return appState.selectedQuiz.name;
     }
 
     void setQuizName(value) {
       return setState(() {
-        appState.selectedQuizName = value.toString();
+        appState.selectedQuiz.name = value.toString();
       });
     }
 
@@ -122,11 +114,11 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     void setGenerator(value) {
-      appState.selectedGenerator = value.toString();
+      appState.selectedQuiz.generator = value.toString();
       return setState(() {
         print('selecting generator: $value');
-        appState.selectedGenerator = value.toString();
-        appState.selectedTopic = '';
+        appState.selectedQuiz.generator = value.toString();
+        appState.selectedQuiz.topic = '';
         _answerFormatKey++;
         _topicListKey++;
       });
@@ -134,7 +126,7 @@ class _CreatePageState extends State<CreatePage> {
 
     List<String> getTopics() {
       for (var generator in appState.generators) {
-        if (generator.name == appState.selectedGenerator) {
+        if (generator.name == appState.selectedQuiz.generator) {
           return generator.topics;
         }
       }
@@ -142,18 +134,18 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     String getTopic() {
-      return appState.selectedTopic;
+      return appState.selectedQuiz.topic;
     }
 
     void setTopic(value) {
       return setState(() {
-        appState.selectedTopic = value.toString();
+        appState.selectedQuiz.topic = value.toString();
       });
     }
 
     List<String> getAnswerFormats() {
       for (var generator in appState.generators) {
-        if (generator.name == appState.selectedGenerator) {
+        if (generator.name == appState.selectedQuiz.generator) {
           return generator.answerFormats;
         }
       }
@@ -162,17 +154,17 @@ class _CreatePageState extends State<CreatePage> {
 
     void setAnswerFormat(value) {
       return setState(() {
-        appState.selectedAnswerFormat = value.toString();
+        appState.selectedQuiz.answerFormat = value.toString();
       });
     }
 
     String getNumQuestions() {
-      return appState.selectedNumQuestions;
+      return appState.selectedQuiz.numQuestions;
     }
 
     void setNumQuestions(value) {
       return setState(() {
-        appState.selectedNumQuestions = value.toString();
+        appState.selectedQuiz.numQuestions = value.toString();
       });
     }
 
@@ -182,7 +174,7 @@ class _CreatePageState extends State<CreatePage> {
 
     void setDifficulty(value) {
       return setState(() {
-        appState.selectedDifficulty = value.toString();
+        appState.selectedQuiz.difficulty = value.toString();
       });
     }
 
@@ -281,7 +273,7 @@ class _CreatePageState extends State<CreatePage> {
                       child: genDropdownMenu(
                           _generatorKey,
                           'Quiz Generator',
-                          appState.selectedGenerator,
+                          appState.selectedQuiz.generator,
                           getGenerators,
                           setGenerator),
                     ),
@@ -293,7 +285,7 @@ class _CreatePageState extends State<CreatePage> {
               Row(
                 children: [
                   // Quiz Topic
-                  if (appState.selectedGenerator == '')
+                  if (appState.selectedQuiz.generator == '')
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: SizedBox(
@@ -302,7 +294,7 @@ class _CreatePageState extends State<CreatePage> {
                         child: genDropdownMenu(
                             _topicListKey,
                             'Quiz Topic',
-                            appState.selectedTopic,
+                            appState.selectedQuiz.topic,
                             () => ['Select generator to see topics'],
                             setTopic),
                       ),
@@ -314,7 +306,7 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genDropdownMenu(_topicListKey, 'Quiz Topic',
-                            appState.selectedTopic, getTopics, setTopic),
+                            appState.selectedQuiz.topic, getTopics, setTopic),
                       ),
                     )
                   else
@@ -324,7 +316,7 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genTextFormField(
-                            'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                            'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
                             strValidator,
                             getTopic,
                             setTopic),
@@ -335,7 +327,7 @@ class _CreatePageState extends State<CreatePage> {
                   SizedBox(width: 16),
 
                   // Answer Format
-                  if (appState.selectedGenerator == '')
+                  if (appState.selectedQuiz.generator == '')
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: SizedBox(
@@ -344,12 +336,12 @@ class _CreatePageState extends State<CreatePage> {
                         child: genDropdownMenu(
                             _answerFormatKey,
                             'Answer Format',
-                            appState.selectedAnswerFormat,
+                            appState.selectedQuiz.answerFormat,
                             () => ['Select generator to see formats'],
                             setAnswerFormat),
                       ),
                     )
-                  else if (appState.selectedAnswerFormat != '')
+                  else if (appState.selectedQuiz.answerFormat != '')
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: SizedBox(
@@ -358,7 +350,7 @@ class _CreatePageState extends State<CreatePage> {
                         child: genDropdownMenu(
                             _answerFormatKey,
                             'Answer Format',
-                            appState.selectedAnswerFormat,
+                            appState.selectedQuiz.answerFormat,
                             getAnswerFormats,
                             setAnswerFormat),
                       ),
@@ -385,7 +377,7 @@ class _CreatePageState extends State<CreatePage> {
                         child: genDropdownMenu(
                             _answerFormatKey,
                             'Answer Format',
-                            appState.selectedAnswerFormat,
+                            appState.selectedQuiz.answerFormat,
                             getAnswerFormats,
                             setAnswerFormat),
                       ),
@@ -396,7 +388,7 @@ class _CreatePageState extends State<CreatePage> {
                       child: SizedBox(
                         width: columnWidth,
                         child: genText(
-                          'No quiz answer formats available for ${appState.selectedGenerator} generator',
+                          'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
                         ),
                       ),
                     )
@@ -429,7 +421,7 @@ class _CreatePageState extends State<CreatePage> {
                       child: genDropdownMenu(
                           _formKey,
                           'Difficulty Level',
-                          appState.selectedDifficulty,
+                          appState.selectedQuiz.difficulty,
                           getDifficulties,
                           setDifficulty),
                     ),

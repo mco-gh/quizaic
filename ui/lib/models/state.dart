@@ -9,6 +9,29 @@ import 'package:quizaic/views/home.dart';
 
 List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
 
+class SelectedQuiz {
+  String name = '';
+  String answerFormat = 'Select generator to see formats';
+  String generator = '';
+  String topic = 'Select generator to see topics';
+  String numQuestions = '';
+  String difficulty = '';
+}
+
+class HostedQuiz {
+  String synch = 'Synchronous';
+  String timeLimit = '30';
+  String type = 'Quiz';
+  String anonymous = 'Anonymous';
+  String randomizeQuestions = 'Yes';
+  String randomizeAnswers = 'Yes';
+}
+
+class PlayedQuiz {
+  Quiz? quiz;
+  String? name;
+}
+
 class MyAppState extends ChangeNotifier {
   late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
@@ -26,25 +49,15 @@ class MyAppState extends ChangeNotifier {
   String? idToken = '';
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
-  String selectedQuizName = '';
-  String selectedAnswerFormat = 'Select generator to see formats';
-  String selectedGenerator = '';
-  String selectedTopic = 'Select generator to see topics';
-  String selectedNumQuestions = '';
-  String selectedDifficulty = '';
 
-  String hostSynch = 'Synchronous';
-  String hostTimeLimit = '30';
-  String hostType = 'Quiz';
-  String hostAnonymous = 'Anonymous';
-  String hostRandomizeQuestions = 'Yes';
-  String hostRandomizeAnswers = 'Yes';
+  SelectedQuiz selectedQuiz = SelectedQuiz();
+  HostedQuiz hostedQuiz = HostedQuiz();
+  PlayedQuiz playedQuiz = PlayedQuiz();
+
   int curQuestion = 0;
   String playerSessionId = '';
   String sessionId = '';
   String runningQuizId = '';
-  Quiz? playQuiz;
-  String? playerName;
   bool revertToPlayPage = false;
   int respondedQuestion = -1;
 
@@ -80,12 +93,12 @@ class MyAppState extends ChangeNotifier {
   void selectQuizData(id) {
     for (var quiz in quizzes) {
       if (quiz.id == id) {
-        selectedQuizName = quiz.name;
-        selectedAnswerFormat = quiz.answerFormat;
-        selectedGenerator = quiz.generator;
-        selectedTopic = quiz.topic;
-        selectedNumQuestions = quiz.numQuestions;
-        selectedDifficulty = difficulty[int.parse(quiz.difficulty) - 1];
+        selectedQuiz.name = quiz.name;
+        selectedQuiz.answerFormat = quiz.answerFormat;
+        selectedQuiz.generator = quiz.generator;
+        selectedQuiz.topic = quiz.topic;
+        selectedQuiz.numQuestions = quiz.numQuestions;
+        selectedQuiz.difficulty = difficulty[int.parse(quiz.difficulty) - 1];
       }
     }
   }
@@ -113,7 +126,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   void setPlayerName(name) {
-    playerName = name;
+    playedQuiz.name = name;
     notifyListeners();
   }
 
@@ -150,12 +163,12 @@ class MyAppState extends ChangeNotifier {
     Session session = Session(
       state: 'starting',
       quizId: quizId,
-      synchronous: hostSynch == 'Synchronous' ? true : false,
-      timeLimit: hostTimeLimit,
+      synchronous: hostedQuiz.synch == 'Synchronous' ? true : false,
+      timeLimit: hostedQuiz.timeLimit,
       survey: false,
-      anonymous: hostAnonymous == 'Anonymous' ? true : false,
-      randomizeQuestions: hostRandomizeQuestions == 'Yes' ? true : false,
-      randomizeAnswers: hostRandomizeAnswers == 'Yes' ? true : false,
+      anonymous: hostedQuiz.anonymous == 'Anonymous' ? true : false,
+      randomizeQuestions: hostedQuiz.randomizeQuestions == 'Yes' ? true : false,
+      randomizeAnswers: hostedQuiz.randomizeAnswers == 'Yes' ? true : false,
     );
 
     final response = await http.post(Uri.parse('$apiUrl/sessions'),
@@ -211,7 +224,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
-    int dnum = difficulty.indexOf(selectedDifficulty);
+    int dnum = difficulty.indexOf(selectedQuiz.difficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
         name: '',
@@ -226,11 +239,11 @@ class MyAppState extends ChangeNotifier {
       tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
 
-    tmpQuiz.name = selectedQuizName;
-    tmpQuiz.generator = selectedGenerator;
-    tmpQuiz.answerFormat = selectedAnswerFormat;
-    tmpQuiz.topic = selectedTopic;
-    tmpQuiz.numQuestions = selectedNumQuestions;
+    tmpQuiz.name = selectedQuiz.name;
+    tmpQuiz.generator = selectedQuiz.generator;
+    tmpQuiz.answerFormat = selectedQuiz.answerFormat;
+    tmpQuiz.topic = selectedQuiz.topic;
+    tmpQuiz.numQuestions = selectedQuiz.numQuestions;
     tmpQuiz.difficulty = dstr;
 
     String url = '';
@@ -287,7 +300,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> registerPlayer() async {
-    var body = '{"players.$playerName.score": 0}';
+    var body = '{"players.${playedQuiz.name}.score": 0}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
@@ -297,12 +310,13 @@ class MyAppState extends ChangeNotifier {
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Player $playerName registered.");
+      print("Player ${playedQuiz.name} registered.");
     } else {
       if (response.statusCode == 409) {
-        errorDialog('Player $playerName already registered for this quiz.');
+        errorDialog(
+            'Player ${playedQuiz.name} already registered for this quiz.');
       } else {
-        errorDialog('Failed to register player $playerName');
+        errorDialog('Failed to register player ${playedQuiz.name}');
       }
       revertToPlayPage = true;
     }
@@ -311,7 +325,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> sendResponse(i) async {
-    var body = '{"players.$playerName.score": 1}';
+    var body = '{"players.${playedQuiz.name}.score": 1}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
@@ -322,9 +336,10 @@ class MyAppState extends ChangeNotifier {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Sent response $i for player $playerName");
+      print("Sent response $i for player ${playedQuiz.name}");
     } else {
-      errorDialog('Failed to send response number $i for player $playerName');
+      errorDialog(
+          'Failed to send response number $i for player ${playedQuiz.name}');
     }
     notifyListeners();
     return true;
@@ -345,7 +360,7 @@ class MyAppState extends ChangeNotifier {
         print('querySnapshot.docs: ${querySnapshot.docs}');
         if (querySnapshot.docs.isEmpty) {
           errorDialog('No session found with pin $pin.');
-          playQuiz = null;
+          playedQuiz.quiz = null;
           notifyListeners();
           return null;
         } else if (querySnapshot.docs.length > 1) {
@@ -355,8 +370,8 @@ class MyAppState extends ChangeNotifier {
         var session = querySnapshot.docs[0].data();
         playerSessionId = session['hostId'];
         print('pin $pin led to session $playerSessionId');
-        playQuiz = getQuiz(session['quizId']);
-        print('session led to quiz ${playQuiz?.name}');
+        playedQuiz.quiz = getQuiz(session['quizId']);
+        print('session led to quiz ${playedQuiz.quiz?.name}');
         playerSessionStream = FirebaseFirestore.instance
             .collection('sessions')
             .doc(playerSessionId)
