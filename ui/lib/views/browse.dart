@@ -49,14 +49,6 @@ class _BrowsePageState extends State<BrowsePage> {
                             columnSizes: [300.px, 300.px],
                             rowGap: 15,
                             columnGap: 15,
-                            //padding: const EdgeInsets.all(0),
-                            /*gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 300,
-                              childAspectRatio: 250 / 250,
-                              mainAxisSpacing: 15,
-                              crossAxisSpacing: 15,
-                            ),*/
-
                             children: [
                               for (var quiz in appState.quizzes)
                                 Card(

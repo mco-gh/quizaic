@@ -8,8 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizaic/views/home.dart';
 import 'package:quizaic/const.dart';
 
-List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
-
 class SelectedQuiz {
   String name = '';
   String answerFormat = 'Select generator to see formats';
@@ -114,7 +112,8 @@ class MyAppState extends ChangeNotifier {
         selectedQuiz.generator = quiz.generator;
         selectedQuiz.topic = quiz.topic;
         selectedQuiz.numQuestions = quiz.numQuestions;
-        selectedQuiz.difficulty = difficulty[int.parse(quiz.difficulty) - 1];
+        selectedQuiz.difficulty =
+            difficultyLevel[int.parse(quiz.difficulty) - 1];
       }
     }
   }
@@ -240,7 +239,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
-    int dnum = difficulty.indexOf(selectedQuiz.difficulty);
+    int dnum = difficultyLevel.indexOf(selectedQuiz.difficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
         name: '',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizaic/const.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
@@ -111,7 +112,7 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     List<String> getDifficulties() {
-      return ['Trivial', 'Easy', 'Medium', 'Hard', 'Killer'];
+      return difficultyLevel;
     }
 
     void setDifficulty(value) {
@@ -123,7 +124,7 @@ class _CreatePageState extends State<CreatePage> {
     Column genQuestionList() {
       List<Widget> widgets = [];
       List<Widget> subwidgets = [];
-      List<String> option = ['A', 'B', 'C', 'D'];
+      List<String> option = options;
       int i = 0;
       int j = 0;
       if (quiz == null) {

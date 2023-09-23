@@ -4,6 +4,7 @@ import 'package:quizaic/models/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:go_router/go_router.dart';
+import 'package:quizaic/const.dart';
 
 class QuizPage extends StatelessWidget {
   @override
@@ -15,8 +16,6 @@ class QuizPage extends StatelessWidget {
       appState.revertToPlayPage = false;
       GoRouter.of(context).go('/play');
     }
-
-    var letters = ['A', 'B', 'C', 'D'];
 
     return StreamBuilder<DocumentSnapshot>(
       stream: appState.playerSessionStream,
@@ -61,7 +60,7 @@ class QuizPage extends StatelessWidget {
                   if (responses[i] == correct)
                     {appState.sendResponse(curQuestion)}
                 },
-                child: Text('${letters[i]}. ${responses[i]}'),
+                child: Text('${options[i]}. ${responses[i]}'),
               ));
             } else {
               Color color = Colors.red;
@@ -75,7 +74,7 @@ class QuizPage extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('${letters[i]}. ${responses[i]}',
+                    child: Text('${options[i]}. ${responses[i]}',
                         style: TextStyle(color: color)),
                   ),
                 ),

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizaic/const.dart';
 import 'package:quizaic/models/state.dart';
+import 'package:quizaic/views/helpers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HostPage extends StatefulWidget {
@@ -18,26 +20,6 @@ final _formKey = GlobalKey<FormState>();
 const padding = 6.0;
 const columnWidth = 325.0;
 const rowHeight = 52.0;
-
-String? strValidator(String? value) {
-  if (value == null || value.isEmpty) {
-    return 'Missing value';
-  }
-  return null;
-}
-
-String? intValidator(String? value) {
-  if (value == null || value.isEmpty) {
-    return 'Missing value';
-  }
-  if (int.tryParse(value) == null) {
-    return 'Must be an integer';
-  }
-  if (int.parse(value) <= 0) {
-    return 'Must be an integer greater than zero';
-  }
-  return null;
-}
 
 class _HostPageState extends State<HostPage> {
   _HostPageState();
@@ -57,49 +39,6 @@ class _HostPageState extends State<HostPage> {
     var quiz = appState.getQuiz(widget.quizId);
 
     // Build a Form widget using the _formKey created
-
-    Text genText(String text, {size = 14, weight = FontWeight.normal}) {
-      return Text(text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: size, fontWeight: weight, color: theme.primaryColor));
-    }
-
-    TextFormField genTextFormField(label, validator, getter, setter) {
-      return TextFormField(
-        //style: TextStyle(color: theme.primaryColor),
-
-        initialValue: getter(),
-        onChanged: setter,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: label,
-        ),
-        validator: validator,
-      );
-    }
-
-    DropdownMenu<String> genDropdownMenu(key, text, current, getter, setter) {
-      var initialSelection = current; //getter()[0];
-      //if (text == "Quiz Generator") {
-      //initialSelection = null;
-      //}
-      return DropdownMenu<String>(
-          textStyle: TextStyle(color: theme.primaryColor),
-          key: ValueKey(key),
-          controller: TextEditingController(),
-          initialSelection: initialSelection,
-          onSelected: setter,
-          width: columnWidth,
-          label: genText(text),
-          dropdownMenuEntries: [
-            for (var type in getter())
-              DropdownMenuEntry(
-                label: type,
-                value: type,
-              ),
-          ]);
-    }
 
     void setHostSynch(value) {
       return setState(() {
@@ -141,20 +80,9 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
-    Card genCard(widget) {
-      return Card(
-          //shape:
-          //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          color: theme.colorScheme.primaryContainer,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: widget,
-          ));
-    }
-
     if (quiz == null) {
       return Center(
-        child: genText('No quiz selected for hosting'),
+        child: genText(theme, 'No quiz selected for hosting'),
       );
     }
 
@@ -165,7 +93,7 @@ class _HostPageState extends State<HostPage> {
           stream: appState.sessionStream,
           builder: (context, snapshot) {
             if (snapshot.data?.data() == null) {
-              return Text('Hosting Quiz...');
+              return genText(theme, 'Hosting Quiz...');
             }
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
@@ -195,10 +123,11 @@ class _HostPageState extends State<HostPage> {
                   }
                   return Column(
                     children: [
-                      genText(
+                      genText(theme,
                           'Hosting Quiz "${quiz.name}", Pin: ${data["pin"]}'),
                       SizedBox(height: 20),
-                      genCard(genText('Question $curQuestion: $question')),
+                      genCard(theme,
+                          genText(theme, 'Question $curQuestion: $question')),
                       SizedBox(height: 20),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -206,7 +135,7 @@ class _HostPageState extends State<HostPage> {
                             for (var answer
                                 in jsonDecode(quiz.qAndA!)[curQuestion]
                                     ['responses'])
-                              genCard(genText(answer)),
+                              genCard(theme, genText(theme, answer)),
                           ]),
                       SizedBox(height: 20),
                       SizedBox(
@@ -219,14 +148,14 @@ class _HostPageState extends State<HostPage> {
                                 appState.incQuestion(appState.sessionId,
                                     curQuestion, int.parse(quiz.numQuestions));
                               },
-                              child: genText('Next Question'),
+                              child: genText(theme, 'Next Question'),
                             ),
                             SizedBox(width: 20),
                             ElevatedButton(
                               onPressed: () {
                                 appState.stopHostQuiz();
                               },
-                              child: genText('Stop Quiz'),
+                              child: genText(theme, 'Stop Quiz'),
                             ),
                           ],
                         ),
@@ -235,13 +164,15 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(
                         width: 400,
                         child: ExpansionTile(
-                          title: Text('Registered Players:'),
+                          title: genText(theme, 'Registered Players:'),
                           children: [
                             Table(children: [
                               for (var e in leaderBoard.entries)
                                 TableRow(children: [
-                                  TableCell(child: genText(e.key)),
-                                  TableCell(child: genText(e.value.toString())),
+                                  TableCell(child: genText(theme, e.key)),
+                                  TableCell(
+                                      child:
+                                          genText(theme, e.value.toString())),
                                 ]),
                             ]),
                             //for (var e in leaderBoard.entries)
@@ -264,7 +195,7 @@ class _HostPageState extends State<HostPage> {
               // Page title
               Padding(
                 padding: const EdgeInsets.all(padding * 3),
-                child: genText(title, size: 30, weight: FontWeight.bold),
+                child: genText(theme, title, size: 30, weight: FontWeight.bold),
               ),
               Hero(
                 tag: quiz.id as String,
@@ -281,10 +212,12 @@ class _HostPageState extends State<HostPage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _formKey,
+                          theme,
                           'Synch or Asynch',
+                          _formKey,
+                          columnWidth,
                           appState.hostedQuiz.synch,
-                          () => ['Synchronous', 'Asynchronous'],
+                          () => synchronousOrAsynchronous,
                           setHostSynch),
                     ),
                   ),
@@ -299,6 +232,7 @@ class _HostPageState extends State<HostPage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genTextFormField(
+                          theme,
                           'Per Question Time Limit (seconds)',
                           intValidator,
                           getHostTimeLimit,
@@ -318,8 +252,10 @@ class _HostPageState extends State<HostPage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _formKey,
+                          theme,
                           'Quiz or Survey',
+                          _formKey,
+                          columnWidth,
                           appState.hostedQuiz.type,
                           () => ['Quiz', 'Survey'],
                           setHostType),
@@ -335,10 +271,12 @@ class _HostPageState extends State<HostPage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _formKey,
+                          theme,
                           'Anonymous or Authenticated',
+                          _formKey,
+                          columnWidth,
                           appState.hostedQuiz.anonymous,
-                          () => ['Anonymous', 'Autheticated'],
+                          () => anonymousOrAuthenticated,
                           setHostAnonymous),
                     ),
                   ),
@@ -355,10 +293,12 @@ class _HostPageState extends State<HostPage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _formKey,
+                          theme,
                           'Randomize Questions',
+                          _formKey,
+                          columnWidth,
                           appState.hostedQuiz.randomizeQuestions,
-                          () => ['Yes', 'No'],
+                          () => yesOrNo,
                           setHostRandomizeQuestions),
                     ),
                   ),
@@ -373,10 +313,12 @@ class _HostPageState extends State<HostPage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _formKey,
+                          theme,
                           'Randomize Answers',
+                          _formKey,
+                          columnWidth,
                           appState.hostedQuiz.randomizeAnswers,
-                          () => ['Yes', 'No'],
+                          () => yesOrNo,
                           setHostRandomizeAnswers),
                     ),
                   ),
@@ -395,13 +337,13 @@ class _HostPageState extends State<HostPage> {
                         // If the form is valid, display a snackbar. In the real world,
                         // you'd often call a server or save the information in a database.
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: genText('Hosting quiz...')),
+                          SnackBar(content: genText(theme, 'Hosting quiz...')),
                         );
                         print('creating session...');
                         appState.createSession(quiz.id);
                       }
                     },
-                    child: genText('Start ${appState.hostedQuiz.type}'),
+                    child: genText(theme, 'Start ${appState.hostedQuiz.type}'),
                   ),
                 ),
               ),

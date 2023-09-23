@@ -62,3 +62,14 @@ String? strValidator(String? value) {
   }
   return null;
 }
+
+Card genCard(theme, widget) {
+  return Card(
+      //shape:
+      //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      color: theme.colorScheme.primaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: widget,
+      ));
+}

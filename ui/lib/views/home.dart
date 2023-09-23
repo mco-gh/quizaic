@@ -297,13 +297,6 @@ class HomePageScaffold extends StatelessWidget {
                           label: 'Play',
                         ),
                       ],
-                      //currentIndex: appState.selectedIndex,
-                      //onTap: (value) {
-                      //setState(() {
-                      //appState.selectedIndex = value;
-                      //appState.selectedPageIndex = value;
-                      //});
-                      //},
                     ),
                   )
                 ],
@@ -334,12 +327,6 @@ class HomePageScaffold extends StatelessWidget {
                       selectedIndex: _calculateSelectedIndex(context),
                       onDestinationSelected: (int idx) =>
                           _onItemSelected(idx, context),
-                      //(value) {
-                      //setState(() {
-                      //appState.selectedIndex = value;
-                      //appState.selectedPageIndex = value;
-                      //});
-                      //},
                     ),
                   ),
                   Expanded(

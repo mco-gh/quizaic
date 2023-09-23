@@ -5,6 +5,7 @@ import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:quizaic/views/helpers.dart';
 import 'package:go_router/go_router.dart';
 import 'package:bad_words/bad_words.dart';
 
@@ -28,6 +29,7 @@ class PlayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<MyAppState>();
+    var theme = Theme.of(context);
 
     enterPlayerName(name) {
       bool profane = filter.isProfane(name);
@@ -70,20 +72,14 @@ class PlayPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          genText(
+                            theme,
                             'Quiz Name:',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
-                                ?.copyWith(color: Colors.black),
                           ),
                           SizedBox(width: 20),
-                          Text(
+                          genText(
+                            theme,
                             '${appState.playedQuiz.quiz?.name}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
-                                ?.copyWith(color: Colors.black),
                           ),
                         ],
                       ),
@@ -107,7 +103,7 @@ class PlayPage extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () =>
                             enterPlayerName(_controller.value.text),
-                        child: Text('Play Quiz')),
+                        child: genText(theme, 'Play Quiz')),
                   ],
                 ),
               ),
