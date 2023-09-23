@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizaic/constants.dart';
+import 'package:quizaic/const.dart';
 import 'package:pinput/pinput.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/home.dart';

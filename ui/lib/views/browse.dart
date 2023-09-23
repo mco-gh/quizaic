@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:quizaic/models/quiz.dart';
+import 'package:quizaic/views/helpers.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -20,13 +21,6 @@ class _BrowsePageState extends State<BrowsePage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
-
-    Text genText(String text, {size = 14, weight = FontWeight.normal}) {
-      return Text(text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: size, fontWeight: weight, color: theme.primaryColor));
-    }
 
     return Scaffold(
       body: Center(
@@ -93,7 +87,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 children: [
                                                   Icon(Icons.play_circle,
                                                       semanticLabel: 'Host'),
-                                                  genText('Host'),
+                                                  genText(theme, 'Host'),
                                                 ],
                                               ),
                                               onPressed: () {
@@ -109,7 +103,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   children: [
                                                     Icon(Icons.edit,
                                                         semanticLabel: 'Edit'),
-                                                    genText('Edit'),
+                                                    genText(theme, 'Edit'),
                                                   ],
                                                 ),
                                                 onPressed: () {
@@ -123,7 +117,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   children: [
                                                     Icon(Icons.content_copy,
                                                         semanticLabel: 'Clone'),
-                                                    genText('Clone'),
+                                                    genText(theme, 'Clone'),
                                                   ],
                                                 ),
                                                 onPressed: () {
@@ -139,7 +133,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                                     Icon(Icons.delete,
                                                         semanticLabel:
                                                             'Delete'),
-                                                    genText('Delete'),
+                                                    genText(theme, 'Delete'),
                                                   ],
                                                 ),
                                                 onPressed: () {
@@ -150,7 +144,9 @@ class _BrowsePageState extends State<BrowsePage> {
                                                     duration: Duration(
                                                         milliseconds: 500),
                                                     content: genText(
-                                                        'Deleting quiz...'),
+                                                      theme,
+                                                      'Deleting quiz...',
+                                                    ),
                                                   ));
                                                 }),
                                           ],

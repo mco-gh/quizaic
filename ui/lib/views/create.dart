@@ -3,6 +3,7 @@ import 'package:quizaic/models/state.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizaic/models/quiz.dart';
+import 'package:quizaic/views/helpers.dart';
 import 'dart:convert';
 
 class CreatePage extends StatefulWidget {
@@ -23,26 +24,6 @@ const padding = 6.0;
 const columnWidth = 325.0;
 const rowHeight = 52.0;
 
-String? strValidator(String? value) {
-  if (value == null || value.isEmpty) {
-    return 'Missing value';
-  }
-  return null;
-}
-
-String? intValidator(String? value) {
-  if (value == null || value.isEmpty) {
-    return 'Missing value';
-  }
-  if (int.tryParse(value) == null) {
-    return 'Must be an integer';
-  }
-  if (int.parse(value) <= 0) {
-    return 'Must be an integer greater than zero';
-  }
-  return null;
-}
-
 class _CreatePageState extends State<CreatePage> {
   @override
   void initState() {
@@ -55,45 +36,6 @@ class _CreatePageState extends State<CreatePage> {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     var quiz = appState.getQuiz(widget.quizId);
-    Text genText(String text, {size = 14, weight = FontWeight.normal}) {
-      return Text(text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: size, fontWeight: weight, color: theme.primaryColor));
-    }
-
-    TextFormField genTextFormField(label, validator, getter, setter) {
-      return TextFormField(
-        //style: TextStyle(color: theme.primaryColor),
-
-        initialValue: getter(),
-        onChanged: setter,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: label,
-        ),
-        validator: validator,
-      );
-    }
-
-    DropdownMenu<String> genDropdownMenu(key, text, current, getter, setter) {
-      var initialSelection = current;
-      return DropdownMenu<String>(
-          textStyle: TextStyle(color: theme.primaryColor),
-          key: ValueKey(key),
-          controller: TextEditingController(),
-          initialSelection: initialSelection,
-          onSelected: setter,
-          width: columnWidth,
-          label: genText(text),
-          dropdownMenuEntries: [
-            for (var type in getter())
-              DropdownMenuEntry(
-                label: type,
-                value: type,
-              ),
-          ]);
-    }
 
     String getQuizName() {
       return appState.selectedQuiz.name;
@@ -191,14 +133,15 @@ class _CreatePageState extends State<CreatePage> {
       for (var question in qAndA) {
         j = 0;
         subwidgets = [];
-        widgets.add(genText('question ${i + 1}: ${question["question"]}'));
+        widgets
+            .add(genText(theme, 'question ${i + 1}: ${question["question"]}'));
         if (quiz.answerFormat == "multiple choice") {
           for (var answer in question["responses"]) {
-            subwidgets.add(genText('response ${option[j]}: $answer'));
+            subwidgets.add(genText(theme, 'response ${option[j]}: $answer'));
             j++;
           }
         } else {
-          subwidgets.add(genText('Answer: ${question["correct"]}'));
+          subwidgets.add(genText(theme, 'Answer: ${question["correct"]}'));
         }
         widgets.add(Padding(
           padding: const EdgeInsets.all(20.0),
@@ -240,7 +183,7 @@ class _CreatePageState extends State<CreatePage> {
               // Page title
               Padding(
                 padding: const EdgeInsets.all(padding * 3),
-                child: genText(title, size: 30, weight: FontWeight.bold),
+                child: genText(theme, title, size: 30, weight: FontWeight.bold),
               ),
               if (quiz != null)
                 Hero(
@@ -256,8 +199,8 @@ class _CreatePageState extends State<CreatePage> {
                     child: SizedBox(
                       width: columnWidth,
                       height: rowHeight,
-                      child: genTextFormField(
-                          'Quiz Name', strValidator, getQuizName, setQuizName),
+                      child: genTextFormField(theme, 'Quiz Name', strValidator,
+                          getQuizName, setQuizName),
                     ),
                   ),
 
@@ -271,8 +214,10 @@ class _CreatePageState extends State<CreatePage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _generatorKey,
+                          theme,
                           'Quiz Generator',
+                          _generatorKey,
+                          columnWidth,
                           appState.selectedQuiz.generator,
                           getGenerators,
                           setGenerator),
@@ -292,8 +237,10 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genDropdownMenu(
-                            _topicListKey,
+                            theme,
                             'Quiz Topic',
+                            _topicListKey,
+                            columnWidth,
                             appState.selectedQuiz.topic,
                             () => ['Select generator to see topics'],
                             setTopic),
@@ -305,8 +252,15 @@ class _CreatePageState extends State<CreatePage> {
                       child: SizedBox(
                         width: columnWidth,
                         height: rowHeight,
-                        child: genDropdownMenu(_topicListKey, 'Quiz Topic',
-                            appState.selectedQuiz.topic, getTopics, setTopic),
+                        child: genDropdownMenu(
+                          theme,
+                          'Quiz Topic',
+                          _topicListKey,
+                          columnWidth,
+                          appState.selectedQuiz.topic,
+                          getTopics,
+                          setTopic,
+                        ),
                       ),
                     )
                   else
@@ -316,6 +270,7 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genTextFormField(
+                            theme,
                             'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
                             strValidator,
                             getTopic,
@@ -334,8 +289,10 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genDropdownMenu(
-                            _answerFormatKey,
+                            theme,
                             'Answer Format',
+                            _answerFormatKey,
+                            columnWidth,
                             appState.selectedQuiz.answerFormat,
                             () => ['Select generator to see formats'],
                             setAnswerFormat),
@@ -348,8 +305,10 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genDropdownMenu(
-                            _answerFormatKey,
+                            theme,
                             'Answer Format',
+                            _answerFormatKey,
+                            columnWidth,
                             appState.selectedQuiz.answerFormat,
                             getAnswerFormats,
                             setAnswerFormat),
@@ -362,8 +321,10 @@ class _CreatePageState extends State<CreatePage> {
                         width: columnWidth,
                         height: rowHeight,
                         child: genDropdownMenu(
-                            _answerFormatKey,
+                            theme,
                             'Answer Format',
+                            _answerFormatKey,
+                            columnWidth,
                             getAnswerFormats()[0],
                             getAnswerFormats,
                             setAnswerFormat),
@@ -375,8 +336,10 @@ class _CreatePageState extends State<CreatePage> {
                       child: SizedBox(
                         width: columnWidth,
                         child: genDropdownMenu(
-                            _answerFormatKey,
+                            theme,
                             'Answer Format',
+                            _answerFormatKey,
+                            columnWidth,
                             appState.selectedQuiz.answerFormat,
                             getAnswerFormats,
                             setAnswerFormat),
@@ -388,6 +351,7 @@ class _CreatePageState extends State<CreatePage> {
                       child: SizedBox(
                         width: columnWidth,
                         child: genText(
+                          theme,
                           'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
                         ),
                       ),
@@ -404,7 +368,7 @@ class _CreatePageState extends State<CreatePage> {
                     child: SizedBox(
                       width: columnWidth,
                       height: rowHeight,
-                      child: genTextFormField('Number of Questions',
+                      child: genTextFormField(theme, 'Number of Questions',
                           intValidator, getNumQuestions, setNumQuestions),
                     ),
                   ),
@@ -419,8 +383,10 @@ class _CreatePageState extends State<CreatePage> {
                       width: columnWidth,
                       height: rowHeight,
                       child: genDropdownMenu(
-                          _formKey,
+                          theme,
                           'Difficulty Level',
+                          _formKey,
+                          columnWidth,
                           appState.selectedQuiz.difficulty,
                           getDifficulties,
                           setDifficulty),
@@ -443,7 +409,7 @@ class _CreatePageState extends State<CreatePage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                               duration: Duration(milliseconds: 500),
-                              content: genText(snack)),
+                              content: genText(theme, snack)),
                         );
                         appState.createOrUpdateQuiz(
                             context, quizToCreateOrUpdate);
@@ -454,13 +420,13 @@ class _CreatePageState extends State<CreatePage> {
                         GoRouter.of(context).go('/browse');
                       }
                     },
-                    child: genText('Save Quiz'),
+                    child: genText(theme, 'Save Quiz'),
                   ),
                 ),
               ),
               SizedBox(height: 20),
               ExpansionTile(
-                  title: genText('Quiz Contents'),
+                  title: genText(theme, 'Quiz Contents'),
                   children: [genQuestionList()]),
             ]),
           )),

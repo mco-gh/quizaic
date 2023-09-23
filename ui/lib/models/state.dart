@@ -6,6 +6,7 @@ import 'package:quizaic/models/generator.dart';
 import 'package:quizaic/models/session.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizaic/views/home.dart';
+import 'package:quizaic/const.dart';
 
 List<String> difficulty = ["Trivial", "Easy", "Medium", "Hard", "Killer"];
 
@@ -35,14 +36,7 @@ class PlayedQuiz {
 class MyAppState extends ChangeNotifier {
   late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
-  static const apiUrl =
-      bool.hasEnvironment('API_URL') ? String.fromEnvironment('API_URL') : null;
-  static const redirectUri = bool.hasEnvironment('REDIRECT_URI')
-      ? String.fromEnvironment('REDIRECT_URI')
-      : null;
-  static const clientId = bool.hasEnvironment('CLIENT_ID')
-      ? String.fromEnvironment('CLIENT_ID')
-      : null;
+
   var photoUrl = '';
   var selectedIndex = 0;
   var selectedPageIndex = 0;
@@ -77,8 +71,30 @@ class MyAppState extends ChangeNotifier {
     quizzesStream.listen((event) {
       print("quizzes changed!");
       fetchQuizzes();
-      notifyListeners();
     });
+  }
+
+  Future<List<Quiz>> fetchQuizzes() async {
+    print('fetchQuizzes using apiUrl: $apiUrl');
+    final response = await http.get(Uri.parse('$apiUrl/quizzes'));
+    if (response.statusCode == 200) {
+      Iterable l = json.decode(response.body);
+      quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
+    }
+    notifyListeners();
+    return quizzes;
+  }
+
+  Future<List<Generator>> fetchGenerators() async {
+    print('fetchGenerators using apiUrl: $apiUrl');
+    final response = await http.get(Uri.parse('$apiUrl/generators'));
+
+    if (response.statusCode == 200) {
+      Iterable l = json.decode(response.body);
+      generators =
+          List<Generator>.from(l.map((model) => Generator.fromJson(model)));
+    }
+    return generators;
   }
 
   Quiz? getQuiz(id) {
@@ -381,35 +397,5 @@ class MyAppState extends ChangeNotifier {
       onError: (e) => errorDialog("Error completing: $e"),
     );
     return null;
-  }
-
-  Future<List<Quiz>> fetchQuizzes() async {
-    print('fetchQuizzes using apiUrl: $apiUrl');
-
-    final response = await http.get(Uri.parse('$apiUrl/quizzes'));
-
-    if (response.statusCode == 200) {
-      Iterable l = json.decode(response.body);
-      quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
-    } else {
-      //errorDialog(context, 'Failed to fetch quizzes');
-    }
-    notifyListeners();
-    return quizzes;
-  }
-
-  Future<List<Generator>> fetchGenerators() async {
-    print('fetchGenerators using apiUrl: $apiUrl');
-    final response = await http.get(Uri.parse('$apiUrl/generators'));
-
-    if (response.statusCode == 200) {
-      Iterable l = json.decode(response.body);
-      generators =
-          List<Generator>.from(l.map((model) => Generator.fromJson(model)));
-    } else {
-      //errorDialog(context, 'Failed to fetch generators');
-    }
-    notifyListeners();
-    return generators;
   }
 }
