@@ -180,11 +180,7 @@ class HomePageScaffold extends StatelessWidget {
 
     dynamic icon = Icon(Icons.person, color: Colors.white);
     if (appState.photoUrl != '') {
-      icon = Image.network(appState.photoUrl, height: 40, headers: {
-        "corsImageModified.crossOrigin": "Anonymous",
-        "corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
-        'referrerpolicy': 'no-referrer'
-      });
+      icon = Image.network(appState.photoUrl, height: 40, headers: {});
     }
 
     String title = appBarTitle;
@@ -193,125 +189,145 @@ class HomePageScaffold extends StatelessWidget {
       title = appBarTitleExtended;
     }
 
-    return Scaffold(
-        //body: child,
-        appBar: AppBar(
-            actions: <Widget>[
-              IconButton(
-                icon: icon,
-                onPressed: () {
-                  GoRouter.of(context).go('/login');
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  GoRouter.of(context).go('/settings');
-                },
-              )
-            ],
-            backgroundColor: Color(0xfff68d2d),
-            centerTitle: false,
-            title: Row(
-              children: [
-                Image.asset(
-                  'assets/images/quizaic_logo.png',
-                  height: 40,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      title,
-                      style: appBarTextStyle,
-                    ),
-                  ],
-                ),
-              ],
-            )),
-        drawer: Drawer(),
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            if (constraints.maxWidth < 450) {
-              // Use a more mobile-friendly layout with BottomNavigationBar
-              // on narrow screens.
-              return Column(
-                children: [
-                  Expanded(
-                      child: ColoredBox(
-                    color: colorScheme.surfaceVariant,
-                    child: AnimatedSwitcher(
-                      duration: Duration(milliseconds: 200),
-                      child: child,
-                    ),
-                  )),
-                  SafeArea(
-                    child: BottomNavigationBar(
-                      currentIndex: _calculateSelectedIndex(context),
-                      onTap: (int idx) => _onItemSelected(idx, context),
-                      items: [
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.grid_view),
-                          label: 'Browse',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.add_circle),
-                          label: 'Create',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.sports_esports),
-                          label: 'Play',
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              );
-            } else {
-              return Row(
-                children: [
-                  SafeArea(
-                    child: NavigationRail(
-                      minWidth: 70,
-                      minExtendedWidth: 150,
-                      extended: constraints.maxWidth >= 600,
-                      destinations: [
-                        NavigationRailDestination(
-                          icon: Icon(Icons.grid_view),
-                          label: Text('Browse'),
-                        ),
-                        NavigationRailDestination(
-                          icon: Icon(Icons.add_circle),
-                          label: Text('Create'),
-                        ),
-                        NavigationRailDestination(
-                          icon: Icon(Icons.sports_esports),
-                          label: Text('Play'),
-                        ),
-                      ],
-                      //selectedIndex: appState.selectedIndex,
-                      selectedIndex: _calculateSelectedIndex(context),
-                      onDestinationSelected: (int idx) =>
-                          _onItemSelected(idx, context),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: ColoredBox(
-                      color: colorScheme.surfaceVariant,
-                      child: AnimatedSwitcher(
-                        duration: Duration(milliseconds: 200),
-                        child: child,
-                      ),
-                    ),
-                  ),
-                ],
-              );
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            User? user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              user.getIdTokenResult().then((result) {
+                print('home page setting idToken');
+                appState.idToken = result.token;
+              });
             }
-          },
-        ));
+            if ((user != null) && (user.photoURL != null)) {
+              appState.photoUrl = user.photoURL as String;
+            }
+          }
+          return Scaffold(
+              //body: child,
+              appBar: AppBar(
+                  actions: <Widget>[
+                    IconButton(
+                      icon: icon,
+                      onPressed: () {
+                        GoRouter.of(context).go('/login');
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.settings,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        GoRouter.of(context).go('/settings');
+                      },
+                    )
+                  ],
+                  backgroundColor: Color(0xfff68d2d),
+                  centerTitle: false,
+                  title: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/quizaic_logo.png',
+                        height: 40,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            title,
+                            style: appBarTextStyle,
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
+              drawer: Drawer(),
+              body: LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxWidth < 450) {
+                    // Use a more mobile-friendly layout with BottomNavigationBar
+                    // on narrow screens.
+                    return Column(
+                      children: [
+                        Expanded(
+                            child: ColoredBox(
+                          color: colorScheme.surfaceVariant,
+                          child: AnimatedSwitcher(
+                            duration: Duration(milliseconds: 200),
+                            child: child,
+                          ),
+                        )),
+                        SafeArea(
+                          child: BottomNavigationBar(
+                            currentIndex: _calculateSelectedIndex(context),
+                            onTap: (int idx) => _onItemSelected(idx, context),
+                            items: [
+                              BottomNavigationBarItem(
+                                icon: Icon(Icons.grid_view),
+                                label: 'Browse',
+                              ),
+                              if (appState.idToken != null &&
+                                  appState.idToken != '')
+                                BottomNavigationBarItem(
+                                  icon: Icon(Icons.add_circle),
+                                  label: 'Create',
+                                ),
+                              BottomNavigationBarItem(
+                                icon: Icon(Icons.sports_esports),
+                                label: 'Play',
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        SafeArea(
+                          child: NavigationRail(
+                            minWidth: 70,
+                            minExtendedWidth: 150,
+                            extended: constraints.maxWidth >= 600,
+                            destinations: [
+                              NavigationRailDestination(
+                                icon: Icon(Icons.grid_view),
+                                label: Text('Browse'),
+                              ),
+                              if (appState.idToken != null &&
+                                  appState.idToken != '')
+                                NavigationRailDestination(
+                                  icon: Icon(Icons.add_circle),
+                                  label: Text('Create'),
+                                ),
+                              NavigationRailDestination(
+                                icon: Icon(Icons.sports_esports),
+                                label: Text('Play'),
+                              ),
+                            ],
+                            //selectedIndex: appState.selectedIndex,
+                            selectedIndex: _calculateSelectedIndex(context),
+                            onDestinationSelected: (int idx) =>
+                                _onItemSelected(idx, context),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: ColoredBox(
+                            color: colorScheme.surfaceVariant,
+                            child: AnimatedSwitcher(
+                              duration: Duration(milliseconds: 200),
+                              child: child,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                },
+              ));
+        });
   }
 
   static int _calculateSelectedIndex(BuildContext context) {

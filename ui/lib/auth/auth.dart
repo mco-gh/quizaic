@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
+import 'package:quizaic/views/helpers.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -11,17 +13,20 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    var theme = Theme.of(context);
 
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        // If user is not signed in, show the sign in screen.
-        //if (appState.idToken == 'null' || !snapshot.hasData) {
         if (!snapshot.hasData) {
-          print('user not logged in');
           appState.idToken = '';
           appState.photoUrl = '';
           return SignInScreen(
+            actions: [
+              AuthStateChangeAction<SignedIn>((context, state) {
+                GoRouter.of(context).go('/browse');
+              }),
+            ],
             providers: [
               EmailAuthProvider(),
               GoogleProvider(
@@ -74,35 +79,37 @@ class AuthPage extends StatelessWidget {
             },
           );
         }
-        print('user logged in');
 
-        User? user = FirebaseAuth.instance.currentUser;
-        if (user != null) {
-          user.getIdTokenResult().then((result) {
-            appState.idToken = result.token;
-          });
-        }
-        if ((user != null) && (user.photoURL != null)) {
-          appState.photoUrl = user.photoURL as String;
-        }
-
-        appState.selectedIndex = 0;
-        appState.selectedPageIndex = 0;
-
-        // Otherwise, the user is signed in, so show the signout option.
         return Scaffold(
           body: Center(
             child: Column(
               children: [
+                SizedBox(height: 40),
                 Image.asset(
                   'assets/images/quizaic_logo.png',
-                  height: 40,
+                  height: 100,
                 ),
+                SizedBox(height: 40),
                 Text(
                   'Welcome to Quizaic!',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
-                const SignOutButton(),
+                SizedBox(height: 40),
+                ElevatedButton(
+                  child: SizedBox(
+                    width: 75,
+                    child: Row(children: [
+                      Icon(Icons.logout, semanticLabel: 'Signout'),
+                      genText(theme, 'Signout'),
+                    ]),
+                  ),
+                  onPressed: () => {
+                    appState.idToken = '',
+                    appState.photoUrl = '',
+                    FirebaseAuth.instance.signOut(),
+                    GoRouter.of(context).go('/browse'),
+                  },
+                ),
               ],
             ),
           ),

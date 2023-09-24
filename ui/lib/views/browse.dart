@@ -23,7 +23,6 @@ class _BrowsePageState extends State<BrowsePage> {
     List<IntrinsicContentTrackSize> rows = [];
     List<FixedTrackSize> cols = [];
     var numColumns = (width / gridColWidth).floor();
-    print('width: $width, numColumns: $numColumns');
 
     for (var i = 0; i < (numQuizzes / numColumns).ceil(); i++) {
       rows.add(gridRowSize);
@@ -48,7 +47,7 @@ class _BrowsePageState extends State<BrowsePage> {
               if (appState.quizzes.isEmpty) {
                 return Text('No quizzes yet.');
               }
-
+              print('idToken: ${appState.idToken}');
               var (rows, cols) = configGrid(
                   MediaQuery.of(context).size.width, appState.quizzes.length);
               return Padding(
@@ -89,79 +88,104 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 quiz.imageUrl as String,
                                                 height: 150)),
                                         SizedBox(height: 15),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            TextButton(
-                                              child: Column(
-                                                children: [
-                                                  Icon(Icons.play_circle,
-                                                      semanticLabel: 'Host'),
-                                                  genText(theme, 'Host'),
-                                                ],
+                                        if (appState.idToken == null ||
+                                            appState.idToken == '')
+                                          Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                TextButton(
+                                                  child: Column(
+                                                    children: [
+                                                      Icon(Icons.view_list,
+                                                          semanticLabel:
+                                                              'View'),
+                                                      genText(theme, 'View'),
+                                                    ],
+                                                  ),
+                                                  onPressed: () {
+                                                    GoRouter.of(context)
+                                                        .go('/view/${quiz.id}');
+                                                  },
+                                                ),
+                                              ])
+                                        else
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              TextButton(
+                                                child: Column(
+                                                  children: [
+                                                    Icon(Icons.play_circle,
+                                                        semanticLabel: 'Host'),
+                                                    genText(theme, 'Host'),
+                                                  ],
+                                                ),
+                                                onPressed: () {
+                                                  appState
+                                                      .checkForSession()
+                                                      .whenComplete(() =>
+                                                          GoRouter.of(context).go(
+                                                              '/host/${quiz.id}'));
+                                                },
                                               ),
-                                              onPressed: () {
-                                                appState
-                                                    .checkForSession()
-                                                    .whenComplete(() =>
-                                                        GoRouter.of(context).go(
-                                                            '/host/${quiz.id}'));
-                                              },
-                                            ),
-                                            TextButton(
-                                                child: Column(
-                                                  children: [
-                                                    Icon(Icons.edit,
-                                                        semanticLabel: 'Edit'),
-                                                    genText(theme, 'Edit'),
-                                                  ],
-                                                ),
-                                                onPressed: () {
-                                                  appState
-                                                      .selectQuizData(quiz.id);
-                                                  GoRouter.of(context)
-                                                      .go('/edit/${quiz.id}');
-                                                }),
-                                            TextButton(
-                                                child: Column(
-                                                  children: [
-                                                    Icon(Icons.content_copy,
-                                                        semanticLabel: 'Clone'),
-                                                    genText(theme, 'Clone'),
-                                                  ],
-                                                ),
-                                                onPressed: () {
-                                                  appState.getQuiz(quiz.id);
-                                                  appState
-                                                      .selectQuizData(quiz.id);
-                                                  GoRouter.of(context)
-                                                      .go('/clone');
-                                                }),
-                                            TextButton(
-                                                child: Column(
-                                                  children: [
-                                                    Icon(Icons.delete,
-                                                        semanticLabel:
-                                                            'Delete'),
-                                                    genText(theme, 'Delete'),
-                                                  ],
-                                                ),
-                                                onPressed: () {
-                                                  appState.deleteQuiz(
-                                                      context, quiz.id);
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                    duration: Duration(
-                                                        milliseconds: 500),
-                                                    content: genText(
-                                                      theme,
-                                                      'Deleting quiz...',
-                                                    ),
-                                                  ));
-                                                }),
-                                          ],
-                                        ),
+                                              TextButton(
+                                                  child: Column(
+                                                    children: [
+                                                      Icon(Icons.edit,
+                                                          semanticLabel:
+                                                              'Edit'),
+                                                      genText(theme, 'Edit'),
+                                                    ],
+                                                  ),
+                                                  onPressed: () {
+                                                    appState.selectQuizData(
+                                                        quiz.id);
+                                                    GoRouter.of(context)
+                                                        .go('/edit/${quiz.id}');
+                                                  }),
+                                              TextButton(
+                                                  child: Column(
+                                                    children: [
+                                                      Icon(Icons.content_copy,
+                                                          semanticLabel:
+                                                              'Clone'),
+                                                      genText(theme, 'Clone'),
+                                                    ],
+                                                  ),
+                                                  onPressed: () {
+                                                    appState.getQuiz(quiz.id);
+                                                    appState.selectQuizData(
+                                                        quiz.id);
+                                                    GoRouter.of(context)
+                                                        .go('/clone');
+                                                  }),
+                                              TextButton(
+                                                  child: Column(
+                                                    children: [
+                                                      Icon(Icons.delete,
+                                                          semanticLabel:
+                                                              'Delete'),
+                                                      genText(theme, 'Delete'),
+                                                    ],
+                                                  ),
+                                                  onPressed: () {
+                                                    appState.deleteQuiz(
+                                                        context, quiz.id);
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      duration: Duration(
+                                                          milliseconds: 500),
+                                                      content: genText(
+                                                        theme,
+                                                        'Deleting quiz...',
+                                                      ),
+                                                    ));
+                                                  }),
+                                            ],
+                                          ),
                                       ],
                                     ),
                                   ),
