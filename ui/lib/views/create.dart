@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/views/helpers.dart';
-import 'dart:convert';
 
 class CreatePage extends StatefulWidget {
   final String? quizId;
+  final bool readOnly;
 
   @override
   State<CreatePage> createState() => _CreatePageState();
 
-  CreatePage({this.quizId});
+  CreatePage({this.quizId, this.readOnly = false});
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -29,7 +29,6 @@ class _CreatePageState extends State<CreatePage> {
   @override
   void initState() {
     super.initState();
-    print('widget.quizId: ${widget.quizId}');
   }
 
   @override
@@ -121,58 +120,93 @@ class _CreatePageState extends State<CreatePage> {
       });
     }
 
-    Column genQuestionList() {
-      List<Widget> widgets = [];
-      List<Widget> subwidgets = [];
-      List<String> option = options;
-      int i = 0;
-      int j = 0;
-      if (quiz == null) {
-        return Column();
-      }
-      var qAndA = jsonDecode(quiz.qAndA as String);
-      for (var question in qAndA) {
-        j = 0;
-        subwidgets = [];
-        widgets
-            .add(genText(theme, 'question ${i + 1}: ${question["question"]}'));
-        if (quiz.answerFormat == "multiple choice") {
-          for (var answer in question["responses"]) {
-            subwidgets.add(genText(theme, 'response ${option[j]}: $answer'));
-            j++;
-          }
-        } else {
-          subwidgets.add(genText(theme, 'Answer: ${question["correct"]}'));
-        }
-        widgets.add(Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: subwidgets),
-        ));
-        i++;
-      }
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: widgets,
-      );
-    }
-
     String title = '';
     String snack = '';
     Quiz? quizToCreateOrUpdate;
     if (quiz == null) {
-      title = 'Create a Quiz';
+      title = 'Create Quiz';
       snack = 'Creating new quiz...';
       quizToCreateOrUpdate = null;
     } else if (quiz.id == '') {
-      title = 'Clone a Quiz';
+      title = 'Clone Quiz';
       snack = 'Creating cloned quiz...';
       quizToCreateOrUpdate = quiz;
-    } else {
-      title = 'Edit a Quiz';
+    } else if (quiz.id == '' && !widget.readOnly) {
+      title = 'Edit Quiz';
       snack = 'Updating quiz...';
       quizToCreateOrUpdate = quiz;
+    } else {
+      title = 'View Quiz';
+    }
+
+    Widget quizNameWidget;
+    if (widget.readOnly && quiz != null) {
+      quizNameWidget = genLabelValue(theme, 'Name:', quiz.name);
+    } else {
+      quizNameWidget = genTextFormField(
+          theme, 'Quiz Name', strValidator, getQuizName, setQuizName);
+    }
+
+    Widget quizGeneratorWidget;
+    if (widget.readOnly && quiz != null) {
+      quizGeneratorWidget =
+          genLabelValue(theme, 'Quiz Generator:', quiz.generator);
+    } else {
+      quizGeneratorWidget = genDropdownMenu(
+          theme,
+          'Quiz Generator',
+          _generatorKey,
+          columnWidth,
+          appState.selectedQuiz.generator,
+          getGenerators,
+          setGenerator);
+    }
+
+    Widget quizTopicWidget;
+    if (widget.readOnly && quiz != null) {
+      quizTopicWidget = genLabelValue(theme, 'Quiz Topic:', quiz.topic);
+    } else {
+      quizTopicWidget = genDropdownMenu(theme, 'Quiz Topic', _topicListKey,
+          columnWidth, appState.selectedQuiz.topic, getTopics, setTopic);
+    }
+
+    Widget quizAnswerFormatWidget;
+    if (widget.readOnly && quiz != null) {
+      quizAnswerFormatWidget =
+          genLabelValue(theme, 'Answer Format:', quiz.answerFormat);
+    } else {
+      quizAnswerFormatWidget = genDropdownMenu(
+          theme,
+          'Answer Format',
+          _answerFormatKey,
+          columnWidth,
+          appState.selectedQuiz.answerFormat,
+          getAnswerFormats,
+          setAnswerFormat);
+    }
+
+    Widget quizNumQuestionsWidget;
+    if (widget.readOnly && quiz != null) {
+      quizNumQuestionsWidget =
+          genLabelValue(theme, 'Number of Questions:', quiz.numQuestions);
+    } else {
+      quizNumQuestionsWidget = genTextFormField(theme, 'Number of Questions',
+          intValidator, getNumQuestions, setNumQuestions);
+    }
+
+    Widget quizDifficultyWidget;
+    if (widget.readOnly && quiz != null) {
+      quizDifficultyWidget =
+          genLabelValue(theme, 'Diffiulty Level:', quiz.difficulty);
+    } else {
+      quizDifficultyWidget = genDropdownMenu(
+          theme,
+          'Difficulty Level',
+          _formKey,
+          columnWidth,
+          appState.selectedQuiz.difficulty,
+          getDifficulties,
+          setDifficulty);
     }
 
     return Center(
@@ -200,8 +234,7 @@ class _CreatePageState extends State<CreatePage> {
                     child: SizedBox(
                       width: columnWidth,
                       height: rowHeight,
-                      child: genTextFormField(theme, 'Quiz Name', strValidator,
-                          getQuizName, setQuizName),
+                      child: quizNameWidget,
                     ),
                   ),
 
@@ -214,14 +247,7 @@ class _CreatePageState extends State<CreatePage> {
                     child: SizedBox(
                       width: columnWidth,
                       height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Quiz Generator',
-                          _generatorKey,
-                          columnWidth,
-                          appState.selectedQuiz.generator,
-                          getGenerators,
-                          setGenerator),
+                      child: quizGeneratorWidget,
                     ),
                   ),
                 ],
@@ -231,13 +257,22 @@ class _CreatePageState extends State<CreatePage> {
               Row(
                 children: [
                   // Quiz Topic
-                  if (appState.selectedQuiz.generator == '')
+                  if (getTopics().isNotEmpty || widget.readOnly)
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: SizedBox(
                         width: columnWidth,
                         height: rowHeight,
-                        child: genDropdownMenu(
+                        child: quizTopicWidget,
+                      ),
+                    )
+                  else if (appState.selectedQuiz.generator == '')
+                    Padding(
+                      padding: const EdgeInsets.all(padding),
+                      child: SizedBox(
+                        width: columnWidth,
+                        height: rowHeight,
+                        child: quizTopicWidget = genDropdownMenu(
                             theme,
                             'Quiz Topic',
                             _topicListKey,
@@ -245,23 +280,6 @@ class _CreatePageState extends State<CreatePage> {
                             appState.selectedQuiz.topic,
                             () => ['Select generator to see topics'],
                             setTopic),
-                      ),
-                    )
-                  else if (getTopics().isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: genDropdownMenu(
-                          theme,
-                          'Quiz Topic',
-                          _topicListKey,
-                          columnWidth,
-                          appState.selectedQuiz.topic,
-                          getTopics,
-                          setTopic,
-                        ),
                       ),
                     )
                   else
@@ -283,7 +301,15 @@ class _CreatePageState extends State<CreatePage> {
                   SizedBox(width: 16),
 
                   // Answer Format
-                  if (appState.selectedQuiz.generator == '')
+                  if (appState.selectedQuiz.answerFormat != '')
+                    Padding(
+                      padding: const EdgeInsets.all(padding),
+                      child: SizedBox(
+                          width: columnWidth,
+                          height: rowHeight,
+                          child: quizAnswerFormatWidget),
+                    )
+                  else if (appState.selectedQuiz.generator == '')
                     Padding(
                       padding: const EdgeInsets.all(padding),
                       child: SizedBox(
@@ -296,22 +322,6 @@ class _CreatePageState extends State<CreatePage> {
                             columnWidth,
                             appState.selectedQuiz.answerFormat,
                             () => ['Select generator to see formats'],
-                            setAnswerFormat),
-                      ),
-                    )
-                  else if (appState.selectedQuiz.answerFormat != '')
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: genDropdownMenu(
-                            theme,
-                            'Answer Format',
-                            _answerFormatKey,
-                            columnWidth,
-                            appState.selectedQuiz.answerFormat,
-                            getAnswerFormats,
                             setAnswerFormat),
                       ),
                     )
@@ -367,11 +377,9 @@ class _CreatePageState extends State<CreatePage> {
                   Padding(
                     padding: const EdgeInsets.all(padding),
                     child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genTextFormField(theme, 'Number of Questions',
-                          intValidator, getNumQuestions, setNumQuestions),
-                    ),
+                        width: columnWidth,
+                        height: rowHeight,
+                        child: quizNumQuestionsWidget),
                   ),
 
                   // horizontal spacing
@@ -383,14 +391,7 @@ class _CreatePageState extends State<CreatePage> {
                     child: SizedBox(
                       width: columnWidth,
                       height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Difficulty Level',
-                          _formKey,
-                          columnWidth,
-                          appState.selectedQuiz.difficulty,
-                          getDifficulties,
-                          setDifficulty),
+                      child: quizDifficultyWidget,
                     ),
                   ),
                 ],
@@ -398,37 +399,38 @@ class _CreatePageState extends State<CreatePage> {
 
               // Submit button
               SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.all(padding),
-                child: Align(
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              duration: Duration(milliseconds: 500),
-                              content: genText(theme, snack)),
-                        );
-                        appState.createOrUpdateQuiz(
-                            context, quizToCreateOrUpdate);
-                        setState(() {
-                          appState.selectedIndex = 0;
-                          appState.selectedPageIndex = 0;
-                        });
-                        GoRouter.of(context).go('/browse');
-                      }
-                    },
-                    child: genText(theme, 'Save Quiz'),
+              if (!widget.readOnly)
+                Padding(
+                  padding: const EdgeInsets.all(padding),
+                  child: Align(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                duration: Duration(milliseconds: 500),
+                                content: genText(theme, snack)),
+                          );
+                          appState.createOrUpdateQuiz(
+                              context, quizToCreateOrUpdate);
+                          setState(() {
+                            appState.selectedIndex = 0;
+                            appState.selectedPageIndex = 0;
+                          });
+                          GoRouter.of(context).go('/browse');
+                        }
+                      },
+                      child: genText(theme, 'Save Quiz'),
+                    ),
                   ),
                 ),
-              ),
               SizedBox(height: 20),
               ExpansionTile(
                   title: genText(theme, 'Quiz Contents'),
-                  children: [genQuestionList()]),
+                  children: [genQuestionList(theme, quiz)]),
             ]),
           )),
     );

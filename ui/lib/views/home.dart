@@ -86,6 +86,13 @@ class HomePage extends StatefulWidget {
                 pageBuilder: (context, state) =>
                     genCustomTransitionPage(state, CreatePage())),
             GoRoute(
+                path: '/view/:quizId',
+                pageBuilder: (context, state) => genCustomTransitionPage(
+                    state,
+                    CreatePage(
+                        quizId: state.pathParameters['quizId'],
+                        readOnly: true))),
+            GoRoute(
                 path: '/play',
                 pageBuilder: (context, state) =>
                     genCustomTransitionPage(state, PlayPage())),
