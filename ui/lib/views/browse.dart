@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/views/helpers.dart';
+import 'package:quizaic/const.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -15,6 +16,22 @@ class _BrowsePageState extends State<BrowsePage> {
   @override
   void initState() {
     super.initState();
+  }
+
+  (List<IntrinsicContentTrackSize>, List<FixedTrackSize>) configGrid(
+      double width, int numQuizzes) {
+    List<IntrinsicContentTrackSize> rows = [];
+    List<FixedTrackSize> cols = [];
+    var numColumns = (width / gridColWidth).floor();
+    print('width: $width, numColumns: $numColumns');
+
+    for (var i = 0; i < (numQuizzes / numColumns).ceil(); i++) {
+      rows.add(gridRowSize);
+    }
+    for (var i = 0; i < numColumns; i++) {
+      cols.add(gridColSize);
+    }
+    return (rows, cols);
   }
 
   @override
@@ -32,6 +49,8 @@ class _BrowsePageState extends State<BrowsePage> {
                 return Text('No quizzes yet.');
               }
 
+              var (rows, cols) = configGrid(
+                  MediaQuery.of(context).size.width, appState.quizzes.length);
               return Padding(
                 padding: const EdgeInsets.all(25),
                 child: Column(
@@ -45,8 +64,8 @@ class _BrowsePageState extends State<BrowsePage> {
                           scrollDirection: Axis.horizontal,
                           child: LayoutGrid(
                             autoPlacement: AutoPlacement.rowSparse,
-                            rowSizes: [auto, auto, auto, auto],
-                            columnSizes: [300.px, 300.px],
+                            rowSizes: rows,
+                            columnSizes: cols,
                             rowGap: 15,
                             columnGap: 15,
                             children: [

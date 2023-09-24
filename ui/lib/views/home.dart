@@ -10,6 +10,7 @@ import 'package:quizaic/views/quiz.dart';
 import 'package:quizaic/views/settings.dart';
 import 'package:quizaic/auth/auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizaic/const.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -170,9 +171,6 @@ class HomePageScaffold extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
     var colorScheme = theme.colorScheme;
-    var appBarTitle = 'Quizaic';
-    var appBarSeperator = ' | ';
-    var appBarTitleExtended = 'AI Powered Infinite Trivia';
 
     var appBarTextStyle = theme.textTheme.titleLarge!.copyWith(
       color: colorScheme.onPrimary,
@@ -182,15 +180,17 @@ class HomePageScaffold extends StatelessWidget {
 
     dynamic icon = Icon(Icons.person, color: Colors.white);
     if (appState.photoUrl != '') {
-      // temp hack to avoid cors error in demo
-      icon = Image.asset('images/mcouser.jpg', height: 40);
-      /*
-        icon = Image.network(appState.photoUrl, height: 40, headers: {
+      icon = Image.network(appState.photoUrl, height: 40, headers: {
         "corsImageModified.crossOrigin": "Anonymous",
         "corsImageModified.src": '${appState.photoUrl}?not-from-cache-please',
         'referrerpolicy': 'no-referrer'
       });
-      */
+    }
+
+    String title = appBarTitle;
+    var screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600) {
+      title = appBarTitleExtended;
     }
 
     return Scaffold(
@@ -200,10 +200,6 @@ class HomePageScaffold extends StatelessWidget {
               IconButton(
                 icon: icon,
                 onPressed: () {
-                  //setState(() {
-                  //appState.selectedPageIndex = -1;
-                  //page = AuthPage();
-                  //});
                   GoRouter.of(context).go('/login');
                 },
               ),
@@ -214,10 +210,6 @@ class HomePageScaffold extends StatelessWidget {
                 ),
                 onPressed: () {
                   GoRouter.of(context).go('/settings');
-                  //setState(() {
-                  //appState.selectedPageIndex = -1;
-                  //page = SettingsPage();
-                  //});
                 },
               )
             ],
@@ -232,15 +224,7 @@ class HomePageScaffold extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      appBarTitle,
-                      style: appBarTextStyle,
-                    ),
-                    Text(
-                      appBarSeperator,
-                      style: appBarTextStyle,
-                    ),
-                    Text(
-                      appBarTitleExtended,
+                      title,
                       style: appBarTextStyle,
                     ),
                   ],
@@ -250,22 +234,6 @@ class HomePageScaffold extends StatelessWidget {
         drawer: Drawer(),
         body: LayoutBuilder(
           builder: (context, constraints) {
-            if (constraints.maxWidth < 600) {
-              Future.delayed(Duration.zero, () {
-                //setState(() {
-                appBarSeperator = '';
-                appBarTitleExtended = '';
-                //});
-              });
-            } else {
-              Future.delayed(Duration.zero, () {
-                //setState(() {
-                appBarSeperator = ' | ';
-                appBarTitleExtended = 'AI Powered Infinite Trivia';
-                //});
-              });
-            }
-
             if (constraints.maxWidth < 450) {
               // Use a more mobile-friendly layout with BottomNavigationBar
               // on narrow screens.
