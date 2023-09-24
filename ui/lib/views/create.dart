@@ -131,7 +131,7 @@ class _CreatePageState extends State<CreatePage> {
       title = 'Clone Quiz';
       snack = 'Creating cloned quiz...';
       quizToCreateOrUpdate = quiz;
-    } else if (quiz.id == '' && !widget.readOnly) {
+    } else if (quiz.id != '' && !widget.readOnly) {
       title = 'Edit Quiz';
       snack = 'Updating quiz...';
       quizToCreateOrUpdate = quiz;
