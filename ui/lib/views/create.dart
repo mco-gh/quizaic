@@ -21,10 +21,6 @@ int _generatorKey = 0;
 int _answerFormatKey = 0;
 int _topicListKey = 0;
 
-const padding = 6.0;
-const columnWidth = 325.0;
-const rowHeight = 52.0;
-
 class _CreatePageState extends State<CreatePage> {
   @override
   void initState() {
@@ -139,269 +135,131 @@ class _CreatePageState extends State<CreatePage> {
       title = 'View Quiz';
     }
 
-    Widget quizNameWidget;
-    if (widget.readOnly && quiz != null) {
-      quizNameWidget = genLabelValue(theme, 'Name:', quiz.name);
-    } else {
-      quizNameWidget = genTextFormField(
-          theme, 'Quiz Name', strValidator, getQuizName, setQuizName);
-    }
+    Widget quizNameWidget = genQuizNameWidget(
+        theme, widget.readOnly, quiz, getQuizName, setQuizName);
 
-    Widget quizGeneratorWidget;
-    if (widget.readOnly && quiz != null) {
-      quizGeneratorWidget =
-          genLabelValue(theme, 'Quiz Generator:', quiz.generator);
-    } else {
-      quizGeneratorWidget = genDropdownMenu(
-          theme,
-          'Quiz Generator',
-          _generatorKey,
-          columnWidth,
-          appState.selectedQuiz.generator,
-          getGenerators,
-          setGenerator);
-    }
+    Widget quizGeneratorWidget = genQuizGeneratorWidget(theme, widget.readOnly,
+        quiz, _generatorKey, appState, getGenerators, setGenerator);
 
-    Widget quizTopicWidget;
-    if (widget.readOnly && quiz != null) {
-      quizTopicWidget = genLabelValue(theme, 'Quiz Topic:', quiz.topic);
-    } else {
-      quizTopicWidget = genDropdownMenu(theme, 'Quiz Topic', _topicListKey,
-          columnWidth, appState.selectedQuiz.topic, getTopics, setTopic);
-    }
+    Widget quizTopicWidget = genQuizTopicWidget(theme, widget.readOnly, quiz,
+        _topicListKey, appState, getTopics, setTopic);
 
-    Widget quizAnswerFormatWidget;
-    if (widget.readOnly && quiz != null) {
-      quizAnswerFormatWidget =
-          genLabelValue(theme, 'Answer Format:', quiz.answerFormat);
-    } else {
-      quizAnswerFormatWidget = genDropdownMenu(
-          theme,
-          'Answer Format',
-          _answerFormatKey,
-          columnWidth,
-          appState.selectedQuiz.answerFormat,
-          getAnswerFormats,
-          setAnswerFormat);
-    }
+    Widget quizAnswerFormatWidget = genQuizAnswerFormatWidget(
+        theme,
+        widget.readOnly,
+        quiz,
+        _answerFormatKey,
+        appState,
+        getAnswerFormats,
+        setAnswerFormat);
 
-    Widget quizNumQuestionsWidget;
-    if (widget.readOnly && quiz != null) {
-      quizNumQuestionsWidget =
-          genLabelValue(theme, 'Number of Questions:', quiz.numQuestions);
-    } else {
-      quizNumQuestionsWidget = genTextFormField(theme, 'Number of Questions',
-          intValidator, getNumQuestions, setNumQuestions);
-    }
+    Widget quizNumQuestionsWidget = genTextFormField(theme,
+        'Number of Questions', intValidator, getNumQuestions, setNumQuestions);
 
-    Widget quizDifficultyWidget;
-    if (widget.readOnly && quiz != null) {
-      quizDifficultyWidget =
-          genLabelValue(theme, 'Diffiulty Level:', quiz.difficulty);
-    } else {
-      quizDifficultyWidget = genDropdownMenu(
-          theme,
-          'Difficulty Level',
-          _formKey,
-          columnWidth,
-          appState.selectedQuiz.difficulty,
-          getDifficulties,
-          setDifficulty);
-    }
+    Widget quizDifficultyWidget = genQuizDifficultyWidget(
+        theme,
+        widget.readOnly,
+        quiz,
+        _formKey,
+        appState,
+        getDifficulties,
+        setDifficulty);
 
     return Center(
       child: Form(
           key: _formKey,
           child: SizedBox(
-            width: 700,
+            width: rowWidth,
             child: ListView(children: [
-              // Page title
-              Padding(
-                padding: const EdgeInsets.all(padding * 3),
-                child: genText(theme, title, size: 30, weight: FontWeight.bold),
-              ),
+              // Page title and image
+              genText(theme, title, size: 30, weight: FontWeight.bold),
               if (quiz != null)
                 Hero(
                     tag: quiz.id as String,
-                    child: Image.network(quiz.imageUrl as String, height: 170)),
-              SizedBox(height: 20),
-              // Quiz Name and Generator
-              Row(
-                children: [
-                  // Quiz Name
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: quizNameWidget,
-                    ),
-                  ),
+                    child: Image.network(quiz.imageUrl as String,
+                        height: logoHeight)),
+              SizedBox(height: verticalSpaceHeight * 2),
 
-                  // horizontal spacing
-                  SizedBox(width: 16),
+              // Quiz Name
+              quizNameWidget,
+              SizedBox(height: verticalSpaceHeight),
 
-                  // Quiz Generator
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: quizGeneratorWidget,
-                    ),
-                  ),
-                ],
-              ),
+              // Quiz Generator
+              quizGeneratorWidget,
+              SizedBox(height: verticalSpaceHeight),
 
-              // Quiz Topic and Answer Format
-              Row(
-                children: [
-                  // Quiz Topic
-                  if (getTopics().isNotEmpty || widget.readOnly)
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: quizTopicWidget,
-                      ),
-                    )
-                  else if (appState.selectedQuiz.generator == '')
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: quizTopicWidget = genDropdownMenu(
-                            theme,
-                            'Quiz Topic',
-                            _topicListKey,
-                            columnWidth,
-                            appState.selectedQuiz.topic,
-                            () => ['Select generator to see topics'],
-                            setTopic),
-                      ),
-                    )
-                  else
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: genTextFormField(
-                            theme,
-                            'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
-                            strValidator,
-                            getTopic,
-                            setTopic),
-                      ),
-                    ),
+              // Quiz Topic
+              if (getTopics().isNotEmpty || widget.readOnly)
+                quizTopicWidget
+              else if (appState.selectedQuiz.generator == '')
+                genDropdownMenu(
+                    theme,
+                    'Quiz Topic',
+                    _topicListKey,
+                    formColumnWidth,
+                    appState.selectedQuiz.topic,
+                    () => ['Select generator to see topics'],
+                    setTopic)
+              else
+                genTextFormField(
+                    theme,
+                    'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
+                    strValidator,
+                    getTopic,
+                    setTopic),
+              SizedBox(height: verticalSpaceHeight),
 
-                  // horizontal spacing
-                  SizedBox(width: 16),
+              // Answer Format
+              if (appState.selectedQuiz.answerFormat != '')
+                quizAnswerFormatWidget
+              else if (appState.selectedQuiz.generator == '')
+                genDropdownMenu(
+                    theme,
+                    'Answer Format',
+                    _answerFormatKey,
+                    formColumnWidth,
+                    appState.selectedQuiz.answerFormat,
+                    () => ['Select generator to see formats'],
+                    setAnswerFormat)
+              else if (getAnswerFormats().length == 1)
+                genDropdownMenu(
+                    theme,
+                    'Answer Format',
+                    _answerFormatKey,
+                    formColumnWidth,
+                    getAnswerFormats()[0],
+                    getAnswerFormats,
+                    setAnswerFormat)
+              else if (getAnswerFormats().length > 1)
+                genDropdownMenu(
+                    theme,
+                    'Answer Format',
+                    _answerFormatKey,
+                    formColumnWidth,
+                    appState.selectedQuiz.answerFormat,
+                    getAnswerFormats,
+                    setAnswerFormat)
+              else
+                genText(
+                  theme,
+                  'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
+                ),
+              SizedBox(height: verticalSpaceHeight),
 
-                  // Answer Format
-                  if (appState.selectedQuiz.answerFormat != '')
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                          width: columnWidth,
-                          height: rowHeight,
-                          child: quizAnswerFormatWidget),
-                    )
-                  else if (appState.selectedQuiz.generator == '')
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: genDropdownMenu(
-                            theme,
-                            'Answer Format',
-                            _answerFormatKey,
-                            columnWidth,
-                            appState.selectedQuiz.answerFormat,
-                            () => ['Select generator to see formats'],
-                            setAnswerFormat),
-                      ),
-                    )
-                  else if (getAnswerFormats().length == 1)
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: genDropdownMenu(
-                            theme,
-                            'Answer Format',
-                            _answerFormatKey,
-                            columnWidth,
-                            getAnswerFormats()[0],
-                            getAnswerFormats,
-                            setAnswerFormat),
-                      ),
-                    )
-                  else if (getAnswerFormats().length > 1)
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        child: genDropdownMenu(
-                            theme,
-                            'Answer Format',
-                            _answerFormatKey,
-                            columnWidth,
-                            appState.selectedQuiz.answerFormat,
-                            getAnswerFormats,
-                            setAnswerFormat),
-                      ),
-                    )
-                  else
-                    Padding(
-                      padding: const EdgeInsets.all(padding),
-                      child: SizedBox(
-                        width: columnWidth,
-                        child: genText(
-                          theme,
-                          'No quiz answer formats available for ${appState.selectedQuiz.generator} generator',
-                        ),
-                      ),
-                    )
-                ],
-              ),
+              // Number of Questions
+              quizNumQuestionsWidget,
+              SizedBox(height: verticalSpaceHeight),
 
-              // Number of Questions and Difficulty Level
-              Row(
-                children: [
-                  // Number of Questions
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                        width: columnWidth,
-                        height: rowHeight,
-                        child: quizNumQuestionsWidget),
-                  ),
-
-                  // horizontal spacing
-                  SizedBox(width: 16),
-
-                  // Difficulty Level
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: quizDifficultyWidget,
-                    ),
-                  ),
-                ],
-              ),
+              // Difficulty Level
+              quizDifficultyWidget,
+              SizedBox(height: verticalSpaceHeight),
 
               // Submit button
-              SizedBox(height: 20),
+              SizedBox(height: verticalSpaceHeight),
+
               if (!widget.readOnly)
                 Padding(
-                  padding: const EdgeInsets.all(padding),
+                  padding: const EdgeInsets.all(formPadding),
                   child: Align(
                     child: ElevatedButton(
                       onPressed: () async {
@@ -427,10 +285,13 @@ class _CreatePageState extends State<CreatePage> {
                     ),
                   ),
                 ),
-              SizedBox(height: 20),
-              ExpansionTile(
-                  title: genText(theme, 'Quiz Contents'),
-                  children: [genQuestionList(theme, quiz)]),
+              SizedBox(height: formRowHeight),
+              SizedBox(
+                width: formColumnWidth,
+                child: ExpansionTile(
+                    title: genText(theme, 'Quiz Contents'),
+                    children: [genQuestionList(theme, quiz)]),
+              ),
             ]),
           )),
     );

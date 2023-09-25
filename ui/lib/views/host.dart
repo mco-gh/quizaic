@@ -17,10 +17,6 @@ class HostPage extends StatefulWidget {
 
 final _formKey = GlobalKey<FormState>();
 
-const padding = 6.0;
-const columnWidth = 325.0;
-const rowHeight = 52.0;
-
 class _HostPageState extends State<HostPage> {
   _HostPageState();
 
@@ -125,10 +121,10 @@ class _HostPageState extends State<HostPage> {
                     children: [
                       genText(theme,
                           'Hosting Quiz "${quiz.name}", Pin: ${data["pin"]}'),
-                      SizedBox(height: 20),
+                      SizedBox(height: formRowHeight),
                       genCard(theme,
                           genText(theme, 'Question $curQuestion: $question')),
-                      SizedBox(height: 20),
+                      SizedBox(height: formRowHeight),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -137,9 +133,9 @@ class _HostPageState extends State<HostPage> {
                                     ['responses'])
                               genCard(theme, genText(theme, answer)),
                           ]),
-                      SizedBox(height: 20),
+                      SizedBox(height: formRowHeight),
                       SizedBox(
-                        width: 400,
+                        width: rowWidth,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -150,7 +146,7 @@ class _HostPageState extends State<HostPage> {
                               },
                               child: genText(theme, 'Next Question'),
                             ),
-                            SizedBox(width: 20),
+                            SizedBox(width: horizontalSpaceWidth),
                             ElevatedButton(
                               onPressed: () {
                                 appState.stopHostQuiz();
@@ -160,9 +156,9 @@ class _HostPageState extends State<HostPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: formRowHeight),
                       SizedBox(
-                        width: 400,
+                        width: rowWidth,
                         child: ExpansionTile(
                           title: genText(theme, 'Registered Players:'),
                           children: [
@@ -190,145 +186,88 @@ class _HostPageState extends State<HostPage> {
       child: Form(
           key: _formKey,
           child: SizedBox(
-            width: 700,
+            width: rowWidth,
             child: ListView(children: [
-              // Page title
-              Padding(
-                padding: const EdgeInsets.all(padding * 3),
-                child: genText(theme, title, size: 30, weight: FontWeight.bold),
-              ),
-              Hero(
-                tag: quiz.id as String,
-                child: Image.network(quiz.imageUrl as String, height: 170),
-              ),
-              SizedBox(height: 20),
-              // Synch or Asynch and Time Limit
+              SizedBox(height: verticalSpaceHeight),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Sync/Async
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Synch or Asynch',
-                          _formKey,
-                          columnWidth,
-                          appState.hostedQuiz.synch,
-                          () => synchronousOrAsynchronous,
-                          setHostSynch),
+                  Hero(
+                    tag: quiz.id as String,
+                    child: Image.network(
+                      quiz.imageUrl as String,
+                      height: logoHeight,
                     ),
                   ),
-
-                  // horizontal spacing
-                  SizedBox(width: 16),
-
-                  // Quiz Generator
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genTextFormField(
-                          theme,
-                          'Per Question Time Limit (seconds)',
-                          intValidator,
-                          getHostTimeLimit,
-                          setHostTimeLimit),
-                    ),
-                  ),
+                  SizedBox(width: horizontalSpaceWidth / 2),
+                  genText(theme, title, size: 30, weight: FontWeight.bold),
                 ],
               ),
+              SizedBox(height: verticalSpaceHeight * 2),
 
-              // Quiz/Survey and Anonymous
-              Row(
-                children: [
-                  // Quiz or Survey
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Quiz or Survey',
-                          _formKey,
-                          columnWidth,
-                          appState.hostedQuiz.type,
-                          () => ['Quiz', 'Survey'],
-                          setHostType),
-                    ),
-                  ),
+              // Synch or Asynch
+              genDropdownMenu(
+                  theme,
+                  'Synch or Asynch',
+                  _formKey,
+                  formColumnWidth,
+                  appState.hostedQuiz.synch,
+                  () => synchronousOrAsynchronous,
+                  setHostSynch),
+              SizedBox(height: verticalSpaceHeight),
 
-                  // horizontal spacing
-                  SizedBox(width: 16),
+              // Time Limit
+              genTextFormField(theme, 'Per Question Time Limit (seconds)',
+                  intValidator, getHostTimeLimit, setHostTimeLimit),
+              SizedBox(height: verticalSpaceHeight),
 
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Anonymous or Authenticated',
-                          _formKey,
-                          columnWidth,
-                          appState.hostedQuiz.anonymous,
-                          () => anonymousOrAuthenticated,
-                          setHostAnonymous),
-                    ),
-                  ),
-                ],
-              ),
+              // Quiz/Survey
+              genDropdownMenu(
+                  theme,
+                  'Quiz or Survey',
+                  _formKey,
+                  formColumnWidth,
+                  appState.hostedQuiz.type,
+                  () => ['Quiz', 'Survey'],
+                  setHostType),
+              SizedBox(height: verticalSpaceHeight),
 
-              // Randomize Questions and Answers
-              Row(
-                children: [
-                  // Randomize Questions
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Randomize Questions',
-                          _formKey,
-                          columnWidth,
-                          appState.hostedQuiz.randomizeQuestions,
-                          () => yesOrNo,
-                          setHostRandomizeQuestions),
-                    ),
-                  ),
+              // Anonymous or Authenticated
+              genDropdownMenu(
+                  theme,
+                  'Anonymous or Authenticated',
+                  _formKey,
+                  formColumnWidth,
+                  appState.hostedQuiz.anonymous,
+                  () => anonymousOrAuthenticated,
+                  setHostAnonymous),
+              SizedBox(height: verticalSpaceHeight),
 
-                  // horizontal spacing
-                  SizedBox(width: 16),
+              // Randomize Questions
+              genDropdownMenu(
+                  theme,
+                  'Randomize Questions',
+                  _formKey,
+                  formColumnWidth,
+                  appState.hostedQuiz.randomizeQuestions,
+                  () => yesOrNo,
+                  setHostRandomizeQuestions),
+              SizedBox(height: verticalSpaceHeight),
 
-                  // Randomize Answers
-                  Padding(
-                    padding: const EdgeInsets.all(padding),
-                    child: SizedBox(
-                      width: columnWidth,
-                      height: rowHeight,
-                      child: genDropdownMenu(
-                          theme,
-                          'Randomize Answers',
-                          _formKey,
-                          columnWidth,
-                          appState.hostedQuiz.randomizeAnswers,
-                          () => yesOrNo,
-                          setHostRandomizeAnswers),
-                    ),
-                  ),
-                ],
-              ),
+              // Randomize Answers
+              genDropdownMenu(
+                  theme,
+                  'Randomize Answers',
+                  _formKey,
+                  formColumnWidth,
+                  appState.hostedQuiz.randomizeAnswers,
+                  () => yesOrNo,
+                  setHostRandomizeAnswers),
+              SizedBox(height: verticalSpaceHeight),
 
               // Submit button
-              SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.all(padding),
+                padding: const EdgeInsets.all(formPadding),
                 child: Align(
                   child: ElevatedButton(
                     onPressed: () async {

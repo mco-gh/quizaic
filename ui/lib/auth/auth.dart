@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/helpers.dart';
+import 'package:quizaic/const.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -43,7 +44,7 @@ class AuthPage extends StatelessWidget {
                   aspectRatio: 1,
                   child: Image.asset(
                     'assets/images/quizaic_logo.png',
-                    height: 40,
+                    height: formRowHeight,
                   ),
                 ),
               );
@@ -72,7 +73,7 @@ class AuthPage extends StatelessWidget {
                   aspectRatio: 1,
                   child: Image.asset(
                     'assets/images/quizaic_logo.png',
-                    height: 20,
+                    height: formRowHeight,
                   ),
                 ),
               );
@@ -84,20 +85,20 @@ class AuthPage extends StatelessWidget {
           body: Center(
             child: Column(
               children: [
-                SizedBox(height: 40),
+                SizedBox(height: formRowHeight),
                 Image.asset(
                   'assets/images/quizaic_logo.png',
-                  height: 100,
+                  height: logoHeight,
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: formRowHeight),
                 Text(
                   'Welcome to Quizaic!',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: formRowHeight),
                 ElevatedButton(
                   child: SizedBox(
-                    width: 75,
+                    width: 'Signout'.length * 11,
                     child: Row(children: [
                       Icon(Icons.logout, semanticLabel: 'Signout'),
                       genText(theme, 'Signout'),

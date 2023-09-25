@@ -2,60 +2,88 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:quizaic/const.dart';
 
-Text genText(ThemeData theme, String text,
-    {size = 14, weight = FontWeight.normal, align = TextAlign.center}) {
-  return Text(text,
-      textAlign: align,
-      style: TextStyle(
-          fontSize: size, fontWeight: weight, color: theme.primaryColor));
+Widget genText(
+  ThemeData theme,
+  String text, {
+  size = 20,
+  weight = FontWeight.normal,
+  align = TextAlign.center,
+  width = formColumnWidth,
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(formPadding),
+    child: Text(text,
+        textAlign: align,
+        style: TextStyle(
+          fontSize: size,
+          fontWeight: weight,
+          color: theme.primaryColor,
+        )),
+  );
 }
 
 genLabelValue(theme, label, value) {
-  return Row(
-    children: [
-      SizedBox(
-        width: 120,
-        child: genText(theme, label,
-            weight: FontWeight.bold, align: TextAlign.start),
-      ),
-      genText(theme, value),
-    ],
-  );
-}
-
-TextFormField genTextFormField(
-    ThemeData theme, String label, validator, getter, setter) {
-  return TextFormField(
-    //style: TextStyle(color: theme.primaryColor),
-
-    initialValue: getter(),
-    onChanged: setter,
-    decoration: InputDecoration(
-      border: OutlineInputBorder(),
-      labelText: label,
+  return Padding(
+    padding: const EdgeInsets.all(formPadding),
+    child: Row(
+      children: [
+        genText(theme, label, weight: FontWeight.bold, width: 200),
+        SizedBox(width: horizontalSpaceWidth),
+        genText(theme, value),
+      ],
     ),
-    validator: validator,
   );
 }
 
-DropdownMenu<String> genDropdownMenu(
-    ThemeData theme, String text, key, columnWidth, current, getter, setter) {
-  var initialSelection = current;
-  return DropdownMenu<String>(
-      textStyle: TextStyle(color: theme.primaryColor),
-      key: ValueKey(key),
-      controller: TextEditingController(),
-      initialSelection: initialSelection,
-      onSelected: setter,
-      width: columnWidth,
-      label: genText(theme, text),
-      dropdownMenuEntries: [
-        for (var type in getter())
-          DropdownMenuEntry(
-            label: type,
-            value: type,
+Widget genTextFormField(
+    ThemeData theme, String label, validator, getter, setter) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(formPadding),
+      child: SizedBox(
+        width: formColumnWidth,
+        height: formRowHeight,
+        child: TextFormField(
+          initialValue: getter(),
+          onChanged: setter,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: label,
           ),
-      ]);
+          validator: validator,
+        ),
+      ),
+    ),
+  );
+}
+
+Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
+    current, getter, setter) {
+  var initialSelection = current;
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(formPadding),
+      child: SizedBox(
+        width: formColumnWidth,
+        height: formRowHeight,
+        child: DropdownMenu<String>(
+            textStyle: TextStyle(color: theme.primaryColor),
+            key: ValueKey(key),
+            controller: TextEditingController(),
+            initialSelection: initialSelection,
+            onSelected: setter,
+            width: formColumnWidth,
+            label: genText(theme, text),
+            dropdownMenuEntries: [
+              for (var type in getter())
+                DropdownMenuEntry(
+                  label: type,
+                  value: type,
+                ),
+            ]),
+      ),
+    ),
+  );
 }
 
 String? intValidator(String? value) {
@@ -78,24 +106,30 @@ String? strValidator(String? value) {
   return null;
 }
 
-Card genCard(theme, widget) {
-  return Card(
-      //shape:
-      //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: theme.colorScheme.primaryContainer,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: widget,
-      ));
+Widget genCard(theme, widget) {
+  return Padding(
+    padding: const EdgeInsets.all(formPadding),
+    child: Card(
+        //shape:
+        //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: theme.colorScheme.primaryContainer,
+        child: Padding(
+          padding: const EdgeInsets.all(cardPadding),
+          child: widget,
+        )),
+  );
 }
 
-Column genQuestionList(ThemeData theme, quiz) {
+Widget genQuestionList(ThemeData theme, quiz) {
   List<Widget> widgets = [];
   List<Widget> subwidgets = [];
   int i = 0;
   int j = 0;
   if (quiz == null) {
-    return Column();
+    return Padding(
+      padding: const EdgeInsets.all(formPadding),
+      child: Column(),
+    );
   }
   var qAndA = jsonDecode(quiz.qAndA as String);
   for (var question in qAndA) {
@@ -117,8 +151,88 @@ Column genQuestionList(ThemeData theme, quiz) {
     ));
     i++;
   }
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: widgets,
+  return Padding(
+    padding: const EdgeInsets.all(formPadding),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widgets,
+    ),
   );
+}
+
+Widget genQuizNameWidget(theme, readOnly, quiz, getQuizName, setQuizName) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Name:', quiz.name);
+  } else {
+    widget = genTextFormField(
+        theme, 'Quiz Name', strValidator, getQuizName, setQuizName);
+  }
+  return widget;
+}
+
+Widget genQuizGeneratorWidget(
+    theme, readOnly, quiz, key, appState, getGenerators, setGenerator) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Quiz Generator:', quiz.generator);
+  } else {
+    widget = genDropdownMenu(theme, 'Quiz Generator', key, formColumnWidth,
+        appState.selectedQuiz.generator, getGenerators, setGenerator);
+  }
+  return widget;
+}
+
+Widget genQuizTopicWidget(
+    theme, readOnly, quiz, key, appState, getTopics, setTopic) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Quiz Topic:', quiz.topic);
+  } else {
+    widget = genDropdownMenu(theme, 'Quiz Topic', key, formColumnWidth,
+        appState.selectedQuiz.topic, getTopics, setTopic);
+  }
+  return widget;
+}
+
+Widget genQuizAnswerFormatWidget(
+    theme, readOnly, quiz, key, appState, getAnswerFormats, setAnswerFormat) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Answer Format:', quiz.answerFormat);
+  } else {
+    widget = genDropdownMenu(theme, 'Answer Format', key, formColumnWidth,
+        appState.selectedQuiz.answerFormat, getAnswerFormats, setAnswerFormat);
+  }
+  return widget;
+}
+
+Widget genQuizNumQuestionsWidget(
+    theme, readOnly, quiz, getNumQuestions, setNumQuestions) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Number of Questions:', quiz.numQuestions);
+  } else {
+    widget = genTextFormField(theme, 'Number of Questions', intValidator,
+        getNumQuestions, setNumQuestions);
+  }
+  return widget;
+}
+
+Widget genQuizDifficultyWidget(
+    theme, readOnly, quiz, key, appState, getDifficulty, setDifficulty) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Difficulty:', quiz.difficulty);
+  } else {
+    widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
+        appState.selectedQuiz.difficulty, getDifficulty, setDifficulty);
+  }
+  return widget;
 }

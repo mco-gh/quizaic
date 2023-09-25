@@ -10,7 +10,16 @@ const clientId = bool.hasEnvironment('CLIENT_ID')
     : null;
 
 const double kDefaultPadding = 20.0;
+const double rowWidth = 700.0;
+const double horizontalSpaceWidth = 40.0;
+const double verticalSpaceHeight = 10.0;
+const double cardPadding = 10.0;
+const double logoHeight = 100.0;
+const double formPadding = 6.0;
+const double formColumnWidth = 400.0;
+const double formRowHeight = 52.0;
 const double gridColWidth = 400.0;
+const double buttonTextSize = 12;
 const IntrinsicContentTrackSize gridRowSize = auto;
 const FixedTrackSize gridColSize = FixedTrackSize(gridColWidth * .70);
 const String appBarTitle = 'Quizaic';

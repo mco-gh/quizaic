@@ -56,7 +56,6 @@ class _BrowsePageState extends State<BrowsePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      // Make better use of wide windows with a grid.
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: SingleChildScrollView(
@@ -74,7 +73,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                       borderRadius: BorderRadius.circular(16)),
                                   color: theme.colorScheme.primaryContainer,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(formPadding),
                                     child: Column(
                                       children: [
                                         Text(quiz.name,
@@ -119,7 +118,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   children: [
                                                     Icon(Icons.play_circle,
                                                         semanticLabel: 'Host'),
-                                                    genText(theme, 'Host'),
+                                                    genText(theme, 'Host',
+                                                        size: buttonTextSize),
                                                   ],
                                                 ),
                                                 onPressed: () {
@@ -136,7 +136,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                       Icon(Icons.edit,
                                                           semanticLabel:
                                                               'Edit'),
-                                                      genText(theme, 'Edit'),
+                                                      genText(theme, 'Edit',
+                                                          size: buttonTextSize),
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -151,7 +152,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                       Icon(Icons.content_copy,
                                                           semanticLabel:
                                                               'Clone'),
-                                                      genText(theme, 'Clone'),
+                                                      genText(theme, 'Clone',
+                                                          size: buttonTextSize),
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -167,7 +169,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                       Icon(Icons.delete,
                                                           semanticLabel:
                                                               'Delete'),
-                                                      genText(theme, 'Delete'),
+                                                      genText(theme, 'Delete',
+                                                          size: buttonTextSize),
                                                     ],
                                                   ),
                                                   onPressed: () {
