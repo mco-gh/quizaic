@@ -101,10 +101,10 @@ Column genQuestionList(ThemeData theme, quiz) {
   for (var question in qAndA) {
     j = 0;
     subwidgets = [];
-    widgets.add(genText(theme, 'question ${i + 1}: ${question["question"]}'));
+    widgets.add(genText(theme, '${i + 1}: ${question["question"]}'));
     if (quiz.answerFormat == "multiple choice") {
       for (var answer in question["responses"]) {
-        subwidgets.add(genText(theme, 'response ${options[j]}: $answer'));
+        subwidgets.add(genText(theme, '${options[j]}: $answer'));
         j++;
       }
     } else {

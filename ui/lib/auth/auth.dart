@@ -28,7 +28,7 @@ class AuthPage extends StatelessWidget {
               }),
             ],
             providers: [
-              EmailAuthProvider(),
+              //EmailAuthProvider(),
               GoogleProvider(
                 // Mete: This should really be not hardcoded
                 clientId:
