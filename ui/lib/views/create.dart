@@ -296,12 +296,13 @@ class _CreatePageState extends State<CreatePage> {
                   ),
                 ),
               SizedBox(height: formRowHeight),
-              SizedBox(
-                width: formColumnWidth,
-                child: ExpansionTile(
-                    title: genText(theme, 'Quiz Contents'),
-                    children: [genQuestionList(theme, quiz)]),
-              ),
+              if (quiz != null)
+                SizedBox(
+                  width: formColumnWidth,
+                  child: ExpansionTile(
+                      title: genText(theme, 'Quiz Contents'),
+                      children: [genQuestionList(theme, quiz)]),
+                ),
             ]),
           )),
     );
