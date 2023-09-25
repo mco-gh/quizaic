@@ -172,12 +172,22 @@ class _CreatePageState extends State<CreatePage> {
             width: rowWidth,
             child: ListView(children: [
               // Page title and image
-              genText(theme, title, size: 30, weight: FontWeight.bold),
-              if (quiz != null)
-                Hero(
-                    tag: quiz.id as String,
-                    child: Image.network(quiz.imageUrl as String,
-                        height: logoHeight)),
+              SizedBox(height: verticalSpaceHeight * 2),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (quiz != null)
+                    Hero(
+                      tag: quiz.id as String,
+                      child: Image.network(
+                        quiz.imageUrl as String,
+                        height: logoHeight,
+                      ),
+                    ),
+                  SizedBox(width: horizontalSpaceWidth / 2),
+                  genText(theme, title, size: 30, weight: FontWeight.bold),
+                ],
+              ),
               SizedBox(height: verticalSpaceHeight * 2),
 
               // Quiz Name
