@@ -11,6 +11,7 @@ import 'package:quizaic/views/settings.dart';
 import 'package:quizaic/auth/auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizaic/const.dart';
+import 'package:quizaic/views/helpers.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -300,17 +301,17 @@ class HomePageScaffold extends StatelessWidget {
                             destinations: [
                               NavigationRailDestination(
                                 icon: Icon(Icons.grid_view),
-                                label: Text('Browse'),
+                                label: genText(theme, 'Browse'),
                               ),
                               if (appState.idToken != null &&
                                   appState.idToken != '')
                                 NavigationRailDestination(
                                   icon: Icon(Icons.add_circle),
-                                  label: Text('Create'),
+                                  label: genText(theme, 'Create'),
                                 ),
                               NavigationRailDestination(
                                 icon: Icon(Icons.sports_esports),
-                                label: Text('Play'),
+                                label: genText(theme, 'Play'),
                               ),
                             ],
                             //selectedIndex: appState.selectedIndex,
