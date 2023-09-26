@@ -31,18 +31,16 @@ class PlayPage extends StatelessWidget {
     final appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
 
-    enterPlayerName(name) {
+    enterPlayerName(name, router) async {
       bool profane = filter.isProfane(name);
       if (profane) {
         errorDialog('Invalid name, please try again.');
         _controller.setText('');
         return;
       }
-      appState.registerPlayer();
-      GoRouter.of(context).go('/quiz');
+      appState.registerPlayer(name, router);
     }
 
-    var space = 40.0;
     return Scaffold(
       body: Stack(
         children: [
@@ -53,7 +51,9 @@ class PlayPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: space),
+                    SizedBox(height: verticalSpaceHeight * 2),
+                    genText(theme, 'Enter a PIN to play a quiz:'),
+                    SizedBox(height: verticalSpaceHeight * 2),
                     Pinput(
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       controller: TextEditingController(),
@@ -67,43 +67,57 @@ class PlayPage extends StatelessWidget {
                         return;
                       },
                     ),
-                    SizedBox(height: space),
+                    SizedBox(height: verticalSpaceHeight),
                     if (appState.playedQuiz.quiz != null)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Column(
                         children: [
-                          genText(
-                            theme,
-                            'Quiz Name:',
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              genText(
+                                theme,
+                                'Quiz Name:',
+                              ),
+                              SizedBox(width: 20),
+                              genText(
+                                theme,
+                                '${appState.playedQuiz.quiz?.name}',
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 20),
-                          genText(
-                            theme,
-                            '${appState.playedQuiz.quiz?.name}',
+                          SizedBox(height: verticalSpaceHeight),
+                          SizedBox(
+                            width: 400,
+                            child: Padding(
+                              padding: const EdgeInsets.all(formPadding),
+                              child: TextField(
+                                controller: _controller,
+                                onSubmitted: (name) =>
+                                    enterPlayerName(name, GoRouter.of(context)),
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  hintText: "Name",
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
+                          SizedBox(height: verticalSpaceHeight),
+                          ElevatedButton(
+                              onPressed: () => {
+                                    if (_controller.value.text.isEmpty)
+                                      errorDialog(
+                                        'Please enter a name to play the quiz.',
+                                      ),
+                                    enterPlayerName(_controller.value.text,
+                                        GoRouter.of(context))
+                                  },
+                              child: genText(theme, 'Play Quiz')),
                         ],
-                      ),
-                    SizedBox(height: space),
-                    SizedBox(
-                      width: 400,
-                      child: TextField(
-                        controller: _controller,
-                        onSubmitted: (name) => enterPlayerName(name),
-                        onChanged: (name) => appState.setPlayerName(name),
-                        decoration: InputDecoration(
-                          filled: true,
-                          hintText: "Name",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: space),
-                    ElevatedButton(
-                        onPressed: () =>
-                            enterPlayerName(_controller.value.text),
-                        child: genText(theme, 'Play Quiz')),
+                      )
                   ],
                 ),
               ),

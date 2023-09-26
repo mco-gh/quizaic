@@ -12,11 +12,6 @@ class QuizPage extends StatelessWidget {
     var theme = Theme.of(context);
     final appState = context.watch<MyAppState>();
 
-    if (appState.revertToPlayPage) {
-      appState.revertToPlayPage = false;
-      GoRouter.of(context).go('/play');
-    }
-
     return StreamBuilder<DocumentSnapshot>(
       stream: appState.playerSessionStream,
       builder: (context, snapshot) {
@@ -36,7 +31,7 @@ class QuizPage extends StatelessWidget {
         var question = quiz[curQuestion]['question'];
         var correct = quiz[curQuestion]['correct'];
         var responses = quiz[curQuestion]['responses'];
-        print('responses: $responses');
+        print('quiz: $quiz');
 
         Card genCard(text) {
           return Card(

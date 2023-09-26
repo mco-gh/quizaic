@@ -50,7 +50,6 @@ class MyAppState extends ChangeNotifier {
   String playerSessionId = '';
   String sessionId = '';
   String runningQuizId = '';
-  bool revertToPlayPage = false;
   int respondedQuestion = -1;
 
   final Stream<QuerySnapshot> quizzesStream =
@@ -138,11 +137,6 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
     return true;
-  }
-
-  void setPlayerName(name) {
-    playedQuiz.name = name;
-    notifyListeners();
   }
 
   Future<bool> checkForSession() async {
@@ -314,9 +308,9 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> registerPlayer() async {
-    var body = '{"players.${playedQuiz.name}.score": 0}';
-    print('body: $body');
+  Future<bool> registerPlayer(name, router) async {
+    var body = '{"players.$name.score": 0}';
+    print('name: $name, body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
         body: body,
@@ -325,15 +319,15 @@ class MyAppState extends ChangeNotifier {
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
+      playedQuiz.name = name;
       print("Player ${playedQuiz.name} registered.");
+      router.go('/quiz');
     } else {
       if (response.statusCode == 409) {
-        errorDialog(
-            'Player ${playedQuiz.name} already registered for this quiz.');
+        errorDialog('Player $name already registered for this quiz.');
       } else {
-        errorDialog('Failed to register player ${playedQuiz.name}');
+        errorDialog('Failed to register player $name');
       }
-      revertToPlayPage = true;
     }
     notifyListeners();
     return true;

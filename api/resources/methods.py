@@ -208,7 +208,7 @@ def patch(resource_kind, id, representation):
         val = representation[key]
         if not val:
             # registering a new player for this session so make sure not already there
-            resource = db.fetch("sessions", id, resource_fields[resource_kind])
+            resource = db.fetch("results", id, resource_fields[resource_kind])
             if not resource:
                 return f"Can't find requested session {id}", 500, {}
             players = resource["players"]
