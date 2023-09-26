@@ -22,17 +22,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme =
+        ColorScheme.fromSeed(seedColor: Color(0xfff68d2d));
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Quizaic',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Color(0xfff68d2d)),
-        ),
-        routerConfig: HomePage().router,
-      ),
-    );
+        create: (context) => MyAppState(),
+        child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'Quizaic',
+            routerConfig: HomePage().router,
+            theme: ThemeData(
+              useMaterial3: true,
+              colorScheme: colorScheme,
+              scaffoldBackgroundColor: Color.fromRGBO(
+                  243, 223, 210, 1), //colorScheme.primaryContainer),
+            )));
   }
 }

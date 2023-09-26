@@ -52,7 +52,6 @@ class _BrowsePageState extends State<BrowsePage> {
               if (appState.quizzes.isEmpty) {
                 return Text('No quizzes yet.');
               }
-              print('idToken: ${appState.idToken}');
               var (rows, cols) = configGrid(
                   MediaQuery.of(context).size.width, appState.quizzes.length);
               return Padding(
@@ -74,17 +73,16 @@ class _BrowsePageState extends State<BrowsePage> {
                             children: [
                               for (var quiz in appState.quizzes)
                                 Card(
+                                  //color: Color.fromRGBO(246, 141, 45, 1),
+                                  color: theme.colorScheme.secondaryContainer,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16)),
-                                  color: theme.colorScheme.primaryContainer,
                                   child: Padding(
                                     padding: const EdgeInsets.all(formPadding),
                                     child: Column(
                                       children: [
-                                        Text(quiz.name,
-                                            style: TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold)),
+                                        genText(theme, quiz.name,
+                                            size: 22, weight: FontWeight.bold),
                                         SizedBox(height: 15),
                                         Hero(
                                             tag: quiz.id!,
@@ -102,9 +100,11 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   child: Column(
                                                     children: [
                                                       Icon(Icons.view_list,
+                                                          color: Colors.white,
                                                           semanticLabel:
                                                               'View'),
-                                                      genText(theme, 'View'),
+                                                      genText(theme, 'View',
+                                                          color: Colors.white),
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -121,10 +121,15 @@ class _BrowsePageState extends State<BrowsePage> {
                                               TextButton(
                                                 child: Column(
                                                   children: [
-                                                    Icon(Icons.play_circle,
-                                                        semanticLabel: 'Host'),
-                                                    genText(theme, 'Host',
-                                                        size: buttonTextSize),
+                                                    Icon(
+                                                      Icons.play_circle,
+                                                      semanticLabel: 'Host',
+                                                    ),
+                                                    genText(
+                                                      theme,
+                                                      'Host',
+                                                      size: buttonTextSize,
+                                                    ),
                                                   ],
                                                 ),
                                                 onPressed: () {
@@ -138,11 +143,15 @@ class _BrowsePageState extends State<BrowsePage> {
                                               TextButton(
                                                   child: Column(
                                                     children: [
-                                                      Icon(Icons.edit,
-                                                          semanticLabel:
-                                                              'Edit'),
-                                                      genText(theme, 'Edit',
-                                                          size: buttonTextSize),
+                                                      Icon(
+                                                        Icons.edit,
+                                                        semanticLabel: 'Edit',
+                                                      ),
+                                                      genText(
+                                                        theme,
+                                                        'Edit',
+                                                        size: buttonTextSize,
+                                                      ),
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -154,11 +163,15 @@ class _BrowsePageState extends State<BrowsePage> {
                                               TextButton(
                                                   child: Column(
                                                     children: [
-                                                      Icon(Icons.content_copy,
-                                                          semanticLabel:
-                                                              'Clone'),
-                                                      genText(theme, 'Clone',
-                                                          size: buttonTextSize),
+                                                      Icon(
+                                                        Icons.content_copy,
+                                                        semanticLabel: 'Clone',
+                                                      ),
+                                                      genText(
+                                                        theme,
+                                                        'Clone',
+                                                        size: buttonTextSize,
+                                                      ),
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -171,11 +184,15 @@ class _BrowsePageState extends State<BrowsePage> {
                                               TextButton(
                                                   child: Column(
                                                     children: [
-                                                      Icon(Icons.delete,
-                                                          semanticLabel:
-                                                              'Delete'),
-                                                      genText(theme, 'Delete',
-                                                          size: buttonTextSize),
+                                                      Icon(
+                                                        Icons.delete,
+                                                        semanticLabel: 'Delete',
+                                                      ),
+                                                      genText(
+                                                        theme,
+                                                        'Delete',
+                                                        size: buttonTextSize,
+                                                      ),
                                                     ],
                                                   ),
                                                   onPressed: () {

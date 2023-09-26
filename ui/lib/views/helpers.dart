@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:quizaic/const.dart';
 
-Widget genText(
-  ThemeData theme,
-  String text, {
-  size = 20,
-  weight = FontWeight.normal,
-  align = TextAlign.center,
-  width = formColumnWidth,
-}) {
+Widget genText(ThemeData theme, String text,
+    {size = 20,
+    weight = FontWeight.normal,
+    align = TextAlign.center,
+    width = formColumnWidth,
+    color}) {
+  Color textColor = theme.primaryColor;
+  if (color != null) {
+    textColor = color;
+  }
   return Padding(
     padding: const EdgeInsets.all(formPadding),
     child: Text(text,
@@ -17,7 +19,7 @@ Widget genText(
         style: TextStyle(
           fontSize: size,
           fontWeight: weight,
-          color: theme.primaryColor,
+          color: textColor,
         )),
   );
 }
