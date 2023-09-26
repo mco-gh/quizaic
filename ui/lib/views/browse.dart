@@ -55,7 +55,7 @@ class _BrowsePageState extends State<BrowsePage> {
               var (rows, cols) = configGrid(
                   MediaQuery.of(context).size.width, appState.quizzes.length);
               return Padding(
-                padding: const EdgeInsets.all(25),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -73,9 +73,14 @@ class _BrowsePageState extends State<BrowsePage> {
                             children: [
                               for (var quiz in appState.quizzes)
                                 Card(
+                                  elevation: 5,
                                   //color: Color.fromRGBO(246, 141, 45, 1),
                                   color: theme.colorScheme.secondaryContainer,
                                   shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        width: 2,
+                                        color: Colors.orange,
+                                      ),
                                       borderRadius: BorderRadius.circular(16)),
                                   child: Padding(
                                     padding: const EdgeInsets.all(formPadding),
