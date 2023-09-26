@@ -31,6 +31,7 @@ class PlayedQuiz {
   Quiz? quiz;
   String name = '';
   String pin = '';
+  String response = '';
 }
 
 class MyAppState extends ChangeNotifier {

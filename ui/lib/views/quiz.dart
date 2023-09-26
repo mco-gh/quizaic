@@ -33,38 +33,58 @@ class QuizPage extends StatelessWidget {
         var responses = quiz[curQuestion]['responses'];
 
         List<Widget> genResponse(responses, enable) {
-          List<Widget> responseList = [];
+          List<Widget> responseList = [SizedBox(height: verticalSpaceHeight)];
           for (var i = 0; i < responses.length; i++) {
-            if (enable) {
-              responseList.add(ElevatedButton(
-                onPressed: () => {
-                  appState.respondedQuestion = curQuestion,
-                  (context as Element).markNeedsBuild(),
-                  if (responses[i] == correct)
-                    {appState.sendResponse(curQuestion)}
-                },
-                child: genText(theme, '${options[i]}. ${responses[i]}'),
-              ));
-            } else {
-              Color color = Colors.red;
-              if (responses[i] == correct) {
-                color = Colors.green;
+            var yes = Icon(Icons.check_circle, color: Colors.green);
+            var no = Icon(Icons.close, color: Colors.red);
+            var na = Visibility(
+              visible: false,
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child: Icon(Icons.check_box_outline_blank),
+            );
+            Widget grade = na;
+
+            if (!enable) {
+              if (responses[i] == appState.playedQuiz.response) {
+                if (responses[i] == correct) {
+                  grade = yes;
+                } else {
+                  grade = no;
+                }
               }
-              responseList.add(
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: color, width: 2),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(formPadding),
-                    child: genText(theme, '${options[i]}. ${responses[i]}',
-                        color: color),
-                  ),
-                ),
-              );
             }
+            ButtonStyle? style;
+            if (responses[i] == correct) {
+              style = ElevatedButton.styleFrom(
+                  disabledBackgroundColor: Colors.green);
+            }
+            responseList.add(Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: horizontalSpaceWidth),
+                grade,
+                SizedBox(width: horizontalSpaceWidth / 2),
+                ElevatedButton(
+                  style: enable ? null : style,
+                  onPressed: enable
+                      ? () => {
+                            appState.respondedQuestion = curQuestion,
+                            appState.playedQuiz.response = responses[i],
+                            (context as Element).markNeedsBuild(),
+                            if (responses[i] == correct)
+                              {
+                                appState.sendResponse(curQuestion),
+                              }
+                          }
+                      : null,
+                  child: genText(theme, '${options[i]}. ${responses[i]}'),
+                ),
+              ],
+            ));
             if (i < responses.length - 1) {
-              responseList.add(SizedBox(height: 10));
+              responseList.add(SizedBox(height: verticalSpaceHeight * 2));
             }
           }
 
@@ -73,24 +93,17 @@ class QuizPage extends StatelessWidget {
 
         bool enable = (curQuestion != appState.respondedQuestion);
 
-        return Column(
-          children: [
-            SizedBox(height: 10),
-            genText(theme, 'Question $curQuestion: $question'),
-            SizedBox(height: 10),
-            SizedBox(
-              width: 1000,
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: genResponse(responses, enable),
-                ),
-              ),
-            ),
-            if (!enable) SizedBox(height: 20),
-            if (!enable) Text('Waiting for next question...')
-          ],
-        );
+        List<Widget> widgets = [
+          SizedBox(height: verticalSpaceHeight * 2),
+          genText(theme, 'Question $curQuestion: $question'),
+          SizedBox(height: verticalSpaceHeight * 2),
+        ];
+        widgets.addAll(genResponse(responses, enable));
+        if (!enable) {
+          widgets.add(SizedBox(height: verticalSpaceHeight));
+          widgets.add(genText(theme, 'Waiting for next question...'));
+        }
+        return Column(children: widgets);
       },
     );
   }
