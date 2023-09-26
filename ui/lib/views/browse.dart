@@ -38,6 +38,11 @@ class _BrowsePageState extends State<BrowsePage> {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
+    if (appState.idToken == null || appState.idToken == '') {
+      return Center(
+          child: genText(theme,
+              'Please sign in, by clicking the person icon at upper right, to create quizzes.'));
+    }
     return Scaffold(
       body: Center(
         child: FutureBuilder<List<Quiz>>(

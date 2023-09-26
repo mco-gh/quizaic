@@ -33,6 +33,12 @@ class _CreatePageState extends State<CreatePage> {
     var appState = context.watch<MyAppState>();
     var quiz = appState.getQuiz(widget.quizId);
 
+    if (appState.idToken == null || appState.idToken == '') {
+      return Center(
+          child: genText(theme,
+              'Please sign in, by clicking the person icon at upper right, to create quizzes.'));
+    }
+
     String getQuizName() {
       return appState.selectedQuiz.name;
     }

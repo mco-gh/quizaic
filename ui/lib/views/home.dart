@@ -44,7 +44,7 @@ class HomePage extends StatefulWidget {
 
   final _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: '/browse',
+      initialLocation: '/play',
       debugLogDiagnostics: true,
       routes: <RouteBase>[
         ShellRoute(
@@ -112,6 +112,8 @@ class HomePage extends StatefulWidget {
           ],
         )
       ]);
+
+  set initialLocation(location) => initialLocation = location;
   GoRouter get router => _router;
 }
 
@@ -275,12 +277,10 @@ class HomePageScaffold extends StatelessWidget {
                                 icon: Icon(Icons.grid_view),
                                 label: 'Browse',
                               ),
-                              if (appState.idToken != null &&
-                                  appState.idToken != '')
-                                BottomNavigationBarItem(
-                                  icon: Icon(Icons.add_circle),
-                                  label: 'Create',
-                                ),
+                              BottomNavigationBarItem(
+                                icon: Icon(Icons.add_circle),
+                                label: 'Create',
+                              ),
                               BottomNavigationBarItem(
                                 icon: Icon(Icons.sports_esports),
                                 label: 'Play',
@@ -303,12 +303,10 @@ class HomePageScaffold extends StatelessWidget {
                                 icon: Icon(Icons.grid_view),
                                 label: genText(theme, 'Browse'),
                               ),
-                              if (appState.idToken != null &&
-                                  appState.idToken != '')
-                                NavigationRailDestination(
-                                  icon: Icon(Icons.add_circle),
-                                  label: genText(theme, 'Create'),
-                                ),
+                              NavigationRailDestination(
+                                icon: Icon(Icons.add_circle),
+                                label: genText(theme, 'Create'),
+                              ),
                               NavigationRailDestination(
                                 icon: Icon(Icons.sports_esports),
                                 label: genText(theme, 'Play'),

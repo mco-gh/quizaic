@@ -25,7 +25,17 @@ class AuthPage extends StatelessWidget {
           return SignInScreen(
             actions: [
               AuthStateChangeAction<SignedIn>((context, state) {
-                GoRouter.of(context).go('/browse');
+                User? user = FirebaseAuth.instance.currentUser;
+                if (user != null) {
+                  user.getIdTokenResult().then((result) {
+                    print('home page setting idToken');
+                    appState.idToken = result.token;
+                    GoRouter.of(context).go('/browse');
+                  });
+                }
+                if ((user != null) && (user.photoURL != null)) {
+                  appState.photoUrl = user.photoURL as String;
+                }
               }),
             ],
             providers: [
@@ -98,7 +108,7 @@ class AuthPage extends StatelessWidget {
                 SizedBox(height: formRowHeight),
                 ElevatedButton(
                   child: SizedBox(
-                    width: 'Signout'.length * 11,
+                    width: 'Signout'.length * 15,
                     child: Row(children: [
                       Icon(Icons.logout, semanticLabel: 'Signout'),
                       genText(theme, 'Signout'),
@@ -108,7 +118,7 @@ class AuthPage extends StatelessWidget {
                     appState.idToken = '',
                     appState.photoUrl = '',
                     FirebaseAuth.instance.signOut(),
-                    GoRouter.of(context).go('/browse'),
+                    GoRouter.of(context).go('/play'),
                   },
                 ),
               ],
