@@ -1,5 +1,7 @@
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
+const String appName = 'Quizaic';
+
 const apiUrl =
     bool.hasEnvironment('API_URL') ? String.fromEnvironment('API_URL') : null;
 const redirectUri = bool.hasEnvironment('REDIRECT_URI')

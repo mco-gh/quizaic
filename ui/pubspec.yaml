@@ -33,6 +33,7 @@ dependencies:
   bad_words: ^0.3.0
   shared_preferences: ^2.2.1
   flutter_layout_grid: ^2.0.5
+  localstorage: ^4.0.1+4
 
 dev_dependencies:
   flutter_test:

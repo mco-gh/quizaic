@@ -41,6 +41,13 @@ class PlayPage extends StatelessWidget {
       appState.registerPlayer(name, router);
     }
 
+    if (appState.playedQuiz.pin != '' && appState.playedQuiz.pin != '') {
+      String? name = appState.getNameByPin(appState.playedQuiz.pin);
+      print('name: $name');
+      if (name != null) {
+        GoRouter.of(context).go('/quiz');
+      }
+    }
     return Scaffold(
       body: Stack(
         children: [
@@ -59,11 +66,11 @@ class PlayPage extends StatelessWidget {
                       controller: TextEditingController(),
                       length: 3,
                       defaultPinTheme: defaultPinTheme,
-                      onChanged: (value) => print('value: $value'),
-                      onCompleted: (pin) => print('Completed: $pin'),
                       validator: (s) {
                         appState.playedQuiz.quiz = null;
                         appState.findQuizByPin(s);
+                        appState.playedQuiz.pin = s as String;
+
                         return;
                       },
                     ),
@@ -125,7 +132,7 @@ class PlayPage extends StatelessWidget {
                                   },
                               child: genText(theme, 'Play Quiz')),
                         ],
-                      )
+                      ),
                   ],
                 ),
               ),

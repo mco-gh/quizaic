@@ -7,6 +7,7 @@ import 'package:quizaic/models/session.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizaic/views/home.dart';
 import 'package:quizaic/const.dart';
+import 'package:localstorage/localstorage.dart';
 
 class SelectedQuiz {
   String name = '';
@@ -28,12 +29,15 @@ class HostedQuiz {
 
 class PlayedQuiz {
   Quiz? quiz;
-  String? name;
+  String name = '';
+  String pin = '';
 }
 
 class MyAppState extends ChangeNotifier {
   late Future<List<Quiz>> futureFetchQuizzes = fetchQuizzes();
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
+
+  final LocalStorage storage = LocalStorage(appName);
 
   var photoUrl = '';
   var selectedIndex = 0;
@@ -69,6 +73,10 @@ class MyAppState extends ChangeNotifier {
       print("quizzes changed!");
       fetchQuizzes();
     });
+  }
+
+  String? getNameByPin(pin) {
+    return storage.getItem(pin);
   }
 
   Future<List<Quiz>> fetchQuizzes() async {
@@ -320,6 +328,7 @@ class MyAppState extends ChangeNotifier {
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
       playedQuiz.name = name;
+      storage.setItem(playedQuiz.pin, playedQuiz.name);
       print("Player ${playedQuiz.name} registered.");
       router.go('/quiz');
     } else {
@@ -370,6 +379,8 @@ class MyAppState extends ChangeNotifier {
         if (querySnapshot.docs.isEmpty) {
           errorDialog('No session found with pin $pin.');
           playedQuiz.quiz = null;
+          playedQuiz.pin = '';
+          playedQuiz.name = '';
           notifyListeners();
           return null;
         } else if (querySnapshot.docs.length > 1) {
