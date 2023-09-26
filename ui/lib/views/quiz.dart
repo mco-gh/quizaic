@@ -32,31 +32,18 @@ class QuizPage extends StatelessWidget {
         var correct = quiz[curQuestion]['correct'];
         var responses = quiz[curQuestion]['responses'];
 
-        Card genCard(text) {
-          return Card(
-              //shape:
-              //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              color: theme.colorScheme.primaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(text),
-              ));
-        }
-
         List<Widget> genResponse(responses, enable) {
           List<Widget> responseList = [];
           for (var i = 0; i < responses.length; i++) {
             if (enable) {
-              responseList.add(Align(
-                child: ElevatedButton(
-                  onPressed: () => {
-                    appState.respondedQuestion = curQuestion,
-                    (context as Element).markNeedsBuild(),
-                    if (responses[i] == correct)
-                      {appState.sendResponse(curQuestion)}
-                  },
-                  child: Text('${options[i]}. ${responses[i]}'),
-                ),
+              responseList.add(ElevatedButton(
+                onPressed: () => {
+                  appState.respondedQuestion = curQuestion,
+                  (context as Element).markNeedsBuild(),
+                  if (responses[i] == correct)
+                    {appState.sendResponse(curQuestion)}
+                },
+                child: genText(theme, '${options[i]}. ${responses[i]}'),
               ));
             } else {
               Color color = Colors.red;
@@ -69,7 +56,7 @@ class QuizPage extends StatelessWidget {
                     border: Border.all(color: color, width: 2),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(formPadding),
                     child: genText(theme, '${options[i]}. ${responses[i]}',
                         color: color),
                   ),
@@ -89,13 +76,15 @@ class QuizPage extends StatelessWidget {
         return Column(
           children: [
             SizedBox(height: 10),
-            genCard('Question $curQuestion: $question'),
+            genText(theme, 'Question $curQuestion: $question'),
             SizedBox(height: 10),
             SizedBox(
               width: 1000,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: genResponse(responses, enable),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: genResponse(responses, enable),
+                ),
               ),
             ),
             if (!enable) SizedBox(height: 20),
