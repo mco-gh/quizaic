@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:go_router/go_router.dart';
 import 'package:quizaic/const.dart';
+import 'package:quizaic/views/helpers.dart';
 
 class QuizPage extends StatelessWidget {
   @override
@@ -46,14 +47,16 @@ class QuizPage extends StatelessWidget {
           List<Widget> responseList = [];
           for (var i = 0; i < responses.length; i++) {
             if (enable) {
-              responseList.add(ElevatedButton(
-                onPressed: () => {
-                  appState.respondedQuestion = curQuestion,
-                  (context as Element).markNeedsBuild(),
-                  if (responses[i] == correct)
-                    {appState.sendResponse(curQuestion)}
-                },
-                child: Text('${options[i]}. ${responses[i]}'),
+              responseList.add(Align(
+                child: ElevatedButton(
+                  onPressed: () => {
+                    appState.respondedQuestion = curQuestion,
+                    (context as Element).markNeedsBuild(),
+                    if (responses[i] == correct)
+                      {appState.sendResponse(curQuestion)}
+                  },
+                  child: Text('${options[i]}. ${responses[i]}'),
+                ),
               ));
             } else {
               Color color = Colors.red;
@@ -63,12 +66,12 @@ class QuizPage extends StatelessWidget {
               responseList.add(
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: color),
+                    border: Border.all(color: color, width: 2),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('${options[i]}. ${responses[i]}',
-                        style: TextStyle(color: color)),
+                    child: genText(theme, '${options[i]}. ${responses[i]}',
+                        color: color),
                   ),
                 ),
               );
