@@ -100,7 +100,7 @@ class QuizPage extends StatelessWidget {
         ];
         widgets.addAll(genResponse(responses, enable));
         if (!enable) {
-          widgets.add(SizedBox(height: verticalSpaceHeight));
+          widgets.add(SizedBox(height: verticalSpaceHeight * 2));
           widgets.add(genText(theme, 'Waiting for next question...'));
         }
         return Column(children: widgets);

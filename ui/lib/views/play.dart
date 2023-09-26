@@ -43,8 +43,8 @@ class PlayPage extends StatelessWidget {
 
     if (appState.playedQuiz.pin != '' && appState.playedQuiz.pin != '') {
       String? name = appState.getNameByPin(appState.playedQuiz.pin);
-      print('name: $name');
       if (name != null) {
+        appState.playedQuiz.name = name;
         GoRouter.of(context).go('/quiz');
       }
     }
@@ -70,7 +70,6 @@ class PlayPage extends StatelessWidget {
                         appState.playedQuiz.quiz = null;
                         appState.findQuizByPin(s);
                         appState.playedQuiz.pin = s as String;
-
                         return;
                       },
                     ),
