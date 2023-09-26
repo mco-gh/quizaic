@@ -67,17 +67,25 @@ class PlayPage extends StatelessWidget {
                         return;
                       },
                     ),
-                    SizedBox(height: verticalSpaceHeight),
+                    SizedBox(height: verticalSpaceHeight * 3),
                     if (appState.playedQuiz.quiz != null)
                       Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              genText(
-                                theme,
-                                'Quiz Name:',
-                              ),
+                              Row(children: [
+                                SizedBox(height: verticalSpaceHeight * 3),
+                                Image.network(
+                                  appState.playedQuiz.quiz?.imageUrl as String,
+                                  height: logoHeight,
+                                ),
+                                SizedBox(width: horizontalSpaceWidth),
+                                genText(
+                                  theme,
+                                  'Quiz Name:',
+                                ),
+                              ]),
                               SizedBox(width: 20),
                               genText(
                                 theme,
@@ -85,7 +93,7 @@ class PlayPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: verticalSpaceHeight),
+                          SizedBox(height: verticalSpaceHeight * 3),
                           SizedBox(
                             width: 400,
                             child: Padding(
