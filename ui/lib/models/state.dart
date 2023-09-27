@@ -186,37 +186,18 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
+  setupStreams(sessionId) {
+    sessionStream = FirebaseFirestore.instance
+        .collection('sessions')
+        .doc(sessionId)
+        .snapshots();
+    resultsStream = FirebaseFirestore.instance
+        .collection('results')
+        .doc(sessionId)
+        .snapshots();
+  }
+
   Future<bool> createOrReuseSession(quizId) async {
-    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
-      'Authorization': 'Bearer $idToken',
-    });
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      // session already running for this user, set sessionId accordingly.
-      var resp = json.decode(response.body);
-      sessionId = resp["hostId"];
-      runningQuizId = resp["quizId"];
-
-      // if quiz in session doesn't match the one this host wants to run,
-      // alert the user.
-      if (runningQuizId != '' && runningQuizId != quizId) {
-        errorDialog(
-            'Session already in progress for quiz $runningQuizId, stop it to start a new one.');
-        return false;
-      }
-
-      sessionStream = FirebaseFirestore.instance
-          .collection('sessions')
-          .doc(sessionId)
-          .snapshots();
-      resultsStream = FirebaseFirestore.instance
-          .collection('results')
-          .doc(sessionId)
-          .snapshots();
-
-      print('Resuming session already in progress for this host: $sessionId.');
-      return true;
-    }
-
     // No session found for this host so create a new one.
     Session session = Session(
       state: 'starting',
@@ -230,6 +211,61 @@ class MyAppState extends ChangeNotifier {
       randomizeAnswers: hostQuiz.randomizeAnswers == 'Yes' ? true : false,
     );
 
+    // call the special /sessions/me endpoint to see if this host already
+    // has a session in progress.
+    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
+      'Authorization': 'Bearer $idToken',
+    });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      // session already available for this user, set sessionId accordingly.
+      var resp = json.decode(response.body);
+      sessionId = resp["hostId"];
+      runningQuizId = resp["quizId"];
+
+      // If session in progress but quiz doesn't match the requested quiz,
+      // alert the user.
+      if (runningQuizId != '' && runningQuizId != quizId) {
+        errorDialog(
+            'Session already in progress for quiz $runningQuizId, stop it to start a new one.');
+        return false;
+      }
+
+      // Session is resumable but update its settings to match the host's request
+      // and reset corresponding results object.
+      print('Resuming session already in progress for this host: $sessionId.');
+      response = await http.patch(Uri.parse('$apiUrl/sessions/$sessionId'),
+          body: jsonEncode(session),
+          headers: {
+            'Authorization': 'Bearer $idToken',
+            'Content-Type': 'application/json',
+          });
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('Session $sessionId updated.');
+      } else {
+        errorDialog('Failed to update session $sessionId');
+      }
+
+/*
+      String body = '{"players": null, "quizId": quizId}';
+      response = await http
+          .patch(Uri.parse('$apiUrl/results/$sessionId'), body: body, headers: {
+        'Authorization': 'Bearer $idToken',
+        'Content-Type': 'application/json',
+      });
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('Results $sessionId updated.');
+      } else {
+        errorDialog('Failed to update results $sessionId');
+      }
+*/
+
+      setupStreams(sessionId);
+      notifyListeners();
+      return true;
+    }
+
+    // No session available for this host so create a new one.
     response = await http.post(Uri.parse('$apiUrl/sessions'),
         body: jsonEncode(session),
         headers: {
@@ -241,14 +277,7 @@ class MyAppState extends ChangeNotifier {
       var resp = json.decode(response.body);
       sessionId = resp["id"];
       runningQuizId = quizId;
-      sessionStream = FirebaseFirestore.instance
-          .collection('sessions')
-          .doc(sessionId)
-          .snapshots();
-      resultsStream = FirebaseFirestore.instance
-          .collection('results')
-          .doc(sessionId)
-          .snapshots();
+      setupStreams(sessionId);
       print('New session created: $sessionId.');
     } else if (response.statusCode == 403) {
       errorDialog(

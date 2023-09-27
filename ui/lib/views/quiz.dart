@@ -107,7 +107,7 @@ class QuizPage extends StatelessWidget {
           SizedBox(height: verticalSpaceHeight * 2),
           timerBar,
           SizedBox(height: verticalSpaceHeight * 2),
-          genText(theme, 'Question ${curQuestion = 1}: $question'),
+          genText(theme, 'Question ${curQuestion + 1}: $question'),
           SizedBox(height: verticalSpaceHeight * 2),
         ];
         widgets.addAll(genResponse(responses, enable));

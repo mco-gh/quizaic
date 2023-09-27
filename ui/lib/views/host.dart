@@ -335,7 +335,6 @@ class _HostPageState extends State<HostPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: genText(theme, 'Hosting quiz...')),
                         );
-                        print('creating session...');
                         appState.createOrReuseSession(quiz.id);
                       }
                     },
