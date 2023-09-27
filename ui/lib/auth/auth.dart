@@ -101,11 +101,6 @@ class AuthPage extends StatelessWidget {
                   height: logoHeight,
                 ),
                 SizedBox(height: formRowHeight),
-                Text(
-                  'Welcome to Quizaic!',
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                SizedBox(height: formRowHeight),
                 ElevatedButton(
                   child: SizedBox(
                     width: 'Signout'.length * 15,
