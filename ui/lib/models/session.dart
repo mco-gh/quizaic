@@ -37,7 +37,7 @@ class Session {
     this.updated,
 
     // managed by backend api (in alphabetical order)
-    this.curQuestion = '0',
+    this.curQuestion = '-1',
     this.pin = '',
   });
 

@@ -242,12 +242,10 @@ class MyAppState extends ChangeNotifier {
           .collection('sessions')
           .doc(sessionId)
           .snapshots();
-      //Future.delayed(Duration(seconds: 1)).then((_) {
       resultsStream = FirebaseFirestore.instance
           .collection('results')
           .doc(sessionId)
           .snapshots();
-      //});
       print('New session created: $sessionId.');
     } else if (response.statusCode == 403) {
       errorDialog(
@@ -260,8 +258,8 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> stopHostQuiz() async {
-    print('stopHostQuiz()');
+  Future<bool> deleteSession() async {
+    print('deleteSession()');
 
     final response =
         await http.delete(Uri.parse('$apiUrl/sessions/$sessionId'), headers: {

@@ -5,6 +5,7 @@ import 'package:quizaic/const.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class HostPage extends StatefulWidget {
   final String? quizId;
@@ -25,6 +26,27 @@ class _HostPageState extends State<HostPage> {
     super.initState();
 
     print('initState - quiz id: ${widget.quizId}');
+  }
+
+  genLeaderBoard(theme, leaderBoard) {
+    return Column(children: [
+      SizedBox(height: formRowHeight),
+      SizedBox(
+        width: formColumnWidth,
+        child: ExpansionTile(
+          title: genText(theme, 'Registered Players:'),
+          children: [
+            Table(children: [
+              for (var e in leaderBoard.entries)
+                TableRow(children: [
+                  TableCell(child: genText(theme, e.key)),
+                  TableCell(child: genText(theme, e.value.toString())),
+                ]),
+            ]),
+          ],
+        ),
+      )
+    ]);
   }
 
   @override
@@ -83,8 +105,8 @@ class _HostPageState extends State<HostPage> {
     }
 
     String title = 'Hosting Quiz "${quiz.name}"';
+
     if (appState.sessionId != '') {
-      print('appState.sessionId: ${appState.sessionId}');
       return StreamBuilder<DocumentSnapshot>(
           stream: appState.sessionStream,
           builder: (context, snapshot) {
@@ -94,7 +116,10 @@ class _HostPageState extends State<HostPage> {
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = int.parse(data['curQuestion']);
-            var question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
+            var question = '';
+            if (curQuestion >= 0) {
+              question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
+            }
 
             return StreamBuilder<DocumentSnapshot>(
                 stream: appState.resultsStream,
@@ -117,10 +142,61 @@ class _HostPageState extends State<HostPage> {
                       print('leaderBoard: $leaderBoard');
                     }
                   }
+                  if (curQuestion == -1) {
+                    return Column(children: [
+                      SizedBox(height: verticalSpaceHeight),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Hero(
+                            tag: quiz.id as String,
+                            child: Image.network(
+                              quiz.imageUrl as String,
+                              height: logoHeight,
+                            ),
+                          ),
+                          SizedBox(width: horizontalSpaceWidth),
+                          Column(
+                            children: [
+                              genText(theme,
+                                  'Waiting for players to join quiz ${quiz.name}...',
+                                  size: 30, weight: FontWeight.bold),
+                              genText(theme,
+                                  'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                                  size: 24, weight: FontWeight.bold),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: verticalSpaceHeight * 2),
+                      Center(
+                        child: Row(
+                          children: [
+                            SizedBox(width: horizontalSpaceWidth * 3),
+                            genLeaderBoard(theme, leaderBoard),
+                            SizedBox(width: horizontalSpaceWidth * 3),
+                            QrImageView(
+                              data: 'https://quizaic.com/play/${data["pin"]}',
+                              version: QrVersions.auto,
+                              size: 400.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: verticalSpaceHeight * 3),
+                      ElevatedButton(
+                        onPressed: () {
+                          appState.incQuestion(appState.sessionId, -1,
+                              int.parse(quiz.numQuestions));
+                        },
+                        child: genText(theme, 'Start Quiz'),
+                      ),
+                      SizedBox(height: verticalSpaceHeight),
+                    ]);
+                  }
                   return Column(
                     children: [
-                      genText(theme,
-                          'Hosting Quiz "${quiz.name}", Pin: ${data["pin"]}'),
+                      genText(theme, 'Hosting Quiz "${quiz.name}"'),
                       SizedBox(height: formRowHeight),
                       genCard(theme,
                           genText(theme, 'Question $curQuestion: $question')),
@@ -149,33 +225,14 @@ class _HostPageState extends State<HostPage> {
                             SizedBox(width: horizontalSpaceWidth),
                             ElevatedButton(
                               onPressed: () {
-                                appState.stopHostQuiz();
+                                appState.deleteSession();
                               },
                               child: genText(theme, 'Stop Quiz'),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: formRowHeight),
-                      SizedBox(
-                        width: rowWidth,
-                        child: ExpansionTile(
-                          title: genText(theme, 'Registered Players:'),
-                          children: [
-                            Table(children: [
-                              for (var e in leaderBoard.entries)
-                                TableRow(children: [
-                                  TableCell(child: genText(theme, e.key)),
-                                  TableCell(
-                                      child:
-                                          genText(theme, e.value.toString())),
-                                ]),
-                            ]),
-                            //for (var e in leaderBoard.entries)
-                            //genText('${e.key} ${e.value}'),
-                          ],
-                        ),
-                      ),
+                      genLeaderBoard(theme, leaderBoard),
                     ],
                   );
                 });
