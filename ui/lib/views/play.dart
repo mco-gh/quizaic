@@ -31,7 +31,7 @@ class PlayPage extends StatelessWidget {
     final appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
 
-    enterPlayerName(name, router) async {
+    checkAndRegisterPlayerName(name, router) async {
       bool profane = filter.isProfane(name);
       if (profane) {
         errorDialog('Invalid name, please try again.');
@@ -41,20 +41,22 @@ class PlayPage extends StatelessWidget {
       appState.registerPlayer(name, router);
     }
 
-    if (appState.playedQuiz.pin != '' && appState.playedQuiz.pin != '') {
-      String? name = appState.getNameByPin(appState.playedQuiz.pin);
+    if (appState.playQuiz.pin != '' && appState.playQuiz.pin != '') {
+      appState.findQuizByPin(appState.playQuiz.pin);
+      String? name =
+          appState.getPlayerNameByPinFromLocal(appState.playQuiz.pin);
       if (name != null) {
-        appState.playedQuiz.name = name;
         GoRouter.of(context).go('/quiz');
       }
     }
+
     return Scaffold(
       body: Stack(
         children: [
           Center(
             child: SafeArea(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -67,14 +69,12 @@ class PlayPage extends StatelessWidget {
                       length: 3,
                       defaultPinTheme: defaultPinTheme,
                       validator: (s) {
-                        appState.playedQuiz.quiz = null;
                         appState.findQuizByPin(s);
-                        appState.playedQuiz.pin = s as String;
                         return;
                       },
                     ),
                     SizedBox(height: verticalSpaceHeight * 3),
-                    if (appState.playedQuiz.quiz != null)
+                    if (appState.playQuiz.quiz != null)
                       Column(
                         children: [
                           Row(
@@ -83,7 +83,7 @@ class PlayPage extends StatelessWidget {
                               Row(children: [
                                 SizedBox(height: verticalSpaceHeight * 3),
                                 Image.network(
-                                  appState.playedQuiz.quiz?.imageUrl as String,
+                                  appState.playQuiz.quiz?.imageUrl as String,
                                   height: logoHeight,
                                 ),
                                 SizedBox(width: horizontalSpaceWidth),
@@ -95,7 +95,7 @@ class PlayPage extends StatelessWidget {
                               SizedBox(width: 20),
                               genText(
                                 theme,
-                                '${appState.playedQuiz.quiz?.name}',
+                                '${appState.playQuiz.quiz?.name}',
                               ),
                             ],
                           ),
@@ -107,7 +107,8 @@ class PlayPage extends StatelessWidget {
                               child: TextField(
                                 controller: _controller,
                                 onSubmitted: (name) =>
-                                    enterPlayerName(name, GoRouter.of(context)),
+                                    checkAndRegisterPlayerName(
+                                        name, GoRouter.of(context)),
                                 decoration: InputDecoration(
                                   filled: true,
                                   hintText: "Name",
@@ -123,11 +124,17 @@ class PlayPage extends StatelessWidget {
                           ElevatedButton(
                               onPressed: () => {
                                     if (_controller.value.text.isEmpty)
-                                      errorDialog(
-                                        'Please enter a name to play the quiz.',
-                                      ),
-                                    enterPlayerName(_controller.value.text,
-                                        GoRouter.of(context))
+                                      {
+                                        errorDialog(
+                                          'Please enter a name to play the quiz.',
+                                        ),
+                                      }
+                                    else
+                                      {
+                                        checkAndRegisterPlayerName(
+                                            _controller.value.text,
+                                            GoRouter.of(context))
+                                      }
                                   },
                               child: genText(theme, 'Play Quiz')),
                         ],

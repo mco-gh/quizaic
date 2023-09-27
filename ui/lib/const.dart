@@ -1,4 +1,5 @@
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:flutter/material.dart';
 
 const String appName = 'Quizaic';
 
@@ -11,7 +12,13 @@ const clientId = bool.hasEnvironment('CLIENT_ID')
     ? String.fromEnvironment('CLIENT_ID')
     : null;
 
-const double kDefaultPadding = 20.0;
+const primaryGradient = LinearGradient(
+  colors: [Color.fromRGBO(243, 223, 210, 1), Color(0xfff68d2d)],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);
+
+const double defaultPadding = 20.0;
 const double rowWidth = 700.0;
 const double horizontalSpaceWidth = 40.0;
 const double verticalSpaceHeight = 10.0;

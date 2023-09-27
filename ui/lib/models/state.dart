@@ -8,8 +8,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizaic/views/home.dart';
 import 'package:quizaic/const.dart';
 import 'package:localstorage/localstorage.dart';
+import 'dart:async';
 
-class SelectedQuiz {
+class EditQuiz {
   String name = '';
   String answerFormat = 'Select generator to see formats';
   String generator = '';
@@ -18,7 +19,7 @@ class SelectedQuiz {
   String difficulty = '';
 }
 
-class HostedQuiz {
+class HostQuiz {
   String synch = 'Synchronous';
   String timeLimit = '30';
   String type = 'Quiz';
@@ -27,11 +28,15 @@ class HostedQuiz {
   String randomizeAnswers = 'Yes';
 }
 
-class PlayedQuiz {
+class PlayQuiz {
   Quiz? quiz;
-  String name = '';
+
+  String playerName = '';
   String pin = '';
   String response = '';
+  int curQuestion = 0;
+  int timeLimit = 0;
+  int timeLeft = 0;
 }
 
 class MyAppState extends ChangeNotifier {
@@ -39,6 +44,7 @@ class MyAppState extends ChangeNotifier {
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
 
   final LocalStorage storage = LocalStorage(appName);
+  Timer? questionTimer;
 
   var photoUrl = '';
   var selectedIndex = 0;
@@ -47,9 +53,9 @@ class MyAppState extends ChangeNotifier {
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
 
-  SelectedQuiz selectedQuiz = SelectedQuiz();
-  HostedQuiz hostedQuiz = HostedQuiz();
-  PlayedQuiz playedQuiz = PlayedQuiz();
+  EditQuiz editQuiz = EditQuiz();
+  HostQuiz hostQuiz = HostQuiz();
+  PlayQuiz playQuiz = PlayQuiz();
 
   int curQuestion = 0;
   String playerSessionId = '';
@@ -76,8 +82,38 @@ class MyAppState extends ChangeNotifier {
     });
   }
 
-  String? getNameByPin(pin) {
-    return storage.getItem(pin);
+  startQuestionTimer() {
+    playQuiz.timeLeft = playQuiz.timeLimit;
+    questionTimer = Timer.periodic(
+      Duration(seconds: 1),
+      (Timer t) => decrQuestionTimer(),
+    );
+    notifyListeners();
+  }
+
+  stopQuestionTimer() {
+    questionTimer?.cancel();
+    notifyListeners();
+  }
+
+  decrQuestionTimer() {
+    playQuiz.timeLeft--;
+    print('timer fired, time left: ${playQuiz.timeLeft}');
+
+    if (playQuiz.timeLeft == 0) {
+      stopQuestionTimer();
+      respondedQuestion = playQuiz.curQuestion;
+    }
+    notifyListeners();
+  }
+
+  String? getPlayerNameByPinFromLocal(pin) {
+    String? playerName = storage.getItem(pin);
+
+    if (playerName != null) {
+      playQuiz.playerName = playerName;
+    }
+    return playerName;
   }
 
   Future<List<Quiz>> fetchQuizzes() async {
@@ -115,13 +151,12 @@ class MyAppState extends ChangeNotifier {
   void selectQuizData(id) {
     for (var quiz in quizzes) {
       if (quiz.id == id) {
-        selectedQuiz.name = quiz.name;
-        selectedQuiz.answerFormat = quiz.answerFormat;
-        selectedQuiz.generator = quiz.generator;
-        selectedQuiz.topic = quiz.topic;
-        selectedQuiz.numQuestions = quiz.numQuestions;
-        selectedQuiz.difficulty =
-            difficultyLevel[int.parse(quiz.difficulty) - 1];
+        editQuiz.name = quiz.name;
+        editQuiz.answerFormat = quiz.answerFormat;
+        editQuiz.generator = quiz.generator;
+        editQuiz.topic = quiz.topic;
+        editQuiz.numQuestions = quiz.numQuestions;
+        editQuiz.difficulty = difficultyLevel[int.parse(quiz.difficulty) - 1];
       }
     }
   }
@@ -181,12 +216,12 @@ class MyAppState extends ChangeNotifier {
     Session session = Session(
       state: 'starting',
       quizId: quizId,
-      synchronous: hostedQuiz.synch == 'Synchronous' ? true : false,
-      timeLimit: hostedQuiz.timeLimit,
+      synchronous: hostQuiz.synch == 'Synchronous' ? true : false,
+      timeLimit: hostQuiz.timeLimit,
       survey: false,
-      anonymous: hostedQuiz.anonymous == 'Anonymous' ? true : false,
-      randomizeQuestions: hostedQuiz.randomizeQuestions == 'Yes' ? true : false,
-      randomizeAnswers: hostedQuiz.randomizeAnswers == 'Yes' ? true : false,
+      anonymous: hostQuiz.anonymous == 'Anonymous' ? true : false,
+      randomizeQuestions: hostQuiz.randomizeQuestions == 'Yes' ? true : false,
+      randomizeAnswers: hostQuiz.randomizeAnswers == 'Yes' ? true : false,
     );
 
     final response = await http.post(Uri.parse('$apiUrl/sessions'),
@@ -242,7 +277,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
-    int dnum = difficultyLevel.indexOf(selectedQuiz.difficulty);
+    int dnum = difficultyLevel.indexOf(editQuiz.difficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
         name: '',
@@ -257,11 +292,11 @@ class MyAppState extends ChangeNotifier {
       tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
 
-    tmpQuiz.name = selectedQuiz.name;
-    tmpQuiz.generator = selectedQuiz.generator;
-    tmpQuiz.answerFormat = selectedQuiz.answerFormat;
-    tmpQuiz.topic = selectedQuiz.topic;
-    tmpQuiz.numQuestions = selectedQuiz.numQuestions;
+    tmpQuiz.name = editQuiz.name;
+    tmpQuiz.generator = editQuiz.generator;
+    tmpQuiz.answerFormat = editQuiz.answerFormat;
+    tmpQuiz.topic = editQuiz.topic;
+    tmpQuiz.numQuestions = editQuiz.numQuestions;
     tmpQuiz.difficulty = dstr;
 
     String url = '';
@@ -317,9 +352,9 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> registerPlayer(name, router) async {
-    var body = '{"players.$name.score": 0}';
-    print('name: $name, body: $body');
+  Future<bool> registerPlayer(playerName, router) async {
+    var body = '{"players.$playerName.score": 0}';
+    print('name: $playerName, body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
         body: body,
@@ -328,15 +363,15 @@ class MyAppState extends ChangeNotifier {
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      playedQuiz.name = name;
-      storage.setItem(playedQuiz.pin, playedQuiz.name);
-      print("Player ${playedQuiz.name} registered.");
+      playQuiz.playerName = playerName;
+      storage.setItem(playQuiz.pin, playQuiz.playerName);
+      print("Player ${playQuiz.playerName} registered.");
       router.go('/quiz');
     } else {
       if (response.statusCode == 409) {
-        errorDialog('Player $name already registered for this quiz.');
+        errorDialog('Player $playerName already registered for this quiz.');
       } else {
-        errorDialog('Failed to register player $name');
+        errorDialog('Failed to register player $playerName');
       }
     }
     notifyListeners();
@@ -344,7 +379,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> sendResponse(i) async {
-    var body = '{"players.${playedQuiz.name}.score": 1}';
+    var body = '{"players.${playQuiz.playerName}.score": 1}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/$playerSessionId'),
@@ -355,10 +390,10 @@ class MyAppState extends ChangeNotifier {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Sent response $i for player ${playedQuiz.name}");
+      print("Sent response $i for player ${playQuiz.playerName}");
     } else {
       errorDialog(
-          'Failed to send response number $i for player ${playedQuiz.name}');
+          'Failed to send response number $i for player ${playQuiz.playerName}');
     }
     notifyListeners();
     return true;
@@ -379,9 +414,12 @@ class MyAppState extends ChangeNotifier {
         print('querySnapshot.docs: ${querySnapshot.docs}');
         if (querySnapshot.docs.isEmpty) {
           errorDialog('No session found with pin $pin.');
-          playedQuiz.quiz = null;
-          playedQuiz.pin = '';
-          playedQuiz.name = '';
+          playQuiz.quiz = null;
+          playQuiz.pin = '';
+          playQuiz.playerName = '';
+          playQuiz.curQuestion = 0;
+          playQuiz.timeLimit = 0;
+          playQuiz.timeLeft = 0;
           notifyListeners();
           return null;
         } else if (querySnapshot.docs.length > 1) {
@@ -391,12 +429,18 @@ class MyAppState extends ChangeNotifier {
         var session = querySnapshot.docs[0].data();
         playerSessionId = session['hostId'];
         print('pin $pin led to session $playerSessionId');
-        playedQuiz.quiz = getQuiz(session['quizId']);
-        print('session led to quiz ${playedQuiz.quiz?.name}');
+        playQuiz.quiz = getQuiz(session['quizId']);
+        playQuiz.pin = session['pin'];
+        playQuiz.curQuestion = int.parse(session['curQuestion']);
+        playQuiz.timeLimit = int.parse(session['timeLimit']);
+        playQuiz.timeLeft = playQuiz.timeLimit;
+        print('session led to quiz ${playQuiz.quiz?.name}');
+        // Start listening on this session for updates from host.
         playerSessionStream = FirebaseFirestore.instance
             .collection('sessions')
             .doc(playerSessionId)
             .snapshots();
+        print('playQuiz: $playQuiz');
         notifyListeners();
       },
       onError: (e) => errorDialog("Error completing: $e"),

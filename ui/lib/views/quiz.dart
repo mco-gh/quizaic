@@ -3,9 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
-import 'package:go_router/go_router.dart';
 import 'package:quizaic/const.dart';
 import 'package:quizaic/views/helpers.dart';
+import 'package:quizaic/views/timer.dart';
+
+Widget timerBar = TimerBar();
+int lastQuestion = -1;
 
 class QuizPage extends StatelessWidget {
   @override
@@ -17,17 +20,22 @@ class QuizPage extends StatelessWidget {
       stream: appState.playerSessionStream,
       builder: (context, snapshot) {
         if (snapshot.data?.data() == null) {
-          return Center(child: Text('Waiting for quiz to start...'));
+          return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
         if (data['curQuestion'] == "-1") {
-          GoRouter.of(context).go('/play');
-          //return Center(child: Text('Waiting for quiz to start...'));
+          return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
 
         int curQuestion = int.parse(data['curQuestion']);
-        var quiz = jsonDecode(appState.playedQuiz.quiz?.qAndA! as String);
+        if (curQuestion != lastQuestion) {
+          print('starting question number $curQuestion');
+          appState.startQuestionTimer();
+          appState.playQuiz.curQuestion = curQuestion;
+          lastQuestion = curQuestion;
+        }
+        var quiz = jsonDecode(appState.playQuiz.quiz?.qAndA! as String);
         var question = quiz[curQuestion]['question'];
         var correct = quiz[curQuestion]['correct'];
         var responses = quiz[curQuestion]['responses'];
@@ -47,7 +55,7 @@ class QuizPage extends StatelessWidget {
             Widget grade = na;
 
             if (!enable) {
-              if (responses[i] == appState.playedQuiz.response) {
+              if (responses[i] == appState.playQuiz.response) {
                 if (responses[i] == correct) {
                   grade = yes;
                 } else {
@@ -71,7 +79,8 @@ class QuizPage extends StatelessWidget {
                   onPressed: enable
                       ? () => {
                             appState.respondedQuestion = curQuestion,
-                            appState.playedQuiz.response = responses[i],
+                            appState.playQuiz.response = responses[i],
+                            appState.stopQuestionTimer(),
                             (context as Element).markNeedsBuild(),
                             if (responses[i] == correct)
                               {
@@ -91,10 +100,13 @@ class QuizPage extends StatelessWidget {
           return responseList;
         }
 
+        print(
+            'curQuestion: $curQuestion, respondedQuestion: ${appState.respondedQuestion}');
         bool enable = (curQuestion != appState.respondedQuestion);
 
         List<Widget> widgets = [
           SizedBox(height: verticalSpaceHeight * 2),
+          timerBar,
           genText(theme, 'Question $curQuestion: $question'),
           SizedBox(height: verticalSpaceHeight * 2),
         ];
@@ -108,5 +120,5 @@ class QuizPage extends StatelessWidget {
     );
   }
 
-  QuizPage();
+  //QuizPage();
 }

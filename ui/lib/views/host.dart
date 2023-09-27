@@ -38,41 +38,41 @@ class _HostPageState extends State<HostPage> {
 
     void setHostSynch(value) {
       return setState(() {
-        appState.hostedQuiz.synch = value.toString();
+        appState.hostQuiz.synch = value.toString();
       });
     }
 
     String getHostTimeLimit() {
-      return appState.hostedQuiz.timeLimit;
+      return appState.hostQuiz.timeLimit;
     }
 
     void setHostTimeLimit(value) {
       return setState(() {
-        appState.hostedQuiz.timeLimit = value.toString();
+        appState.hostQuiz.timeLimit = value.toString();
       });
     }
 
     void setHostType(value) {
       return setState(() {
-        appState.hostedQuiz.type = value.toString();
+        appState.hostQuiz.type = value.toString();
       });
     }
 
     void setHostAnonymous(value) {
       return setState(() {
-        appState.hostedQuiz.anonymous = value.toString();
+        appState.hostQuiz.anonymous = value.toString();
       });
     }
 
     void setHostRandomizeQuestions(value) {
       return setState(() {
-        appState.hostedQuiz.randomizeQuestions = value.toString();
+        appState.hostQuiz.randomizeQuestions = value.toString();
       });
     }
 
     void setHostRandomizeAnswers(value) {
       return setState(() {
-        appState.hostedQuiz.randomizeAnswers = value.toString();
+        appState.hostQuiz.randomizeAnswers = value.toString();
       });
     }
 
@@ -211,7 +211,7 @@ class _HostPageState extends State<HostPage> {
                   'Synch or Asynch',
                   _formKey,
                   formColumnWidth,
-                  appState.hostedQuiz.synch,
+                  appState.hostQuiz.synch,
                   () => synchronousOrAsynchronous,
                   setHostSynch),
               SizedBox(height: verticalSpaceHeight),
@@ -227,7 +227,7 @@ class _HostPageState extends State<HostPage> {
                   'Quiz or Survey',
                   _formKey,
                   formColumnWidth,
-                  appState.hostedQuiz.type,
+                  appState.hostQuiz.type,
                   () => ['Quiz', 'Survey'],
                   setHostType),
               SizedBox(height: verticalSpaceHeight),
@@ -238,7 +238,7 @@ class _HostPageState extends State<HostPage> {
                   'Anonymous or Authenticated',
                   _formKey,
                   formColumnWidth,
-                  appState.hostedQuiz.anonymous,
+                  appState.hostQuiz.anonymous,
                   () => anonymousOrAuthenticated,
                   setHostAnonymous),
               SizedBox(height: verticalSpaceHeight),
@@ -249,7 +249,7 @@ class _HostPageState extends State<HostPage> {
                   'Randomize Questions',
                   _formKey,
                   formColumnWidth,
-                  appState.hostedQuiz.randomizeQuestions,
+                  appState.hostQuiz.randomizeQuestions,
                   () => yesOrNo,
                   setHostRandomizeQuestions),
               SizedBox(height: verticalSpaceHeight),
@@ -260,7 +260,7 @@ class _HostPageState extends State<HostPage> {
                   'Randomize Answers',
                   _formKey,
                   formColumnWidth,
-                  appState.hostedQuiz.randomizeAnswers,
+                  appState.hostQuiz.randomizeAnswers,
                   () => yesOrNo,
                   setHostRandomizeAnswers),
               SizedBox(height: verticalSpaceHeight),
@@ -282,7 +282,7 @@ class _HostPageState extends State<HostPage> {
                         appState.createSession(quiz.id);
                       }
                     },
-                    child: genText(theme, 'Start ${appState.hostedQuiz.type}'),
+                    child: genText(theme, 'Start ${appState.hostQuiz.type}'),
                   ),
                 ),
               ),
