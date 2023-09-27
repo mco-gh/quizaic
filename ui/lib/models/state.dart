@@ -93,6 +93,7 @@ class MyAppState extends ChangeNotifier {
 
   stopQuestionTimer() {
     questionTimer?.cancel();
+    playQuiz.timeLeft = 0;
     notifyListeners();
   }
 
