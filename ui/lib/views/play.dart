@@ -25,6 +25,9 @@ final defaultPinTheme = PinTheme(
 class PlayPage extends StatelessWidget {
   final _controller = TextEditingController();
   final filter = Filter();
+  final String? pin;
+
+  PlayPage({this.pin});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,10 @@ class PlayPage extends StatelessWidget {
         return;
       }
       appState.registerPlayer(name, router);
+    }
+
+    if (pin != null && pin != '') {
+      appState.playQuiz.pin = pin as String;
     }
 
     if (appState.playQuiz.pin != '' && appState.playQuiz.pin != '') {

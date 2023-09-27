@@ -119,6 +119,4 @@ class QuizPage extends StatelessWidget {
       },
     );
   }
-
-  //QuizPage();
 }

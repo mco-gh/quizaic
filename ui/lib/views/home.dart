@@ -98,6 +98,10 @@ class HomePage extends StatefulWidget {
                 pageBuilder: (context, state) =>
                     genCustomTransitionPage(state, PlayPage())),
             GoRoute(
+                path: '/play/:pin',
+                pageBuilder: (context, state) => genCustomTransitionPage(
+                    state, PlayPage(pin: state.pathParameters['pin']))),
+            GoRoute(
                 path: '/quiz',
                 pageBuilder: (context, state) =>
                     genCustomTransitionPage(state, QuizPage())),
