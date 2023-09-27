@@ -17,6 +17,7 @@ class EditQuiz {
   String topic = 'Select generator to see topics';
   String numQuestions = '';
   String difficulty = '';
+  String qAndA = '';
 }
 
 class HostQuiz {
@@ -158,6 +159,7 @@ class MyAppState extends ChangeNotifier {
         editQuiz.topic = quiz.topic;
         editQuiz.numQuestions = quiz.numQuestions;
         editQuiz.difficulty = difficultyLevel[int.parse(quiz.difficulty) - 1];
+        editQuiz.qAndA = quiz.qAndA;
       }
     }
   }
@@ -299,6 +301,7 @@ class MyAppState extends ChangeNotifier {
     tmpQuiz.topic = editQuiz.topic;
     tmpQuiz.numQuestions = editQuiz.numQuestions;
     tmpQuiz.difficulty = dstr;
+    tmpQuiz.qAndA = editQuiz.qAndA;
 
     String url = '';
     String confirmation = '';

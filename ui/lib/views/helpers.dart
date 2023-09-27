@@ -122,11 +122,10 @@ Widget genCard(theme, widget) {
   );
 }
 
-Widget genQuestionList(ThemeData theme, quiz) {
+Widget genQuestionList(ThemeData theme, quiz, appState) {
   List<Widget> widgets = [];
   List<Widget> subwidgets = [];
   int i = 0;
-  int j = 0;
   if (quiz == null) {
     return Padding(
       padding: const EdgeInsets.all(formPadding),
@@ -135,13 +134,36 @@ Widget genQuestionList(ThemeData theme, quiz) {
   }
   var qAndA = jsonDecode(quiz.qAndA as String);
   for (var question in qAndA) {
-    j = 0;
+    getQuestion() {
+      return question['question'];
+    }
+
+    setQuestion(s) {
+      question['question'] = s;
+      appState.editQuiz.qAndA = jsonEncode(qAndA);
+    }
+
     subwidgets = [];
-    widgets.add(genText(theme, '${i + 1}: ${question["question"]}'));
+
+    widgets.add(Row(
+      children: [
+        genTextFormField(theme, '${i + 1}', null, getQuestion, setQuestion),
+        SizedBox(width: horizontalSpaceWidth),
+      ],
+    ));
     if (quiz.answerFormat == "multiple choice") {
-      for (var answer in question["responses"]) {
-        subwidgets.add(genText(theme, '${options[j]}: $answer'));
-        j++;
+      for (var j = 0; j < question["responses"].length; j++) {
+        getResponse() {
+          return question["responses"][j];
+        }
+
+        setResponse(s) {
+          question['responses'][j] = s;
+          appState.editQuiz.qAndA = jsonEncode(qAndA);
+        }
+
+        subwidgets.add(genTextFormField(
+            theme, options[j], null, getResponse, setResponse));
       }
     } else {
       subwidgets.add(genText(theme, 'Answer: ${question["correct"]}'));

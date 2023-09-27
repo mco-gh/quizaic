@@ -94,7 +94,7 @@ class _HostPageState extends State<HostPage> {
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = int.parse(data['curQuestion']);
-            var question = jsonDecode(quiz.qAndA!)[curQuestion]['question'];
+            var question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
 
             return StreamBuilder<DocumentSnapshot>(
                 stream: appState.resultsStream,
@@ -129,7 +129,7 @@ class _HostPageState extends State<HostPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             for (var answer
-                                in jsonDecode(quiz.qAndA!)[curQuestion]
+                                in jsonDecode(quiz.qAndA)[curQuestion]
                                     ['responses'])
                               genCard(theme, genText(theme, answer)),
                           ]),

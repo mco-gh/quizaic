@@ -307,7 +307,7 @@ class _CreatePageState extends State<CreatePage> {
                   width: formColumnWidth,
                   child: ExpansionTile(
                       title: genText(theme, 'Quiz Contents'),
-                      children: [genQuestionList(theme, quiz)]),
+                      children: [genQuestionList(theme, quiz, appState)]),
                 ),
             ]),
           )),
