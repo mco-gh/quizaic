@@ -354,7 +354,7 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> registerPlayer(playerName, router) async {
+  Future<bool> registerPlayer(playerName) async {
     var body = '{"players.$playerName.score": 0}';
     print('name: $playerName, body: $body');
     final response = await http.patch(
@@ -368,7 +368,6 @@ class MyAppState extends ChangeNotifier {
       playQuiz.playerName = playerName;
       storage.setItem(playQuiz.pin, playQuiz.playerName);
       print("Player ${playQuiz.playerName} registered.");
-      router.go('/quiz');
     } else {
       if (response.statusCode == 409) {
         errorDialog('Player $playerName already registered for this quiz.');

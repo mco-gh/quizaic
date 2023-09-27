@@ -96,7 +96,6 @@ class QuizPage extends StatelessWidget {
               responseList.add(SizedBox(height: verticalSpaceHeight * 2));
             }
           }
-
           return responseList;
         }
 

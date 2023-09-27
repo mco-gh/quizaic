@@ -6,8 +6,8 @@ import 'package:quizaic/views/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:quizaic/views/helpers.dart';
-import 'package:go_router/go_router.dart';
 import 'package:bad_words/bad_words.dart';
+import 'package:quizaic/views/quiz.dart';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -34,14 +34,14 @@ class PlayPage extends StatelessWidget {
     final appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
 
-    checkAndRegisterPlayerName(name, router) async {
+    checkAndRegisterPlayerName(name) async {
       bool profane = filter.isProfane(name);
       if (profane) {
         errorDialog('Invalid name, please try again.');
         _controller.setText('');
         return;
       }
-      appState.registerPlayer(name, router);
+      appState.registerPlayer(name);
     }
 
     if (pin != null && pin != '') {
@@ -49,11 +49,14 @@ class PlayPage extends StatelessWidget {
     }
 
     if (appState.playQuiz.pin != '' && appState.playQuiz.pin != '') {
+      if (playQuiz.playerName != '') {
+        return QuizPage();
+      }
       appState.findQuizByPin(appState.playQuiz.pin);
       String? name =
           appState.getPlayerNameByPinFromLocal(appState.playQuiz.pin);
       if (name != null) {
-        GoRouter.of(context).go('/quiz');
+        return QuizPage();
       }
     }
 
@@ -114,8 +117,7 @@ class PlayPage extends StatelessWidget {
                               child: TextField(
                                 controller: _controller,
                                 onSubmitted: (name) =>
-                                    checkAndRegisterPlayerName(
-                                        name, GoRouter.of(context)),
+                                    checkAndRegisterPlayerName(name),
                                 decoration: InputDecoration(
                                   filled: true,
                                   hintText: "Name",
@@ -139,8 +141,8 @@ class PlayPage extends StatelessWidget {
                                     else
                                       {
                                         checkAndRegisterPlayerName(
-                                            _controller.value.text,
-                                            GoRouter.of(context))
+                                          _controller.value.text,
+                                        )
                                       }
                                   },
                               child: genText(theme, 'Play Quiz')),
