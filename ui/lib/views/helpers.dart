@@ -182,7 +182,7 @@ Widget genQuizGeneratorWidget(
     widget = genLabelValue(theme, 'Quiz Generator:', quiz.generator);
   } else {
     widget = genDropdownMenu(theme, 'Quiz Generator', key, formColumnWidth,
-        appState.selectedQuiz.generator, getGenerators, setGenerator);
+        appState.editQuiz.generator, getGenerators, setGenerator);
   }
   return widget;
 }
@@ -195,7 +195,7 @@ Widget genQuizTopicWidget(
     widget = genLabelValue(theme, 'Quiz Topic:', quiz.topic);
   } else {
     widget = genDropdownMenu(theme, 'Quiz Topic', key, formColumnWidth,
-        appState.selectedQuiz.topic, getTopics, setTopic);
+        appState.editQuiz.topic, getTopics, setTopic);
   }
   return widget;
 }
@@ -208,7 +208,7 @@ Widget genQuizAnswerFormatWidget(
     widget = genLabelValue(theme, 'Answer Format:', quiz.answerFormat);
   } else {
     widget = genDropdownMenu(theme, 'Answer Format', key, formColumnWidth,
-        appState.selectedQuiz.answerFormat, getAnswerFormats, setAnswerFormat);
+        appState.editQuiz.answerFormat, getAnswerFormats, setAnswerFormat);
   }
   return widget;
 }
@@ -234,7 +234,7 @@ Widget genQuizDifficultyWidget(
     widget = genLabelValue(theme, 'Difficulty:', quiz.difficulty);
   } else {
     widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
-        appState.selectedQuiz.difficulty, getDifficulty, setDifficulty);
+        appState.editQuiz.difficulty, getDifficulty, setDifficulty);
   }
   return widget;
 }
