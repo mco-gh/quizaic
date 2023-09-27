@@ -43,7 +43,7 @@ class HomePage extends StatefulWidget {
 
   final _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: '/play',
+      initialLocation: '/browse',
       debugLogDiagnostics: true,
       routes: <RouteBase>[
         ShellRoute(

@@ -49,7 +49,7 @@ class PlayPage extends StatelessWidget {
     }
 
     if (appState.playQuiz.pin != '' && appState.playQuiz.pin != '') {
-      if (playQuiz.playerName != '') {
+      if (appState.playQuiz.playerName != '') {
         return QuizPage();
       }
       appState.findQuizByPin(appState.playQuiz.pin);
