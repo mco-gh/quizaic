@@ -225,7 +225,7 @@ class _HostPageState extends State<HostPage> {
                             SizedBox(width: horizontalSpaceWidth),
                             ElevatedButton(
                               onPressed: () {
-                                appState.deleteSession();
+                                appState.stopSession();
                               },
                               child: genText(theme, 'Stop Quiz'),
                             ),
@@ -336,7 +336,7 @@ class _HostPageState extends State<HostPage> {
                           SnackBar(content: genText(theme, 'Hosting quiz...')),
                         );
                         print('creating session...');
-                        appState.createSession(quiz.id);
+                        appState.createOrReuseSession(quiz.id);
                       }
                     },
                     child: genText(theme, 'Start ${appState.hostQuiz.type}'),

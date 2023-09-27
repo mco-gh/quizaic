@@ -138,11 +138,8 @@ class _BrowsePageState extends State<BrowsePage> {
                                                   ],
                                                 ),
                                                 onPressed: () {
-                                                  appState
-                                                      .checkForSession()
-                                                      .whenComplete(() =>
-                                                          GoRouter.of(context).go(
-                                                              '/host/${quiz.id}'));
+                                                  GoRouter.of(context)
+                                                      .go('/host/${quiz.id}');
                                                 },
                                               ),
                                               TextButton(

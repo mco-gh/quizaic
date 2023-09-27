@@ -186,10 +186,8 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> checkForSession() async {
-    // check whether this person is already hosting a quiz.
-    print('checkForSession()');
-    final response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
+  Future<bool> createOrReuseSession(quizId) async {
+    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
       'Authorization': 'Bearer $idToken',
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -197,6 +195,15 @@ class MyAppState extends ChangeNotifier {
       var resp = json.decode(response.body);
       sessionId = resp["hostId"];
       runningQuizId = resp["quizId"];
+
+      // if quiz in session doesn't match the one this host wants to run,
+      // alert the user.
+      if (runningQuizId != '' && runningQuizId != quizId) {
+        errorDialog(
+            'Session already in progress for quiz $runningQuizId, stop it to start a new one.');
+        return false;
+      }
+
       sessionStream = FirebaseFirestore.instance
           .collection('sessions')
           .doc(sessionId)
@@ -209,16 +216,12 @@ class MyAppState extends ChangeNotifier {
       print('Resuming session already in progress for this host: $sessionId.');
       return true;
     }
-    notifyListeners();
-    return false;
-  }
 
-  Future<bool> createSession(quizId) async {
-    // Create a new session for this user.
-    print('createSession($quizId)');
+    // No session found for this host so create a new one.
     Session session = Session(
       state: 'starting',
       quizId: quizId,
+      curQuestion: '-1',
       synchronous: hostQuiz.synch == 'Synchronous' ? true : false,
       timeLimit: hostQuiz.timeLimit,
       survey: false,
@@ -227,7 +230,7 @@ class MyAppState extends ChangeNotifier {
       randomizeAnswers: hostQuiz.randomizeAnswers == 'Yes' ? true : false,
     );
 
-    final response = await http.post(Uri.parse('$apiUrl/sessions'),
+    response = await http.post(Uri.parse('$apiUrl/sessions'),
         body: jsonEncode(session),
         headers: {
           'Authorization': 'Bearer $idToken',
@@ -258,21 +261,37 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> deleteSession() async {
-    print('deleteSession()');
-
-    final response =
-        await http.delete(Uri.parse('$apiUrl/sessions/$sessionId'), headers: {
+  Future<bool> stopSession() async {
+    // stop a session by deleting the associated results but leave the session
+    // record intact so the host can reuse it later. Eventually we need to
+    // garbage collect stale sessions.
+    var response =
+        await http.delete(Uri.parse('$apiUrl/results/$sessionId'), headers: {
       'Authorization': 'Bearer $idToken',
     });
-
     if (response.statusCode == 200 || response.statusCode == 204) {
-      sessionId = '';
-      runningQuizId = '';
       print("Quiz $runningQuizId stopped.");
     } else {
       errorDialog('Failed to stop quiz $runningQuizId');
     }
+
+    // Reset quizid and current question in session record so that
+    // it can be resued later for another quiz.
+    var body = '{"quizId": "", "curQuestion": "-1"}';
+    response = await http
+        .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
+      'Authorization': 'Bearer $idToken',
+      'Content-Type': 'application/json',
+    });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      sessionId = '';
+      runningQuizId = '';
+      print("Quiz $runningQuizId reset.");
+    } else {
+      errorDialog('Failed to reset session $sessionId');
+    }
+    sessionId = '';
+    runningQuizId = '';
     notifyListeners();
     return true;
   }
