@@ -63,6 +63,7 @@ class MyAppState extends ChangeNotifier {
   String sessionId = '';
   String runningQuizId = '';
   int respondedQuestion = -1;
+  bool sessionFound = false;
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
@@ -452,25 +453,26 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Quiz? findQuizByPin(pin) {
-    print('findSessionByPin($pin)');
+  clearPlayQuiz() {
+    playQuiz.quiz = null;
+    playQuiz.pin = '';
+    playQuiz.playerName = '';
+    playQuiz.curQuestion = 0;
+    playQuiz.timeLimit = 0;
+    playQuiz.timeLeft = 0;
+  }
+
+  findSessionByPin(pin, failure) {
+    sessionFound = false;
     FirebaseFirestore.instance
         .collection('sessions')
         .where('pin', isEqualTo: pin)
         .get()
         .then(
       (querySnapshot) {
-        print('querySnapshot.docs: ${querySnapshot.docs}');
         if (querySnapshot.docs.isEmpty) {
-          errorDialog('No session found with pin $pin.');
-          playQuiz.quiz = null;
-          playQuiz.pin = '';
-          playQuiz.playerName = '';
-          playQuiz.curQuestion = 0;
-          playQuiz.timeLimit = 0;
-          playQuiz.timeLeft = 0;
-          notifyListeners();
-          return null;
+          clearPlayQuiz();
+          failure(pin);
         } else if (querySnapshot.docs.length > 1) {
           errorDialog(
               'Multiple sessions with pin $pin, using first one found.');
@@ -489,11 +491,11 @@ class MyAppState extends ChangeNotifier {
             .collection('sessions')
             .doc(playerSessionId)
             .snapshots();
-        print('playQuiz: $playQuiz');
+        sessionFound = true;
         notifyListeners();
       },
       onError: (e) => errorDialog("Error completing: $e"),
     );
-    return null;
+    return;
   }
 }

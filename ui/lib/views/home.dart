@@ -43,7 +43,7 @@ class HomePage extends StatefulWidget {
 
   final _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: '/browse',
+      //initialLocation: '/browse',
       debugLogDiagnostics: true,
       routes: <RouteBase>[
         ShellRoute(
@@ -61,6 +61,11 @@ class HomePage extends StatefulWidget {
                     )));
           },
           routes: <RouteBase>[
+            GoRoute(
+              path: '/',
+              pageBuilder: (context, state) =>
+                  genCustomTransitionPage(state, BrowsePage()),
+            ),
             GoRoute(
               path: '/browse',
               pageBuilder: (context, state) =>

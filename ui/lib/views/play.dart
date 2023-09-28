@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:bad_words/bad_words.dart';
-import 'package:quizaic/views/quiz.dart';
+import 'package:go_router/go_router.dart';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -34,6 +34,16 @@ class PlayPage extends StatelessWidget {
     final appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
 
+    badPinOnDeepLink(pin) {
+      errorDialog('No session/quiz available with pin $pin');
+      GoRouter.of(context).go('/play');
+    }
+
+    badPinOnPlayForm(pin) {
+      errorDialog('No session/quiz available with pin $pin');
+      GoRouter.of(context).go('/play');
+    }
+
     checkAndRegisterPlayerName(name) async {
       bool profane = filter.isProfane(name);
       if (profane) {
@@ -44,20 +54,16 @@ class PlayPage extends StatelessWidget {
       appState.registerPlayer(name);
     }
 
-    if (pin != null && pin != '') {
-      appState.playQuiz.pin = pin as String;
-    }
-
-    if (appState.playQuiz.pin != '' && appState.playQuiz.pin != '') {
-      if (appState.playQuiz.playerName != '') {
-        return QuizPage();
-      }
-      appState.findQuizByPin(appState.playQuiz.pin);
-      String? name =
-          appState.getPlayerNameByPinFromLocal(appState.playQuiz.pin);
-      if (name != null) {
-        return QuizPage();
-      }
+    // if a pin was provided by url and we haven't yet found
+    // a session for it, try to do so here.
+    if (pin != null && pin != '' && !appState.sessionFound) {
+      appState.findSessionByPin(pin, badPinOnDeepLink);
+      // Can't do this yet because don't know if session found,
+      // since that's done async.
+      //String? name = appState.getPlayerNameByPinFromLocal(pin);
+      //if (name != null) {
+      //return QuizPage();
+      //}
     }
 
     return Scaffold(
@@ -71,7 +77,11 @@ class PlayPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: verticalSpaceHeight * 2),
-                    genText(theme, 'Enter a PIN to play a quiz:'),
+                    genText(
+                      theme,
+                      'Enter a PIN to play a quiz:',
+                      weight: FontWeight.bold,
+                    ),
                     SizedBox(height: verticalSpaceHeight * 2),
                     Pinput(
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -79,8 +89,8 @@ class PlayPage extends StatelessWidget {
                       length: 3,
                       defaultPinTheme: defaultPinTheme,
                       validator: (s) {
-                        appState.findQuizByPin(s);
-                        return;
+                        appState.findSessionByPin(s, badPinOnPlayForm);
+                        return null;
                       },
                     ),
                     SizedBox(height: verticalSpaceHeight * 3),
@@ -99,14 +109,10 @@ class PlayPage extends StatelessWidget {
                                 SizedBox(width: horizontalSpaceWidth),
                                 genText(
                                   theme,
-                                  'Quiz Name:',
+                                  'Quiz Name: ${appState.playQuiz.quiz?.name}',
+                                  weight: FontWeight.bold,
                                 ),
                               ]),
-                              SizedBox(width: 20),
-                              genText(
-                                theme,
-                                '${appState.playQuiz.quiz?.name}',
-                              ),
                             ],
                           ),
                           SizedBox(height: verticalSpaceHeight * 3),

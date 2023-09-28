@@ -198,8 +198,10 @@ class _HostPageState extends State<HostPage> {
                     children: [
                       genText(theme, 'Hosting Quiz "${quiz.name}"'),
                       SizedBox(height: formRowHeight),
-                      genCard(theme,
-                          genText(theme, 'Question $curQuestion: $question')),
+                      genCard(
+                          theme,
+                          genText(
+                              theme, 'Question ${curQuestion + 1}: $question')),
                       SizedBox(height: formRowHeight),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,

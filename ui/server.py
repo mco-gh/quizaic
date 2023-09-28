@@ -20,8 +20,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         ext = request_file_path.suffix
         if not request_file_path.is_file() and not pattern.match(ext):
-            self.path = f"index.html?path={self.path}"
-            print(f"update url: {self.path=}")
+            self.path = "index.html"
 
         return http.server.SimpleHTTPRequestHandler.do_GET(self)
 
