@@ -10,8 +10,8 @@ class TimerBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = context.watch<MyAppState>();
 
-    print('timeLeft: ${appState.playQuiz.timeLeft}');
-    if (appState.playQuiz.timeLeft == 0) {
+    print('timeLeft: ${appState.playerData.timeLeft}');
+    if (appState.playerData.timeLeft == 0) {
       return Container();
     }
 
@@ -27,8 +27,9 @@ class TimerBar extends StatelessWidget {
             children: [
               LayoutBuilder(
                 builder: (context, constraints) => Container(
-                  width: (constraints.maxWidth / appState.playQuiz.timeLimit) *
-                      appState.playQuiz.timeLeft,
+                  width:
+                      (constraints.maxWidth / appState.playerData.timeLimit) *
+                          appState.playerData.timeLeft,
                   decoration: BoxDecoration(
                     gradient: primaryGradient,
                     borderRadius: BorderRadius.circular(50),
@@ -41,7 +42,7 @@ class TimerBar extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${appState.playQuiz.timeLeft.round()} seconds"),
+                      Text("${appState.playerData.timeLeft.round()} seconds"),
                       Icon(Icons.timer),
                     ],
                   ),

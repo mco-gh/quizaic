@@ -79,7 +79,7 @@ class PlayPage extends StatelessWidget {
                     SizedBox(height: verticalSpaceHeight * 2),
                     genText(
                       theme,
-                      'Enter a PIN to play a quiz:',
+                      'Enter a PIN to play a quiz or complete a survey:',
                       weight: FontWeight.bold,
                     ),
                     SizedBox(height: verticalSpaceHeight * 2),
@@ -94,7 +94,7 @@ class PlayPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: verticalSpaceHeight * 3),
-                    if (appState.playQuiz.quiz != null)
+                    if (appState.playerData.quiz != null)
                       Column(
                         children: [
                           Row(
@@ -103,13 +103,13 @@ class PlayPage extends StatelessWidget {
                               Row(children: [
                                 SizedBox(height: verticalSpaceHeight * 3),
                                 Image.network(
-                                  appState.playQuiz.quiz?.imageUrl as String,
+                                  appState.playerData.quiz?.imageUrl as String,
                                   height: logoHeight,
                                 ),
                                 SizedBox(width: horizontalSpaceWidth),
                                 genText(
                                   theme,
-                                  'Quiz Name: ${appState.playQuiz.quiz?.name}',
+                                  'Quiz Name: ${appState.playerData.quiz?.name}',
                                   weight: FontWeight.bold,
                                 ),
                               ]),
@@ -141,7 +141,7 @@ class PlayPage extends StatelessWidget {
                                     if (_controller.value.text.isEmpty)
                                       {
                                         errorDialog(
-                                          'Please enter a name to play the quiz.',
+                                          'Please enter a name to play the quiz or complete the survey.',
                                         ),
                                       }
                                     else
@@ -151,7 +151,8 @@ class PlayPage extends StatelessWidget {
                                         )
                                       }
                                   },
-                              child: genText(theme, 'Play Quiz')),
+                              child: genText(theme,
+                                  'Play ${appState.sessionData.survey ? 'Survey' : 'Quiz'}')),
                         ],
                       ),
                   ],

@@ -10,7 +10,14 @@ import 'package:quizaic/const.dart';
 import 'package:localstorage/localstorage.dart';
 import 'dart:async';
 
-class EditQuiz {
+class UserData {
+  String name = '';
+  String hashedHmail = '';
+  String photoUrl = '';
+  String idToken = '';
+}
+
+class EditData {
   String name = '';
   String answerFormat = 'Select generator to see formats';
   String generator = '';
@@ -20,24 +27,18 @@ class EditQuiz {
   String qAndA = '';
 }
 
-class HostQuiz {
-  String synch = 'Synchronous';
-  String timeLimit = '30';
-  String type = 'Quiz';
-  String anonymous = 'Anonymous';
-  String randomizeQuestions = 'Yes';
-  String randomizeAnswers = 'Yes';
-}
-
-class PlayQuiz {
+class PlayerData {
   Quiz? quiz;
-
+  String quizId = '';
+  String sessionId = '';
   String playerName = '';
   String pin = '';
   String response = '';
-  int curQuestion = 0;
-  int timeLimit = 0;
-  int timeLeft = 0;
+  int curQuestion = -1;
+  int respondedQuestion = -1;
+  int timeLimit = -1;
+  int timeLeft = -1;
+  Timer? questionTimer;
 }
 
 class MyAppState extends ChangeNotifier {
@@ -45,28 +46,24 @@ class MyAppState extends ChangeNotifier {
   late Future<List<Generator>> futureFetchGenerators = fetchGenerators();
 
   final LocalStorage storage = LocalStorage(appName);
-  Timer? questionTimer;
 
-  var photoUrl = '';
-  var selectedIndex = 0;
-  var selectedPageIndex = 0;
-  String? idToken = '';
+  int selectedIndex = 0;
+  int selectedPageIndex = 0;
+  bool sessionFound = false;
+
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
 
-  EditQuiz editQuiz = EditQuiz();
-  HostQuiz hostQuiz = HostQuiz();
-  PlayQuiz playQuiz = PlayQuiz();
-
-  int curQuestion = 0;
-  String playerSessionId = '';
-  String sessionId = '';
-  String runningQuizId = '';
-  int respondedQuestion = -1;
-  bool sessionFound = false;
+  UserData userData = UserData();
+  EditData editData = EditData();
+  Session sessionData = Session();
+  PlayerData playerData = PlayerData();
 
   final Stream<QuerySnapshot> quizzesStream =
       FirebaseFirestore.instance.collection('quizzes').snapshots();
+  final Stream<QuerySnapshot> generatorsStream =
+      FirebaseFirestore.instance.collection('generators').snapshots();
+
   Stream<DocumentSnapshot<Map<String, dynamic>>>? sessionStream;
   Stream<DocumentSnapshot<Map<String, dynamic>>>? playerSessionStream;
   Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
@@ -82,11 +79,16 @@ class MyAppState extends ChangeNotifier {
       print("quizzes changed!");
       fetchQuizzes();
     });
+
+    generatorsStream.listen((event) {
+      print("generators changed!");
+      fetchGenerators();
+    });
   }
 
   startQuestionTimer() {
-    playQuiz.timeLeft = playQuiz.timeLimit;
-    questionTimer = Timer.periodic(
+    playerData.timeLeft = playerData.timeLimit;
+    playerData.questionTimer = Timer.periodic(
       Duration(seconds: 1),
       (Timer t) => decrQuestionTimer(),
     );
@@ -94,18 +96,18 @@ class MyAppState extends ChangeNotifier {
   }
 
   stopQuestionTimer() {
-    questionTimer?.cancel();
-    playQuiz.timeLeft = 0;
+    playerData.questionTimer?.cancel();
+    playerData.timeLeft = 0;
     notifyListeners();
   }
 
   decrQuestionTimer() {
-    playQuiz.timeLeft--;
-    print('timer fired, time left: ${playQuiz.timeLeft}');
+    playerData.timeLeft--;
+    print('timer fired, time left: ${playerData.timeLeft}');
 
-    if (playQuiz.timeLeft == 0) {
+    if (playerData.timeLeft == 0) {
       stopQuestionTimer();
-      respondedQuestion = playQuiz.curQuestion;
+      playerData.respondedQuestion = playerData.curQuestion;
     }
     notifyListeners();
   }
@@ -114,7 +116,7 @@ class MyAppState extends ChangeNotifier {
     String? playerName = storage.getItem(pin);
 
     if (playerName != null) {
-      playQuiz.playerName = playerName;
+      playerData.playerName = playerName;
     }
     return playerName;
   }
@@ -154,13 +156,13 @@ class MyAppState extends ChangeNotifier {
   void selectQuizData(id) {
     for (var quiz in quizzes) {
       if (quiz.id == id) {
-        editQuiz.name = quiz.name;
-        editQuiz.answerFormat = quiz.answerFormat;
-        editQuiz.generator = quiz.generator;
-        editQuiz.topic = quiz.topic;
-        editQuiz.numQuestions = quiz.numQuestions;
-        editQuiz.difficulty = difficultyLevel[int.parse(quiz.difficulty) - 1];
-        editQuiz.qAndA = quiz.qAndA;
+        editData.name = quiz.name;
+        editData.answerFormat = quiz.answerFormat;
+        editData.generator = quiz.generator;
+        editData.topic = quiz.topic;
+        editData.numQuestions = quiz.numQuestions;
+        editData.difficulty = difficultyLevel[int.parse(quiz.difficulty) - 1];
+        editData.qAndA = quiz.qAndA;
       }
     }
   }
@@ -174,7 +176,7 @@ class MyAppState extends ChangeNotifier {
     String body = '{"curQuestion": "$curQuestion"}';
     final response = await http
         .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
-      'Authorization': 'Bearer $idToken',
+      'Authorization': 'Bearer ${userData.idToken}',
       'Content-Type': 'application/json',
     });
 
@@ -204,64 +206,67 @@ class MyAppState extends ChangeNotifier {
       state: 'starting',
       quizId: quizId,
       curQuestion: '-1',
-      synchronous: hostQuiz.synch == 'Synchronous' ? true : false,
-      timeLimit: hostQuiz.timeLimit,
+      pin: '',
+      synchronous: sessionData.synchronous,
+      timeLimit: sessionData.timeLimit,
       survey: false,
-      anonymous: hostQuiz.anonymous == 'Anonymous' ? true : false,
-      randomizeQuestions: hostQuiz.randomizeQuestions == 'Yes' ? true : false,
-      randomizeAnswers: hostQuiz.randomizeAnswers == 'Yes' ? true : false,
+      anonymous: sessionData.anonymous,
+      randomizeQuestions: sessionData.randomizeQuestions,
+      randomizeAnswers: sessionData.randomizeAnswers,
     );
 
     // call the special /sessions/me endpoint to see if this host already
     // has a session in progress.
     var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
-      'Authorization': 'Bearer $idToken',
+      'Authorization': 'Bearer ${userData.idToken}',
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
       // session already available for this user, set sessionId accordingly.
       var resp = json.decode(response.body);
-      sessionId = resp["hostId"];
-      runningQuizId = resp["quizId"];
+      sessionData.sessionId = resp["hostId"];
+      sessionData.quizId = resp["quizId"];
 
       // If session in progress but quiz doesn't match the requested quiz,
       // alert the user.
-      if (runningQuizId != '' && runningQuizId != quizId) {
+      if (sessionData.quizId != '' && sessionData.quizId != quizId) {
         errorDialog(
-            'Session already in progress for quiz $runningQuizId, stop it to start a new one.');
+            'Session already in progress for quiz ${sessionData.quizId}, stop it to start a new one.');
         return false;
       }
 
       // Session is resumable but update its settings to match the host's request
       // and reset corresponding results object.
-      print('Resuming session already in progress for this host: $sessionId.');
-      response = await http.patch(Uri.parse('$apiUrl/sessions/$sessionId'),
+      print(
+          'Resuming session already in progress for this host: ${sessionData.sessionId}.');
+      response = await http.patch(
+          Uri.parse('$apiUrl/sessions/${sessionData.sessionId}'),
           body: jsonEncode(session),
           headers: {
-            'Authorization': 'Bearer $idToken',
+            'Authorization': 'Bearer ${userData.idToken}',
             'Content-Type': 'application/json',
           });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print('Session $sessionId updated.');
+        print('Session ${sessionData.sessionId} updated.');
       } else {
-        errorDialog('Failed to update session $sessionId');
+        errorDialog('Failed to update session ${sessionData.sessionId}');
       }
 
 /*
       String body = '{"players": null, "quizId": quizId}';
       response = await http
-          .patch(Uri.parse('$apiUrl/results/$sessionId'), body: body, headers: {
+          .patch(Uri.parse('$apiUrl/results/${sessionData.sessionId}'), body: body, headers: {
         'Authorization': 'Bearer $idToken',
         'Content-Type': 'application/json',
       });
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print('Results $sessionId updated.');
+        print('Results ${sessionData.sessionId} updated.');
       } else {
-        errorDialog('Failed to update results $sessionId');
+        errorDialog('Failed to update results ${sessionData.sessionId}');
       }
 */
 
-      setupStreams(sessionId);
+      setupStreams(sessionData.sessionId);
       notifyListeners();
       return true;
     }
@@ -270,16 +275,16 @@ class MyAppState extends ChangeNotifier {
     response = await http.post(Uri.parse('$apiUrl/sessions'),
         body: jsonEncode(session),
         headers: {
-          'Authorization': 'Bearer $idToken',
+          'Authorization': 'Bearer ${userData.idToken}',
           'Content-Type': 'application/json',
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       var resp = json.decode(response.body);
-      sessionId = resp["id"];
-      runningQuizId = quizId;
-      setupStreams(sessionId);
-      print('New session created: $sessionId.');
+      sessionData.sessionId = resp["id"];
+      sessionData.quizId = quizId;
+      setupStreams(sessionData.sessionId);
+      print('New session created: ${sessionData.sessionId}.');
     } else if (response.statusCode == 403) {
       errorDialog(
           'Failed to create session for quiz $quizId due to authorization error, are you logged in?');
@@ -295,39 +300,42 @@ class MyAppState extends ChangeNotifier {
     // stop a session by deleting the associated results but leave the session
     // record intact so the host can reuse it later. Eventually we need to
     // garbage collect stale sessions.
-    var response =
-        await http.delete(Uri.parse('$apiUrl/results/$sessionId'), headers: {
-      'Authorization': 'Bearer $idToken',
-    });
+    var response = await http.delete(
+        Uri.parse('$apiUrl/results/${sessionData.sessionId}'),
+        headers: {
+          'Authorization': 'Bearer ${userData.idToken}',
+        });
     if (response.statusCode == 200 || response.statusCode == 204) {
-      print("Quiz $runningQuizId stopped.");
+      print("Quiz ${sessionData.quizId} stopped.");
     } else {
-      errorDialog('Failed to stop quiz $runningQuizId');
+      errorDialog('Failed to stop quiz ${sessionData.quizId}');
     }
 
     // Reset quizid and current question in session record so that
     // it can be resued later for another quiz.
     var body = '{"quizId": "", "curQuestion": "-1"}';
-    response = await http
-        .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
-      'Authorization': 'Bearer $idToken',
-      'Content-Type': 'application/json',
-    });
+    response = await http.patch(
+        Uri.parse('$apiUrl/sessions/${sessionData.sessionId}'),
+        body: body,
+        headers: {
+          'Authorization': 'Bearer ${userData.idToken}',
+          'Content-Type': 'application/json',
+        });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      sessionId = '';
-      runningQuizId = '';
-      print("Quiz $runningQuizId reset.");
+      sessionData.sessionId = '';
+      sessionData.quizId = '';
+      print("Quiz ${sessionData.quizId} reset.");
     } else {
-      errorDialog('Failed to reset session $sessionId');
+      errorDialog('Failed to reset session ${sessionData.sessionId}');
     }
-    sessionId = '';
-    runningQuizId = '';
+    sessionData.sessionId = '';
+    sessionData.quizId = '';
     notifyListeners();
     return true;
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
-    int dnum = difficultyLevel.indexOf(editQuiz.difficulty);
+    int dnum = difficultyLevel.indexOf(editData.difficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
         name: '',
@@ -342,13 +350,13 @@ class MyAppState extends ChangeNotifier {
       tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
 
-    tmpQuiz.name = editQuiz.name;
-    tmpQuiz.generator = editQuiz.generator;
-    tmpQuiz.answerFormat = editQuiz.answerFormat;
-    tmpQuiz.topic = editQuiz.topic;
-    tmpQuiz.numQuestions = editQuiz.numQuestions;
+    tmpQuiz.name = editData.name;
+    tmpQuiz.generator = editData.generator;
+    tmpQuiz.answerFormat = editData.answerFormat;
+    tmpQuiz.topic = editData.topic;
+    tmpQuiz.numQuestions = editData.numQuestions;
     tmpQuiz.difficulty = dstr;
-    tmpQuiz.qAndA = editQuiz.qAndA;
+    tmpQuiz.qAndA = editData.qAndA;
 
     String url = '';
     String confirmation = '';
@@ -372,12 +380,11 @@ class MyAppState extends ChangeNotifier {
       method = http.patch;
     }
 
-    final response = await method(Uri.parse(url),
-        body: jsonEncode(tmpQuiz),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $idToken'
-        });
+    final response =
+        await method(Uri.parse(url), body: jsonEncode(tmpQuiz), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${userData.idToken}'
+    });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(confirmation);
@@ -392,7 +399,7 @@ class MyAppState extends ChangeNotifier {
 
   Future<bool> deleteQuiz(context, id) async {
     final response = await http.delete(Uri.parse('$apiUrl/quizzes/$id'),
-        headers: {'Authorization': 'Bearer $idToken'});
+        headers: {'Authorization': 'Bearer ${userData.idToken}'});
 
     if (response.statusCode == 200 || response.statusCode == 204) {
       print("Quiz id $id deleted.");
@@ -407,16 +414,16 @@ class MyAppState extends ChangeNotifier {
     var body = '{"players.$playerName.score": 0}';
     print('name: $playerName, body: $body');
     final response = await http.patch(
-        Uri.parse('$apiUrl/results/$playerSessionId'),
+        Uri.parse('$apiUrl/results/${playerData.sessionId}'),
         body: body,
         headers: {
-          'Authorization': 'Bearer $idToken',
+          'Authorization': 'Bearer ${userData.idToken}',
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      playQuiz.playerName = playerName;
-      storage.setItem(playQuiz.pin, playQuiz.playerName);
-      print("Player ${playQuiz.playerName} registered.");
+      playerData.playerName = playerName;
+      storage.setItem(playerData.pin, playerData.playerName);
+      print("Player ${playerData.playerName} registered.");
     } else {
       if (response.statusCode == 409) {
         errorDialog('Player $playerName already registered for this quiz.');
@@ -429,21 +436,21 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> sendResponse(i) async {
-    var body = '{"players.${playQuiz.playerName}.score": 1}';
+    var body = '{"players.${playerData.playerName}.score": 1}';
     print('body: $body');
     final response = await http.patch(
-        Uri.parse('$apiUrl/results/$playerSessionId'),
+        Uri.parse('$apiUrl/results/${playerData.sessionId}'),
         body: body,
         headers: {
-          'Authorization': 'Bearer $idToken',
+          'Authorization': 'Bearer ${userData.idToken}',
           'Content-Type': 'application/json',
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Sent response $i for player ${playQuiz.playerName}");
+      print("Sent response $i for player ${playerData.playerName}");
     } else {
       errorDialog(
-          'Failed to send response number $i for player ${playQuiz.playerName}');
+          'Failed to send response number $i for player ${playerData.playerName}');
     }
     notifyListeners();
     return true;
@@ -454,12 +461,12 @@ class MyAppState extends ChangeNotifier {
   }
 
   clearPlayQuiz() {
-    playQuiz.quiz = null;
-    playQuiz.pin = '';
-    playQuiz.playerName = '';
-    playQuiz.curQuestion = 0;
-    playQuiz.timeLimit = 0;
-    playQuiz.timeLeft = 0;
+    playerData.quiz = null;
+    playerData.pin = '';
+    playerData.playerName = '';
+    playerData.curQuestion = 0;
+    playerData.timeLimit = 0;
+    playerData.timeLeft = 0;
   }
 
   findSessionByPin(pin, failure) {
@@ -478,18 +485,18 @@ class MyAppState extends ChangeNotifier {
               'Multiple sessions with pin $pin, using first one found.');
         }
         var session = querySnapshot.docs[0].data();
-        playerSessionId = session['hostId'];
-        print('pin $pin led to session $playerSessionId');
-        playQuiz.quiz = getQuiz(session['quizId']);
-        playQuiz.pin = session['pin'];
-        playQuiz.curQuestion = int.parse(session['curQuestion']);
-        playQuiz.timeLimit = int.parse(session['timeLimit']);
-        playQuiz.timeLeft = playQuiz.timeLimit;
-        print('session led to quiz ${playQuiz.quiz?.name}');
+        playerData.sessionId = session['hostId'];
+        print('pin $pin led to session ${playerData.sessionId}');
+        playerData.quiz = getQuiz(session['quizId']);
+        playerData.pin = session['pin'];
+        playerData.curQuestion = int.parse(session['curQuestion']);
+        playerData.timeLimit = int.parse(session['timeLimit']);
+        playerData.timeLeft = playerData.timeLimit;
+        print('session led to quiz ${playerData.quiz?.name}');
         // Start listening on this session for updates from host.
         playerSessionStream = FirebaseFirestore.instance
             .collection('sessions')
-            .doc(playerSessionId)
+            .doc(playerData.sessionId)
             .snapshots();
         sessionFound = true;
         notifyListeners();

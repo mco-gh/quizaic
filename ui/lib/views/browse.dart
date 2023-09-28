@@ -38,7 +38,7 @@ class _BrowsePageState extends State<BrowsePage> {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
-    if (appState.idToken == null || appState.idToken == '') {
+    if (appState.userData.idToken == '') {
       return Center(
           child: genText(theme,
               'Please sign in, by clicking the person icon at upper right, to create quizzes.'));
@@ -95,8 +95,7 @@ class _BrowsePageState extends State<BrowsePage> {
                                                 quiz.imageUrl as String,
                                                 height: 150)),
                                         SizedBox(height: 15),
-                                        if (appState.idToken == null ||
-                                            appState.idToken == '')
+                                        if (appState.userData.idToken == '')
                                           Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,

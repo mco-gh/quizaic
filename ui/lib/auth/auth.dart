@@ -20,8 +20,8 @@ class AuthPage extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          appState.idToken = '';
-          appState.photoUrl = '';
+          appState.userData.idToken = '';
+          appState.userData.photoUrl = '';
           return SignInScreen(
             actions: [
               AuthStateChangeAction<SignedIn>((context, state) {
@@ -29,12 +29,12 @@ class AuthPage extends StatelessWidget {
                 if (user != null) {
                   user.getIdTokenResult().then((result) {
                     print('home page setting idToken');
-                    appState.idToken = result.token;
+                    appState.userData.idToken = result.token as String;
                     GoRouter.of(context).go('/browse');
                   });
                 }
                 if ((user != null) && (user.photoURL != null)) {
-                  appState.photoUrl = user.photoURL as String;
+                  appState.userData.photoUrl = user.photoURL as String;
                 }
               }),
             ],
@@ -110,10 +110,10 @@ class AuthPage extends StatelessWidget {
                     ]),
                   ),
                   onPressed: () => {
-                    appState.idToken = '',
-                    appState.photoUrl = '',
+                    appState.userData.idToken = '',
+                    appState.userData.photoUrl = '',
                     FirebaseAuth.instance.signOut(),
-                    GoRouter.of(context).go('/play'),
+                    GoRouter.of(context).go('/'),
                   },
                 ),
               ],

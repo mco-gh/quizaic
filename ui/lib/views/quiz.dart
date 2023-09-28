@@ -32,10 +32,10 @@ class QuizPage extends StatelessWidget {
         if (curQuestion != lastQuestion) {
           print('starting question number $curQuestion');
           appState.startQuestionTimer();
-          appState.playQuiz.curQuestion = curQuestion;
+          appState.playerData.curQuestion = curQuestion;
           lastQuestion = curQuestion;
         }
-        var quiz = jsonDecode(appState.playQuiz.quiz?.qAndA as String);
+        var quiz = jsonDecode(appState.playerData.quiz?.qAndA as String);
         var question = quiz[curQuestion]['question'];
         var correct = quiz[curQuestion]['correct'];
         var responses = quiz[curQuestion]['responses'];
@@ -55,7 +55,7 @@ class QuizPage extends StatelessWidget {
             Widget grade = na;
 
             if (!enable) {
-              if (responses[i] == appState.playQuiz.response) {
+              if (responses[i] == appState.playerData.response) {
                 if (responses[i] == correct) {
                   grade = yes;
                 } else {
@@ -78,8 +78,8 @@ class QuizPage extends StatelessWidget {
                   style: enable ? null : style,
                   onPressed: enable
                       ? () => {
-                            appState.respondedQuestion = curQuestion,
-                            appState.playQuiz.response = responses[i],
+                            appState.playerData.respondedQuestion = curQuestion,
+                            appState.playerData.response = responses[i],
                             appState.stopQuestionTimer(),
                             (context as Element).markNeedsBuild(),
                             if (responses[i] == correct)
@@ -100,8 +100,8 @@ class QuizPage extends StatelessWidget {
         }
 
         print(
-            'curQuestion: $curQuestion, respondedQuestion: ${appState.respondedQuestion}');
-        bool enable = (curQuestion != appState.respondedQuestion);
+            'curQuestion: $curQuestion, respondedQuestion: ${appState.playerData.respondedQuestion}');
+        bool enable = (curQuestion != appState.playerData.respondedQuestion);
 
         List<Widget> widgets = [
           SizedBox(height: verticalSpaceHeight * 2),

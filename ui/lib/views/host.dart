@@ -51,50 +51,53 @@ class _HostPageState extends State<HostPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('hosting quiz: ${widget.quizId}');
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     var quiz = appState.getQuiz(widget.quizId);
+
+    print(
+        'hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}: ${widget.quizId}');
 
     // Build a Form widget using the _formKey created
 
     void setHostSynch(value) {
       return setState(() {
-        appState.hostQuiz.synch = value.toString();
+        print('value: $value');
+        appState.sessionData.synchronous = value;
       });
     }
 
     String getHostTimeLimit() {
-      return appState.hostQuiz.timeLimit;
+      return appState.sessionData.timeLimit;
     }
 
     void setHostTimeLimit(value) {
       return setState(() {
-        appState.hostQuiz.timeLimit = value.toString();
+        appState.sessionData.timeLimit = value;
       });
     }
 
     void setHostType(value) {
       return setState(() {
-        appState.hostQuiz.type = value.toString();
+        appState.sessionData.survey = value.toBool();
       });
     }
 
     void setHostAnonymous(value) {
       return setState(() {
-        appState.hostQuiz.anonymous = value.toString();
+        appState.sessionData.anonymous = value.toBool();
       });
     }
 
     void setHostRandomizeQuestions(value) {
       return setState(() {
-        appState.hostQuiz.randomizeQuestions = value.toString();
+        appState.sessionData.randomizeQuestions = value.toBool();
       });
     }
 
     void setHostRandomizeAnswers(value) {
       return setState(() {
-        appState.hostQuiz.randomizeAnswers = value.toString();
+        appState.sessionData.randomizeAnswers = value.toBool();
       });
     }
 
@@ -104,14 +107,16 @@ class _HostPageState extends State<HostPage> {
       );
     }
 
-    String title = 'Hosting Quiz "${quiz.name}"';
+    String title =
+        'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"';
 
-    if (appState.sessionId != '') {
+    if (appState.sessionData.sessionId != '') {
       return StreamBuilder<DocumentSnapshot>(
           stream: appState.sessionStream,
           builder: (context, snapshot) {
             if (snapshot.data?.data() == null) {
-              return genText(theme, 'Hosting Quiz...');
+              return genText(theme,
+                  'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}...');
             }
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
@@ -159,7 +164,7 @@ class _HostPageState extends State<HostPage> {
                           Column(
                             children: [
                               genText(theme,
-                                  'Waiting for players to join quiz ${quiz.name}...',
+                                  'Waiting for players to join quiz "${quiz.name}"...',
                                   size: 30, weight: FontWeight.bold),
                               genText(theme,
                                   'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
@@ -186,17 +191,23 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(height: verticalSpaceHeight * 3),
                       ElevatedButton(
                         onPressed: () {
-                          appState.incQuestion(appState.sessionId, -1,
-                              int.parse(quiz.numQuestions));
+                          appState.incQuestion(appState.sessionData.sessionId,
+                              -1, int.parse(quiz.numQuestions));
                         },
-                        child: genText(theme, 'Start Quiz'),
+                        child: genText(
+                            theme, 'Start ${appState.sessionData.survey}'),
                       ),
                       SizedBox(height: verticalSpaceHeight),
                     ]);
                   }
                   return Column(
                     children: [
-                      genText(theme, 'Hosting Quiz "${quiz.name}"'),
+                      genText(theme,
+                          'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"',
+                          size: 30, weight: FontWeight.bold),
+                      genText(theme,
+                          'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                          size: 24, weight: FontWeight.bold),
                       SizedBox(height: formRowHeight),
                       genCard(
                           theme,
@@ -219,8 +230,10 @@ class _HostPageState extends State<HostPage> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                appState.incQuestion(appState.sessionId,
-                                    curQuestion, int.parse(quiz.numQuestions));
+                                appState.incQuestion(
+                                    appState.sessionData.sessionId,
+                                    curQuestion,
+                                    int.parse(quiz.numQuestions));
                               },
                               child: genText(theme, 'Next Question'),
                             ),
@@ -240,6 +253,8 @@ class _HostPageState extends State<HostPage> {
                 });
           });
     }
+    print(
+        'appState.sessionData.synchronous: ${appState.sessionData.synchronous}');
 
     return Center(
       child: Form(
@@ -270,7 +285,7 @@ class _HostPageState extends State<HostPage> {
                   'Synch or Asynch',
                   _formKey,
                   formColumnWidth,
-                  appState.hostQuiz.synch,
+                  appState.sessionData.synchronous ? 'Synch' : 'Asynch',
                   () => synchronousOrAsynchronous,
                   setHostSynch),
               SizedBox(height: verticalSpaceHeight),
@@ -286,8 +301,8 @@ class _HostPageState extends State<HostPage> {
                   'Quiz or Survey',
                   _formKey,
                   formColumnWidth,
-                  appState.hostQuiz.type,
-                  () => ['Quiz', 'Survey'],
+                  appState.sessionData.survey ? 'Survey' : 'Quiz',
+                  () => quizOrSurvey,
                   setHostType),
               SizedBox(height: verticalSpaceHeight),
 
@@ -297,7 +312,9 @@ class _HostPageState extends State<HostPage> {
                   'Anonymous or Authenticated',
                   _formKey,
                   formColumnWidth,
-                  appState.hostQuiz.anonymous,
+                  appState.sessionData.anonymous
+                      ? 'Anonymous'
+                      : 'Authenticated',
                   () => anonymousOrAuthenticated,
                   setHostAnonymous),
               SizedBox(height: verticalSpaceHeight),
@@ -308,7 +325,7 @@ class _HostPageState extends State<HostPage> {
                   'Randomize Questions',
                   _formKey,
                   formColumnWidth,
-                  appState.hostQuiz.randomizeQuestions,
+                  appState.sessionData.randomizeQuestions ? 'Yes' : 'No',
                   () => yesOrNo,
                   setHostRandomizeQuestions),
               SizedBox(height: verticalSpaceHeight),
@@ -319,7 +336,7 @@ class _HostPageState extends State<HostPage> {
                   'Randomize Answers',
                   _formKey,
                   formColumnWidth,
-                  appState.hostQuiz.randomizeAnswers,
+                  appState.sessionData.randomizeAnswers ? 'Yes' : 'No',
                   () => yesOrNo,
                   setHostRandomizeAnswers),
               SizedBox(height: verticalSpaceHeight),
@@ -335,12 +352,15 @@ class _HostPageState extends State<HostPage> {
                         // If the form is valid, display a snackbar. In the real world,
                         // you'd often call a server or save the information in a database.
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: genText(theme, 'Hosting quiz...')),
+                          SnackBar(
+                              content: genText(theme,
+                                  'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}...')),
                         );
                         appState.createOrReuseSession(quiz.id);
                       }
                     },
-                    child: genText(theme, 'Start ${appState.hostQuiz.type}'),
+                    child: genText(theme,
+                        'Host ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
                   ),
                 ),
               ),

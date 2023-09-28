@@ -153,7 +153,7 @@ class _MyHomePageState extends State<HomePage> {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         user.getIdTokenResult().then((result) {
-          appState.idToken = result.token;
+          appState.userData.idToken = result.token as String;
         });
       }
     });
@@ -193,8 +193,8 @@ class HomePageScaffold extends StatelessWidget {
     );
 
     dynamic icon = Icon(Icons.person, color: Colors.white);
-    if (appState.photoUrl != '') {
-      icon = Image.network(appState.photoUrl, height: 40, headers: {});
+    if (appState.userData.photoUrl != '') {
+      icon = Image.network(appState.userData.photoUrl, height: 40, headers: {});
     }
 
     String title = appBarTitle;
@@ -211,11 +211,11 @@ class HomePageScaffold extends StatelessWidget {
             if (user != null) {
               user.getIdTokenResult().then((result) {
                 print('home page setting idToken');
-                appState.idToken = result.token;
+                appState.userData.idToken = result.token as String;
               });
             }
             if ((user != null) && (user.photoURL != null)) {
-              appState.photoUrl = user.photoURL as String;
+              appState.userData.photoUrl = user.photoURL as String;
             }
           }
           return Scaffold(

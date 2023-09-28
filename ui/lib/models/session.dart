@@ -1,40 +1,43 @@
 class Session {
   // provided by quiz host (in order of appearance on start quiz form)
-  String? state; // starting, quizzing, revealing, suspended
-  String? quizId;
-  bool? synchronous;
-  String? timeLimit;
-  bool? survey;
-  bool? anonymous;
-  bool? randomizeQuestions;
-  bool? randomizeAnswers;
+  String state; // starting, quizzing, revealing, suspended
+  String quizId;
+  String sessionId;
+  bool synchronous;
+  String timeLimit;
+  bool survey;
+  bool anonymous;
+  bool randomizeQuestions;
+  bool randomizeAnswers;
 
   // managed by firestore (in alphabetical order)
-  String? id;
-  final String? selfLink;
-  final String? timeCreated;
-  final String? updated;
+  String id;
+  final String selfLink;
+  final String timeCreated;
+  final String updated;
 
   // managed by backend api (in alphabetical order)
-  final String? curQuestion;
-  final String? pin;
+  final String curQuestion;
+  final String pin;
 
   Session({
     // provided by quiz host (in order of appearance on create quiz form)
-    required this.state,
-    required this.quizId,
-    required this.synchronous,
-    required this.timeLimit,
-    required this.survey,
-    required this.anonymous,
-    required this.randomizeQuestions,
-    required this.randomizeAnswers,
+    //required this.state,
+    this.state = '',
+    this.quizId = '',
+    this.sessionId = '',
+    this.synchronous = true,
+    this.timeLimit = '30',
+    this.survey = false,
+    this.anonymous = true,
+    this.randomizeQuestions = false,
+    this.randomizeAnswers = false,
 
     // managed by firestore (in alphabetical order)
-    this.id,
-    this.selfLink,
-    this.timeCreated,
-    this.updated,
+    this.id = '',
+    this.selfLink = '',
+    this.timeCreated = '',
+    this.updated = '',
 
     // managed by backend api (in alphabetical order)
     this.curQuestion = '-1',
@@ -46,6 +49,7 @@ class Session {
       // provided by quiz host (in order of appearance on start quiz form)
       state: json['state'],
       quizId: json['quizId'],
+      sessionId: json['sessionId'],
       synchronous: json['synchronous'],
       timeLimit: json['timeLimit'],
       survey: json['survey'],
@@ -68,6 +72,7 @@ class Session {
   Map toJson() => {
         'state': state,
         'quizId': quizId,
+        'sessionId': sessionId,
         'synchronous': synchronous,
         'timeLimit': timeLimit,
         'survey': survey,

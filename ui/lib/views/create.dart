@@ -33,19 +33,19 @@ class _CreatePageState extends State<CreatePage> {
     var appState = context.watch<MyAppState>();
     var quiz = appState.getQuiz(widget.quizId);
 
-    if (appState.idToken == null || appState.idToken == '') {
+    if (appState.userData.idToken == '') {
       return Center(
           child: genText(theme,
               'Please sign in, by clicking the person icon at upper right, to create quizzes.'));
     }
 
     String getQuizName() {
-      return appState.editQuiz.name;
+      return appState.editData.name;
     }
 
     void setQuizName(value) {
       return setState(() {
-        appState.editQuiz.name = value.toString();
+        appState.editData.name = value.toString();
       });
     }
 
@@ -58,11 +58,11 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     void setGenerator(value) {
-      appState.editQuiz.generator = value.toString();
+      appState.editData.generator = value.toString();
       return setState(() {
         print('selecting generator: $value');
-        appState.editQuiz.generator = value.toString();
-        appState.editQuiz.topic = '';
+        appState.editData.generator = value.toString();
+        appState.editData.topic = '';
         _answerFormatKey++;
         _topicListKey++;
       });
@@ -70,7 +70,7 @@ class _CreatePageState extends State<CreatePage> {
 
     List<String> getTopics() {
       for (var generator in appState.generators) {
-        if (generator.name == appState.editQuiz.generator) {
+        if (generator.name == appState.editData.generator) {
           return generator.topics;
         }
       }
@@ -78,18 +78,18 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     String getTopic() {
-      return appState.editQuiz.topic;
+      return appState.editData.topic;
     }
 
     void setTopic(value) {
       return setState(() {
-        appState.editQuiz.topic = value.toString();
+        appState.editData.topic = value.toString();
       });
     }
 
     List<String> getAnswerFormats() {
       for (var generator in appState.generators) {
-        if (generator.name == appState.editQuiz.generator) {
+        if (generator.name == appState.editData.generator) {
           return generator.answerFormats;
         }
       }
@@ -98,17 +98,17 @@ class _CreatePageState extends State<CreatePage> {
 
     void setAnswerFormat(value) {
       return setState(() {
-        appState.editQuiz.answerFormat = value.toString();
+        appState.editData.answerFormat = value.toString();
       });
     }
 
     String getNumQuestions() {
-      return appState.editQuiz.numQuestions;
+      return appState.editData.numQuestions;
     }
 
     void setNumQuestions(value) {
       return setState(() {
-        appState.editQuiz.numQuestions = value.toString();
+        appState.editData.numQuestions = value.toString();
       });
     }
 
@@ -118,7 +118,7 @@ class _CreatePageState extends State<CreatePage> {
 
     void setDifficulty(value) {
       return setState(() {
-        appState.editQuiz.difficulty = value.toString();
+        appState.editData.difficulty = value.toString();
       });
     }
 
@@ -207,34 +207,34 @@ class _CreatePageState extends State<CreatePage> {
               // Quiz Topic
               if (getTopics().isNotEmpty || widget.readOnly)
                 quizTopicWidget
-              else if (appState.editQuiz.generator == '')
+              else if (appState.editData.generator == '')
                 genDropdownMenu(
                     theme,
                     'Quiz Topic',
                     _topicListKey,
                     formColumnWidth,
-                    appState.editQuiz.topic,
+                    appState.editData.topic,
                     () => ['Select generator to see topics'],
                     setTopic)
               else
                 genTextFormField(
                     theme,
-                    'No quiz answer formats available for ${appState.editQuiz.generator} generator',
+                    'Enter free-form text for ${appState.editData.generator} generator topic',
                     strValidator,
                     getTopic,
                     setTopic),
               SizedBox(height: verticalSpaceHeight),
 
               // Answer Format
-              if (appState.editQuiz.answerFormat != '')
+              if (appState.editData.answerFormat != '')
                 quizAnswerFormatWidget
-              else if (appState.editQuiz.generator == '')
+              else if (appState.editData.generator == '')
                 genDropdownMenu(
                     theme,
                     'Answer Format',
                     _answerFormatKey,
                     formColumnWidth,
-                    appState.editQuiz.answerFormat,
+                    appState.editData.answerFormat,
                     () => ['Select generator to see formats'],
                     setAnswerFormat)
               else if (getAnswerFormats().length == 1)
@@ -252,13 +252,13 @@ class _CreatePageState extends State<CreatePage> {
                     'Answer Format',
                     _answerFormatKey,
                     formColumnWidth,
-                    appState.editQuiz.answerFormat,
+                    appState.editData.answerFormat,
                     getAnswerFormats,
                     setAnswerFormat)
               else
                 genText(
                   theme,
-                  'No quiz answer formats available for ${appState.editQuiz.generator} generator',
+                  'No quiz answer formats available for ${appState.editData.generator} generator',
                 ),
               SizedBox(height: verticalSpaceHeight),
 
