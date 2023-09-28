@@ -2,7 +2,6 @@ class Session {
   // provided by quiz host (in order of appearance on start quiz form)
   String state; // starting, quizzing, revealing, suspended
   String quizId;
-  String sessionId;
   bool synchronous;
   String timeLimit;
   bool survey;
@@ -23,9 +22,8 @@ class Session {
   Session({
     // provided by quiz host (in order of appearance on create quiz form)
     //required this.state,
-    this.state = '',
+    this.state = 'starting',
     this.quizId = '',
-    this.sessionId = '',
     this.synchronous = true,
     this.timeLimit = '30',
     this.survey = false,
@@ -49,7 +47,6 @@ class Session {
       // provided by quiz host (in order of appearance on start quiz form)
       state: json['state'],
       quizId: json['quizId'],
-      sessionId: json['sessionId'],
       synchronous: json['synchronous'],
       timeLimit: json['timeLimit'],
       survey: json['survey'],
@@ -72,7 +69,6 @@ class Session {
   Map toJson() => {
         'state': state,
         'quizId': quizId,
-        'sessionId': sessionId,
         'synchronous': synchronous,
         'timeLimit': timeLimit,
         'survey': survey,

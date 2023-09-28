@@ -43,9 +43,7 @@ resource_fields = {
         "runCount",
     ],
     "sessions": [
-        "me",
-        "active",
-        "hostId",
+        "state",
         "quizId",
         "synchronous",
         "timeLimit",
@@ -204,20 +202,21 @@ def patch(resource_kind, id, representation):
    
     if resource_kind == "results":
         key = next(iter(representation))
-        player = key.split(".")[1]
-        val = representation[key]
-        if not val:
-            # registering a new player for this session so make sure not already there
-            resource = db.fetch("results", id, resource_fields[resource_kind])
-            if not resource:
-                return f"Can't find requested session {id}", 500, {}
-            players = resource["players"]
-            if players:
-                if player in players:
-                    # player already registered so deny this request
-                    return "", 409, {}
-        else:
-            representation[key] = firestore.Increment(1)
+        if key != "players":  # key == "players" means reset all results in a session.
+            player = key.split(".")[1]
+            val = representation[key]
+            if not val:
+                # registering a new player for this session so make sure not already there
+                resource = db.fetch("results", id, resource_fields[resource_kind])
+                if not resource:
+                    return f"Can't find requested session {id}", 500, {}
+                players = resource["players"]
+                if players:
+                    if player in players:
+                        # player already registered so deny this request
+                        return "", 409, {}
+            else:
+                representation[key] = firestore.Increment(1)
 
     resource, status = db.update(resource_kind, id, representation, resource_fields[resource_kind], match_etag)
     if resource is None:

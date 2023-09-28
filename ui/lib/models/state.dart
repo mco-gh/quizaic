@@ -17,7 +17,7 @@ class UserData {
   String idToken = '';
 }
 
-class EditData {
+class EditQuizData {
   String name = '';
   String answerFormat = 'Select generator to see formats';
   String generator = '';
@@ -25,6 +25,24 @@ class EditData {
   String numQuestions = '';
   String difficulty = '';
   String qAndA = '';
+}
+
+class EditSessionData {
+  bool synchronous = true;
+  String timeLimit = '30';
+  bool survey = false;
+  bool anonymous = true;
+  bool randomizeQuestions = false;
+  bool randomizeAnswers = false;
+
+  Map toJson() => {
+        'synchronous': synchronous,
+        'timeLimit': timeLimit,
+        'survey': survey,
+        'anonymous': anonymous,
+        'randomizeQuestions': randomizeQuestions,
+        'randomizeAnswers': randomizeAnswers,
+      };
 }
 
 class PlayerData {
@@ -55,7 +73,8 @@ class MyAppState extends ChangeNotifier {
   List<Generator> generators = [];
 
   UserData userData = UserData();
-  EditData editData = EditData();
+  EditQuizData editQuizData = EditQuizData();
+  EditSessionData editSessionData = EditSessionData();
   Session sessionData = Session();
   PlayerData playerData = PlayerData();
 
@@ -156,13 +175,14 @@ class MyAppState extends ChangeNotifier {
   void selectQuizData(id) {
     for (var quiz in quizzes) {
       if (quiz.id == id) {
-        editData.name = quiz.name;
-        editData.answerFormat = quiz.answerFormat;
-        editData.generator = quiz.generator;
-        editData.topic = quiz.topic;
-        editData.numQuestions = quiz.numQuestions;
-        editData.difficulty = difficultyLevel[int.parse(quiz.difficulty) - 1];
-        editData.qAndA = quiz.qAndA;
+        editQuizData.name = quiz.name;
+        editQuizData.answerFormat = quiz.answerFormat;
+        editQuizData.generator = quiz.generator;
+        editQuizData.topic = quiz.topic;
+        editQuizData.numQuestions = quiz.numQuestions;
+        editQuizData.difficulty =
+            editQuizData.difficulty[int.parse(quiz.difficulty) - 1];
+        editQuizData.qAndA = quiz.qAndA;
       }
     }
   }
@@ -200,98 +220,104 @@ class MyAppState extends ChangeNotifier {
         .snapshots();
   }
 
-  Future<bool> createOrReuseSession(quizId) async {
-    // No session found for this host so create a new one.
-    Session session = Session(
-      state: 'starting',
-      quizId: quizId,
-      curQuestion: '-1',
-      pin: '',
-      synchronous: sessionData.synchronous,
-      timeLimit: sessionData.timeLimit,
-      survey: false,
-      anonymous: sessionData.anonymous,
-      randomizeQuestions: sessionData.randomizeQuestions,
-      randomizeAnswers: sessionData.randomizeAnswers,
-    );
-
-    // call the special /sessions/me endpoint to see if this host already
-    // has a session in progress.
-    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
-      'Authorization': 'Bearer ${userData.idToken}',
-    });
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      // session already available for this user, set sessionId accordingly.
-      var resp = json.decode(response.body);
-      sessionData.sessionId = resp["hostId"];
-      sessionData.quizId = resp["quizId"];
-
-      // If session in progress but quiz doesn't match the requested quiz,
-      // alert the user.
-      if (sessionData.quizId != '' && sessionData.quizId != quizId) {
-        errorDialog(
-            'Session already in progress for quiz ${sessionData.quizId}, stop it to start a new one.');
-        return false;
-      }
-
-      // Session is resumable but update its settings to match the host's request
-      // and reset corresponding results object.
-      print(
-          'Resuming session already in progress for this host: ${sessionData.sessionId}.');
-      response = await http.patch(
-          Uri.parse('$apiUrl/sessions/${sessionData.sessionId}'),
-          body: jsonEncode(session),
-          headers: {
-            'Authorization': 'Bearer ${userData.idToken}',
-            'Content-Type': 'application/json',
-          });
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        print('Session ${sessionData.sessionId} updated.');
-      } else {
-        errorDialog('Failed to update session ${sessionData.sessionId}');
-      }
-
-/*
-      String body = '{"players": null, "quizId": quizId}';
-      response = await http
-          .patch(Uri.parse('$apiUrl/results/${sessionData.sessionId}'), body: body, headers: {
-        'Authorization': 'Bearer $idToken',
-        'Content-Type': 'application/json',
-      });
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        print('Results ${sessionData.sessionId} updated.');
-      } else {
-        errorDialog('Failed to update results ${sessionData.sessionId}');
-      }
-*/
-
-      setupStreams(sessionData.sessionId);
-      notifyListeners();
-      return true;
-    }
-
-    // No session available for this host so create a new one.
-    response = await http.post(Uri.parse('$apiUrl/sessions'),
-        body: jsonEncode(session),
+  resetSession(quizId) async {
+    print('resetSession($quizId)');
+    print('editSessionData2: ${jsonEncode(editSessionData.toJson())}');
+    var response = await http.patch(
+        Uri.parse('$apiUrl/sessions/${sessionData.id}'),
+        body: jsonEncode(editSessionData.toJson()),
         headers: {
           'Authorization': 'Bearer ${userData.idToken}',
           'Content-Type': 'application/json',
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      var resp = json.decode(response.body);
-      sessionData.sessionId = resp["id"];
-      sessionData.quizId = quizId;
-      setupStreams(sessionData.sessionId);
-      print('New session created: ${sessionData.sessionId}.');
+      print('Reusable session ${sessionData.id} reset.');
+    } else {
+      errorDialog('Failed to reset reusable session ${sessionData.id}');
+    }
+  }
+
+  resetResults(quizId) async {
+    print('resetResults($quizId)');
+    // Reset results object for this session.
+    String body = '{"players": null, "quizId": "$quizId"}';
+    var response = await http.patch(
+        Uri.parse('$apiUrl/results/${sessionData.id}'),
+        body: body,
+        headers: {
+          'Authorization': 'Bearer ${userData.idToken}',
+          'Content-Type': 'application/json',
+        });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print('Results for session ${sessionData.id} reset.');
+    } else {
+      errorDialog('Failed to reset results for session ${sessionData.id}');
+    }
+  }
+
+  Future<bool> createSession(quizId) async {
+    print('createSession($quizId)');
+    sessionData.quizId = quizId;
+    var response = await http.post(Uri.parse('$apiUrl/sessions'),
+        body: jsonEncode(Session().toJson()),
+        headers: {
+          'Authorization': 'Bearer ${userData.idToken}',
+          'Content-Type': 'application/json',
+        });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      sessionData = Session.fromJson(json);
+      print('sessionData: ${sessionData.toJson()}');
+      print('New session ${sessionData.id} created for hosting quiz $quizId.');
+      return true;
     } else if (response.statusCode == 403) {
       errorDialog(
-          'Failed to create session for quiz $quizId due to authorization error, are you logged in?');
+          'Failed to create session for hosting quiz $quizId due to authorization error, are you logged in?');
     } else {
-      errorDialog('Failed to create session for quiz $quizId');
+      errorDialog('Failed to create session for hosting quiz $quizId');
     }
+    return false;
+  }
 
+  Future<bool> getMySession() async {
+    print('getMySession()');
+    // call the special endpoint /sessions/me to see if this host already
+    // has a session in progress.
+    var response = await http.get(Uri.parse('$apiUrl/sessions/me'), headers: {
+      'Authorization': 'Bearer ${userData.idToken}',
+    });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      sessionData = Session.fromJson(json);
+      print('got sessionData: ${sessionData.toJson()}');
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> createOrReuseSession(quizId) async {
+    print('createOrReuseSession($quizId)');
+    // If session in progress but quiz doesn't match the requested quiz,
+    // alert the user.
+    bool sessionFound = await getMySession();
+    if (sessionFound) {
+      if (sessionData.quizId != '' && sessionData.quizId != quizId) {
+        errorDialog(
+            'Session already in progress for quiz ${sessionData.quizId}, stop it to start a new one.');
+        return false;
+      }
+      print('Resuming session ${sessionData.id} already in progress for host.');
+    } else {
+      // No session available for this host so create a new one.
+      await createSession(quizId);
+    }
+    // whether session is new or resumed, update its settings to match the
+    // host's request from the form and reset corresponding results object.
+    print('editSessionData1: ${jsonEncode(editSessionData.toJson())}');
+    await resetSession(quizId);
+    await resetResults(quizId);
+    setupStreams(sessionData.id);
     notifyListeners();
     return true;
   }
@@ -300,11 +326,10 @@ class MyAppState extends ChangeNotifier {
     // stop a session by deleting the associated results but leave the session
     // record intact so the host can reuse it later. Eventually we need to
     // garbage collect stale sessions.
-    var response = await http.delete(
-        Uri.parse('$apiUrl/results/${sessionData.sessionId}'),
-        headers: {
-          'Authorization': 'Bearer ${userData.idToken}',
-        });
+    var response = await http
+        .delete(Uri.parse('$apiUrl/results/${sessionData.id}'), headers: {
+      'Authorization': 'Bearer ${userData.idToken}',
+    });
     if (response.statusCode == 200 || response.statusCode == 204) {
       print("Quiz ${sessionData.quizId} stopped.");
     } else {
@@ -314,28 +339,27 @@ class MyAppState extends ChangeNotifier {
     // Reset quizid and current question in session record so that
     // it can be resued later for another quiz.
     var body = '{"quizId": "", "curQuestion": "-1"}';
-    response = await http.patch(
-        Uri.parse('$apiUrl/sessions/${sessionData.sessionId}'),
+    response = await http.patch(Uri.parse('$apiUrl/sessions/${sessionData.id}'),
         body: body,
         headers: {
           'Authorization': 'Bearer ${userData.idToken}',
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      sessionData.sessionId = '';
+      sessionData.id = '';
       sessionData.quizId = '';
       print("Quiz ${sessionData.quizId} reset.");
     } else {
-      errorDialog('Failed to reset session ${sessionData.sessionId}');
+      errorDialog('Failed to reset session ${sessionData.id}');
     }
-    sessionData.sessionId = '';
+    sessionData.id = '';
     sessionData.quizId = '';
     notifyListeners();
     return true;
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
-    int dnum = difficultyLevel.indexOf(editData.difficulty);
+    int dnum = difficultyLevel.indexOf(editQuizData.difficulty);
     String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
         name: '',
@@ -350,13 +374,13 @@ class MyAppState extends ChangeNotifier {
       tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
 
-    tmpQuiz.name = editData.name;
-    tmpQuiz.generator = editData.generator;
-    tmpQuiz.answerFormat = editData.answerFormat;
-    tmpQuiz.topic = editData.topic;
-    tmpQuiz.numQuestions = editData.numQuestions;
+    tmpQuiz.name = editQuizData.name;
+    tmpQuiz.generator = editQuizData.generator;
+    tmpQuiz.answerFormat = editQuizData.answerFormat;
+    tmpQuiz.topic = editQuizData.topic;
+    tmpQuiz.numQuestions = editQuizData.numQuestions;
     tmpQuiz.difficulty = dstr;
-    tmpQuiz.qAndA = editData.qAndA;
+    tmpQuiz.qAndA = editQuizData.qAndA;
 
     String url = '';
     String confirmation = '';

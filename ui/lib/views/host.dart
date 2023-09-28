@@ -63,41 +63,42 @@ class _HostPageState extends State<HostPage> {
     void setHostSynch(value) {
       return setState(() {
         print('value: $value');
-        appState.sessionData.synchronous = value;
+        appState.editSessionData.synchronous = (value == 'Synchronous');
       });
     }
 
     String getHostTimeLimit() {
-      return appState.sessionData.timeLimit;
+      return appState.editSessionData.timeLimit;
     }
 
     void setHostTimeLimit(value) {
+      print('setHostTimeLimit: $value');
       return setState(() {
-        appState.sessionData.timeLimit = value;
+        appState.editSessionData.timeLimit = value;
       });
     }
 
-    void setHostType(value) {
+    void setHostSurvey(value) {
       return setState(() {
-        appState.sessionData.survey = value.toBool();
+        appState.editSessionData.survey = value == "Survey";
       });
     }
 
     void setHostAnonymous(value) {
       return setState(() {
-        appState.sessionData.anonymous = value.toBool();
+        appState.editSessionData.anonymous = (value == "Anonymous");
       });
     }
 
     void setHostRandomizeQuestions(value) {
       return setState(() {
-        appState.sessionData.randomizeQuestions = value.toBool();
+        appState.editSessionData.randomizeQuestions = (value == "Yes");
       });
     }
 
     void setHostRandomizeAnswers(value) {
       return setState(() {
-        appState.sessionData.randomizeAnswers = value.toBool();
+        appState.editSessionData.randomizeAnswers = (value == "Yes");
       });
     }
 
@@ -107,10 +108,7 @@ class _HostPageState extends State<HostPage> {
       );
     }
 
-    String title =
-        'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"';
-
-    if (appState.sessionData.sessionId != '') {
+    if (appState.sessionData.id != '') {
       return StreamBuilder<DocumentSnapshot>(
           stream: appState.sessionStream,
           builder: (context, snapshot) {
@@ -191,11 +189,11 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(height: verticalSpaceHeight * 3),
                       ElevatedButton(
                         onPressed: () {
-                          appState.incQuestion(appState.sessionData.sessionId,
-                              -1, int.parse(quiz.numQuestions));
+                          appState.incQuestion(appState.sessionData.id, -1,
+                              int.parse(quiz.numQuestions));
                         },
-                        child: genText(
-                            theme, 'Start ${appState.sessionData.survey}'),
+                        child: genText(theme,
+                            'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
                       ),
                       SizedBox(height: verticalSpaceHeight),
                     ]);
@@ -230,10 +228,8 @@ class _HostPageState extends State<HostPage> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                appState.incQuestion(
-                                    appState.sessionData.sessionId,
-                                    curQuestion,
-                                    int.parse(quiz.numQuestions));
+                                appState.incQuestion(appState.sessionData.id,
+                                    curQuestion, int.parse(quiz.numQuestions));
                               },
                               child: genText(theme, 'Next Question'),
                             ),
@@ -253,8 +249,6 @@ class _HostPageState extends State<HostPage> {
                 });
           });
     }
-    print(
-        'appState.sessionData.synchronous: ${appState.sessionData.synchronous}');
 
     return Center(
       child: Form(
@@ -274,7 +268,8 @@ class _HostPageState extends State<HostPage> {
                     ),
                   ),
                   SizedBox(width: horizontalSpaceWidth / 2),
-                  genText(theme, title, size: 30, weight: FontWeight.bold),
+                  genText(theme, 'Host Settings for "${quiz.name}"',
+                      size: 30, weight: FontWeight.bold),
                 ],
               ),
               SizedBox(height: verticalSpaceHeight * 2),
@@ -303,7 +298,7 @@ class _HostPageState extends State<HostPage> {
                   formColumnWidth,
                   appState.sessionData.survey ? 'Survey' : 'Quiz',
                   () => quizOrSurvey,
-                  setHostType),
+                  setHostSurvey),
               SizedBox(height: verticalSpaceHeight),
 
               // Anonymous or Authenticated
@@ -347,20 +342,11 @@ class _HostPageState extends State<HostPage> {
                 child: Align(
                   child: ElevatedButton(
                     onPressed: () async {
-                      // Validate returns true if the form is valid, or false otherwise.
                       if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: genText(theme,
-                                  'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}...')),
-                        );
                         appState.createOrReuseSession(quiz.id);
                       }
                     },
-                    child: genText(theme,
-                        'Host ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
+                    child: genText(theme, 'Start Hosting'),
                   ),
                 ),
               ),
