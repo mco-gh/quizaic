@@ -98,9 +98,7 @@ class PlayPage extends StatelessWidget {
                       defaultPinTheme: defaultPinTheme,
                       validator: (s) {
                         appState.findSessionByPin(s, badPinOnPlayForm);
-                        String? playerName =
-                            appState.getPlayerNameByPinFromLocal(s);
-                        if (playerName != null) {}
+                        appState.getPlayerNameByPinFromLocal(s);
                         return null;
                       },
                     ),

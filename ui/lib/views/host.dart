@@ -34,13 +34,14 @@ class _HostPageState extends State<HostPage> {
       SizedBox(
         width: formColumnWidth,
         child: ExpansionTile(
+          initiallyExpanded: true,
+          expandedAlignment: Alignment.topLeft,
           title: genText(theme, 'Registered Players:'),
           children: [
             Table(children: [
               for (var e in leaderBoard.entries)
                 TableRow(children: [
                   TableCell(child: genText(theme, e.key)),
-                  TableCell(child: genText(theme, e.value.toString())),
                 ]),
             ]),
           ],
