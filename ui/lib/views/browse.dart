@@ -99,7 +99,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                       children: [
                                         genText(theme, quiz.name,
                                             size: 22, weight: FontWeight.bold),
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 5),
                                         if (quiz.imageUrl ==
                                             'assets/assets/images/quizaic_logo.png')
                                           SizedBox(
@@ -118,7 +118,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                               child: Image.network(
                                                   quiz.imageUrl as String,
                                                   height: 150)),
-                                        SizedBox(height: 15),
+                                        SizedBox(height: 10),
                                         if (appState.userData.idToken == '')
                                           Row(
                                               mainAxisAlignment:
