@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:bad_words/bad_words.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizaic/views/quiz.dart';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -34,10 +35,10 @@ class PlayPage extends StatelessWidget {
     final appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
 
-    badPinOnDeepLink(pin) {
-      errorDialog('No session available for pin $pin');
-      GoRouter.of(context).go('/play');
-    }
+    //badPinOnDeepLink(pin) {
+    //errorDialog('No session available for pin $pin');
+    //GoRouter.of(context).go('/play');
+    //}
 
     badPinOnPlayForm(pin) {
       errorDialog('No session available for pin $pin');
@@ -45,6 +46,7 @@ class PlayPage extends StatelessWidget {
     }
 
     checkAndRegisterPlayerName(name) async {
+      print('checkAndRegisterPlayerName($name)');
       bool profane = filter.isProfane(name);
       if (profane) {
         errorDialog('Invalid name, please try again.');
@@ -56,16 +58,26 @@ class PlayPage extends StatelessWidget {
 
     // if a pin was provided by url and we haven't yet found
     // a session for it, try to do so here.
-    if (pin != null && pin != '' && !appState.sessionFound) {
-      appState.findSessionByPin(pin, badPinOnDeepLink);
-      // Can't do this yet because don't know if session found,
-      // since that's done async.
-      //String? name = appState.getPlayerNameByPinFromLocal(pin);
-      //if (name != null) {
-      //return QuizPage();
-      //}
+    // if (pin != null && pin != '' && !appState.sessionFound) {
+    // appState.findSessionByPin(pin, badPinOnDeepLink);
+    // Can't do this yet because don't know if session found,
+    // since that's done async.
+    //String? name = appState.getPlayerNameByPinFromLocal(pin);
+    //if (name != null) {
+    //return QuizPage();
+    //}
+    // }
+
+    if (appState.playerData.pin != '' && appState.playerData.playerName != '') {
+      return QuizPage();
     }
 
+    String quizName = 'N/A (no quiz started yet for this session)';
+    String quizImage = 'assets/images/logo.png';
+    if (appState.playerData.quiz != null) {
+      quizName = appState.playerData.quiz?.name as String;
+      quizImage = appState.playerData.quiz?.imageUrl as String;
+    }
     return Scaffold(
       body: Stack(
         children: [
@@ -94,7 +106,7 @@ class PlayPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: verticalSpaceHeight * 3),
-                    if (appState.playerData.quiz != null)
+                    if (appState.playerData.pin != '')
                       Column(
                         children: [
                           Row(
@@ -103,13 +115,13 @@ class PlayPage extends StatelessWidget {
                               Row(children: [
                                 SizedBox(height: verticalSpaceHeight * 3),
                                 Image.network(
-                                  appState.playerData.quiz?.imageUrl as String,
+                                  quizImage,
                                   height: logoHeight,
                                 ),
                                 SizedBox(width: horizontalSpaceWidth),
                                 genText(
                                   theme,
-                                  'Quiz Name: ${appState.playerData.quiz?.name}',
+                                  'Quiz Name: $quizName',
                                   weight: FontWeight.bold,
                                 ),
                               ]),

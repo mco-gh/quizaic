@@ -482,7 +482,7 @@ class MyAppState extends ChangeNotifier {
     if (response.statusCode == 200 || response.statusCode == 201) {
       playerData.playerName = playerName;
       storage.setItem(playerData.pin, playerData.playerName);
-      print("Player ${playerData.playerName} registered.");
+      print("Player ${playerData.playerName} registered, routing to quiz page");
     } else {
       if (response.statusCode == 409) {
         errorDialog('Player $playerName already registered for this quiz.');
@@ -537,10 +537,12 @@ class MyAppState extends ChangeNotifier {
               'Multiple sessions with pin $pin, using first one found.');
         }
         var session = querySnapshot.docs[0].data();
+        playerData.sessionId = querySnapshot.docs[0].id;
         print('session: $session');
-        playerData.sessionId = session['id'];
         playerData.quizId = session['quizId'];
-        playerData.quiz = getQuiz(playerData.quizId);
+        if (playerData.quizId != '') {
+          playerData.quiz = getQuiz(playerData.quizId);
+        }
         playerData.pin = session['pin'];
         playerData.curQuestion = int.parse(session['curQuestion']);
         playerData.timeLimit = int.parse(session['timeLimit']);
@@ -550,9 +552,9 @@ class MyAppState extends ChangeNotifier {
         playerData.randomizeAnswers = session['randomizeAnswers'];
         playerData.survey = session['survey'];
         playerData.synchronous = session['synchronous'];
-
         print(
-            'pin $pin led to session ${playerData.sessionId}, quiz ${playerData.quiz?.name}');
+          'pin $pin led to session ${playerData.sessionId}, quiz ${playerData.quiz}',
+        );
 
         // Start listening on this session for updates from host.
         playerSessionStream = FirebaseFirestore.instance
