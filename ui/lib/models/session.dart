@@ -2,7 +2,7 @@ class Session {
   // provided by quiz host (in order of appearance on start quiz form)
   String quizId;
   bool synchronous;
-  String timeLimit;
+  int timeLimit;
   bool survey;
   bool anonymous;
   bool randomizeQuestions;
@@ -15,14 +15,14 @@ class Session {
   String updated;
 
   // managed by backend api (in alphabetical order)
-  String? curQuestion;
+  int curQuestion;
   String pin;
 
   Session({
     // provided by quiz host (in order of appearance on create quiz form)
     this.quizId = '',
     this.synchronous = true,
-    this.timeLimit = '30',
+    this.timeLimit = 30,
     this.survey = false,
     this.anonymous = true,
     this.randomizeQuestions = false,
@@ -35,7 +35,7 @@ class Session {
     this.updated = '',
 
     // managed by backend api (in alphabetical order)
-    this.curQuestion = '-1',
+    this.curQuestion = -1,
     this.pin = '',
   });
 

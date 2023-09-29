@@ -29,7 +29,7 @@ class EditQuizData {
 
 class EditSessionData {
   bool synchronous = true;
-  String timeLimit = '30';
+  int timeLimit = 30;
   bool survey = false;
   bool anonymous = true;
   bool randomizeQuestions = false;
@@ -37,7 +37,7 @@ class EditSessionData {
 
   reset() {
     synchronous = true;
-    timeLimit = '30';
+    timeLimit = 30;
     survey = false;
     anonymous = true;
     randomizeQuestions = false;
@@ -233,7 +233,7 @@ class MyAppState extends ChangeNotifier {
       return true;
     }
     curQuestion++;
-    String body = '{"curQuestion": "$curQuestion"}';
+    String body = '{"curQuestion": $curQuestion}';
     final response = await http
         .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
       'Authorization': 'Bearer ${userData.idToken}',
@@ -267,12 +267,12 @@ class MyAppState extends ChangeNotifier {
       editSessionData.reset();
       json = editSessionData.toJson();
       json['quizId'] = '';
-      json['curQuestion'] = '-1';
+      json['curQuestion'] = -1;
     } else if (includeSettings) {
       json = editSessionData.toJson();
       json['quizId'] = quizId;
     } else {
-      json = {'quizId': quizId, 'curQuestion': '-1'};
+      json = {'quizId': quizId, 'curQuestion': -1};
     }
 
     var response = await http.patch(
@@ -312,7 +312,7 @@ class MyAppState extends ChangeNotifier {
     print('createSession($quizId)');
     Map<dynamic, dynamic> json = editSessionData.toJson();
     json['quizId'] = quizId;
-    json['curQuestion'] = '-1';
+    json['curQuestion'] = -1;
     var response = await http
         .post(Uri.parse('$apiUrl/sessions'), body: jsonEncode(json), headers: {
       'Authorization': 'Bearer ${userData.idToken}',
@@ -340,6 +340,7 @@ class MyAppState extends ChangeNotifier {
       'Authorization': 'Bearer ${userData.idToken}',
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
+      print('response.body: ${response.body}');
       Map<String, dynamic> json = jsonDecode(response.body);
       sessionData = Session.fromJson(json);
       return true;
@@ -378,7 +379,7 @@ class MyAppState extends ChangeNotifier {
     // of the current session settings intact.
     await resetSession(quizId, false);
     await resetResults(quizId);
-    incQuestion(sessionData.id, -1, int.parse(numQuestions));
+    incQuestion(sessionData.id, -1, numQuestions);
     notifyListeners();
     return true;
   }
@@ -545,8 +546,8 @@ class MyAppState extends ChangeNotifier {
           playerData.quiz = getQuiz(playerData.quizId);
         }
         playerData.pin = session['pin'];
-        playerData.curQuestion = int.parse(session['curQuestion']);
-        playerData.timeLimit = int.parse(session['timeLimit']);
+        playerData.curQuestion = session['curQuestion'];
+        playerData.timeLimit = session['timeLimit'];
         playerData.timeLeft = playerData.timeLimit;
         playerData.anonymous = session['anonymous'];
         playerData.randomizeQuestions = session['randomizeQuestions'];

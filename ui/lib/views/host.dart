@@ -68,11 +68,10 @@ class _HostPageState extends State<HostPage> {
     }
 
     String getHostTimeLimit() {
-      return appState.editSessionData.timeLimit;
+      return appState.editSessionData.timeLimit.toString();
     }
 
     void setHostTimeLimit(value) {
-      print('setHostTimeLimit: $value');
       return setState(() {
         appState.editSessionData.timeLimit = value;
       });
@@ -118,7 +117,7 @@ class _HostPageState extends State<HostPage> {
             }
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
-            var curQuestion = int.parse(data['curQuestion']);
+            var curQuestion = data['curQuestion'];
             var question = '';
             if (curQuestion >= 0) {
               question = jsonDecode(quiz.qAndA)[curQuestion]['question'];

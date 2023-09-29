@@ -25,7 +25,7 @@ class QuizPage extends StatelessWidget {
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
-        if (data['curQuestion'] == '-1' || data['curQuestion'] == '-2') {
+        if (data['curQuestion'] == -1 || data['curQuestion'] == -2) {
           appState.playerData.registered = false;
           return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
@@ -37,7 +37,7 @@ class QuizPage extends StatelessWidget {
           appState.registerPlayer(appState.playerData.playerName, true);
         }
 
-        int curQuestion = int.parse(data['curQuestion']);
+        int curQuestion = data['curQuestion'];
         if (curQuestion != lastQuestion) {
           print('starting question number $curQuestion');
           appState.startQuestionTimer();
