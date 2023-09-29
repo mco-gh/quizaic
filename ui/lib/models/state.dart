@@ -35,6 +35,15 @@ class EditSessionData {
   bool randomizeQuestions = false;
   bool randomizeAnswers = false;
 
+  reset() {
+    synchronous = true;
+    timeLimit = '30';
+    survey = false;
+    anonymous = true;
+    randomizeQuestions = false;
+    randomizeAnswers = false;
+  }
+
   Map toJson() => {
         'synchronous': synchronous,
         'timeLimit': timeLimit,
@@ -220,12 +229,24 @@ class MyAppState extends ChangeNotifier {
         .snapshots();
   }
 
-  resetSession(quizId) async {
+  resetSession(String quizId, bool includeSettings) async {
     print('resetSession($quizId)');
-    print('editSessionData2: ${jsonEncode(editSessionData.toJson())}');
+    Map<dynamic, dynamic> json;
+    if (quizId == '') {
+      editSessionData.reset();
+      json = editSessionData.toJson();
+      json['quizId'] = '';
+      json['curQuestion'] = '-1';
+    } else if (includeSettings) {
+      json = editSessionData.toJson();
+      json['quizId'] = quizId;
+    } else {
+      json = {'quizId': quizId, 'curQuestion': '-1'};
+    }
+
     var response = await http.patch(
         Uri.parse('$apiUrl/sessions/${sessionData.id}'),
-        body: jsonEncode(editSessionData.toJson()),
+        body: jsonEncode(json),
         headers: {
           'Authorization': 'Bearer ${userData.idToken}',
           'Content-Type': 'application/json',
@@ -258,17 +279,17 @@ class MyAppState extends ChangeNotifier {
 
   Future<bool> createSession(quizId) async {
     print('createSession($quizId)');
-    sessionData.quizId = quizId;
-    var response = await http.post(Uri.parse('$apiUrl/sessions'),
-        body: jsonEncode(Session().toJson()),
-        headers: {
-          'Authorization': 'Bearer ${userData.idToken}',
-          'Content-Type': 'application/json',
-        });
+    Map<dynamic, dynamic> json = editSessionData.toJson();
+    json['quizId'] = quizId;
+    json['curQuestion'] = '-1';
+    var response = await http
+        .post(Uri.parse('$apiUrl/sessions'), body: jsonEncode(json), headers: {
+      'Authorization': 'Bearer ${userData.idToken}',
+      'Content-Type': 'application/json',
+    });
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> json = jsonDecode(response.body);
       sessionData = Session.fromJson(json);
-      print('sessionData: ${sessionData.toJson()}');
       print('New session ${sessionData.id} created for hosting quiz $quizId.');
       return true;
     } else if (response.statusCode == 403) {
@@ -290,7 +311,6 @@ class MyAppState extends ChangeNotifier {
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> json = jsonDecode(response.body);
       sessionData = Session.fromJson(json);
-      print('got sessionData: ${sessionData.toJson()}');
       return true;
     }
     return false;
@@ -307,53 +327,39 @@ class MyAppState extends ChangeNotifier {
             'Session already in progress for quiz ${sessionData.quizId}, stop it to start a new one.');
         return false;
       }
+      // Session found for this host so reuse it.
       print('Resuming session ${sessionData.id} already in progress for host.');
+      await resetSession(quizId, true);
     } else {
       // No session available for this host so create a new one.
+      print('Creating a new session.');
       await createSession(quizId);
     }
-    // whether session is new or resumed, update its settings to match the
-    // host's request from the form and reset corresponding results object.
-    print('editSessionData1: ${jsonEncode(editSessionData.toJson())}');
-    await resetSession(quizId);
+    // whether session is new or resumed, update its reset it's results.
     await resetResults(quizId);
     setupStreams(sessionData.id);
     notifyListeners();
     return true;
   }
 
-  Future<bool> stopSession() async {
-    // stop a session by deleting the associated results but leave the session
-    // record intact so the host can reuse it later. Eventually we need to
-    // garbage collect stale sessions.
-    var response = await http
-        .delete(Uri.parse('$apiUrl/results/${sessionData.id}'), headers: {
-      'Authorization': 'Bearer ${userData.idToken}',
-    });
-    if (response.statusCode == 200 || response.statusCode == 204) {
-      print("Quiz ${sessionData.quizId} stopped.");
-    } else {
-      errorDialog('Failed to stop quiz ${sessionData.quizId}');
-    }
+  Future<bool> startQuiz(quizId, numQuestions) async {
+    // start a quiz by resetting the associated session and results
+    // to reflect this quizId and curQuestion 0, but leave the rest
+    // of the current session settings intact.
+    await resetSession(quizId, false);
+    await resetResults(quizId);
+    incQuestion(sessionData.id, -1, int.parse(numQuestions));
+    notifyListeners();
+    return true;
+  }
 
-    // Reset quizid and current question in session record so that
-    // it can be resued later for another quiz.
-    var body = '{"quizId": "", "curQuestion": "-1"}';
-    response = await http.patch(Uri.parse('$apiUrl/sessions/${sessionData.id}'),
-        body: body,
-        headers: {
-          'Authorization': 'Bearer ${userData.idToken}',
-          'Content-Type': 'application/json',
-        });
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      sessionData.id = '';
-      sessionData.quizId = '';
-      print("Quiz ${sessionData.quizId} reset.");
-    } else {
-      errorDialog('Failed to reset session ${sessionData.id}');
-    }
+  Future<bool> stopQuiz() async {
+    // stop a session by resetting the associated session and results but
+    // leave the session record intact so the host can reuse it later.
+    // Eventually we need to garbage collect stale sessions.
+    await resetSession('', false);
+    await resetResults('');
     sessionData.id = '';
-    sessionData.quizId = '';
     notifyListeners();
     return true;
   }

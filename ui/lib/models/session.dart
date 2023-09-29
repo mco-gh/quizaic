@@ -1,6 +1,5 @@
 class Session {
   // provided by quiz host (in order of appearance on start quiz form)
-  String state; // starting, quizzing, revealing, suspended
   String quizId;
   bool synchronous;
   String timeLimit;
@@ -11,18 +10,17 @@ class Session {
 
   // managed by firestore (in alphabetical order)
   String id;
-  final String selfLink;
-  final String timeCreated;
-  final String updated;
+  String selfLink;
+  String timeCreated;
+  String updated;
 
   // managed by backend api (in alphabetical order)
-  final String curQuestion;
-  final String pin;
+  String? curQuestion;
+  String pin;
 
   Session({
     // provided by quiz host (in order of appearance on create quiz form)
     //required this.state,
-    this.state = 'starting',
     this.quizId = '',
     this.synchronous = true,
     this.timeLimit = '30',
@@ -45,7 +43,6 @@ class Session {
   factory Session.fromJson(Map<String, dynamic> json) {
     return Session(
       // provided by quiz host (in order of appearance on start quiz form)
-      state: json['state'],
       quizId: json['quizId'],
       synchronous: json['synchronous'],
       timeLimit: json['timeLimit'],
@@ -67,7 +64,6 @@ class Session {
   }
 
   Map toJson() => {
-        'state': state,
         'quizId': quizId,
         'synchronous': synchronous,
         'timeLimit': timeLimit,

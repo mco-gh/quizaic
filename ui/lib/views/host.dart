@@ -189,8 +189,7 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(height: verticalSpaceHeight * 3),
                       ElevatedButton(
                         onPressed: () {
-                          appState.incQuestion(appState.sessionData.id, -1,
-                              int.parse(quiz.numQuestions));
+                          appState.startQuiz(quiz.id, quiz.numQuestions);
                         },
                         child: genText(theme,
                             'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
@@ -236,7 +235,7 @@ class _HostPageState extends State<HostPage> {
                             SizedBox(width: horizontalSpaceWidth),
                             ElevatedButton(
                               onPressed: () {
-                                appState.stopSession();
+                                appState.stopQuiz();
                               },
                               child: genText(theme, 'Stop Quiz'),
                             ),
