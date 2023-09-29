@@ -35,12 +35,12 @@ class PlayPage extends StatelessWidget {
     var theme = Theme.of(context);
 
     badPinOnDeepLink(pin) {
-      errorDialog('No session/quiz available with pin $pin');
+      errorDialog('No session available for pin $pin');
       GoRouter.of(context).go('/play');
     }
 
     badPinOnPlayForm(pin) {
-      errorDialog('No session/quiz available with pin $pin');
+      errorDialog('No session available for pin $pin');
       GoRouter.of(context).go('/play');
     }
 
