@@ -324,8 +324,7 @@ class MyAppState extends ChangeNotifier {
     if (sessionFound) {
       if (sessionData.quizId != '' && sessionData.quizId != quizId) {
         errorDialog(
-            'Session already in progress for quiz ${sessionData.quizId}, stop it to start a new one.');
-        return false;
+            'Quiz already in progress, resetting session to host new quiz.');
       }
       // Session found for this host so reuse it.
       print('Resuming session ${sessionData.id} already in progress for host.');
