@@ -55,6 +55,7 @@ class EditSessionData {
 }
 
 class PlayerData {
+  bool registered = false;
   Quiz? quiz;
   String quizId = '';
   String sessionId = '';
@@ -76,6 +77,7 @@ class PlayerData {
   bool synchronous = true;
 
   reset() {
+    registered = false;
     quiz = null;
     quizId = '';
     sessionId = '';
@@ -469,7 +471,7 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> registerPlayer(playerName) async {
+  Future<bool> registerPlayer(String playerName, bool allowRereg) async {
     var body = '{"players.$playerName.score": 0}';
     print('name: $playerName, body: $body');
     final response = await http.patch(
@@ -481,14 +483,16 @@ class MyAppState extends ChangeNotifier {
         });
     if (response.statusCode == 200 || response.statusCode == 201) {
       playerData.playerName = playerName;
+      playerData.registered = true;
       storage.setItem(playerData.pin, playerData.playerName);
       print("Player ${playerData.playerName} registered, routing to quiz page");
+    } else if (response.statusCode == 409 && allowRereg) {
+      print(
+          'Player $playerName already registered for this quiz but rereg allowed.');
+    } else if (response.statusCode == 409 && !allowRereg) {
+      errorDialog('Player $playerName already registered for this quiz.');
     } else {
-      if (response.statusCode == 409) {
-        errorDialog('Player $playerName already registered for this quiz.');
-      } else {
-        errorDialog('Failed to register player $playerName');
-      }
+      errorDialog('Failed to register player $playerName');
     }
     notifyListeners();
     return true;

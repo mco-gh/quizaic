@@ -53,7 +53,7 @@ class PlayPage extends StatelessWidget {
         _controller.setText('');
         return;
       }
-      appState.registerPlayer(name);
+      appState.registerPlayer(name, false);
     }
 
     // if a pin was provided by url and we haven't yet found
@@ -77,6 +77,10 @@ class PlayPage extends StatelessWidget {
     if (appState.playerData.quiz != null) {
       quizName = appState.playerData.quiz?.name as String;
       quizImage = appState.playerData.quiz?.imageUrl as String;
+    }
+
+    if (!appState.playerData.registered) {
+      appState.registerPlayer(appState.playerData.playerName, true);
     }
     return Scaffold(
       body: Stack(

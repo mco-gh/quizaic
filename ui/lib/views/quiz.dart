@@ -20,12 +20,21 @@ class QuizPage extends StatelessWidget {
       stream: appState.playerSessionStream,
       builder: (context, snapshot) {
         if (snapshot.data?.data() == null) {
+          appState.playerData.registered = false;
           return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
-        if (data['curQuestion'] == "-1") {
+        if (data['curQuestion'] == '-1' || data['curQuestion'] == '-2') {
+          appState.playerData.registered = false;
           return Center(child: genText(theme, 'Waiting for quiz to start...'));
+        }
+
+        var quizId = data['quizId'];
+        var quiz = appState.getQuiz(quizId);
+        var qAndA = jsonDecode(quiz?.qAndA as String);
+        if (!appState.playerData.registered) {
+          appState.registerPlayer(appState.playerData.playerName, true);
         }
 
         int curQuestion = int.parse(data['curQuestion']);
@@ -35,10 +44,9 @@ class QuizPage extends StatelessWidget {
           appState.playerData.curQuestion = curQuestion;
           lastQuestion = curQuestion;
         }
-        var quiz = jsonDecode(appState.playerData.quiz?.qAndA as String);
-        var question = quiz[curQuestion]['question'];
-        var correct = quiz[curQuestion]['correct'];
-        var responses = quiz[curQuestion]['responses'];
+        var question = qAndA[curQuestion]['question'];
+        var correct = qAndA[curQuestion]['correct'];
+        var responses = qAndA[curQuestion]['responses'];
 
         List<Widget> genResponse(responses, enable) {
           List<Widget> responseList = [SizedBox(height: verticalSpaceHeight)];
