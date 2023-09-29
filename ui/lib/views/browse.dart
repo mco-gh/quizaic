@@ -12,9 +12,20 @@ class BrowsePage extends StatefulWidget {
   State<BrowsePage> createState() => _BrowsePageState();
 }
 
-class _BrowsePageState extends State<BrowsePage> {
+class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
+  late AnimationController controller;
+
   @override
   void initState() {
+    controller = AnimationController(
+      /// [AnimationController]s can be created with `vsync: this` because of
+      /// [TickerProviderStateMixin].
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat(reverse: false);
     super.initState();
   }
 
@@ -89,11 +100,24 @@ class _BrowsePageState extends State<BrowsePage> {
                                         genText(theme, quiz.name,
                                             size: 22, weight: FontWeight.bold),
                                         SizedBox(height: 15),
-                                        Hero(
-                                            tag: quiz.id!,
-                                            child: Image.network(
-                                                quiz.imageUrl as String,
-                                                height: 150)),
+                                        if (quiz.imageUrl ==
+                                            'assets/assets/images/quizaic_logo.png')
+                                          SizedBox(
+                                            height: 150,
+                                            child: Center(
+                                              child: CircularProgressIndicator(
+                                                value: controller.value,
+                                                semanticsLabel:
+                                                    'Circular progress indicator',
+                                              ),
+                                            ),
+                                          )
+                                        else
+                                          Hero(
+                                              tag: quiz.id!,
+                                              child: Image.network(
+                                                  quiz.imageUrl as String,
+                                                  height: 150)),
                                         SizedBox(height: 15),
                                         if (appState.userData.idToken == '')
                                           Row(
