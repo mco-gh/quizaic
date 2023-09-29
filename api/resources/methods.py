@@ -43,7 +43,6 @@ resource_fields = {
         "runCount",
     ],
     "sessions": [
-        "state",
         "quizId",
         "synchronous",
         "timeLimit",

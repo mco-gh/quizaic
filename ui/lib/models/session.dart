@@ -20,7 +20,6 @@ class Session {
 
   Session({
     // provided by quiz host (in order of appearance on create quiz form)
-    //required this.state,
     this.quizId = '',
     this.synchronous = true,
     this.timeLimit = '30',

@@ -58,14 +58,44 @@ class PlayerData {
   Quiz? quiz;
   String quizId = '';
   String sessionId = '';
-  String playerName = '';
   String pin = '';
-  String response = '';
+  String playerName = '';
+
   int curQuestion = -1;
   int respondedQuestion = -1;
+  String response = '';
+
+  Timer? questionTimer;
   int timeLimit = -1;
   int timeLeft = -1;
-  Timer? questionTimer;
+
+  bool anonymous = true;
+  bool randomizeQuestions = false;
+  bool randomizeAnswers = false;
+  bool survey = false;
+  bool synchronous = true;
+
+  reset() {
+    quiz = null;
+    quizId = '';
+    sessionId = '';
+    pin = '';
+    playerName = '';
+
+    curQuestion = -1;
+    respondedQuestion = -1;
+    response = '';
+
+    questionTimer = null;
+    timeLimit = -1;
+    timeLeft = -1;
+
+    anonymous = true;
+    randomizeQuestions = false;
+    randomizeAnswers = false;
+    survey = false;
+    synchronous = true;
+  }
 }
 
 class MyAppState extends ChangeNotifier {
@@ -489,16 +519,9 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  clearPlayQuiz() {
-    playerData.quiz = null;
-    playerData.pin = '';
-    playerData.playerName = '';
-    playerData.curQuestion = 0;
-    playerData.timeLimit = 0;
-    playerData.timeLeft = 0;
-  }
-
   findSessionByPin(pin, failure) {
+    print('findSessionByPin($pin)');
+
     sessionFound = false;
     FirebaseFirestore.instance
         .collection('sessions')
@@ -507,21 +530,30 @@ class MyAppState extends ChangeNotifier {
         .then(
       (querySnapshot) {
         if (querySnapshot.docs.isEmpty) {
-          clearPlayQuiz();
+          playerData.reset();
           failure(pin);
         } else if (querySnapshot.docs.length > 1) {
           errorDialog(
               'Multiple sessions with pin $pin, using first one found.');
         }
         var session = querySnapshot.docs[0].data();
-        playerData.sessionId = session['hostId'];
-        print('pin $pin led to session ${playerData.sessionId}');
-        playerData.quiz = getQuiz(session['quizId']);
+        print('session: $session');
+        playerData.sessionId = session['id'];
+        playerData.quizId = session['quizId'];
+        playerData.quiz = getQuiz(playerData.quizId);
         playerData.pin = session['pin'];
         playerData.curQuestion = int.parse(session['curQuestion']);
         playerData.timeLimit = int.parse(session['timeLimit']);
         playerData.timeLeft = playerData.timeLimit;
-        print('session led to quiz ${playerData.quiz?.name}');
+        playerData.anonymous = session['anonymous'];
+        playerData.randomizeQuestions = session['randomizeQuestions'];
+        playerData.randomizeAnswers = session['randomizeAnswers'];
+        playerData.survey = session['survey'];
+        playerData.synchronous = session['synchronous'];
+
+        print(
+            'pin $pin led to session ${playerData.sessionId}, quiz ${playerData.quiz?.name}');
+
         // Start listening on this session for updates from host.
         playerSessionStream = FirebaseFirestore.instance
             .collection('sessions')

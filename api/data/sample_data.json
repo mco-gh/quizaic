@@ -38,63 +38,63 @@
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Audience Survey",
       "generator": "Manual",
-      "answerFormat": "multiple choice", 
+      "answerFormat": "multiple choice",
       "topic": "Cloud Computing",
       "imageUrl": "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
       "numQuestions": "5",
       "difficulty": "1",
       "runCount": "10",
       "qAndA": [
-	{
-		"question": "How much experience do you have with cloud computing?",
-		"correct": "N/A",
-		"responses": [
-			"none",
-			"a little",
-			"a lot",
-			"a cloud guru"
-		]
-	},
-	{
-		"question": "Which cloud do you use most?",
-		"correct": "N/A",
-		"responses": [
-			"Google Cloud",
-			"Amazon Web Services",
-			"Microsoft Azure",
-			"Other"
-		]
-	},
-	{
-		"question": "Favorite programming language?",
-		"correct": "N/A",
-		"responses": [
-			"Java",
-			"Python",
-			"C#",
-			"Other"
-		]
-	},
-	{
-		"question": "LLMs seem like they will...",
-		"correct": "N/A",
-		"responses": [
-			"Be an amazingly powerful tool",
-			"Be a mixed bag",
-			"No idea",
-			"Kill all of us"
-		]
-	},
-	{
-		"question": "The best language is...",
-		"correct": "N/A",
-		"responses": [
-			"French",
-			"French",
-			"French",
-			"French"
-		]
-	}
+        {
+          "question": "How much experience do you have with cloud computing?",
+          "correct": "N/A",
+          "responses": [
+            "none",
+            "a little",
+            "a lot",
+            "a cloud guru"
+          ]
+        },
+        {
+          "question": "Which cloud do you use most?",
+          "correct": "N/A",
+          "responses": [
+            "Google Cloud",
+            "Amazon Web Services",
+            "Microsoft Azure",
+            "Other"
+          ]
+        },
+        {
+          "question": "Favorite programming language?",
+          "correct": "N/A",
+          "responses": [
+            "Java",
+            "Python",
+            "C#",
+            "Other"
+          ]
+        },
+        {
+          "question": "LLMs seem like they will...",
+          "correct": "N/A",
+          "responses": [
+            "Be an amazingly powerful tool",
+            "Be a mixed bag",
+            "No idea",
+            "Kill all of us"
+          ]
+        },
+        {
+          "question": "The best language is...",
+          "correct": "N/A",
+          "responses": [
+            "French",
+            "French",
+            "French",
+            "French"
+          ]
+        }
       ]
     }
   },
@@ -105,25 +105,25 @@
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "US History Quiz",
       "generator": "Jeopardy",
-      "answerFormat": "free form", 
+      "answerFormat": "free form",
       "topic": "U.S. History",
       "imageUrl": "https://images.unsplash.com/photo-1597701974172-3a99fbb4b5c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
       "numQuestions": "3",
       "difficulty": "5",
       "runCount": "7",
       "qAndA": [
-          {
-              "question":  "Who was buried in Grants Tomb?",
-              "correct": "Grant"
-          },
-          {
-              "question":  "Where was Lincoln shot?",
-              "correct": "Fords Theater"
-          },
-          {
-              "question":  "Who was the first President?",
-              "correct": "Washington"
-          }
+        {
+          "question": "Who was buried in Grants Tomb?",
+          "correct": "Grant"
+        },
+        {
+          "question": "Where was Lincoln shot?",
+          "correct": "Fords Theater"
+        },
+        {
+          "question": "Who was the first President?",
+          "correct": "Washington"
+        }
       ]
     }
   },
@@ -134,113 +134,113 @@
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Who Wrote It?",
       "generator": "Palm",
-      "answerFormat": "multiple choice", 
+      "answerFormat": "multiple choice",
       "topic": "French Literature",
       "imageUrl": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
       "numQuestions": "3",
       "difficulty": "3",
       "runCount": "17",
       "qAndA": [
-{
-		"question": "Who wrote Le Petit Prince?",
-		"correct": "St-Exupery",
-		"responses": [
-			"Sartre",
-			"Voltaire",
-			"St-Exupery",
-			"Victor Hugo"
-		]
-	},
-	{
-		"question": "Who is the author of Les Misérables?",
-		"correct": "Victor Hugo",
-		"responses": [
-			"Gustave Flaubert",
-			"Émile Zola",
-			"Victor Hugo",
-			"Darth Vader"
-		]
-	},
-	{
-		"question": "Which French novel features the character Emma Bovary?",
-		"correct": "Madame Bovary",
-		"responses": [
-			"Madame Bovary",
-			"The Hunchback of Notre-Dame",
-			"Germinal",
-			"Harry Potter and the Baguette Magique"
-		]
-	},
-	{
-		"question": "Which existentialist philosopher wrote the play No Exit?",
-		"correct": "Jean-Paul Sartre",
-		"responses": [
-			"Jean-Paul Sartre",
-			"Albert Camus",
-			"François-René de Chateaubriand",
-			"Captain Crunch"
-		]
-	},
-	{
-		"question": "What is the title of Marcel Prousts seven-volume novel?",
-		"correct": "In Search of Lost Time",
-		"responses": [
-			"In Search of Lost Time",
-			"Les Misérables",
-			"Swanns Way",
-			"The Lord of the Baguettes"
-		]
-	},
-	{
-		"question": "Which author is known for his series of novels called The Rougon-Macquart Cycle?",
-		"correct": "Émile Zola",
-		"responses": [
-			"Émile Zola",
-			"Victor Hugo",
-			"Gustave Flaubert",
-			"Indiana Jones"
-		]
-	},
-	{
-		"question": "What is the main setting of Albert Camus novel The Stranger?",
-		"correct": "Algeria",
-		"responses": [
-			"Algeria",
-			"France",
-			"Morocco",
-			"Narnia"
-		]
-	},
-	{
-		"question": "What French literary movement is Charles Baudelaire often associated with?",
-		"correct": "Symbolism",
-		"responses": [
-			"Symbolism",
-			"Romanticism",
-			"Realism",
-			"Pokémonism"
-		]
-	},
-	{
-		"question": "Which French author wrote the science fiction novel Twenty Thousand Leagues Under the Sea?",
-		"correct": "Jules Verne",
-		"responses": [
-			"Jules Verne",
-			"Honoré de Balzac",
-			"Alexandre Dumas",
-			"Leonardo DiCaprio"
-		]
-	},
-	{
-		"question": "Who wrote the French novel The Count of Monte Cristo?",
-		"correct": "Alexandre Dumas",
-		"responses": [
-			"Alexandre Dumas",
-			"Victor Hugo",
-			"Honoré de Balzac",
-			"Donald Duck"
-		]
-	}
+        {
+          "question": "Who wrote Le Petit Prince?",
+          "correct": "St-Exupery",
+          "responses": [
+            "Sartre",
+            "Voltaire",
+            "St-Exupery",
+            "Victor Hugo"
+          ]
+        },
+        {
+          "question": "Who is the author of Les Misérables?",
+          "correct": "Victor Hugo",
+          "responses": [
+            "Gustave Flaubert",
+            "Émile Zola",
+            "Victor Hugo",
+            "Darth Vader"
+          ]
+        },
+        {
+          "question": "Which French novel features the character Emma Bovary?",
+          "correct": "Madame Bovary",
+          "responses": [
+            "Madame Bovary",
+            "The Hunchback of Notre-Dame",
+            "Germinal",
+            "Harry Potter and the Baguette Magique"
+          ]
+        },
+        {
+          "question": "Which existentialist philosopher wrote the play No Exit?",
+          "correct": "Jean-Paul Sartre",
+          "responses": [
+            "Jean-Paul Sartre",
+            "Albert Camus",
+            "François-René de Chateaubriand",
+            "Captain Crunch"
+          ]
+        },
+        {
+          "question": "What is the title of Marcel Prousts seven-volume novel?",
+          "correct": "In Search of Lost Time",
+          "responses": [
+            "In Search of Lost Time",
+            "Les Misérables",
+            "Swanns Way",
+            "The Lord of the Baguettes"
+          ]
+        },
+        {
+          "question": "Which author is known for his series of novels called The Rougon-Macquart Cycle?",
+          "correct": "Émile Zola",
+          "responses": [
+            "Émile Zola",
+            "Victor Hugo",
+            "Gustave Flaubert",
+            "Indiana Jones"
+          ]
+        },
+        {
+          "question": "What is the main setting of Albert Camus novel The Stranger?",
+          "correct": "Algeria",
+          "responses": [
+            "Algeria",
+            "France",
+            "Morocco",
+            "Narnia"
+          ]
+        },
+        {
+          "question": "What French literary movement is Charles Baudelaire often associated with?",
+          "correct": "Symbolism",
+          "responses": [
+            "Symbolism",
+            "Romanticism",
+            "Realism",
+            "Pokémonism"
+          ]
+        },
+        {
+          "question": "Which French author wrote the science fiction novel Twenty Thousand Leagues Under the Sea?",
+          "correct": "Jules Verne",
+          "responses": [
+            "Jules Verne",
+            "Honoré de Balzac",
+            "Alexandre Dumas",
+            "Leonardo DiCaprio"
+          ]
+        },
+        {
+          "question": "Who wrote the French novel The Count of Monte Cristo?",
+          "correct": "Alexandre Dumas",
+          "responses": [
+            "Alexandre Dumas",
+            "Victor Hugo",
+            "Honoré de Balzac",
+            "Donald Duck"
+          ]
+        }
       ]
     }
   },
@@ -251,33 +251,33 @@
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Rock and Roll!",
       "generator": "OpenTrivia",
-      "answerFormat": "multiple choice", 
+      "answerFormat": "multiple choice",
       "topic": "Music",
       "imageUrl": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
       "numQuestions": "2",
       "difficulty": "4",
       "runCount": "2",
       "qAndA": [
-          {
-              "question": "Which is the greatest band of all time?",
-              "correct": "The Beatles",
-              "responses": [
-                  "The Rolling Stones",
-                  "The Beatles",
-                  "Oasis",
-                  "Spinal Tap"
-              ]
-          },
-          {
-              "question": "Who sold more records than any other individual artist?",
-              "correct": "Elvis Presley",
-              "responses": [
-                  "Bob Dylan",
-                  "Stevie Wonder",
-                  "Michael Jackson",
-                  "Elvis Presley"
-              ]
-          }
+        {
+          "question": "Which is the greatest band of all time?",
+          "correct": "The Beatles",
+          "responses": [
+            "The Rolling Stones",
+            "The Beatles",
+            "Oasis",
+            "Spinal Tap"
+          ]
+        },
+        {
+          "question": "Who sold more records than any other individual artist?",
+          "correct": "Elvis Presley",
+          "responses": [
+            "Bob Dylan",
+            "Stevie Wonder",
+            "Michael Jackson",
+            "Elvis Presley"
+          ]
+        }
       ]
     }
   },
@@ -288,33 +288,33 @@
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Cat Trivia by حسین رضایی",
       "generator": "Palm",
-      "answerFormat": "free form", 
+      "answerFormat": "free form",
       "topic": "Pets",
       "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1686&q=80",
       "numQuestions": "2",
       "difficulty": "2",
       "runCount": "23",
       "qAndA": [
-          {
-              "question": "Best cat ever?",
-              "correct": "Clyro",
-              "responses": [
-                  "Clyro",
-                  "Baloo",
-                  "Benji",
-                  "Juno"
-              ]
-          },
-          {
-              "question": "Where do cats like to hang out?",
-              "correct": "in a box",
-              "responses": [
-                  "in the rain",
-                  "in a cave",
-                  "in a box",
-                  "under water"
-              ]
-          }
+        {
+          "question": "Best cat ever?",
+          "correct": "Clyro",
+          "responses": [
+            "Clyro",
+            "Baloo",
+            "Benji",
+            "Juno"
+          ]
+        },
+        {
+          "question": "Where do cats like to hang out?",
+          "correct": "in a box",
+          "responses": [
+            "in the rain",
+            "in a cave",
+            "in a box",
+            "under water"
+          ]
+        }
       ]
     }
   },
@@ -325,63 +325,113 @@
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Pop Music",
       "generator": "Palm",
-      "answerFormat": "multiple choice", 
+      "answerFormat": "multiple choice",
       "topic": "Pop Music",
       "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
       "numQuestions": "10",
       "difficulty": "3",
       "runCount": "13",
       "qAndA": [
-  {
-    "question": "Which artist won the most Grammy Awards in a single night?",
-    "correct": "Beyoncé",
-    "responses": ["Adele", "Beyoncé", "Taylor Swift", "Michael Jackson"]
-  },
-  {
-    "question": "Which boy band was formed on a reality TV show?",
-    "correct": "One Direction",
-    "responses": ["NSYNC", "Backstreet Boys", "One Direction", "98 Degrees"]
-  },
-  {
-    "question": "Who was the first rapper to win a Pulitzer Prize?",
-    "correct": "Kendrick Lamar",
-    "responses": ["Jay-Z", "Kendrick Lamar", "Drake", "Eminem"]
-  },
-  {
-    "question": "Which band recorded the album Dark Side of the Moon?",
-    "correct": "Pink Floyd",
-    "responses": ["Led Zeppelin", "The Rolling Stones", "Pink Floyd", "The Who"]
-  },
-  {
-    "question": "Which artist wrote the hit song Uptown Funk?",
-    "correct": "Mark Ronson",
-    "responses": ["Bruno Mars", "Pharrell Williams", "Mark Ronson", "Ed Sheeran"]
-  },
-  {
-    "question": "Which artist holds the record for the most top 40 hits?",
-    "correct": "Drake",
-    "responses": ["Madonna", "Elvis Presley", "The Beatles", "Drake"]
-  },
-  {
-    "question": "Which singer had a hit song called Hello?",
-    "correct": "Adele",
-    "responses": ["Taylor Swift", "Adele", "Katy Perry", "Rihanna"]
-  },
-  {
-    "question": "Which singer was known as the Queen of Soul?",
-    "correct": "Aretha Franklin",
-    "responses": ["Whitney Houston", "Tina Turner", "Aretha Franklin", "Gladys Knight"]
-  },
-  {
-    "question": "Which artist wrote the song Like a Rolling Stone?",
-    "correct": "Bob Dylan",
-    "responses": ["Bruce Springsteen", "Neil Young", "Bob Dylan", "Tom Petty"]
-  },
-  {
-    "question": "Which pop stars real name is Stefani Germanotta?",
-    "correct": "Lady Gaga",
-    "responses": ["Britney Spears", "Katy Perry", "Lady Gaga", "Ariana Grande"]
-  }
+        {
+          "question": "Which artist won the most Grammy Awards in a single night?",
+          "correct": "Beyoncé",
+          "responses": [
+            "Adele",
+            "Beyoncé",
+            "Taylor Swift",
+            "Michael Jackson"
+          ]
+        },
+        {
+          "question": "Which boy band was formed on a reality TV show?",
+          "correct": "One Direction",
+          "responses": [
+            "NSYNC",
+            "Backstreet Boys",
+            "One Direction",
+            "98 Degrees"
+          ]
+        },
+        {
+          "question": "Who was the first rapper to win a Pulitzer Prize?",
+          "correct": "Kendrick Lamar",
+          "responses": [
+            "Jay-Z",
+            "Kendrick Lamar",
+            "Drake",
+            "Eminem"
+          ]
+        },
+        {
+          "question": "Which band recorded the album Dark Side of the Moon?",
+          "correct": "Pink Floyd",
+          "responses": [
+            "Led Zeppelin",
+            "The Rolling Stones",
+            "Pink Floyd",
+            "The Who"
+          ]
+        },
+        {
+          "question": "Which artist wrote the hit song Uptown Funk?",
+          "correct": "Mark Ronson",
+          "responses": [
+            "Bruno Mars",
+            "Pharrell Williams",
+            "Mark Ronson",
+            "Ed Sheeran"
+          ]
+        },
+        {
+          "question": "Which artist holds the record for the most top 40 hits?",
+          "correct": "Drake",
+          "responses": [
+            "Madonna",
+            "Elvis Presley",
+            "The Beatles",
+            "Drake"
+          ]
+        },
+        {
+          "question": "Which singer had a hit song called Hello?",
+          "correct": "Adele",
+          "responses": [
+            "Taylor Swift",
+            "Adele",
+            "Katy Perry",
+            "Rihanna"
+          ]
+        },
+        {
+          "question": "Which singer was known as the Queen of Soul?",
+          "correct": "Aretha Franklin",
+          "responses": [
+            "Whitney Houston",
+            "Tina Turner",
+            "Aretha Franklin",
+            "Gladys Knight"
+          ]
+        },
+        {
+          "question": "Which artist wrote the song Like a Rolling Stone?",
+          "correct": "Bob Dylan",
+          "responses": [
+            "Bruce Springsteen",
+            "Neil Young",
+            "Bob Dylan",
+            "Tom Petty"
+          ]
+        },
+        {
+          "question": "Which pop stars real name is Stefani Germanotta?",
+          "correct": "Lady Gaga",
+          "responses": [
+            "Britney Spears",
+            "Katy Perry",
+            "Lady Gaga",
+            "Ariana Grande"
+          ]
+        }
       ]
     }
   },
@@ -389,70 +439,101 @@
     "collection": "sessions",
     "id": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
     "data": {
-        "state": "quizzing",
-        "curQuestion": "0",
-        "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
-        "quizId": "Gc34g8db0wCrroLUxJeA",
-        "synchronous": true,
-        "anonymous": true,
-        "survey": false,
-        "timeLimit": "30",
-        "randomizeAnswers": true,
-        "randomizeQuestions": true,
-        "pin": "123"
+      "curQuestion": "0",
+      "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
+      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "synchronous": true,
+      "anonymous": true,
+      "survey": false,
+      "timeLimit": "30",
+      "randomizeAnswers": true,
+      "randomizeQuestions": true,
+      "pin": "999"
     }
   },
   {
     "collection": "results",
     "id": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
     "data": {
-        "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
-        "quizId": "Gc34g8db0wCrroLUxJeA",
-        "players": {
-            "Marc": {"score": 0},
-            "Dina": {"score": 1},
-            "Gosia": {"score": 2},
-            "Kimba": {"score": 3},
-            "Maya": {"score": 0},
-            "Benji": {"score": 1},
-            "Maple": {"score": 1},
-            "Darrow": {"score": 0}
+      "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
+      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "players": {
+        "Marc": {
+          "score": 0
+        },
+        "Dina": {
+          "score": 1
+        },
+        "Gosia": {
+          "score": 2
+        },
+        "Kimba": {
+          "score": 3
+        },
+        "Maya": {
+          "score": 0
+        },
+        "Benji": {
+          "score": 1
+        },
+        "Maple": {
+          "score": 1
+        },
+        "Darrow": {
+          "score": 0
         }
+      }
     }
   },
   {
     "collection": "sessions",
     "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
     "data": {
-        "state": "quizzing",
-        "curQuestion": "0",
-        "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
-        "quizId": "Gc34g8db0wCrroLUxJeA",
-        "synchronous": true,
-        "anonymous": true,
-        "survey": false,
-        "timeLimit": "30",
-        "randomizeAnswers": true,
-        "randomizeQuestions": true,
-        "pin": "456"
+      "state": "quizzing",
+      "curQuestion": "0",
+      "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
+      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "synchronous": true,
+      "anonymous": true,
+      "survey": false,
+      "timeLimit": "30",
+      "randomizeAnswers": true,
+      "randomizeQuestions": true,
+      "pin": "456"
     }
   },
   {
     "collection": "results",
     "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
     "data": {
-        "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
-        "quizId": "Gc34g8db0wCrroLUxJeA",
-        "players": {
-            "Marc": {"score": 0},
-            "Dina": {"score": 1},
-            "Gosia": {"score": 2},
-            "Kimba": {"score": 3},
-            "Maya": {"score": 0},
-            "Benji": {"score": 1},
-            "Maple": {"score": 1},
-            "Darrow": {"score": 0}
+      "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
+      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "players": {
+        "Marc": {
+          "score": 0
+        },
+        "Dina": {
+          "score": 1
+        },
+        "Gosia": {
+          "score": 2
+        },
+        "Kimba": {
+          "score": 3
+        },
+        "Maya": {
+          "score": 0
+        },
+        "Benji": {
+          "score": 1
+        },
+        "Maple": {
+          "score": 1
+        },
+        "Darrow": {
+          "score": 0
         }
+      }
     }
   },
   {
@@ -460,7 +541,10 @@
     "id": "57d62f566516411e98eb",
     "data": {
       "name": "Palm",
-      "answerFormats": ["multiple choice", "free form"],
+      "answerFormats": [
+        "multiple choice",
+        "free form"
+      ],
       "topics": []
     }
   },
@@ -469,8 +553,35 @@
     "id": "13c75dcc33124f618209",
     "data": {
       "name": "OpenTrivia",
-      "answerFormats": ["multiple choice"],
-      "topics": [ "Television", "Gadgets", "Video Games", "Japanese Anime & Manga", "Cartoons &  Animations", "History", "Geography", "Books", "Board Games", "Musicals & Theatres", "Science & Nature", "Sports", "Music", "Vehicles", "Mathematics", "Comics", "Animals", "Computers", "Politics", "Celebrities", "Film", "Mythology", "General Knowledge", "Art" ]
+      "answerFormats": [
+        "multiple choice"
+      ],
+      "topics": [
+        "Television",
+        "Gadgets",
+        "Video Games",
+        "Japanese Anime & Manga",
+        "Cartoons &  Animations",
+        "History",
+        "Geography",
+        "Books",
+        "Board Games",
+        "Musicals & Theatres",
+        "Science & Nature",
+        "Sports",
+        "Music",
+        "Vehicles",
+        "Mathematics",
+        "Comics",
+        "Animals",
+        "Computers",
+        "Politics",
+        "Celebrities",
+        "Film",
+        "Mythology",
+        "General Knowledge",
+        "Art"
+      ]
     }
   },
   {
@@ -478,8 +589,111 @@
     "id": "f6d00e4de6c5c7e86d1",
     "data": {
       "name": "Jeopardy",
-      "answerFormats": ["free form"],
-      "topics": [ "Fruits & Vegetables", "World Cities", "Americana", "Scientists", "Abbrev.", "Food", "Nature", "Organizations", "Science", "Islands", "Languages", "U.S. History", "The Body Human", "Government & Politics", "Weights & Measures", "Architecture", "Notable Names", "Ballet", "Travel & Tourism", "Fashion", "Art", "Television", "Transportation", "Nonfiction", "Common Bonds", "Astronomy", "Famous Americans", "Art & Artists", "World Capitals", "Chemistry", "U.S. States", "The Movies", "Poets & Poetry", "Artists", "Holidays & Observances", "Fictional Characters", "Annual Events", "Word Origins", "4-Letter Words", "Theatre", "Foreign Words & Phrases", "Bodies Of Water", "Zoology", "Museums", "Colleges & Universities", "Around The World", "Potpourri", "U.S. Cities", "Food & Drink", "Sports", "Music", "Vocabulary", "5-Letter Words", "Hodgepodge", "First Ladies", "Mountains", "Potent Potables", "Homophones", "Stupid Answers", "U.S. Geography", "People", "World Geography", "World Leaders", "Pop Music", "Historic Names", "Authors", "Medicine", "Biology", "Mythology", "3-Letter Words", "Religion", "Quotations", "In The Dictionary", "Classical Music", "World History", "State Capitals", "U.S. Presidents", "History", "Geography", "Physics", "Science & Nature", "Opera", "Musical Instruments", "American History", "Business & Industry", "Awards", "Books & Authors", "American Literature", "Composers", "19Th Century America", "Animals", "Literature", "Shakespeare", "Rhyme Time", "Explorers", "The Bible", "Before & After", "Magazines", "The Civil War", "European History" ]
+      "answerFormats": [
+        "free form"
+      ],
+      "topics": [
+        "Fruits & Vegetables",
+        "World Cities",
+        "Americana",
+        "Scientists",
+        "Abbrev.",
+        "Food",
+        "Nature",
+        "Organizations",
+        "Science",
+        "Islands",
+        "Languages",
+        "U.S. History",
+        "The Body Human",
+        "Government & Politics",
+        "Weights & Measures",
+        "Architecture",
+        "Notable Names",
+        "Ballet",
+        "Travel & Tourism",
+        "Fashion",
+        "Art",
+        "Television",
+        "Transportation",
+        "Nonfiction",
+        "Common Bonds",
+        "Astronomy",
+        "Famous Americans",
+        "Art & Artists",
+        "World Capitals",
+        "Chemistry",
+        "U.S. States",
+        "The Movies",
+        "Poets & Poetry",
+        "Artists",
+        "Holidays & Observances",
+        "Fictional Characters",
+        "Annual Events",
+        "Word Origins",
+        "4-Letter Words",
+        "Theatre",
+        "Foreign Words & Phrases",
+        "Bodies Of Water",
+        "Zoology",
+        "Museums",
+        "Colleges & Universities",
+        "Around The World",
+        "Potpourri",
+        "U.S. Cities",
+        "Food & Drink",
+        "Sports",
+        "Music",
+        "Vocabulary",
+        "5-Letter Words",
+        "Hodgepodge",
+        "First Ladies",
+        "Mountains",
+        "Potent Potables",
+        "Homophones",
+        "Stupid Answers",
+        "U.S. Geography",
+        "People",
+        "World Geography",
+        "World Leaders",
+        "Pop Music",
+        "Historic Names",
+        "Authors",
+        "Medicine",
+        "Biology",
+        "Mythology",
+        "3-Letter Words",
+        "Religion",
+        "Quotations",
+        "In The Dictionary",
+        "Classical Music",
+        "World History",
+        "State Capitals",
+        "U.S. Presidents",
+        "History",
+        "Geography",
+        "Physics",
+        "Science & Nature",
+        "Opera",
+        "Musical Instruments",
+        "American History",
+        "Business & Industry",
+        "Awards",
+        "Books & Authors",
+        "American Literature",
+        "Composers",
+        "19Th Century America",
+        "Animals",
+        "Literature",
+        "Shakespeare",
+        "Rhyme Time",
+        "Explorers",
+        "The Bible",
+        "Before & After",
+        "Magazines",
+        "The Civil War",
+        "European History"
+      ]
     }
   },
   {
@@ -487,7 +701,10 @@
     "id": "f6d00e41de6c4c7e86d1",
     "data": {
       "name": "Manual",
-      "answerFormats": ["multiple choice", "free form"],
+      "answerFormats": [
+        "multiple choice",
+        "free form"
+      ],
       "topics": []
     }
   }
