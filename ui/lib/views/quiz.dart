@@ -19,14 +19,18 @@ class QuizPage extends StatelessWidget {
     return StreamBuilder<DocumentSnapshot>(
       stream: appState.playerSessionStream,
       builder: (context, snapshot) {
+        print('snapshot.data: $snapshot.data');
         if (snapshot.data?.data() == null) {
           appState.playerData.registered = false;
           return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
-        if (data['curQuestion'] == -1 || data['curQuestion'] == -2) {
+        if (data['curQuestion'] == -2) {
           appState.playerData.registered = false;
+        }
+
+        if (data['curQuestion'] < 0) {
           return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
 

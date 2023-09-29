@@ -49,6 +49,8 @@ class _HostPageState extends State<HostPage> {
     ]);
   }
 
+  bool sessionStarting = true;
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -118,6 +120,7 @@ class _HostPageState extends State<HostPage> {
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = data['curQuestion'];
+            //int curQuestion = appState.sessionData.curQuestion;
             var question = '';
             if (curQuestion >= 0) {
               question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
@@ -196,6 +199,7 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(height: verticalSpaceHeight),
                     ]);
                   }
+                  if (curQuestion >= 0) {}
                   return Column(
                     children: [
                       genText(theme,
@@ -210,14 +214,15 @@ class _HostPageState extends State<HostPage> {
                           genText(
                               theme, 'Question ${curQuestion + 1}: $question')),
                       SizedBox(height: formRowHeight),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            for (var answer
-                                in jsonDecode(quiz.qAndA)[curQuestion]
-                                    ['responses'])
-                              genCard(theme, genText(theme, answer)),
-                          ]),
+                      if (curQuestion >= 0)
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              for (var answer
+                                  in jsonDecode(quiz.qAndA)[curQuestion]
+                                      ['responses'])
+                                genCard(theme, genText(theme, answer)),
+                            ]),
                       SizedBox(height: formRowHeight),
                       SizedBox(
                         width: rowWidth,
@@ -234,6 +239,7 @@ class _HostPageState extends State<HostPage> {
                             SizedBox(width: horizontalSpaceWidth),
                             ElevatedButton(
                               onPressed: () {
+                                sessionStarting = true;
                                 appState.stopQuiz();
                               },
                               child: genText(theme, 'Stop Quiz'),

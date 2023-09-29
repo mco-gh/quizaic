@@ -228,6 +228,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> incQuestion(sessionId, curQuestion, numQuestions) async {
+    print('incQuestion($sessionId, $curQuestion, $numQuestions)');
     if (curQuestion >= numQuestions - 1) {
       errorDialog('Reached end of quiz, stop quiz to proceed.');
       return true;
@@ -260,19 +261,25 @@ class MyAppState extends ChangeNotifier {
         .snapshots();
   }
 
-  resetSession(String quizId, bool includeSettings) async {
-    print('resetSession($quizId)');
+  resetSession(String quizId, {bool startingNewQuiz = true}) async {
+    print('resetSession($quizId, $startingNewQuiz)');
     Map<dynamic, dynamic> json;
+
     if (quizId == '') {
+      // no quiz id - we're stopping a quiz
       editSessionData.reset();
       json = editSessionData.toJson();
-      json['quizId'] = '';
-      json['curQuestion'] = -1;
-    } else if (includeSettings) {
-      json = editSessionData.toJson();
       json['quizId'] = quizId;
+      json['curQuestion'] = -2;
     } else {
-      json = {'quizId': quizId, 'curQuestion': -1};
+      // quiz id provided so we're starting a new quiz or resuming an existing quiz.
+      if (startingNewQuiz) {
+        json = editSessionData.toJson();
+        json['quizId'] = quizId;
+        json['curQuestion'] = -1;
+      } else {
+        json = {'curQuestion': -1};
+      }
     }
 
     var response = await http.patch(
@@ -312,7 +319,7 @@ class MyAppState extends ChangeNotifier {
     print('createSession($quizId)');
     Map<dynamic, dynamic> json = editSessionData.toJson();
     json['quizId'] = quizId;
-    json['curQuestion'] = -1;
+    json['curQuestion'] = -2;
     var response = await http
         .post(Uri.parse('$apiUrl/sessions'), body: jsonEncode(json), headers: {
       'Authorization': 'Bearer ${userData.idToken}',
@@ -340,7 +347,6 @@ class MyAppState extends ChangeNotifier {
       'Authorization': 'Bearer ${userData.idToken}',
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('response.body: ${response.body}');
       Map<String, dynamic> json = jsonDecode(response.body);
       sessionData = Session.fromJson(json);
       return true;
@@ -351,22 +357,26 @@ class MyAppState extends ChangeNotifier {
   Future<bool> createOrReuseSession(quizId) async {
     print('createOrReuseSession($quizId)');
     // If session in progress but quiz doesn't match the requested quiz,
-    // alert the user.
+    // switch host to the new quiz but alert the user.
     bool sessionFound = await getMySession();
     if (sessionFound) {
       if (sessionData.quizId != '' && sessionData.quizId != quizId) {
-        errorDialog(
-            'Quiz already in progress, resetting session to host new quiz.');
+        errorDialog('Quiz already in progress, reset to host new quiz.');
+        print(
+            'Resuming session ${sessionData.id} but switching quiz and settings.');
+        resetSession(quizId, startingNewQuiz: true);
+      } else {
+        // Session found for same quiz id, leave it alone.
+        print(
+            'Resuming session ${sessionData.id} already in progress for host.');
+        resetSession(quizId, startingNewQuiz: false);
       }
-      // Session found for this host so reuse it.
-      print('Resuming session ${sessionData.id} already in progress for host.');
-      await resetSession(quizId, true);
     } else {
       // No session available for this host so create a new one.
       print('Creating a new session.');
       await createSession(quizId);
     }
-    // whether session is new or resumed, update its reset it's results.
+    // whether session is new or resumed, reset its results.
     await resetResults(quizId);
     setupStreams(sessionData.id);
     notifyListeners();
@@ -377,7 +387,7 @@ class MyAppState extends ChangeNotifier {
     // start a quiz by resetting the associated session and results
     // to reflect this quizId and curQuestion 0, but leave the rest
     // of the current session settings intact.
-    await resetSession(quizId, false);
+    //await resetSession(quizId, startingNewQuiz: true);
     await resetResults(quizId);
     incQuestion(sessionData.id, -1, numQuestions);
     notifyListeners();
@@ -388,7 +398,7 @@ class MyAppState extends ChangeNotifier {
     // stop a session by resetting the associated session and results but
     // leave the session record intact so the host can reuse it later.
     // Eventually we need to garbage collect stale sessions.
-    await resetSession('', false);
+    await resetSession('');
     await resetResults('');
     sessionData.id = '';
     notifyListeners();

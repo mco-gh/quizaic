@@ -34,8 +34,8 @@ class Session {
     this.timeCreated = '',
     this.updated = '',
 
-    // managed by backend api (in alphabetical order)
-    this.curQuestion = -1,
+    // managed (indirectly) by backend api
+    this.curQuestion = -2,
     this.pin = '',
   });
 
