@@ -35,10 +35,10 @@ class PlayPage extends StatelessWidget {
     final appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
 
-    //badPinOnDeepLink(pin) {
-    //errorDialog('No session available for pin $pin');
-    //GoRouter.of(context).go('/play');
-    //}
+    badPinOnDeepLink(pin) {
+      errorDialog('No session available for pin $pin');
+      GoRouter.of(context).go('/play');
+    }
 
     badPinOnPlayForm(pin) {
       errorDialog('No session available for pin $pin');
@@ -58,15 +58,10 @@ class PlayPage extends StatelessWidget {
 
     // if a pin was provided by url and we haven't yet found
     // a session for it, try to do so here.
-    // if (pin != null && pin != '' && !appState.sessionFound) {
-    // appState.findSessionByPin(pin, badPinOnDeepLink);
-    // Can't do this yet because don't know if session found,
-    // since that's done async.
-    //String? name = appState.getPlayerNameByPinFromLocal(pin);
-    //if (name != null) {
-    //return QuizPage();
-    //}
-    // }
+    if (pin != null && pin != '') {
+      appState.findSessionByPin(pin, badPinOnDeepLink);
+      appState.getPlayerNameByPinFromLocal(pin);
+    }
 
     if (appState.playerData.pin != '' && appState.playerData.playerName != '') {
       return QuizPage();
@@ -103,6 +98,9 @@ class PlayPage extends StatelessWidget {
                       defaultPinTheme: defaultPinTheme,
                       validator: (s) {
                         appState.findSessionByPin(s, badPinOnPlayForm);
+                        String? playerName =
+                            appState.getPlayerNameByPinFromLocal(s);
+                        if (playerName != null) {}
                         return null;
                       },
                     ),

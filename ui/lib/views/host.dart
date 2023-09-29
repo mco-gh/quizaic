@@ -75,7 +75,7 @@ class _HostPageState extends State<HostPage> {
 
     void setHostTimeLimit(value) {
       return setState(() {
-        appState.editSessionData.timeLimit = value;
+        appState.editSessionData.timeLimit = int.parse(value);
       });
     }
 

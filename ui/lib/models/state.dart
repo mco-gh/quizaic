@@ -172,13 +172,12 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? getPlayerNameByPinFromLocal(pin) {
+  getPlayerNameByPinFromLocal(pin) {
     String? playerName = storage.getItem(pin);
-
     if (playerName != null) {
       playerData.playerName = playerName;
     }
-    return playerName;
+    notifyListeners();
   }
 
   Future<List<Quiz>> fetchQuizzes() async {
@@ -277,8 +276,10 @@ class MyAppState extends ChangeNotifier {
         json = editSessionData.toJson();
         json['quizId'] = quizId;
         json['curQuestion'] = -1;
+        print('json1: $json');
       } else {
         json = {'quizId': quizId, 'curQuestion': -1};
+        print('json2: $json');
       }
     }
 
@@ -369,7 +370,7 @@ class MyAppState extends ChangeNotifier {
         // Session found for same quiz id, leave it alone.
         print(
             'Resuming session ${sessionData.id} already in progress for host.');
-        await resetSession(quizId, startingNewQuiz: false);
+        await resetSession(quizId, startingNewQuiz: true);
       }
     } else {
       // No session available for this host so create a new one.
