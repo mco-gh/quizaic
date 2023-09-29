@@ -27,10 +27,10 @@ const double logoHeight = 100.0;
 const double formPadding = 6.0;
 const double formColumnWidth = 400.0;
 const double formRowHeight = 52.0;
-const double gridColWidth = 400.0;
+const double gridColWidth = 375.0;
 const double buttonTextSize = 12;
 const IntrinsicContentTrackSize gridRowSize = auto;
-const FixedTrackSize gridColSize = FixedTrackSize(gridColWidth * .70);
+const FixedTrackSize gridColSize = FixedTrackSize(gridColWidth * .75);
 const String appBarTitle = 'Quizaic';
 const String appBarTitleExtended = '$appBarTitle | AI Powered Infinite Trivia';
 
