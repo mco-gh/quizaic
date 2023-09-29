@@ -140,7 +140,7 @@ Widget genQuestionList(ThemeData theme, quiz, appState) {
 
     setQuestion(s) {
       question['question'] = s;
-      appState.editData.qAndA = jsonEncode(qAndA);
+      appState.editQuizData.qAndA = jsonEncode(qAndA);
     }
 
     subwidgets = [];
@@ -159,7 +159,7 @@ Widget genQuestionList(ThemeData theme, quiz, appState) {
 
         setResponse(s) {
           question['responses'][j] = s;
-          appState.editData.qAndA = jsonEncode(qAndA);
+          appState.editQuizData.qAndA = jsonEncode(qAndA);
         }
 
         subwidgets.add(genTextFormField(
@@ -204,7 +204,7 @@ Widget genQuizGeneratorWidget(
     widget = genLabelValue(theme, 'Quiz Generator:', quiz.generator);
   } else {
     widget = genDropdownMenu(theme, 'Quiz Generator', key, formColumnWidth,
-        appState.editData.generator, getGenerators, setGenerator);
+        appState.editQuizData.generator, getGenerators, setGenerator);
   }
   return widget;
 }
@@ -217,7 +217,7 @@ Widget genQuizTopicWidget(
     widget = genLabelValue(theme, 'Quiz Topic:', quiz.topic);
   } else {
     widget = genDropdownMenu(theme, 'Quiz Topic', key, formColumnWidth,
-        appState.editData.topic, getTopics, setTopic);
+        appState.editQuizData.topic, getTopics, setTopic);
   }
   return widget;
 }
@@ -230,7 +230,7 @@ Widget genQuizAnswerFormatWidget(
     widget = genLabelValue(theme, 'Answer Format:', quiz.answerFormat);
   } else {
     widget = genDropdownMenu(theme, 'Answer Format', key, formColumnWidth,
-        appState.editData.answerFormat, getAnswerFormats, setAnswerFormat);
+        appState.editQuizData.answerFormat, getAnswerFormats, setAnswerFormat);
   }
   return widget;
 }
@@ -256,7 +256,7 @@ Widget genQuizDifficultyWidget(
     widget = genLabelValue(theme, 'Difficulty:', quiz.difficulty);
   } else {
     widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
-        appState.editData.difficulty, getDifficulty, setDifficulty);
+        appState.editQuizData.difficulty, getDifficulty, setDifficulty);
   }
   return widget;
 }
