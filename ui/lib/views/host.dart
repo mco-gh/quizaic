@@ -120,7 +120,6 @@ class _HostPageState extends State<HostPage> {
 
             var data = snapshot.data!.data() as Map<String, dynamic>;
             var curQuestion = data['curQuestion'];
-            //int curQuestion = appState.sessionData.curQuestion;
             var question = '';
             if (curQuestion >= 0) {
               question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
@@ -284,7 +283,9 @@ class _HostPageState extends State<HostPage> {
                   'Synch or Asynch',
                   _formKey,
                   formColumnWidth,
-                  appState.sessionData.synchronous ? 'Synch' : 'Asynch',
+                  appState.sessionData.synchronous
+                      ? 'Synchronous'
+                      : 'Asynchronous',
                   () => synchronousOrAsynchronous,
                   setHostSynch),
               SizedBox(height: verticalSpaceHeight),
