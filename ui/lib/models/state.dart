@@ -319,7 +319,7 @@ class MyAppState extends ChangeNotifier {
     print('createSession($quizId)');
     Map<dynamic, dynamic> json = editSessionData.toJson();
     json['quizId'] = quizId;
-    json['curQuestion'] = -2;
+    json['curQuestion'] = -1;
     var response = await http
         .post(Uri.parse('$apiUrl/sessions'), body: jsonEncode(json), headers: {
       'Authorization': 'Bearer ${userData.idToken}',
@@ -364,12 +364,12 @@ class MyAppState extends ChangeNotifier {
         errorDialog('Quiz already in progress, reset to host new quiz.');
         print(
             'Resuming session ${sessionData.id} but switching quiz and settings.');
-        resetSession(quizId, startingNewQuiz: true);
+        await resetSession(quizId, startingNewQuiz: true);
       } else {
         // Session found for same quiz id, leave it alone.
         print(
             'Resuming session ${sessionData.id} already in progress for host.');
-        resetSession(quizId, startingNewQuiz: false);
+        await resetSession(quizId, startingNewQuiz: false);
       }
     } else {
       // No session available for this host so create a new one.
@@ -389,7 +389,7 @@ class MyAppState extends ChangeNotifier {
     // of the current session settings intact.
     //await resetSession(quizId, startingNewQuiz: true);
     await resetResults(quizId);
-    incQuestion(sessionData.id, -1, numQuestions);
+    await incQuestion(sessionData.id, -1, numQuestions);
     notifyListeners();
     return true;
   }

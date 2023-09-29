@@ -124,6 +124,12 @@ class _HostPageState extends State<HostPage> {
             if (curQuestion >= 0) {
               question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
             }
+            if (curQuestion < -1) {
+              /// This is a hack to catch the case where the quiz is stopped
+              /// and the curQuestion is set to -2 but the session remains
+              /// intact we haven't yet reverted to the host page.
+              return Container();
+            }
 
             return StreamBuilder<DocumentSnapshot>(
                 stream: appState.resultsStream,
@@ -259,7 +265,7 @@ class _HostPageState extends State<HostPage> {
           child: SizedBox(
             width: rowWidth,
             child: ListView(children: [
-              SizedBox(height: verticalSpaceHeight),
+              SizedBox(height: verticalSpaceHeight * 2),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -270,7 +276,7 @@ class _HostPageState extends State<HostPage> {
                       height: logoHeight,
                     ),
                   ),
-                  SizedBox(width: horizontalSpaceWidth / 2),
+                  SizedBox(width: horizontalSpaceWidth),
                   genText(theme, 'Host Settings for "${quiz.name}"',
                       size: 30, weight: FontWeight.bold),
                 ],
