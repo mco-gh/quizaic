@@ -79,9 +79,6 @@ class PlayPage extends StatelessWidget {
       quizImage = appState.playerData.quiz?.imageUrl as String;
     }
 
-    if (!appState.playerData.registered) {
-      appState.registerPlayer(appState.playerData.playerName, true);
-    }
     return Scaffold(
       body: Stack(
         children: [

@@ -22,8 +22,8 @@ class EditQuizData {
   String answerFormat = 'Select generator to see formats';
   String generator = '';
   String topic = 'Select generator to see topics';
-  String numQuestions = '';
-  String difficulty = '';
+  int numQuestions = 0;
+  int difficulty = 1;
   String qAndA = '';
 }
 
@@ -221,8 +221,7 @@ class MyAppState extends ChangeNotifier {
         editQuizData.generator = quiz.generator;
         editQuizData.topic = quiz.topic;
         editQuizData.numQuestions = quiz.numQuestions;
-        editQuizData.difficulty =
-            editQuizData.difficulty[int.parse(quiz.difficulty) - 1];
+        editQuizData.difficulty = quiz.difficulty;
         editQuizData.qAndA = quiz.qAndA;
       }
     }
@@ -396,15 +395,13 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
-    int dnum = difficultyLevel.indexOf(editQuizData.difficulty);
-    String dstr = (dnum + 1).toString();
     Quiz tmpQuiz = Quiz(
         name: '',
         generator: '',
         answerFormat: '',
         topic: '',
-        numQuestions: '0',
-        difficulty: '1');
+        numQuestions: 0,
+        difficulty: 1);
 
     if (quiz != null && quiz.id != '') {
       String json = jsonEncode(quiz.toJson());
@@ -416,7 +413,7 @@ class MyAppState extends ChangeNotifier {
     tmpQuiz.answerFormat = editQuizData.answerFormat;
     tmpQuiz.topic = editQuizData.topic;
     tmpQuiz.numQuestions = editQuizData.numQuestions;
-    tmpQuiz.difficulty = dstr;
+    tmpQuiz.difficulty = editQuizData.difficulty;
     tmpQuiz.qAndA = editQuizData.qAndA;
 
     String url = '';

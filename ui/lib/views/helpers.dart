@@ -253,10 +253,16 @@ Widget genQuizDifficultyWidget(
   Widget widget;
 
   if (readOnly && quiz != null) {
-    widget = genLabelValue(theme, 'Difficulty:', quiz.difficulty);
+    widget = genLabelValue(theme, 'Difficulty:', '1'); //quiz.difficulty);
   } else {
-    widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
-        appState.editQuizData.difficulty, getDifficulty, setDifficulty);
+    widget = genDropdownMenu(
+        theme,
+        'Difficulty',
+        key,
+        formColumnWidth,
+        difficultyLevel[appState.editQuizData.difficulty - 1],
+        getDifficulty,
+        setDifficulty);
   }
   return widget;
 }

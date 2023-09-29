@@ -103,12 +103,12 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     String getNumQuestions() {
-      return appState.editQuizData.numQuestions;
+      return appState.editQuizData.numQuestions.toString();
     }
 
     void setNumQuestions(value) {
       return setState(() {
-        appState.editQuizData.numQuestions = value.toString();
+        appState.editQuizData.numQuestions = value.toInt();
       });
     }
 
@@ -118,7 +118,7 @@ class _CreatePageState extends State<CreatePage> {
 
     void setDifficulty(value) {
       return setState(() {
-        appState.editQuizData.difficulty = value.toString();
+        appState.editQuizData.difficulty = value.toInt();
       });
     }
 

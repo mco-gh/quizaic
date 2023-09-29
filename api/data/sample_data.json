@@ -41,9 +41,9 @@
       "answerFormat": "multiple choice",
       "topic": "Cloud Computing",
       "imageUrl": "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      "numQuestions": "5",
-      "difficulty": "1",
-      "runCount": "10",
+      "numQuestions": 5,
+      "difficulty": 1,
+      "runCount": 10,
       "qAndA": [
         {
           "question": "How much experience do you have with cloud computing?",
@@ -108,9 +108,9 @@
       "answerFormat": "free form",
       "topic": "U.S. History",
       "imageUrl": "https://images.unsplash.com/photo-1597701974172-3a99fbb4b5c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      "numQuestions": "3",
-      "difficulty": "5",
-      "runCount": "7",
+      "numQuestions": 3,
+      "difficulty": 5,
+      "runCount": 7,
       "qAndA": [
         {
           "question": "Who was buried in Grants Tomb?",
@@ -137,9 +137,9 @@
       "answerFormat": "multiple choice",
       "topic": "French Literature",
       "imageUrl": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
-      "numQuestions": "3",
-      "difficulty": "3",
-      "runCount": "17",
+      "numQuestions": 3,
+      "difficulty": 3,
+      "runCount": 17,
       "qAndA": [
         {
           "question": "Who wrote Le Petit Prince?",
@@ -254,9 +254,9 @@
       "answerFormat": "multiple choice",
       "topic": "Music",
       "imageUrl": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-      "numQuestions": "2",
-      "difficulty": "4",
-      "runCount": "2",
+      "numQuestions": 2,
+      "difficulty": 4,
+      "runCount": 2,
       "qAndA": [
         {
           "question": "Which is the greatest band of all time?",
@@ -291,9 +291,9 @@
       "answerFormat": "free form",
       "topic": "Pets",
       "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1686&q=80",
-      "numQuestions": "2",
-      "difficulty": "2",
-      "runCount": "23",
+      "numQuestions": 2,
+      "difficulty": 2,
+      "runCount": 23,
       "qAndA": [
         {
           "question": "Best cat ever?",
@@ -328,9 +328,9 @@
       "answerFormat": "multiple choice",
       "topic": "Pop Music",
       "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "numQuestions": "10",
-      "difficulty": "3",
-      "runCount": "13",
+      "numQuestions": 10,
+      "difficulty": 3,
+      "runCount": 13,
       "qAndA": [
         {
           "question": "Which artist won the most Grammy Awards in a single night?",
@@ -439,13 +439,13 @@
     "collection": "sessions",
     "id": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
     "data": {
-      "curQuestion": "0",
+      "curQuestion": -1,
       "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
-      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "quizId": "",
       "synchronous": true,
       "anonymous": true,
       "survey": false,
-      "timeLimit": "30",
+      "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
       "pin": "999"
@@ -489,17 +489,16 @@
     "collection": "sessions",
     "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
     "data": {
-      "state": "quizzing",
-      "curQuestion": "0",
+      "curQuestion": 0,
       "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
       "quizId": "Gc34g8db0wCrroLUxJeA",
       "synchronous": true,
       "anonymous": true,
       "survey": false,
-      "timeLimit": "30",
+      "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
-      "pin": "456"
+      "pin": "489"
     }
   },
   {
