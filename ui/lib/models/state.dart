@@ -269,7 +269,7 @@ class MyAppState extends ChangeNotifier {
       // no quiz id - we're stopping a quiz
       editSessionData.reset();
       json = editSessionData.toJson();
-      json['quizId'] = quizId;
+      json['quizId'] = '';
       json['curQuestion'] = -2;
     } else {
       // quiz id provided so we're starting a new quiz or resuming an existing quiz.
@@ -278,7 +278,7 @@ class MyAppState extends ChangeNotifier {
         json['quizId'] = quizId;
         json['curQuestion'] = -1;
       } else {
-        json = {'curQuestion': -1};
+        json = {'quizId': quizId, 'curQuestion': -1};
       }
     }
 
