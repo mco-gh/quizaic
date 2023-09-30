@@ -108,7 +108,7 @@ class _CreatePageState extends State<CreatePage> {
 
     void setNumQuestions(value) {
       return setState(() {
-        appState.editQuizData.numQuestions = value.toInt();
+        appState.editQuizData.numQuestions = int.parse(value);
       });
     }
 
@@ -118,7 +118,7 @@ class _CreatePageState extends State<CreatePage> {
 
     void setDifficulty(value) {
       return setState(() {
-        appState.editQuizData.difficulty = value.toInt();
+        appState.editQuizData.difficulty = int.parse(value);
       });
     }
 
