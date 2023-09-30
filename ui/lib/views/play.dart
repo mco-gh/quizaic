@@ -61,7 +61,7 @@ class PlayPage extends StatelessWidget {
     // a session for it, try to do so here.
     if (pin != null && pin != '' && appState.sessionData.id == '') {
       appState.findSessionByPin(pin, badPinOnDeepLink);
-      //appState.getPlayerNameByPinFromLocal(pin);
+      appState.getPlayerNameByPinFromLocal(pin);
     }
 
     if (appState.playerData.pin != '' && appState.playerData.playerName != '') {
@@ -99,7 +99,7 @@ class PlayPage extends StatelessWidget {
                     defaultPinTheme: defaultPinTheme,
                     validator: (s) {
                       appState.findSessionByPin(s, badPinOnPlayForm);
-                      //appState.getPlayerNameByPinFromLocal(s);
+                      appState.getPlayerNameByPinFromLocal(s);
                       return null;
                     },
                   ),
