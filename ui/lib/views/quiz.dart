@@ -8,7 +8,7 @@ import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/views/timer.dart';
 
 Widget timerBar = TimerBar();
-int lastQuestion = -1;
+int lastQuestion = -2;
 
 class QuizPage extends StatelessWidget {
   @override
@@ -25,27 +25,26 @@ class QuizPage extends StatelessWidget {
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
-        if (data['curQuestion'] == -1) {
-          appState.registerPlayer(appState.playerData.playerName, true);
-        }
         if (data['curQuestion'] < 0) {
-          //appState.playerData.registered = false;
+          appState.playerData.registered = false;
           return Center(child: genText(theme, 'Waiting for quiz to start...'));
         }
 
         var quizId = data['quizId'];
         var quiz = appState.getQuiz(quizId);
         var qAndA = jsonDecode(quiz?.qAndA as String);
-        //if (!appState.playerData.registered) {
-        //appState.registerPlayer(appState.playerData.playerName, true);
-        // }
 
         int curQuestion = data['curQuestion'];
         if (curQuestion != lastQuestion) {
-          print('starting question number $curQuestion');
-          appState.startQuestionTimer();
-          appState.playerData.curQuestion = curQuestion;
-          lastQuestion = curQuestion;
+          if (curQuestion == -1) {
+            // New quiz starting on session so rereg this player.
+            appState.registerPlayer(appState.playerData.playerName, true);
+          } else if (curQuestion >= 0) {
+            print('playing question number $curQuestion');
+            appState.startQuestionTimer();
+            appState.playerData.curQuestion = curQuestion;
+            lastQuestion = curQuestion;
+          }
         }
         var question = qAndA[curQuestion]['question'];
         var correct = qAndA[curQuestion]['correct'];

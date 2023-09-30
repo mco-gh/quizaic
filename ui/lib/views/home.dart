@@ -11,6 +11,7 @@ import 'package:quizaic/auth/auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizaic/const.dart';
 import 'package:quizaic/views/helpers.dart';
+import 'package:quizaic/views/quiz.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -105,6 +106,10 @@ class HomePage extends StatefulWidget {
                 path: '/play/:pin',
                 pageBuilder: (context, state) => genCustomTransitionPage(
                     state, PlayPage(pin: state.pathParameters['pin']))),
+            GoRoute(
+                path: '/quiz',
+                pageBuilder: (context, state) =>
+                    genCustomTransitionPage(state, QuizPage())),
             GoRoute(
                 path: '/settings',
                 pageBuilder: (context, state) =>

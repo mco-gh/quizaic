@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:bad_words/bad_words.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quizaic/views/quiz.dart';
 
 final defaultPinTheme = PinTheme(
   width: 56,
@@ -53,18 +52,19 @@ class PlayPage extends StatelessWidget {
         _controller.setText('');
         return;
       }
-      appState.registerPlayer(name, false);
+      appState.registerPlayer(name, false, router: GoRouter.of(context).go);
     }
 
     // if a pin was provided by url and we haven't yet found
     // a session for it, try to do so here.
-    if (pin != null && pin != '') {
+    if (pin != null && pin != '' && appState.sessionData.id == '') {
       appState.findSessionByPin(pin, badPinOnDeepLink);
-      appState.getPlayerNameByPinFromLocal(pin);
+      //appState.getPlayerNameByPinFromLocal(pin);
     }
 
     if (appState.playerData.pin != '' && appState.playerData.playerName != '') {
-      return QuizPage();
+      //return QuizPage();
+      GoRouter.of(context).go('/quiz');
     }
 
     String quizName = 'N/A (no quiz started yet for this session)';
@@ -98,7 +98,7 @@ class PlayPage extends StatelessWidget {
                       defaultPinTheme: defaultPinTheme,
                       validator: (s) {
                         appState.findSessionByPin(s, badPinOnPlayForm);
-                        appState.getPlayerNameByPinFromLocal(s);
+                        //appState.getPlayerNameByPinFromLocal(s);
                         return null;
                       },
                     ),
@@ -131,8 +131,9 @@ class PlayPage extends StatelessWidget {
                               padding: const EdgeInsets.all(formPadding),
                               child: TextField(
                                 controller: _controller,
-                                onSubmitted: (name) =>
-                                    checkAndRegisterPlayerName(name),
+                                onSubmitted: (name) => {
+                                  checkAndRegisterPlayerName(name),
+                                },
                                 decoration: InputDecoration(
                                   filled: true,
                                   hintText: "Name",
@@ -157,7 +158,7 @@ class PlayPage extends StatelessWidget {
                                       {
                                         checkAndRegisterPlayerName(
                                           _controller.value.text,
-                                        )
+                                        ),
                                       }
                                   },
                               child: genText(theme,

@@ -173,11 +173,12 @@ class MyAppState extends ChangeNotifier {
   }
 
   getPlayerNameByPinFromLocal(pin) {
+    print('getPlayerNameByPinFromLocal($pin)');
     String? playerName = storage.getItem(pin);
-    if (playerName != null) {
+    if (playerName != null && playerName != playerData.playerName) {
       playerData.playerName = playerName;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   Future<List<Quiz>> fetchQuizzes() async {
@@ -480,7 +481,15 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> registerPlayer(String playerName, bool allowRereg) async {
+  Future<bool> registerPlayer(String playerName, bool allowRereg,
+      {router}) async {
+    print('registerPlayer($playerName, $allowRereg, $router)');
+
+    //if (playerData.registered) {
+    //print('Player ${playerData.playerName} already registered.');
+    //return true;
+    //}
+
     var body = '{"players.$playerName.score": 0}';
     print('name: $playerName, body: $body');
     final response = await http.patch(
@@ -495,15 +504,21 @@ class MyAppState extends ChangeNotifier {
       playerData.registered = true;
       storage.setItem(playerData.pin, playerData.playerName);
       print("Player ${playerData.playerName} registered, routing to quiz page");
+      if (router != null) {
+        router('/quiz');
+      }
     } else if (response.statusCode == 409 && allowRereg) {
       print(
           'Player $playerName already registered for this quiz but rereg allowed.');
+      playerData.registered = true;
+      if (router != null) {
+        router('/quiz');
+      }
     } else if (response.statusCode == 409 && !allowRereg) {
       errorDialog('Player $playerName already registered for this quiz.');
     } else {
       errorDialog('Failed to register player $playerName');
     }
-    notifyListeners();
     return true;
   }
 
