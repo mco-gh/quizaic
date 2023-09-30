@@ -28,21 +28,26 @@ class _HostPageState extends State<HostPage> {
     print('initState - quiz id: ${widget.quizId}');
   }
 
-  genLeaderBoard(theme, leaderBoard) {
+  genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
+    print('leaderBoard($theme, $leaderBoard, $showScores');
     return Column(children: [
       SizedBox(height: formRowHeight),
       SizedBox(
         width: formColumnWidth,
         child: ExpansionTile(
-          initiallyExpanded: true,
+          initiallyExpanded: !showScores,
           expandedAlignment: Alignment.topLeft,
-          title: genText(theme, 'Registered Players:'),
+          title:
+              genText(theme, showScores ? 'Leaderboard' : 'Registered Players'),
           children: [
             Table(children: [
-              for (var e in leaderBoard.entries)
-                TableRow(children: [
-                  TableCell(child: genText(theme, e.key)),
-                ]),
+              if (showScores)
+                for (var e in leaderBoard.entries)
+                  TableRow(children: [
+                    TableCell(child: genText(theme, e.key)),
+                    if (showScores)
+                      TableCell(child: genText(theme, e.value.toString())),
+                  ]),
             ]),
           ],
         ),
@@ -146,11 +151,9 @@ class _HostPageState extends State<HostPage> {
                         print('k: $k, v: $v');
                         playerScores[k] = v['score'];
                       });
-                      print('playerScores: $playerScores');
                       leaderBoard = Map.fromEntries(
                           playerScores.entries.toList()
                             ..sort((e1, e2) => e2.value.compareTo(e1.value)));
-                      print('leaderBoard: $leaderBoard');
                     }
                   }
                   if (curQuestion == -1) {
@@ -184,7 +187,8 @@ class _HostPageState extends State<HostPage> {
                         child: Row(
                           children: [
                             SizedBox(width: horizontalSpaceWidth * 3),
-                            genLeaderBoard(theme, leaderBoard),
+                            genLeaderBoard(theme, leaderBoard,
+                                showScores: false),
                             SizedBox(width: horizontalSpaceWidth * 3),
                             QrImageView(
                               data: 'https://quizaic.com/play/${data["pin"]}',
@@ -205,7 +209,6 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(height: verticalSpaceHeight),
                     ]);
                   }
-                  if (curQuestion >= 0) {}
                   return Column(
                     children: [
                       genText(theme,
@@ -253,7 +256,7 @@ class _HostPageState extends State<HostPage> {
                           ],
                         ),
                       ),
-                      genLeaderBoard(theme, leaderBoard),
+                      genLeaderBoard(theme, leaderBoard, showScores: true),
                     ],
                   );
                 });

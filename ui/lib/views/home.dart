@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizaic/const.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/views/quiz.dart';
+import 'package:quizaic/views/welcome.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -65,7 +66,7 @@ class HomePage extends StatefulWidget {
             GoRoute(
               path: '/',
               pageBuilder: (context, state) =>
-                  genCustomTransitionPage(state, BrowsePage()),
+                  genCustomTransitionPage(state, WelcomePage()),
             ),
             GoRoute(
               path: '/browse',
