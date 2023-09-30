@@ -224,6 +224,7 @@ class HomePageScaffold extends StatelessWidget {
             }
           }
           return Scaffold(
+              resizeToAvoidBottomInset: false,
               //body: child,
               appBar: AppBar(
                   actions: <Widget>[
