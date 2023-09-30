@@ -23,7 +23,9 @@ final defaultPinTheme = PinTheme(
 );
 
 class PlayPage extends StatelessWidget {
-  final _controller = TextEditingController();
+  final textController = TextEditingController();
+  final pinController = TextEditingController();
+
   final filter = Filter();
   final String? pin;
 
@@ -49,7 +51,7 @@ class PlayPage extends StatelessWidget {
       bool profane = filter.isProfane(name);
       if (profane) {
         errorDialog('Invalid name, please try again.');
-        _controller.setText('');
+        textController.setText('');
         return;
       }
       appState.registerPlayer(name, false, router: GoRouter.of(context).go);
@@ -74,104 +76,102 @@ class PlayPage extends StatelessWidget {
       quizImage = appState.playerData.quiz?.imageUrl as String;
     }
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: verticalSpaceHeight * 2),
-                    genText(
-                      theme,
-                      'Enter a PIN to play a quiz or complete a survey:',
-                      weight: FontWeight.bold,
-                    ),
-                    SizedBox(height: verticalSpaceHeight * 2),
-                    Pinput(
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      controller: TextEditingController(),
-                      length: 3,
-                      defaultPinTheme: defaultPinTheme,
-                      validator: (s) {
-                        appState.findSessionByPin(s, badPinOnPlayForm);
-                        //appState.getPlayerNameByPinFromLocal(s);
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: verticalSpaceHeight * 3),
-                    if (appState.playerData.pin != '')
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(children: [
-                                SizedBox(height: verticalSpaceHeight * 3),
-                                Image.network(
-                                  quizImage,
-                                  height: logoHeight,
-                                ),
-                                SizedBox(width: horizontalSpaceWidth),
-                                genText(
-                                  theme,
-                                  'Quiz Name: $quizName',
-                                  weight: FontWeight.bold,
-                                ),
-                              ]),
-                            ],
-                          ),
-                          SizedBox(height: verticalSpaceHeight * 3),
-                          SizedBox(
-                            width: 400,
-                            child: Padding(
-                              padding: const EdgeInsets.all(formPadding),
-                              child: TextField(
-                                controller: _controller,
-                                onSubmitted: (name) => {
-                                  checkAndRegisterPlayerName(name),
-                                },
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  hintText: "Name",
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(12)),
-                                  ),
+    return Stack(
+      children: [
+        Center(
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: verticalSpaceHeight * 2),
+                  genText(
+                    theme,
+                    'Enter a PIN to play a quiz or complete a survey:',
+                    weight: FontWeight.bold,
+                  ),
+                  SizedBox(height: verticalSpaceHeight * 2),
+                  Pinput(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    controller: pinController,
+                    length: 3,
+                    defaultPinTheme: defaultPinTheme,
+                    validator: (s) {
+                      appState.findSessionByPin(s, badPinOnPlayForm);
+                      //appState.getPlayerNameByPinFromLocal(s);
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: verticalSpaceHeight * 3),
+                  if (appState.playerData.pin != '')
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(children: [
+                              SizedBox(height: verticalSpaceHeight * 3),
+                              Image.network(
+                                quizImage,
+                                height: logoHeight,
+                              ),
+                              SizedBox(width: horizontalSpaceWidth),
+                              genText(
+                                theme,
+                                'Quiz Name: $quizName',
+                                weight: FontWeight.bold,
+                              ),
+                            ]),
+                          ],
+                        ),
+                        SizedBox(height: verticalSpaceHeight * 3),
+                        SizedBox(
+                          width: 400,
+                          child: Padding(
+                            padding: const EdgeInsets.all(formPadding),
+                            child: TextField(
+                              controller: textController,
+                              onSubmitted: (name) => {
+                                checkAndRegisterPlayerName(name),
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                hintText: "Name",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12)),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(height: verticalSpaceHeight),
-                          ElevatedButton(
-                              onPressed: () => {
-                                    if (_controller.value.text.isEmpty)
-                                      {
-                                        errorDialog(
-                                          'Please enter a name to play the quiz or complete the survey.',
-                                        ),
-                                      }
-                                    else
-                                      {
-                                        checkAndRegisterPlayerName(
-                                          _controller.value.text,
-                                        ),
-                                      }
-                                  },
-                              child: genText(theme,
-                                  'Play ${appState.sessionData.survey ? 'Survey' : 'Quiz'}')),
-                        ],
-                      ),
-                  ],
-                ),
+                        ),
+                        SizedBox(height: verticalSpaceHeight),
+                        ElevatedButton(
+                            onPressed: () => {
+                                  if (textController.value.text.isEmpty)
+                                    {
+                                      errorDialog(
+                                        'Please enter a name to play the quiz or complete the survey.',
+                                      ),
+                                    }
+                                  else
+                                    {
+                                      checkAndRegisterPlayerName(
+                                        textController.value.text,
+                                      ),
+                                    }
+                                },
+                            child: genText(theme,
+                                'Play ${appState.sessionData.survey ? 'Survey' : 'Quiz'}')),
+                      ],
+                    ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
