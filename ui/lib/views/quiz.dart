@@ -50,7 +50,7 @@ class QuizPage extends StatelessWidget {
         var correct = qAndA[curQuestion]['correct'];
         var responses = qAndA[curQuestion]['responses'];
 
-        List<Widget> genResponse(responses, enable) {
+        List<Widget> genResponses(responses, enable) {
           List<Widget> responseList = [SizedBox(height: verticalSpaceHeight)];
           for (var i = 0; i < responses.length; i++) {
             var yes = Icon(Icons.check_circle, color: Colors.green);
@@ -79,7 +79,7 @@ class QuizPage extends StatelessWidget {
                   disabledBackgroundColor: Colors.green);
             }
             responseList.add(Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(width: horizontalSpaceWidth),
                 grade,
@@ -120,12 +120,14 @@ class QuizPage extends StatelessWidget {
           genText(theme, 'Question ${curQuestion + 1}: $question'),
           SizedBox(height: verticalSpaceHeight * 2),
         ];
-        widgets.addAll(genResponse(responses, enable));
+        widgets.addAll(genResponses(responses, enable));
         if (!enable) {
           widgets.add(SizedBox(height: verticalSpaceHeight * 2));
           widgets.add(genText(theme, 'Waiting for next question...'));
         }
-        return Column(children: widgets);
+        return Column(
+          children: widgets,
+        );
       },
     );
   }
