@@ -21,18 +21,21 @@ class QuizPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.data?.data() == null) {
           appState.playerData.registered = false;
-          return Center(child: genText(theme, 'Waiting for quiz to start...'));
+          return Center(
+              child: genText(theme, 'Waiting for next quiz to start...'));
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
-        if (data['curQuestion'] < 0) {
+        var quizId = data['quizId'];
+        if (quizId == '' || data['curQuestion'] < 0) {
           appState.playerData.registered = false;
-          return Center(child: genText(theme, 'Waiting for quiz to start...'));
+          return Center(
+              child: genText(theme, 'Waiting for next quiz to start...'));
         }
 
-        var quizId = data['quizId'];
         var quiz = appState.getQuiz(quizId);
         var qAndA = jsonDecode(quiz?.qAndA as String);
+        var numQuestions = qAndA.length;
 
         int curQuestion = data['curQuestion'];
         if (curQuestion != lastQuestion) {
@@ -41,6 +44,7 @@ class QuizPage extends StatelessWidget {
             appState.registerPlayer(appState.playerData.playerName, true);
           } else if (curQuestion >= 0) {
             print('playing question number $curQuestion');
+            appState.stopQuestionTimer();
             appState.startQuestionTimer();
             appState.playerData.curQuestion = curQuestion;
             lastQuestion = curQuestion;
@@ -115,15 +119,36 @@ class QuizPage extends StatelessWidget {
 
         List<Widget> widgets = [
           SizedBox(height: verticalSpaceHeight * 2),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Hero(
+                tag: quiz?.id as String,
+                child: Image.network(
+                  quiz?.imageUrl as String,
+                  height: logoHeight,
+                ),
+              ),
+              SizedBox(width: horizontalSpaceWidth),
+              genText(theme, 'Playing "${quiz?.name}"',
+                  size: 30, weight: FontWeight.bold),
+            ],
+          ),
+          SizedBox(height: verticalSpaceHeight * 2),
           timerBar,
           SizedBox(height: verticalSpaceHeight * 2),
-          genText(theme, 'Question ${curQuestion + 1}: $question'),
+          genText(theme,
+              'Question ${curQuestion + 1} (of $numQuestions): $question'),
           SizedBox(height: verticalSpaceHeight * 2),
         ];
         widgets.addAll(genResponses(responses, enable));
         if (!enable) {
           widgets.add(SizedBox(height: verticalSpaceHeight * 2));
-          widgets.add(genText(theme, 'Waiting for next question...'));
+          if (curQuestion < numQuestions - 1) {
+            widgets.add(genText(theme, 'Waiting for next question...'));
+          } else {
+            widgets.add(genText(theme, 'Quiz completed.'));
+          }
         }
         return Column(
           children: widgets,

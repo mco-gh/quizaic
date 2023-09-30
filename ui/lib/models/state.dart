@@ -147,18 +147,18 @@ class MyAppState extends ChangeNotifier {
   }
 
   startQuestionTimer() {
+    print('startQuestionTimer() with ${playerData.timeLimit} seconds');
     playerData.timeLeft = playerData.timeLimit;
     playerData.questionTimer = Timer.periodic(
       Duration(seconds: 1),
       (Timer t) => decrQuestionTimer(),
     );
-    notifyListeners();
   }
 
   stopQuestionTimer() {
+    print('stopQuestionTimer()');
     playerData.questionTimer?.cancel();
     playerData.timeLeft = 0;
-    notifyListeners();
   }
 
   decrQuestionTimer() {
