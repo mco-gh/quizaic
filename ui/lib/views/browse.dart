@@ -49,6 +49,8 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
+    var router = GoRouter.of(context).go;
+
     if (appState.userData.idToken == '') {
       return Center(
           child: genText(theme,
@@ -136,8 +138,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                                     ],
                                                   ),
                                                   onPressed: () {
-                                                    GoRouter.of(context)
-                                                        .go('/view/${quiz.id}');
+                                                    router('/view/${quiz.id}');
                                                   },
                                                 ),
                                               ])
@@ -161,8 +162,9 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                                   ],
                                                 ),
                                                 onPressed: () {
-                                                  GoRouter.of(context)
-                                                      .go('/host/${quiz.id}');
+                                                  appState.createOrReuseSession(
+                                                      quiz.id, router);
+                                                  router('/host/${quiz.id}');
                                                 },
                                               ),
                                               TextButton(
@@ -182,8 +184,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                                   onPressed: () {
                                                     appState.selectQuizData(
                                                         quiz.id);
-                                                    GoRouter.of(context)
-                                                        .go('/edit/${quiz.id}');
+                                                    router('/edit/${quiz.id}');
                                                   }),
                                               TextButton(
                                                   child: Column(
@@ -203,8 +204,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                                     appState.getQuiz(quiz.id);
                                                     appState.selectQuizData(
                                                         quiz.id);
-                                                    GoRouter.of(context)
-                                                        .go('/clone');
+                                                    router('/clone');
                                                   }),
                                               TextButton(
                                                   child: Column(

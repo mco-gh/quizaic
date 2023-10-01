@@ -6,6 +6,7 @@ import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class HostPage extends StatefulWidget {
   final String? quizId;
@@ -23,39 +24,9 @@ class _HostPageState extends State<HostPage> {
 
   @override
   void initState() {
-    super.initState();
-
     print('initState - quiz id: ${widget.quizId}');
+    super.initState();
   }
-
-  genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
-    print('leaderBoard($theme, $leaderBoard, $showScores');
-    return Column(children: [
-      SizedBox(height: formRowHeight),
-      SizedBox(
-        width: formColumnWidth,
-        child: ExpansionTile(
-          initiallyExpanded: !showScores,
-          expandedAlignment: Alignment.topLeft,
-          title:
-              genText(theme, showScores ? 'Leaderboard' : 'Registered Players'),
-          children: [
-            Table(children: [
-              if (showScores)
-                for (var e in leaderBoard.entries)
-                  TableRow(children: [
-                    TableCell(child: genText(theme, e.key)),
-                    if (showScores)
-                      TableCell(child: genText(theme, e.value.toString())),
-                  ]),
-            ]),
-          ],
-        ),
-      )
-    ]);
-  }
-
-  bool sessionStarting = true;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +36,6 @@ class _HostPageState extends State<HostPage> {
 
     print(
         'hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}: ${widget.quizId}');
-
-    // Build a Form widget using the _formKey created
 
     void setHostSynch(value) {
       return setState(() {
@@ -115,50 +84,28 @@ class _HostPageState extends State<HostPage> {
       );
     }
 
-    if (appState.sessionData.id != '') {
-      return StreamBuilder<DocumentSnapshot>(
-          stream: appState.sessionStream,
-          builder: (context, snapshot) {
-            if (snapshot.data?.data() == null) {
-              return genText(theme,
-                  'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}...');
-            }
+    return StreamBuilder<DocumentSnapshot>(
+        stream: appState.sessionStream,
+        builder: (context, snapshot) {
+          if (snapshot.data?.data() == null) {
+            return genText(theme,
+                'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}...');
+          }
 
-            var data = snapshot.data!.data() as Map<String, dynamic>;
-            var curQuestion = data['curQuestion'];
-            var question = '';
-            if (curQuestion >= 0) {
-              question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
-            }
-            if (curQuestion < -1) {
-              /// This is a hack to catch the case where the quiz is stopped
-              /// and the curQuestion is set to -2 but the session remains
-              /// intact we haven't yet reverted to the host page.
-              return Container();
-            }
+          var leaderBoard = {};
+          var data = snapshot.data!.data() as Map<String, dynamic>;
+          var curQuestion = data['curQuestion'];
+          var question = '';
 
-            return StreamBuilder<DocumentSnapshot>(
-                stream: appState.resultsStream,
-                builder: (context, snapshot) {
-                  var leaderBoard = {};
-                  print('snapshot.data: ${snapshot.data}');
-                  if (snapshot.data?.data() != null) {
-                    var results = snapshot.data!.data() as Map<String, dynamic>;
-                    if (results['players'] != null) {
-                      Map players = results['players'];
-                      Map playerScores = {};
-                      players.forEach((k, v) {
-                        print('k: $k, v: $v');
-                        playerScores[k] = v['score'];
-                      });
-                      leaderBoard = Map.fromEntries(
-                          playerScores.entries.toList()
-                            ..sort((e1, e2) => e2.value.compareTo(e1.value)));
-                    }
-                  }
-                  if (curQuestion == -1) {
-                    return Column(children: [
-                      SizedBox(height: verticalSpaceHeight),
+          if (curQuestion == -2) {
+            // Give host opportunity to reset session settings.
+            return Center(
+              child: Form(
+                  key: _formKey,
+                  child: SizedBox(
+                    width: rowWidth,
+                    child: ListView(children: [
+                      SizedBox(height: verticalSpaceHeight * 2),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -170,106 +117,105 @@ class _HostPageState extends State<HostPage> {
                             ),
                           ),
                           SizedBox(width: horizontalSpaceWidth),
-                          Column(
-                            children: [
-                              genText(theme,
-                                  'Waiting for players to join quiz "${quiz.name}"...',
-                                  size: 30, weight: FontWeight.bold),
-                              genText(theme,
-                                  'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                                  size: 24, weight: FontWeight.bold),
-                            ],
-                          ),
+                          genText(theme, 'Host Settings for "${quiz.name}"',
+                              size: 30, weight: FontWeight.bold),
                         ],
                       ),
                       SizedBox(height: verticalSpaceHeight * 2),
-                      Center(
-                        child: Row(
-                          children: [
-                            SizedBox(width: horizontalSpaceWidth * 3),
-                            genLeaderBoard(theme, leaderBoard,
-                                showScores: false),
-                            SizedBox(width: horizontalSpaceWidth * 3),
-                            QrImageView(
-                              data: 'https://quizaic.com/play/${data["pin"]}',
-                              version: QrVersions.auto,
-                              size: 400.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: verticalSpaceHeight * 3),
-                      ElevatedButton(
-                        onPressed: () {
-                          appState.startQuiz(quiz.id, quiz.numQuestions);
-                        },
-                        child: genText(theme,
-                            'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
-                      ),
-                      SizedBox(height: verticalSpaceHeight),
-                    ]);
-                  }
-                  return Column(
-                    children: [
-                      genText(theme,
-                          'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"',
-                          size: 30, weight: FontWeight.bold),
-                      genText(theme,
-                          'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                          size: 24, weight: FontWeight.bold),
-                      SizedBox(height: formRowHeight),
-                      genCard(
-                          theme,
-                          genText(
-                              theme, 'Question ${curQuestion + 1}: $question')),
-                      SizedBox(height: formRowHeight),
-                      if (curQuestion >= 0)
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              for (var answer
-                                  in jsonDecode(quiz.qAndA)[curQuestion]
-                                      ['responses'])
-                                genCard(theme, genText(theme, answer)),
-                            ]),
-                      SizedBox(height: formRowHeight),
-                      SizedBox(
-                        width: rowWidth,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                appState.incQuestion(appState.sessionData.id,
-                                    curQuestion, quiz.numQuestions);
-                              },
-                              child: genText(theme, 'Next Question'),
-                            ),
-                            SizedBox(width: horizontalSpaceWidth),
-                            ElevatedButton(
-                              onPressed: () {
-                                sessionStarting = true;
-                                appState.stopQuiz();
-                              },
-                              child: genText(theme, 'Stop Quiz'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      genLeaderBoard(theme, leaderBoard, showScores: true),
-                    ],
-                  );
-                });
-          });
-    }
 
-    return Center(
-      child: Form(
-          key: _formKey,
-          child: SizedBox(
-            width: rowWidth,
-            child: ListView(children: [
-              SizedBox(height: verticalSpaceHeight * 2),
+                      // Synch or Asynch
+                      genDropdownMenu(
+                          theme,
+                          'Synch or Asynch',
+                          _formKey,
+                          formColumnWidth,
+                          appState.sessionData.synchronous
+                              ? 'Synchronous'
+                              : 'Asynchronous',
+                          () => synchronousOrAsynchronous,
+                          setHostSynch),
+                      SizedBox(height: verticalSpaceHeight),
+
+                      // Time Limit
+                      genTextFormField(
+                          theme,
+                          'Per Question Time Limit (seconds)',
+                          intValidator,
+                          getHostTimeLimit,
+                          setHostTimeLimit),
+                      SizedBox(height: verticalSpaceHeight),
+
+                      // Quiz/Survey
+                      genDropdownMenu(
+                          theme,
+                          'Quiz or Survey',
+                          _formKey,
+                          formColumnWidth,
+                          appState.sessionData.survey ? 'Survey' : 'Quiz',
+                          () => quizOrSurvey,
+                          setHostSurvey),
+                      SizedBox(height: verticalSpaceHeight),
+
+                      // Anonymous or Authenticated
+                      genDropdownMenu(
+                          theme,
+                          'Anonymous or Authenticated',
+                          _formKey,
+                          formColumnWidth,
+                          appState.sessionData.anonymous
+                              ? 'Anonymous'
+                              : 'Authenticated',
+                          () => anonymousOrAuthenticated,
+                          setHostAnonymous),
+                      SizedBox(height: verticalSpaceHeight),
+
+                      // Randomize Questions
+                      genDropdownMenu(
+                          theme,
+                          'Randomize Questions',
+                          _formKey,
+                          formColumnWidth,
+                          appState.sessionData.randomizeQuestions
+                              ? 'Yes'
+                              : 'No',
+                          () => yesOrNo,
+                          setHostRandomizeQuestions),
+                      SizedBox(height: verticalSpaceHeight),
+
+                      // Randomize Answers
+                      genDropdownMenu(
+                          theme,
+                          'Randomize Answers',
+                          _formKey,
+                          formColumnWidth,
+                          appState.sessionData.randomizeAnswers ? 'Yes' : 'No',
+                          () => yesOrNo,
+                          setHostRandomizeAnswers),
+                      SizedBox(height: verticalSpaceHeight),
+
+                      // Submit button
+                      Padding(
+                        padding: const EdgeInsets.all(formPadding),
+                        child: Align(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                appState.startHosting(
+                                    quiz.id, quiz.numQuestions);
+                              }
+                            },
+                            child: genText(theme, 'Start Hosting'),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  )),
+            );
+          } else if (curQuestion == -1) {
+            // Quiz is paused before starting, show QR code and wait for
+            // players to register.
+            return Column(children: [
+              SizedBox(height: verticalSpaceHeight),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -281,92 +227,115 @@ class _HostPageState extends State<HostPage> {
                     ),
                   ),
                   SizedBox(width: horizontalSpaceWidth),
-                  genText(theme, 'Host Settings for "${quiz.name}"',
-                      size: 30, weight: FontWeight.bold),
+                  Column(
+                    children: [
+                      genText(theme,
+                          'Waiting for players to join quiz "${quiz.name}"...',
+                          size: 30, weight: FontWeight.bold),
+                      genText(theme,
+                          'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                          size: 24, weight: FontWeight.bold),
+                    ],
+                  ),
                 ],
               ),
               SizedBox(height: verticalSpaceHeight * 2),
-
-              // Synch or Asynch
-              genDropdownMenu(
-                  theme,
-                  'Synch or Asynch',
-                  _formKey,
-                  formColumnWidth,
-                  appState.sessionData.synchronous
-                      ? 'Synchronous'
-                      : 'Asynchronous',
-                  () => synchronousOrAsynchronous,
-                  setHostSynch),
-              SizedBox(height: verticalSpaceHeight),
-
-              // Time Limit
-              genTextFormField(theme, 'Per Question Time Limit (seconds)',
-                  intValidator, getHostTimeLimit, setHostTimeLimit),
-              SizedBox(height: verticalSpaceHeight),
-
-              // Quiz/Survey
-              genDropdownMenu(
-                  theme,
-                  'Quiz or Survey',
-                  _formKey,
-                  formColumnWidth,
-                  appState.sessionData.survey ? 'Survey' : 'Quiz',
-                  () => quizOrSurvey,
-                  setHostSurvey),
-              SizedBox(height: verticalSpaceHeight),
-
-              // Anonymous or Authenticated
-              genDropdownMenu(
-                  theme,
-                  'Anonymous or Authenticated',
-                  _formKey,
-                  formColumnWidth,
-                  appState.sessionData.anonymous
-                      ? 'Anonymous'
-                      : 'Authenticated',
-                  () => anonymousOrAuthenticated,
-                  setHostAnonymous),
-              SizedBox(height: verticalSpaceHeight),
-
-              // Randomize Questions
-              genDropdownMenu(
-                  theme,
-                  'Randomize Questions',
-                  _formKey,
-                  formColumnWidth,
-                  appState.sessionData.randomizeQuestions ? 'Yes' : 'No',
-                  () => yesOrNo,
-                  setHostRandomizeQuestions),
-              SizedBox(height: verticalSpaceHeight),
-
-              // Randomize Answers
-              genDropdownMenu(
-                  theme,
-                  'Randomize Answers',
-                  _formKey,
-                  formColumnWidth,
-                  appState.sessionData.randomizeAnswers ? 'Yes' : 'No',
-                  () => yesOrNo,
-                  setHostRandomizeAnswers),
-              SizedBox(height: verticalSpaceHeight),
-
-              // Submit button
-              Padding(
-                padding: const EdgeInsets.all(formPadding),
-                child: Align(
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        appState.createOrReuseSession(quiz.id);
-                      }
-                    },
-                    child: genText(theme, 'Start Hosting'),
-                  ),
+              Center(
+                child: Row(
+                  children: [
+                    SizedBox(width: horizontalSpaceWidth * 3),
+                    genLeaderBoard(theme, leaderBoard, showScores: false),
+                    SizedBox(width: horizontalSpaceWidth * 3),
+                    QrImageView(
+                      data: 'https://quizaic.com/play/${data["pin"]}',
+                      version: QrVersions.auto,
+                      size: 400.0,
+                    ),
+                  ],
                 ),
               ),
-            ]),
-          )),
-    );
+              SizedBox(height: verticalSpaceHeight * 3),
+              ElevatedButton(
+                onPressed: () {
+                  appState.startQuiz(quiz.id, quiz.numQuestions);
+                },
+                child: genText(theme,
+                    'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
+              ),
+              SizedBox(height: verticalSpaceHeight),
+            ]);
+          }
+          // Quiz is running, show next question, leaderboard, etc.
+          question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
+          return StreamBuilder<DocumentSnapshot>(
+              stream: appState.resultsStream,
+              builder: (context, snapshot) {
+                print('snapshot.data: ${snapshot.data}');
+                if (snapshot.data?.data() != null) {
+                  var results = snapshot.data!.data() as Map<String, dynamic>;
+                  if (results['players'] != null) {
+                    Map players = results['players'];
+                    Map playerScores = {};
+                    players.forEach((k, v) {
+                      print('k: $k, v: $v');
+                      playerScores[k] = v['score'];
+                    });
+                    leaderBoard = Map.fromEntries(playerScores.entries.toList()
+                      ..sort((e1, e2) => e2.value.compareTo(e1.value)));
+                  }
+                }
+
+                return Column(
+                  children: [
+                    genText(theme,
+                        'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"',
+                        size: 30, weight: FontWeight.bold),
+                    genText(theme,
+                        'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                        size: 24, weight: FontWeight.bold),
+                    SizedBox(height: formRowHeight),
+                    genCard(
+                        theme,
+                        genText(
+                            theme, 'Question ${curQuestion + 1}: $question')),
+                    SizedBox(height: formRowHeight),
+                    if (curQuestion >= 0)
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            for (var answer
+                                in jsonDecode(quiz.qAndA)[curQuestion]
+                                    ['responses'])
+                              genCard(theme, genText(theme, answer)),
+                          ]),
+                    SizedBox(height: formRowHeight),
+                    SizedBox(
+                      width: rowWidth,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              appState.incQuestion(appState.sessionData.id,
+                                  curQuestion, quiz.numQuestions);
+                            },
+                            child: genText(theme, 'Next Question'),
+                          ),
+                          SizedBox(width: horizontalSpaceWidth),
+                          ElevatedButton(
+                            onPressed: () {
+                              appState.stopQuiz();
+                              GoRouter.of(context).go('/browse');
+                            },
+                            child: genText(theme, 'Stop Quiz'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    genLeaderBoard(theme, leaderBoard, showScores: true),
+                  ],
+                );
+              });
+        });
   }
 }

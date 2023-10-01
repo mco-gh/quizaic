@@ -44,6 +44,15 @@ class EditSessionData {
     randomizeAnswers = false;
   }
 
+  setFrom(src) {
+    synchronous = src.synchronous;
+    timeLimit = src.timeLimit;
+    survey = src.survey;
+    anonymous = src.anonymous;
+    randomizeQuestions = src.randomizeQuestions;
+    randomizeAnswers = src.randomizeAnswers;
+  }
+
   Map toJson() => {
         'synchronous': synchronous,
         'timeLimit': timeLimit,
@@ -261,29 +270,34 @@ class MyAppState extends ChangeNotifier {
         .snapshots();
   }
 
-  resetSession(String quizId, {bool startingNewQuiz = true}) async {
-    print('resetSession($quizId, $startingNewQuiz)');
-    Map<dynamic, dynamic> json;
+  startHosting(quizId, numQuestions) async {
+    print('startHosting($quizId, $numQuestions)');
+    print('timeLimit: ${editSessionData.timeLimit}');
+    await resetSession(quizId, fromForm: true);
+    await incQuestion(sessionData.id, -2, numQuestions);
+    notifyListeners();
+    return true;
+  }
+
+  resetSession(String quizId, {bool fromForm = false}) async {
+    print('resetSession($quizId, $fromForm)');
+    Map<dynamic, dynamic> json = {};
 
     if (quizId == '') {
       // no quiz id - we're stopping a quiz
       editSessionData.reset();
-      json = editSessionData.toJson();
       json['quizId'] = '';
       json['curQuestion'] = -2;
     } else {
       // quiz id provided so we're starting a new quiz or resuming an existing quiz.
-      if (startingNewQuiz) {
+      if (fromForm) {
         json = editSessionData.toJson();
-        json['quizId'] = quizId;
-        json['curQuestion'] = -1;
-        print('json1: $json');
-      } else {
-        json = {'quizId': quizId, 'curQuestion': -1};
-        print('json2: $json');
       }
+      json['quizId'] = quizId;
+      json['curQuestion'] = -2;
     }
 
+    print('patching session data: $json');
     var response = await http.patch(
         Uri.parse('$apiUrl/sessions/${sessionData.id}'),
         body: jsonEncode(json),
@@ -356,41 +370,43 @@ class MyAppState extends ChangeNotifier {
     return false;
   }
 
-  Future<bool> createOrReuseSession(quizId) async {
+  Future<bool> createOrReuseSession(quizId, router) async {
     print('createOrReuseSession($quizId)');
     // If session in progress but quiz doesn't match the requested quiz,
     // switch host to the new quiz but alert the user.
     bool sessionFound = await getMySession();
     if (sessionFound) {
-      if (sessionData.quizId != '' && sessionData.quizId != quizId) {
-        errorDialog('Quiz already in progress, reset to host new quiz.');
-        print(
-            'Resuming session ${sessionData.id} but switching quiz and settings.');
-        await resetSession(quizId, startingNewQuiz: true);
+      // set editSessionData from sessionData so we reflect the current
+      // session settings in the form.
+      editSessionData.setFrom(sessionData);
+      print('timeLimit: ${editSessionData.timeLimit}');
+      if (sessionData.quizId == '') {
+        // Idle session found, reuse it for new quiz.
+        resetSession(quizId);
+        print('Reusing idle session ${sessionData.id} for new quiz $quizId.');
+      } else if (sessionData.quizId != quizId) {
+        errorDialog(
+            'Quiz already in progress, finish or stop it before you can host a new quiz.');
+        router('/host/${sessionData.quizId}');
       } else {
-        // Session found for same quiz id, leave it alone.
+        // Session found with same quiz id, so resume quiz in progress.
         print(
-            'Resuming session ${sessionData.id} already in progress for host.');
-        await resetSession(quizId, startingNewQuiz: true);
+            'Resuming in progress quiz $quizId in progress on session ${sessionData.id}');
       }
     } else {
-      // No session available for this host so create a new one.
+      // No session found for this host so create a new one.
       print('Creating a new session.');
       await createSession(quizId);
     }
-    // whether session is new or resumed, reset its results.
-    await resetResults(quizId);
     setupStreams(sessionData.id);
     notifyListeners();
     return true;
   }
 
   Future<bool> startQuiz(quizId, numQuestions) async {
-    // start a quiz by resetting the associated session and results
-    // to reflect this quizId and curQuestion 0, but leave the rest
-    // of the current session settings intact.
-    //await resetSession(quizId, startingNewQuiz: true);
-    await resetResults(quizId);
+    // start a quiz by setting curQuestion to 0
+    // await resetSession(quizId);
+    // await resetResults(quizId);
     await incQuestion(sessionData.id, -1, numQuestions);
     notifyListeners();
     return true;

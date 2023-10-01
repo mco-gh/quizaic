@@ -122,6 +122,33 @@ Widget genCard(theme, widget) {
   );
 }
 
+genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
+  print('leaderBoard($theme, $leaderBoard, $showScores)');
+  return Column(children: [
+    SizedBox(height: formRowHeight),
+    SizedBox(
+      width: formColumnWidth,
+      child: ExpansionTile(
+        initiallyExpanded: !showScores,
+        expandedAlignment: Alignment.topLeft,
+        title:
+            genText(theme, showScores ? 'Leaderboard' : 'Registered Players'),
+        children: [
+          Table(children: [
+            if (showScores)
+              for (var e in leaderBoard.entries)
+                TableRow(children: [
+                  TableCell(child: genText(theme, e.key)),
+                  if (showScores)
+                    TableCell(child: genText(theme, e.value.toString())),
+                ]),
+          ]),
+        ],
+      ),
+    )
+  ]);
+}
+
 Widget genQuestionList(ThemeData theme, quiz, appState) {
   List<Widget> widgets = [];
   List<Widget> subwidgets = [];
