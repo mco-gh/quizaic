@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:quizaic/const.dart';
 
 List items = [
   {
-    "header": "What is Quizaic?",
+    "header": "Quizaic = Quizes + AI",
     "description":
-        "Online chat which provides its users maximum functionality to simplify the search",
-    "image": "assets/images/what.png"
+        "Quizaic combines the power of modern generative AI with the fun of trivia quizzes and online surveys into a mosaic of infinite challenges.",
+    "image": "assets/images/logo3.png"
+  },
+  {
+    "header": "Quizaic brings people together",
+    "description":
+        "Quizaic provides and less source of fun for your next gathering of family or friends.",
+    "image": "assets/images/play.png"
   },
   {
     "header": "Learn",
     "description":
-        "Online chat which provides its users maximum functionality to simplify the search",
+        "Quizaic is great for teachers - imagine generating homework and quizzes with the press of a button!",
     "image": "assets/images/learn.png"
   },
   {
-    "header": "Play",
-    "description":
-        "Online chat which provides its users maximum functionality to simplify the search",
-    "image": "assets/images/play.png"
-  },
-  {
     "header": "Compete",
-    "description":
-        "Online chat which provides its users maximum functionality to simplify the search",
+    "description": "From pub quizzes hardcore trivia",
     "image": "assets/images/complete.png"
   },
 ];
@@ -38,13 +38,14 @@ class WelcomePageState extends State<WelcomePage> {
           padding: EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: <Widget>[
+              SizedBox(height: verticalSpaceHeight * 2),
               Flexible(
                 flex: 1,
                 fit: FlexFit.tight,
                 child: Image.asset(
                   item['image'],
                   fit: BoxFit.fitWidth,
-                  width: 220.0,
+                  width: 420.0,
                   alignment: Alignment.bottomCenter,
                 ),
               ),
@@ -66,7 +67,7 @@ class WelcomePageState extends State<WelcomePage> {
                         style: TextStyle(
                             color: Colors.grey,
                             letterSpacing: 1.2,
-                            fontSize: 16.0,
+                            fontSize: 24.0,
                             height: 1.3),
                         textAlign: TextAlign.center,
                       )
