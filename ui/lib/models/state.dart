@@ -260,6 +260,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   setupStreams(sessionId) {
+    print('setupStreams($sessionId)');
     sessionStream = FirebaseFirestore.instance
         .collection('sessions')
         .doc(sessionId)
@@ -313,10 +314,14 @@ class MyAppState extends ChangeNotifier {
     }
   }
 
-  resetResults(quizId) async {
-    print('resetResults($quizId)');
-    // Reset results object for this session.
-    String body = '{"players": null, "quizId": "$quizId"}';
+  resetResults(String quizId, {bool resetPlayers = false}) async {
+    print('resetResults($quizId, $resetPlayers)');
+
+    String players = '';
+    if (resetPlayers) {
+      players = ', "players": null';
+    }
+    String body = '{"quizId": "$quizId" $players}';
     var response = await http.patch(
         Uri.parse('$apiUrl/results/${sessionData.id}'),
         body: body,
@@ -405,8 +410,7 @@ class MyAppState extends ChangeNotifier {
 
   Future<bool> startQuiz(quizId, numQuestions) async {
     // start a quiz by setting curQuestion to 0
-    // await resetSession(quizId);
-    // await resetResults(quizId);
+    await resetResults(quizId);
     await incQuestion(sessionData.id, -1, numQuestions);
     notifyListeners();
     return true;
@@ -417,7 +421,7 @@ class MyAppState extends ChangeNotifier {
     // leave the session record intact so the host can reuse it later.
     // Eventually we need to garbage collect stale sessions.
     await resetSession('');
-    await resetResults('');
+    await resetResults('', resetPlayers: true);
     sessionData.id = '';
     notifyListeners();
     return true;

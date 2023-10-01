@@ -201,7 +201,7 @@ def patch(resource_kind, id, representation):
    
     if resource_kind == "results":
         key = next(iter(representation))
-        if key != "players":  # key == "players" means reset all results in a session.
+        if key != "quizId" and key != "players":  # key == "players" means reset all results in a session.
             player = key.split(".")[1]
             val = representation[key]
             if not val:

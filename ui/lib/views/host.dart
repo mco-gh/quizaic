@@ -214,63 +214,84 @@ class _HostPageState extends State<HostPage> {
           } else if (curQuestion == -1) {
             // Quiz is paused before starting, show QR code and wait for
             // players to register.
-            return Column(children: [
-              SizedBox(height: verticalSpaceHeight),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Hero(
-                    tag: quiz.id as String,
-                    child: Image.network(
-                      quiz.imageUrl as String,
-                      height: logoHeight,
+            return StreamBuilder<DocumentSnapshot>(
+                stream: appState.resultsStream,
+                builder: (context, snapshot) {
+                  print('1: results stream: snapshot.data: ${snapshot.data}');
+                  if (snapshot.data?.data() != null) {
+                    var results = snapshot.data!.data() as Map<String, dynamic>;
+                    if (results['players'] != null) {
+                      Map players = results['players'];
+                      Map playerScores = {};
+                      players.forEach((k, v) {
+                        print('k: $k, v: $v');
+                        playerScores[k] = v['score'];
+                      });
+                      leaderBoard = Map.fromEntries(
+                          playerScores.entries.toList()
+                            ..sort((e1, e2) => e2.value.compareTo(e1.value)));
+                    }
+                  }
+
+                  return Column(children: [
+                    SizedBox(height: verticalSpaceHeight),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Hero(
+                          tag: quiz.id as String,
+                          child: Image.network(
+                            quiz.imageUrl as String,
+                            height: logoHeight,
+                          ),
+                        ),
+                        SizedBox(width: horizontalSpaceWidth),
+                        Column(
+                          children: [
+                            genText(theme,
+                                'Waiting for players to join quiz "${quiz.name}"...',
+                                size: 30, weight: FontWeight.bold),
+                            genText(theme,
+                                'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                                size: 24, weight: FontWeight.bold),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(width: horizontalSpaceWidth),
-                  Column(
-                    children: [
-                      genText(theme,
-                          'Waiting for players to join quiz "${quiz.name}"...',
-                          size: 30, weight: FontWeight.bold),
-                      genText(theme,
-                          'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                          size: 24, weight: FontWeight.bold),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: verticalSpaceHeight * 2),
-              Center(
-                child: Row(
-                  children: [
-                    SizedBox(width: horizontalSpaceWidth * 3),
-                    genLeaderBoard(theme, leaderBoard, showScores: false),
-                    SizedBox(width: horizontalSpaceWidth * 3),
-                    QrImageView(
-                      data: 'https://quizaic.com/play/${data["pin"]}',
-                      version: QrVersions.auto,
-                      size: 400.0,
+                    SizedBox(height: verticalSpaceHeight * 2),
+                    Center(
+                      child: Row(
+                        children: [
+                          SizedBox(width: horizontalSpaceWidth * 3),
+                          genLeaderBoard(theme, leaderBoard, showScores: false),
+                          SizedBox(width: horizontalSpaceWidth * 3),
+                          QrImageView(
+                            data: 'https://quizaic.com/play/${data["pin"]}',
+                            version: QrVersions.auto,
+                            size: 400.0,
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: verticalSpaceHeight * 3),
-              ElevatedButton(
-                onPressed: () {
-                  appState.startQuiz(quiz.id, quiz.numQuestions);
-                },
-                child: genText(theme,
-                    'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
-              ),
-              SizedBox(height: verticalSpaceHeight),
-            ]);
+                    SizedBox(height: verticalSpaceHeight * 3),
+                    ElevatedButton(
+                      onPressed: () {
+                        appState.startQuiz(quiz.id, quiz.numQuestions);
+                      },
+                      child: genText(theme,
+                          'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
+                    ),
+                    SizedBox(height: verticalSpaceHeight),
+                  ]);
+                });
           }
+
           // Quiz is running, show next question, leaderboard, etc.
           question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
           return StreamBuilder<DocumentSnapshot>(
               stream: appState.resultsStream,
               builder: (context, snapshot) {
-                print('snapshot.data: ${snapshot.data}');
+                print('2: results stream: snapshot.data: ${snapshot.data}');
                 if (snapshot.data?.data() != null) {
                   var results = snapshot.data!.data() as Map<String, dynamic>;
                   if (results['players'] != null) {

@@ -135,13 +135,12 @@ genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
             genText(theme, showScores ? 'Leaderboard' : 'Registered Players'),
         children: [
           Table(children: [
-            if (showScores)
-              for (var e in leaderBoard.entries)
-                TableRow(children: [
-                  TableCell(child: genText(theme, e.key)),
-                  if (showScores)
-                    TableCell(child: genText(theme, e.value.toString())),
-                ]),
+            for (var e in leaderBoard.entries)
+              TableRow(children: [
+                TableCell(child: genText(theme, e.key)),
+                if (showScores)
+                  TableCell(child: genText(theme, e.value.toString())),
+              ]),
           ]),
         ],
       ),
