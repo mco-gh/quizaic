@@ -201,9 +201,19 @@ def patch(resource_kind, id, representation):
    
     if resource_kind == "results":
         key = next(iter(representation))
-        if key != "quizId" and key != "players":  # key == "players" means reset all results in a session.
-            player = key.split(".")[1]
-            val = representation[key]
+        # When a new game starts, the host sends a request to reset the quizId and
+        # the players object. Those two cases don't need any special handling.
+        val = representation[key]
+        parts = key.split(".")
+        reporting_results = False
+        if len(parts) >= 3 and parts[2] == "results":
+            reporting_results = True
+            if val == 1:
+                score_key = f"{parts[0]}.{parts[1]}.score"
+                representation[score_key] = firestore.Increment(1)
+        if not reporting_results and key != "quizId" and key != "players":
+            # special case for updating a player's results
+            player = parts[1]
             if not val:
                 # registering a new player for this session so make sure not already there
                 resource = db.fetch("results", id, resource_fields[resource_kind])
@@ -214,8 +224,6 @@ def patch(resource_kind, id, representation):
                     if player in players:
                         # player already registered so deny this request
                         return "", 409, {}
-            else:
-                representation[key] = firestore.Increment(1)
 
     resource, status = db.update(resource_kind, id, representation, resource_fields[resource_kind], match_etag)
     if resource is None:

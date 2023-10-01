@@ -1,4 +1,4 @@
-flask==2.2.2
+flask==2.3.3
 #google-cloud-aiplatform==1.32.0
 google-cloud-aiplatform[preview]
 google-cloud-firestore==2.10.0

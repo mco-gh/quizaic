@@ -97,10 +97,8 @@ class QuizPage extends StatelessWidget {
                             appState.playerData.response = responses[i],
                             appState.stopQuestionTimer(),
                             (context as Element).markNeedsBuild(),
-                            if (responses[i] == correct)
-                              {
-                                appState.sendResponse(curQuestion),
-                              }
+                            correct = (responses[i] == correct),
+                            appState.sendResponse(curQuestion, correct),
                           }
                       : null,
                   child: genText(theme, '${options[i]}. ${responses[i]}'),

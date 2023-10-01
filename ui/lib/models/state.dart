@@ -505,12 +505,8 @@ class MyAppState extends ChangeNotifier {
       {router}) async {
     print('registerPlayer($playerName, $allowRereg, $router)');
 
-    //if (playerData.registered) {
-    //print('Player ${playerData.playerName} already registered.');
-    //return true;
-    //}
-
-    var body = '{"players.$playerName.score": 0}';
+    String key = 'players.$playerName';
+    var body = '{"$key.score": 0, "$key.results": {}}';
     print('name: $playerName, body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/${playerData.sessionId}'),
@@ -535,15 +531,19 @@ class MyAppState extends ChangeNotifier {
         router('/quiz');
       }
     } else if (response.statusCode == 409 && !allowRereg) {
-      errorDialog('Player $playerName already registered for this quiz.');
+      errorDialog(
+          'Player $playerName already registered for this quiz and rereg not allowed.');
     } else {
       errorDialog('Failed to register player $playerName');
     }
     return true;
   }
 
-  Future<bool> sendResponse(i) async {
-    var body = '{"players.${playerData.playerName}.score": 1}';
+  Future<bool> sendResponse(int curQuestion, bool correct) async {
+    print('sendResponse($curQuestion, $correct)');
+    int result = correct ? 1 : 0;
+    var body =
+        '{"players.${playerData.playerName}.results.$curQuestion": $result}';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/${playerData.sessionId}'),
@@ -554,10 +554,10 @@ class MyAppState extends ChangeNotifier {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Sent response $i for player ${playerData.playerName}");
+      print("Sent response $curQuestion for player ${playerData.playerName}");
     } else {
       errorDialog(
-          'Failed to send response number $i for player ${playerData.playerName}');
+          'Failed to send response number $curQuestion for player ${playerData.playerName}');
     }
     notifyListeners();
     return true;
