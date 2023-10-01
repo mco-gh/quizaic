@@ -20,15 +20,18 @@ class QuizPage extends StatelessWidget {
       stream: appState.playerSessionStream,
       builder: (context, snapshot) {
         if (snapshot.data?.data() == null) {
-          appState.playerData.registered = false;
           return Center(
-              child: genText(theme, 'Waiting for next quiz to start...'));
+            child: genText(theme, 'Waiting for next quiz to start...'),
+          );
         }
 
         var data = snapshot.data!.data() as Map<String, dynamic>;
         var quizId = data['quizId'];
         if (quizId == '' || data['curQuestion'] < 0) {
-          appState.playerData.registered = false;
+          if (data['curQuestion'] == -1) {
+            print('new quiz starting so reregistering player');
+            appState.registerPlayer(appState.playerData.playerName, true);
+          }
           return Center(
               child: genText(theme, 'Waiting for next quiz to start...'));
         }
@@ -38,17 +41,15 @@ class QuizPage extends StatelessWidget {
         var numQuestions = qAndA.length;
 
         int curQuestion = data['curQuestion'];
+        print('curQuestion: $curQuestion, lastQuestion: $lastQuestion');
         if (curQuestion != lastQuestion) {
-          if (curQuestion == -1) {
-            // New quiz starting on session so rereg this player.
-            appState.registerPlayer(appState.playerData.playerName, true);
-          } else if (curQuestion >= 0) {
+          if (curQuestion >= 0) {
             print('playing question number $curQuestion');
             appState.stopQuestionTimer();
             appState.startQuestionTimer();
-            appState.playerData.curQuestion = curQuestion;
-            lastQuestion = curQuestion;
           }
+          appState.playerData.curQuestion = curQuestion;
+          lastQuestion = curQuestion;
         }
         var question = qAndA[curQuestion]['question'];
         var correct = qAndA[curQuestion]['correct'];
