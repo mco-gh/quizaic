@@ -292,6 +292,7 @@ class _HostPageState extends State<HostPage> {
               stream: appState.resultsStream,
               builder: (context, snapshot) {
                 print('2: results stream: snapshot.data: ${snapshot.data}');
+                int respondents = 0;
                 if (snapshot.data?.data() != null) {
                   var results = snapshot.data!.data() as Map<String, dynamic>;
                   if (results['players'] != null) {
@@ -299,8 +300,15 @@ class _HostPageState extends State<HostPage> {
                     Map playerScores = {};
                     players.forEach((k, v) {
                       print('k: $k, v: $v');
-                      playerScores[k] = v['score'];
+                      if (v.containsKey('score')) {
+                        playerScores[k] = v['score'];
+                      }
+                      if (v.containsKey('results') &&
+                          v['results'].containsKey(curQuestion.toString())) {
+                        respondents++;
+                      }
                     });
+                    print('respondents: $respondents');
                     leaderBoard = Map.fromEntries(playerScores.entries.toList()
                       ..sort((e1, e2) => e2.value.compareTo(e1.value)));
                   }
@@ -314,6 +322,8 @@ class _HostPageState extends State<HostPage> {
                     genText(theme,
                         'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
                         size: 24, weight: FontWeight.bold),
+                    genText(theme,
+                        '($respondents of ${leaderBoard.length} players have responded so far)'),
                     SizedBox(height: formRowHeight),
                     genCard(
                         theme,

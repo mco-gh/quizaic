@@ -118,6 +118,7 @@ class QuizPage extends StatelessWidget {
 
         List<Widget> widgets = [
           SizedBox(height: verticalSpaceHeight * 2),
+          /*
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -134,6 +135,7 @@ class QuizPage extends StatelessWidget {
             ],
           ),
           SizedBox(height: verticalSpaceHeight * 2),
+          */
           timerBar,
           SizedBox(height: verticalSpaceHeight * 2),
           genText(theme,
