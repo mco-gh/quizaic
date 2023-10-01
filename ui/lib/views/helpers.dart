@@ -124,6 +124,10 @@ Widget genCard(theme, widget) {
 
 genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
   print('leaderBoard($theme, $leaderBoard, $showScores)');
+  int numPlayers = leaderBoard.length;
+  String regPlayersTitle =
+      "${numPlayers > 0 ? numPlayers : 'No'} Registered Players";
+
   return Column(children: [
     SizedBox(height: formRowHeight),
     SizedBox(
@@ -131,8 +135,7 @@ genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
       child: ExpansionTile(
         initiallyExpanded: !showScores,
         expandedAlignment: Alignment.topLeft,
-        title:
-            genText(theme, showScores ? 'Leaderboard' : 'Registered Players'),
+        title: genText(theme, showScores ? 'Leaderboard' : regPlayersTitle),
         children: [
           Table(children: [
             for (var e in leaderBoard.entries)

@@ -3,9 +3,9 @@ import 'package:quizaic/const.dart';
 
 List items = [
   {
-    "header": "Quizaic = Quizes + AI",
+    "header": "Quizaic!",
     "description":
-        "Quizaic combines the power of modern generative AI with the fun of trivia quizzes and online surveys into a mosaic of infinite challenges.",
+        "Quizaic combines the power of modern generative AI with the fun of trivia quizzes and online surveys into a mosaic of infinite challenge.",
     "image": "assets/images/logo3.png"
   },
   {
@@ -38,7 +38,7 @@ class WelcomePageState extends State<WelcomePage> {
           padding: EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: <Widget>[
-              SizedBox(height: verticalSpaceHeight * 2),
+              SizedBox(height: verticalSpaceHeight * 3),
               Flexible(
                 flex: 1,
                 fit: FlexFit.tight,
