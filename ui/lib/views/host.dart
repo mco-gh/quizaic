@@ -373,8 +373,14 @@ class _HostPageState extends State<HostPage> {
                         ],
                       ),
                     ),
-                    //(theme, hist),
-                    genLeaderBoard(theme, leaderBoard, showScores: true),
+                    SizedBox(height: verticalSpaceHeight * 2),
+                    Row(children: [
+                      SizedBox(width: horizontalSpaceWidth),
+                      genBarChart(theme, hist,
+                          jsonDecode(quiz.qAndA)[curQuestion]['responses']),
+                      SizedBox(width: horizontalSpaceWidth * 1),
+                      genLeaderBoard(theme, leaderBoard, showScores: true),
+                    ]),
                   ],
                 );
               });

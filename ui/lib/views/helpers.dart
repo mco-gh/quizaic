@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:quizaic/const.dart';
-import 'package:vertical_barchart/vertical_barchart.dart';
+import 'package:vertical_barchart/vertical-barchart.dart';
+import 'package:vertical_barchart/vertical-barchartmodel.dart';
 
 Widget genText(ThemeData theme, String text,
     {size = 20,
@@ -121,35 +122,6 @@ Widget genCard(theme, widget) {
           child: widget,
         )),
   );
-}
-
-genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
-  print('leaderBoard($theme, $leaderBoard, $showScores)');
-  int numPlayers = leaderBoard.length;
-  String regPlayersTitle =
-      "${numPlayers > 0 ? numPlayers : 'No'} Registered Players";
-
-  return Column(children: [
-    SizedBox(height: formRowHeight),
-    SizedBox(
-      width: formColumnWidth,
-      child: ExpansionTile(
-        initiallyExpanded: !showScores,
-        expandedAlignment: Alignment.topLeft,
-        title: genText(theme, showScores ? 'Leaderboard' : regPlayersTitle),
-        children: [
-          Table(children: [
-            for (var e in leaderBoard.entries)
-              TableRow(children: [
-                TableCell(child: genText(theme, e.key)),
-                if (showScores)
-                  TableCell(child: genText(theme, e.value.toString())),
-              ]),
-          ]),
-        ],
-      ),
-    )
-  ]);
 }
 
 Widget genQuestionList(ThemeData theme, quiz, appState) {
@@ -295,4 +267,71 @@ Widget genQuizDifficultyWidget(
         setDifficulty);
   }
   return widget;
+}
+
+genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
+  print('leaderBoard($theme, $leaderBoard, $showScores)');
+  int numPlayers = leaderBoard.length;
+  String regPlayersTitle =
+      "${numPlayers > 0 ? numPlayers : 'No'} Registered Players";
+
+  return Column(children: [
+    SizedBox(
+      width: formColumnWidth,
+      child: ExpansionTile(
+        initiallyExpanded: true,
+        expandedAlignment: Alignment.topLeft,
+        title: genText(theme, showScores ? 'Leaderboard' : regPlayersTitle),
+        children: [
+          Table(children: [
+            for (var e in leaderBoard.entries)
+              TableRow(children: [
+                TableCell(child: genText(theme, e.key)),
+                if (showScores)
+                  TableCell(child: genText(theme, e.value.toString())),
+              ]),
+          ]),
+        ],
+      ),
+    )
+  ]);
+}
+
+genBarChart(theme, hist, responses) {
+  List<VBarChartModel> bardata = [];
+  for (var i = 0; i < hist.length; i++) {
+    bardata.add(VBarChartModel(
+      index: i,
+      label: responses[i],
+      colors: [Colors.orange, Colors.deepOrange],
+      jumlah: hist[i],
+      tooltip: hist[i].toString(),
+    ));
+  }
+  double maxVal = 0;
+  if (hist != null && hist.isNotEmpty) {
+    maxVal = hist[0];
+    for (var i = 1; i < hist.length; i++) {
+      if (hist[i] > maxVal) {
+        maxVal = hist[i];
+      }
+    }
+  }
+
+  return SizedBox(
+    width: formColumnWidth,
+    child: ExpansionTile(
+        initiallyExpanded: false,
+        expandedAlignment: Alignment.topLeft,
+        title: genText(theme, 'Results'),
+        children: [
+          VerticalBarchart(
+            maxX: maxVal,
+            data: bardata,
+            showLegend: true,
+            alwaysShowDescription: true,
+            showBackdrop: true,
+          ),
+        ]),
+  );
 }
