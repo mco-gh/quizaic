@@ -64,6 +64,7 @@ Widget genTextFormField(
 Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
     current, getter, setter) {
   var initialSelection = current;
+  print('text: $text');
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(formPadding),
@@ -80,10 +81,22 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
             label: genText(theme, text),
             dropdownMenuEntries: [
               for (var type in getter())
-                DropdownMenuEntry(
-                  label: type,
-                  value: type,
-                ),
+                if (text == 'Quiz Generator' && type == 'Palm')
+                  DropdownMenuEntry(
+                    label: 'Google Pathways Language Model (PaLM)',
+                    value: type,
+                  )
+                else if (text == 'Quiz Generator' && type == 'OpenTrivia')
+                  DropdownMenuEntry(
+                    label:
+                        'OpenTrivia (Open Source Trivia Question Repository)',
+                    value: type,
+                  )
+                else if (text != 'Quiz Generator')
+                  DropdownMenuEntry(
+                    label: type,
+                    value: type,
+                  )
             ]),
       ),
     ),
