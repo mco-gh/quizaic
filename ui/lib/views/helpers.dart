@@ -134,6 +134,10 @@ Widget genQuestionList(ThemeData theme, quiz, appState) {
       child: Column(),
     );
   }
+  if (quiz.qAndA == null || quiz.qAndA == '') {
+    return genText(
+        theme, 'Quiz generation appears to have failed for this quiz.');
+  }
   var qAndA = jsonDecode(quiz.qAndA as String);
   for (var question in qAndA) {
     getQuestion() {

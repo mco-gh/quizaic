@@ -287,6 +287,11 @@ class _HostPageState extends State<HostPage> {
           }
 
           // Quiz is running, show next question, leaderboard, etc.
+          if (quiz.qAndA == '') {
+            return Center(
+              child: genText(theme, 'No questions for quiz "${quiz.name}"'),
+            );
+          }
           question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
           return StreamBuilder<DocumentSnapshot>(
               stream: appState.resultsStream,
