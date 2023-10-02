@@ -64,7 +64,6 @@ Widget genTextFormField(
 Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
     current, getter, setter) {
   var initialSelection = current;
-  print('text: $text');
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(formPadding),
@@ -162,6 +161,17 @@ Widget genQuestionList(ThemeData theme, quiz, appState) {
       appState.editQuizData.qAndA = jsonEncode(qAndA);
     }
 
+    getResponses() {
+      return question["responses"];
+    }
+
+    setCorrect(s) {
+      question['correct'] = s;
+      appState.editQuizData.qAndA = jsonEncode(qAndA);
+      print(
+          's: $s, appState.editQuizData.qAndA: ${appState.editQuizData.qAndA}');
+    }
+
     subwidgets = [];
 
     widgets.add(Row(
@@ -184,6 +194,8 @@ Widget genQuestionList(ThemeData theme, quiz, appState) {
         subwidgets.add(genTextFormField(
             theme, options[j], null, getResponse, setResponse));
       }
+      subwidgets.add(genDropdownMenu(theme, 'CorrectAnswer', null,
+          formColumnWidth, question["correct"], getResponses, setCorrect));
     } else {
       subwidgets.add(genText(theme, 'Answer: ${question["correct"]}'));
     }

@@ -317,11 +317,13 @@ class _HostPageState extends State<HostPage> {
                       if (v.containsKey('answers') &&
                           v['answers'].containsKey(curQuestion.toString())) {
                         int answer = v['answers'][curQuestion.toString()];
-                        hist.update(
-                          answer,
-                          (value) => ++value,
-                          ifAbsent: () => 1,
-                        );
+                        if (answer != -1) {
+                          hist.update(
+                            answer,
+                            (value) => ++value,
+                            ifAbsent: () => 1,
+                          );
+                        }
                       }
                       print('hist: $hist');
                       if (v.containsKey('results') &&

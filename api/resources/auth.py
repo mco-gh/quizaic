@@ -40,6 +40,7 @@ def user_is_admin(email):
     matching_admins = db.list_matching(
         "admins", methods.resource_fields["admins"], "email", email
     )
+    print(f"user_is_admin: {matching_admins=}")
     return len(matching_admins) > 0
 
 

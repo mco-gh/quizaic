@@ -178,6 +178,7 @@ class MyAppState extends ChangeNotifier {
     if (playerData.timeLeft == 0) {
       stopQuestionTimer();
       playerData.respondedQuestion = playerData.curQuestion;
+      sendResponse(playerData.curQuestion, false, -1);
     }
     notifyListeners();
   }
@@ -193,7 +194,9 @@ class MyAppState extends ChangeNotifier {
 
   Future<List<Quiz>> fetchQuizzes() async {
     print('fetchQuizzes using apiUrl: $apiUrl');
-    final response = await http.get(Uri.parse('$apiUrl/quizzes'));
+    final response = await http.get(Uri.parse('$apiUrl/quizzes'), headers: {
+      'Authorization': 'Bearer ${userData.idToken}',
+    });
     if (response.statusCode == 200) {
       Iterable l = jsonDecode(response.body);
       quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
@@ -429,6 +432,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
+    print('createOrUpdateQuiz($quiz)');
     Quiz tmpQuiz = Quiz(
         name: editQuizData.name,
         generator: editQuizData.generator,
@@ -443,6 +447,14 @@ class MyAppState extends ChangeNotifier {
       String json = jsonEncode(quiz.toJson());
       tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
+
+    tmpQuiz.name = editQuizData.name;
+    tmpQuiz.generator = editQuizData.generator;
+    tmpQuiz.answerFormat = editQuizData.answerFormat;
+    tmpQuiz.topic = editQuizData.topic;
+    tmpQuiz.numQuestions = editQuizData.numQuestions;
+    tmpQuiz.difficulty = editQuizData.difficulty;
+    tmpQuiz.qAndA = editQuizData.qAndA;
 
     String url = '';
     String confirmation = '';
@@ -466,6 +478,7 @@ class MyAppState extends ChangeNotifier {
       method = http.patch;
     }
 
+    print('tmpQuiz: ${jsonEncode(tmpQuiz)}');
     var response =
         await method(Uri.parse(url), body: jsonEncode(tmpQuiz), headers: {
       'Content-Type': 'application/json',

@@ -43,6 +43,7 @@
     "collection": "quizzes",
     "id": "12343afa140f40ff9e70",
     "data": {
+      "public": true,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Audience Survey",
       "generator": "Manual",
@@ -110,6 +111,7 @@
     "collection": "quizzes",
     "id": "f7723afa140f40ff9e70",
     "data": {
+      "public": false,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "US History Quiz",
       "generator": "Jeopardy",
@@ -139,6 +141,7 @@
     "collection": "quizzes",
     "id": "6e4f3afa140f40ff9e70",
     "data": {
+      "public": true,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Who Wrote It?",
       "generator": "Palm",
@@ -256,6 +259,7 @@
     "collection": "quizzes",
     "id": "078ba4bfce324ced8586",
     "data": {
+      "public": false,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Rock and Roll!",
       "generator": "OpenTrivia",
@@ -293,6 +297,7 @@
     "collection": "quizzes",
     "id": "d5816cdf8b3949429c23",
     "data": {
+      "public": false,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Cat Trivia by حسین رضایی",
       "generator": "Palm",
@@ -330,6 +335,7 @@
     "collection": "quizzes",
     "id": "Gc34g8db0wCrroLUxJeA",
     "data": {
+      "public": true,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Pop Music",
       "generator": "Palm",
