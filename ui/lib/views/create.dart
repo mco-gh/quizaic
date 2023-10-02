@@ -88,12 +88,16 @@ class _CreatePageState extends State<CreatePage> {
     }
 
     List<String> getAnswerFormats() {
+      // short circuit this for now to only return multiple-choice
+      return ['multiple choice'];
+      /*
       for (var generator in appState.generators) {
         if (generator.name == appState.editQuizData.generator) {
           return generator.answerFormats;
         }
       }
       return [];
+      */
     }
 
     void setAnswerFormat(value) {

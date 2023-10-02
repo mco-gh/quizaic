@@ -19,7 +19,7 @@ class UserData {
 
 class EditQuizData {
   String name = '';
-  String answerFormat = 'Select generator to see formats';
+  String answerFormat = 'multiple choice';
   String generator = '';
   String topic = 'Select generator to see topics';
   int numQuestions = 0;
