@@ -530,7 +530,10 @@ class MyAppState extends ChangeNotifier {
     print('registerPlayer($playerName, $allowRereg, $router)');
 
     String key = 'players.$playerName';
-    var body = '{"$key.score": 0, "$key.results": {}}';
+    var body = '''{
+      "$key.score": 0, "$key.results": {},
+      "$key.score": 0, "$key.answers": {}
+    }''';
     print('name: $playerName, body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/${playerData.sessionId}'),
@@ -563,11 +566,13 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> sendResponse(int curQuestion, bool correct) async {
-    print('sendResponse($curQuestion, $correct)');
-    int result = correct ? 1 : 0;
-    var body =
-        '{"players.${playerData.playerName}.results.$curQuestion": $result}';
+  Future<bool> sendResponse(int curQuestion, bool grade, int answer) async {
+    print('sendResponse($curQuestion, $grade, $answer)');
+    int result = grade ? 1 : 0;
+    var body = '''{
+          "players.${playerData.playerName}.results.$curQuestion": $result,
+          "players.${playerData.playerName}.answers.$curQuestion": $answer
+        }''';
     print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/${playerData.sessionId}'),
