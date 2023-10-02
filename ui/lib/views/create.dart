@@ -281,11 +281,10 @@ class _CreatePageState extends State<CreatePage> {
                       onPressed: () async {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
+                          // If the form is valid, display a snackbar.
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                duration: Duration(milliseconds: 500),
+                                duration: Duration(milliseconds: 3000),
                                 content: genText(theme, snack)),
                           );
                           appState.createOrUpdateQuiz(

@@ -227,7 +227,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                                             context)
                                                         .showSnackBar(SnackBar(
                                                       duration: Duration(
-                                                          milliseconds: 500),
+                                                          milliseconds: 1000),
                                                       content: genText(
                                                         theme,
                                                         'Deleting quiz...',

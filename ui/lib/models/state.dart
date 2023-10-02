@@ -24,6 +24,7 @@ class EditQuizData {
   String topic = 'Select generator to see topics';
   int numQuestions = 0;
   int difficulty = 1;
+  String imageUrl = '';
   String qAndA = '';
 }
 
@@ -194,7 +195,7 @@ class MyAppState extends ChangeNotifier {
     print('fetchQuizzes using apiUrl: $apiUrl');
     final response = await http.get(Uri.parse('$apiUrl/quizzes'));
     if (response.statusCode == 200) {
-      Iterable l = json.decode(response.body);
+      Iterable l = jsonDecode(response.body);
       quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
     }
     notifyListeners();
@@ -206,7 +207,7 @@ class MyAppState extends ChangeNotifier {
     final response = await http.get(Uri.parse('$apiUrl/generators'));
 
     if (response.statusCode == 200) {
-      Iterable l = json.decode(response.body);
+      Iterable l = jsonDecode(response.body);
       generators =
           List<Generator>.from(l.map((model) => Generator.fromJson(model)));
     }
@@ -429,25 +430,19 @@ class MyAppState extends ChangeNotifier {
 
   Future<bool> createOrUpdateQuiz(context, quiz) async {
     Quiz tmpQuiz = Quiz(
-        name: '',
-        generator: '',
-        answerFormat: '',
-        topic: '',
-        numQuestions: 0,
-        difficulty: 1);
+        name: editQuizData.name,
+        generator: editQuizData.generator,
+        answerFormat: editQuizData.answerFormat,
+        topic: editQuizData.topic,
+        numQuestions: editQuizData.numQuestions,
+        difficulty: editQuizData.difficulty,
+        qAndA: editQuizData.qAndA,
+        imageUrl: 'assets/assets/images/quizaic_logo.png');
 
     if (quiz != null && quiz.id != '') {
       String json = jsonEncode(quiz.toJson());
       tmpQuiz = Quiz.fromJson(jsonDecode(json));
     }
-
-    tmpQuiz.name = editQuizData.name;
-    tmpQuiz.generator = editQuizData.generator;
-    tmpQuiz.answerFormat = editQuizData.answerFormat;
-    tmpQuiz.topic = editQuizData.topic;
-    tmpQuiz.numQuestions = editQuizData.numQuestions;
-    tmpQuiz.difficulty = editQuizData.difficulty;
-    tmpQuiz.qAndA = editQuizData.qAndA;
 
     String url = '';
     String confirmation = '';
@@ -471,14 +466,43 @@ class MyAppState extends ChangeNotifier {
       method = http.patch;
     }
 
-    final response =
+    var response =
         await method(Uri.parse(url), body: jsonEncode(tmpQuiz), headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ${userData.idToken}'
     });
 
+    // For UX responsiveness we create quizzes in two steps:
+    // 1. Send a request to post quiz without generated artifacts.
+    // 2. Send a request to patch the new quiz, with qAndA and
+    //    imageUrl set to 'regen', which triggers artifact generation.
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(confirmation);
+      if (method == http.post) {
+        // Just created a new quiz, now send post for quiz and image gen.
+        var quizData = jsonDecode(response.body);
+        String genUrl = '$apiUrl/quizzes/${quizData['id']}';
+        String json = '''{
+              "generator": "${editQuizData.generator}",
+              "topic": "${editQuizData.topic}",
+              "numQuestions": ${editQuizData.numQuestions},
+              "qAndA": "regen",
+              "imageUrl": "regen"
+            }''';
+        print('json: $json');
+        response = await http.patch(Uri.parse(genUrl), body: json, headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${userData.idToken}'
+        });
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          print('successfully generated quiz content and image');
+        } else if (response.statusCode == 403) {
+          errorDialog(
+              'failed to generate quiz content/image due to permission error, are you logged in?');
+        } else {
+          errorDialog('failed to generate quiz content/image');
+        }
+      }
     } else if (response.statusCode == 403) {
       errorDialog('$error due to permission error, are you logged in?');
     } else {

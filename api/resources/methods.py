@@ -147,19 +147,6 @@ def insert(resource_kind, representation):
         pin = random.randint(MIN_PIN, MAX_PIN)
         representation["pin"] = str(pin)
 
-    if resource_kind == "quizzes":
-        print("inserting a quiz so generating a new quiz...")
-        generator = representation["generator"]
-        topic = representation["topic"]
-        num_questions = int(representation["numQuestions"])
-        # num_answers = int(representation["numAnswers"])
-        num_answers = 4
-
-        gen = QuizgenFactory.get_gen(generator.lower())
-        quiz = gen.gen_quiz(topic, num_questions, num_answers)
-        print(json.dumps(quiz, indent=4))
-        representation["qAndA"] = json.dumps(quiz)
-
     resource = db.insert(resource_kind, representation, resource_fields[resource_kind])
     id = resource["id"]
 
@@ -169,17 +156,6 @@ def insert(resource_kind, representation):
         rep = {"hostId": id, "quizId": id, "players": {}}
         db.insert(results, representation, resource_fields[results])
  
-    if resource_kind == "quizzes":
-        print("created a quiz so generating a new image...")
-        filename = resource["id"] + ".png"
-        file_url = ImageGen.generate_and_upload_image(topic, filename, IMAGES_BUCKET)
-        print(f"file_url: {file_url}")
-        patch = {"imageUrl": file_url}
-
-        resource, status = db.update(
-            resource_kind, id, patch, resource_fields[resource_kind], None
-        )
-
     return (
         json.dumps(resource),
         201,
@@ -199,6 +175,31 @@ def patch(resource_kind, id, representation):
 
     match_etag = request.headers.get("If-Match", None)
    
+    if resource_kind == "quizzes":
+        regen_content = (representation.get("qAndA", None) == "regen")
+        regen_image = (representation.get("imageUrl", None) == "regen")
+
+        if regen_content:
+            print("generating new quiz content...")
+            generator = representation["generator"]
+            topic = representation["topic"]
+            num_questions = int(representation["numQuestions"])
+            #num_answers = int(representation["numAnswers"])
+            num_answers = 4
+            gen = QuizgenFactory.get_gen(generator.lower())
+            print(f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}")
+            quiz = gen.gen_quiz(topic, num_questions, num_answers)
+            print(f"{json}")
+            print(json.dumps(quiz, indent=4))
+            representation["qAndA"] = json.dumps(quiz)
+
+        if regen_image:
+            print("generating a new quiz image...")
+            filename = id + ".png"
+            file_url = ImageGen.generate_and_upload_image(topic, filename, IMAGES_BUCKET)
+            print(f"file_url: {file_url}")
+            representation["imageUrl"] = file_url
+
     if resource_kind == "results":
         key = next(iter(representation))
         # When a new game starts, the host sends a request to reset the quizId and
