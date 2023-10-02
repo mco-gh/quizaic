@@ -38,6 +38,7 @@ dependencies:
   qr_flutter: ^4.1.0
   fl_chart: ^0.63.0
   vertical_barchart: ^2.0.0+2
+  confetti: ^0.7.0
 
 dev_dependencies:
   flutter_test:

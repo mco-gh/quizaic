@@ -139,7 +139,7 @@ class QuizPage extends StatelessWidget {
           timerBar,
           SizedBox(height: verticalSpaceHeight * 2),
           genText(theme,
-              'Question ${curQuestion + 1} (of $numQuestions): $question'),
+              'Player ${appState.playerData.playerName}, Question ${curQuestion + 1} (of $numQuestions): $question'),
           SizedBox(height: verticalSpaceHeight * 2),
         ];
         widgets.addAll(genResponses(responses, enable));
