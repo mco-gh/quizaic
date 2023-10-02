@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:quizaic/const.dart';
+import 'package:vertical_barchart/vertical_barchart.dart';
 
 Widget genText(ThemeData theme, String text,
     {size = 20,

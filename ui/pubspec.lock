@@ -762,6 +762,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  vertical_barchart:
+    dependency: "direct main"
+    description:
+      name: vertical_barchart
+      sha256: "60418bef71be7828a4d8300da4c1d8f355a0647c133dc9a0ebf27e2e0b7592ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0+2"
   win32:
     dependency: transitive
     description:

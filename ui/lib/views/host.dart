@@ -7,7 +7,6 @@ import 'package:quizaic/views/helpers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:go_router/go_router.dart';
-//import 'package:fl_chart/fl_chart.dart';
 
 class HostPage extends StatefulWidget {
   final String? quizId;
@@ -294,6 +293,7 @@ class _HostPageState extends State<HostPage> {
               builder: (context, snapshot) {
                 print('2: results stream: snapshot.data: ${snapshot.data}');
                 int respondents = 0;
+                Map<int, int> hist = {};
                 if (snapshot.data?.data() != null) {
                   var results = snapshot.data!.data() as Map<String, dynamic>;
                   if (results['players'] != null) {
@@ -304,12 +304,21 @@ class _HostPageState extends State<HostPage> {
                       if (v.containsKey('score')) {
                         playerScores[k] = v['score'];
                       }
+                      if (v.containsKey('answers') &&
+                          v['answers'].containsKey(curQuestion.toString())) {
+                        int answer = v['answers'][curQuestion.toString()];
+                        hist.update(
+                          answer,
+                          (value) => ++value,
+                          ifAbsent: () => 1,
+                        );
+                      }
                       if (v.containsKey('results') &&
                           v['results'].containsKey(curQuestion.toString())) {
                         respondents++;
                       }
                     });
-                    print('respondents: $respondents');
+                    print('respondents: $respondents, hist: $hist');
                     leaderBoard = Map.fromEntries(playerScores.entries.toList()
                       ..sort((e1, e2) => e2.value.compareTo(e1.value)));
                   }
@@ -364,6 +373,7 @@ class _HostPageState extends State<HostPage> {
                         ],
                       ),
                     ),
+                    //(theme, hist),
                     genLeaderBoard(theme, leaderBoard, showScores: true),
                   ],
                 );
