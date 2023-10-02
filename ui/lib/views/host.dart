@@ -293,7 +293,12 @@ class _HostPageState extends State<HostPage> {
               builder: (context, snapshot) {
                 print('2: results stream: snapshot.data: ${snapshot.data}');
                 int respondents = 0;
-                Map<int, int> hist = {};
+                Map<int, int> hist = {
+                  0: 0,
+                  1: 0,
+                  2: 0,
+                  3: 0,
+                };
                 if (snapshot.data?.data() != null) {
                   var results = snapshot.data!.data() as Map<String, dynamic>;
                   if (results['players'] != null) {
@@ -313,6 +318,7 @@ class _HostPageState extends State<HostPage> {
                           ifAbsent: () => 1,
                         );
                       }
+                      print('hist: $hist');
                       if (v.containsKey('results') &&
                           v['results'].containsKey(curQuestion.toString())) {
                         respondents++;

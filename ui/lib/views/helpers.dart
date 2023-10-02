@@ -299,22 +299,20 @@ genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
 
 genBarChart(theme, hist, responses) {
   List<VBarChartModel> bardata = [];
-  for (var i = 0; i < hist.length; i++) {
-    bardata.add(VBarChartModel(
-      index: i,
-      label: responses[i],
-      colors: [Colors.orange, Colors.deepOrange],
-      jumlah: hist[i],
-      tooltip: hist[i].toString(),
-    ));
-  }
-  double maxVal = 0;
+  int maxVal = 0;
   if (hist != null && hist.isNotEmpty) {
-    maxVal = hist[0];
-    for (var i = 1; i < hist.length; i++) {
+    for (var i = 0; i < hist.length; i++) {
+      print('i: $i, hist[i]: ${hist[i]}, maxVal: $maxVal');
       if (hist[i] > maxVal) {
         maxVal = hist[i];
       }
+      bardata.add(VBarChartModel(
+        index: i,
+        label: responses[i],
+        colors: [Colors.orange, Colors.deepOrange],
+        jumlah: hist[i],
+        tooltip: hist[i].toString(),
+      ));
     }
   }
 
@@ -326,7 +324,7 @@ genBarChart(theme, hist, responses) {
         title: genText(theme, 'Results'),
         children: [
           VerticalBarchart(
-            maxX: maxVal,
+            maxX: maxVal as double,
             data: bardata,
             showLegend: true,
             alwaysShowDescription: true,
