@@ -19,7 +19,7 @@ List items = [
     "description": '''
 Quizaic is not an official Google project. It's still under construction and is likely to change frequently over the coming months. We'll share occasional notes about what's changing and why on this welcome page.
 
-Please don't use Quizaic for anything important. But do let us know (via quizaic@google.com) if find any problems or have any suggestions.
+Please don't use Quizaic for anything important. But do let us know (via quizaic@google.com) if you find any problems or have any suggestions.
 .''',
     "image": "assets/images/disclaimer.jpg"
   }
