@@ -255,9 +255,13 @@ class _HostPageState extends State<HostPage> {
                                 size: 30, weight: FontWeight.bold),
                             Row(
                               children: [
-                                genText(theme,
-                                    'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                                    size: 24, weight: FontWeight.bold),
+                                //genText(theme,
+                                SelectableText(
+                                  'https://quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
                                 SizedBox(width: horizontalSpaceWidth),
                                 ElevatedButton(
                                   onPressed: () {
@@ -351,9 +355,11 @@ class _HostPageState extends State<HostPage> {
                     genText(theme,
                         'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"',
                         size: 30, weight: FontWeight.bold),
-                    genText(theme,
-                        'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                        size: 24, weight: FontWeight.bold),
+                    SelectableText(
+                      'https://quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
                     genText(theme,
                         '($respondents of ${leaderBoard.length} players have responded so far)'),
                     SizedBox(height: formRowHeight),
