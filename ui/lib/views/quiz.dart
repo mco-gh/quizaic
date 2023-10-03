@@ -6,6 +6,36 @@ import 'dart:convert';
 import 'package:quizaic/const.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/views/timer.dart';
+import 'dart:math';
+import 'package:confetti/confetti.dart';
+
+final _controllerCenter =
+    ConfettiController(duration: const Duration(seconds: 10));
+
+/// A custom Path to paint stars.
+Path drawStar(Size size) {
+  // Method to convert degree to radians
+  double degToRad(double deg) => deg * (pi / 180.0);
+
+  const numberOfPoints = 5;
+  final halfWidth = size.width / 2;
+  final externalRadius = halfWidth;
+  final internalRadius = halfWidth / 2.5;
+  final degreesPerStep = degToRad(360 / numberOfPoints);
+  final halfDegreesPerStep = degreesPerStep / 2;
+  final path = Path();
+  final fullAngle = degToRad(360);
+  path.moveTo(size.width, halfWidth);
+
+  for (double step = 0; step < fullAngle; step += degreesPerStep) {
+    path.lineTo(halfWidth + externalRadius * cos(step),
+        halfWidth + externalRadius * sin(step));
+    path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
+        halfWidth + internalRadius * sin(step + halfDegreesPerStep));
+  }
+  path.close();
+  return path;
+}
 
 Widget timerBar = TimerBar();
 int lastQuestion = -2;
@@ -119,6 +149,7 @@ class QuizPage extends StatelessWidget {
         List<Widget> widgets = [
           SizedBox(height: verticalSpaceHeight * 2),
           /*
+          // removed for now to conserve space on mobile player's screen
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -142,6 +173,28 @@ class QuizPage extends StatelessWidget {
               'Player ${appState.playerData.playerName}, Question ${curQuestion + 1} (of $numQuestions): $question'),
           SizedBox(height: verticalSpaceHeight * 2),
         ];
+        widgets.add(SafeArea(
+            child: Stack(children: <Widget>[
+          //CENTER -- Blast
+          Align(
+            alignment: Alignment.center,
+            child: ConfettiWidget(
+              confettiController: _controllerCenter,
+              blastDirectionality: BlastDirectionality
+                  .explosive, // don't specify a direction, blast randomly
+              shouldLoop:
+                  true, // start again as soon as the animation is finished
+              colors: const [
+                Colors.green,
+                Colors.blue,
+                Colors.pink,
+                Colors.orange,
+                Colors.purple
+              ], // manually specify the colors to be used
+              createParticlePath: drawStar, // define a custom shape/path.
+            ),
+          ),
+        ])));
         widgets.addAll(genResponses(responses, enable));
         if (!enable) {
           widgets.add(SizedBox(height: verticalSpaceHeight * 2));
@@ -149,6 +202,25 @@ class QuizPage extends StatelessWidget {
             widgets.add(genText(theme, 'Waiting for next question...'));
           } else {
             widgets.add(genText(theme, 'Quiz completed.'));
+            String place = '';
+            if (data.containsKey('finalists')) {
+              List<dynamic> finalists = data['finalists'];
+              print('finalists: $finalists');
+              for (var i = 0; i < finalists.length; i++) {
+                if (finalists[i] == appState.playerData.playerName) {
+                  place = placeWords[i];
+                  break;
+                }
+              }
+            }
+            if (place != '') {
+              widgets.add(genText(
+                theme,
+                'Congratulations! You finished in $place place!!!',
+                size: 30,
+              ));
+              _controllerCenter.play();
+            }
           }
         }
         return Column(

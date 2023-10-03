@@ -34,6 +34,8 @@ const FixedTrackSize gridColSize = FixedTrackSize(gridColWidth * .75);
 const String appBarTitle = 'Quizaic';
 const String appBarTitleExtended = '$appBarTitle | AI Powered Infinite Trivia';
 
+const List<String> placeWords = ['1st', '2nd', '3rd'];
+
 const List<String> difficultyLevel = [
   'Trivial',
   'Easy',

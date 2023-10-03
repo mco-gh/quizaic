@@ -52,6 +52,7 @@ resource_fields = {
         "randomizeAnswers",
         "curQuestion",
         "pin",
+        "finalists",
     ],
     "results": ["hostId", "quizId", "players"],
     "generators": ["name", "answerFormats", "topics"],

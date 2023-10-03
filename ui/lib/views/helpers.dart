@@ -299,7 +299,7 @@ Widget genQuizDifficultyWidget(
 }
 
 genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
-  print('leaderBoard($theme, $leaderBoard, $showScores)');
+  print('genLeaderBoard($theme, $leaderBoard, $showScores)');
   int numPlayers = leaderBoard.length;
   String regPlayersTitle =
       "${numPlayers > 0 ? numPlayers : 'No'} Registered Players";
@@ -327,6 +327,7 @@ genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
 }
 
 genBarChart(theme, hist, responses) {
+  print('genBarChart($theme, $hist, $responses)');
   List<VBarChartModel> bardata = [];
   int maxVal = 0;
   if (hist != null && hist.isNotEmpty) {

@@ -9,6 +9,7 @@ import 'package:quizaic/views/home.dart';
 import 'package:quizaic/const.dart';
 import 'package:localstorage/localstorage.dart';
 import 'dart:async';
+import 'dart:math';
 
 class UserData {
   String name = '';
@@ -300,9 +301,37 @@ class MyAppState extends ChangeNotifier {
       }
       json['quizId'] = quizId;
       json['curQuestion'] = -2;
+      json['finalists'] = [];
     }
 
     print('patching session data: $json');
+    var response = await http.patch(
+        Uri.parse('$apiUrl/sessions/${sessionData.id}'),
+        body: jsonEncode(json),
+        headers: {
+          'Authorization': 'Bearer ${userData.idToken}',
+          'Content-Type': 'application/json',
+        });
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print('Reusable session ${sessionData.id} reset.');
+    } else {
+      errorDialog('Failed to reset reusable session ${sessionData.id}');
+    }
+  }
+
+  setFinalists(leaderBoard) async {
+    print('setFinalists($leaderBoard)');
+
+    var leaders = leaderBoard.keys;
+    print('leaders: $leaders, length: ${leaders.length}');
+    Map<dynamic, dynamic> json = {
+      'finalists': [],
+    };
+    for (int i = 0; i < min(leaders.length, 3); i++) {
+      json['finalists'].add(leaders.elementAt(i));
+    }
+    print('json: ${jsonEncode(json)}');
     var response = await http.patch(
         Uri.parse('$apiUrl/sessions/${sessionData.id}'),
         body: jsonEncode(json),
@@ -345,6 +374,7 @@ class MyAppState extends ChangeNotifier {
     Map<dynamic, dynamic> json = editSessionData.toJson();
     json['quizId'] = quizId;
     json['curQuestion'] = -1;
+    json['finalists'] = [];
     var response = await http
         .post(Uri.parse('$apiUrl/sessions'), body: jsonEncode(json), headers: {
       'Authorization': 'Bearer ${userData.idToken}',

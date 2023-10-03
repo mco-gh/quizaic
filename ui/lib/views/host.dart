@@ -225,7 +225,9 @@ class _HostPageState extends State<HostPage> {
                       Map playerScores = {};
                       players.forEach((k, v) {
                         print('k: $k, v: $v');
-                        playerScores[k] = v['score'];
+                        if (v.containsKey('score')) {
+                          playerScores[k] = v['score'];
+                        }
                       });
                       leaderBoard = Map.fromEntries(
                           playerScores.entries.toList()
@@ -334,6 +336,8 @@ class _HostPageState extends State<HostPage> {
                     print('respondents: $respondents, hist: $hist');
                     leaderBoard = Map.fromEntries(playerScores.entries.toList()
                       ..sort((e1, e2) => e2.value.compareTo(e1.value)));
+                    print(
+                        'curQuestion: $curQuestion, numQuestions: ${quiz.numQuestions}');
                   }
                 }
 
@@ -368,13 +372,21 @@ class _HostPageState extends State<HostPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              appState.incQuestion(appState.sessionData.id,
-                                  curQuestion, quiz.numQuestions);
-                            },
-                            child: genText(theme, 'Next Question'),
-                          ),
+                          if (curQuestion == quiz.numQuestions - 1)
+                            ElevatedButton(
+                              onPressed: () {
+                                appState.setFinalists(leaderBoard);
+                              },
+                              child: genText(theme, 'Notify Winners'),
+                            )
+                          else
+                            ElevatedButton(
+                              onPressed: () {
+                                appState.incQuestion(appState.sessionData.id,
+                                    curQuestion, quiz.numQuestions);
+                              },
+                              child: genText(theme, 'Next Question'),
+                            ),
                           SizedBox(width: horizontalSpaceWidth),
                           ElevatedButton(
                             onPressed: () {

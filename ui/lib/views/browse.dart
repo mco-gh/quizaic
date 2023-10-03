@@ -45,6 +45,12 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
   }
 
   @override
+  dispose() {
+    controller.dispose(); // you need this
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
