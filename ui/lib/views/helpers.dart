@@ -317,7 +317,7 @@ genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
               TableRow(children: [
                 TableCell(child: genText(theme, e.key)),
                 if (showScores)
-                  TableCell(child: genText(theme, e.value.toString())),
+                  TableCell(child: genText(theme, e.value.toStringAsFixed(3))),
               ]),
           ]),
         ],

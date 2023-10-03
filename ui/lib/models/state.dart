@@ -179,7 +179,7 @@ class MyAppState extends ChangeNotifier {
     if (playerData.timeLeft == 0) {
       stopQuestionTimer();
       playerData.respondedQuestion = playerData.curQuestion;
-      sendResponse(playerData.curQuestion, false, -1);
+      sendResponse(playerData.curQuestion, 0.0, -1);
     }
     notifyListeners();
   }
@@ -609,11 +609,11 @@ class MyAppState extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> sendResponse(int curQuestion, bool grade, int answer) async {
-    print('sendResponse($curQuestion, $grade, $answer)');
-    int result = grade ? 1 : 0;
+  Future<bool> sendResponse(int curQuestion, double score, int answer) async {
+    print('sendResponse($curQuestion, $score, $answer)');
+
     var body = '''{
-          "players.${playerData.playerName}.results.$curQuestion": $result,
+          "players.${playerData.playerName}.results.$curQuestion": $score,
           "players.${playerData.playerName}.answers.$curQuestion": $answer
         }''';
     print('body: $body');

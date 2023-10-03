@@ -85,6 +85,18 @@ class QuizPage extends StatelessWidget {
         var correct = qAndA[curQuestion]['correct'];
         var responses = qAndA[curQuestion]['responses'];
 
+        double calculateScore(i) {
+          double score = 0.0;
+
+          if (responses[i] == correct) {
+            double timeRemainingProportion = 1 -
+                (appState.playerData.timeLimit - appState.playerData.timeLeft) /
+                    appState.playerData.timeLimit;
+            score = 1 + timeRemainingProportion;
+          }
+          return score;
+        }
+
         List<Widget> genResponses(responses, enable) {
           List<Widget> responseList = [SizedBox(height: verticalSpaceHeight)];
           for (var i = 0; i < responses.length; i++) {
@@ -125,10 +137,11 @@ class QuizPage extends StatelessWidget {
                       ? () => {
                             appState.playerData.respondedQuestion = curQuestion,
                             appState.playerData.response = responses[i],
-                            appState.stopQuestionTimer(),
                             (context as Element).markNeedsBuild(),
+                            print('calc score: ${calculateScore(i)}'),
                             appState.sendResponse(
-                                curQuestion, (responses[i] == correct), i),
+                                curQuestion, calculateScore(i), i),
+                            appState.stopQuestionTimer(),
                           }
                       : null,
                   child: genText(theme, '${options[i]}. ${responses[i]}'),

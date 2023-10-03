@@ -235,6 +235,7 @@ class HomePageScaffold extends StatelessWidget {
                         GoRouter.of(context).go('/login');
                       },
                     ),
+                    SizedBox(width: horizontalSpaceWidth),
                     /*
                     IconButton(
                       icon: Icon(
@@ -249,21 +250,26 @@ class HomePageScaffold extends StatelessWidget {
                   ],
                   backgroundColor: Color(0xfff68d2d),
                   centerTitle: false,
-                  title: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/quizaic_logo.png',
-                        height: 40,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            title,
-                            style: appBarTextStyle,
-                          ),
-                        ],
-                      ),
-                    ],
+                  title: InkWell(
+                    onTap: () {
+                      GoRouter.of(context).go('/');
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/quizaic_logo.png',
+                          height: 40,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              title,
+                              style: appBarTextStyle,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   )),
               //drawer: Drawer(),
               body: LayoutBuilder(

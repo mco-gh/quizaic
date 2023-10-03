@@ -227,9 +227,9 @@ def patch(resource_kind, id, representation):
         reporting_results = False
         if len(parts) >= 3 and parts[2] == "results":
             reporting_results = True
-            if val == 1:
+            if val >= 1.0:
                 score_key = f"{parts[0]}.{parts[1]}.score"
-                representation[score_key] = firestore.Increment(1)
+                representation[score_key] = firestore.Increment(val)
         if not reporting_results and key != "quizId" and key != "players":
             # special case for updating a player's results
             player = parts[1]
