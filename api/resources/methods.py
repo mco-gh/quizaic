@@ -75,20 +75,20 @@ def list(resource_kind):
     if not auth.allowed("GET", resource_kind):
         return "Forbidden", 403
 
-    if resource_kind == "quizzes":
-        hashed_email = get_hashed_email()
-        email = g.get("verified_email", None)
-        print(f"email: {email=}")
-        if auth.user_is_admin(email):
-            print("admin user gets to see all quizzes")
-            results = db.list(resource_kind, resource_fields[resource_kind])
-        else:
-            print("regular user sees public quizzes and their own quizzes")
-            results1 = db.list_matching(resource_kind, resource_fields[resource_kind], 
-                "creator", hashed_email)
-            results2 = db.list_matching(resource_kind, resource_fields[resource_kind],
-                "public", True)
-            results = results1 + results2
+    #if resource_kind == "quizzes":
+        #hashed_email = get_hashed_email()
+        #email = g.get("verified_email", None)
+        #print(f"email: {email=}")
+        #if auth.user_is_admin(email):
+            #print("admin user gets to see all quizzes")
+            #results = db.list(resource_kind, resource_fields[resource_kind])
+        #else:
+            #print("regular user sees public quizzes and their own quizzes")
+            #results1 = db.list_matching(resource_kind, resource_fields[resource_kind], 
+                #"creator", hashed_email)
+            #results2 = db.list_matching(resource_kind, resource_fields[resource_kind],
+                #"public", True)
+            #results = results1 + results2
             
     else:
         results = db.list(resource_kind, resource_fields[resource_kind])
