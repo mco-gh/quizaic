@@ -39,6 +39,7 @@ resource_fields = {
         "imageUrl",
         "numQuestions",
         "difficulty",
+        "language",
         "qAndA",
         "runCount",
     ],

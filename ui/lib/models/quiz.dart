@@ -6,6 +6,7 @@ class Quiz {
   String topic;
   int numQuestions;
   int difficulty;
+  String language;
 
   // managed by firestore (in alphabetical order)
   String? id;
@@ -29,6 +30,7 @@ class Quiz {
     required this.topic,
     required this.numQuestions,
     required this.difficulty,
+    required this.language,
 
     // managed by firestore (in alphabetical order)
     this.id,
@@ -53,6 +55,7 @@ class Quiz {
       topic: json['topic'],
       numQuestions: json['numQuestions'],
       difficulty: json['difficulty'],
+      language: json['language'],
 
       // managed by firestore (in alphabetical order)
       id: json['id'],
@@ -76,6 +79,7 @@ class Quiz {
         'topic': topic,
         'numQuestions': numQuestions,
         'difficulty': difficulty,
+        'language': language,
         'id': id,
         'selfLink': selfLink,
         'timeCreated': timeCreated,

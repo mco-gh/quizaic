@@ -462,6 +462,7 @@
       "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
+      "language": "English",
       "pin": "999"
     }
   },
@@ -512,6 +513,7 @@
       "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
+      "language": "English",
       "pin": "489"
     }
   },

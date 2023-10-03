@@ -25,6 +25,7 @@ class EditQuizData {
   String topic = 'Select generator to see topics';
   int numQuestions = 0;
   int difficulty = 1;
+  String language = 'English';
   String imageUrl = '';
   String qAndA = '';
 }
@@ -236,6 +237,7 @@ class MyAppState extends ChangeNotifier {
         editQuizData.topic = quiz.topic;
         editQuizData.numQuestions = quiz.numQuestions;
         editQuizData.difficulty = quiz.difficulty;
+        editQuizData.language = quiz.language;
         editQuizData.qAndA = quiz.qAndA;
       }
     }
@@ -470,6 +472,7 @@ class MyAppState extends ChangeNotifier {
         topic: editQuizData.topic,
         numQuestions: editQuizData.numQuestions,
         difficulty: editQuizData.difficulty,
+        language: editQuizData.language,
         qAndA: editQuizData.qAndA,
         imageUrl: 'assets/assets/images/quizaic_logo.png');
 
@@ -484,6 +487,7 @@ class MyAppState extends ChangeNotifier {
     tmpQuiz.topic = editQuizData.topic;
     tmpQuiz.numQuestions = editQuizData.numQuestions;
     tmpQuiz.difficulty = editQuizData.difficulty;
+    tmpQuiz.language = editQuizData.language;
     tmpQuiz.qAndA = editQuizData.qAndA;
 
     String url = '';

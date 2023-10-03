@@ -126,6 +126,16 @@ class _CreatePageState extends State<CreatePage> {
       });
     }
 
+    String getLanguage() {
+      return appState.editQuizData.language;
+    }
+
+    void setLanguage(value) {
+      return setState(() {
+        appState.editQuizData.language = value.toString();
+      });
+    }
+
     String title = '';
     String snack = '';
     Quiz? quizToCreateOrUpdate;
@@ -174,6 +184,9 @@ class _CreatePageState extends State<CreatePage> {
         appState,
         getDifficulties,
         setDifficulty);
+
+    Widget quizLanguageWidget = genQuizLanguageWidget(
+        theme, widget.readOnly, quiz, getLanguage, setLanguage);
 
     return Center(
       child: Form(
@@ -272,6 +285,10 @@ class _CreatePageState extends State<CreatePage> {
 
               // Difficulty Level
               quizDifficultyWidget,
+              SizedBox(height: verticalSpaceHeight),
+
+              // Language
+              quizLanguageWidget,
               SizedBox(height: verticalSpaceHeight),
 
               // Submit button

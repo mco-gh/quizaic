@@ -298,6 +298,19 @@ Widget genQuizDifficultyWidget(
   return widget;
 }
 
+Widget genQuizLanguageWidget(
+    theme, readOnly, quiz, getQuizLanguage, setQuizLanguage) {
+  Widget widget;
+
+  if (readOnly && quiz != null) {
+    widget = genLabelValue(theme, 'Language:', quiz.name);
+  } else {
+    widget = genTextFormField(
+        theme, 'Quiz Language', strValidator, getQuizLanguage, setQuizLanguage);
+  }
+  return widget;
+}
+
 genLeaderBoard(theme, leaderBoard, {bool showScores = false}) {
   print('genLeaderBoard($theme, $leaderBoard, $showScores)');
   int numPlayers = leaderBoard.length;
