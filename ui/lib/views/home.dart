@@ -235,6 +235,7 @@ class HomePageScaffold extends StatelessWidget {
                         GoRouter.of(context).go('/login');
                       },
                     ),
+                    /*
                     IconButton(
                       icon: Icon(
                         Icons.settings,
@@ -244,6 +245,7 @@ class HomePageScaffold extends StatelessWidget {
                         GoRouter.of(context).go('/settings');
                       },
                     )
+                    */
                   ],
                   backgroundColor: Color(0xfff68d2d),
                   centerTitle: false,
@@ -263,7 +265,7 @@ class HomePageScaffold extends StatelessWidget {
                       ),
                     ],
                   )),
-              drawer: Drawer(),
+              //drawer: Drawer(),
               body: LayoutBuilder(
                 builder: (context, constraints) {
                   if (constraints.maxWidth < 450) {
