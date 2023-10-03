@@ -37,11 +37,9 @@ const String appBarTitleExtended = '$appBarTitle | AI Powered Infinite Trivia';
 const List<String> placeWords = ['1st', '2nd', '3rd'];
 
 const List<String> difficultyLevel = [
-  'Trivial',
-  'Easy',
-  'Medium',
-  'Hard',
-  'Killer'
+  'easy',
+  'medium',
+  'difficult',
 ];
 const List<String> quizOrSurvey = ['Quiz', 'Survey'];
 const List<String> synchronousOrAsynchronous = ['Synchronous', 'Asynchronous'];

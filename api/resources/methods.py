@@ -207,7 +207,6 @@ def patch(resource_kind, id, representation):
             num_answers = 4
             language = representation["language"]
             difficulty = representation["difficulty"]
-            print(f"{type('difficulty')=}")
             gen = QuizgenFactory.get_gen(generator.lower())
             print(f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}")
             quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)

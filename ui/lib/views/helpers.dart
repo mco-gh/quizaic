@@ -280,20 +280,14 @@ Widget genQuizNumQuestionsWidget(
 }
 
 Widget genQuizDifficultyWidget(
-    theme, readOnly, quiz, key, appState, getDifficulty, setDifficulty) {
+    theme, readOnly, quiz, key, appState, getDifficulties, setDifficulty) {
   Widget widget;
 
   if (readOnly && quiz != null) {
-    widget = genLabelValue(theme, 'Difficulty:', '1'); //quiz.difficulty);
+    widget = genLabelValue(theme, 'Difficulty:', 'Medium'); //quiz.difficulty);
   } else {
-    widget = genDropdownMenu(
-        theme,
-        'Difficulty',
-        key,
-        formColumnWidth,
-        difficultyLevel[appState.editQuizData.difficulty - 1],
-        getDifficulty,
-        setDifficulty);
+    widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
+        appState.editQuizData.difficulty, getDifficulties, setDifficulty);
   }
   return widget;
 }

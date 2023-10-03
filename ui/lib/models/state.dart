@@ -24,7 +24,7 @@ class EditQuizData {
   String generator = '';
   String topic = 'Select generator to see topics';
   int numQuestions = 0;
-  int difficulty = 1;
+  String difficulty = 'Medium';
   String language = 'English';
   String imageUrl = '';
   String qAndA = '';
@@ -533,7 +533,7 @@ class MyAppState extends ChangeNotifier {
               "generator": "${editQuizData.generator}",
               "topic": "${editQuizData.topic}",
               "numQuestions": ${editQuizData.numQuestions},
-              "difficulty": ${editQuizData.difficulty},
+              "difficulty": "${editQuizData.difficulty}",
               "language": "${editQuizData.language}",
               "qAndA": "regen",
               "imageUrl": "regen"

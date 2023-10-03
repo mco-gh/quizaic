@@ -5,7 +5,7 @@ class Quiz {
   String answerFormat;
   String topic;
   int numQuestions;
-  int difficulty;
+  String difficulty;
   String language;
 
   // managed by firestore (in alphabetical order)

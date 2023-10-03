@@ -13,6 +13,7 @@ from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 MODEL = "text-bison"
 PROMPT_FILE = "gen_3.txt"
 TEMPERATURE = 0.5
+DIFFICULTY = "medium"
 LANGUAGE = "English"
 TOP_P = 0.8
 TOP_K = 40
@@ -82,14 +83,14 @@ class Quizgen(BaseQuizgen):
         return quiz, topic, num_questions, num_answers
 
     def gen_quiz(
-        self, topic, num_questions, num_answers, difficulty=3, language=LANGUAGE, temperature=TEMPERATURE
+        self, topic, num_questions, num_answers, difficulty=DIFFICULTY, language=LANGUAGE, temperature=TEMPERATURE
     ):
         print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         prompt = self.prompt_template.format(
             topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
-            difficulty=self.get_difficulty_word(difficulty),
+            difficulty=difficulty,
             language=language
         )
         prediction = self.predict_llm(MODEL, prompt, temperature, 1024, TOP_P, TOP_K)
