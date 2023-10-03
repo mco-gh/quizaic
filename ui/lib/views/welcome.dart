@@ -24,7 +24,7 @@ Stay tuned for more details!''',
   {
     "header": "Disclaimer",
     "description": '''
-Quiaic is not an official Google project. It's still under construction
+Quizaic is not an official Google project. It's still under construction
 and is likely to change frequently over the coming months. We'll share
 occasional notes about what's changing and why on this welcome page.
 
