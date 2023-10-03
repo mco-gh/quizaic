@@ -4,32 +4,22 @@ import 'package:quizaic/const.dart';
 List items = [
   {
     "header": "Quizaic = AI Powered Infinite Trivia",
-    "description": '''
-Quizaic combines the power of generative AI and Google Cloud services
-to support creating and playing trivia quizzes and online surveys. 
-Swipe right to learn more about this project.''',
+    "description":
+        '''Quizaic combines the power of generative AI and Google Cloud services to support creating and playing trivia quizzes and online surveys. Swipe right to learn more about this project.''',
     "image": "assets/images/logo3.png"
   },
   {
     "header": "The Vision",
-    "description": '''
-Quizaic is, first and foremost, a learning tool. It was made 
-to demonstrate a modern, cloud based, AI-powered app.
-In the near future we plan to open source all the code and
-produce a series of tutorials to help you build your own 
-version of Quizaic or a similar app of your own design. 
-Stay tuned for more details!''',
+    "description":
+        '''Quizaic is, first and foremost, a learning tool. It was made to demonstrate a modern, cloud based, AI-powered app. In the near future we plan to open source all the code and produce a series of tutorials to help you build your own version of Quizaic or a similar app of your own design. Stay tuned for more details!''',
     "image": "assets/images/vision.jpg"
   },
   {
     "header": "Disclaimer",
     "description": '''
-Quizaic is not an official Google project. It's still under construction
-and is likely to change frequently over the coming months. We'll share
-occasional notes about what's changing and why on this welcome page.
+Quizaic is not an official Google project. It's still under construction and is likely to change frequently over the coming months. We'll share occasional notes about what's changing and why on this welcome page.
 
-Please don't use Quizaic for anything important. But do let us know
-(via quizaic@google.com) if find any problems or have any suggestions.
+Please don't use Quizaic for anything important. But do let us know (via quizaic@google.com) if find any problems or have any suggestions.
 .''',
     "image": "assets/images/disclaimer.jpg"
   }
@@ -62,24 +52,28 @@ class WelcomePageState extends State<WelcomePage> {
                 fit: FlexFit.tight,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(item['header'],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: verticalSpaceHeight),
+                        Text(item['header'],
+                            style: TextStyle(
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black,
+                                height: 2.0)),
+                        Text(
+                          item['description'],
                           style: TextStyle(
-                              fontSize: 50.0,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                              height: 2.0)),
-                      Text(
-                        item['description'],
-                        style: TextStyle(
-                            color: Colors.black.withOpacity(0.6),
-                            letterSpacing: 1.2,
-                            fontSize: 30.0,
-                            height: 1.3),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
+                              color: Colors.black.withOpacity(0.6),
+                              letterSpacing: 1.2,
+                              fontSize: 18.0,
+                              height: 1.3),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: verticalSpaceHeight),
+                      ],
+                    ),
                   ),
                 ),
               )
