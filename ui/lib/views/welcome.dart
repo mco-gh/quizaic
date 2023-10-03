@@ -3,28 +3,36 @@ import 'package:quizaic/const.dart';
 
 List items = [
   {
-    "header": "Quizaic!",
-    "description":
-        "Quizaic combines the power of modern generative AI with the fun of trivia quizzes and online surveys into a mosaic of infinite challenge.",
+    "header": "Quizaic = AI Powered Infinite Trivia",
+    "description": '''
+Quizaic combines the power of generative AI and Google Cloud services
+to support creating and playing trivia quizzes and online surveys. 
+Swipe right to learn more about this project.''',
     "image": "assets/images/logo3.png"
   },
   {
-    "header": "Quizaic brings people together",
-    "description":
-        "Quizaic provides and less source of fun for your next gathering of family or friends.",
-    "image": "assets/images/play.png"
+    "header": "The Vision",
+    "description": '''
+Quizaic is, first and foremost, a learning tool. It was made 
+to demonstrate a modern, cloud based, AI-powered app.
+In the near future we plan to open source all the code and
+produce a series of tutorials to help you build your own 
+version of Quizaic or a similar app of your own design. 
+Stay tuned for more details!''',
+    "image": "assets/images/vision.jpg"
   },
   {
-    "header": "Learn",
-    "description":
-        "Quizaic is great for teachers - imagine generating homework and quizzes with the press of a button!",
-    "image": "assets/images/learn.png"
-  },
-  {
-    "header": "Compete",
-    "description": "From pub quizzes hardcore trivia",
-    "image": "assets/images/complete.png"
-  },
+    "header": "Disclaimer",
+    "description": '''
+Quiaic is not an official Google project. It's still under construction
+and is likely to change frequently over the coming months. We'll share
+occasional notes about what's changing and why on this welcome page.
+
+Please don't use Quizaic for anything important. But do let us know
+(via quizaic@google.com) if find any problems or have any suggestions.
+.''',
+    "image": "assets/images/disclaimer.jpg"
+  }
 ];
 
 class WelcomePage extends StatefulWidget {
@@ -44,8 +52,8 @@ class WelcomePageState extends State<WelcomePage> {
                 fit: FlexFit.tight,
                 child: Image.asset(
                   item['image'],
-                  fit: BoxFit.fitWidth,
-                  width: 420.0,
+                  fit: BoxFit.contain,
+                  width: 520.0,
                   alignment: Alignment.bottomCenter,
                 ),
               ),
@@ -60,14 +68,14 @@ class WelcomePageState extends State<WelcomePage> {
                           style: TextStyle(
                               fontSize: 50.0,
                               fontWeight: FontWeight.w300,
-                              color: Color(0XFF3F3D56),
+                              color: Colors.black,
                               height: 2.0)),
                       Text(
                         item['description'],
                         style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black.withOpacity(0.6),
                             letterSpacing: 1.2,
-                            fontSize: 24.0,
+                            fontSize: 30.0,
                             height: 1.3),
                         textAlign: TextAlign.center,
                       )
