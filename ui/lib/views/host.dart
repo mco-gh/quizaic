@@ -253,9 +253,23 @@ class _HostPageState extends State<HostPage> {
                             genText(theme,
                                 'Waiting for players to join quiz "${quiz.name}"...',
                                 size: 30, weight: FontWeight.bold),
-                            genText(theme,
-                                'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                                size: 24, weight: FontWeight.bold),
+                            Row(
+                              children: [
+                                genText(theme,
+                                    'URL: quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                                    size: 24, weight: FontWeight.bold),
+                                SizedBox(width: horizontalSpaceWidth),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    appState.startQuiz(
+                                        quiz.id, quiz.numQuestions);
+                                  },
+                                  child: genText(theme,
+                                      'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: verticalSpaceHeight),
                           ],
                         ),
                       ],
@@ -275,15 +289,6 @@ class _HostPageState extends State<HostPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: verticalSpaceHeight * 3),
-                    ElevatedButton(
-                      onPressed: () {
-                        appState.startQuiz(quiz.id, quiz.numQuestions);
-                      },
-                      child: genText(theme,
-                          'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
-                    ),
-                    SizedBox(height: verticalSpaceHeight),
                   ]);
                 });
           }
