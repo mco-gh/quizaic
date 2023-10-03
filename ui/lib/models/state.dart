@@ -533,6 +533,8 @@ class MyAppState extends ChangeNotifier {
               "generator": "${editQuizData.generator}",
               "topic": "${editQuizData.topic}",
               "numQuestions": ${editQuizData.numQuestions},
+              "difficulty": ${editQuizData.difficulty},
+              "language": "${editQuizData.language}",
               "qAndA": "regen",
               "imageUrl": "regen"
             }''';

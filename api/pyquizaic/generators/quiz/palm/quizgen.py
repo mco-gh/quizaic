@@ -11,8 +11,9 @@ sys.path.append("../../../../")  # Needed for the main method to work in this cl
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 MODEL = "text-bison"
-PROMPT_FILE = "gen_2.txt"
+PROMPT_FILE = "gen_3.txt"
 TEMPERATURE = 0.5
+LANGUAGE = "English"
 TOP_P = 0.8
 TOP_K = 40
 
@@ -81,13 +82,15 @@ class Quizgen(BaseQuizgen):
         return quiz, topic, num_questions, num_answers
 
     def gen_quiz(
-        self, topic, num_questions, num_answers, difficulty=3, temperature=TEMPERATURE
+        self, topic, num_questions, num_answers, difficulty=3, language=LANGUAGE, temperature=TEMPERATURE
     ):
+        print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         prompt = self.prompt_template.format(
             topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
             difficulty=self.get_difficulty_word(difficulty),
+            language=language
         )
         prediction = self.predict_llm(MODEL, prompt, temperature, 1024, TOP_P, TOP_K)
         quiz = json.loads(prediction)
