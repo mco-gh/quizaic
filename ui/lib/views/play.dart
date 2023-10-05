@@ -48,12 +48,15 @@ class PlayPage extends StatelessWidget {
 
     checkAndRegisterPlayerName(name) async {
       print('checkAndRegisterPlayerName($name)');
+      name = name.trim();
+      name = name.replaceAll(' ', '_');
       bool profane = filter.isProfane(name);
       if (profane) {
         errorDialog('Invalid name, please try again.');
         textController.setText('');
         return;
       }
+
       appState.registerPlayer(name, false, router: GoRouter.of(context).go);
     }
 
