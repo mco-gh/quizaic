@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizaic/models/quiz.dart';
 import 'package:quizaic/views/helpers.dart';
+import 'dart:convert';
 
 class CreatePage extends StatefulWidget {
   final String? quizId;
@@ -20,6 +21,7 @@ final _formKey = GlobalKey<FormState>();
 int _generatorKey = 0;
 int _answerFormatKey = 0;
 int _topicListKey = 0;
+int _questionListKey = 0;
 
 class _CreatePageState extends State<CreatePage> {
   @override
@@ -29,6 +31,7 @@ class _CreatePageState extends State<CreatePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("CreatePage.build()");
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
     var quiz = appState.getQuiz(widget.quizId);
@@ -37,6 +40,19 @@ class _CreatePageState extends State<CreatePage> {
       return Center(
           child: genText(theme,
               'Please sign in, by clicking the person icon at upper right, to create quizzes.'));
+    }
+
+    getQuizContent() {
+      return appState.editQuizData.qAndA;
+    }
+
+    setQuizContent(qAndA) {
+      print('setQuizContent: $qAndA');
+      return setState(() {
+        appState.editQuizData.qAndA = jsonEncode(qAndA);
+        appState.editQuizData.numQuestions = qAndA.length;
+        _questionListKey++;
+      });
     }
 
     String getQuizName() {
@@ -173,8 +189,13 @@ class _CreatePageState extends State<CreatePage> {
         getAnswerFormats,
         setAnswerFormat);
 
-    Widget quizNumQuestionsWidget = genTextFormField(theme,
-        'Number of Questions', intValidator, getNumQuestions, setNumQuestions);
+    Widget quizNumQuestionsWidget = genTextFormField(
+      theme,
+      'Number of Questions',
+      intValidator,
+      getNumQuestions,
+      setNumQuestions,
+    );
 
     Widget quizDifficultyWidget = genQuizDifficultyWidget(
         theme,
@@ -324,11 +345,12 @@ class _CreatePageState extends State<CreatePage> {
               SizedBox(height: formRowHeight),
               if (quiz != null)
                 SizedBox(
+                  key: ValueKey(_questionListKey),
                   width: formColumnWidth,
-                  child: ExpansionTile(
-                      title: genText(theme, 'Quiz Contents'),
-                      children: [genQuestionList(theme, quiz, appState)]),
+                  child: genQuestionList(
+                      theme, appState, getQuizContent, setQuizContent),
                 ),
+              SizedBox(height: verticalSpaceHeight),
             ]),
           )),
     );

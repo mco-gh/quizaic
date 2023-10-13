@@ -40,12 +40,13 @@ genLabelValue(theme, label, value) {
 }
 
 Widget genTextFormField(
-    ThemeData theme, String label, validator, getter, setter) {
+    ThemeData theme, String label, validator, getter, setter,
+    {width = formColumnWidth}) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(formPadding),
       child: SizedBox(
-        width: formColumnWidth,
+        width: width,
         height: formRowHeight,
         child: TextFormField(
           initialValue: getter(),
@@ -136,21 +137,21 @@ Widget genCard(theme, widget) {
   );
 }
 
-Widget genQuestionList(ThemeData theme, quiz, appState) {
+Widget genQuestionList(
+    ThemeData theme, appState, getQuizContent, setQuizContent) {
   List<Widget> widgets = [];
   List<Widget> subwidgets = [];
+
   int i = 0;
-  if (quiz == null) {
-    return Padding(
-      padding: const EdgeInsets.all(formPadding),
-      child: Column(),
-    );
-  }
-  if (quiz.qAndA == null || quiz.qAndA == '') {
+  List<int> questionKeys = [];
+
+  String quizContent = getQuizContent();
+  if (quizContent == '') {
     return genText(
         theme, 'Quiz generation appears to have failed for this quiz.');
   }
-  var qAndA = jsonDecode(quiz.qAndA as String);
+
+  var qAndA = jsonDecode(getQuizContent() as String);
   for (var question in qAndA) {
     getQuestion() {
       return question['question'];
@@ -176,36 +177,66 @@ Widget genQuestionList(ThemeData theme, quiz, appState) {
 
     widgets.add(Row(
       children: [
-        genTextFormField(theme, '${i + 1}', null, getQuestion, setQuestion),
+        genTextFormField(theme, '${i + 1}', null, getQuestion, setQuestion,
+            width: formColumnWidth * 1.4),
         SizedBox(width: horizontalSpaceWidth),
+        ElevatedButton(
+            onPressed: () => {
+                  qAndA.remove(question),
+                  setQuizContent(qAndA),
+                  print('appState.EditQuizData: ${appState.editQuizData}'),
+                },
+            child: Icon(Icons.delete)),
       ],
     ));
-    if (quiz.answerFormat == "multiple choice") {
+    questionKeys.add(0);
+
+    if (appState.editQuizData.answerFormat == "multiple choice") {
       for (var j = 0; j < question["responses"].length; j++) {
         getResponse() {
           return question["responses"][j];
         }
 
-        setResponse(s) {
-          question['responses'][j] = s;
-          appState.editQuizData.qAndA = jsonEncode(qAndA);
+        mkSetResponse(i) {
+          return (s) => {
+                question['responses'][j] = s,
+                appState.editQuizData.qAndA = jsonEncode(qAndA),
+                questionKeys[i]++
+              };
         }
 
         subwidgets.add(genTextFormField(
-            theme, options[j], null, getResponse, setResponse));
+            theme, options[j], null, getResponse, mkSetResponse(i)));
       }
-      subwidgets.add(genDropdownMenu(theme, 'CorrectAnswer', null,
+      subwidgets.add(genDropdownMenu(theme, 'CorrectAnswer', questionKeys[i],
           formColumnWidth, question["correct"], getResponses, setCorrect));
     } else {
       subwidgets.add(genText(theme, 'Answer: ${question["correct"]}'));
     }
     widgets.add(Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(formPadding),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start, children: subwidgets),
     ));
     i++;
   }
+
+  Map emptyQuestion = {
+    'question': '',
+    'responses': ['', '', '', ''],
+    'correct': ''
+  };
+  widgets.add(Padding(
+    padding: const EdgeInsets.all(formPadding),
+    child: ElevatedButton(
+        onPressed: () => {
+              qAndA.add(emptyQuestion),
+              setQuizContent(qAndA),
+              print('appState.EditQuizData: ${appState.editQuizData}'),
+            },
+        child: Icon(Icons.add)),
+  ));
+
   return Padding(
     padding: const EdgeInsets.all(formPadding),
     child: Column(
