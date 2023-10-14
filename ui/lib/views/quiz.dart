@@ -113,7 +113,9 @@ class QuizPage extends StatelessWidget {
 
             if (!enable) {
               if (responses[i] == appState.playerData.response) {
-                if (responses[i] == correct) {
+                if (correct == '') {
+                  grade = yes;
+                } else if (responses[i] == correct) {
                   grade = yes;
                 } else {
                   grade = no;
