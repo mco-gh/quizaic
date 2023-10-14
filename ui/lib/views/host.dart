@@ -22,6 +22,11 @@ final _formKey = GlobalKey<FormState>();
 class _HostPageState extends State<HostPage> {
   _HostPageState();
 
+  final ExpansionTileController resultsController = ExpansionTileController();
+  final ExpansionTileController leaderBoardController =
+      ExpansionTileController();
+  bool lastRevealed = false;
+
   @override
   void initState() {
     print('initState - quiz id: ${widget.quizId}');
@@ -283,7 +288,8 @@ class _HostPageState extends State<HostPage> {
                       child: Row(
                         children: [
                           SizedBox(width: horizontalSpaceWidth * 3),
-                          genLeaderBoard(theme, leaderBoard, showScores: false),
+                          genLeaderBoard(theme, null, leaderBoard,
+                              showScores: false),
                           SizedBox(width: horizontalSpaceWidth * 3),
                           QrImageView(
                             data: 'https://quizaic.com/play/${data["pin"]}',
@@ -383,21 +389,32 @@ class _HostPageState extends State<HostPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          if (curQuestion == quiz.numQuestions - 1)
-                            ElevatedButton(
-                              onPressed: () {
-                                appState.setFinalists(leaderBoard);
-                              },
-                              child: genText(theme, 'Notify Winners'),
-                            )
-                          else
-                            ElevatedButton(
-                              onPressed: () {
-                                appState.incQuestion(appState.sessionData.id,
-                                    curQuestion, quiz.numQuestions);
-                              },
-                              child: genText(theme, 'Next Question'),
-                            ),
+                          ElevatedButton(
+                            onPressed: () {
+                              appState.revealed = !appState.revealed;
+                              if (appState.revealed != lastRevealed) {
+                                if (appState.revealed) {
+                                  resultsController.expand();
+                                  leaderBoardController.expand();
+                                  if (curQuestion == quiz.numQuestions - 1) {
+                                    appState.setFinalists(leaderBoard);
+                                  }
+                                } else {
+                                  resultsController.collapse();
+                                  leaderBoardController.collapse();
+                                  appState.incQuestion(appState.sessionData.id,
+                                      curQuestion, quiz.numQuestions);
+                                }
+                              }
+                              lastRevealed = appState.revealed;
+                              setState(() {});
+                            },
+                            child: genText(
+                                theme,
+                                appState.revealed
+                                    ? 'Next Question'
+                                    : 'Show Results'),
+                          ),
                           SizedBox(width: horizontalSpaceWidth),
                           ElevatedButton(
                             onPressed: () {
@@ -410,13 +427,19 @@ class _HostPageState extends State<HostPage> {
                       ),
                     ),
                     SizedBox(height: verticalSpaceHeight * 2),
-                    Row(children: [
-                      SizedBox(width: horizontalSpaceWidth),
-                      genBarChart(theme, hist,
-                          jsonDecode(quiz.qAndA)[curQuestion]['responses']),
-                      SizedBox(width: horizontalSpaceWidth * 1),
-                      genLeaderBoard(theme, leaderBoard, showScores: true),
-                    ]),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(width: horizontalSpaceWidth),
+                          genBarChart(theme, resultsController, hist,
+                              jsonDecode(quiz.qAndA)[curQuestion]['responses']),
+                          SizedBox(width: horizontalSpaceWidth),
+                          if (!appState.editSessionData.survey)
+                            genLeaderBoard(
+                                theme, leaderBoardController, leaderBoard,
+                                showScores: true),
+                        ]),
                   ],
                 );
               });

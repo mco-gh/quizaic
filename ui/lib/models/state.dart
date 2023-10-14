@@ -121,6 +121,7 @@ class MyAppState extends ChangeNotifier {
   int selectedIndex = 0;
   int selectedPageIndex = 0;
   bool sessionFound = false;
+  bool revealed = false;
 
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
@@ -449,6 +450,7 @@ class MyAppState extends ChangeNotifier {
     // start a quiz by setting curQuestion to 0
     await resetResults(quizId);
     await incQuestion(sessionData.id, -1, numQuestions);
+    revealed = false;
     notifyListeners();
     return true;
   }
