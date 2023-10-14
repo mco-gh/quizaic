@@ -395,13 +395,19 @@ class _HostPageState extends State<HostPage> {
                               if (appState.revealed != lastRevealed) {
                                 if (appState.revealed) {
                                   resultsController.expand();
-                                  leaderBoardController.expand();
+                                  if (!appState.sessionData.survey) {
+                                    leaderBoardController.expand();
+                                  }
                                   if (curQuestion == quiz.numQuestions - 1) {
-                                    appState.setFinalists(leaderBoard);
+                                    if (!appState.sessionData.survey) {
+                                      appState.setFinalists(leaderBoard);
+                                    }
                                   }
                                 } else {
                                   resultsController.collapse();
-                                  leaderBoardController.collapse();
+                                  if (!appState.sessionData.survey) {
+                                    leaderBoardController.collapse();
+                                  }
                                   appState.incQuestion(appState.sessionData.id,
                                       curQuestion, quiz.numQuestions);
                                 }
