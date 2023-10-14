@@ -427,8 +427,9 @@ class MyAppState extends ChangeNotifier {
         print('Reusing idle session ${sessionData.id} for new quiz $quizId.');
       } else if (sessionData.quizId != quizId) {
         errorDialog(
-            'Quiz already in progress, finish or stop it before you can host a new quiz.');
-        router('/host/${sessionData.quizId}');
+            'Quiz already in progress, terminating it so you can host a new quiz.');
+        stopQuiz();
+        resetSession(quizId);
       } else {
         // Session found with same quiz id, so resume quiz in progress.
         print(
@@ -458,7 +459,7 @@ class MyAppState extends ChangeNotifier {
     // Eventually we need to garbage collect stale sessions.
     await resetSession('');
     await resetResults('', resetPlayers: true);
-    sessionData.id = '';
+    //sessionData.id = '';
     notifyListeners();
     return true;
   }
