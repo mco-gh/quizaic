@@ -3,7 +3,6 @@ class Session {
   String quizId;
   bool synchronous;
   int timeLimit;
-  bool survey;
   bool anonymous;
   bool randomizeQuestions;
   bool randomizeAnswers;
@@ -23,7 +22,6 @@ class Session {
     this.quizId = '',
     this.synchronous = true,
     this.timeLimit = 30,
-    this.survey = false,
     this.anonymous = true,
     this.randomizeQuestions = false,
     this.randomizeAnswers = false,
@@ -45,7 +43,6 @@ class Session {
       quizId: json['quizId'],
       synchronous: json['synchronous'],
       timeLimit: json['timeLimit'],
-      survey: json['survey'],
       anonymous: json['anonymous'],
       randomizeQuestions: json['randomizeQuestions'],
       randomizeAnswers: json['randomizeAnswers'],
@@ -66,7 +63,6 @@ class Session {
         'quizId': quizId,
         'synchronous': synchronous,
         'timeLimit': timeLimit,
-        'survey': survey,
         'anonymous': anonymous,
         'randomizeQuestions': randomizeQuestions,
         'randomizeAnswers': randomizeAnswers,

@@ -47,7 +47,6 @@ resource_fields = {
         "quizId",
         "synchronous",
         "timeLimit",
-        "survey",
         "anonymous",
         "randomizeQuestions",
         "randomizeAnswers",
@@ -59,6 +58,7 @@ resource_fields = {
     "generators": ["name", "answerFormats", "topics"],
 }
 
+
 # get the current logged in user's hashed email addr
 def get_hashed_email():
     hashed_email = None
@@ -66,6 +66,7 @@ def get_hashed_email():
     if email:
         hashed_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
     return hashed_email
+
 
 # List all entities of the given resource_kind, if allowed,
 def list(resource_kind):
@@ -76,21 +77,21 @@ def list(resource_kind):
     if not auth.allowed("GET", resource_kind):
         return "Forbidden", 403
 
-    #if resource_kind == "quizzes":
-        #hashed_email = get_hashed_email()
-        #email = g.get("verified_email", None)
-        #print(f"email: {email=}")
-        #if auth.user_is_admin(email):
-            #print("admin user gets to see all quizzes")
-            #results = db.list(resource_kind, resource_fields[resource_kind])
-        #else:
-            #print("regular user sees public quizzes and their own quizzes")
-            #results1 = db.list_matching(resource_kind, resource_fields[resource_kind], 
-                #"creator", hashed_email)
-            #results2 = db.list_matching(resource_kind, resource_fields[resource_kind],
-                #"public", True)
-            #results = results1 + results2
-            
+    # if resource_kind == "quizzes":
+    # hashed_email = get_hashed_email()
+    # email = g.get("verified_email", None)
+    # print(f"email: {email=}")
+    # if auth.user_is_admin(email):
+    # print("admin user gets to see all quizzes")
+    # results = db.list(resource_kind, resource_fields[resource_kind])
+    # else:
+    # print("regular user sees public quizzes and their own quizzes")
+    # results1 = db.list_matching(resource_kind, resource_fields[resource_kind],
+    # "creator", hashed_email)
+    # results2 = db.list_matching(resource_kind, resource_fields[resource_kind],
+    # "public", True)
+    # results = results1 + results2
+
     else:
         results = db.list(resource_kind, resource_fields[resource_kind])
 
@@ -117,14 +118,14 @@ def list_subresource(resource_kind, id, subresource_kind):
     )
 
     hashed_email = get_hashed_email()
-
+    email = g.verified_email
     if auth.user_is_admin(email):
         return json.dumps(matching_children), 200, {"Content-Type": "application/json"}
 
     if resource_kind == "quizzes" and auth.user_created_quiz(hashed_email, id):
         return json.dumps(matching_children), 200, {"Content-Type": "application/json"}
 
-    return json.dumps(results), 200, {"Content-Type": "application/json"}
+    return json.dumps(matching_children), 200, {"Content-Type": "application/json"}
 
 
 def get(resource_kind, id):
@@ -174,7 +175,7 @@ def insert(resource_kind, representation):
         results = "results"
         rep = {"hostId": id, "quizId": id, "players": {}}
         db.insert(results, representation, resource_fields[results])
- 
+
     return (
         json.dumps(resource),
         201,
@@ -193,22 +194,24 @@ def patch(resource_kind, id, representation):
         return "Forbidden", 403
 
     match_etag = request.headers.get("If-Match", None)
-   
+
     if resource_kind == "quizzes":
-        regen_content = (representation.get("qAndA", None) == "regen")
-        regen_image = (representation.get("imageUrl", None) == "regen")
+        regen_content = representation.get("qAndA", None) == "regen"
+        regen_image = representation.get("imageUrl", None) == "regen"
 
         if regen_content:
             print("generating new quiz content...")
             generator = representation["generator"]
             topic = representation["topic"]
             num_questions = int(representation["numQuestions"])
-            #num_answers = int(representation["numAnswers"])
+            # num_answers = int(representation["numAnswers"])
             num_answers = 4
             language = representation["language"]
             difficulty = representation["difficulty"]
             gen = QuizgenFactory.get_gen(generator.lower())
-            print(f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}")
+            print(
+                f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}"
+            )
             quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
             print(f"{json}")
             print(json.dumps(quiz, indent=4))
@@ -217,7 +220,9 @@ def patch(resource_kind, id, representation):
         if regen_image:
             print("generating a new quiz image...")
             filename = id + ".png"
-            file_url = ImageGen.generate_and_upload_image(topic, filename, IMAGES_BUCKET)
+            file_url = ImageGen.generate_and_upload_image(
+                topic, filename, IMAGES_BUCKET
+            )
             print(f"file_url: {file_url}")
             representation["imageUrl"] = file_url
 
@@ -247,7 +252,9 @@ def patch(resource_kind, id, representation):
                         # player already registered so deny this request
                         return "", 409, {}
 
-    resource, status = db.update(resource_kind, id, representation, resource_fields[resource_kind], match_etag)
+    resource, status = db.update(
+        resource_kind, id, representation, resource_fields[resource_kind], match_etag
+    )
     if resource is None:
         return "", status
 

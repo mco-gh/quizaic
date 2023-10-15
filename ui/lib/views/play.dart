@@ -168,8 +168,7 @@ class PlayPage extends StatelessWidget {
                                       ),
                                     }
                                 },
-                            child: genText(theme,
-                                'Play ${appState.sessionData.survey ? 'Survey' : 'Quiz'}')),
+                            child: genText(theme, 'Play Quiz')),
                       ],
                     ),
                 ],

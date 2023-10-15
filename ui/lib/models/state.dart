@@ -33,7 +33,6 @@ class EditQuizData {
 class EditSessionData {
   bool synchronous = true;
   int timeLimit = 30;
-  bool survey = false;
   bool anonymous = true;
   bool randomizeQuestions = false;
   bool randomizeAnswers = false;
@@ -41,7 +40,6 @@ class EditSessionData {
   reset() {
     synchronous = true;
     timeLimit = 30;
-    survey = false;
     anonymous = true;
     randomizeQuestions = false;
     randomizeAnswers = false;
@@ -50,7 +48,6 @@ class EditSessionData {
   setFrom(src) {
     synchronous = src.synchronous;
     timeLimit = src.timeLimit;
-    survey = src.survey;
     anonymous = src.anonymous;
     randomizeQuestions = src.randomizeQuestions;
     randomizeAnswers = src.randomizeAnswers;
@@ -59,7 +56,6 @@ class EditSessionData {
   Map toJson() => {
         'synchronous': synchronous,
         'timeLimit': timeLimit,
-        'survey': survey,
         'anonymous': anonymous,
         'randomizeQuestions': randomizeQuestions,
         'randomizeAnswers': randomizeAnswers,
@@ -85,7 +81,6 @@ class PlayerData {
   bool anonymous = true;
   bool randomizeQuestions = false;
   bool randomizeAnswers = false;
-  bool survey = false;
   bool synchronous = true;
 
   reset() {
@@ -107,7 +102,6 @@ class PlayerData {
     anonymous = true;
     randomizeQuestions = false;
     randomizeAnswers = false;
-    survey = false;
     synchronous = true;
   }
 }
@@ -679,7 +673,6 @@ class MyAppState extends ChangeNotifier {
         playerData.anonymous = session['anonymous'];
         playerData.randomizeQuestions = session['randomizeQuestions'];
         playerData.randomizeAnswers = session['randomizeAnswers'];
-        playerData.survey = session['survey'];
         playerData.synchronous = session['synchronous'];
         print(
           'pin $pin led to session ${playerData.sessionId}, quiz ${playerData.quiz}',

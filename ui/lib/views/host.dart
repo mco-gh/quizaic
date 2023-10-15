@@ -39,8 +39,7 @@ class _HostPageState extends State<HostPage> {
     var appState = context.watch<MyAppState>();
     var quiz = appState.getQuiz(widget.quizId);
 
-    print(
-        'hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}: ${widget.quizId}');
+    print('hosting Quiz}: ${widget.quizId}');
 
     void setHostSynch(value) {
       return setState(() {
@@ -56,12 +55,6 @@ class _HostPageState extends State<HostPage> {
     void setHostTimeLimit(value) {
       return setState(() {
         appState.editSessionData.timeLimit = int.parse(value);
-      });
-    }
-
-    void setHostSurvey(value) {
-      return setState(() {
-        appState.editSessionData.survey = value == "Survey";
       });
     }
 
@@ -93,8 +86,7 @@ class _HostPageState extends State<HostPage> {
         stream: appState.sessionStream,
         builder: (context, snapshot) {
           if (snapshot.data?.data() == null) {
-            return genText(theme,
-                'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'}...');
+            return genText(theme, 'Hosting Quiz...');
           }
 
           var leaderBoard = {};
@@ -148,17 +140,6 @@ class _HostPageState extends State<HostPage> {
                           intValidator,
                           getHostTimeLimit,
                           setHostTimeLimit),
-                      SizedBox(height: verticalSpaceHeight),
-
-                      // Quiz/Survey
-                      genDropdownMenu(
-                          theme,
-                          'Quiz or Survey',
-                          _formKey,
-                          formColumnWidth,
-                          appState.sessionData.survey ? 'Survey' : 'Quiz',
-                          () => quizOrSurvey,
-                          setHostSurvey),
                       SizedBox(height: verticalSpaceHeight),
 
                       // Anonymous or Authenticated
@@ -273,8 +254,7 @@ class _HostPageState extends State<HostPage> {
                                     appState.startQuiz(
                                         quiz.id, quiz.numQuestions);
                                   },
-                                  child: genText(theme,
-                                      'Start ${appState.sessionData.survey ? 'Survey' : 'Quiz'}'),
+                                  child: genText(theme, 'Start Quiz'),
                                 ),
                               ],
                             ),
@@ -309,7 +289,6 @@ class _HostPageState extends State<HostPage> {
               child: genText(theme, 'No questions for quiz "${quiz.name}"'),
             );
           }
-          question = jsonDecode(quiz.qAndA)[curQuestion]['question'];
           return StreamBuilder<DocumentSnapshot>(
               stream: appState.resultsStream,
               builder: (context, snapshot) {
@@ -356,10 +335,13 @@ class _HostPageState extends State<HostPage> {
                   }
                 }
 
+                var qAndA = jsonDecode(quiz.qAndA)[curQuestion];
+                var responses = qAndA['responses'];
+                var correct = qAndA['correct'];
+
                 return Column(
                   children: [
-                    genText(theme,
-                        'Hosting ${appState.sessionData.survey ? 'Survey' : 'Quiz'} "${quiz.name}"',
+                    genText(theme, 'Hosting Quiz "${quiz.name}"',
                         size: 30, weight: FontWeight.bold),
                     SelectableText(
                       'https://quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
@@ -378,9 +360,7 @@ class _HostPageState extends State<HostPage> {
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            for (var answer
-                                in jsonDecode(quiz.qAndA)[curQuestion]
-                                    ['responses'])
+                            for (var answer in responses)
                               genCard(theme, genText(theme, answer)),
                           ]),
                     SizedBox(height: formRowHeight),
@@ -395,17 +375,17 @@ class _HostPageState extends State<HostPage> {
                               if (appState.revealed != lastRevealed) {
                                 if (appState.revealed) {
                                   resultsController.expand();
-                                  if (!appState.sessionData.survey) {
+                                  if (correct != '') {
                                     leaderBoardController.expand();
                                   }
                                   if (curQuestion == quiz.numQuestions - 1) {
-                                    if (!appState.sessionData.survey) {
+                                    if (correct != '') {
                                       appState.setFinalists(leaderBoard);
                                     }
                                   }
                                 } else {
                                   resultsController.collapse();
-                                  if (!appState.sessionData.survey) {
+                                  if (correct != '') {
                                     leaderBoardController.collapse();
                                   }
                                   appState.incQuestion(appState.sessionData.id,
@@ -438,10 +418,10 @@ class _HostPageState extends State<HostPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(width: horizontalSpaceWidth),
-                          genBarChart(theme, resultsController, hist,
-                              jsonDecode(quiz.qAndA)[curQuestion]['responses']),
+                          genBarChart(
+                              theme, resultsController, hist, responses),
                           SizedBox(width: horizontalSpaceWidth),
-                          if (!appState.editSessionData.survey)
+                          if (correct != '')
                             genLeaderBoard(
                                 theme, leaderBoardController, leaderBoard,
                                 showScores: true),

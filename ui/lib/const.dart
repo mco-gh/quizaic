@@ -41,7 +41,6 @@ const List<String> difficultyLevel = [
   'medium',
   'difficult',
 ];
-const List<String> quizOrSurvey = ['Quiz', 'Survey'];
 const List<String> synchronousOrAsynchronous = ['Synchronous', 'Asynchronous'];
 const List<String> anonymousOrAuthenticated = ['Anonymous', 'Authenticated'];
 const List<String> yesOrNo = ['Yes', 'No'];
