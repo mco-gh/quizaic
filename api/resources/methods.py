@@ -213,7 +213,6 @@ def patch(resource_kind, id, representation):
                 f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}"
             )
             quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
-            print(f"{json}")
             print(json.dumps(quiz, indent=4))
             representation["qAndA"] = json.dumps(quiz)
 

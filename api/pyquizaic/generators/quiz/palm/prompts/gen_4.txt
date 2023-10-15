@@ -1,0 +1,21 @@
+Generate a multiple choice trivia quiz in JSON format about {topic}.
+The quiz should have {num_questions} questions and each question 
+should have {num_answers} responses. 
+Vary the style of the questions and make the response set different
+for each question.
+
+The JSON output should be structured like this (without the JSON prefix):
+
+[
+    {{
+        "question": "question goes here",
+        "responses": [
+            "response1",
+            "response2",
+            "response3",
+            "response4",
+        ],
+        "correct": "correct response goes here"
+    }},
+    ...
+]
