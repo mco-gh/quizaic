@@ -13,25 +13,28 @@
 import json
 import random
 import sys
+import time
 import vertexai
 from vertexai.language_models import TextGenerationModel
 
 sys.path.append("../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-num_questions = 1
+num_questions = 3
 num_answers = 4
 language = "English"
 difficulty = "medium"
 gen = QuizgenFactory.get_gen("opentrivia")
 eval = QuizgenFactory.get_gen("palm")
 
-prompt = f"""I want you to grade a quiz. I'll give you a sequence of questions and answers and for each pair, I want you to give me a list of the words "true" or "false", based on whether each answer is correct.
+prompt = """
+In one (and only one) word, are the following assertions true or false?
 
 """
-q_and_a = []
+qa = []
 labels = []
 
+# Generate QA and labels.
 for topic in gen.get_topics():
     quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
     for question in quiz:
@@ -42,36 +45,84 @@ for topic in gen.get_topics():
             label = "false"
             if r == correct:
                 label = "true"
-            q_and_a.append(f"{q}, {r}")
+            qa.append(f"- Q: {q} A: {r}")
             labels.append(label)
 
-for i in range(3):
-    zipped = list(zip(q_and_a, labels))
+# Shuffle QA and labels.
+for i in range(10):
+    zipped = list(zip(qa, labels))
     random.shuffle(zipped)
-    q_and_a, labels = zip(*zipped)
-prompt = prompt + "\n".join(q_and_a)
+    qa, labels = zip(*zipped)
 
 vertexai.init(project="quizaic", location="us-central1")
 parameters = {
     "candidate_count": 1,
-    "max_output_tokens": 1024,
+    "max_output_tokens": 2048,
     "temperature": 0.0,
-    "top_p": 0.8,
-    "top_k": 40
+    "top_p": 0.0,
+    "top_k": 1
 }
+
 model = TextGenerationModel.from_pretrained("text-bison")
-response = model.predict(prompt)
-print(f"{response=}")
-grades = response.text.replace(",", "").split()
-with open("prompt", "w") as f:
-    f.write(prompt)
-with open("response", "w") as f:
-    f.write(response.text)
+with open("transcript", "w") as f:
+    pass
+
+BATCH_SIZE = 10
+valid_grades = []
+valid_labels = []
+errors = 0
+
+# Generate predictions.
+while qa:
+    time.sleep(1)
+    batch_qa = qa[:BATCH_SIZE]
+    batch_labels = labels[:BATCH_SIZE]
+    qa = qa[BATCH_SIZE:]
+    labels = labels[BATCH_SIZE:]
+    p = prompt + "\n".join(batch_qa) + "\n"
+    response = model.predict(p)
+    new_grades = response.text.replace(",", "").replace(".", "").replace(" ", "").replace("-", "").lower().split()
+
+    error = False
+    if len(new_grades) != len(batch_qa):
+        print(f"bad prediction: {new_grades=}")
+        error = True 
+    for i in new_grades:
+       if i != "true" and i != "false":
+            print(f"bad prediction: {i=}")
+            error = True
+
+    with open("transcript", "a") as f:
+        f.write(p + "\n")
+        f.write(str(response))
+        if error:
+            f.write("\nERROR!\n")
+            errors += 1
+        next 
+
+    valid_grades.extend(new_grades)
+    valid_labels.extend(batch_labels)
+
 total = 0
 wrong = 0
-for i in range(len(grades)):   
-    if (grades[i] != labels[i]):
+false_p = 0
+false_n = 0
+
+if len(valid_grades) != len(valid_labels):
+    print(f"{len(valid_grades)=} != {len(valid_labels)=}")
+    exit(1)
+
+for i in range(len(valid_grades)):   
+    if valid_grades[i] != valid_labels[i]:
         wrong += 1
+        if valid_labels[i] == "true":
+            false_n += 1
+        elif valid_labels[i] == "false":
+            false_p += 1
     total += 1
 
-print(f"{wrong} mistakes out of {total} total, {100*(total-wrong)/total}% accurate.")
+if total <= 0:
+    print("no grades found")
+    exit(1)
+
+print(f"{total-wrong}/{total}, {100*(total-wrong)/total:.2f}% accurate, {errors=}, {false_n=}, {false_p=}")
