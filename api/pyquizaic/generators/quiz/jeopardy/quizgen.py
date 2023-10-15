@@ -2,11 +2,11 @@ import json
 
 import pandas as pd
 import os
-
+import random
 import sys
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
-from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
+from pyquizaic.generators.quiz.basequizgen import BaseQuizgen, DIFFICULTY
 
 
 class Quizgen(BaseQuizgen):
@@ -28,7 +28,7 @@ class Quizgen(BaseQuizgen):
         return ["freeform"]
 
     def gen_quiz(
-        self, topic, num_questions, num_answers=1, difficulty=3, temperature=None
+        self, topic, num_questions, num_answers=1, difficulty=DIFFICULTY, temperature=None
     ):
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
@@ -36,6 +36,13 @@ class Quizgen(BaseQuizgen):
         round1 = "Jeopardy!"
         round2 = "Double Jeopardy!"
         round3 = "Final Jeopardy!"
+        if difficulty == "easy":
+            difficulty = random.choice((1, 2))
+        elif difficulty == "medium":
+            difficulty = "3"
+        elif difficulty == "difficult":
+            difficulty = random.choice((4, 5))
+
         value1 = f"${difficulty * 100}"
         value2 = f"${difficulty * 200}"
         filtered = filtered.loc[

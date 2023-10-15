@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
 
+
 class BaseQuizgen(ABC):
+
+    TEMPERATURE = 0.5
+    DIFFICULTY = "medium"
+    LANGUAGE = "English"
 
     def __init__(self, config=None):
         pass

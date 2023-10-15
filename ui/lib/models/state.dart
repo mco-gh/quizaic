@@ -19,12 +19,12 @@ class UserData {
 }
 
 class EditQuizData {
-  String name = '';
+  String name = 'My new quiz';
   String answerFormat = 'multiple choice';
   String generator = '';
   String topic = 'Select generator to see topics';
-  int numQuestions = 0;
-  String difficulty = 'Medium';
+  int numQuestions = 5;
+  String difficulty = 'medium';
   String language = 'English';
   String imageUrl = '';
   String qAndA = '';

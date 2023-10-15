@@ -12,12 +12,9 @@ from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 MODEL = "text-bison"
 PROMPT_FILE = "gen_4.txt"
-TEMPERATURE = 0.5
-DIFFICULTY = "medium"
-LANGUAGE = "English"
+MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
-
 
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
@@ -58,18 +55,6 @@ class Quizgen(BaseQuizgen):
         )
         return response.text
 
-    @staticmethod
-    def get_difficulty_word(difficulty):
-        if difficulty < 1 or difficulty > 5:
-            raise Exception("Difficulty cannot be less than 1 or more than 5")
-
-        if difficulty <= 2:
-            return "easy"
-        elif difficulty <= 4:
-            return "medium"
-        elif difficulty <= 5:
-            return "difficult"
-
     # Load quiz from a quiz_<topic>.json file, mainly for testing
     @staticmethod
     def load_quiz(quiz_file):
@@ -83,7 +68,10 @@ class Quizgen(BaseQuizgen):
         return quiz, topic, num_questions, num_answers
 
     def gen_quiz(
-        self, topic, num_questions, num_answers, difficulty=DIFFICULTY, language=LANGUAGE, temperature=TEMPERATURE
+        self, topic, num_questions, num_answers,
+        difficulty=BaseQuizgen.DIFFICULTY,
+        language=BaseQuizgen.LANGUAGE,
+        temperature=BaseQuizgen.TEMPERATURE
     ):
         print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         prompt = self.prompt_template.format(
@@ -93,7 +81,7 @@ class Quizgen(BaseQuizgen):
             difficulty=difficulty,
             language=language
         )
-        prediction = self.predict_llm(MODEL, prompt, temperature, 1024, TOP_P, TOP_K)
+        prediction = self.predict_llm(MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K)
         print(f"{prediction=}")
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
@@ -108,7 +96,7 @@ if __name__ == "__main__":
     # exit(0)
 
     # prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
-    # result = gen.predict_llm(MODEL, 0, 1024, 0.8, 40, prompt)
+    # result = gen.predict_llm(MODEL, 0, MAX_OUTPUT_TOKENS, 0.8, 40, prompt)
     # print(f'result:{result == ""}')
     # exit()
 

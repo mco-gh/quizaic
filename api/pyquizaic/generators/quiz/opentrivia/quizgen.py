@@ -9,7 +9,6 @@ import sys
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-
 class Quizgen(BaseQuizgen):
     TOPICS = (
         "General Knowledge",
@@ -53,19 +52,9 @@ class Quizgen(BaseQuizgen):
     def get_answer_formats(self):
         return ["multiple-choice", "true/false"]
 
-    def get_difficulty_word(self, difficulty):
-        if difficulty < 1 or difficulty > 5:
-            raise Exception("Difficulty cannot be less than 1 or more than 5")
-
-        if difficulty <= 2:
-            return "easy"
-        elif difficulty <= 4:
-            return "medium"
-        elif difficulty <= 5:
-            return "hard"
-
     def gen_quiz(
-        self, topic, num_questions, num_answers=None, difficulty=3, temperature=None
+        self, topic, num_questions, num_answers=None,
+        difficulty=BaseQuizgen.DIFFICULTY, temperature=None
     ):
         topic_num = Quizgen.TOPICS.index(topic) + 9
 
@@ -76,7 +65,7 @@ class Quizgen(BaseQuizgen):
         # TODO - Hack: For some categories (eg. Art, Gadget), there are not
         # enough questions. Ignore difficulty in that case.
         if not (topic_num == 25 or topic_num == 30):
-            url += f"&difficulty={self.get_difficulty_word(difficulty)}"
+            url += f"&difficulty={difficulty}"
         url += f"&type=multiple"
 
         r = requests.get(url)
