@@ -20,7 +20,7 @@ from vertexai.language_models import TextGenerationModel
 sys.path.append("../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-num_questions = 3
+num_questions = 10
 num_answers = 4
 language = "English"
 difficulty = "medium"
@@ -33,11 +33,17 @@ In one (and only one) word, are the following assertions true or false?
 """
 qa = []
 labels = []
+questions = []
+quizzes = []
 
 # Generate QA and labels.
+question_id = -1
+quiz_id = -1
 for topic in gen.get_topics():
+    quiz_id += 1
     quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
     for question in quiz:
+        question_id += 1
         q = question["question"]
         responses = question["responses"]
         correct = question["correct"] 
@@ -47,12 +53,14 @@ for topic in gen.get_topics():
                 label = "true"
             qa.append(f"- Q: {q} A: {r}")
             labels.append(label)
+            questions.append(question_id)
+            quizzes.append(quiz_id)
 
 # Shuffle QA and labels.
 for i in range(10):
-    zipped = list(zip(qa, labels))
+    zipped = list(zip(qa, labels, questions, quizzes))
     random.shuffle(zipped)
-    qa, labels = zip(*zipped)
+    qa, labels, questions, quizzes = zip(*zipped)
 
 vertexai.init(project="quizaic", location="us-central1")
 parameters = {
@@ -81,26 +89,31 @@ while qa:
     labels = labels[BATCH_SIZE:]
     p = prompt + "\n".join(batch_qa) + "\n"
     response = model.predict(p)
-    new_grades = response.text.replace(",", "").replace(".", "").replace(" ", "").replace("-", "").lower().split()
+    grades = response.text.replace(",", "").replace(".", "").replace(" ", "").replace("-", "").lower().split()
 
     error = False
-    if len(new_grades) != len(batch_qa):
-        print(f"bad prediction: {new_grades=}")
+    if len(grades) != len(batch_qa):
+        print(f"bad prediction: {grades=}")
         error = True 
-    for i in new_grades:
+    for i in grades:
        if i != "true" and i != "false":
             print(f"bad prediction: {i=}")
             error = True
 
     with open("transcript", "a") as f:
-        f.write(p + "\n")
-        f.write(str(response))
+        f.write("\nQA:\n" + "\n".join(batch_qa))
+        f.write("\nRESPONSE:\n" + response.text)
+        f.write("\nLABELS:\n" + str(batch_labels))
+        f.write("\nQUESTIONS:\n" + str(questions))
         if error:
             f.write("\nERROR!\n")
             errors += 1
         next 
 
-    valid_grades.extend(new_grades)
+    #for i in range(len(grades)):
+        #grades[i] = "false" if grades[i] == "true" else "true"
+
+    valid_grades.extend(grades)
     valid_labels.extend(batch_labels)
 
 total = 0
@@ -112,9 +125,19 @@ if len(valid_grades) != len(valid_labels):
     print(f"{len(valid_grades)=} != {len(valid_labels)=}")
     exit(1)
 
+question_err = {}
+quiz_err = {}
+
+for i in set(questions):
+    question_err[i] = 0
+for i in set(quizzes):
+    quiz_err[i] = 0
+
 for i in range(len(valid_grades)):   
     if valid_grades[i] != valid_labels[i]:
         wrong += 1
+        question_err[questions[i]] += 1
+        quiz_err[quizzes[i]] += 1
         if valid_labels[i] == "true":
             false_n += 1
         elif valid_labels[i] == "false":
@@ -125,4 +148,19 @@ if total <= 0:
     print("no grades found")
     exit(1)
 
-print(f"{total-wrong}/{total}, {100*(total-wrong)/total:.2f}% accurate, {errors=}, {false_n=}, {false_p=}")
+print(f"assertions: {total-wrong}/{total}, {100*(total-wrong)/total:.2f}% accurate, {errors=}, {false_n=}, {false_p=}")
+
+good_questions = 0
+for i in question_err:
+    if question_err[i] == 0:
+        good_questions += 1
+    #print(f"Question: {i}, count: {question_err[i]}")
+
+good_quizzes = 0
+for i in quiz_err:
+    if quiz_err[i] == 0:
+        good_quizzes += 1
+    #print(f"Quiz: {i}, count: {quiz_err[i]}")
+
+print(f"questions: {good_questions}/{len(set(questions))}, {100 * good_questions / len(set(questions)):.2f}%")
+print(f"quizzes: {good_quizzes}/{len(set(quizzes))}, {100 * good_quizzes/ len(set(quizzes)):.2f}%")
