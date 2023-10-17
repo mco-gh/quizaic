@@ -73,6 +73,9 @@ class Quizgen(BaseQuizgen):
         language=BaseQuizgen.LANGUAGE,
         temperature=BaseQuizgen.TEMPERATURE
     ):
+        #if difficulty == "medium":
+            #difficulty += " difficulty"
+
         print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         prompt = self.prompt_template.format(
             topic=topic,
@@ -81,6 +84,7 @@ class Quizgen(BaseQuizgen):
             difficulty=difficulty,
             language=language
         )
+        print(f"{prompt=}")
         prediction = self.predict_llm(MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K)
         print(f"{prediction=}")
         quiz = json.loads(prediction)

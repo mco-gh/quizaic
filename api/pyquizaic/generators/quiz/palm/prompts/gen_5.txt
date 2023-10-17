@@ -1,13 +1,16 @@
-- Take a deep breath before you start.
+Take a deep breath before you start. Here's what I want you to do,
+as accurately as possible:
+
 - Generate a multiple choice trivia quiz in JSON format about {topic}.
 - One and only one response should be correct for each question.
 - The quiz should have {num_questions} questions and each question 
 should have {num_answers} responses. 
-- The quiz should have difficulty level {difficulty}.
+- All questions should be {difficulty}.
+- All questions and responses should be in {language}.
 - Avoid repetition - vary the style of the questions and make the
   unique for each question.
 
-The JSON output should be structured like this (without the JSON prefix):
+The JSON output should be structured like this (without the "json" prefix):
 
 [
     {{
