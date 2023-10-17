@@ -127,6 +127,7 @@ if len(valid_grades) != len(valid_labels):
 
 question_err = {}
 quiz_err = {}
+hist = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
 
 for i in set(questions):
     question_err[i] = 0
@@ -152,6 +153,7 @@ print(f"assertions: {total-wrong}/{total}, {100*(total-wrong)/total:.2f}% accura
 
 good_questions = 0
 for i in question_err:
+    hist[question_err[i]] += 1
     if question_err[i] == 0:
         good_questions += 1
     #print(f"Question: {i}, count: {question_err[i]}")
@@ -164,3 +166,6 @@ for i in quiz_err:
 
 print(f"questions: {good_questions}/{len(set(questions))}, {100 * good_questions / len(set(questions)):.2f}%")
 print(f"quizzes: {good_quizzes}/{len(set(quizzes))}, {100 * good_quizzes/ len(set(quizzes)):.2f}%")
+
+for i in hist:
+    print(f"{hist[i]} questions had {i} errors")
