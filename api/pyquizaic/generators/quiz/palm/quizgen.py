@@ -86,6 +86,14 @@ class Quizgen(BaseQuizgen):
         )
         print(f"{prompt=}")
         prediction = self.predict_llm(MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K)
+        print(f"X{prediction[0:8].lower()}X")
+        prediction = prediction.strip()
+        if prediction[0:8].lower() == "``` json":
+            print("removing prefix")
+            prediction = prediction[8:]
+        if prediction[-3:].lower() == "```":
+            print("removing suffix")
+            prediction = prediction[:-3]
         print(f"{prediction=}")
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
