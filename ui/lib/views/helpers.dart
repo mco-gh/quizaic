@@ -367,33 +367,23 @@ genLeaderBoard(theme, controller, leaderBoard, {bool showScores = false}) {
 }
 
 genBarChart(theme, controller, hist, responses) {
-  print('genBarChart($theme, $hist, $responses)');
+  print('genBarChart($theme, $controller, $hist, $responses)');
   List<VBarChartModel> bardata = [];
-  int maxVal = 0;
 
+  int maxVal = 0;
   for (var i = 0; i < hist.length; i++) {
-    print('i: $i, hist[i]: ${hist[i]}, maxVal: $maxVal');
-    if (hist[i] > maxVal) {
-      maxVal = hist[i];
+    if (hist[i] > 0) {
+      if (hist[i] > maxVal) {
+        maxVal = hist[i];
+      }
+      bardata.add(VBarChartModel(
+        index: i,
+        label: responses[i],
+        colors: [Colors.orange, Colors.deepOrange],
+        jumlah: hist[i],
+        tooltip: hist[i].toString(),
+      ));
     }
-    if (maxVal == 0) {
-      return SizedBox(
-        width: formColumnWidth,
-        child: ExpansionTile(
-            controller: controller,
-            initiallyExpanded: false,
-            expandedAlignment: Alignment.topLeft,
-            title: genText(theme, 'Results'),
-            children: []),
-      );
-    }
-    bardata.add(VBarChartModel(
-      index: i,
-      label: responses[i],
-      colors: [Colors.orange, Colors.deepOrange],
-      jumlah: hist[i],
-      tooltip: hist[i].toString(),
-    ));
   }
 
   return SizedBox(

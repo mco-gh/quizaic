@@ -92,7 +92,6 @@ class _HostPageState extends State<HostPage> {
           var leaderBoard = {};
           var data = snapshot.data!.data() as Map<String, dynamic>;
           var curQuestion = data['curQuestion'];
-          var question = '';
 
           if (curQuestion == -2) {
             // Give host opportunity to reset session settings.
@@ -336,6 +335,7 @@ class _HostPageState extends State<HostPage> {
                 }
 
                 var qAndA = jsonDecode(quiz.qAndA)[curQuestion];
+                var question = qAndA['question'];
                 var responses = qAndA['responses'];
                 var correct = qAndA['correct'];
 
