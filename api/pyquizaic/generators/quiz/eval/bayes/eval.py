@@ -17,50 +17,44 @@ import time
 import vertexai
 from vertexai.language_models import TextGenerationModel
 
-sys.path.append("../../../../")
+sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-num_questions = 10
-num_answers = 4
-language = "English"
-difficulty = "medium"
-gen = QuizgenFactory.get_gen("opentrivia")
 eval = QuizgenFactory.get_gen("palm")
 
 prompt = """
 In one (and only one) word, are the following assertions true or false?
 
 """
-qa = []
+
+num_shuffles = 10
+assertions = []
 labels = []
 questions = []
 quizzes = []
 
-# Generate QA and labels.
-question_id = -1
-quiz_id = -1
-for topic in gen.get_topics():
-    quiz_id += 1
-    quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
-    for question in quiz:
-        question_id += 1
-        q = question["question"]
-        responses = question["responses"]
-        correct = question["correct"] 
-        for r in responses:
-            label = "false"
-            if r == correct:
-                label = "true"
-            qa.append(f"- Q: {q} A: {r}")
-            labels.append(label)
-            questions.append(question_id)
-            quizzes.append(quiz_id)
+def read_file(filename, li):
+    count = 0
+    with open(filename, "r") as f:
+        for line in f:
+            line = line.strip()
+            li.append(line)
+            count += 1
+    return count
 
-# Shuffle QA and labels.
-for i in range(10):
-    zipped = list(zip(qa, labels, questions, quizzes))
+# Read assertions and labels.
+num_questions = read_file("../corpus/assertions.mc.txt", assertions)
+num_labels = read_file("../corpus/labels.mc.txt", labels)
+assert(num_questions == num_labels)
+assert(num_questions % 4 == 0)
+questions = [int(i/4) for i in range(num_questions)]
+quizzes = [int(i/20) for i in range(num_questions)]
+
+# Shuffle assertions and labels.
+for i in range(num_shuffles):
+    zipped = list(zip(assertions, labels, questions, quizzes))
     random.shuffle(zipped)
-    qa, labels, questions, quizzes = zip(*zipped)
+    assertions, labels, questions, quizzes = zip(*zipped)
 
 vertexai.init(project="quizaic", location="us-central1")
 parameters = {
@@ -72,27 +66,28 @@ parameters = {
 }
 
 model = TextGenerationModel.from_pretrained("text-bison")
-with open("transcript", "w") as f:
-    pass
 
 BATCH_SIZE = 10
 valid_grades = []
 valid_labels = []
 errors = 0
 
+with open("transcript", "w") as f:
+    pass
+
 # Generate predictions.
-while qa:
+while assertions:
     time.sleep(1)
-    batch_qa = qa[:BATCH_SIZE]
+    batch_assertions = assertions[:BATCH_SIZE]
     batch_labels = labels[:BATCH_SIZE]
-    qa = qa[BATCH_SIZE:]
+    assertions = assertions[BATCH_SIZE:]
     labels = labels[BATCH_SIZE:]
-    p = prompt + "\n".join(batch_qa) + "\n"
+    p = prompt + "\n".join(batch_assertions) + "\n"
     response = model.predict(p)
     grades = response.text.replace(",", "").replace(".", "").replace(" ", "").replace("-", "").lower().split()
 
     error = False
-    if len(grades) != len(batch_qa):
+    if len(grades) != len(batch_assertions):
         print(f"bad prediction: {grades=}")
         error = True 
     for i in grades:
@@ -101,14 +96,14 @@ while qa:
             error = True
 
     with open("transcript", "a") as f:
-        f.write("\nQA:\n" + "\n".join(batch_qa))
+        f.write("\nASSERTIONS:\n" + "\n".join(batch_assertions))
         f.write("\nRESPONSE:\n" + response.text)
         f.write("\nLABELS:\n" + str(batch_labels))
         f.write("\nQUESTIONS:\n" + str(questions))
         if error:
             f.write("\nERROR!\n")
             errors += 1
-        next 
+            continue
 
     #for i in range(len(grades)):
         #grades[i] = "false" if grades[i] == "true" else "true"

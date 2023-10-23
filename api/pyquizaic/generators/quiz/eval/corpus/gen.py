@@ -23,6 +23,7 @@ from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 gen = QuizgenFactory.get_gen("opentrivia")
 
 num_questions = 1000
+questions_per_quiz = 5
 count = 0
 qa = []
 labels = []
@@ -33,7 +34,7 @@ topics = list(gen.get_topics())
 
 while True:
     topic = random.choice(topics)
-    quiz = gen.gen_quiz(topic, 5)
+    quiz = gen.gen_quiz(topic, questions_per_quiz)
     for question in quiz:
         q = question["question"]
         if q in seen:

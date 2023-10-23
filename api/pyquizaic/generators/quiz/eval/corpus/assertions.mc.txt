@@ -3998,7 +3998,3 @@
 - Q: In which 1973 film does Yul Brynner play a robotic cowboy who malfunctions and goes on a killing	spree? A: Westworld
 - Q: In which 1973 film does Yul Brynner play a robotic cowboy who malfunctions and goes on a killing	spree? A: Runaway
 - Q: In which 1973 film does Yul Brynner play a robotic cowboy who malfunctions and goes on a killing	spree? A: Android
-- Q: What is the name of the robot in the 1951 science fiction film classic 'The Day the Earth Stood Still'? A: Robby
-- Q: What is the name of the robot in the 1951 science fiction film classic 'The Day the Earth Stood Still'? A: Gort
-- Q: What is the name of the robot in the 1951 science fiction film classic 'The Day the Earth Stood Still'? A: Colossus
-- Q: What is the name of the robot in the 1951 science fiction film classic 'The Day the Earth Stood Still'? A: Box
