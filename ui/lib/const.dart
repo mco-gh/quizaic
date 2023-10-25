@@ -18,13 +18,12 @@ import 'package:flutter/material.dart';
 const String appName = 'Quizaic';
 
 const apiUrl =
-    bool.hasEnvironment('API_URL') ? String.fromEnvironment('API_URL') : null;
+    bool.hasEnvironment('API_URL') ? String.fromEnvironment('API_URL') : '';
 const redirectUri = bool.hasEnvironment('REDIRECT_URI')
     ? String.fromEnvironment('REDIRECT_URI')
-    : null;
-const clientId = bool.hasEnvironment('CLIENT_ID')
-    ? String.fromEnvironment('CLIENT_ID')
-    : null;
+    : '';
+const clientId =
+    bool.hasEnvironment('CLIENT_ID') ? String.fromEnvironment('CLIENT_ID') : '';
 
 const primaryGradient = LinearGradient(
   colors: [Color.fromRGBO(243, 223, 210, 1), Color(0xfff68d2d)],

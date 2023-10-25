@@ -57,10 +57,6 @@ The machine that you will run the setup from will need the following installed:
 2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
    needed for users to log into the application.
 
-3. In ui/lib/auth/auth.dart, set the clientId for the Google provider per the credentials you generated in the previous step.
-
-Mete: Doesn't step3 require another redeploy of the ui? It'd be great if step 2 took care of this via an env variable
-
 ## Populate and Configure Firestore Database
 
 The `setup.sh` script automatically initializes your Cloud Firestore database but if you ever need to reset the database to its initial state, you can run `./scripts/reset_db.sh` from the project level.

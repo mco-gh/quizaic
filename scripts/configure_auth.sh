@@ -28,7 +28,7 @@ fi
 WEBSITE_URL=$(gcloud run services describe ui --project "${PROJECT_ID}" --region "${REGION}" --format "value(status.address.url)") 
 CALLBACK_URL="${WEBSITE_URL}/callback"
 
-AUTH_CLIENT_CREATION_URL="https://console.cloud.google.com/apis/credentials/oauthclient?project=${PROJECT_ID}"
+AUTH_CLIENT_CREATION_URL="https://console.cloud.google.com/apis/credentials/?project=${PROJECT_ID}"
 AUTH_CLIENT_CONSENT_SCREEN_URL="https://console.cloud.google.com/apis/credentials/consent?project=${PROJECT_ID}"
 
 # Configure consent screen
