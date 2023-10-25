@@ -2,15 +2,6 @@
 
 Quizaic is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
-
-## Architecture
-
-### Data/User Model
-<img src="ui/assets/images/userdata.png" height="300">
-
-### System Block Diagram
-<img src="ui/assets/images/system.png" height="300">
-
 ## Project Status
 
 * **Release Stage:** Alpha
@@ -32,8 +23,9 @@ To deploy Quizaic, you will need:
 The machine that you will run the setup from will need the following installed:
 <!-- * [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli) -->
 * [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
-* [Python3](https://www.python.org/downloads)
+* [Python3](https://www.python.org/downloads) and [Pip](https://pip.pypa.io/en/stable/installation/)
 * [Flutter](https://flutter.dev)
+* [Git](https://github.com/git-guides/install-git)
 
 ### Gcloud Configuration and Github Repo
 
@@ -45,7 +37,13 @@ The machine that you will run the setup from will need the following installed:
     gcloud config set compute/region <your-region>
     ```
 
-1. Clone the source code from github and change to the new directory with these commands:
+2. Run the following commands to enable the `gcloud`` command to use your Google account.
+
+  ```bash
+  gcloud auth login
+  gcloud auth application-default login
+  ```
+3. Clone the source code from github and change to the new directory with these commands:
 
     ```bash
     git clone https://github.com/mco-gh/quizaic

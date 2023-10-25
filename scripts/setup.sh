@@ -20,7 +20,7 @@
 . scripts/env.sh test
 
 printf "=====\nUncompressing generator data\n=====\n"
-JEP_FILE="ui/gen/jeopardy/pruned_jeopardy.json"
+JEP_FILE="api/pyquizaic/generators/quiz/jeopardy/pruned_jeopardy.json"
 if [ ! -f "$JEP_FILE" ]
 then
     uncompress ${JEP_FILE}.Z
@@ -55,11 +55,12 @@ printf "=====\nCreating Cloud Artifacts repository\n=====\n"
 gcloud artifacts repositories create ${APP} --location=$REGION --repository-format=docker
 
 printf "=====\nResetting firestore database\n=====\n"
-cd api/data
+cd api
 python3 -m pip install -r requirements.txt
-python3 seed_database.py unseed
-python3 seed_database.py seed
-cd -
+cd data
+python3 -m pip install -r requirements.txt
+cd ../..
+./scripts/reset_db.sh
 
 printf "=====\nBuilding and deploying api service\n=====\n"
 ./scripts/deploy.sh api
