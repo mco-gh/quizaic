@@ -54,40 +54,54 @@ The machine that you will run the setup from will need the following installed:
 
 1. Run `./scripts/setup.sh` to initialize everything and deploy the api and ui to cloud run.
 
-2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets
-   needed for users to log into the application.
-
-## Populate and Configure Firestore Database
+2. Run `./scripts/configure_auth.sh` to setup OAuth credentials and secrets needed for users to log into the application.
 
 The `setup.sh` script automatically initializes your Cloud Firestore database but if you ever need to reset the database to its initial state, you can run `./scripts/reset_db.sh` from the project level.
 
-On the [Firebase Console](https://console.firebase.google.com/), add your project, then add Cloud Firestore, and setup the following rules under the `Rules` tab:
+## Configure Firebase Authentication and Rules
+
+On the [Firebase Console](https://console.firebase.google.com/) do the following steps:
+
+1. Click the "Add Project" button and select your project.
+2. Add Cloud Firestore by clicking the "Cloud Firestore" card.
+
+   a. Select the "Rules" tab.  
+   b. Paste the following rules into the text edit box and click the "Publish" button.
 
 ```
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /generators/{generator} {
+      allow list: if true;
+    }
     match /quizzes/{quiz} {
       allow list: if true;
     }
-    match /generators/{generator} {
-      allow list: if true;
+    match /sessions/{session} {
+      allow list, get: if true;
+    }
+    match /results/{result} {
+      allow list, get: if true;
     }
   }
 }
 ```
-These rules allow apps to get real-time updates whenever the quizzes and generators collections change.
 
-Mete: The authentication part in Firebase Console is not clear at all. Questions
-1. Is email/password and Google OAuth both needed? We should be clear on what's needed. 
-2. I added ui app's Cloud Run's url to the domain list but still OAuth with Google did not work 
-Also on the [Firebase Console](https://console.firebase.google.com/), select "Authentication", then "Get Started", and add the authentication types you want to support (I use email/password and Google). Under `Authentication`->`Settings`->`Authorized Domains`, add the domains for any web apps you want to use authentication services. 
+1. Configure authentication by selecting the "Authentication" tab.
+
+    a. Click the "Get started" button.  
+    b. Click the "Set signin method" button.  
+    c. Click the "Google" button under "Additional Providers".  
+    d. Click the "Enable" slider and the "Save" button.  
+    e. Select the "Settings" tab.  
+    f. Select the "Authorized Domains" tab.  
+    g. Add the domain name corresponding to your deployed ui service on Cloud Run.
 
 ## Verify Setup
 
-Connect to the ui URL given by the output from the previous deployment script and
-verify the ui looks something like this:
+Connect to the ui URL given by the output from the previous deployment script and verify the ui looks something like this:
 
 <img src="ui/assets/images/ui.png" height="300">
 
