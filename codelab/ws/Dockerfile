@@ -7,3 +7,6 @@ RUN flutter channel master
 RUN flutter upgrade
 RUN flutter config --enable-web
 RUN flutter doctor -v
+
+COPY 200_flutter-chown.sh /etc/workstation-startup.d/
+RUN chmod +x /etc/workstation-startup.d/200_flutter-chown.sh
