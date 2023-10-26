@@ -26,7 +26,7 @@ def test_gen_quiz():
     gen = QuizgenFactory.get_gen("palm")
     quiz = gen.gen_quiz("World History", num_questions, num_answers)
     print(json.dumps(quiz, indent=4))
-    assert(quiz != None)
+    assert quiz != None
 
 
 def test_eval_quiz_num_questions():
@@ -78,14 +78,11 @@ def test_eval_quiz_question_on_topic():
     # Add a question on an unrelated topic
     quiz.append(
         {
-        "question": "What is the capital of Cyprus?",
-        "responses": [
-            "Nicosia",
-            "Limassol",
-            "Paphos"
-        ],
-        "correct": "Nicosia"
-    })
+            "question": "What is the capital of Cyprus?",
+            "responses": ["Nicosia", "Limassol", "Paphos"],
+            "correct": "Nicosia",
+        }
+    )
     num_questions += 1
     print(json.dumps(quiz, indent=4))
 
@@ -127,7 +124,7 @@ def test_eval_quiz_with_opentrivia_data():
 
     num_quiz = 1
     num_questions = 10
-    num_answers = 4 # opentrivia always has 4 responses
+    num_answers = 4  # opentrivia always has 4 responses
 
     valid_quiz = 0
     invalid_quiz = 0
@@ -139,22 +136,27 @@ def test_eval_quiz_with_opentrivia_data():
         topic = random.choice(list(gen_opentrivia.get_topics()))
 
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
-        print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
+        print(f"topic: {topic}, quiz: {json.dumps(quiz, indent=4)}")
 
         validity = evaluator.eval_quiz(quiz, topic, num_questions, num_answers)
-        print(f'validity: {json.dumps(validity, indent=4)}')
+        print(f"validity: {json.dumps(validity, indent=4)}")
 
         if validity["valid_quiz"]:
             valid_quiz += 1
         else:
             invalid_quiz += 1
-        print(f"total quiz: {valid_quiz + invalid_quiz}, valid: {valid_quiz}, invalid: {invalid_quiz}")
+        print(
+            f"total quiz: {valid_quiz + invalid_quiz}, valid: {valid_quiz}, invalid: {invalid_quiz}"
+        )
 
         valid_questions += validity["valid_questions"]
         invalid_questions += validity["invalid_questions"]
         unknown_questions += validity["unknown_questions"]
 
-        print(f"total questions: {valid_questions + invalid_questions + unknown_questions}, valid: {valid_questions}, invalid: {invalid_questions}, unknown: {unknown_questions}")
+        print(
+            f"total questions: {valid_questions + invalid_questions + unknown_questions}, valid: {valid_questions}, invalid: {invalid_questions}, unknown: {unknown_questions}"
+        )
+
 
 def test_eval_quiz_with_perturbed_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
@@ -163,7 +165,7 @@ def test_eval_quiz_with_perturbed_opentrivia_data():
     num_quiz = 1
     num_questions = 3
     num_perturbed_answers = 1
-    num_answers = 4 # opentrivia always has 4 responses
+    num_answers = 4  # opentrivia always has 4 responses
 
     valid_quiz = 0
     invalid_quiz = 0
@@ -175,28 +177,34 @@ def test_eval_quiz_with_perturbed_opentrivia_data():
         topic = random.choice(list(gen_opentrivia.get_topics()))
 
         quiz = gen_opentrivia.gen_quiz(topic, num_questions)
-        print(f'topic: {topic}, quiz: {json.dumps(quiz, indent=4)}')
+        print(f"topic: {topic}, quiz: {json.dumps(quiz, indent=4)}")
 
         perturbed_quiz = perturbe_quiz(quiz, num_perturbed_answers)
-        print(f'perturbed_quiz: {json.dumps(perturbed_quiz, indent=4)}')
+        print(f"perturbed_quiz: {json.dumps(perturbed_quiz, indent=4)}")
 
-        validity = evaluator.eval_quiz(perturbed_quiz, topic, num_questions, num_answers)
-        print(f'validity: {json.dumps(validity, indent=4)}')
+        validity = evaluator.eval_quiz(
+            perturbed_quiz, topic, num_questions, num_answers
+        )
+        print(f"validity: {json.dumps(validity, indent=4)}")
 
         if validity["valid_quiz"]:
             valid_quiz += 1
         else:
             invalid_quiz += 1
-        print(f"total quiz: {valid_quiz + invalid_quiz}, valid: {valid_quiz}, invalid: {invalid_quiz}")
+        print(
+            f"total quiz: {valid_quiz + invalid_quiz}, valid: {valid_quiz}, invalid: {invalid_quiz}"
+        )
 
         valid_questions += validity["valid_questions"]
         invalid_questions += validity["invalid_questions"]
         unknown_questions += validity["unknown_questions"]
 
-        print(f"total questions: {valid_questions + invalid_questions + unknown_questions}, valid: {valid_questions}, invalid: {invalid_questions}, unknown: {unknown_questions}")
+        print(
+            f"total questions: {valid_questions + invalid_questions + unknown_questions}, valid: {valid_questions}, invalid: {invalid_questions}, unknown: {unknown_questions}"
+        )
+
 
 def perturbe_quiz(quiz, n):
-
     perturbed_quiz = copy.deepcopy(quiz)
 
     # Sample n unique random items from the list
@@ -204,7 +212,11 @@ def perturbe_quiz(quiz, n):
 
     for random_item in sampled_items:
         # Remove the current correct answer from the responses
-        new_responses = [response for response in random_item["responses"] if response != random_item["correct"]]
+        new_responses = [
+            response
+            for response in random_item["responses"]
+            if response != random_item["correct"]
+        ]
 
         # Shuffle the new responses list
         random.shuffle(new_responses)

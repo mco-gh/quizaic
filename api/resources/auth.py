@@ -83,14 +83,16 @@ def allowed(operation, resource_kind, representation=None):
         return False
 
     if resource_kind == "sessions":
-        # Must be logged in to create a session 
+        # Must be logged in to create a session
         if operation in ["GET", "POST"]:
             return user_logged_in(email) or user_is_admin(email)
         # must match hashed email address (or be admin) to update or delete a session
         if operation in ["PATCH", "DELETE"]:
             path_parts = request.path.split("/")
             session_id = path_parts[2]
-            return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
+            return (
+                user_logged_in(email) and session_id == hashed_email
+            ) or user_is_admin(email)
         return False
 
     # Only admin or host can create, get, or delete documents in the results collection.
@@ -99,7 +101,9 @@ def allowed(operation, resource_kind, representation=None):
         if operation in ["POST", "GET", "DELETE"]:
             path_parts = request.path.split("/")
             session_id = path_parts[2]
-            return (user_logged_in(email) and session_id == hashed_email) or user_is_admin(email)
+            return (
+                user_logged_in(email) and session_id == hashed_email
+            ) or user_is_admin(email)
         if operation == "PATCH":
             return True
 

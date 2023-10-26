@@ -23,8 +23,8 @@ import socketserver
 import re
 from pathlib import Path
 
-HOST = ('0.0.0.0', 8080)
-pattern = re.compile('.png|.jpg|.jpeg|.js|.css|.ico|.gif|.svg', re.IGNORECASE)
+HOST = ("0.0.0.0", 8080)
+pattern = re.compile(".png|.jpg|.jpeg|.js|.css|.ico|.gif|.svg", re.IGNORECASE)
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):

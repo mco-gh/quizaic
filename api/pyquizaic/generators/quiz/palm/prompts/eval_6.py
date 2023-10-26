@@ -29,7 +29,6 @@ import os
 #    ...
 # ]
 class QuizevalHelper:
-
     def __init__(self):
         pass
 
@@ -40,8 +39,10 @@ class QuizevalHelper:
     def prepare_prompt(quiz, topic):
         prompt = ""
         for item in quiz:
-            prompt += (f"\nquestion: {item['question']} {', '.join(item['responses'])}\n"
-                       + "correct: <find correct answer>\n")
+            prompt += (
+                f"\nquestion: {item['question']} {', '.join(item['responses'])}\n"
+                + "correct: <find correct answer>\n"
+            )
         prompt += """\nReturn correct answers in JSON: 
         [
             <answer>,
@@ -61,15 +62,17 @@ class QuizevalHelper:
         evaluation = json.loads(prediction)
 
         for index, item in enumerate(evaluation):
-            question = quiz[index]['question']
+            question = quiz[index]["question"]
 
             expected_correct = item
             actual_correct = quiz[index]["correct"]
             if expected_correct != actual_correct:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #6: The correct answer is not correct - question: '{question}"
-                                           f"', expected: {expected_correct}, actual: {actual_correct}")
+                validity["details"].append(
+                    f"Invalid #6: The correct answer is not correct - question: '{question}"
+                    f"', expected: {expected_correct}, actual: {actual_correct}"
+                )
 
             if question not in validity["invalid_questions"]:
                 validity["valid_questions"].add(question)

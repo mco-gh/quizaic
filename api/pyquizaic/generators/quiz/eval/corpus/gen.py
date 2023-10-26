@@ -67,9 +67,11 @@ while True:
     if count >= num_questions:
         break
 
+
 def write_keys(d, f):
     for key in d:
-        f.write(f"{key}\n") 
+        f.write(f"{key}\n")
+
 
 with open("assertions.mc.txt", "w") as f:
     write_keys(qa, f)

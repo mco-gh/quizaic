@@ -22,7 +22,6 @@ class AnswerFormat(Enum):
 
 
 class QuestionGrader:
-
     # Percentage of similarity used in fuzzy matching to conclude if two string are equal
     DEFAULT_SIMILARITY_THRESHOLD = 80
 
@@ -32,7 +31,12 @@ class QuestionGrader:
     def __str__(self):
         return "question grader"
 
-    def grade_answer(self, correct_answer: str, player_answer: str, answer_format=AnswerFormat.MULTIPLE_CHOICE) -> bool:
+    def grade_answer(
+        self,
+        correct_answer: str,
+        player_answer: str,
+        answer_format=AnswerFormat.MULTIPLE_CHOICE,
+    ) -> bool:
         """Grades the player's answers and returns true/false accordingly.
 
         Args:
@@ -60,7 +64,8 @@ class QuestionGrader:
 
         # Next, apply fuzzy matching
         similarity = fuzz.token_sort_ratio(correct_answer, player_answer)
-        print(f"correct: {correct_answer}, player: {player_answer}, similarity: {similarity}")
+        print(
+            f"correct: {correct_answer}, player: {player_answer}, similarity: {similarity}"
+        )
 
         return similarity >= self.similarity_threshold
-

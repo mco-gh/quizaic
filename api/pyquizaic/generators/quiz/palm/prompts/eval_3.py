@@ -18,12 +18,12 @@ import os
 
 # eval3 prompt finds both correct and incorrect answers
 
-class QuizevalHelper:
 
+class QuizevalHelper:
     def __init__(self):
         prompt_version = os.path.basename(__file__)[:-3]
         file_path = os.path.join(os.path.dirname(__file__), f"{prompt_version}.txt")
-        with open(file_path, encoding='utf-8') as fp:
+        with open(file_path, encoding="utf-8") as fp:
             self.prompt_template = fp.read()
 
     def __str__(self):
@@ -34,7 +34,9 @@ class QuizevalHelper:
         quiz_eval = copy.deepcopy(quiz)
         for item in quiz_eval:
             item.pop("correct")
-        prompt = self.prompt_template.format(quiz=json.dumps(quiz_eval, indent=4), topic=topic)
+        prompt = self.prompt_template.format(
+            quiz=json.dumps(quiz_eval, indent=4), topic=topic
+        )
         return prompt
 
     @staticmethod
@@ -51,21 +53,25 @@ class QuizevalHelper:
 
         # [{"on_topic": true, "correct": "George Washington", "incorrect": ["Benjamin Franklin", "Thomas Jefferson"]},
         for index, item in enumerate(evaluation):
-            question = quiz[index]['question']
+            question = quiz[index]["question"]
 
             if not item["on_topic"]:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #5: The question is not on the topic - question: '{question}'"
-                                           f", topic: {topic}")
+                validity["details"].append(
+                    f"Invalid #5: The question is not on the topic - question: '{question}'"
+                    f", topic: {topic}"
+                )
 
             expected_correct = item["correct"]
             actual_correct = quiz[index]["correct"]
             if expected_correct != actual_correct:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #6: The correct answer is not correct - question: '{question}"
-                                           f"', expected: {expected_correct}, actual: {actual_correct}")
+                validity["details"].append(
+                    f"Invalid #6: The correct answer is not correct - question: '{question}"
+                    f"', expected: {expected_correct}, actual: {actual_correct}"
+                )
 
             responses = quiz[index]["responses"]
             if item["correct"] in responses:
@@ -76,7 +82,9 @@ class QuizevalHelper:
             if len(responses) != 0:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #7: The rest of responses are not incorrect in question: '{question}'")
+                validity["details"].append(
+                    f"Invalid #7: The rest of responses are not incorrect in question: '{question}'"
+                )
 
             if question not in validity["invalid_questions"]:
                 validity["valid_questions"].add(question)

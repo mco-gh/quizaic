@@ -23,6 +23,7 @@ import sys
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
+
 class Quizgen(BaseQuizgen):
     TOPICS = (
         "General Knowledge",
@@ -67,8 +68,12 @@ class Quizgen(BaseQuizgen):
         return ["multiple-choice", "true/false"]
 
     def gen_quiz(
-        self, topic, num_questions, num_answers=None,
-        difficulty=BaseQuizgen.DIFFICULTY, temperature=None
+        self,
+        topic,
+        num_questions,
+        num_answers=None,
+        difficulty=BaseQuizgen.DIFFICULTY,
+        temperature=None,
     ):
         topic_num = Quizgen.TOPICS.index(topic) + 9
 

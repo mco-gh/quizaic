@@ -47,6 +47,7 @@ labels = []
 questions = []
 quizzes = []
 
+
 def read_file(filename, li):
     count = 0
     with open(filename, "r") as f:
@@ -56,13 +57,14 @@ def read_file(filename, li):
             count += 1
     return count
 
+
 # Read assertions and labels.
 num_questions = read_file("../corpus/assertions.mc.txt", assertions)
 num_labels = read_file("../corpus/labels.mc.txt", labels)
-assert(num_questions == num_labels)
-assert(num_questions % 4 == 0)
-questions = [int(i/4) for i in range(num_questions)]
-quizzes = [int(i/20) for i in range(num_questions)]
+assert num_questions == num_labels
+assert num_questions % 4 == 0
+questions = [int(i / 4) for i in range(num_questions)]
+quizzes = [int(i / 20) for i in range(num_questions)]
 
 # Shuffle assertions and labels.
 for i in range(num_shuffles):
@@ -76,7 +78,7 @@ parameters = {
     "max_output_tokens": 2048,
     "temperature": 0.0,
     "top_p": 0.0,
-    "top_k": 1
+    "top_k": 1,
 }
 
 model = TextGenerationModel.from_pretrained("text-bison")
@@ -98,14 +100,21 @@ while assertions:
     labels = labels[BATCH_SIZE:]
     p = prompt + "\n".join(batch_assertions) + "\n"
     response = model.predict(p)
-    grades = response.text.replace(",", "").replace(".", "").replace(" ", "").replace("-", "").lower().split()
+    grades = (
+        response.text.replace(",", "")
+        .replace(".", "")
+        .replace(" ", "")
+        .replace("-", "")
+        .lower()
+        .split()
+    )
 
     error = False
     if len(grades) != len(batch_assertions):
         print(f"bad prediction: {grades=}")
-        error = True 
+        error = True
     for i in grades:
-       if i != "true" and i != "false":
+        if i != "true" and i != "false":
             print(f"bad prediction: {i=}")
             error = True
 
@@ -119,8 +128,8 @@ while assertions:
             errors += 1
             continue
 
-    #for i in range(len(grades)):
-        #grades[i] = "false" if grades[i] == "true" else "true"
+    # for i in range(len(grades)):
+    # grades[i] = "false" if grades[i] == "true" else "true"
 
     valid_grades.extend(grades)
     valid_labels.extend(batch_labels)
@@ -143,7 +152,7 @@ for i in set(questions):
 for i in set(quizzes):
     quiz_err[i] = 0
 
-for i in range(len(valid_grades)):   
+for i in range(len(valid_grades)):
     if valid_grades[i] != valid_labels[i]:
         wrong += 1
         question_err[questions[i]] += 1
@@ -158,23 +167,29 @@ if total <= 0:
     print("no grades found")
     exit(1)
 
-print(f"assertions: {total-wrong}/{total}, {100*(total-wrong)/total:.2f}% accurate, {errors=}, {false_n=}, {false_p=}")
+print(
+    f"assertions: {total-wrong}/{total}, {100*(total-wrong)/total:.2f}% accurate, {errors=}, {false_n=}, {false_p=}"
+)
 
 good_questions = 0
 for i in question_err:
     hist[question_err[i]] += 1
     if question_err[i] == 0:
         good_questions += 1
-    #print(f"Question: {i}, count: {question_err[i]}")
+    # print(f"Question: {i}, count: {question_err[i]}")
 
 good_quizzes = 0
 for i in quiz_err:
     if quiz_err[i] == 0:
         good_quizzes += 1
-    #print(f"Quiz: {i}, count: {quiz_err[i]}")
+    # print(f"Quiz: {i}, count: {quiz_err[i]}")
 
-print(f"questions: {good_questions}/{len(set(questions))}, {100 * good_questions / len(set(questions)):.2f}%")
-print(f"quizzes: {good_quizzes}/{len(set(quizzes))}, {100 * good_quizzes/ len(set(quizzes)):.2f}%")
+print(
+    f"questions: {good_questions}/{len(set(questions))}, {100 * good_questions / len(set(questions)):.2f}%"
+)
+print(
+    f"quizzes: {good_quizzes}/{len(set(quizzes))}, {100 * good_quizzes/ len(set(quizzes)):.2f}%"
+)
 
 for i in hist:
     print(f"{hist[i]} questions had {i} errors")

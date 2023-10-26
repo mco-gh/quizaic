@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class BaseQuizeval:
 
+class BaseQuizeval:
     def __init__(self):
         pass
 
@@ -27,7 +27,7 @@ class BaseQuizeval:
             "valid_questions": set(),
             "invalid_questions": set(),
             "unknown_questions": 0,
-            "details": []
+            "details": [],
         }
 
         validity = self.check_num_questions(validity, quiz, num_questions)
@@ -47,35 +47,41 @@ class BaseQuizeval:
         if actual_num_questions != num_questions:
             validity["valid_quiz"] = False
             validity["unknown_questions"] = num_questions
-            validity["details"].append(f"Invalid #1: Number of questions does not match - expected: {num_questions}"
-                                       f", actual: {actual_num_questions}")
+            validity["details"].append(
+                f"Invalid #1: Number of questions does not match - expected: {num_questions}"
+                f", actual: {actual_num_questions}"
+            )
         return validity
 
     @staticmethod
     def check_num_answers(validity, quiz, num_questions, num_answers):
         for item in quiz:
-            question = item['question']
+            question = item["question"]
             responses = item["responses"]
             actual_num_answers = len(responses)
             if actual_num_answers != num_answers:
                 validity["valid_quiz"] = False
                 validity["unknown_questions"] = num_questions
-                validity["details"].append(f"Invalid #2: Number of answers does not match - question: '{question}"
-                                           f", expected: {num_answers}, actual: {actual_num_answers}")
+                validity["details"].append(
+                    f"Invalid #2: Number of answers does not match - question: '{question}"
+                    f", expected: {num_answers}, actual: {actual_num_answers}"
+                )
                 return validity
         return validity
 
     @staticmethod
     def check_correct_in_answers(validity, quiz):
         for item in quiz:
-            question = item['question']
+            question = item["question"]
             responses = item["responses"]
             correct = item["correct"]
             if correct not in responses:
                 validity["valid_quiz"] = False
                 validity["invalid_questions"].add(question)
-                validity["details"].append(f"Invalid #3: The correct answer is not in the responses list - question: '{question}'"
-                                           f", correct:{correct} responses: {responses}")
+                validity["details"].append(
+                    f"Invalid #3: The correct answer is not in the responses list - question: '{question}'"
+                    f", correct:{correct} responses: {responses}"
+                )
                 return validity
         return validity
 
@@ -86,6 +92,5 @@ class BaseQuizeval:
             "valid_questions": len(validity["valid_questions"]),
             "invalid_questions": len(validity["invalid_questions"]),
             "unknown_questions": validity["unknown_questions"],
-            "details": validity["details"]
+            "details": validity["details"],
         }
-

@@ -18,11 +18,11 @@ from google.cloud import storage
 from vertexai.preview.vision_models import ImageGenerationModel
 
 PROJECT_ID = os.getenv("PROJECT_ID")
-PROMPT_TEMPLATE= "photorealistic image about {topic}"
+PROMPT_TEMPLATE = "photorealistic image about {topic}"
 NEGATIVE_PROMPT = "blurry"
 
-class ImageGen:
 
+class ImageGen:
     def __init__(self):
         pass
 
@@ -32,7 +32,7 @@ class ImageGen:
     @staticmethod
     def generate_images(topic, number_of_images=1):
         prompt = PROMPT_TEMPLATE.format(topic=topic)
-        print(f'Generating {number_of_images} image(s) with prompt: {prompt}')
+        print(f"Generating {number_of_images} image(s) with prompt: {prompt}")
 
         model = ImageGenerationModel.from_pretrained("imagegeneration")
         images = model.generate_images(
@@ -59,12 +59,14 @@ class ImageGen:
         blob = bucket.blob(file_name)
 
         bytes_io = BytesIO()
-        image._pil_image.save(bytes_io, format='PNG')
+        image._pil_image.save(bytes_io, format="PNG")
         blob.upload_from_file(bytes_io, rewind=True, content_type="image/png")
 
         blob.make_public()
         file_url = blob.public_url
-        print(f"Uploaded file: {file_name} to bucket: {bucket_name} with file url: {file_url}")
+        print(
+            f"Uploaded file: {file_name} to bucket: {bucket_name} with file url: {file_url}"
+        )
         return file_url
 
     @staticmethod
@@ -88,6 +90,4 @@ if __name__ == "__main__":
     BUCKET_NAME = PROJECT_ID + "-images"
     file_name = "image_test2.png"
     file_url = ImageGen.generate_and_upload_image(topic, file_name, BUCKET_NAME)
-    print(f'file_url: {file_url}')
-
-
+    print(f"file_url: {file_url}")

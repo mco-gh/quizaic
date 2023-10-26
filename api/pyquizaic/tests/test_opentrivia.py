@@ -20,17 +20,17 @@ from generators.quiz.basequizeval import BaseQuizeval
 def test_opentrivia_gen_quiz():
     topic = "General Knowledge"
     num_questions = 5
-    num_answers = 4 # opentrivia always has 4 responses
+    num_answers = 4  # opentrivia always has 4 responses
     gen = QuizgenFactory.get_gen("opentrivia")
     quiz = gen.gen_quiz("General Knowledge", num_questions)
     print(json.dumps(quiz, indent=4))
-    assert(quiz != None)
+    assert quiz != None
 
 
 def test_eval_quiz_num_questions():
     topic = "General Knowledge"
     num_questions = 5
-    num_answers = 4 # opentrivia always has 4 responses
+    num_answers = 4  # opentrivia always has 4 responses
     gen = QuizgenFactory.get_gen("opentrivia")
     quiz = gen.gen_quiz(topic, num_questions)
     print(json.dumps(quiz, indent=4))

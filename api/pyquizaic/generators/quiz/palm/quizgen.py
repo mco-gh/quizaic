@@ -30,6 +30,7 @@ MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
 
+
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
         # This doesn't seem to be needed
@@ -82,13 +83,16 @@ class Quizgen(BaseQuizgen):
         return quiz, topic, num_questions, num_answers
 
     def gen_quiz(
-        self, topic, num_questions, num_answers,
+        self,
+        topic,
+        num_questions,
+        num_answers,
         difficulty=BaseQuizgen.DIFFICULTY,
         language=BaseQuizgen.LANGUAGE,
-        temperature=BaseQuizgen.TEMPERATURE
+        temperature=BaseQuizgen.TEMPERATURE,
     ):
-        #if difficulty == "medium":
-            #difficulty += " difficulty"
+        # if difficulty == "medium":
+        # difficulty += " difficulty"
 
         print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         prompt = self.prompt_template.format(
@@ -96,10 +100,12 @@ class Quizgen(BaseQuizgen):
             num_questions=num_questions,
             num_answers=num_answers,
             difficulty=difficulty,
-            language=language
+            language=language,
         )
         print(f"{prompt=}")
-        prediction = self.predict_llm(MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K)
+        prediction = self.predict_llm(
+            MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
+        )
         prediction = prediction.strip()
         print(f'X{prediction[0:8].lower()}X, {prediction[0:8].lower() == "``` json"}')
         if prediction[0:7].lower() == "```json":

@@ -42,7 +42,12 @@ class Quizgen(BaseQuizgen):
         return ["freeform"]
 
     def gen_quiz(
-        self, topic, num_questions, num_answers=1, difficulty=DIFFICULTY, temperature=None
+        self,
+        topic,
+        num_questions,
+        num_answers=1,
+        difficulty=DIFFICULTY,
+        temperature=None,
     ):
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
