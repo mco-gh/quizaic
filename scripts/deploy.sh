@@ -38,7 +38,7 @@ elif [ "$1" = "api" ]
 then
     cd api
     export VERSION=$(cat version)
-    export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/content_api:v${VERSION}"
+    export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/api:v${VERSION}"
     gcloud builds submit . --tag=$TAG
     gcloud run deploy api --region ${REGION} --image=${TAG} --update-env-vars "${CLOUD_RUN_VARS}" --allow-unauthenticated
     cd -
