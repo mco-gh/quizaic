@@ -13,7 +13,7 @@
 # limitations under the License.
 
 #
-# ws.sh <action>
+# codelab.sh <action>
 #	- build, config, or create
 #
 USAGE="$0 build|config|create"
@@ -26,10 +26,9 @@ fi
 
 . scripts/env.sh deploy
 
-cd codelab/ws
 if [ "$1" = "build" ]
 then
-    export VERSION=$(cat version)
+    export VERSION=$(cat codelab/version)
     export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/workstation:v${VERSION}"
     gcloud builds submit . --tag=$TAG
 elif [ "$1" = "config" ]
@@ -42,4 +41,3 @@ else
     echo "Usage: $USAGE"
     exit 1
 fi
-cd -
