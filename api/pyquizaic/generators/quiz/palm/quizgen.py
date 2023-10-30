@@ -91,10 +91,7 @@ class Quizgen(BaseQuizgen):
         language=BaseQuizgen.LANGUAGE,
         temperature=BaseQuizgen.TEMPERATURE,
     ):
-        # if difficulty == "medium":
-        # difficulty += " difficulty"
-
-        print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
+        #print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         prompt = self.prompt_template.format(
             topic=topic,
             num_questions=num_questions,
@@ -102,12 +99,11 @@ class Quizgen(BaseQuizgen):
             difficulty=difficulty,
             language=language,
         )
-        print(f"{prompt=}")
+        #print(f"{prompt=}")
         prediction = self.predict_llm(
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
         )
         prediction = prediction.strip()
-        print(f'X{prediction[0:8].lower()}X, {prediction[0:8].lower() == "``` json"}')
         if prediction[0:7].lower() == "```json":
             print("removing prefix")
             prediction = prediction[7:]
@@ -117,7 +113,7 @@ class Quizgen(BaseQuizgen):
         if prediction[-3:].lower() == "```":
             print("removing suffix")
             prediction = prediction[:-3]
-        print(f"{prediction=}")
+        #print(f"{prediction=}")
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
         for i in quiz:

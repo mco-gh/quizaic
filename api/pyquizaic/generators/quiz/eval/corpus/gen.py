@@ -46,6 +46,7 @@ seen = {}
 # Generate QA and labels.
 topics = list(gen.get_topics())
 
+f_quizzes = open("questions.mc.txt", "w")
 while True:
     topic = random.choice(topics)
     quiz = gen.gen_quiz(topic, questions_per_quiz)
@@ -56,6 +57,7 @@ while True:
             continue
         seen[q] = True
         count += 1
+        f_quizzes.write(json.dumps(quiz) + "\n") 
         responses = question["responses"]
         correct = question["correct"]
         for r in responses:
@@ -77,3 +79,4 @@ with open("assertions.mc.txt", "w") as f:
     write_keys(qa, f)
 with open("labels.mc.txt", "w") as f:
     write_keys(labels, f)
+f_quizzes.close()

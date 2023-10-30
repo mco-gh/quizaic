@@ -29,24 +29,29 @@ import random
 import sys
 import time
 import vertexai
-from vertexai.language_models import TextGenerationModel
+from vertexai.language_models import TextEmbeddingModel
+
 
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-eval = QuizgenFactory.get_gen("palm")
+model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
 
-prompt = """
-In one (and only one) word, are the following assertions true or false?
-
-"""
+def text_embedding(li):
+    """Text embedding with a Large Language Model."""
+    vectors = []
+    embeddings = model.get_embeddings(li)
+    for embedding in embeddings:
+        vector = embedding.values
+        print(f"Length of Embedding Vector: {len(vector)}")
+        vectors.append(vector)
+    return vectors
 
 num_shuffles = 10
 assertions = []
 labels = []
 questions = []
 quizzes = []
-
 
 def read_file(filename, li):
     count = 0
@@ -73,13 +78,6 @@ for i in range(num_shuffles):
     assertions, labels, questions, quizzes = zip(*zipped)
 
 vertexai.init(project="quizaic", location="us-central1")
-parameters = {
-    "candidate_count": 1,
-    "max_output_tokens": 2048,
-    "temperature": 0.0,
-    "top_p": 0.0,
-    "top_k": 1,
-}
 
 model = TextGenerationModel.from_pretrained("text-bison")
 
