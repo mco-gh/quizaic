@@ -2,7 +2,7 @@
 
 The goal of this workshop is to provide a hands-on experience combining Google Cloud services with Generative AI to produce a fun and powerful application. We will build a simplified version of [Quizaic](https://github.com/mco-gh/quizaic), which is an AI powered trivia quiz app.
 
-The focus will be on breadth vs. depth. For example, you won't be a Flutter expert by the end of this lab, but it's my hope that you'll come away with a solid sense of the richness of these services and be inspired to dive deeper and build your own applications.
+The focus will be on breadth vs. depth. For example, you won't be a Flutter expert by the end of this lab, but it's my hope that you'll come away with a solid sense of what you can do with these services and be inspired to dive deeper and build your own AI-powered cloud applications.
 
 ## Part 1 - Firestore, Flask, and Flutter
 - [Get started](start.md)
