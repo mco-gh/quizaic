@@ -146,7 +146,8 @@ export CLIENT_SECRET=<your-client-secret>
 ```
 
 You also need to add `http://localhost:8080/callback` under `APIs & Services` ->
-`Credentials` -> `Authorized redirect URIs`.
+`Credentials` -> (_your previously-created OAuth 2.0 Client ID_) -> `Authorized redirect URIs`.
+If you're using a remote development environment, adjust the URL accordingly as `localhost` will not work.
 
 The ui depends on the api. Make sure api is running locally first:
 
