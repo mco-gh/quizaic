@@ -14,9 +14,9 @@
 
 #
 # deploy.sh <component>
-#	- component is one of ui or api
+#	- component is one of ui, api, or flutter
 #
-USAGE="$0 ui|api"
+USAGE="$0 ui|api|flutter"
 
 if [ $# != 1 ]
 then
@@ -29,6 +29,7 @@ fi
 if [ "$1" = "ui" ]
 then
     cd ui
+    cp Dockerfile.app Dockerfile
     export VERSION=$(cat version)
     export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/ui:v${VERSION}"
     gcloud builds submit . --tag=$TAG
@@ -41,6 +42,13 @@ then
     export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/api:v${VERSION}"
     gcloud builds submit . --tag=$TAG
     gcloud run deploy api --region ${REGION} --image=${TAG} --update-env-vars "${CLOUD_RUN_VARS}" --allow-unauthenticated
+    cd -
+elif [ "$1" = "flutter" ]
+then
+    cd ui
+    cp Dockerfile.flutter Dockerfile
+    export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/foundation"
+    gcloud builds submit . --tag=$TAG
     cd -
 else
     echo "Usage: $USAGE"
