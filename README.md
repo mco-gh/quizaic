@@ -16,15 +16,14 @@ Quizaic is a trivia quiz app with a twist - it uses Artificial Intelligence to g
 ### Prerequisites
 
 To deploy Quizaic, you will need:
-<!-- * 3 Google Cloud projects (ops, stage, prod) with billing enabled on each) -->
 * A Google Cloud project with billing enabled
 * A clone of this repo
 
 The machine that you will run the setup from will need the following installed:
-<!-- * [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli) -->
 * [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 * [Python3](https://www.python.org/downloads) and [Pip](https://pip.pypa.io/en/stable/installation/)
 * [Flutter](https://flutter.dev)
+* [Firebase CLI](https://firebase.google.com/docs/cli#setup_update_cli)
 * [Git](https://github.com/git-guides/install-git)
 
 ### Gcloud Configuration and Github Repo
