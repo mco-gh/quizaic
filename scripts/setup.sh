@@ -71,7 +71,7 @@ print_header "Firebase app configuration."
 firebase login
 cd ui
 dart pub global activate flutterfire_cli
-flutterfire configure
+$HOME/.pub-cache/bin/flutterfire configure
 cd -
 
 print_header "Building and deploying api service."
