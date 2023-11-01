@@ -29,7 +29,13 @@ fi
 if [ "$1" = "ui" ]
 then
     cd ui
-    cp Dockerfile.app Dockerfile
+    export API_URL=`gcloud -q run services describe api --platform managed --region us-central1 --format 'value(status.url)'`
+    if [ "$API_URL" = "" ]
+    then
+        echo "Can't find url for api service"
+        exit 1
+    fi
+    sed <Dockerfile.app >Dockerfile "s#<API_URL>#$API_URL#g"
     export VERSION=$(cat version)
     export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/ui:v${VERSION}"
     gcloud builds submit . --tag=$TAG
