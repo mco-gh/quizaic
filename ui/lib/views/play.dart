@@ -151,6 +151,10 @@ class PlayPage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(formPadding),
                             child: TextField(
+                              keyboardType: TextInputType.name,
+                              autofillHints: [AutofillHints.givenName],
+                              autocorrect: false,
+                              enableSuggestions: false,
                               controller: textController,
                               onSubmitted: (name) => {
                                 checkAndRegisterPlayerName(name),
