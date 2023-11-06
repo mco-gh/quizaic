@@ -56,6 +56,16 @@ genLabelValue(theme, label, value) {
 Widget genTextFormField(
     ThemeData theme, String label, validator, getter, setter,
     {width = formColumnWidth}) {
+  List<String> hints = [];
+  if (label == 'Number of Questions') {
+    hints = [AutofillHints.oneTimeCode];
+  } else if (label == 'Quiz Language') {
+    hints = [AutofillHints.language];
+  } else if (label == 'Quiz Name') {
+    hints = [AutofillHints.oneTimeCode];
+  } else if (label.startsWith('Enter free-form text for')) {
+    hints = [AutofillHints.oneTimeCode];
+  }
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(formPadding),
@@ -63,6 +73,7 @@ Widget genTextFormField(
         width: width,
         height: formRowHeight,
         child: TextFormField(
+          autofillHints: hints,
           initialValue: getter(),
           onChanged: setter,
           decoration: InputDecoration(
