@@ -1,0 +1,1001 @@
+{"question": "Who is the musical director for the award winning musical \"Hamilton\"?", "correct": "Alex Lacamoire", "responses": ["Lin-Manuel Miranda", "Alex Lacamoire", "Renee Elise-Goldberry", "Leslie Odom Jr."]}
+{"question": "In Jeff Wayne's Musical Version of War of the Worlds, the chances of anything coming from Mars are...", "correct": "A million to one", "responses": ["A billion to one", "A hundred to one", "A million to one", "A trillion to one"]}
+{"question": "What play is the quote \"Hell is other people\" from?", "correct": "No Exit", "responses": ["The Condemned of Altona", "The Flies", "The Devil and the Good Lord", "No Exit"]}
+{"question": "The World Chess Championship in Chess, Act 1 is set in which Italian city?", "correct": "Merano", "responses": ["Milan", "Merano", "Venice", "Rome"]}
+{"question": "The Andrew Lloyd Webber musical \"Cats\" is based off a book of poems written by which author?", "correct": "T.S. Elliot", "responses": ["T.S. Elliot", "Andrew Lloyd Webber", "Emily Dickenson", "Robert Frost"]}
+{"question": "How many officially recognized dwarf planets in the solar system are named after Polynesian deities?", "correct": "2", "responses": ["5", "1", "0", "2"]}
+{"question": "What is the atomic number of the element Strontium?", "correct": "38", "responses": ["47", "73", "11", "38"]}
+{"question": "What are human nails made of?", "correct": "Keratin", "responses": ["Keratin", "Calcium", "Bone", "Chitin"]}
+{"question": "What is Hypernatremia?", "correct": "Increase in blood sodium", "responses": ["Increase in blood glucose", "Increase in blood sodium", "Decrease in blood potassium", "Decrease in blood iron"]}
+{"question": "When the Falcon Heavy was launched on it's test flight, what was the only part of the operation that failed?", "correct": "Center Core Landing", "responses": ["Deployment of Starman", "Ignition and Liftoff", "Side Booster Landing", "Center Core Landing"]}
+{"question": "In the hexadecimal system, what number comes after 9?", "correct": "The Letter A", "responses": ["10", "The Letter A", "16", "The Number 0"]}
+{"question": "What is the Roman numeral for 500?", "correct": "D", "responses": ["L", "X", "C", "D"]}
+{"question": "Which of the following dice is not a platonic solid?", "correct": "10-sided die", "responses": ["20-sided die", "10-sided die", "12-sided die", "8-sided die"]}
+{"question": "Which mathematician refused the Fields Medal?", "correct": "Grigori Perelman", "responses": ["Edward Witten", "Andrew Wiles", "Grigori Perelman", "Terence Tao"]}
+{"question": "In the complex plane, multiplying a given function by i rotates it anti-clockwise by how many degrees?", "correct": "90", "responses": ["0", "180", "90", "270"]}
+{"question": "What year did the television company BBC officially launch the channel BBC One?", "correct": "1936", "responses": ["1936", "1932", "1955", "1948"]}
+{"question": "What is the surname of the character Daryl in AMC's show The Walking Dead?", "correct": "Dixon", "responses": ["Grimes", "Dickinson", "Dixon", "Dicketson"]}
+{"question": "Which British writer wrote for both Doctor Who and Sherlock?", "correct": "Steven Moffatt", "responses": ["Toby Whithouse", "Phil Ford", "Russell T Davies", "Steven Moffatt"]}
+{"question": "What breed of dog is \"Scooby Doo\"?", "correct": "Great Dane", "responses": ["Pit bull", "Great Dane", "Boxer", "Doberman Pinscher"]}
+{"question": "Baron Silas Greenback is the arch nemesis of which cartoon hero?", "correct": "Danger Mouse", "responses": ["SuperTed", "Danger Mouse", "Captain Star", "Bananaman"]}
+{"question": "To the nearest minute, how long does it take for light to travel from the Sun to the Earth?", "correct": "8 Minutes", "responses": ["2 Minutes", "6 Minutes", "12 Minutes", "8 Minutes"]}
+{"question": "In Chemistry, how many isomers does Butanol (C4H9OH) have?", "correct": "4", "responses": ["3", "6", "4", "5"]}
+{"question": "What stage of development do the majority of eukaryotic cells remain in for most of their life?", "correct": "Interphase", "responses": ["Prophase", "Interphase", "Telophase", "Stasis"]}
+{"question": "On which mission did the Space Shuttle Columbia break up upon re-entry?", "correct": "STS-107", "responses": ["STS-51-L", "STS-107", "STS-61-C", "STS-109"]}
+{"question": "Which of the following is NOT a passive electrical component?", "correct": "Transistor", "responses": ["Capacitor", "Inductor", "Transistor", "Resistor"]}
+{"question": "What is the name of Sid's dog in \"Toy Story\"?", "correct": "Scud", "responses": ["Mr. Jones", "Whiskers", "Scud", "Buster"]}
+{"question": "The stop motion comedy show \"Robot Chicken\" was created by which of the following?", "correct": "Seth Green", "responses": ["Seth Rogen", "Seth MacFarlane", "Seth Green", "Seth Rollins"]}
+{"question": "Adam West was the mayor of which cartoon town?", "correct": "Quahog", "responses": ["Quahog", "Springfield", "Langley Falls", "South Park"]}
+{"question": "In \"The Simpsons\", where did Homer and Marge first meet?", "correct": "At Summer Camp", "responses": ["At Summer Camp", "At High School", "At Church", "At 742 Evergreen Terrace"]}
+{"question": "What is Dipper's real name from \"Gravity Falls\"?", "correct": "Mason Pines", "responses": ["Mable Pines", "Jason Pines", "Mark Pines", "Mason Pines"]}
+{"question": "Which of the following Autobot names in Michael Bay's movies was NOT a name for a Transformer in the original 1980's cartoon?", "correct": "Mudflap", "responses": ["Ratchet", "Skids", "Sideswipe", "Mudflap"]}
+{"question": "In Breaking Bad, the initials W.W. refer to which of the following?", "correct": "Walter White", "responses": ["William Wolf", "Walter White", "Willy Wonka", "Wally Walrus"]}
+{"question": "In Naruto: Shippuden, which of the following elements is a \"Kekkei T\u014dta?\"", "correct": "Particle Style", "responses": ["Particle Style", "Ice Style", "Shadow Style", "Any Doujutsu"]}
+{"question": "Which boxing personality was one of the presenters in the 1999 revival of It's a Knockout?", "correct": "Frank Bruno", "responses": ["Frank Bruno", "Muhammad Ali", "Joe Fraiser", "Henry Cooper"]}
+{"question": "In the show \"The Office\" who does Michael Scott eventually end up with?", "correct": "Holly Flax", "responses": ["Jan Levinson", "Holly Flax", "Angela Martin", "Pam Beesly"]}
+{"question": "The main protagonist of the fifth part of JoJo's Bizarre Adventure is which of the following?", "correct": "Giorno Giovanna", "responses": ["Giorno Giovanna", "Joey JoJo", "Guido Mista", "Jonathan Joestar"]}
+{"question": "In \"A Certain Magical Index,\" what is Accelerator able to control?", "correct": "Vectors", "responses": ["Wormholes", "Vectors", "Quantums", "Velocity"]}
+{"question": "Who voices the character \"Reigen\"  in the English dub of \"Mob Psycho 100\"?", "correct": "Chris Niosi", "responses": ["Max Mittelman", "Casey Mongillo", "Chris Niosi", "Kyle McCarley"]}
+{"question": "In the \"Re:Zero\" manga series, which of the following Sin Archbishops eats Rem's existence?", "correct": "Ley Batenkaitos", "responses": ["Louis Arneb", "Roy Alphard", "Petelgeuse Romanee-Conti", "Ley Batenkaitos"]}
+{"question": "What studio animated Fullmetal Alchemist?", "correct": "Bones", "responses": ["Pierrot", "Trigger", "xebec", "Bones"]}
+{"question": "In what year did \"The Big Bang Theory\" debut on CBS?", "correct": "2007", "responses": ["2006", "2009", "2008", "2007"]}
+{"question": "How long was Ken Jennings' win streak on Jeopardy?", "correct": "74", "responses": ["49", "62", "74", "88"]}
+{"question": "In \"Star Trek\", what is the Klingon death ritual?", "correct": "Look into sky and yell loudly in mourning.", "responses": ["Split the deceased's earnings between bloodkin.", "Shoot into space in a torpedo casing.", "Look into sky and yell loudly in mourning.", "Kiss the jagged forehead before burial."]}
+{"question": "The first half-hour CGI cartoon, ReBoot, aired on which year?", "correct": "1994", "responses": ["1998", "1999", "1994", "1993"]}
+{"question": "What did the name of the Tor Anonymity Network orignially stand for?", "correct": "The Onion Router", "responses": ["The Onion Router", "The Orange Router", "The Ominous Router", "The Only Router"]}
+{"question": "What was the name given to Android 4.3?", "correct": "Jelly Bean", "responses": ["Nutella", "Lollipop", "Froyo", "Jelly Bean"]}
+{"question": "What is known as \"the brain\" of the Computer?", "correct": "Central Processing Unit", "responses": ["Graphics Processing Unit", "Motherboard", "Central Processing Unit", "Keyboard"]}
+{"question": "What does RAID stand for?", "correct": "Redundant Array of Independent Disks", "responses": ["Range of Applications with Identical Designs", "Randomized Abstract Identification Description", "Redundant Array of Independent Disks", "Rapid Access for Indexed Devices"]}
+{"question": "What does the 'S' in the RSA encryption algorithm stand for?", "correct": "Shamir", "responses": ["Stable", "Shamir", "Schottky", "Secure"]}
+{"question": "Which time signature is commonly known as \u201cCut Time?\u201d", "correct": "2/2", "responses": ["3/4", "6/8", "2/2", "4/4"]}
+{"question": "Who painted the Sistine Chapel?", "correct": "Michelangelo", "responses": ["Michelangelo", "Pablo Picasso", "Leonardo da Vinci", "Raphael"]}
+{"question": "Which of these are the name of a famous marker brand?", "correct": "Copic", "responses": ["Copic", "Dopix", "Marx", "Cofix"]}
+{"question": "How many paint and pastel versions of \"The Scream\" is Norwegian painter Edvard Munch believed to have produced?", "correct": "4", "responses": ["3", "1", "2", "4"]}
+{"question": "Which painting was not made by Vincent Van Gogh?", "correct": "The Ninth Wave", "responses": ["Caf\u00e9 Terrace at Night", "Bedroom In Arles", "Starry Night", "The Ninth Wave"]}
+{"question": "What country is the Hussarya supercar, made by the car manufacturer \"Arrinera\", assembled in?", "correct": "Poland", "responses": ["Sweden", "Poland", "China", "Italy"]}
+{"question": "Which of the following vehicles featured a full glass roof at base model?", "correct": "Renault Avantime", "responses": ["Mercedes-Benz A-Class", "Renault Avantime", "Chevy Volt", "Honda Odyssey"]}
+{"question": "Which of the following car models has been badge-engineered (rebadged) the most?", "correct": "Isuzu Trooper", "responses": ["Chevy Camaro", "Holden Monaro", "Isuzu Trooper", "Suzuki Swift"]}
+{"question": "Which car brand does NOT belong to General Motors?", "correct": "Ford", "responses": ["Chevrolet", "Cadillac", "Buick", "Ford"]}
+{"question": "Which one is NOT the function of engine oil in car engines?", "correct": "Combustion", "responses": ["Combustion", "Reduce corrosion", "Lubrication", "Cooling"]}
+{"question": "What European country is not a part of the EU?", "correct": "Norway", "responses": ["Ireland", "Norway", "Czechia", "Lithuania"]}
+{"question": "What is the name of the former country that was succeeded by countries such as Serbia, Croatia and Slovenia?", "correct": "Yugoslavia", "responses": ["Abkhazia", "Yugoslavia", "Czechoslovakia", "South Ossetia"]}
+{"question": "Which of the following language families is the most controversial amongst modern linguists?", "correct": "Altaic", "responses": ["Sino-Tibetan", "Indo-European", "Dravidian", "Altaic"]}
+{"question": "What was the most populous city in the Americas in 2015?", "correct": "S\u00e3o Paulo", "responses": ["Los Angeles", "New York", "S\u00e3o Paulo", "Mexico City"]}
+{"question": "How many time zones are in Russia?", "correct": "11", "responses": ["11", "5", "2", "8"]}
+{"question": "What's the name of Batman's parents?", "correct": "Thomas & Martha", "responses": ["Thomas & Martha", "Jason & Sarah", "Joey & Jackie", "Todd & Mira"]}
+{"question": "What was the name of the first Robin in the Batman comics?", "correct": "Dick Grayson", "responses": ["Jason Todd", "Bruce Wayne", "Tim Drake", "Dick Grayson"]}
+{"question": "What is the real name of the \"Master Of Magnetism\" Magneto?", "correct": "Max Eisenhardt", "responses": ["Pietro Maximoff", "Johann Schmidt", "Charles Xavier", "Max Eisenhardt"]}
+{"question": "Who is the second person to take up the mantle of Night Owl in the Watchmen graphic novel?", "correct": "Daniel Dreiberg", "responses": ["Adrian Veidt", "Hollis Mason", "Nelson Gardner", "Daniel Dreiberg"]}
+{"question": "What's the weakness of american vampires (Scott Snyder's American Vampire)?", "correct": "Gold", "responses": ["Gold", "Silver", "Sunlight", "Wood"]}
+{"question": "What is the area of a circle with a diameter of 20 inches if \u03c0= 3.1415?", "correct": "314.15 Inches", "responses": ["3141.5 Inches", "380.1215 Inches", "314.15 Inches", "1256.6 Inches"]}
+{"question": "What are the first 6 digits of the number \"Pi\"?", "correct": "3.14159", "responses": ["3.12423", "3.14169", "3.14159", "3.25812"]}
+{"question": "How many books are in Euclid's Elements of Geometry?", "correct": "13", "responses": ["17", "10", "13", "8"]}
+{"question": "What is the name of the family that the domestic cat is a member of?", "correct": "Felidae", "responses": ["Felis", "Cat", "Felidae", "Felinae"]}
+{"question": "What is the fastest animal?", "correct": "Peregrine Falcon", "responses": ["Cheetah", "Horsefly", "Peregrine Falcon", "Golden Eagle"]}
+{"question": "The dish Fugu, is made from what family of fish?", "correct": "Pufferfish", "responses": ["Salmon", "Pufferfish", "Bass", "Mackerel"]}
+{"question": "What is the common term for bovine spongiform encephalopathy (BSE)?", "correct": "Mad Cow disease", "responses": ["Weil's disease", "Foot-and-mouth disease", "Milk fever", "Mad Cow disease"]}
+{"question": "What is the collective noun for rats?", "correct": "Mischief", "responses": ["Mischief", "Drift", "Pack", "Race"]}
+{"question": "A positron is an antiparticle of a what?", "correct": "Electron", "responses": ["Neutron", "Proton", "Electron", "Photon"]}
+{"question": "Approximately how long is a year on Uranus?", "correct": "84 Earth years", "responses": ["47 Earth years", "84 Earth years", "109 Earth years", "62 Earth years"]}
+{"question": "On the periodic table of elements, what is the symbol for Tin?", "correct": "Sn", "responses": ["Ni", "Ti", "Sn", "Na"]}
+{"question": "Which color cannot be produced in Roses, even through genetic alteration?", "correct": "Blue", "responses": ["Orange", "Blue", "Brown", "Black"]}
+{"question": "Which of these is not a real character in the cartoon series My Little Pony: Friendship is Magic?", "correct": "Rose Marene", "responses": ["Pinkie Pie", "Rose Marene", "Maud Pie", "Rainbow Dash"]}
+{"question": "What is the cartoon character, Andy Capp, known as in Germany?", "correct": "Willi Wakker", "responses": ["Willi Wakker", "Dick Tingeler", "Helmut Schmacker", "Rod Tapper"]}
+{"question": "Who created \"RWBY\"?", "correct": "Monty Oum", "responses": ["Miles Luna", "Monty Oum", "Kerry Shawcross", "Shane Newville"]}
+{"question": "Who voiced Finn in Adventure Time?", "correct": "Jeremy Shada", "responses": ["Jeremy Shada", "Nolan North", "Tom Kenny", "John DiMaggio"]}
+{"question": "What animated internet character is known to answer emails with his boxing gloves?", "correct": "Strong Bad", "responses": ["Strong Glad", "Strong Bad", "Strong Sad", "Strong Mad"]}
+{"question": "Which of these artists has NOT been a member of dancehall group Major Lazer?", "correct": "Skrillex", "responses": ["Skrillex", "Jillionaire", "Diplo", "Walshy Fire"]}
+{"question": "Which country does the electronic music duo \"The Knife\" originate from?", "correct": "Sweden", "responses": ["Denmark", "Sweden", "Norway", "Finland"]}
+{"question": "What was Radiohead's first album?", "correct": "Pablo Honey", "responses": ["The Bends", "A Moon Shaped Pool", "Pablo Honey", "Kid A"]}
+{"question": "Which Iron Maiden album did the song \"Dream of Mirrors\" feature in?", "correct": "Brave New World", "responses": ["A Matter of Life and Death", "Dance of Death", "Somewhere in Time", "Brave New World"]}
+{"question": "Which of these albums is a Wu-Tang Clan album?", "correct": "Iron Flag", "responses": ["Perfect Hair", "Licensed to Ill", "The Low End Theory", "Iron Flag"]}
+{"question": "What mineral has the lowest number on the Mohs scale?", "correct": "Talc", "responses": ["Talc", "Gypsum", "Diamond", "Quartz"]}
+{"question": "Who developed the first successful polio vaccine in the 1950s?", "correct": "Jonas Salk", "responses": ["Frederick Robbins", "Jonas Salk", "John F. Enders", "Thomas Weller"]}
+{"question": "Which of these elements on the Periodic Table is a Noble Gas?", "correct": "Neon", "responses": ["Neon", "Potassium", "Iodine", "Colbalt"]}
+{"question": "Deionized water is water with which of the following removed?", "correct": "Iron", "responses": ["Iron", "Oxygen", "Uncharged atoms", "Hydrogen"]}
+{"question": "What is the alphanumeric representation of the imaginary number?", "correct": "i", "responses": ["x", "e", "i", "n"]}
+{"question": "To the nearest whole number, how many radians are in a whole circle?", "correct": "6", "responses": ["4", "3", "5", "6"]}
+{"question": "What Greek letter is used to signify summation?", "correct": "Sigma", "responses": ["Omega", "Alpha", "Sigma", "Delta"]}
+{"question": "Which greek mathematician ran through the streets of Syracuse naked while shouting \"Eureka\" after discovering the principle of displacement?", "correct": "Archimedes", "responses": ["Archimedes", "Homer", "Eratosthenes", "Euclid"]}
+{"question": "Who was the Prime Minister of the United Kingdom for most of World War II?", "correct": "Winston Churchill", "responses": ["Neville Chamberlain", "Harold Macmillan", "Winston Churchill", "Edward Heath"]}
+{"question": "Which country had an \"Orange Revolution\" between 2004 and 2005?", "correct": "Ukraine", "responses": ["Lithuania", "Belarus", "Ukraine", "Latvia"]}
+{"question": "When Christopher Columbus sailed to America, what was the first region he arrived in?", "correct": "The Bahamas Archipelago", "responses": ["Florida", "Nicaragua", "The Bahamas Archipelago", "Isthmus of Panama"]}
+{"question": "In which years did the Battle of Gallipoli take place?", "correct": "1915 - 1916", "responses": ["1914 - 1915", "1915 - 1916", "1915 - 1918", "1914 - 1918"]}
+{"question": "In 1961, an American B-52 aircraft crashed and nearly detonated two 4mt nuclear bombs over which US city?", "correct": "Goldsboro, North Carolina", "responses": ["Jacksonville, Florida", "Hicksville, New York", "Goldsboro, North Carolina", "Conway, Arkansas"]}
+{"question": "Which of these teams isn't a member of the NHL's \"Original Six\" era?", "correct": "Philadelphia Flyers", "responses": ["New York Rangers", "Toronto Maple Leafs", "Boston Bruins", "Philadelphia Flyers"]}
+{"question": "In a game of snooker, what colour ball is worth 3 points?", "correct": "Green", "responses": ["Brown", "Green", "Yellow", "Blue"]}
+{"question": "How many premier league trophies did Sir Alex Ferguson win during his time at Manchester United?", "correct": "13", "responses": ["13", "22", "11", "20"]}
+{"question": "Who is Manchester United's top premier league goal scorer?", "correct": "Wayne Rooney", "responses": ["Wayne Rooney", "Sir Bobby Charlton", "David Beckham", "Ryan Giggs"]}
+{"question": "Which NBA player has the most games played over the course of their career?", "correct": "Robert Parish", "responses": ["Kobe Bryant", "Kareem Abdul-Jabbar", "Robert Parish", "Kevin Garnett"]}
+{"question": "What is the first Mersenne prime exponent over 1000?", "correct": "1279", "responses": ["1009", "1069", "2203", "1279"]}
+{"question": "Which king was killed at the Battle of Bosworth Field in 1485?", "correct": "Richard III", "responses": ["James I", "Richard III", "Edward V", "Henry VII"]}
+{"question": "What was the transfer of disease, crops, and people across the Atlantic shortly after the discovery of the Americas called?", "correct": "The Columbian Exchange", "responses": ["The Columbian Exchange", "Triangle Trade", "The Silk Road", "Transatlantic Slave Trade"]}
+{"question": "In 1845, a series of wars named after which indigenous people began in New Zealand?", "correct": "M\u0101ori", "responses": ["Polynesians", "M\u0101ori", "Papuans", "Aborigines"]}
+{"question": "The Panama Canal was finished under the administration of which U.S. president?", "correct": "Woodrow Wilson", "responses": ["Theodore Roosevelt", "Herbert Hoover", "Woodrow Wilson", "Franklin Delano Roosevelt"]}
+{"question": "In Marvel Comics, Taurus is the founder and leader of which criminal organization?", "correct": "Zodiac", "responses": ["The Union", "Tiger Mafia", "Zodiac", "Scorpio"]}
+{"question": "In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance?", "correct": "Wally West", "responses": ["Johnny Quick", "Jay Garrick", "Eobard Thawne", "Wally West"]}
+{"question": "In Bionicle, who was formerly a Av-Matoran and is now the Toa of Light?", "correct": "Takua", "responses": ["Tahu", "Jaller", "Takua", "Vakama"]}
+{"question": "In what year were achivements added to Steam?", "correct": "2007", "responses": ["2007", "2006", "2008", "2009"]}
+{"question": "When was Final Fantasy XV released?", "correct": "November 29th, 2016", "responses": ["December 31th, 2016", "October 25th, 2016", "November 30th, 2016", "November 29th, 2016"]}
+{"question": "In the game Destiny, who succeeded Peter Dinklage in voicing the protagonist's \"Ghost\"?", "correct": "Nolan North", "responses": ["John DiMaggio", "Mark Hamill", "Nolan North", "Troy Baker"]}
+{"question": "In \"Call Of Duty: Zombies\", which map introduced the perk \"PhD Flopper\"?", "correct": "Ascension", "responses": ["Call Of The Dead", "Moon", "Die Rise", "Ascension"]}
+{"question": "In Left 4 Dead, which campaign has the protagonists going through a subway in order to reach a hospital for evacuation?", "correct": "No Mercy", "responses": ["Blood Harvest", "Hospital Havoc", "No Mercy", "Subway Sprint"]}
+{"question": "Who painted the Mona Lisa?", "correct": "Leonardo da Vinci", "responses": ["Vincent van Gogh", "Pablo Picasso", "Claude Monet", "Leonardo da Vinci"]}
+{"question": "What year was the Mona Lisa finished?", "correct": "1504", "responses": ["1523", "1511", "1487", "1504"]}
+{"question": "Who painted The Starry Night?", "correct": "Vincent van Gogh", "responses": ["Leonardo da Vinci", "Michelangelo", "Vincent van Gogh", "Pablo Picasso"]}
+{"question": "The seed drill was invented by which British inventor?", "correct": "Jethro Tull", "responses": ["Jethro Tull", "J.J Thomson", "Isaac Newton", "Charles Babbage"]}
+{"question": "During what war did the \"Cuban Missile Crisis\" occur?", "correct": "Cold War", "responses": ["Cold War", "World War II", "Revolutionary War", "World War I"]}
+{"question": "Which of these countries was NOT a part of the Soviet Union?", "correct": "Afghanistan", "responses": ["Kazakhstan", "Afghanistan", "Turkmenistan", "Uzbekistan"]}
+{"question": "When was the Grand Patriotic War in the USSR concluded?", "correct": "May 9th, 1945", "responses": ["August 9th, 1945", "May 9th, 1945", "December 11th, 1945", "September 2nd, 1945"]}
+{"question": "What are the base station trackers used for the HTC Vive called?", "correct": "Lighthouse", "responses": ["Lighthouse", "Motion", "Trackers", "Constellation"]}
+{"question": "Which of the following is the standard THX subwoofer crossover frequency?", "correct": "80 Hz", "responses": ["90 Hz", "100 Hz", "80 Hz", "70 Hz"]}
+{"question": "When did the CD begin to appear on the consumer market?", "correct": "1982", "responses": ["1962", "1972", "1982", "1992"]}
+{"question": "Which of the following cellular device companies is NOT headquartered in Asia?", "correct": "Nokia", "responses": ["Samsung", "LG Electronics", "Nokia", "HTC"]}
+{"question": "What is the \"Mitsubishi Wakamaru\"?", "correct": "A robot", "responses": ["A motorboat", "A robot", "A pickup truck", "An motorcycle"]}
+{"question": "Which 1958 movie starred Kirk Douglas and Tony Curtis as half-brothers Einar and Eric?", "correct": "The Vikings", "responses": ["The Vikings", "Spartacus", "Prince Valiant", "The Long Ships"]}
+{"question": "In what year was the first Transformers movie released?", "correct": "1986", "responses": ["1984", "1986", "2007", "2009"]}
+{"question": "In the 1971 film \"Willy Wonka & the Chocolate Factory\", who played Willy Wonka?", "correct": "Gene Wilder", "responses": ["Johnny Depp", "Peter Ostrum", "Gene Wilder", "Shia LeBouf"]}
+{"question": "What is the name of the villian in the 2015 Russian-American Sci-Fi Movie \"Hardcore Henry\"?", "correct": "Akan", "responses": ["Estelle", "Akan", "Jimmy", "Henry"]}
+{"question": "What was the name of the protagonist in the movie Commando (1985)?", "correct": "John Matrix", "responses": ["John Matrix", "Harry Tasker", "Douglas Quaid", "Ben Richards"]}
+{"question": "Which animal was part of an Russian domestication experiment in 1959?", "correct": "Foxes", "responses": ["Foxes", "Pigeons", "Bears", "Alligators"]}
+{"question": "What is the name for a male bee that comes from an unfertilized egg?", "correct": "Drone", "responses": ["Drone", "Worker", "Male", "Soldier"]}
+{"question": "What is the collective noun for bears?", "correct": "Sloth", "responses": ["Drove", "Husk", "Sloth", "Tribe"]}
+{"question": "\"Decapods\" are an order of ten-footed crustaceans.  Which of these are NOT decapods?", "correct": "Krill", "responses": ["Lobsters", "Krill", "Shrimp", "Crabs"]}
+{"question": "What level do you have to be to get a service medal on CS:GO?", "correct": "40", "responses": ["30", "20", "40", "50"]}
+{"question": "In \"Overwatch\", how much health does Roadhog's \"Take a Breather\" ability recover?", "correct": "300", "responses": ["100", "400", "200", "300"]}
+{"question": "Which was the first \"Call Of Duty: Zombies\" map to introduce the \"Wunderwaffe DG-2\"?", "correct": "Shi No Numa", "responses": ["Tranzit", "Der Riese", "Shi No Numa", "Kino Der Toten"]}
+{"question": "The mobile game \"Jetpack Joyride\" was released in what year?", "correct": "2011", "responses": ["2012", "2014", "2009", "2011"]}
+{"question": "In Call Of Duty: Black Ops II, who is the main antagonist?", "correct": "Raul Men\u00e9ndez", "responses": ["Vladimir Makarov", "DeFalco", "Frank Woods", "Raul Men\u00e9ndez"]}
+{"question": "In what year was the video game company Electronic Arts founded?", "correct": "1982", "responses": ["1999", "1981", "1982", "2005"]}
+{"question": "Who was the only US President to be elected four times?", "correct": "Franklin Roosevelt", "responses": ["Theodore Roosevelt", "George Washington", "Abraham Lincoln", "Franklin Roosevelt"]}
+{"question": "When did the Crisis of the Third Century begin?", "correct": "235 AD", "responses": ["235 BC", "242 AD", "210 AD", "235 AD"]}
+{"question": "In what year did Texas secede from Mexico?", "correct": "1836", "responses": ["1845", "1844", "1838", "1836"]}
+{"question": "This Greek mythological figure is the god/goddess of battle strategy (among other things).", "correct": "Athena", "responses": ["Apollo", "Ares", "Athena", "Artemis"]}
+{"question": "The Hippogriff, not to be confused with the Griffon, is a magical creature with the front half of an eagle, and the back half of what?", "correct": "A Horse", "responses": ["A Dragon", "A Tiger", "A Horse", "A Lion"]}
+{"question": "Hera is god of...", "correct": "Marriage", "responses": ["Sea", "War", "Marriage", "Agriculture"]}
+{"question": "According to Japanese folklore, what is the favorite food of the Kappa.", "correct": "Cucumbers", "responses": ["Cucumbers", "Soba", "Kabocha", "Nasu"]}
+{"question": "What animal did Queen Pasipahe sleep with before she gave birth to the Minotaur in Greek Mythology?", "correct": "Bull", "responses": ["Horse", "Pig", "Bull", "Ox"]}
+{"question": "Before voicing Pearl in Steven Universe, Deedee Magno Hall was part of which American band?", "correct": "The Party", "responses": ["The Pussycat Dolls", "The Cheetah Girls", "The Weather Girls", "The Party"]}
+{"question": "Where was Kanye West born?", "correct": "Atlanta, Georgia", "responses": ["Atlanta, Georgia", "Los Angeles, California", "Detroit, Michigan", "Chicago, Illinois"]}
+{"question": "In which of these TV shows did the chef Gordon Ramsay not appear?", "correct": "Auction Hunters", "responses": ["Auction Hunters", "Ramsay's Kitchen Nightmares", "Hell's Kitchen", "Hotel Hell"]}
+{"question": "Which TV chef wrote an autobiography titled \"Humble Pie\"?", "correct": "Gordon Ramsay", "responses": ["Antony Worrall Thompson", "Jamie Oliver", "Gordon Ramsay", "Ainsley Harriott"]}
+{"question": "What year was O.J. Simpson aquitted of his murder charges?", "correct": "1995", "responses": ["1991", "1996", "1995", "1992"]}
+{"question": "What type of animal is a natterjack?", "correct": "Toad", "responses": ["Toad", "Insect", "Bird", "Fish"]}
+{"question": "Which of these musicals won the Tony Award for Best Musical?", "correct": "Rent", "responses": ["Newsies", "The Color Purple", "Rent", "American Idiot"]}
+{"question": "In which Shakespearean play will you find the suicide of Ophelia?", "correct": "Hamlet", "responses": ["Macbeth", "Othello", "King Lear", "Hamlet"]}
+{"question": "Which car manufacturer won the 2016 24 Hours of Le Mans?", "correct": "Porsche", "responses": ["Audi", "Toyota", "Porsche", "Ferrari"]}
+{"question": "How many French Open's did Bj\u00f6rn Borg win?", "correct": "6", "responses": ["9", "4", "2", "6"]}
+{"question": "Which professional wrestler fell from the rafters to his death during a live Pay-Per-View event in 1999?", "correct": "Owen Hart", "responses": ["Chris Benoit", "Lex Luger", "Owen Hart", "Al Snow"]}
+{"question": "Which Formula 1 driver switched teams in the middle of the 2017 season?", "correct": "Carlos Sainz Jr.", "responses": ["Rio Haryanto", "Jolyon Palmer", "Daniil Kvyat", "Carlos Sainz Jr."]}
+{"question": "Who won the 2018 Monaco Grand Prix?", "correct": "Daniel Ricciardo", "responses": ["Lewis Hamilton", "Kimi Raikkonen", "Sebastian Vettel", "Daniel Ricciardo"]}
+{"question": "Who is the villain company in \"Stardew Valley\"?", "correct": "Joja Co", "responses": ["Joja Co", "Ronin", "Empire", "Robotnik Industry's"]}
+{"question": "How many classes are there in Team Fortress 2?", "correct": "9", "responses": ["7", "10", "8", "9"]}
+{"question": "How much did the indie game \"Cave Story\" cost when it was first released in 2004?", "correct": "$0 USD", "responses": ["$5 USD", "$0 USD", "$15 USD", "$10 USD"]}
+{"question": "What is the name of the 8th installment in the Fire Emblem series?", "correct": "The Sacred Stones", "responses": ["The Sacred Stones", "Blazing Sword", "Path of Radiance", "Awakening"]}
+{"question": "In the 2000 video game \"Crimson Skies,\" what was the name of the protagonists' zeppelin?", "correct": "Pandora", "responses": ["Pandora", "Helios", "Orion", "Icarus"]}
+{"question": "What special item did the creators of Cards Against Humanity ship for their Black Friday pack?", "correct": "Bull Feces", "responses": ["A Racist Toy", "A Card Expansion", "Bull Feces", "Cat Urine"]}
+{"question": "In Yu-Gi-Oh, how does a player perform an Xyz Summon?", "correct": "Overlay at least 2 Monsters of the Same Level", "responses": ["Add the Monsters' Levels Together to Match the Xyz Monster", "Overlay at least 2 Monsters of the Same Level", "Activate a Spell and Send Monsters to the Graveyard", "Banish A Number of Monsters From Your Hand And Deck"]}
+{"question": "Which of the following tabletop games is the oldest?", "correct": "Go", "responses": ["Shogi", "Chess", "Go", "Mahjong"]}
+{"question": "Europa Universalis is a strategy video game based on which French board game?", "correct": "Europa Universalis", "responses": ["Europa Universalis", "Europe and the Universe", "Europa!", "Power in Europe"]}
+{"question": "In the Board Game, Settlers of Catan, a die roll of what number causes the Robber to attack?", "correct": "7", "responses": ["10", "7", "3", "1"]}
+{"question": "What is the original name of Final Fantasy XV?", "correct": "Final Fantasy Versus XIII", "responses": ["Final Fantasy: Reborn", "Final Fantasy XVI", "Final Fantasy Versus XIII", "Final Fantasy XIII-3"]}
+{"question": "What was the first interactive movie video game?", "correct": "Astron Belt", "responses": ["M.A.C.H. 3", "Dragon's Lair", "Cube Quest", "Astron Belt"]}
+{"question": "Who created the pump \"F.L.U.D.D.\" Mario uses in Super Mario Sunshine?", "correct": "Elvin Gadd", "responses": ["Elvin Gadd", "Nirona", "Robert Fludd", "Crygor"]}
+{"question": "What is the item required to summon the boss Duke Fishron in the game Terraria?", "correct": "Truffle Worm", "responses": ["Suspicious Looking Fish", "Slug", "Truffle Worm", "King Grasshopper"]}
+{"question": "In \"Call Of Duty: Zombies\", completing which map's main easter egg will reward you with the achievement, \"High Maintenance\"?", "correct": "Die Rise", "responses": ["Die Rise", "Origins", "Mob Of The Dead", "Ascension"]}
+{"question": "What is the scientific name for the \"Polar Bear\"?", "correct": "Ursus Maritimus", "responses": ["Ursus Maritimus", "Ursus Arctos", "Ursus Spelaeus", "Polar Bear"]}
+{"question": "What does a milliner make and sell?", "correct": "Hats", "responses": ["Shirts", "Belts", "Hats", "Shoes"]}
+{"question": "Which of these companies does NOT manufacture automobiles?", "correct": "Ducati", "responses": ["Fiat", "Ducati", "Nissan", "GMC"]}
+{"question": "What is the unit of currency in Laos?", "correct": "Kip", "responses": ["Konra", "Kip", "Dollar", "Ruble"]}
+{"question": "What is the German word for \"spoon\"?", "correct": "L\u00f6ffel", "responses": ["Messer", "L\u00f6ffel", "Gabel", "Essst\u00e4bchen"]}
+{"question": "The Mexican Beer \"Corona\" is what type of beer?", "correct": "Pale Lager", "responses": ["Baltic Porter", "Pale Lager", "Pilfsner", "India Pale Ale"]}
+{"question": "In Dragon Ball Z, who was the first character to go Super Saiyan 2?", "correct": "Gohan", "responses": ["Gohan", "Trunks", "Goku", "Vegeta"]}
+{"question": "Which animation studio animated the 2016 anime \"Mob Psycho 100\"?", "correct": "Bones", "responses": ["Madhouse", "A-1 Pictures", "Shaft", "Bones"]}
+{"question": "Which of the following manga have the most tankouban volumes?", "correct": "Golgo 13", "responses": ["JoJo's Bizarre Adventure", "One Piece", "Detective Conan", "Golgo 13"]}
+{"question": "What sport is being played in the Anime Eyeshield 21?", "correct": "American Football", "responses": ["Baseball", "Basketball", "American Football", "Football"]}
+{"question": "In Pok\u00e9mon Chronicles, why was Misty afraid of Gyarados?", "correct": "She crawled into it's mouth as a baby.", "responses": ["She found it scary.", "It is part Bug.", "She was badly injured from it.", "She crawled into it's mouth as a baby."]}
+{"question": "Who was the British Prime Minister at the outbreak of the Second World War?", "correct": "Neville Chamberlain", "responses": ["Clement Attlee", "Winston Churchill", "Neville Chamberlain", "Stanley Baldwin"]}
+{"question": "The 2014 movie \"The Raid 2: Berandal\" was mainly filmed in which Asian country?", "correct": "Indonesia", "responses": ["Malaysia", "Brunei", "Indonesia", "Thailand"]}
+{"question": "Which of these is NOT one of Donald Trump's children?", "correct": "Julius", "responses": ["Julius", "Ivanka", "Eric", "Donald Jr."]}
+{"question": "Between 1973 to 1990, what country was ruled by dictator Augusto Pinochet?", "correct": "Chile", "responses": ["Ethiopia", "Indonesia", "Chile", "Nicaragua"]}
+{"question": "Which of the following Argentinian presidents was elected in 2015?", "correct": "Mauricio Macri", "responses": ["Juan Domingo Peron", "Nestor Kirchner", "Mauricio Macri", "Cristina Fernandez de Kirchner"]}
+{"question": "What was the cause of death for Freddie Mercury?", "correct": "Pneumonia", "responses": ["Pneumonia", "Brain Hemorrhage", "Stomach Cancer", "HIV"]}
+{"question": "What is generally considered to be William Shakespeare's birth date?", "correct": "April 23rd, 1564", "responses": ["December 1st, 1750", "September 29th, 1699", "July 4th, 1409", "April 23rd, 1564"]}
+{"question": "Who out of these actresses is the youngest?", "correct": "Kiernan Shipka", "responses": ["Kiernan Shipka", "Ariel Winter", "Emma Watson", "Bonnie Wright"]}
+{"question": "In what year did \"Bob Ross\" die?", "correct": "1995", "responses": ["1989", "1995", "1997", "1986"]}
+{"question": "When was Elvis Presley born?", "correct": "January 8, 1935", "responses": ["January 8, 1935", "July 18, 1940", "December 13, 1931", "April 17, 1938"]}
+{"question": "How old was Muhammad Ali when he died?", "correct": "74", "responses": ["He's still alive", "56", "74", "61"]}
+{"question": "Which of these celebrities was not a member of the Jackson 5?", "correct": "Bo Jackson", "responses": ["Marlon Jackson", "Bo Jackson", "Jermaine Jackson", "Tito Jackson"]}
+{"question": "Which of the following is not a piece from the 1950's musical West Side Story?", "correct": "The Back Alley", "responses": ["Tonight", "Mambo", "The Back Alley", "Maria"]}
+{"question": "The musical \"Dirty Rotten Scoundrels\" is set in what country?", "correct": "France", "responses": ["Germany", "France", "Sweden", "USA"]}
+{"question": "Who played Marquis de Lafayette and Thomas Jefferson in the original Broadway run of Hamilton?", "correct": "Daveed Diggs", "responses": ["Daveed Diggs", "Javier Mu\u00f1oz", "Wayne Brady", "Lin-Manuel Miranda"]}
+{"question": "According to the Egyptian Myth of Osiris, who murdered Osiris?", "correct": "Set", "responses": ["Ra", "Horus", "Set", "Anhur"]}
+{"question": "Which greek god/goddess tossed a golden apple with the words \"for the fairest\" into the middle of the feast of the gods?", "correct": "Eris", "responses": ["Hades", "Eris", "Artemis", "Ares"]}
+{"question": "What is the name of the Greek god of peaceful deaths?", "correct": "Thanatos", "responses": ["Tartarus", "Thanatos", "Moros", "Hades"]}
+{"question": "Which Formula One driver was nicknamed 'The Professor'?", "correct": "Alain Prost", "responses": ["Alain Prost", "Ayrton Senna", "Emerson Fittipaldi", "Niki Lauda"]}
+{"question": "Which team was the 2014-2015 NBA Champions?", "correct": "Golden State Warriors", "responses": ["Atlanta Hawks", "Houston Rockets", "Cleveland Cavaliers", "Golden State Warriors"]}
+{"question": "Which soccer team won the Copa Am\u00e9rica 2015 Championship ?", "correct": "Chile", "responses": ["Brazil", "Chile", "Paraguay", "Argentina"]}
+{"question": "Who won the \"Champions League\" in 1999?", "correct": "Manchester United", "responses": ["Bayern Munich", "Barcelona", "Manchester United", "Liverpool"]}
+{"question": "Who was the top scorer of the 2014 FIFA World Cup?", "correct": "James Rodr\u00edguez", "responses": ["Thomas M\u00fcller", "Neymar", "Lionel Messi", "James Rodr\u00edguez"]}
+{"question": "Who had a 1973 hit with the song 'Hocus Pocus'?", "correct": "Focus", "responses": ["Pilot", "Focus", "AC/DC", "Rush"]}
+{"question": "Typically, how many keys are on a piano?", "correct": "88", "responses": ["12", "88", "96", "24"]}
+{"question": "Which singer was featured in Swedish producer Avicii's song \"Wake Me Up\"?", "correct": "Aloe Blacc", "responses": ["John Legend", "Pharrell Williams", "CeeLo Green", "Aloe Blacc"]}
+{"question": "How many members are in the Japanese rock band SCANDAL?", "correct": "4", "responses": ["5", "4", "2", "18"]}
+{"question": "What date is referenced in the 1971 song \"September\" by Earth, Wind & Fire?", "correct": "21st of September", "responses": ["26th of September", "23rd of September", "21st of September", "24th of September"]}
+{"question": "What is the defining characteristic of someone who is described as hirsute?", "correct": "Hairy", "responses": ["Hairy", "Funny", "Tall", "Rude"]}
+{"question": "Scotch whisky and Drambuie make up which cocktail?", "correct": "Rusty Nail", "responses": ["Screwdriver", "Rusty Nail", "Sex on the Beach", "Manhattan"]}
+{"question": "In 2013 how much money was lost by Nigerian scams?", "correct": "$12.7 Billion", "responses": ["$12.7 Billion", "$956 Million", "$95 Million", "$2.7 Billion"]}
+{"question": "What alcoholic drink is mainly made from juniper berries?", "correct": "Gin", "responses": ["Gin", "Vodka", "Tequila", "Rum"]}
+{"question": "Which item of clothing is usually worn by a Scotsman at a wedding?", "correct": "Kilt", "responses": ["Dress", "Rhobes", "Kilt", "Skirt"]}
+{"question": "In \"The Big Bang Theory\", what is Howard Wolowitz's nickname in World of Warcraft?", "correct": "Wolowizard", "responses": ["Priya", "Rajesh", "Sheldor", "Wolowizard"]}
+{"question": "What is Meg's full name in \"Family Guy\"?", "correct": "Megatron Griffin", "responses": ["Megatron Griffin", "Who-Cares Griffin", "Neil Griffin", "Megan Griffin"]}
+{"question": "Which of the following was not an actor/actress on the American television show \"Saturday Night Live\" in Season 42?", "correct": "Tina Fey", "responses": ["Mikey Day", "Tina Fey", "Sasheer Zamata", "Kate McKinnon"]}
+{"question": "What is the name of the main antagonists in Battlestar Galactica?", "correct": "The Cylons", "responses": ["The Federation", "The Collective", "The Rebels", "The Cylons"]}
+{"question": "Which of these is NOT a city in Saudi Arabia?", "correct": "Dubai", "responses": ["Dubai", "Medina", "Mecca", "Riyadh"]}
+{"question": "In which English county is Stonehenge?", "correct": "Wiltshire", "responses": ["Cumbria", "Wiltshire", "Herefordshire", "Somerset"]}
+{"question": "What is the capital of the State of Washington, United States?", "correct": "Olympia", "responses": ["Washington D.C.", "Olympia", "Seattle", "Yukon"]}
+{"question": "The towns of Brugelette, Arlon and Ath are located in which country?", "correct": "Belgium", "responses": ["Belgium", "Luxembourg", "Andorra", "France"]}
+{"question": "Where is the \"Sonoran Desert\" located?", "correct": "North America", "responses": ["South America", "Asia", "Africa", "North America"]}
+{"question": "What episode of \"Mr. Bean\" saw him trying to prevent people from seeing him naked?", "correct": "Mr. Bean in Room 426", "responses": ["Mr. Bean in Room 426", "Back to School Mr. Bean", "The Trouble with Mr. Bean", "Mr. Bean Goes to Town"]}
+{"question": "What actor portrays Hogan \"Wash\" Washburne in the TV Show Firefly?", "correct": "Alan Tudyk", "responses": ["Adam Baldwin", "Sean Maher", "Alan Tudyk", "Nathan Fillion"]}
+{"question": "When was the Sega Genesis released in Japan?", "correct": "October 29, 1988", "responses": ["September 1, 1986", "November 30, 1990", "October 29, 1988", "August 14, 1989"]}
+{"question": "What two characters from the game Undertale are never in a relationship or not related?", "correct": "Frisk & Chara", "responses": ["Alphys & Undyne", "Sans & Papyrus", "Frisk & Chara", "Toriel & Asgore"]}
+{"question": "Which ones of these Mario Kart games was made for the Gameboy Advance?", "correct": "Mario Kart: Super Circuit", "responses": ["Mario Kart 64", "Super Mario Kart", "Mario Kart: Super Circuit", "Mario Kart: Double Dash"]}
+{"question": "Which character does the player play as in the video game \"Bastion\"?", "correct": "The Kid", "responses": ["Zia", "Zulf", "Rucks", "The Kid"]}
+{"question": "How old is Chloe Price in Life is Strange: Before the Storm?", "correct": "16", "responses": ["24", "16", "19", "15"]}
+{"question": "What song plays in the ending credits of the anime \"Ergo Proxy\"?", "correct": "Paranoid Android", "responses": ["Bittersweet Symphony", "Paranoid Android", "Mad World", "Sadistic Summer"]}
+{"question": "What is the name of the final villain in the manga series \"Bleach\"?", "correct": "Yhwach", "responses": ["Yuhabah", "Juhabach", "Juha Bach", "Yhwach"]}
+{"question": "What was the reason for the banning of episode 35 of the \"Pok\u00e9mon Original Series\" Anime?", "correct": "Gun Usage", "responses": ["Gun Usage", "Strong Violence", "Flashing Images", "Jynx"]}
+{"question": "Which of the following films was NOT directed by Hayao Miyazaki?", "correct": "Wolf Children", "responses": ["Wolf Children", "Princess Mononoke", "Spirited Away", "Kiki's Delivery Service"]}
+{"question": "In JoJo's Bizarre Adventure, who says \"Yare yare daze\"?", "correct": "Jotaro Kujo", "responses": ["Joseph Joestar", "Jolyne Cujoh", "Jotaro Kujo", "Koichi Hirose"]}
+{"question": "The humerus, paired radius, and ulna come together to form what joint?", "correct": "Elbow", "responses": ["Elbow", "Knee", "Ankle", "Sholder"]}
+{"question": "Who made the discovery of X-rays?", "correct": "Wilhelm Conrad R\u00f6ntgen", "responses": ["James Watt", "Thomas Alva Edison", "Wilhelm Conrad R\u00f6ntgen", "Albert Einstein"]}
+{"question": "In Psychology, which need appears highest in the \"Maslow's hierarchy of needs\" pyramid?", "correct": "Esteem", "responses": ["Love", "Physiological", "Safety", "Esteem"]}
+{"question": "What is the scientific term for 'taste'?", "correct": "Gustatory Perception", "responses": ["Gustatory Perception", "Olfaction", "Somatosensation", "Auditory Perception"]}
+{"question": "What term is best associated with Sigmund Freud?", "correct": "Psychoanalysis", "responses": ["Theory of Gravity", "Psychoanalysis", "Dialectical Behavior Therapy", "Cognitive-Behavioral Therapy"]}
+{"question": "About how old is Earth?", "correct": "4.5 Billion Years", "responses": ["2.5 Billion Years", "5.5 Billion Years", "4.5 Billion Years", "3.5 Billion Years"]}
+{"question": "Which chemical element was originally known as Alabamine?", "correct": "Astatine", "responses": ["Molybdenum", "Antimony", "Astatine", "Selenium"]}
+{"question": "What was the first living creature in space?", "correct": "Fruit Flies", "responses": ["Fruit Flies", "Dog", "Monkey", "Mouse"]}
+{"question": "The \"Tibia\" is found in which part of the body?", "correct": "Leg", "responses": ["Hand", "Leg", "Head", "Arm"]}
+{"question": "Deuterium is an isotope of which element?", "correct": "Hydrogen", "responses": ["Hydrogen", "Nitrogen", "Helium", "Neon"]}
+{"question": "What part of the brain takes its name from the Greek for seahorse?", "correct": "Hippocampus", "responses": ["Thalamus", "Cerebellum", "Hippocampus", "Amygdala"]}
+{"question": "Which of these choices is not one of the phases of mitosis?", "correct": "Diplophase", "responses": ["Anaphase", "Diplophase", "Metaphase", "Telophase"]}
+{"question": "What is the Swedish word for \"window\"?", "correct": "F\u00f6nster", "responses": ["Sk\u00e4rm", "Ruta", "H\u00e5l", "F\u00f6nster"]}
+{"question": "What country saw a world record 315 million voters turn out for elections on May 20, 1991?", "correct": "India", "responses": ["Poland", "United States of America", "India", "Soviet Union"]}
+{"question": "Which slogan did the fast food company, McDonald's, use before their \"I'm Lovin' It\" slogan?", "correct": "We Love to See You Smile", "responses": ["Have It Your Way", "We Love to See You Smile", "Making People Happy Through Food", "Why Pay More!?"]}
+{"question": "What is real haggis made of?", "correct": "Sheep's Heart, Liver and Lungs", "responses": ["Sheep's Heart, Liver and Lungs", "Sheep's Heart, Kidneys and Lungs", "Whole Sheep", "Sheep's Liver, Kidneys and Eyes"]}
+{"question": "Which of these words means \"idle spectator\"?", "correct": "Gongoozler", "responses": ["Meupareunia", "Gossypiboma", "Jentacular", "Gongoozler"]}
+{"question": "Which of these Roman gods doesn't have a counterpart in Greek mythology?", "correct": "Janus", "responses": ["Janus", "Mars", "Juno", "Vulcan"]}
+{"question": "What is the name of the Greek god of blacksmiths?", "correct": "Hephaestus", "responses": ["Vulcan", "Dyntos", "Hephaestus", "Artagatus"]}
+{"question": "Who is the god of war in Polynesian mythology?", "correct": "'Oro", "responses": ["'Oro", "Kohara", "M\u0101ui", "Hina"]}
+{"question": "Which \"Green Arrow\" sidekick commonly wears a baseball cap?", "correct": "Roy Harper", "responses": ["Black Canary", "Dick Grayson", "Roy Harper", "Emiko Queen"]}
+{"question": "In Calvin and Hobbes, what is the name of the principal at Calvin's school?", "correct": "Mr. Spittle", "responses": ["Mr. Boreman", "Mr. Moe", "Mr. Spitling", "Mr. Spittle"]}
+{"question": "What is Hellboy's true name?", "correct": "Anung Un Rama", "responses": ["Ogdru Jahad", "Azzael", "Anung Un Rama", "Right Hand of Doom"]}
+{"question": "In Black Hammer, what dimension does Colonel Weird travel through?", "correct": "Para-Zone", "responses": ["Para-Zone", "Phantom Zone", "Hyperspace", "Mirror Universe"]}
+{"question": "A carnivorous animal eats flesh, what does a nucivorous animal eat?", "correct": "Nuts", "responses": ["Fruit", "Nuts", "Nothing", "Seaweed"]}
+{"question": "What color/colour is a polar bear's skin?", "correct": "Black", "responses": ["Green", "Pink", "Black", "White"]}
+{"question": "What dog bread is one of the oldest breeds of dog and has flourished since before 400 BCE.", "correct": "Pugs", "responses": ["Boxers", "Pugs", "Chihuahua", "Bulldogs"]}
+{"question": "What is the scientific name of the Common Chimpanzee?", "correct": "Pan troglodytes", "responses": ["Panthera leo", "Gorilla gorilla", "Pan troglodytes", "Pan paniscus"]}
+{"question": "What year is considered to be the year that the British Empire ended?", "correct": "1997", "responses": ["1997", "1981", "1971", "1986"]}
+{"question": "In what year did Kentucky become the 15th state to join the union?", "correct": "1792", "responses": ["1792", "1788", "1798", "1782"]}
+{"question": "In World War I, what was the name of the alliance of Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria?", "correct": "The Central Powers", "responses": ["The Axis Powers", "The Federation of Empires", "The Central Powers", "Authoritarian Alliance"]}
+{"question": "What is the name of the ship which was only a few miles away from the RMS Titanic when it struck an iceberg on April 14, 1912?", "correct": "Californian", "responses": ["Commerce", "Californian", "Carpathia", "Cristol"]}
+{"question": "After how many years would you celebrate your crystal anniversary?", "correct": "15", "responses": ["15", "10", "25", "20"]}
+{"question": "What is the last letter of the Greek alphabet?", "correct": "Omega", "responses": ["Mu", "Kappa", "Omega", "Epsilon"]}
+{"question": "Whose greyscale face is on the kappa emoticon on Twitch?", "correct": "Josh DeSeno", "responses": ["Jimmy DeSeno", "Josh DeSeno", "Justin DeSeno", "John DeSeno"]}
+{"question": "In the anime, \"Super Sonico\", what is Super Sonico's favorite food?", "correct": "Macroons", "responses": ["Pizza", "Macroons", "Ice Cream", "Chips"]}
+{"question": "What year did the anime \"Himouto! Umaru-chan\" air?", "correct": "2015", "responses": ["2012", "2014", "2015", "2013"]}
+{"question": "What studio animated Ouran High School Host Club?", "correct": "Bones", "responses": ["xebec", "Kyoto Animation", "Production I.G", "Bones"]}
+{"question": "In relation to the British Occupation in Ireland, what does the IRA stand for.", "correct": "Irish Republican Army", "responses": ["Irish Rebel Alliance", "Irish-Royal Alliance", "Irish Reformation Army", "Irish Republican Army"]}
+{"question": "Adolf Hitler was born on which date?", "correct": "April 20, 1889", "responses": ["February 6, 1889", "April 20, 1889", "June 12, 1889", "April 16, 1889"]}
+{"question": "Who was the leader of the Communist Party of Yugoslavia ?", "correct": "Josip Broz Tito", "responses": ["Aleskandar Petrovic", "Josip Broz Tito", "Milos Obilic", "Karadjordje Petrovic"]}
+{"question": "In which Shakespeare play does the character Marcellus say, \"Something is rotten in the state of Denmark\"?", "correct": "Hamlet", "responses": ["Twelfth Night", "King Lear", "Hamlet", "Macbeth"]}
+{"question": "Which of these people is NOT a part of the Internet comedy group Mega64?", "correct": "Jon Jafari", "responses": ["Shawn Chatfield", "Jon Jafari", "Derrick Acosta", "Rocco Botte"]}
+{"question": "How much weight did Chris Pratt lose for his role as Star-Lord in \"Guardians of the Galaxy\"?", "correct": "60 lbs", "responses": ["30 lbs", "70 lbs", "60 lbs", "50 lbs"]}
+{"question": "In 2014, this new top 100 rapper who featured in \"Computers\" and \"Body Dance\" was arrested in a NYPD sting for murder.", "correct": "Bobby Shmurda", "responses": ["Swae Lee", "DJ Snake", "Young Thug", "Bobby Shmurda"]}
+{"question": "In \"Magic: The Gathering\", what instant card has the highest converted mana cost?", "correct": "Blinkmoth Infusion", "responses": ["Blinkmoth Infusion", "Chant of Vitu-Ghazi", "Assert Authority", "Vitalizing Wind"]}
+{"question": "In what year was the card game Magic: the Gathering first introduced?", "correct": "1993", "responses": ["1998", "1987", "2003", "1993"]}
+{"question": "In which order do you need to hit some Deku Scrubs to open the first boss door in \"Ocarina of Time\"?", "correct": "2, 3, 1", "responses": ["2, 3, 1", "1, 2, 3", "1, 3, 2", "2, 1, 3"]}
+{"question": "In the Portal series, Aperture Science was founded under what name in the early 1940s?", "correct": "Aperture Fixtures", "responses": ["Aperture Fixtures", "Wheatley Laboratories", "Aperture Lavatories", "Aperture Science Innovators"]}
+{"question": "Without enchantments, which pickaxe in minecraft mines blocks the quickest.", "correct": "Golden", "responses": ["Obsidian", "Iron", "Golden", "Diamond"]}
+{"question": "In \"Call Of Duty: Zombies\", completing which map's easter egg will reward you with the achievement, \"Time Travel Will Tell\"?", "correct": "Shangri-La", "responses": ["Shangri-La", "Moon", "Die Rise", "Ascension"]}
+{"question": "Which one of these games came out first?", "correct": "Terraria", "responses": ["Starbound", "Factorio", "Minecraft", "Terraria"]}
+{"question": "When was \"Garry's Mod\" released?", "correct": "December 24, 2004", "responses": ["November 13, 2004", "December 24, 2004", "November 12, 2004", "December 13, 2004"]}
+{"question": "What was the name of the protagonist of Metal Gear Solid V: The Phantom Pain?", "correct": "Punished \"Venom\" Snake", "responses": ["Solid Snake", "Punished \"Venom\" Snake", "Ocelot", "Miller"]}
+{"question": "Which \"Perk-A-Cola\" in \"Call Of Duty: Zombies\" was \"reworked\" in \"Call of Duty: Black Ops II\"?", "correct": "Double Tap Root Beer", "responses": ["Who's Who", "Double Tap Root Beer", "Mule Kick", "Juggernog"]}
+{"question": "What mainly favored rifle is used by the Terrorists in Counter Strike: Global Offensive?", "correct": "AK-47", "responses": ["AK-74", "AK-47", "CZ-75 AUTO", "M4A4"]}
+{"question": "What numbers did Sayaka Maizono write on the wall in Dangan Ronpa Trigger Happy Havoc?", "correct": "11037", "responses": ["55730", "4, 8, 15, 16, 23, 42", "11037", "3, 9, 11, 12, 15, 17,"]}
+{"question": "What is the standard frame rate for animation?", "correct": "24 FPS", "responses": ["30 FPS", "12 FPS", "24 FPS", "60 FPS"]}
+{"question": "Who is the \"dumb blonde\" character in Nickelodeon's \"The Loud House\"?", "correct": "Leni", "responses": ["Luan", "Luna", "Lincoln", "Leni"]}
+{"question": "Which one of these cartoon characters is NOT voiced by Rob Paulsen?", "correct": "Max Tennyson (Ben 10)", "responses": ["Carl Wheezer (Jimmy Neutron)", "Yakko Warner (Animaniacs)", "The Mask (The Mask, TV Series)", "Max Tennyson (Ben 10)"]}
+{"question": "In \"My Little Pony: Friendship is Magic\", which of these ponies represents the quality of honesty?", "correct": "Applejack", "responses": ["Twilight Sparkle", "Applejack", "Pinkie Pie", "Rarity"]}
+{"question": "In the anime \"Mr. Osomatsu\", how many brothers does Osomatsu-san have?", "correct": "5", "responses": ["7", "4", "6", "5"]}
+{"question": "In \"Shakugan no Shana\" what was the Shana usually referred as?", "correct": "Flame-Haired Burning-Eyed Hunter", "responses": ["Flame-Haired Burning-Eyed Haze", "Shana", "Flame-Haired Burning-Eyed Hunter", "Flame Haze"]}
+{"question": "In JoJo's Bizarre Adventure, winch character is able to accelerate time?", "correct": "Enrico Pucci", "responses": ["Jolyne Cujoh", "Jotaro Kujo", "Kujo Jotaro", "Enrico Pucci"]}
+{"question": "Which president erased the national debt of the United States?", "correct": "Andrew Jackson", "responses": ["Franklin Roosevelt", "Ronald Reagan", "John F. Kennedy", "Andrew Jackson"]}
+{"question": "Who was the 40th President of the USA?", "correct": "Ronald Reagan", "responses": ["Ronald Reagan", "Richard Nixon", "Jimmy Carter", "Bill Clinton"]}
+{"question": "Who was elected leader of the UK Labour Party in September 2015?", "correct": "Jeremy Corbyn", "responses": ["Ed Miliband", "David Cameron", "Theresa May", "Jeremy Corbyn"]}
+{"question": "In United States history, how many vice presidents did Franklin D. Roosevelt have during his time in office as president?", "correct": "3", "responses": ["3", "0", "2", "1"]}
+{"question": "What year did Gerald Ford Become President?", "correct": "1974", "responses": ["1973", "1977", "1969", "1974"]}
+{"question": "Cashmere is the wool from which kind of animal?", "correct": "Goat", "responses": ["Camel", "Sheep", "Goat", "Llama"]}
+{"question": "What are rhino's horn made of?", "correct": "Keratin", "responses": ["Ivory", "Keratin", "Skin", "Bone"]}
+{"question": "What cricketing term denotes a batsman being dismissed with a score of zero?", "correct": "Duck", "responses": ["Beamer", "Duck", "Carry", "Bye"]}
+{"question": "What year was hockey legend Wayne Gretzky born?", "correct": "1961", "responses": ["1959", "1963", "1965", "1961"]}
+{"question": "Who won the 2011 Stanley Cup?", "correct": "Boston Bruins", "responses": ["Boston Bruins", "New York Rangers", "Toronto Maple Leafs", "Montreal Canadiens"]}
+{"question": "Which country did Kabaddi, a contact sport involving tackling, originate from?", "correct": "India", "responses": ["India", "Australia", "Turkey", "Cambodia"]}
+{"question": "What Cartoon Network show aired its first episode on November 4th, 2013?", "correct": "Steven Universe", "responses": ["Steven Universe", "Regular Show", "Adventure Time", "The Amazing World of Gumball"]}
+{"question": "In the animated series RWBY, what is the name of the weapon used by Weiss Schnee?", "correct": "Myrtenaster", "responses": ["Gambol Shroud", "Myrtenaster", "Crescent Rose", "Ember Celica"]}
+{"question": "In \"The Amazing World of Gumball\", who is the principal of Elmore Junior High?", "correct": "Principal Brown", "responses": ["Principal Brawn", "Principal Brown", "Principal Simeon", "Principal Small"]}
+{"question": "What was the number on Gerald's shirt in \"Hey Arnold!\"?", "correct": "33", "responses": ["33", "83", "88", "38"]}
+{"question": "At the start of a standard game of the Monopoly, if you throw a double six, which square would you land on?", "correct": "Electric Company", "responses": ["Community Chest", "Water Works", "Chance", "Electric Company"]}
+{"question": "The board game, Nightmare was released in what year?", "correct": "1991", "responses": ["1995", "1989", "1991", "1992"]}
+{"question": "Which city did Anger berate for ruining pizza in \"Inside Out\"?", "correct": "San Francisco", "responses": ["California", "Washington", "Minnesota", "San Francisco"]}
+{"question": "What is the name of the Alligator that The Simpsons \"killed\" in the episode \"Kill The Alligator and Run\"?", "correct": "Captain Jack", "responses": ["Captain Hector", "Captain Jack", "Captain Flynn", "Captain Jake"]}
+{"question": "What ability does Princess Sofia the First have from her amulet that allows her to breathe underwater?", "correct": "Mermaid Transformation", "responses": ["Bubble Shield", "Artificial Gills", "Mermaid Transformation", "Bubble Head"]}
+{"question": "What is the name of Ruby Rose's weapon from RWBY?", "correct": "Crescent Rose", "responses": ["Thorned Rosebud", "Crooked Scythe", "Crescent Rose", "Magnhild"]}
+{"question": "How many zeros are there in a googol?", "correct": "100", "responses": ["100", "1,000", "1,000,000", "10"]}
+{"question": "What type of function is x\u00b2+2x+1?", "correct": "Quadratic", "responses": ["Quadratic", "Linear", "Rational", "Exponential"]}
+{"question": "In Need For Speed: Most Wanted (2005), how many people are there to defeat on the blacklist?", "correct": "15", "responses": ["10", "5", "15", "20"]}
+{"question": "Which of these game franchises were made by Namco?", "correct": "Tekken", "responses": ["Dragon Quest", "Tekken", "Mortal Kombat", "Street Fighter"]}
+{"question": "In Hitman: Blood Money, what is the name of the target in the mission \"Death of a Showman\"?", "correct": "Joseph Clarence", "responses": ["The Swing King", "Joseph Clarence", "Manuel Delgado", "Maynard John"]}
+{"question": "Phil Fish was the designer of which game?", "correct": "Fez", "responses": ["FTL", "Super Meat Boy", "Fez", "Hotline Miami"]}
+{"question": "Who is Sora's Nobody in Kingdom Hearts?", "correct": "Roxas", "responses": ["Kairi", "Riku", "Mickey", "Roxas"]}
+{"question": "Who played Batman in the 1997 film \"Batman and Robin\"?", "correct": "George Clooney", "responses": ["Christian Bale", "George Clooney", "Val Kilmer", "Michael Keaton"]}
+{"question": "This movie contains the quote, \"I love the smell of napalm in the morning!\"", "correct": "Apocalypse Now", "responses": ["Apocalypse Now", "The Deer Hunter", "Full Metal Jacket", "Platoon"]}
+{"question": "This movie contains the quote, \"What we've got here is a failure to communicate.\"", "correct": "Cool Hand Luke", "responses": ["The Graduate", "In the Heat of the Night", "Cool Hand Luke", "Bonnie and Clyde"]}
+{"question": "The 1939 movie \"The Wizard of Oz\" contained a horse that changed color, what material did they use to achieve this effect?", "correct": "Gelatin", "responses": ["Dye", "CGI Effect", "Paint", "Gelatin"]}
+{"question": "What Queen song plays during the final fight scene of the film \"Hardcore Henry\"?", "correct": "Don't Stop Me Now", "responses": ["Another Bites the Dust", "Brighton Rock", "Don't Stop Me Now", "We Will Rock You"]}
+{"question": "Complete the following analogy: Audi is to Volkswagen as Infiniti is to ?", "correct": "Nissan", "responses": ["Honda", "Nissan", "Hyundai", "Subaru"]}
+{"question": "Which of these car models are produced by Lamborghini?", "correct": "Aventador", "responses": ["Aventador", "Chiron", "918", "Huayra"]}
+{"question": "What do the 4 Rings in Audi's Logo represent?", "correct": "Previously independent automobile manufacturers", "responses": ["Previously independent automobile manufacturers", "Main cities vital to Audi", "States in which Audi makes the most sales", "Countries in which Audi makes the most sales"]}
+{"question": "Which part of the body does glaucoma affect?", "correct": "Eyes", "responses": ["Blood", "Throat", "Eyes", "Stomach"]}
+{"question": "After which Danish city is the 72th element on the periodic table named?", "correct": "Copenhagen", "responses": ["Herning", "Odense", "Skagen", "Copenhagen"]}
+{"question": "Which of these is a type of stretch/deep tendon reflex?", "correct": "Ankle jerk reflex", "responses": ["Gag reflex", "Scratch reflex", "Ankle jerk reflex", "Pupillary light reflex"]}
+{"question": "What name did \"Mario\", from \"Super Mario Brothers\", originally have?", "correct": "Ossan", "responses": ["Mr. Video", "Mario", "Jumpman", "Ossan"]}
+{"question": "In the first Left 4 Dead, you can play as either of these four characters.", "correct": "Francis, Bill, Zoey, and Louis", "responses": ["Harry, Ron, Hermione and Dumbledore", "Francis, Bill, Zoey, and Louis", "Coach, Ellis, Nick, and Rochelle", "Bender, Andrew, Allison, and Brian"]}
+{"question": "When was the game \"Roblox\" released?", "correct": "2006", "responses": ["2002", "2007", "2006", "2003"]}
+{"question": "Which country was Eliza \"Ash\" Cohen from \"Tom Clancy's Rainbow Six Siege\" born in?", "correct": "Israel", "responses": ["United States of America", "Israel", "Canada", "Mexico"]}
+{"question": "In Splatoon, what is the age that inklings can freely change between squid and humanoid forms?", "correct": "14", "responses": ["14", "10", "16", "13"]}
+{"question": "By what nickname is Jack Dawkins known in the Charles Dickens novel, 'Oliver Twist'?", "correct": "The Artful Dodger", "responses": ["Bull\u2019s-eye", "The Artful Dodger", "Fagin", "Mr. Fang"]}
+{"question": "In the \"The Hobbit\", who kills Smaug?", "correct": "Bard", "responses": ["Bilbo Baggins", "Gandalf the Grey", "Bard", "Frodo"]}
+{"question": "The novel \"Of Mice And Men\" was written by what author?", "correct": "John Steinbeck", "responses": ["John Steinbeck", "George Orwell", "Harper Lee", "Mark Twain"]}
+{"question": "In Michael Crichton's novel \"Jurassic Park\", John Hammond meets his demise at the claws of which dinosaur?", "correct": "Procompsognathus", "responses": ["Dilophosaurus", "Tyrannosaurus Rex", "Procompsognathus", "Velociraptor"]}
+{"question": "The book \"Fahrenheit 451\" was written by whom?", "correct": "Ray Bradbury", "responses": ["Stephen King", "R. L. Stine", "Wolfgang Amadeus Mozart", "Ray Bradbury"]}
+{"question": "Which of the following is not one of the Greek Fates?", "correct": "Narcissus", "responses": ["Clotho", "Atropos", "Lachesis", "Narcissus"]}
+{"question": "In African mythology, Anansi is a trickster and storyteller who takes the shape of which animal?", "correct": "Spider", "responses": ["Monkey", "Spider", "Wild dog", "Crocodile"]}
+{"question": "What is the name of the first human being in Norse mythology?", "correct": "Ask", "responses": ["Asger", "Ask", "Ake", "Asmund"]}
+{"question": "Which country is hosting the 2022 FIFA World Cup?", "correct": "Qatar", "responses": ["Uganda", "Bolivia", "Vietnam", "Qatar"]}
+{"question": "What is the oldest team in the NFL?", "correct": "Arizona Cardinals", "responses": ["Chicago Bears", "Green Bay Packers", "Arizona Cardinals", "New York Giants"]}
+{"question": "Which of the following Grand Slam tennis tournaments occurs LAST?", "correct": "US Open", "responses": ["Australian Open", "Wimbledon", "US Open", "French Open"]}
+{"question": "Which of the following pitchers was named National League Rookie of the Year for the 2013 season?", "correct": "Jose Fernandez", "responses": ["Jacob deGrom", "Jose Fernandez", "Matt Harvey", "Shelby Miller"]}
+{"question": "Who is the main character in the VHS tape included in the board game Nightmare?", "correct": "The Gatekeeper", "responses": ["The Gatekeeper", "The Nightmare", "The Kryptkeeper", "The Monster"]}
+{"question": "A minotaur is half human half what?", "correct": "Bull", "responses": ["Bull", "Eagle", "Cow", "Horse"]}
+{"question": "The Maori hold that which island nation was founded by Kupe, who discovered it under a long white cloud?", "correct": "New Zealand", "responses": ["Hawaii", "Vanuatu", "Fiji", "New Zealand"]}
+{"question": "Which of these games was the earliest known first-person shooter with a known time of publication?", "correct": "Spasim", "responses": ["Doom", "Quake", "Spasim", "Wolfenstein"]}
+{"question": "In the Portal series of games, who was the founder of Aperture Science?", "correct": "Cave Johnson", "responses": ["Gordon Freeman", "GLaDOs", "Cave Johnson", "Wallace Breen"]}
+{"question": "In \"Call Of Duty: Zombies\", completing which map's main easter egg will reward you with the achievement, \"Little Lost Girl\"?", "correct": "Origins", "responses": ["Origins", "Revelations", "Moon", "Tranzit"]}
+{"question": "What is the name of the protagonist's first Persona in \"Persona 5\"?", "correct": "Arsene", "responses": ["Mara", "Arsene", "Sandaphlon", "Izanagi"]}
+{"question": "Which game won the \"Games for Impact\" award in The Game Awards 2015?", "correct": "Life is Strange", "responses": ["Rocket League", "Ori and the Blind Forest", "Metal Gear Solid V: The Phantom Pain", "Life is Strange"]}
+{"question": "The character Plum from \"No Game No Life\" is of what race?", "correct": "Dhampir", "responses": ["Imanity", "Seiren", "Fl\u00fcgel", "Dhampir"]}
+{"question": "Which of the stands from \"JoJo's Bizarre Adventure\" mimics the likeness of a tomato?", "correct": "Pearl Jam", "responses": ["Red Hot Chili Pepper", "Pearl Jam", "Cream Starter", "Nut King Call"]}
+{"question": "In \"Toriko\", which of the following foods is knowingly compatible with Toriko?", "correct": "Poison Potato", "responses": ["Alpacookie", "Parmesansho Fruit", "Mors Oil", "Poison Potato"]}
+{"question": "How does the character Dragowizard, Qinus Axia's from the anime \"Buddyfight\" differ between the Japanese and English dubs?", "correct": "Different Gender", "responses": ["Different Gender", "Different Appearance", "Different Body Proportions", "Different Backstory"]}
+{"question": "Who was the first explorer to sail to North America?", "correct": "Leif Erikson", "responses": ["Ferdinand Magellan", "Leif Erikson", "Christopher Columbus", "Amerigo Vespucci"]}
+{"question": "On which day did the attempted coup d'etat of 1991 in the Soviet Union begin?", "correct": "August 19", "responses": ["August 19", "August 21", "December 26", "December 24"]}
+{"question": "How many times was Albert Einstein married in his lifetime?", "correct": "Twice", "responses": ["Once", "Twice", "Thrice", "Five"]}
+{"question": "Which WWII tank ace is credited with having destroyed the most tanks?", "correct": "Kurt Knispel", "responses": ["Kurt Knispel", "Michael Wittmann", "Otto Carius", "Walter Kniep"]}
+{"question": "What is the bloodiest event in United States history, in terms of casualties?", "correct": "Battle of Antietam", "responses": ["Pearl Harbor", "D-Day", "Battle of Antietam", "September 11th"]}
+{"question": "The character Momonga from the \"Overlord\" series orders his servants to call him by what name?", "correct": "Ainz Ooal Gown", "responses": ["Ainz Ooal Gown", "Kugane Maruyama", "Master", "Yggdrasil"]}
+{"question": "What colour hair does the main character of the Yu-Gi-Oh! original anime series have?", "correct": "Red, black and yellow", "responses": ["Red, yellow and green", "Red, black and green", "Red, black and yellow", "Red, purple and blue"]}
+{"question": "What position does Harry Potter play in Quidditch?", "correct": "Seeker", "responses": ["Beater", "Keeper", "Seeker", "Chaser"]}
+{"question": "In the year 1818, novelist Mary Shelly is credited with writing a fiction novel and creating this infamous character.", "correct": "Frankenstein's monster", "responses": ["The Thing", "The Invisible Man", "Frankenstein's monster", "Dracula"]}
+{"question": "In the \"Harry Potter\" novels, what must a Hogwarts student do to enter the Ravenclaw Common Room?", "correct": "Answer a riddle", "responses": ["Rhythmically tap barrels with a wand", "Speak a password", "Knock in sequence", "Answer a riddle"]}
+{"question": "Which of the following was the author of \"Username Evie\"?", "correct": "Joe Sugg", "responses": ["Zoe Sugg", "Alfie Deyes", "Joe Weller", "Joe Sugg"]}
+{"question": "In The Lies of Locke Lamora, what title is Locke known by in the criminal world?", "correct": "The Thorn of Camorr", "responses": ["The Thorn of Camorr", "The Rose of the Marrows", "The Thorn of Emberlain", "The Thorn of the Marrows"]}
+{"question": "What snowy mob was added in Minecraft 1.10?", "correct": "Polar bears", "responses": ["Eskimos", "Polar bears", "Walking TNT", "Penguins"]}
+{"question": "In the 2002 video game \"Kingdom Hearts\", how many playable worlds were there?", "correct": "14", "responses": ["16", "14", "11", "13"]}
+{"question": "In the beta version of the 1986 game \"The Legend of Zelda\", players have the choice between a sword and what other item?", "correct": "Boomerang", "responses": ["Boomerang", "Spear", "Slingshot", "Crossbow"]}
+{"question": "What is not a playable race in \"Final Fantasy XIV: A Realm Reborn\"?", "correct": "Hume", "responses": ["Roegadyn", "Hume", "Lalafell", "Miqo'te"]}
+{"question": "What year was the video game streaming platform TwitchTV founded?", "correct": "2011", "responses": ["2014", "2011", "2012", "2010"]}
+{"question": "Who is the creator of the manga series \"One Piece\"?", "correct": "Eiichiro Oda", "responses": ["Hayao Miyazaki", "Yoshihiro Togashi", "Masashi Kishimoto", "Eiichiro Oda"]}
+{"question": "What is the name of the protagonist of the 2017 anime \"Land of the Lustrous\"?", "correct": "Phosphophyllite", "responses": ["Watermelon Tourmaline", "Cinnabar", "Phosphophyllite", "Padparadscha"]}
+{"question": "What was the name of the first MMORPG to popularize the genre?", "correct": "Ultima Online", "responses": ["Ultima Online", "World of Warcraft", "Guild Wars", "Meridian 59"]}
+{"question": "What is the name of the first boss the player encounters in the 2017 game, \"Little Nightmares\"?", "correct": "The Janitor", "responses": ["The Janitor", "The Caretaker", "The Warden", "The Overseer"]}
+{"question": "Who is the main villain of Kirby's Return to Dreamland?", "correct": "Magolor", "responses": ["Landia", "Magolor", "King Dedede", "Queen Sectonia"]}
+{"question": "Albrecht D\u00fcrer's birthplace and place of death were in...", "correct": "N\u00fcrnberg", "responses": ["N\u00fcrnberg", "Bamberg", "Augsburg", "Berlin"]}
+{"question": "Which artist's style was to use small different colored dots to create a picture?", "correct": "Georges Seurat", "responses": ["Paul C\u00e9zanne", "Vincent Van Gogh", "Henri Rousseau", "Georges Seurat"]}
+{"question": "The painting \"The Starry Night\" by Vincent van Gogh was part of which art movement?", "correct": "Post-Impressionism", "responses": ["Impressionism", "Neoclassical", "Romanticism", "Post-Impressionism"]}
+{"question": "What are the four corner states of the US?", "correct": "Utah, Colorado, Arizona, New Mexico", "responses": ["Kansas, Oklahoma, Arkansas, Louisiana", "South Dakota, Minnesota, Nebraska, Iowa", "Utah, Colorado, Arizona, New Mexico", "Oregon, Idaho, Nevada, Utah"]}
+{"question": "Which of the following countries is within the Eurozone but outside of the Schengen Area?", "correct": "Cyprus", "responses": ["Portugal", "Malta", "Greece", "Cyprus"]}
+{"question": "What is the capital of Senegal?", "correct": "Dakar", "responses": ["Monrovia", "Conakry", "Dakar", "Nouakchott"]}
+{"question": "What is the highest mountain in the world?", "correct": "Mt. Everest", "responses": ["Mount Godwin Austen", "Kangchenjunga", "Annapurna", "Mt. Everest"]}
+{"question": "What island in the Canary Islands was the scene of one of the worst air disasters in history with the collision of two jumbo jets?", "correct": "Tenerife", "responses": ["Maui", "Tenerife", "Fuerteventura", "Gran Canaria"]}
+{"question": "This field is sometimes known as \u201cThe Dismal Science.\u201d", "correct": "Economics", "responses": ["Politics", "Philosophy", "Physics", "Economics"]}
+{"question": "What is a dead mall?", "correct": "A mall with high vacancy rates or low consumer foot traffic", "responses": ["A mall that has been condemed", "A mall with high vacancy rates or low consumer foot traffic", "A mall with no stores", "A mall after business hours"]}
+{"question": "Computer manufacturer Compaq was acquired for $25 billion dollars in 2002 by which company?", "correct": "Hewlett-Packard", "responses": ["Toshiba", "Asus", "Hewlett-Packard", "Dell"]}
+{"question": "Who was the only president to not be in office in Washington D.C?", "correct": "George Washington", "responses": ["George Washington", "Richard Nixon", "Abraham Lincoln", "Thomas Jefferson"]}
+{"question": "Due to the Nagoya Resolution, China agreed to allow Taiwan to compete separately in international sporting events under what name?", "correct": "Chinese Taipei", "responses": ["Chinese Taipei", "Republic of Taiwan", "Chinese Taiwan", "Republic of Taipei"]}
+{"question": "Who succeeded Joseph Stalin as General Secretary of the Communist Party of the Soviet Union?", "correct": "Nikita Khrushchev", "responses": ["Nikita Khrushchev", "Leonid Brezhnev", "Boris Yeltsin", "Mikhail Gorbachev"]}
+{"question": "Which former US president used \"Let's Make America Great Again\" as his campaign slogan before Donald Trump's campaign?", "correct": "Ronald Reagan", "responses": ["Jimmy Carter", "Ronald Reagan", "Gerald Ford", "Richard Nixon"]}
+{"question": "The Watergate Scandal occured in what year?", "correct": "1972", "responses": ["1972", "1974", "1971", "1973"]}
+{"question": "What is former United States President Bill Clinton's full name?", "correct": "William Jefferson Clinton", "responses": ["William Jefferson Clinton", "William Lincoln Clinton", "William Roosevelt Clinton", "William Truman Clinton"]}
+{"question": "Before 2016, in which other year did Donald Trump run for President?", "correct": "2000", "responses": ["2000", "2008", "1988", "2012"]}
+{"question": "In the server hosting industry IaaS stands for...", "correct": "Infrastructure as a Service", "responses": ["Infrastructure as a Server", "Infrastructure as a Service", "Internet as a Service", "Internet and a Server"]}
+{"question": "In computing terms, typically what does CLI stand for?", "correct": "Command Line Interface", "responses": ["Common Language Interface", "Control Line Interface", "Command Line Interface", "Common Language Input"]}
+{"question": "Which of these people was NOT a founder of Apple Inc?", "correct": "Jonathan Ive", "responses": ["Steve Jobs", "Ronald Wayne", "Jonathan Ive", "Steve Wozniak"]}
+{"question": "When did the online streaming service \"Mixer\" launch?", "correct": "2016", "responses": ["2016", "2011", "2009", "2013"]}
+{"question": "In \"Sonic the Hedgehog\" comic, who was the creator of Roboticizer?", "correct": "Professor Charles the Hedgehog", "responses": ["Ivo Robotnik", "Snively Robotnik", "Julian Robotnik", "Professor Charles the Hedgehog"]}
+{"question": "Who wrote the Batman comic series \"The Killing Joke\"?", "correct": "Alan Moore", "responses": ["Frank Miller", "Jerry Siegel", "Bill Finger", "Alan Moore"]}
+{"question": "What is the designation given to the Marvel Cinematic Universe?", "correct": "Earth-199999", "responses": ["Earth-2008", "Earth-199999", "Earth-10005", "Earth-616"]}
+{"question": "In the Hellboy universe, who founded the BPRD?", "correct": "Trevor Bruttenholm", "responses": ["Benjamin Daimio", "Johann Kraus", "Kate Corrigan", "Trevor Bruttenholm"]}
+{"question": "Which band released songs such as \"Electric Feel\", \"Kids\", and \"Time to Pretend\"?", "correct": "MGMT", "responses": ["Franz Ferdinand", "Phoenix", "Passion Pit", "MGMT"]}
+{"question": "Which of these artists do NOT originate from France?", "correct": "The Chemical Brothers", "responses": ["Daft Punk", "Air", "Justice", "The Chemical Brothers"]}
+{"question": "Which famous 90's rap album is commonly referred to as \"The Bible of Hip Hop\"?", "correct": "Illmatic", "responses": ["The Low End Theory", "The Chronic", "Illmatic", "Enter The Wu-Tang (36 Chambers)"]}
+{"question": "Which iconic album cover features the pulsar waves of CP 1919 placed in the center of the cover?", "correct": "Unknown Pleasures", "responses": ["The Velvet Underground & Nico", "Unknown Pleasures", "The Dark Side of the Moon", "London Calling"]}
+{"question": "The song \"Caramelldansen\" is commonly mistaken as a Japanese song, what language is the song actually sung in?", "correct": "Swedish", "responses": ["Hungarian", "Finnish", "Chinese", "Swedish"]}
+{"question": "The term \"battery\" to describe an electrical storage device was coined by?", "correct": "Benjamin Franklin", "responses": ["Nikola Tesla", "Luigi Galvani", "Benjamin Franklin", "Alessandro Volta"]}
+{"question": "Which buzzword did Apple Inc. use to describe their removal of the headphone jack?", "correct": "Courage", "responses": ["Innovation", "Revolution", "Courage", "Bravery"]}
+{"question": "When was the Tamagotchi digital pet released?", "correct": "1996", "responses": ["1996", "1992", "1989", "1990"]}
+{"question": "When was the iPhone released?", "correct": "2007", "responses": ["2005", "2007", "2006", "2004"]}
+{"question": "In the 2010 Nightmare on Elm Street reboot, who played Freddy Kruger?", "correct": "Jackie Earle Haley", "responses": ["Derek Mears", "Jackie Earle Haley", "Tyler Mane", "Gunnar Hansen"]}
+{"question": "Which one of these action movies are shot entirely in one take?", "correct": "Victoria", "responses": ["Victoria", "The Bourne Legacy", "L\u00e9on: The Professional", "Ip Man 2"]}
+{"question": "Who is the director of the 1991 film \"Silence of the Lambs\"?", "correct": "Jonathan Demme", "responses": ["Frank Darabont", "Jonathan Demme", "Stanley Kubrick", "Michael Bay"]}
+{"question": "What is the make and model of the tour vehicles in \"Jurassic Park\" (1993)?", "correct": "1992 Ford Explorer XLT", "responses": ["1992 Toyota Land Cruiser", "1992 Ford Explorer XLT", "1992 Jeep Wrangler YJ Sahar", "Mercedes M-Class"]}
+{"question": "Who performed the opening theme song for the James Bond 007 movie \"Goldfinger\"?", "correct": "Shirley Basey", "responses": ["Shirley Basey", "John Barry", "Sheena Easton", "Tom Jones"]}
+{"question": "The Norse god Odin has two pet crows named \"Huginn\" and \"Muninn\".  What do their names mean?", "correct": "Thought & Memory", "responses": ["Sleeping & Waking", "Power & Peace", "War & Learning", "Thought & Memory"]}
+{"question": "Hel was the daughter of which Norse Mythological figure?", "correct": "Loki", "responses": ["Odin", "Thor", "Loki", "Balder"]}
+{"question": "What year did radio icon Howard Stern start a job at radio station WNBC?", "correct": "1982", "responses": ["1982", "1985", "1984", "1995"]}
+{"question": "Who is \"James Rolfe\" better known as?", "correct": "The Angry Video Game Nerd", "responses": ["TotalBiscuit", "PeanutButterGamer", "PewDiePie", "The Angry Video Game Nerd"]}
+{"question": "Who directed the 1973 film \"American Graffiti\"?", "correct": "George Lucas", "responses": ["Steven Spielberg", "George Lucas", "Ron Howard", "Francis Ford Coppola"]}
+{"question": "Who played Baron Victor Frankestein in the 1957 Hammer horror film \"The Curse of Frankenstein\"?", "correct": "Peter Cushing", "responses": ["Lon Chaney Jr.", "Vincent Price", "Peter Cushing", "Boris Karloff"]}
+{"question": "This trope refers to minor characters that are killed off to show how a monster works.", "correct": "Red Shirt", "responses": ["Expendables", "Minions", "Cannon Fodder", "Red Shirt"]}
+{"question": "Ed Koch, the Mayor of New York in 1984, played himself in which Muppets movie?", "correct": "The Muppets Take Manhattan", "responses": ["The Muppet Movie", "The Muppets Take Manhattan", "The Muppet Christmas Carol", "The Great Muppet Caper"]}
+{"question": "In the Mad Max franchise, what type of car is the Pursuit Special driven by Max?", "correct": "Ford Falcon", "responses": ["Pontiac Firebird", "Holden Monaro", "Chrysler Valiant Charger", "Ford Falcon"]}
+{"question": "What disease crippled President Franklin D. Roosevelt and led him to help the nation find a cure?", "correct": "Polio", "responses": ["Polio", "Meningitis", "HIV", "Cancer"]}
+{"question": "All of the following are names of the Seven Warring States EXCEPT:", "correct": "Zhai (\u7fdf)", "responses": ["Qin (\u79e6)", "Zhao (\u8d99)", "Qi (\u9f4a)", "Zhai (\u7fdf)"]}
+{"question": "Which Nazi General was known as the \"Desert Fox\"?", "correct": "Erwin Rommel", "responses": ["Wilhelm Keitel", "Heinz Guderian", "Gerd von Rundstadt", "Erwin Rommel"]}
+{"question": "Who wrote and directed the animated movie \"Spirited Away\" (2001)?", "correct": "Hayao Miyazaki", "responses": ["Isao Takahata", "Hidetaka Miyazaki", "Hayao Miyazaki", "Mamoru Hosoda"]}
+{"question": "Who voices \"Shou Suzuki\" in the English dub of \"Mob Psycho 100\"?", "correct": "Casey Mongillo", "responses": ["Ben Diskin", "Chris Niosi", "David Naughton", "Casey Mongillo"]}
+{"question": "In \"Highschool DxD\", Koneko Toujou is from what race?", "correct": "Nekomata", "responses": ["Kappa", "Kitsune", "Nekomata", "Human"]}
+{"question": "Which studio made Cowboy Bebop?", "correct": "Sunrise", "responses": ["Pierriot", "Bones", "Madhouse", "Sunrise"]}
+{"question": "The moons, Miranda, Ariel, Umbriel, Titania and Oberon orbit which planet?", "correct": "Uranus", "responses": ["Neptune", "Uranus", "Venus", "Jupiter"]}
+{"question": "Au on the Periodic Table refers to which element?", "correct": "Gold", "responses": ["Nickel", "Silver", "Oxygen", "Gold"]}
+{"question": "The Sun consists of mostly which two elements?", "correct": "Hydrogen & Helium", "responses": ["Carbon & Nitrogen", "Hydrogen & Helium", "Carbon & Helium", "Hydrogen & Nitrogen"]}
+{"question": "Which of the following spacecraft never touched the moon?", "correct": "Mariner 4", "responses": ["SMART-1", "Mariner 4", "Luna 2", "Apollo 11"]}
+{"question": "In Forza Motorsport 6, which of these track-exclusive cars was NOT featured in the game, either originally with the game or added as DLC?", "correct": "Aston Martin Vulcan", "responses": ["Aston Martin Vulcan", "McLaren P1 GTR", "Lotus E23", "Ferrari FXX-K"]}
+{"question": "Which town was Seamus \"Sledge\" Cowden from \"Tom Clancy's Rainbow Six Siege\" born in?", "correct": "John O'Groats", "responses": ["John O'Groats", "Talmine", "Kearvaig", "Brawl"]}
+{"question": "Which of these characters won the Super Smash Bros. Fighter Ballot in 2015?", "correct": "Bayonetta", "responses": ["Cloud", "Megaman", "Bayonetta", "Ryu"]}
+{"question": "Which of these roles in Town of Salem is mafia?", "correct": "Disguiser", "responses": ["Lookout", "Transporter", "Escort", "Disguiser"]}
+{"question": "Which of the following is a character in the video game Destiny?", "correct": "Cayde-6", "responses": ["Mordecai the Hunter", "Cayde-6", "Ostrava of Boletaria", "Leon S. Kennedy"]}
+{"question": "Which Japanese company is the world's largest manufacturer of motorcycles?", "correct": "Honda", "responses": ["Yamaha", "Honda", "Suzuki", "Kawasaki"]}
+{"question": "Which of the following passenger jets is the longest?", "correct": "Boeing 747-8", "responses": ["Airbus A330-200", "Boeing 747-8", "Airbus A350-1000", "Boeing 787-10"]}
+{"question": "Which supercar company is from Sweden?", "correct": "Koenigsegg", "responses": ["Lamborghini", "McLaren", "Bugatti", "Koenigsegg"]}
+{"question": "Which of these species is not extinct?", "correct": "Komodo dragon", "responses": ["Saudi gazelle", "Komodo dragon", "Tasmanian tiger", "Japanese sea lion"]}
+{"question": "What was the FIRST Valve game to have VR?", "correct": "The Lab", "responses": ["Dota 2", "Half-Life 2", "The Lab", "Destinations"]}
+{"question": "In Left 4 Dead, what is the name of the Special Infected that is unplayable in Versus mode?", "correct": "The Witch", "responses": ["The Tank", "The Spitter", "The Smoker", "The Witch"]}
+{"question": "In Overwatch, how old is Reinhardt Wilhelm?", "correct": "61", "responses": ["62", "61", "65", "59"]}
+{"question": "What was the main currency in Club Penguin?", "correct": "Coins", "responses": ["Gems", "Stamps", "Tickets", "Coins"]}
+{"question": "Why were only only 300,000 copies of Uniracers were produced?", "correct": "DMA Designs was sued by Pixar, preventing more copies from being produced", "responses": ["No public information is available", "It didn't sell well due to poor review scores", "DMA Designs was sued by Pixar, preventing more copies from being produced", "There was a disagreement between DMA Designs and Nintendo"]}
+{"question": "Before 2011, \"True Capitalist Radio\" was known by a different name. What was that name?", "correct": "True Conservative Radio", "responses": ["True Conservative Radio", "True Republican Radio", "United Capitalists", "Texan Capitalist Radio"]}
+{"question": "At what temperature does water boil?", "correct": "212\u00b0F", "responses": ["200\u00b0F", "178\u00b0F", "181\u00b0F", "212\u00b0F"]}
+{"question": "In human biology, a circadium rhythm relates to a period of roughly how many hours?", "correct": "24", "responses": ["24", "8", "16", "32"]}
+{"question": "How old is the universe?", "correct": "13.8 Billion Years", "responses": ["4.5 Billion Years", "7.9 Billion Years", "16.2 Billion Years", "13.8 Billion Years"]}
+{"question": "Which issue of the \"Sonic the Hedgehog\" comic did Scourge the Hedgehog make his first appearance?", "correct": "Sonic the Hedgehog #11", "responses": ["Sonic Universe #32", "Sonic the Hedgehog #161", "Sonic the Hedgehog #47", "Sonic the Hedgehog #11"]}
+{"question": "The stuffed tiger in Calvin and Hobbes is named after what philosopher?", "correct": "Thomas Hobbes", "responses": ["Thomas Hobbes", "Nathaniel Hobbes", "David Hobbes", "John Hobbes"]}
+{"question": "What African country has Portuguese as its official language?", "correct": "Mozambique", "responses": ["Togo", "Gabon", "Mozambique", "Botswana"]}
+{"question": "The land mass of modern day Turkey is called what?", "correct": "Anatolia", "responses": ["Anatolia", "Ismuth of Anatolia", "Ottoma", "Ismuth of Ottoma"]}
+{"question": "What is the region conjoining Pakistan, India, and China with unknown leadership called?", "correct": "Kashmir", "responses": ["Gibraltar", "Quin", "Andorra", "Kashmir"]}
+{"question": "Lake Titicaca is located between which two nations?", "correct": "Peru and Bolivia", "responses": ["Peru and Bolivia", "Mexico and the United States", "India and Bangladesh", "Kenya and Uganda"]}
+{"question": "Which of these Japanese islands is the largest by area?", "correct": "Shikoku", "responses": ["Iki", "Shikoku", "Odaiba", "Okinawa"]}
+{"question": "What is the name of the comic about a young boy, and a tiger who is actually a stuffed animal?", "correct": "Calvin and Hobbes", "responses": ["Albert and Pogo", "Winnie the Pooh", "Peanuts", "Calvin and Hobbes"]}
+{"question": "In the comics, which Sonic character took command of the Dark Legion after Luger's assassination?", "correct": "Lien-Da", "responses": ["Kragok", "Lien-Da", "Dimitri", "Remington"]}
+{"question": "Who was the inspiration for Cuthbert Calculus in the Tintin series?", "correct": "Auguste Picard", "responses": ["Will Morris", "Jacques Piccard", "J. Cecil Maby", "Auguste Picard"]}
+{"question": "What was the game \"Galaga\" was a sequel to?", "correct": "Galaxian", "responses": ["Galactica", "Galaxian", "Galactic Wars", "Space Invaders"]}
+{"question": "Which of these weapons is NOT available to the Terrorist team in the game, \"Counter-Strike: Global Offensive\"?", "correct": "SCAR-20", "responses": ["SG 550", "CZ-75", "SCAR-20", "XM1014"]}
+{"question": "Which actor provided the voice for the main character's father in Fallout 3?", "correct": "Liam Neeson", "responses": ["Liam Neeson", "Kiefer Sutherland", "Brendan Gleeson", "Robbie Coltrane"]}
+{"question": "In which game did the Konami Code make its first appearance?", "correct": "Gradius", "responses": ["Contra", "Castlevania", "Gradius", "Dance Dance Revolution"]}
+{"question": "In a standard set of playing cards, which is the only king without a moustache?", "correct": "Hearts", "responses": ["Diamonds", "Hearts", "Clubs", "Spades"]}
+{"question": "What year was Apple Inc. founded?", "correct": "1976", "responses": ["1978", "1974", "1976", "1980"]}
+{"question": "Earl Grey tea is black tea flavoured with what?", "correct": "Bergamot oil", "responses": ["Bergamot oil", "Vanilla", "Honey", "Lavender"]}
+{"question": "For what reason would a spotted hyena \"laugh\"?", "correct": "Nervousness", "responses": ["Exhaustion", "Aggression", "Nervousness", "Excitement"]}
+{"question": "What polymer is used to make CDs, safety goggles and riot shields?", "correct": "Polycarbonate", "responses": ["Nylon", "Polycarbonate", "Rubber", "Bakelite"]}
+{"question": "Where did the Great Storm of 1987 make landfall at, first?", "correct": "Cornwall", "responses": ["Wales", "Cornwall", "Surrey", "The Midlands"]}
+{"question": "Which American celebrity died in 1977 playing golf in La Moraleja, Madrid?", "correct": "Bing Crosby", "responses": ["Bing Crosby", "Groucho Marx", "Elvis Presley", "Charlie Chaplin"]}
+{"question": "What caused Jake Lloyd who played Anakin Skywalker in The Phantom Menace to quit acting?", "correct": "Bullying", "responses": ["Criminal Record", "Bullying", "Nomination for Worst Actor", "Racism"]}
+{"question": "What was George Bizet's last opera?", "correct": "Carmen", "responses": ["Les p\u00eacheurs de perles", "Don Rodrigue", "Carmen", "Gris\u00e9lidis"]}
+{"question": "Which actress's real name was Frances Ethel Gumm?", "correct": "Judy Garland", "responses": ["Marilyn Monroe", "Doris Day", "Judy Garland", "Julie Andrews"]}
+{"question": "What is Doug Walker's YouTube name?", "correct": "The Nostalgia Critic", "responses": ["The Cinema Snob", "AngryJoeShow", "The Angry Video Game Nerd", "The Nostalgia Critic"]}
+{"question": "What is the world's most expensive spice by weight?", "correct": "Saffron", "responses": ["Saffron", "Cinnamon", "Cardamom", "Vanilla"]}
+{"question": "Which river flows through the Scottish city of Glasgow?", "correct": "Clyde", "responses": ["Clyde", "Tay", "Dee", "Tweed"]}
+{"question": "Where does water from Poland Spring water bottles come from?", "correct": "Maine, United States", "responses": ["Bavaria, Poland", "Masovia, Poland", "Hesse, Germany", "Maine, United States"]}
+{"question": "In ancient Greece, if your job were a \"hippeus\" which of these would you own?", "correct": "Horse", "responses": ["Boat", "Guitar", "Weave", "Horse"]}
+{"question": "A statue of Charles Darwin sits in what London museum?", "correct": "Natural History Museum", "responses": ["Science Museum", "British Museum", "Natural History Museum", "Tate"]}
+{"question": "What is the oldest team in Major League Baseball?", "correct": "Atlanta Braves", "responses": ["St. Louis Cardinals", "Chicago Cubs", "Atlanta Braves", "Cincinnati Reds"]}
+{"question": "In Formula 1, the Virtual Safety Car was introduced following the fatal crash of which driver?", "correct": "Jules Bianchi", "responses": ["Jules Bianchi", "Gilles Villeneuve", "Ayrton Senna", "Ronald Ratzenberger"]}
+{"question": "What was studio Trigger's first original long-form animated series for television?", "correct": "Kill la Kill", "responses": ["Kiznaiver", "Gurren Lagann", "Inferno Cop", "Kill la Kill"]}
+{"question": "In \"JoJo's Bizzare Adventure: Stardust Crusaders\", what is the last name of the protagonist Jotaro?", "correct": "Kujo", "responses": ["Joestar", "Cujoh", "Kujo", "Higashikata"]}
+{"question": "In \"Star Trek\", what is the Ferengi's First Rule of Acquisition?", "correct": "Once you have their money, you never give it back.", "responses": ["Never place friendship above profit", "Never allow family to stand in the way of opportunity", "Greed is Eternal", "Once you have their money, you never give it back."]}
+{"question": "Who was Firestorm's rival during the original run of UK Robot Wars?", "correct": "Panic Attack", "responses": ["Razer", "Hypno Disc", "Chaos 2", "Panic Attack"]}
+{"question": "What does Bart sell his soul for in The Simpsons episode 'Bart Sells His Soul'?", "correct": "$5", "responses": ["A Copy of Bonestorm 2", "$100", "$5", "A Giant Gobstopper"]}
+{"question": "Who wrote the \"A Song of Ice And Fire\" fantasy novel series?", "correct": "George R. R. Martin", "responses": ["George Eliot", "George Orwell", "George Lucas", "George R. R. Martin"]}
+{"question": "In Terry Pratchett's Discworld novel 'Wyrd Sisters', which of these are not one of the three main witches?", "correct": "Winny Hathersham", "responses": ["Magrat Garlick", "Nanny Ogg", "Granny Weatherwax", "Winny Hathersham"]}
+{"question": "Which of the following is not a work authored by Fyodor Dostoevsky?", "correct": "Anna Karenina", "responses": ["Crime and Punishment", "Notes from the Underground", "Anna Karenina", "The Brothers Karamazov"]}
+{"question": "In Romance of the Three Kingdoms, who was not a member of the Peach Garden Oath?", "correct": "Zhao Yun", "responses": ["Guan Yu", "Zhang Fei", "Liu Bei", "Zhao Yun"]}
+{"question": "The 1952 musical composition 4'33\", composed by prolific American composer John Cage, is mainly comprised of what sound?", "correct": "Silence", "responses": ["Silence", "People talking", "Farts", "Cricket chirps"]}
+{"question": "What is the last song on the first Panic! At the Disco album?", "correct": "Build God, Then We'll Talk", "responses": ["I Write Sins Not Tragedies", "Nails for Breakfast, Tacks for Snacks", "Lying Is The Most Fun A Girl Can Have Without Taking Her Clothes Off", "Build God, Then We'll Talk"]}
+{"question": "Which rapper had an album that went double platinum with no features?", "correct": "J. Cole", "responses": ["Drake", "J. Cole", "Big Sean", "Kendrick Lamar"]}
+{"question": "Which of these songs did Jimi Hendrix cover?", "correct": "All of these songs", "responses": ["All Along the Watchtower", "House of the Rising Sun", "All of these songs", "Sgt. Pepper's Lonely Hearts Club Band"]}
+{"question": "Which song previously recorded by Elvis Presley was covered by UB40 with a reggae beat?", "correct": "Can't Help Falling in Love", "responses": ["Wooden Heart", "Can't Help Falling in Love", "In the Ghetto", "Jailhouse Rock"]}
+{"question": "What year was the Disney film \"A Goofy Movie\" released?", "correct": "1995", "responses": ["2001", "1999", "1997", "1995"]}
+{"question": "Which Sanrio character was introduced in 1996?", "correct": "Pompompurin", "responses": ["Pompompurin", "My Melody", "Kerropi", "Badtz-Maru"]}
+{"question": "In the show \"Fat Albert and the Cosby Kids\", what is the name of the characters' fictional gang?", "correct": "The Junkyard Gang", "responses": ["The Trash Troupe", "The Junkyard Gang", "The Scrapyard Seven", "The Rotten Posse"]}
+{"question": "Which of the following superheros did Wonder Woman NOT have a love interest in?", "correct": "Green Arrow", "responses": ["Batman", "Steve Trevor", "Superman", "Green Arrow"]}
+{"question": "Who was the first American Vampire (Scott Snyder's American Vampire)?", "correct": "Skinner Sweet", "responses": ["Hattie Hargrove", "Skinner Sweet", "James \"Jim\" Book", "Pearl Jones"]}
+{"question": "By what name was the author Eric Blair better known?", "correct": "George Orwell", "responses": ["Ray Bradbury", "George Orwell", "Aldous Huxley", "Ernest Hemingway"]}
+{"question": "According to The Hitchhiker's Guide to the Galaxy book, the answer to life, the universe and everything else is...", "correct": "42", "responses": ["Loving everyone around you", "42", "Chocolate", "Death"]}
+{"question": "What is the name of the gang that Ponyboy is a part of in the book, The Outsiders?", "correct": "The Greasers", "responses": ["The Mafia", "The Socs", "The Greasers", "The Outsiders"]}
+{"question": "Who is the author of the series \"Malazan Book of the Fallen\"?", "correct": "Steven Erikson", "responses": ["J. R. R. Tolkien", "George R. R. Martin", "Ian Cameron Esslemont", "Steven Erikson"]}
+{"question": "What is the name of the robot in the 1951 science fiction film classic 'The Day the Earth Stood Still'?", "correct": "Gort", "responses": ["Gort", "Colossus", "Box", "Robby"]}
+{"question": "In the 1979 British film \"Quadrophenia\" what is the name of the main protagonist?", "correct": "Jimmy Cooper", "responses": ["Jimmy Cooper", "Franc Roddam", "Pete Townshend", "Archie Bunker"]}
+{"question": "Who directed the movie \"Alien\"?", "correct": "Ridley Scott", "responses": ["Michael Bay", "Ridley Scott", "James Cameron", "Christopher Nolan"]}
+{"question": "Who provided a majority of the songs and lyrics for \"Spirit: Stallion of the Cimarron\"?", "correct": "Bryan Adams", "responses": ["Bryan Adams", "Smash Mouth", "Oasis", "Air Supply"]}
+{"question": "Which director directed the movie \"Pan's Labyrinth\"?", "correct": "Guillermo Del Toro", "responses": ["Alejandro Jodorowsky", "Guillermo Del Toro", "Alejandro Gonz\u00e1lez I\u00f1\u00e1rritu", "Alfonso Cuar\u00f3n"]}
+{"question": "Painter Piet Mondrian (1872 - 1944) was a part of what movement?", "correct": "Neoplasticism", "responses": ["Neoplasticism", "Impressionism", "Precisionism", "Cubism"]}
+{"question": "Which artist\u2019s studio was known as 'The Factory'?", "correct": "Andy Warhol", "responses": ["Roy Lichtenstein", "Andy Warhol", "David Hockney", "Peter Blake"]}
+{"question": "Who painted \"Swans Reflecting Elephants\", \"Sleep\", and \"The Persistence of Memory\"?", "correct": "Salvador Dali", "responses": ["Edgar Degas", "Jackson Pollock", "Salvador Dali", "Vincent van Gogh"]}
+{"question": "Which movie sequel had improved box office results compared to its original film?", "correct": "Toy Story 2", "responses": ["Sin City: A Dame to Kill For", "Speed 2: Cruise Control", "Son of the Mask", "Toy Story 2"]}
+{"question": "Which one of these films are shot entirely in one-take?", "correct": "Russian Ark", "responses": ["Schindler's List", "Good Will Hunting", "Birdman", "Russian Ark"]}
+{"question": "In what year was the movie \"Police Academy\" released?", "correct": "1984", "responses": ["1986", "1985", "1984", "1983"]}
+{"question": "What year did the James Cameron film \"Titanic\" come out in theaters?", "correct": "1997", "responses": ["1999", "1998", "1997", "1996"]}
+{"question": "Whistler was the codename of this Microsoft Operating System.", "correct": "Windows XP", "responses": ["Windows XP", "Windows 95", "Windows 2000", "Windows 7"]}
+{"question": "When was the programming language \"C#\" released?", "correct": "2000", "responses": ["1998", "2001", "2000", "1999"]}
+{"question": "Which of the following languages is used as a scripting language in the Unity 3D game engine?", "correct": "C#", "responses": ["Java", "Objective-C", "C#", "C++"]}
+{"question": "The name of technology company HP stands for what?", "correct": "Hewlett-Packard", "responses": ["Howard Packmann", "Hellman-Pohl", "Hewlett-Packard", "Husker-Pollosk"]}
+{"question": "What is a Burgee?", "correct": "A flag", "responses": ["A rope", "A flag", "A window", "A type of food"]}
+{"question": "What was the original name of the search engine \"Google\"?", "correct": "BackRub", "responses": ["SearchPro", "CatMassage", "Netscape Navigator", "BackRub"]}
+{"question": "Directly between the Washington Monument and the Reflecting Pool is a memorial to which war?", "correct": "World War II", "responses": ["World War II", "American Civil War", "Vietnam War", "American Revolutionary War"]}
+{"question": "Which round does a WW2 M1 Garand fire?", "correct": ".30-06", "responses": ["7.62x51mm", ".30-06", "7.62", ".308"]}
+{"question": "Which of the following is used to measure blood pressure?", "correct": "Sphygmomanometer", "responses": ["Haemoerythrometer", "Barometer", "Ruler", "Sphygmomanometer"]}
+{"question": "How many points is the Z tile worth in Scrabble?", "correct": "10", "responses": ["10", "8", "6", "5"]}
+{"question": "In \"Magic: The Gathering\", during the design for Planar Chaos, what color did the developers think of adding in as the sixth color?", "correct": "Purple", "responses": ["Pink", "Orange", "Purple", "Brown"]}
+{"question": "What is Scooby-Doo's real name?", "correct": "Scoobert", "responses": ["Scoobert", "Scrappy", "Shooby", "Scooter"]}
+{"question": "Which animal features on the logo for Abarth, the motorsport division of Fiat?", "correct": "Scorpion", "responses": ["Scorpion", "Snake", "Bull", "Horse"]}
+{"question": "Which car manufacturer created the \"Aventador\"?", "correct": "Lamborghini", "responses": ["Bugatti", "Pagani", "Lamborghini", "Ferrari"]}
+{"question": "In the Lord of the Rings, who is the father of the dwarf Gimli?", "correct": "Gloin", "responses": ["Thorin Oakenshield", "Dwalin", "Bombur", "Gloin"]}
+{"question": "What is the fourth book of the Old Testament?", "correct": "Numbers", "responses": ["Exodus", "Numbers", "Genesis", "Leviticus"]}
+{"question": "What was the pen name of novelist, Mary Ann Evans?", "correct": "George Eliot", "responses": ["George Eliot", "George Bernard Shaw", "George Orwell", "George Saunders"]}
+{"question": "In the movie \u201cThe Iron Giant,\u201d this character is the protagonist.", "correct": "Hogarth Hughes", "responses": ["Kent Mansley", "Dean McCoppin", "Hogarth Hughes", "Annie Hughes"]}
+{"question": "What was Marilyn Monroe`s character's first name in the film \"Some Like It Hot\"?", "correct": "Sugar", "responses": ["Honey", "Caramel", "Candy", "Sugar"]}
+{"question": "Who played Sgt. Gordon Elias in 'Platoon' (1986)?", "correct": "Willem Dafoe", "responses": ["Johnny Depp", "Charlie Sheen", "Matt Damon", "Willem Dafoe"]}
+{"question": "In the 2014 film \"Birdman\", what is the primary instrument in the score?", "correct": "Drums", "responses": ["Drums", "Saxophone", "Actual Live Birds Singing", "Violin"]}
+{"question": "In the 1994 movie \"Speed\", what is the minimum speed the bus must go to prevent to bomb from exploding?", "correct": "50 mph", "responses": ["70 mph", "60 mph", "40 mph", "50 mph"]}
+{"question": "In the 1999 movie Fight Club, which of these is not a rule of the \"fight club\"?", "correct": "Always wear a shirt", "responses": ["Only two guys to a fight", "You do not talk about FIGHT CLUB", "Fights will go on as long as they have to", "Always wear a shirt"]}
+{"question": "What character in the Winnie the Pooh films was added by Disney and does not appear in the original books?", "correct": "Gopher", "responses": ["Heffalumps", "Rabbit", "Gopher", "Tigger"]}
+{"question": "Which of the following films was NOT directed by Quentin Tarantino?", "correct": "From Dusk till Dawn", "responses": ["Reservoir Dogs", "Pulp Fiction", "From Dusk till Dawn", "Jackie Brown"]}
+{"question": "What is the name of the foley artist who designed the famous sounds of Star Wars, including Chewbacca's roar and R2-D2's beeps and whistles?", "correct": "Ben Burtt", "responses": ["Ken Burns", "Ben Burtt", "Miranda Keyes", "Ralph McQuarrie"]}
+{"question": "What is the correct phrase for the Latin saying \"Romanes Eunt Domus\" in Monty Python's Life of Brian?", "correct": "Romani Ite Domum", "responses": ["Romani Ite Domum", "Tomate Ite Domum", "Romans Go Home", "Roxani Ite Domum"]}
+{"question": "Who was the Roman god of fire?", "correct": "Vulcan", "responses": ["Apollo", "Mercury", "Vulcan", "Jupiter"]}
+{"question": "Which of the following authors was not born in England?", "correct": "Arthur Conan Doyle", "responses": ["Arthur C Clarke", "Graham Greene", "H G Wells", "Arthur Conan Doyle"]}
+{"question": "Which of these book series is by James Patterson?", "correct": "Maximum Ride", "responses": ["Harry Potter", "Maximum Ride", "The Legend of Xanth", "The Bartemaeus Trilogy"]}
+{"question": "Which novel by John Grisham was conceived on a road trip to Florida while thinking about stolen books with his wife?", "correct": "Camino Island", "responses": ["Camino Island", "Rogue Lawyer", "Gray Mountain", "The Litigators"]}
+{"question": "What is the name of the main character in the webcomic Gunnerkrigg Court by Tom Siddell?", "correct": "Antimony", "responses": ["Mercury", "Antimony", "Bismuth", "Cobalt"]}
+{"question": "In Calvin and Hobbes, what is the name of Susie's stuffed rabbit?", "correct": "Mr. Bun", "responses": ["Mr. Bun", "Mr. Rabbit", "Mr. Bunbun", "Mr. Hoppy"]}
+{"question": "Who had a US and UK number 1 hit in 1962 with the instrumental, 'Telstar'?", "correct": "The Tornados", "responses": ["The Tornados", "The Tremeloes", "The Ventures", "The Spotnicks"]}
+{"question": "EDM producer Marshmello performs live wearing clothes and a marshmallow mask of what colour?", "correct": "White", "responses": ["Blue", "White", "Yellow", "Black"]}
+{"question": "Which one of these Pink Floyd albums were also a movie?", "correct": "The Wall", "responses": ["The Wall", "Animals", "The Dark Side of the Moon", "Wish You Were Here"]}
+{"question": "What is the name of the 2016 studio album by the French electronic music duo Justice?", "correct": "Woman", "responses": ["Safe and Sound", "Pleasure", "Randy", "Woman"]}
+{"question": "Which of these is not a member of the virtual band Gorillaz?", "correct": "Phi Cypher", "responses": ["Russel Hobbs", "Phi Cypher", "Noodle", "Murdoc Niccals"]}
+{"question": "In Chess, the Queen has the combined movement of which two pieces?", "correct": "Bishop and Rook", "responses": ["Knight and Bishop", "Bishop and Rook", "King and Knight", "Rook and King"]}
+{"question": "Which dictator killed the most people?", "correct": "Mao Zedong", "responses": ["Adolf Hitler", "Kim Il Sung", "Joseph Stalin", "Mao Zedong"]}
+{"question": "In which year did the First World War begin?", "correct": "1914", "responses": ["1917", "1914", "1930", "1939"]}
+{"question": "What happened on June 6, 1944?", "correct": "D-Day", "responses": ["The Liberation of Paris", "Attack on Pearl Harbor", "D-Day", "Atomic bombings of Hiroshima and Nagasaki"]}
+{"question": "In \"The Simpsons\", what is the real name of \"Comic Book Guy\"?", "correct": "Jeff Albertson", "responses": ["Jack Richardson", "Jeff Albertson", "Comic Book Guy", "Edward Stone"]}
+{"question": "What is the name of the race horse that Tony Soprano becomes attached to?", "correct": "Pie-O-My", "responses": ["Honest Earnings", "Bada Bing", "Pie-O-My", "Man o' war"]}
+{"question": "Who authored The Adventures of Tintin?", "correct": "Herg\u00e9", "responses": ["Rin Tin Tin", "Herg\u00e9", "Chic Young", "E.P. Jacobs"]}
+{"question": "Which Batman sidekick is the son of Talia al Ghul?", "correct": "Damian Wayne", "responses": ["Tim Drake", "Dick Grayson", "Damian Wayne", "Jason Todd"]}
+{"question": "What does the acronym CDN stand for in terms of networking?", "correct": "Content Delivery Network", "responses": ["Content Delivery Network", "Computational Data Network", "Content Distribution Network", "Compressed Data Network"]}
+{"question": "How fast is USB 3.1 Gen 2 theoretically?", "correct": "10 Gb/s", "responses": ["5 Gb/s", "8 Gb/s", "1 Gb/s", "10 Gb/s"]}
+{"question": ".at is the top-level domain for what country?", "correct": "Austria", "responses": ["Argentina", "Australia", "Austria", "Angola"]}
+{"question": "Which programming language was developed by Sun Microsystems in 1995?", "correct": "Java", "responses": ["C++", "Python", "Solaris OS", "Java"]}
+{"question": "In Greek Mythology, who killed Achilles?", "correct": "Paris", "responses": ["Pericles", "Hector", "Helen", "Paris"]}
+{"question": "What is the highest belt you can get in Taekwondo?", "correct": "Black", "responses": ["Black", "Green", "White", "Red"]}
+{"question": "What is the exact length of one non-curved part in Lane 1 of an Olympic Track?", "correct": "84.39m", "responses": ["84.39m", "109.36yd", "100yd", "100m"]}
+{"question": "Why was The Green Monster at Fenway Park was originally built?", "correct": "To prevent viewing games from outside the park.", "responses": ["To provide extra seating.", "To prevent viewing games from outside the park.", "To make getting home runs harder.", "To display advertisements."]}
+{"question": "What is the name of the dog that played Toto in the 1939 film \"The Wizard of Oz\"?", "correct": "Terry", "responses": ["Teddy", "Toto", "Tommy", "Terry"]}
+{"question": "In The Lord of the Rings: The Fellowship of the Ring, which one of the following characters from the book was left out of the film?", "correct": "Tom Bombadil", "responses": ["Tom Bombadil", "Barliman Butterbur", "Celeborn", "Strider"]}
+{"question": "Which animated film did Steven Lisberger direct in 1980 before going on to direct Tron?", "correct": "Animalympics", "responses": ["The Black Cauldron", "The Fox and the Hound", "The Great Mouse Detecive", "Animalympics"]}
+{"question": "What type of cheese, loved by Wallace and Gromit, had it's sale prices rise after their successful short films?", "correct": "Wensleydale", "responses": ["Wensleydale", "Edam", "Cheddar", "Moon Cheese"]}
+{"question": "In the \"Sailor Moon\" series, what is Sailor Jupiter's civilian name?", "correct": "Makoto Kino", "responses": ["Minako Aino", "Makoto Kino", "Rei Hino", "Usagi Tsukino"]}
+{"question": "Which studio animated Soul Eater?", "correct": "Bones", "responses": ["Kyoto Animation", "xebec", "Production I.G", "Bones"]}
+{"question": "In the series JoJo's Bizarre Adventure, which main character makes the greatest number of recurring appearances?", "correct": "Jotaro Kujo", "responses": ["Joseph Joestar", "Josuke Higashikata", "Giorno Giovanna", "Jotaro Kujo"]}
+{"question": "What year did Albrecht D\u00fcrer create the painting \"The Young Hare\"?", "correct": "1502", "responses": ["1502", "1602", "1702", "1402"]}
+{"question": "Which one of these paintings is not by Caspar David Friedrich?", "correct": "The Black Sea", "responses": ["The Monk by the Sea", "Wanderer above the Sea of Fog", "The Black Sea", "The Sea of Ice"]}
+{"question": "The Principality of Sealand is an unrecognized micronation off the coast of what country?", "correct": "The United Kingdom", "responses": ["Argentina", "Japan", "The United Kingdom", "Austrailia"]}
+{"question": "What is the busiest port in Europe?", "correct": "Port of Rotterdam", "responses": ["Port of Amsterdam", "Port of Hamburg", "Port of Rotterdam", "Port of Antwerp"]}
+{"question": "Frankenmuth, a US city nicknamed \"Little Bavaria\", is located in what state?", "correct": "Michigan", "responses": ["Pennsylvania", "Virginia", "Michigan", "Kentucky"]}
+{"question": "Which of these American cities has fewer than 1,000,000 people?", "correct": "San Francisco, California", "responses": ["Philadelphia, Pennsylvania", "Phoenix, Arizona", "San Antonio, Texas", "San Francisco, California"]}
+{"question": "All of the following are towns/villages in the Pacific Island nation of Kiribati EXCEPT:", "correct": "Urutora", "responses": ["Washington", "Urutora", "London", "Rungata"]}
+{"question": "On which continent is the country of Angola located?", "correct": "Africa", "responses": ["South America", "Africa", "Europe", "Asia"]}
+{"question": "Which of the following is NOT a capital city?", "correct": "Sydney", "responses": ["Beijing", "Cairo", "Sydney", "Moscow"]}
+{"question": "A stimpmeter measures the speed of a ball over what surface?", "correct": "Golf Putting Green", "responses": ["Pinball Table", "Football Pitch", "Golf Putting Green", "Cricket Outfield"]}
+{"question": "When was the play \"Macbeth\" written?", "correct": "1606", "responses": ["1606", "1605", "1723", "1628"]}
+{"question": "Which Beatle led the way across the zebra crossing on the Abbey Road album cover?", "correct": "John", "responses": ["George", "Ringo", "John", "Paul"]}
+{"question": "What is Brian May's guitar called?", "correct": "Red Special", "responses": ["Yellow Special", "Green Special", "Red Special", "Blue Special"]}
+{"question": "The 'In the Flesh' tour was used in support of what Pink Floyd album?", "correct": "Animals", "responses": ["Wish You Were Here", "Animals", "The Wall", "The Final Cut"]}
+{"question": "What album did Gorillaz release in 2017?", "correct": "Humanz", "responses": ["The Fall", "Demon Days", "Humanz", "Plastic Beach"]}
+{"question": "On the cover of 'Abbey Road,' which of the Beatles is not wearing shoes?", "correct": "Paul McCartney", "responses": ["George Harrison", "John Lennon", "Paul McCartney", "Ringo Starr"]}
+{"question": "In the anime series \"Full Metal Alchemist\", what do Alchemists consider the greatest taboo?", "correct": "Human Transmutation", "responses": ["Transmuting Lead Into Gold", "Preforming Without A Permit", "Human Transmutation", "Using Alchemy For Crime"]}
+{"question": "In the anime Assassination Classroom what is the class that Korosensei teaches?", "correct": "Class 3-E", "responses": ["Class 3-D", "Class 3-B", "Class 3-E", "Class 3-A"]}
+{"question": "\"Silhouette\", a song performed by the group 'KANA-BOON' is featured as the sixteenth opening of which anime?", "correct": "Naruto: Shipp\u016bden", "responses": ["Naruto", "Naruto: Shipp\u016bden", "Gurren Lagann", "One Piece"]}
+{"question": "The song \"Twin Size Mattress\" was written by which band?", "correct": "The Front Bottoms", "responses": ["The Front Bottoms", "The Smith Street Band", "The Wonder Years", "Twenty One Pilots"]}
+{"question": "What is the real name of Canadian electronic music producer deadmau5?", "correct": "Joel Zimmerman", "responses": ["Adam Richard Wiles", "Thomas Wesley Pentz", "Sonny Moore", "Joel Zimmerman"]}
+{"question": "Who was the lead singer and frontman of rock band R.E.M?", "correct": "Michael Stipe", "responses": ["Chris Martin", "Michael Stipe", "Thom Yorke", "George Michael"]}
+{"question": "The book \"The Little Prince\" was written by...", "correct": "Antoine de Saint-Exup\u00e9ry", "responses": ["Antoine de Saint-Exup\u00e9ry", "F. Scott Fitzgerald", "Miguel de Cervantes Saavedra", "Jane Austen"]}
+{"question": "What is the make and model of the tour vehicles in \"Jurassic Park\" (1990)?", "correct": "1989 Toyota Land Cruiser", "responses": ["1989 Jeep Wrangler YJ Sahar", "1989 Toyota Land Cruiser", "Mercedes M-Class", "1989 Ford Explorer XLT"]}
+{"question": "Which episode from The Amazing World Of Gumball won the Childrens Choice Award at the British Animation Awards in 2016?", "correct": "The Shell", "responses": ["The Kids", "The Gripes", "The Shell", "The Limit"]}
+{"question": "Nickelodeon is owned by what parent company?", "correct": "Viacom", "responses": ["FOX", "CBS", "Viacom", "ABC"]}
+{"question": "Which of the following Mesopotamian mythological figures was NOT a deity?", "correct": "Enkidu", "responses": ["Enki", "Enlil", "Enkimdu", "Enkidu"]}
+{"question": "Joseph Stalin had a criminal past doing what?", "correct": "Robbing Trains", "responses": ["Tax Evasion", "Identity Fraud", "Murder for Hire", "Robbing Trains"]}
+{"question": "What is the oldest US state?", "correct": "Delaware", "responses": ["Virginia", "Delaware", "Maine", "Rhode Island"]}
+{"question": "What year did Skoal, a smokeless Tobacco company, release their first line of Pouches, known as \"Skoal Bandits\"?", "correct": "1983", "responses": ["1984", "1934", "1822", "1983"]}
+{"question": "Who was the first Chancellor of a united Germany in 1871?", "correct": "Otto Von Bismark", "responses": ["Kaiser Wilhelm", "Fredrick the 2nd", "Robert Koch", "Otto Von Bismark"]}
+{"question": "What were the first states to break away from Yugoslavia?", "correct": "Slovenia, Croatia", "responses": ["Slovenia, Croatia", "Montenegro, Slovenia", "Macedonia, Montenegro", "Slovenia, Macedonia"]}
+{"question": "Which building was set aflame on August 24th, 1812?", "correct": "The White House", "responses": ["Palace of the Nation", "The White House", "Parliament Building", "Grand National Assembly Building"]}
+{"question": "The Fallingwater House, located in Pennsylvania, was designed by which architect?", "correct": "Frank Lloyd Wright", "responses": ["Frank Gehry", "Antoni Gaudi", "Frank Lloyd Wright", "Le Corbusier"]}
+{"question": "When did O, Canada officially become the national anthem?", "correct": "1980", "responses": ["1980", "1950", "1880", "1920"]}
+{"question": "What is the half-life of Uranium-235?", "correct": "703,800,000 years", "responses": ["703,800,000 years", "4,300,400,000 years", "Uranium-235 is a stable isotope", "1,260,900,000 years"]}
+{"question": "What are the smallest blood vessels in the human body?", "correct": "Capillaries", "responses": ["Lymphatics", "Veinules", "Capillaries", "Arterioles"]}
+{"question": "On average, Americans consume 100 pounds of what per second?", "correct": "Chocolate", "responses": ["Potatoes", "Cocaine", "Donuts", "Chocolate"]}
+{"question": "The website \"Shut Up & Sit Down\" reviews which form of media?", "correct": "Board Games", "responses": ["Films", "Video Games", "Television Shows", "Board Games"]}
+{"question": "What is the currency of Poland?", "correct": "Z\u0142oty", "responses": ["Ruble", "Euro", "Z\u0142oty", "Krone"]}
+{"question": "What is the full title of the Prime Minister of the UK?", "correct": "First Lord of the Treasury", "responses": ["Manager of the Crown Estate", "Duke of Cambridge", "Her Majesty's Loyal Opposition", "First Lord of the Treasury"]}
+{"question": "What Russian automatic gas-operated assault rifle was developed in the Soviet Union in 1947, and is still popularly used today?", "correct": "AK-47", "responses": ["MG 42", "M16", "RPK", "AK-47"]}
+{"question": "What was the name of the planned invasion of Japan towards the end of World War II?", "correct": "Operation Downfall", "responses": ["Operation Boarding Party", "Operation Downfall", "Operation Aflame", "Operation Ironclad"]}
+{"question": "What is the real name of \"moot\", founder of the imageboard 4chan?", "correct": "Christopher Poole", "responses": ["Mark Zuckerberg", "Catie Wayne", "Allison Harvard", "Christopher Poole"]}
+{"question": "If he was still alive, in what year would Elvis Presley celebrate his 100th birthday?", "correct": "2035", "responses": ["2035", "2030", "2040", "2045"]}
+{"question": "Which famous New York Yankees outfielder did Marilyn Monroe marry?", "correct": "Joe DiMaggio", "responses": ["Babe Ruth", "Joe DiMaggio", "Tino Martinez", "Mason Williams"]}
+{"question": "Found in the Marvel Comics fictional universe, what is the name of the nearly indestructible metal that coats Wolverine's bones and claws?", "correct": "Adamantium", "responses": ["Carbonadium", "Vibranium", "Adamantium", "Titanium"]}
+{"question": "Which character does voice actress Tara Strong NOT voice?", "correct": "Bubbles (2016)", "responses": ["Harley Quinn", "Timmy Turner", "Bubbles (2016)", "Twilight Sparkle"]}
+{"question": "Which of following is rude and dishonorable by Klingon standards?", "correct": "Taking his D'k tahg", "responses": ["Reaching over and taking his meal", "Insulting and laughing at him at the dinner table", "Taking his D'k tahg", "Punching him and taking his ship station position"]}
+{"question": "Cesar Romero played which iconic Batman villain from the 1960's TV show?", "correct": "The Joker", "responses": ["The Riddler", "Mr. Freeze", "The Penguin", "The Joker"]}
+{"question": "Out of the 3 Tots in Tots TV, who speaks French in the UK Version and Spanish in the US Version?", "correct": "Tilly", "responses": ["Tom", "None of the Above", "Tilly", "Tiny"]}
+{"question": "While Apple was formed in California, in which western state was Microsoft founded?", "correct": "New Mexico", "responses": ["Colorado", "New Mexico", "Washington", "Arizona"]}
+{"question": "In CSS, which of these values CANNOT be used with the \"position\" property?", "correct": "center", "responses": ["center", "relative", "absolute", "static"]}
+{"question": "What does the term MIME stand for, in regards to computing?", "correct": "Multipurpose Internet Mail Extensions", "responses": ["Multipurpose Interleave Mail Exchange", "Multipurpose Internet Mail Extensions", "Mail Internet Mail Exchange", "Mail Interleave Method Exchange"]}
+{"question": "Approximately how many Apple I personal computers were created?", "correct": "200", "responses": ["200", "1000", "500", "100"]}
+{"question": "Unix Time is defined as the number of seconds that have elapsed since when?", "correct": "Midnight, January 1, 1970", "responses": ["Midnight, July 4, 1976", "Midnight, January 1, 1970", "Midnight on the creator of Unix's birthday", "Midnight, July 4, 1980"]}
+{"question": "Which element has the atomic number of 7?", "correct": "Nitrogen", "responses": ["Oxygen", "Hydrogen", "Nitrogen", "Neon"]}
+{"question": "Myopia is the scientific term for which condition?", "correct": "Shortsightedness", "responses": ["Shortsightedness", "Clouded Vision", "Double Vision", "Farsightedness"]}
+{"question": "Who built the first laser?", "correct": "Theodore Harold Maiman", "responses": ["Edith Clarke", "Theodore Harold Maiman", "Jack Kilby", "Nikola Tesla"]}
+{"question": "Mobile hardware and software company \"Blackberry Limited\" was founded in which country?", "correct": "Canada", "responses": ["Norway", "United States of America", "United Kingdom", "Canada"]}
+{"question": "What is the most significant side venture the popular firearms company, Remington, has pursued?", "correct": "Typewriters", "responses": ["Door Knobs", "Blenders", "Ceiling Fans", "Typewriters"]}
+{"question": "Which nation hosted the FIFA World Cup in 2006?", "correct": "Germany", "responses": ["United Kingdom", "Germany", "South Africa", "Brazil"]}
+{"question": "Which of the following player scored a hat-trick during their Manchester United debut?", "correct": "Wayne Rooney", "responses": ["Robin Van Persie", "Cristiano Ronaldo", "David Beckham", "Wayne Rooney"]}
+{"question": "What is the name of the AHL affiliate of the Toronto Maple Leafs?", "correct": "Toronto Marlies", "responses": ["Toronto Wolfpack", "Toronto Marlies", "Toronto Rock", "Toronto Argonauts"]}
+{"question": "Generally, which component of a computer draws the most power?", "correct": "Video Card", "responses": ["Processor", "Hard Drive", "Video Card", "Power Supply"]}
+{"question": "In programming, the ternary operator is mostly defined with what symbol(s)?", "correct": "?:", "responses": ["if then", "??", "?:", "?"]}
+{"question": "What was the first Android version specifically optimized for tablets?", "correct": "Honeycomb", "responses": ["Froyo", "Marshmellow", "Honeycomb", "Eclair"]}
+{"question": "What is the number of keys on a standard Windows Keyboard?", "correct": "104", "responses": ["104", "64", "94", "76"]}
+{"question": "In Finding Nemo, what was the name of Nemo's mom?", "correct": "Coral", "responses": ["Pearl", "Coral", "Shelly", "Sandy"]}
+{"question": "How much money did the 2019 Marvel movie \"Avengers: Endgame\" grossed for it's record-breaking worldwide opening weekend?", "correct": "1.2 billion USD", "responses": ["640 million USD", "1.2 billion USD", "392 million USD", "456 million USD"]}
+{"question": "What are the first names of the first father and son pair that were both Prime Ministers of Canada?", "correct": "Justin and Pierre", "responses": ["Justin and Pierre", "Brian and Pierre", "John and Louis", "Brian and Justin"]}
+{"question": "What is the name of French electronic music producer Madeon's 2015 debut studio album?", "correct": "Adventure", "responses": ["Icarus", "The City", "Adventure", "Pop Culture"]}
+{"question": "Which of these is NOT a song by Pegboard Nerds?", "correct": "WiFi Tears", "responses": ["Emoji", "BAMF", "Swamp Thing", "WiFi Tears"]}
+{"question": "From which country does the piano originate?", "correct": "Italy", "responses": ["Italy", "France", "Austria", "Germany"]}
+{"question": "Which portuguese island is soccer player Cristiano Ronaldo from?", "correct": "Madeira", "responses": ["Madeira", "Santa Maria", "Terceira", "Porto Santo"]}
+{"question": "Which car manufacturer won the 2017 24 Hours of Le Mans?", "correct": "Porsche", "responses": ["Porsche", "Toyota", "Audi", "Chevrolet"]}
+{"question": "In aeronautics, flaps and slats are used to control what on an aircraft?", "correct": "Lift", "responses": ["Lift", "Thrust", "Drag", "Weight"]}
+{"question": "Which planet did the \"Viking 1\" spacecraft send surface images of, starting in 1976?", "correct": "Mars", "responses": ["Mars", "Jupiter", "Venus", "Saturn"]}
+{"question": "In the 1984 movie \"The Terminator\", what model number is the Terminator portrayed by Arnold Schwarzenegger?", "correct": "T-800", "responses": ["T-800", "T-888", "I-950", "T-1000"]}
+{"question": "What does TIE stand for in reference to the TIE Fighter in \"Star Wars\"?", "correct": "Twin Ion Engine", "responses": ["Twin Inception Engine", "Twin Ion Engine", "Twin Iron Engine", "Twin Intercepter Engine"]}
+{"question": "Who voices the main character Blu in the 2011 animated film \"Rio\"?", "correct": "Jesse Eisenberg", "responses": ["Michael Cera", "Jonah Hill", "Zach Galifianakis", "Jesse Eisenberg"]}
+{"question": "Brendan Fraser starred in the following movies, except which one?", "correct": "Titanic", "responses": ["Mrs. Winterbourne", "Monkeybone", "Encino Man", "Titanic"]}
+{"question": "Who patented a steam engine that produced continuous rotary motion?", "correct": "James Watt", "responses": ["Albert Einstein", "James Watt", "Alessandro Volta", "Nikola Tesla"]}
+{"question": "In what year was the Oculus Rift revealed to the public through a Kickstarter campaign?", "correct": "2012", "responses": ["2013", "2010", "2011", "2012"]}
+{"question": "When was the DVD invented?", "correct": "1995", "responses": ["1995", "1980", "2000", "1990"]}
+{"question": "Which country has the international vehicle registration letter 'A'?", "correct": "Austria", "responses": ["Afghanistan", "Austria", "Armenia", "Australia"]}
+{"question": "Which of the following is NOT a Russian car manufacturer?", "correct": "BYD", "responses": ["BYD", "GAZ", "Silant", "Dragon"]}
+{"question": "In the ADV (English) Dub of the anime \"Ghost Stories\", which character is portrayed as a Pentacostal Christian?", "correct": "Momoko Koigakubo", "responses": ["Satsuki Miyanoshita", "Hajime Aoyama", "Momoko Koigakubo", "Mio Itai"]}
+{"question": "What year did \"Attack on Titan\" Season 2 begin airing?", "correct": "2017", "responses": ["2017", "2018", "2020", "2019"]}
+{"question": "What is the name of the device that allows for infinite energy in the anime \"Dimension W\"?", "correct": "Coils", "responses": ["Wires", "Coils", "Tesla", "Collectors"]}
+{"question": "Which of the following countries has officially banned the civilian use of dash cams in cars?", "correct": "Austria", "responses": ["South Korea", "Czechia", "United States", "Austria"]}
+{"question": "What is the only country in the world with a flag that doesn't have four right angles?", "correct": "Nepal", "responses": ["Nepal", "Angola", "Panama", "Egypt"]}
+{"question": "Which European city has the highest mileage of canals in the world?", "correct": "Birmingham", "responses": ["Venice", "Berlin", "Birmingham", "Amsterdam"]}
+{"question": "Which of the following countries banned the use of personal genetic ancestry tests?", "correct": "Germany", "responses": ["Austria", "Germany", "Sweden", "Canada"]}
+{"question": "What is the capital of British Columbia, Canada?", "correct": "Victoria", "responses": ["Hope", "Victoria", "Vancouver", "Kelowna"]}
+{"question": "Which of the following is not a megadiverse country - one that harbors a high number of the earth's endemic species?", "correct": "Thailand", "responses": ["Mexico", "Peru", "South Africa", "Thailand"]}
+{"question": "What is the name of the first \"Star Wars\" film by release order?", "correct": "A New Hope", "responses": ["The Force Awakens", "Revenge of the Sith", "The Phantom Menace", "A New Hope"]}
+{"question": "What was another suggested name for, the 1985 film, Back to the Future?", "correct": "Spaceman From Pluto", "responses": ["The Lucky Man", "Spaceman From Pluto", "The Time Travelers", "Hill Valley Time Travelers"]}
+{"question": "What is the correct spelling of the protagonist of the book in The NeverEnding Story (1984)?", "correct": "Atreyu", "responses": ["Atraeyu", "Atrayu", "Atreyu", "Atraiyu"]}
+{"question": "Which Marvel superhero did Chris Evans play prior to his role as Captain America?", "correct": "Human Torch", "responses": ["Daredevil", "Iceman", "Cyclops", "Human Torch"]}
+{"question": "Who wrote the 1967 horror novel \"Rosemary's Baby\"?", "correct": "Ira Levin", "responses": ["Ira Levin", "Mary Shelley", "Stephen King", "Robert Bloch"]}
+{"question": "Which American author was also a budding travel writer and wrote of his adventures with his dog Charley?", "correct": "John Steinbeck", "responses": ["William Faulkner", "John Steinbeck", "Ernest Hemingway", "F. Scott Fitzgerald"]}
+{"question": "In \"Little Women\", which of the March sisters married Laurie?", "correct": "Amy", "responses": ["Meg", "Amy", "Jo", "Beth"]}
+{"question": "When was the Declaration of Independence approved by the Second Continental Congress?", "correct": "July 4, 1776", "responses": ["June 4, 1776", "July 4, 1776", "May 4, 1776", "July 2, 1776"]}
+{"question": "The new One World Trade Center in Manhattan, New York City was designed by which architect?", "correct": "David Childs", "responses": ["Michael Arad", "Bjarke Ingels", "Fumihiko Maki", "David Childs"]}
+{"question": "Which of the following carbonated soft drinks were introduced first?", "correct": "Dr. Pepper", "responses": ["Dr. Pepper", "Mountain Dew", "Coca-Cola", "Sprite"]}
+{"question": "In \"SpongeBob SquarePants\", what is the name of Sandy Cheek's place of residence?", "correct": "Sandy's Treedome", "responses": ["Auquatic Reseach Centre", "Sandy's Treedome", "\"The Dome\"", "Sandy's Bubble"]}
+{"question": "The title of Adolf Hitler's autobiography \"Mein Kampf\" is what when translated to English?", "correct": "My Struggle", "responses": ["My Desire", "My Hatred", "My Sadness", "My Struggle"]}
+{"question": "What was Mountain Dew's original slogan?", "correct": "Yahoo! Mountain Dew... It'll tickle your innards!", "responses": ["Do The Dew", "Give Me A Dew", "Yahoo! Mountain Dew... It'll tickle your innards!", "Get' that barefoot feelin' drinkin' Mountain Dew"]}
+{"question": "What is the star sign of someone born on Valentines day?", "correct": "Aquarius", "responses": ["Scorpio", "Capricorn", "Pisces", "Aquarius"]}
+{"question": "Which logical fallacy means to attack the character of your opponent rather than their arguments?", "correct": "Ad hominem", "responses": ["Post hoc ergo propter hoc", "Argumentum ad populum", "Ad hominem", "Tu quoque"]}
+{"question": "The now extinct species \"Thylacine\" was native to where?", "correct": "Tasmania, Australia", "responses": ["Baluchistan, Pakistan", "Oregon, United States", "Wallachia, Romania", "Tasmania, Australia"]}
+{"question": "J.K. Rowling completed \"Harry Potter and the Deathly Hallows\" in which hotel in Edinburgh, Scotland?", "correct": "The Balmoral", "responses": ["Sheraton Grand Hotel & Spa", "The Balmoral", "The Dunstane Hotel", "Hotel Novotel"]}
+{"question": "What book series published by Jim Butcher follows a wizard in modern day Chicago?", "correct": "The Dresden Files", "responses": ["The Cinder Spires", "A Hat in Time", "The Dresden Files", "My Life as a Teenage Wizard"]}
+{"question": "Nikki Diamond portrayed which Gladiator in the 1992 TV show \"Gladiators\"?", "correct": "Scorpio", "responses": ["Falcon", "Nightshade", "Jet", "Scorpio"]}
+{"question": "What name does the little headcrab in \"Half Life 2\" have?", "correct": "Lamarr", "responses": ["Lamarr", "Jerry", "Jumperr", "Drett"]}
+{"question": "In the game \"Terraria\", which of these bosses are pre-hardmode bosses?", "correct": "Eye of Cthulhu", "responses": ["The Destroyer", "Skeletron Prime", "Plantera", "Eye of Cthulhu"]}
+{"question": "Which German city does the map \"Clubhouse\" in \"Tom Clancy's Rainbow Six Siege\" take place in?", "correct": "Hannover", "responses": ["Hannover", "Hamburg", "Berlin", "Munich"]}
+{"question": "Which stage was planned to be a part of \"Sonic the Hedgehog 2\", but was scrapped during development?", "correct": "Genocide City Zone", "responses": ["Sky High Zone", "Stardust Speedway Zone", "Genocide City Zone", "Clockwork Zone"]}
+{"question": "In the Mario series, which game introduced Mario's Backflip ability?", "correct": "Donkey Kong (Gameboy)", "responses": ["Super Mario Galaxy", "Super Mario 64", "Donkey Kong (Gameboy)", "Super Mario 3D Land"]}
+{"question": "What name represents the letter \"M\" in the NATO phonetic alphabet?", "correct": "Mike", "responses": ["Mike", "Max", "Mark", "Matthew"]}
+{"question": "Which language is NOT Indo-European?", "correct": "Hungarian", "responses": ["Greek", "Latvian", "Hungarian", "Russian"]}
+{"question": "What is the Italian word for \"tomato\"?", "correct": "Pomodoro", "responses": ["Aglio", "Peperoncino", "Cipolla", "Pomodoro"]}
+{"question": "In Pre-Super Genesis universe of \"Sonic the Hedgehog\" comic, what was the name of  Sally Acorn's brother?", "correct": "Elias Acorn", "responses": ["Elias Acorn", "Alexis Acorn", "Frederick Acorn", "Maximillian Acorn"]}
+{"question": "Who became Prime Minister of the United Kingdom in July 2016?", "correct": "Theresa May", "responses": ["Theresa May", "Boris Johnson", "Tony Blair", "David Cameron"]}
+{"question": "Which actor plays the character \"Tommy Jarvis\" in \"Friday the 13th: The Final Chapter\" (1984)?", "correct": "Corey Feldman", "responses": ["Mel Gibson", "Macaulay Culkin", "Corey Feldman", "Mark Hamill"]}
+{"question": "What is the name of the character Nicolas Cage plays in the movie \"National Treasure?\"", "correct": "Benjamin Franklin Gates", "responses": ["John Quincy Beckett", "Benjamin Franklin Gates", "George Washington Swanson", "Thomas Jefferson Walker"]}
+{"question": "Capcom's survival horror title Dead Rising, canonically starts on what day of September 2006?", "correct": "September 19th", "responses": ["September 14th", "September 19th", "September 30th", "September 21st"]}
+{"question": "Which survivor in Left 4 Dead sacrificed themself to save the other survivors?", "correct": "Bill", "responses": ["Zoey", "Louis", "Bill", "Francis"]}
+{"question": "In the PAYDAY series, who is the iconic leader of the PAYDAY gang?", "correct": "Dallas", "responses": ["Wolf", "Hoxton", "Chains", "Dallas"]}
+{"question": "In the ARPG \"Path of Exile,\" what is the highest amount of sockets that an item can have?", "correct": "6", "responses": ["4", "6", "8", "5"]}
+{"question": "Rolex is a company that specializes in what type of product?", "correct": "Watches", "responses": ["Sports equipment", "Cars", "Computers", "Watches"]}
+{"question": "What is the name given to Indian food cooked over charcoal in a clay oven?", "correct": "Tandoori", "responses": ["Tiki masala", "Pani puri", "Biryani", "Tandoori"]}
+{"question": "Amsterdam Centraal station is twinned with what station?", "correct": "London Liverpool Street", "responses": ["Paris Gare du Nord", "Brussels Midi", "Frankfurt (Main) Hauptbahnhof", "London Liverpool Street"]}
+{"question": "What direction does the Statue of Liberty face?", "correct": "Southeast", "responses": ["Northwest", "Northeast", "Southeast", "Southwest"]}
+{"question": "What was the soft drink Pepsi originally introduced as?", "correct": "Brad's Drink", "responses": ["Carolina Cola", "Brad's Drink", "Pepsin Pop", "Pepsin Syrup"]}
+{"question": "What was the personal nickname of the 40th Governor of the US State Louisiana, Huey Long?", "correct": "The Kingfish", "responses": ["The Champ", "The Kingfish", "The Hoot Owl", "The Oracle"]}
+{"question": "The historical city Timbuktu is located in which West African country?", "correct": "Mali", "responses": ["Niger", "Senegal", "Burkina Faso", "Mali"]}
+{"question": "Which of the following is the longest river in Europe?", "correct": "Volga", "responses": ["Danube", "Volga", "Ural", "Dnieper"]}
+{"question": "In which English county is the city of Portsmouth?", "correct": "Hampshire", "responses": ["Oxfordshire", "Buckinghamshire", "Surrey", "Hampshire"]}
+{"question": "What part of an automobile engine uses lobes to open and close intake and exhaust valves, and allows an air/fuel mixture into the engine?", "correct": "Camshaft", "responses": ["Camshaft", "Drive shaft", "Crankshaft", "Piston"]}
+{"question": "Which one of the following is not made by Ford?", "correct": "Camry", "responses": ["F-150", "Model A", "Camry", "Fusion"]}
+{"question": "What was the name of Marilyn Monroe's first husband?", "correct": "James Dougherty", "responses": ["Joe Dimaggio", "Arthur Miller", "James Dougherty", "Kirk Douglas"]}
+{"question": "Moore's law originally stated that the number of transistors on a microprocessor chip would double every...", "correct": "Year", "responses": ["Four Years", "Two Years", "Year", "Eight Years"]}
+{"question": "How many cores does the Intel i7-6950X have?", "correct": "10", "responses": ["8", "4", "12", "10"]}
+{"question": "In HTML, which non-standard tag used to be be used to make elements scroll across the viewport?", "correct": "<marquee></marquee>", "responses": ["<move></move>", "<marquee></marquee>", "<slide></slide>", "<scroll></scroll>"]}
+{"question": "How many bytes are in a single Kibibyte?", "correct": "1024", "responses": ["1000", "1240", "2400", "1024"]}
+{"question": "The teapot often seen in many 3D modeling applications is called what?", "correct": "Utah Teapot", "responses": ["Utah Teapot", "Tennessee Teapot", "3D Teapot", "Pixar Teapot"]}
+{"question": "Who wrote the children's story \"The Little Match Girl\"?", "correct": "Hans Christian Andersen", "responses": ["Hans Christian Andersen", "Oscar Wilde", "Charles Dickens", "Lewis Carroll"]}
+{"question": "In the novel \"Lord of the Rings\", how many rings of power were given to the race of man?", "correct": "9", "responses": ["11", "9", "13", "5"]}
+{"question": "Which Hanna-Barbera cartoon character travelled with a canine companion named Beegle Beagle?", "correct": "Grape Ape", "responses": ["Grape Ape", "Yogi Bear", "Boss Gator", "Wally Gator"]}
+{"question": "Which sport is NOT traditionally played during the Mongolian Naadam festival?", "correct": "American Football", "responses": ["Archery", "American Football", "Wrestling", "Horse-Racing"]}
+{"question": "In \"Highschool DxD\", what is the name of the item some humans are born with?", "correct": "Sacred Gear", "responses": ["Blessed Artifact", "Sacred Gear", "Imperial Arm", "Hallowed Relic"]}
+{"question": "In \"Black Lagoon\", what colour is Rock's tie?", "correct": "Teal", "responses": ["Dark Brown", "Crimson", "Teal", "Black"]}
+{"question": "Who is a co-founder of music streaming service Spotify?", "correct": "Daniel Ek", "responses": ["Felix Miller", "Sean Parker", "Daniel Ek", "Michael Breidenbruecker"]}
+{"question": "What fast food chain has the most locations globally?", "correct": "Subway", "responses": ["Starbucks", "KFC", "Subway", "McDonalds"]}
+{"question": "According to the BBPA, what is the most common pub name in the UK?", "correct": "Red Lion", "responses": ["Royal Oak", "Red Lion", "White Hart", "King's Head"]}
+{"question": "What does the \"G\" mean in \"G-Man\"?", "correct": "Government", "responses": ["Going", "Government", "Geronimo", "Ghost"]}
+{"question": "What is the highest number of Michelin stars a restaurant can receive?", "correct": "Three", "responses": ["Six", "Three", "Five", "Four"]}
+{"question": "Out of all of the NASA Space Shuttles, which 2 have been destroyed in disasters?", "correct": "Challenger and Columbia", "responses": ["Enterprise and Atlantis", "Discovery and Endeavour", "Challenger and Columbia", "None of the Above"]}
+{"question": "Who designed the Chupa Chups logo?", "correct": "Salvador Dali", "responses": ["Pablo Picasso", "Salvador Dali", "Andy Warhol", "Vincent van Gogh"]}
+{"question": "Which of the following battles is often considered as marking the beginning of the fall of the Western Roman Empire?", "correct": "Battle of Adrianople", "responses": ["Battle of Pollentia", "Battle of Thessalonica", "Battle of Adrianople", "Battle of Constantinople"]}
+{"question": "On which day did construction start on \"The Pentagon\", the headquarters for the United States Department of Defense?", "correct": "September 11, 1941", "responses": ["January 15, 1943", "June 15, 1947", "September 2, 1962", "September 11, 1941"]}
+{"question": "What was the name of Ross' pet monkey on \"Friends\"?", "correct": "Marcel", "responses": ["Champ", "Marcel", "George", "Jojo"]}
+{"question": "How many seasons did the TV show \"Donkey Kong Country\" last?", "correct": "2", "responses": ["2", "4", "5", "1"]}
+{"question": "Which WWF wrestler had the nickname \"The Ayatollah of Rock 'N' Rolla\"?", "correct": "Chris Jericho", "responses": ["Chris Jericho", "Marty Jannetty", "Scott Hall", "Shawn Michaels"]}
+{"question": "Nvidia's headquarters are based in which Silicon Valley city?", "correct": "Santa Clara", "responses": ["Mountain View", "Santa Clara", "Palo Alto", "Cupertino"]}
+{"question": "Which of these programming languages is a low-level language?", "correct": "Assembly", "responses": ["Python", "Pascal", "Assembly", "C#"]}
+{"question": "In what engine was Titanfall made in?", "correct": "Source Engine", "responses": ["Source Engine", "Unreal Engine", "Cryengine", "Frostbite 3"]}
+{"question": "In what year was \"Super Mario Sunshine\" released?", "correct": "2002", "responses": ["2002", "2004", "2000", "2003"]}
+{"question": "Psych-Horror \"Eternal Darkness: Sanity's Requiem\", developed by Silicon Knights in 2002, was published by who and on what platform?", "correct": "Nintendo\u00ae Co. Ltd. | GameCube\u2122", "responses": ["Sega\u00ae Enterprises Co. Ltd. | Dreamcast\u2122", "Microsoft\u00ae Game Studios\u2122 | XBox\u2122", "Sony\u00ae Computer Entertainment\u2122 Inc. | PlayStation\u00ae 2", "Nintendo\u00ae Co. Ltd. | GameCube\u2122"]}
+{"question": "In the film \"Requiem for a Dream\", what drug does Jared Leto's character get addicted to?", "correct": "Heroin", "responses": ["Marijuana", "Cocaine", "Oxycodone", "Heroin"]}
+{"question": "What nationality was the surrealist painter Salvador Dali?", "correct": "Spanish", "responses": ["French", "Italian", "Spanish", "Portuguese"]}
+{"question": "How many episodes were in season five of Samurai Jack?", "correct": "10", "responses": ["13", "10", "12", "11"]}
+{"question": "What year were the Marian Reforms instituted in the Roman Republic?", "correct": "107 BCE", "responses": ["264 BCE", "42 BCE", "107 BCE", "102 CE"]}
+{"question": "Which of the following snipers has the highest amount of confirmed kills?", "correct": "Simo H\u00e4yh\u00e4", "responses": ["Vasily Zaytsev", "Chris Kyle", "Simo H\u00e4yh\u00e4", "Craig Harrison"]}
+{"question": "Who crowned Charlemagne as Holy Roman Emperor on Christmas Day in 800?", "correct": "Pope Leo III", "responses": ["Pope Urban IV", "Pope Stephen V", "Pope Valentine", "Pope Leo III"]}
+{"question": "Which U.S. President was in office when the Gulf War began?", "correct": "George H. W. Bush", "responses": ["George W. Bush", "Ronald Regan", "Richard Nixon", "George H. W. Bush"]}
+{"question": "In Alice in Wonderland, what is the name of Alice's kitten?", "correct": "Dinah", "responses": ["Oscar", "Smokey", "Dinah", "Heath"]}
+{"question": "Who sang the theme song for the TV show 'Rawhide'?", "correct": "Frankie Laine", "responses": ["Slim Whitman", "Tennessee Ernie Ford", "Guy Mitchell", "Frankie Laine"]}
+{"question": "Who was the star of the TV series \"24\"?", "correct": "Kiefer Sutherland", "responses": ["Hugh Laurie", "Kevin Bacon", "Kiefer Sutherland", "Rob Lowe"]}
+{"question": "Alan Reed is known for providing the voice of which character?", "correct": "Fred Flintstone", "responses": ["Fred Flintstone", "Fangface", "G.I. Joe", "Bugs Bunny"]}
+{"question": "What is the name of the capital of Turkey?", "correct": "Ankara", "responses": ["Izmir", "Istanbul", "Bursa", "Ankara"]}
+{"question": "How many countries are larger than Australia?", "correct": "5", "responses": ["6", "4", "3", "5"]}
+{"question": "What is the capital of Lithuania?", "correct": "Vilnius", "responses": ["Riga", "Tallinn", "Vilnius", "Helsinki"]}
+{"question": "Which singer provided the voice of Metroid's Mother Brain in the animated series \"Captain N: The Game Master\"?", "correct": "Levi Stubbs", "responses": ["Joan Jett", "Janet Jackson", "Levi Stubbs", "Freddie Mercury"]}
+{"question": "Neptune's greek name was...", "correct": "Poseidon", "responses": ["Zeus", "Ares", "Apollo", "Poseidon"]}
+{"question": "Which Russian author wrote the epic novel War and Peace?", "correct": "Leo Tolstoy", "responses": ["Fyodor Dostoyevsky", "Vladimir Nabokov", "Leo Tolstoy", "Alexander Pushkin"]}
+{"question": "Ikki Kurogane is known by what nickname at the beginning of \"Chivalry of a Failed Knight\"?", "correct": "Worst One", "responses": ["Another One", "Princess", "Blazer", "Worst One"]}
+{"question": "Which Japanese music group was formed to produce theme music for the anime \"Guilty Crown\"?", "correct": "Egoist", "responses": ["Egoist", "Babymetal", "Garnidelia", "Goose house"]}
+{"question": "Which JoJo's Bizarre Adventure character possesses the Stand named Silver Chariot?", "correct": "Jean Pierre Polnareff", "responses": ["Hermes Costello", "Noriaki Kakyoin", "Hol Horse", "Jean Pierre Polnareff"]}
+{"question": "The Japanese district Akihabara is also known by what nickname?", "correct": "Electric Town", "responses": ["Big Eyes", "Electric Town", "Moon Walk River", "Otaku Central"]}
+{"question": "The World Health Organization headquarters is located in which European country?", "correct": "Switzerland", "responses": ["Switzerland", "United Kingdom", "France", "Belgium"]}
+{"question": "Where are the Nazca Lines located?", "correct": "Peru", "responses": ["Brazil", "Colombia", "Peru", "Ecuador"]}
+{"question": "What is the smallest country in South America by area?", "correct": "Suriname", "responses": ["Chile", "Suriname", "Uruguay", "Brazil"]}
+{"question": "Which television show has Dan Gheesling been on?", "correct": "Big Brother", "responses": ["Survivor", "Jeopardy", "The Bachelor", "Big Brother"]}
+{"question": "What is Homestuck character Gamzee's last name?", "correct": "Makara", "responses": ["Makera", "Makara", "Makrea", "Makare"]}
+{"question": "Which Toronto landmark was featured on the cover art of Canadian rapper Drake's 2016 album \"Views\"?", "correct": "CN Tower", "responses": ["CN Tower", "Prince of Wales Theatre", "Allan Gardens", "Union Station"]}
+{"question": "Which of these songs by artist Eminem contain the lyric \"Nice to meet you. Hi, my name is... I forgot my name!\"?", "correct": "Rain Man", "responses": ["Kim", "Without Me", "Square Dance", "Rain Man"]}
+{"question": "What is rapper Drake's real name?", "correct": "Aubrey Graham", "responses": ["Aubrey Graham", "Shaun Carter", "Dwayne Carter", "Andre Young"]}
+{"question": "Which album by American rapper Kanye West contained songs such as \"Love Lockdown\", \"Paranoid\" and \"Heartless\"?", "correct": "808s & Heartbreak", "responses": ["Graduation", "The Life of Pablo", "Late Registration", "808s & Heartbreak"]}
+{"question": "Which of the following music bands is not from Finland?", "correct": "Sabaton", "responses": ["Lordi", "Waltari", "Sabaton", "Apocalyptica"]}
+{"question": "All of the following programs are classified as raster graphics editors EXCEPT:", "correct": "Inkscape", "responses": ["GIMP", "Paint.NET", "Inkscape", "Adobe Photoshop"]}
+{"question": "Laserjet and inkjet printers are both examples of what type of printer?", "correct": "Non-impact printer", "responses": ["Non-impact printer", "Daisywheel printer", "Dot matrix printer", "Impact printer"]}
+{"question": "What was the capital of South Vietnam before the Vietnam War?", "correct": "Saigon", "responses": ["Hanoi", "Hue", "Ho Chi Minh City", "Saigon"]}
+{"question": "The Battle of the Somme in World War I took place in which country?", "correct": "France", "responses": ["Italy", "Germany", "Austria", "France"]}
+{"question": "In what prison was Adolf Hitler held in 1924?", "correct": "Landsberg Prison", "responses": ["Landsberg Prison", "Hohenasperg", "Ebrach Abbey", "Spandau Prison"]}
+{"question": "What is the mnemonic device for remembering the fates of the wives of Henry VIII?", "correct": "Divorced, Beheaded, Died, Divorced, Beheaded, Survived", "responses": ["Divorced, Beheaded, Died, Divorced, Beheaded, Survived", "Beheaded, Died, Divorced, Divorced, Beheaded, Survived", "Survived, Beheaded, Died, Divorced, Divorced, Beheaded", "Died, Beheaded, Divorced, Beheaded, Survived, Divorced"]}
+{"question": "What was Genghis Khan's real name?", "correct": "Tem\u00fcjin", "responses": ["Tem\u00fcjin", "M\u00f6ngke", "Tem\u00fcr", "\u00d6gedei"]}
+{"question": "The song \"Feel Good Inc.\" by British band Gorillaz features which hip hop group?", "correct": "De La Soul", "responses": ["De La Soul", "Cypress Hill", "OutKast", "Public Enemy"]}
+{"question": "Which song in Drake's \"Views\" features Future?", "correct": "Grammys", "responses": ["Grammys", "Too Good", "Pop Style", "Faithful"]}
+{"question": "What is the first track on Kanye West's 808s & Heartbreak?", "correct": "Say You Will", "responses": ["Heartless", "Street Lights", "Say You Will", "Welcome to Heartbreak"]}
+{"question": "What was Britney Spears' debut single?", "correct": "...Baby One More Time", "responses": ["(You Drive Me) Crazy", "...Baby One More Time", "Toxic", "Oops!... I Did It Again"]}
+{"question": "How many studio albums have the heavy metal band, 'Metallica' released in the period between 1983 and 2016?", "correct": "10", "responses": ["7", "9", "10", "12"]}
+{"question": "What is Tiger Woods' all-time best career golf-score?", "correct": "61", "responses": ["63", "67", "65", "61"]}
+{"question": "Which American family band had a 1986 top 10 hit with the song 'Crush On You'?", "correct": "The Jets", "responses": ["DeBarge", "The Cover Girls", "The Jets", "The Jacksons"]}
+{"question": "May 16th of every year is known as __________ Day, named after a punk band prominent in the 1990s.", "correct": "Lagwagon", "responses": ["Less Than Jake", "Goldfinger", "Lagwagon", "Lit"]}
+{"question": "Which member of the British pop group \"The Spice Girls\" was known as Ginger Spice?", "correct": "Geri Halliwell", "responses": ["Geri Halliwell", "Victoria Beckham", "Emma Bunton", "Melanie Brown"]}
+{"question": "The heroine of \"Humanity Has Declined\" is a mediator between humans and what?", "correct": "Fairies", "responses": ["Animals", "Elves", "Fairies", "The Earth"]}
+{"question": "Krusty is the guild master of which guild in \"Log Horizon\"?", "correct": "D. D. D", "responses": ["Silver Sword", "D. D. D", "Oceanic Systems (Marine Agency)", "West Wind Brigade"]}
+{"question": "What round is a classic AK-47 chambered in?", "correct": "7.62x39mm", "responses": ["5.45x39mm", "5.56x45mm", "7.62x51mm", "7.62x39mm"]}
+{"question": "Who is the founder and leader of industrial rock band, 'Nine Inch Nails'?", "correct": "Trent Reznor", "responses": ["Josh Homme", "Marilyn Manson", "Robin Finck", "Trent Reznor"]}
+{"question": "According to a Beatles song, who kept her face in a jar by the door?", "correct": "Eleanor Rigby", "responses": ["Loretta Martin", "Molly Jones", "Eleanor Rigby", "Lady Madonna"]}
+{"question": "What was the title of Sakamoto Kyu's song \"Ue o Muite Arukou\" (I Look Up As I Walk) changed to in the United States?", "correct": "Sukiyaki", "responses": ["Sukiyaki", "Sushi", "Takoyaki", "Oden"]}
+{"question": "Who recorded the album called \"Down to the Moon\" in 1986?", "correct": "Andreas Vollenweider", "responses": ["Jean-Michel Jarre", "Enya", "Bing Crosby", "Andreas Vollenweider"]}
+{"question": "Which European capital city gives its name to a 1981 song by Ultravox?", "correct": "Vienna", "responses": ["Berlin", "Paris", "Brussels", "Vienna"]}
+{"question": "What national team won the 2016 edition of UEFA European Championship?", "correct": "Portugal", "responses": ["Portugal", "England", "Germany", "France"]}
+{"question": "In which movie does Robin Williams' character have to disguise themselves into a woman?", "correct": "Mrs. Doubtfire", "responses": ["Awakenings", "Mrs. Doubtfire", "Old Dogs", "Jumanji"]}
+{"question": "Johnny Depp made his big-screen acting debut in which film?", "correct": "A Nightmare on Elm Street", "responses": ["Friday the 13th", "My Bloody Valentine", "Halloween", "A Nightmare on Elm Street"]}
+{"question": "Josh Mansour is part of what NRL team?", "correct": "Penrith Panthers", "responses": ["Penrith Panthers", "North Queensland Cowboys", "Sydney Roosters", "Melbourne Storm"]}
+{"question": "Which soccer team won the Copa Am\u00e9rica Centenario 2016?", "correct": "Chile", "responses": ["Colombia", "Argentina", "Brazil", "Chile"]}
+{"question": "On which computer hardware device is the BIOS chip located?", "correct": "Motherboard", "responses": ["Graphics Processing Unit", "Hard Disk Drive", "Central Processing Unit", "Motherboard"]}
+{"question": "What is the northernmost human settlement with year round inhabitants?", "correct": "Alert, Canada", "responses": ["McMurdo Station, Antarctica", "Nagurskoye, Russia", "Honningsv\u00e5g, Norway", "Alert, Canada"]}
+{"question": "The formerly East-Prussian city of K\u00f6nigsberg is known as which Russian City today?", "correct": "Kaliningrad", "responses": ["Kazan", "Kursk", "Krasnodar", "Kaliningrad"]}
+{"question": "When was Cadillac founded?", "correct": "1902", "responses": ["1964", "1898", "1902", "1985"]}
+{"question": "\"The A Team\" first aired in the USA and in the UK in what year?", "correct": "1983", "responses": ["1983", "1985", "1987", "1981"]}
+{"question": "Paul McCartney has always used his middle name. What is his real first name?", "correct": "James", "responses": ["John", "Jack", "Justin", "James"]}
+{"question": "Donald J. Trump's Middle Name is...", "correct": "John", "responses": ["John", "Jerald", "Jason", "Jeff"]}
+{"question": "How many scoring zones are there on a conventional dart board?", "correct": "82", "responses": ["102", "42", "62", "82"]}
+{"question": "Which team was the 2015-2016 NBA Champions?", "correct": "Cleveland Cavaliers", "responses": ["Oklahoma City Thunders", "Cleveland Cavaliers", "Golden State Warriors", "Toronto Raptors"]}
+{"question": "In what sport does Fanny Chmelar compete for Germany?", "correct": "Skiing", "responses": ["Swimming", "Skiing", "Showjumping", "Gymnastics"]}
+{"question": "What does AD stand for in relation to Windows Operating Systems?", "correct": "Active Directory", "responses": ["Automated Database", "Active Department", "Alternative Drive", "Active Directory"]}
+{"question": "On which day did the World Wide Web go online?", "correct": "December 20, 1990", "responses": ["December 17, 1996", "December 20, 1990", "November 12, 1990", "November 24, 1995"]}
+{"question": "Which one of these is not an official development name for a Ubuntu release?", "correct": "Mystic Mansion", "responses": ["Utopic Unicorn", "Mystic Mansion", "Wily Werewolf", "Trusty Tahr"]}
+{"question": ".rs is the top-level domain for what country?", "correct": "Serbia", "responses": ["Serbia", "Rwanda", "Romania", "Russia"]}
+{"question": "The main protagonist of the fourth part of JoJo's Bizarre Adventure is which of the following?", "correct": "Josuke Higashikata", "responses": ["Josuke Higashikata", "Joey JoJo", "Koichi Hirose", "Yoshikage kira"]}
+{"question": "The main antagonist of the second part of JoJo's Bizarre Adventure is which of the following?", "correct": "Kars", "responses": ["Santana", "Kars", "Erina Joestar", "Wired Beck"]}
+{"question": "Who was the guitarist in the band \"The Doors\"?", "correct": "Robby Krieger", "responses": ["Jimi Hendrix", "Robby Krieger", "Eric Clapton", "John Densmore"]}
+{"question": "The Axiom of Preventive Medicine states that people with ___ risk for a disease should be screened and we should treat ___ of those people.", "correct": "low, all", "responses": ["low, some", "low, all", "high, some", "high, all"]}
+{"question": "Which desert is the only desert in the world where the \"Saguaro\" cactus grows indigenously?", "correct": "The Sonoran Desert", "responses": ["The Yuma Desert", "The Arabian Desert", "The Gobi Desert", "The Sonoran Desert"]}
+{"question": "What do you study if you are studying entomology?", "correct": "Insects", "responses": ["Fish", "the Brain", "Insects", "Humans"]}
+{"question": "Which band name isn't a Stand in \"JoJo's Bizzare Adventure\"?", "correct": "AC/DC", "responses": ["AC/DC", "Red Hot Chili Peppers", "Survivor", "Green Day"]}
+{"question": "Which anime did Seiji Kishi NOT direct?", "correct": "Another", "responses": ["Humanity Has Declined", "Assassination Classroom", "Another", "Danganronpa: The Animation"]}
+{"question": "Which of these cars is NOT considered one of the 5 Modern Supercars by Ferrari?", "correct": "Testarossa", "responses": ["F40", "Enzo Ferrari", "Testarossa", "288 GTO"]}
+{"question": "Which of these is not an additional variation of the color purple?", "correct": "Kobicha", "responses": ["Pomp and Power", "Palatinate", "Byzantium", "Kobicha"]}
+{"question": "Who painted the epic mural Guernica?", "correct": "Pablo Picasso", "responses": ["Leonardo da Vinci", "Henri Matisse", "Francisco Goya", "Pablo Picasso"]}
+{"question": "What historical event was Tchaikovsky's 1812 Overture referencing?", "correct": "The Napoleonic Wars", "responses": ["The Russian Revolution", "The Napoleonic Wars", "The American War of 1812", "The Charge of the Light Brigade (Crimean War)"]}
+{"question": "What number does the Roman numeral \"D\" stand for?", "correct": "500", "responses": ["1000", "500", "50", "100"]}
+{"question": "Which of these is NOT an album released by The Beatles?", "correct": "The Wall", "responses": ["Abbey Road", "The Wall", "Magical Mystery Tour", "Revolver"]}
+{"question": "Which of these is the name of an American psychedelic rock band formed in 2002 by Benjamin Goldwasser and Andrew VanWyngarden?", "correct": "MGMT", "responses": ["STRFKR", "SBTRKT", "MGMT", "MSTRKRFT"]}
+{"question": "Who is the frontman of Muse?", "correct": "Matt Bellamy", "responses": ["Thom Yorke", "Matt Bellamy", "Jonny Greenwood", "Dominic Howard"]}
+{"question": "In which year was the Megadeth album \"Peace Sells... but Who's Buying?\" released?", "correct": "1986", "responses": ["1987", "1979", "1983", "1986"]}
+{"question": "Which Beatle wrote and sang the song \"Why Don't We Do It in the Road\" after being inspired by seeing two monkeys copulating in the street?", "correct": "Paul", "responses": ["Paul", "John", "Ringo", "George"]}
+{"question": "\"Drink the Sea\" is an album by which electronic music artist?", "correct": "The Glitch Mob", "responses": ["The Glitch Mob", "Flux Pavilion", "Avicii", "XXYYXX"]}
+{"question": "Who is the lead singer of Bastille?", "correct": "Dan Smith", "responses": ["Will Farquarson", "Chris Wood", "Dan Smith", "Kyle Simmons"]}
+{"question": "When did Tame Impala release their second album?", "correct": "2012", "responses": ["1967", "2010", "2015", "2012"]}
+{"question": "Moby, an American DJ, singer, and musician, achieved worldwide success for the 1999 release of which of the following albums?", "correct": "Play", "responses": ["Everything Is Wrong", "18", "Moby", "Play"]}
+{"question": "What year did the Battle of Agincourt take place?", "correct": "1415", "responses": ["1401", "1422", "1415", "1463"]}
+{"question": "Against which country did the Dutch Republic fight the Eighty Years' War?", "correct": "Spain", "responses": ["Spain", "Portugal", "England", "France"]}
+{"question": "Which Las Vegas casino was originally constructed and operated by mobster Bugsy Siegel?", "correct": "The Flamingo", "responses": ["The MGM Grand", "The Sands", "The Sahara", "The Flamingo"]}
+{"question": "When was the People's Republic of China founded?", "correct": "October 1, 1949", "responses": ["December 6, 1950", "April 3, 1947", "May 7, 1945", "October 1, 1949"]}
+{"question": "Which company developed the Hololens?", "correct": "Microsoft", "responses": ["Microsoft", "Tobii", "HTC", "Oculus"]}
+{"question": "What does \"hippopotamus\" mean and in what langauge?", "correct": "River Horse (Greek)", "responses": ["Fat Pig (Greek)", "River Horse (Latin)", "Fat Pig (Latin)", "River Horse (Greek)"]}
+{"question": "What is the colour of unoxidized blood?", "correct": "Red", "responses": ["Green", "Blue", "Red", "Purple"]}
+{"question": "What does the yellow diamond on the NFPA 704 fire diamond represent?", "correct": "Reactivity", "responses": ["Radioactivity", "Flammability", "Health", "Reactivity"]}
+{"question": "Which city is the capital of Switzerland?", "correct": "Bern", "responses": ["Bern", "Z\u00fcrich", "Wien", "Frankfurt"]}
+{"question": "Which of these countries is located the FURTHEST away from the South China Sea?", "correct": "Bangladesh", "responses": ["Bangladesh", "Philippines", "Malaysia", "Vietnam"]}
+{"question": "What is the largest Muslim country in the world?", "correct": "Indonesia", "responses": ["Indonesia", "Saudi Arabia", "Iran", "Pakistan"]}
+{"question": "How many rivers are in Saudi Arabia?", "correct": "0", "responses": ["3", "2", "0", "1"]}
+{"question": "How many states are in Australia?", "correct": "6", "responses": ["5", "7", "8", "6"]}
+{"question": "How many books are in the Chronicles of Narnia series?", "correct": "7", "responses": ["8", "6", "5", "7"]}
+{"question": "How many bits make up the significand portion of a single precision floating point number?", "correct": "23", "responses": ["53", "15", "23", "8"]}
+{"question": "What is the largest non-continental island in the world?", "correct": "Greenland", "responses": ["Greenland", "Madagascar", "Borneo", "New Guinea"]}
+{"question": "Broome is a town in which state of Australia?", "correct": "Western Australia", "responses": ["Western Australia", "South Australia", "Tasmania", "Northern Territory"]}
+{"question": "Colchester Overpass, otherwise known as \"Bunny Man Bridge\", is located where?", "correct": "Fairfax County, Virginia", "responses": ["Fairfax County, Virginia", "Lemon Grove, California", "Medford, Oregon", "Braxton County, Virgina"]}
+{"question": "What is the capital of Chile?", "correct": "Santiago", "responses": ["Santiago", "Antofagasta", "Valpara\u00edso", "Copiap\u00f3"]}
+{"question": "What is the capital of Australia?", "correct": "Canberra", "responses": ["Canberra", "Brisbane", "Sydney", "Melbourne"]}
+{"question": "What tiny principality lies between Spain and France?", "correct": "Andorra", "responses": ["Andorra", "Liechtenstein", "Monaco", "San Marino"]}
+{"question": "Which country has the abbreviation \"CH\"?", "correct": "Switzerland", "responses": ["Switzerland", "No Country", "China", "Canada"]}
+{"question": "What was the last message of the Dolphins in \"The Hitchhiker's Guide to the Galaxy\"?", "correct": "\"So long, and thanks for all the fish.\"", "responses": ["\"So long, and thanks for all the fish.\"", "\"Land of the brave.\"", "\"Goodbye cruel world!\"", "\"The answer is 42.\""]}
+{"question": "The creator of the Enigma Cypher and Machine was of what nationality?", "correct": "German", "responses": ["American", "German", "British", "Polish"]}
+{"question": "What is the name of the US Navy spy ship which was attacked and captured by North Korean forces in 1968?", "correct": "USS Pueblo", "responses": ["USS North Carolina", "USS Pueblo", "USS Indianapolis", "USS Constitution"]}
+{"question": "When did the Battle of the Bulge end?", "correct": "January 25, 1945", "responses": ["January 25, 1945", "December 7, 1941", "December 16, 1944", "August 6, 1945"]}
+{"question": "What city did the monster attack in the film, \"Cloverfield\"?", "correct": "New York, New York", "responses": ["New York, New York", "Chicago, Illinois", "Las Vegas, Nevada", "Orlando, Florida"]}
+{"question": "In the Friday The 13th series, what is Jason's mother's first name?", "correct": "Pamela", "responses": ["Christine", "Pamela", "Mary", "Angeline"]}
+{"question": "Which of the following Ivy League universities has its official motto in Hebrew as well as in Latin?", "correct": "Yale University", "responses": ["Columbia University", "Yale University", "Harvard University", "Princeton University"]}
+{"question": "What did the Spanish autonomous community of Catalonia ban in 2010, that took effect in 2012?", "correct": "Bullfighting", "responses": ["Mariachi", "Bullfighting", "Fiestas", "Flamenco"]}
+{"question": "When was Nintendo founded?", "correct": "September 23rd, 1889", "responses": ["October 19th, 1891", "March 4th, 1887", "December 27th, 1894", "September 23rd, 1889"]}
+{"question": "When did the website \"Facebook\" launch?", "correct": "2004", "responses": ["2004", "2005", "2003", "2006"]}
+{"question": "When was Tesla founded?", "correct": "2003", "responses": ["2003", "2007", "2005", "2008"]}
+{"question": "Which one of these countries borders with Poland?", "correct": "Lithuania", "responses": ["Norway", "France", "Lithuania", "Netherlands"]}
+{"question": "When was the first episode of Soul Eater released?", "correct": "2008", "responses": ["2008", "2003", "2011", "2005"]}
+{"question": "In \"To Love-Ru: Darkness\", which of the girls attempt making a harem for Rito Yuuki?", "correct": "Momo Deviluke", "responses": ["Yami (Golden Darkness)", "Mea Kurosaki", "Momo Deviluke", "Haruna Sairenji"]}
+{"question": "Which retired American football quarterback played himself in 'Ace Ventura: Pet Detective' and 'Little Nicky'?", "correct": "Dan Marino", "responses": ["Joe Montana", "Tom Brady", "Dan Marino", "John Elway"]}
+{"question": "What is the birth name of Michael Caine?", "correct": "Maurice Micklewhite", "responses": ["Morris Coleman", "Martin Michaels", "Maurice Micklewhite", "Carl Myers"]}
+{"question": "In \"One Piece\", which one of the following is NOT an Ancient Weapon?", "correct": "Jupiter", "responses": ["Uranus", "Jupiter", "Pluton", "Poseidon"]}
+{"question": "In \"JoJo's Bizarre Adventure\", which of the following Stands does NOT have a time-based ability?", "correct": "20th Century Boy", "responses": ["The World", "20th Century Boy", "Star Platinum", "Made in Heaven"]}
+{"question": "How many counties in the Republic of Ireland.", "correct": "26", "responses": ["32", "28", "30", "26"]}
+{"question": "Which German city is located on the River Isar?", "correct": "Munich", "responses": ["Munich", "Dortmund", "Hamburg", "Berlin"]}
+{"question": "What was Nickelodeon's original name?", "correct": "Pinwheel", "responses": ["Pinwheel", "MTVKids", "KidsTV", "Splat!"]}
+{"question": "The fictional movie 'Rochelle, Rochelle' features in which sitcom?", "correct": "Seinfeld", "responses": ["Frasier", "Seinfeld", "Friends", "Cheers"]}
+{"question": "In 2015, David Hasselhof released a single called...", "correct": "True Survivor", "responses": ["Real Kung-Fury", "Real Warrior", "True Fighter", "True Survivor"]}
+{"question": "Who is the vocalist and frontman of rock band \"Guns N' Roses\"?", "correct": "Axl Rose", "responses": ["Bono", "Axl Rose", "Slash", "Kurt Cobain"]}
+{"question": "Which rock band released the album \"The Bends\" in March 1995?", "correct": "Radiohead", "responses": ["Coldplay", "U2", "Radiohead", "Nirvana"]}
+{"question": "The crown of the Empire State Building was originally built for what purpose?", "correct": "Airship Dock", "responses": ["Airship Dock", "Antennae", "Lightning Rod", "Flag Pole"]}
+{"question": "What was the unofficial name for Germany between 1919 and 1933?", "correct": "Weimar Republic", "responses": ["Weimar Republic", "Oesterreich", "Federal Republic of Germany", "German Democratic Republic"]}
+{"question": "When did construction of the Suez Canal finish?", "correct": "1869", "responses": ["1860", "1859", "1869", "1850"]}
+{"question": "Which of the following anime of the mecha genre began airing in 1982?", "correct": "The Super Dimension Fortress Macross", "responses": ["The Super Dimension Fortress Macross", "Mobile Suit Gundam", "Armored Trooper VOTOMS", "Neon Genesis Evangelion"]}
+{"question": "Who created Ultron of Earth-616?", "correct": "Henry Pym", "responses": ["Henry Pym", "Reed Richards", "Amadeus Cho", "Tony Stark"]}
+{"question": "In \"Call Of Duty: Zombies\", which map features the \"Fly Trap\" easter egg?", "correct": "Der Riese", "responses": ["Der Riese", "Tranzit", "Call Of The Dead", "Shi No Numa"]}
+{"question": "Which of these is NOT a name of a city in the main island of PLAYERUNKNOWN'S BATTLEGROUNDS?", "correct": "Belushya Guba", "responses": ["Pochinki", "Yasnaya Polyana", "Belushya Guba", "Georgopol"]}
+{"question": "Which city hosted the CS:GO Dreamhack Open 2015?", "correct": "Cluj-Napoca", "responses": ["Cluj-Napoca", "London", "Atlanta", "Cologne"]}
+{"question": "What system was \"Touhou: Highly Responsive to Prayers\" released on?", "correct": "PC-98", "responses": ["OSX 10.9.5", "PC-98", "Windows 98", "Windows ME"]}
+{"question": "In the Mario Kart and Smash Bros. Games, Princess Rosalina is considered what weight class?", "correct": "Heavy", "responses": ["Light", "Light-Medium", "Medium", "Heavy"]}
+{"question": "Which radio personality calls himself \"The King of All Media\"?", "correct": "Howard Stern", "responses": ["Howard Stern", "Rush Limbaugh", "Ryan Seacrest", "Pete Tong"]}
+{"question": "Which chemical element has the lowest boiling point?", "correct": "Helium", "responses": ["Hydrogen", "Helium", "Neon", "Nitrogen"]}
+{"question": "All the following metal elements are liquids at or near room temperature EXCEPT:", "correct": "Beryllium", "responses": ["Gallium", "Mercury", "Beryllium", "Caesium"]}
+{"question": "In what year was the famous 45 foot tall Hollywood sign first erected?", "correct": "1923", "responses": ["1933", "1903", "1913", "1923"]}
+{"question": "Which U.S. president took part in the Potsdam Conference, where the Allies reached a peace settlement with Germany?", "correct": "Harry S. Truman", "responses": ["Herbert Hoover", "Franklin D. Roosevelt", "Dwight D. Eisenhower", "Harry S. Truman"]}
+{"question": "Which of these facilities was not present on the Titanic?", "correct": "Fainting room", "responses": ["Turkish bath", "Squash court", "Kennel", "Fainting room"]}
+{"question": "John Moses Browning, the designer of the M1918 BAR (Browning Automatic Rifle) was a part of which religion?", "correct": "Mormon", "responses": ["Atheist", "Catholic", "Mormon", "Jewish"]}
+{"question": "In \"Toriko\", which of the following Heavenly Kings has an enhanced sense of Hearing?", "correct": "Zebra", "responses": ["Zebra", "Sunny", "Toriko", "Coco"]}
+{"question": "In \"To Love-Ru\", who is the first to hear of Yami's past from her?", "correct": "Rito", "responses": ["Lala", "Mikan", "Haruna", "Rito"]}
+{"question": "In \"Puella Magi Madoka Magica\", what is the first name of Madoka's younger brother?", "correct": "Tatsuya", "responses": ["Tatsuya", "Montoya", "Tomohisa", "Minato"]}
+{"question": "Which internet company began life as an online bookstore called 'Cadabra'?", "correct": "Amazon", "responses": ["Overstock", "Amazon", "eBay", "Shopify"]}
+{"question": "Which coding language was the #1 programming language in terms of usage on GitHub in 2015?", "correct": "JavaScript", "responses": ["PHP", "Python", "C#", "JavaScript"]}
+{"question": "Which company designed the \"Betamax\" video cassette format?", "correct": "Sony", "responses": ["Panasonic", "Sony", "LG", "Fujitsu"]}
+{"question": "In the Morse code, which letter is indicated by 3 dots?", "correct": "S", "responses": ["A", "C", "O", "S"]}
+{"question": "In what year was McDonald's founded?", "correct": "1955", "responses": ["1947", "1951", "1964", "1955"]}
+{"question": "In a 1994 CBS interview, Microsoft co-founder Bill Gates performed what unusual trick on camera?", "correct": "Jumping over an office chair", "responses": ["Standing on his head", "Jumping backwards over a desk", "Typing on a keyboard during a handstand", "Jumping over an office chair"]}
+{"question": "Which of these Disney classics was released in 1970?", "correct": "The Aristocats", "responses": ["The Little Mermaid", "The Fox and the Hound", "One Hundred and One Dalmatians", "The Aristocats"]}
+{"question": "Irish musician Hozier released a music track in 2013 titled, \"Take Me to ______\"", "correct": "Church", "responses": ["Church", "Synagogue", "Mosque", "Temple"]}
+{"question": "Madonna's song \"Hung Up\" includes a piece from which popular 70s song?", "correct": "Gimmie! Gimmie! Gimme! (A Man After Midnight)", "responses": ["Staying Alive", "Night Fever", "Gimmie! Gimmie! Gimme! (A Man After Midnight)", "The Chain"]}
+{"question": "Which of these bands are NOT from Australia?", "correct": "The Naked and Famous", "responses": ["Cut Copy", "Empire of the Sun", "Tame Impala", "The Naked and Famous"]}
+{"question": "Which of the following is NOT an official game in Nintendo's Super Smash Bros. series?", "correct": "Super Smash Bros. Crusade", "responses": ["Super Smash Bros. Brawl", "Super Smash Bros. Crusade", "Super Smash Bros. Melee", "Super Smash Bros. for Nintendo 3DS and Wii U"]}
+{"question": "In the game series \"The Legend of Zelda\", what was the first 3D game?", "correct": "Ocarina of Time", "responses": ["Majora's Mask", "A Link to the Past", "The Wind Waker", "Ocarina of Time"]}
+{"question": "The cake depicted in Valve's \"Portal\" franchise most closely resembles which real-world type of cake?", "correct": "Black Forest", "responses": ["Molten Chocolate", "Black Forest", "Devil's Food", "German Chocolate"]}
+{"question": "Which of the following Terran units from the RTS game Starcraft was first introduced in the expansion Brood War?", "correct": "Medic", "responses": ["SCV", "Science Vessel", "Medic", "Wraith"]}
+{"question": "From what show is the character \"James Doakes\"?", "correct": "Dexter", "responses": ["The Walking Dead", "Marvel's Daredevil", "Dexter", "Boardwalk Empire"]}
+{"question": "In which African country was the 2006 film 'Blood Diamond' mostly set in?", "correct": "Sierra Leone", "responses": ["Central African Republic", "Liberia", "Sierra Leone", "Burkina Faso"]}
+{"question": "What were the Chilled Monkey Brains made from during Indiana Jones and the Temple of Doom?", "correct": "Custard and Raspberry Sauce", "responses": ["Raspberry Sorbet", "Strawberry Ice Cream", "Cherry Yogurt", "Custard and Raspberry Sauce"]}
+{"question": "Who was the director of \"Scott Pilgrim vs. the World (2010)\"?", "correct": "Edgar Wright", "responses": ["Edgar Wright", "Seth Rogan", "Phil Lord", "Chris Miller"]}
+{"question": "Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?", "correct": "The Revenant", "responses": ["Shutter Island", "The Wolf Of Wall Street", "The Revenant", "Inception"]}
+{"question": "In the \"Jurassic Park\" universe, what is the name of the island that contains InGen's Site B?", "correct": "Isla Sorna", "responses": ["Isla Muerta", "Isla Sorna", "Isla Pena", "Isla Nublar"]}
+{"question": "In \"Jurassic World\", which company purchases InGen and creates Jurassic World?", "correct": "Masrani Global Corporation", "responses": ["International Genetics Incorporated", "Masrani Global Corporation", "Biology Synthetics Technologies", "International Genetic Technologies"]}
+{"question": "Which of the following buildings is example of a structure primarily built in the Art Deco architectural style?", "correct": "Niagara Mohawk Building", "responses": ["Niagara Mohawk Building", "Taipei 101", "One Detroit Center", "Westendstrasse 1"]}
+{"question": "Which German sportswear company's logo is the 'Formstripe'?", "correct": "Puma", "responses": ["Adidas", "Puma", "Nike", "Reebok"]}
+{"question": "Which psychological term refers to the stress of holding contrasting beliefs?", "correct": "Cognitive Dissonance", "responses": ["Cognitive Dissonance", "Blind Sight", "Flip-Flop Syndrome", "Split-Brain"]}
+{"question": "Who is the artist of the recent new album the Uncanny Valley?", "correct": "Perturbator", "responses": ["GOST", "Dan Terminus", "Perturbator", "Carpenter Brut"]}
+{"question": "In which year did \"Caravan Palace\" release their first album?", "correct": "2008", "responses": ["2008", "2004", "2000", "2015"]}
+{"question": "Who performed the guitar solo on Michael Jackson's hit \"Beat It\"?", "correct": "Eddie Van Halen", "responses": ["Steve Vai", "Zakk Wylde", "Eddie Van Halen", "Kirk Hammett"]}
+{"question": "Which genre of Hip Hop does MC Frontalot rap?", "correct": "Nerdcore", "responses": ["Christian", "Crunk", "Horrorcore", "Nerdcore"]}
+{"question": "What was the name of the Mysterious Island, in Jules Verne's \"The Mysterious Island\"?", "correct": "Lincoln Island", "responses": ["Neptune Island", "Lincoln Island", "Prometheus Island", "Vulcania Island"]}
+{"question": "What is the main CPU is the Sega Mega Drive / Sega Genesis?", "correct": "Motorola 68000", "responses": ["Intel 8088", "Motorola 68000", "Zilog Z80", "Yamaha YM2612"]}
+{"question": "According to scholarly estimates, what percentage of the world population at the time died due to Tamerlane's conquests?", "correct": "5%", "responses": ["<1%", "1%", "5%", "3%"]}
+{"question": "Which historical conflict killed the most people?", "correct": "World War II", "responses": ["Three Kingdoms War", "World War II", "Taiping Rebellion", "Mongol conquests"]}
+{"question": "Which 90's comedy cult classic features cameos appearances from Meat Loaf, Alice Cooper and Chris Farley?", "correct": "Wayne's World", "responses": ["Austin Powers: International Man of Mystery", "Wayne's World", "Dumb and Dumber", "Bill & Ted's Excellent Adventure"]}
+{"question": "What is the official national language of Pakistan?", "correct": "Urdu", "responses": ["Pashto", "Urdu", "Punjabi", "Indian"]}
+{"question": "What is the longest river in Europe?", "correct": "Volga", "responses": ["Volga", "Rhine", "Danube", "Thames"]}
+{"question": "Which of these is not the name of a city in the Grand Theft Auto series?", "correct": "San Andreas", "responses": ["San Fierro", "Vice City", "San Andreas", "Las Venturas"]}
+{"question": "In \"Paper Mario: The Thousand Year Door\", what is Hooktail's weakness?", "correct": "The Sound of Crickets", "responses": ["The \"Ice Storm\" Item", "The Hammer", "Attacks from Koopas", "The Sound of Crickets"]}
+{"question": "In \"Kingdom Hearts\", what mission are Donald and Goofy assigned by King Mickey?", "correct": "To find the Key bearer and stick with him!", "responses": ["To find the Key bearer and report back!", "To find the Key bearer and kill him!", "To find the Key bearer and stick with him!", "To find the Key bearer and steal the key!"]}
+{"question": "Who is the primary lyricist for Canadian progressive rock band Rush?", "correct": "Neil Peart", "responses": ["Alex Lifeson", "Neil Peart", "John Rutsey", "Geddy Lee"]}
+{"question": "Johnny Cash did a cover of this song written by lead singer of Nine Inch Nails, Trent Reznor.", "correct": "Hurt", "responses": ["Big Man with a Gun", "Hurt", "Closer", "A Warm Place"]}
+{"question": "Which of these songs is not on the \"untitled\" album by Led Zeppelin?", "correct": "Celebration Day", "responses": ["Rock and Roll", "Celebration Day", "Stairway to Heaven", "Black Dog"]}
+{"question": "What was the name of Pink Floyd's first studio album?", "correct": "The Piper at the Gates of Dawn", "responses": ["Atom Heart Mother", "The Piper at the Gates of Dawn", "More", "Ummagumma"]}
+{"question": "Which alternative rock band released the critically-acclaimed album \"OK Computer\"?", "correct": "Radiohead", "responses": ["Coldplay", "Nirvana", "R.E.M.", "Radiohead"]}
+{"question": "Who painted the biblical fresco The Creation of Adam?", "correct": "Michelangelo", "responses": ["Rembrandt", "Caravaggio", "Michelangelo", "Leonardo da Vinci"]}
+{"question": "What is the nickname of Northampton town's rugby union club?", "correct": "Saints", "responses": ["Harlequins", "Saints", "Wasps", "Saracens"]}
+{"question": "Which of these is NOT an island that is part of the Philippines?", "correct": "Java", "responses": ["Mindanao", "Java", "Luzon", "Palawan"]}
+{"question": "How tall is One World Trade Center in New York City?", "correct": "1,776 ft", "responses": ["1,888 ft", "1,960 ft", "1,225 ft", "1,776 ft"]}
+{"question": "How many timezones does Russia have?", "correct": "11", "responses": ["6", "11", "24", "16"]}
+{"question": "What is the capital city of Slovenia?", "correct": "Ljubljana", "responses": ["Maribor", "Ljubljana", "Velenje", "Trbovlje"]}
+{"question": "In the TV series \"Person of Interest\", who plays the character \"Harold Finch\"?", "correct": "Michael Emerson", "responses": ["Michael Emerson", "Jim Caviezel", "Taraji P. Henson", "Kevin Chapman"]}
+{"question": "Which Van Gogh painting depicts the view from his asylum in Saint-R\u00e9my-de-Provence in southern France?", "correct": "The Starry Night", "responses": ["The Sower with Setting Sun", "Wheatfields with Crows", "The Church at Auvers", "The Starry Night"]}
+{"question": "Which operating system was released first?", "correct": "Mac OS", "responses": ["Windows", "OS/2", "Mac OS", "Linux"]}
+{"question": "Which of the General Mills Corporation's monster cereals was the last to be released in the 1970's?", "correct": "Fruit Brute", "responses": ["Count Chocula", "Boo-Berry", "Franken Berry", "Fruit Brute"]}
+{"question": "In the War of the Pacific (1879 - 1883), Bolivia lost its access to the Pacific Ocean after being defeated by which South American country?", "correct": "Chile", "responses": ["Argentina", "Chile", "Peru", "Brazil"]}
+{"question": "In what year did the North American Video Game Crash occur?", "correct": "1983", "responses": ["1982", "1970", "1993", "1983"]}
+{"question": "Which of the following Presidents of the United States was assassinated?", "correct": "William McKinley", "responses": ["Lyndon Johnson", "Chester Arthur", "William McKinley", "Franklin Roosevelt"]}
+{"question": "The Korean War started in what year?", "correct": "1950", "responses": ["1945", "1960", "1912", "1950"]}

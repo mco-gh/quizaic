@@ -29,52 +29,43 @@ import random
 import sys
 import time
 import vertexai
-from vertexai.language_models import TextGenerationModel
+from vertexai.language_models import TextEmbeddingModel
 
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-gen = QuizgenFactory.get_gen("opentrivia")
+model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
+vertexai.init(project="quizaic", location="us-central1")
 
-num_questions = 1000
-questions_per_quiz = 5
+def text_embedding(li):
+    """Text embedding with a Large Language Model."""
+    vectors = []
+    print(f"{len(li)=}")
+    embeddings = model.get_embeddings(li)
+    for embedding in embeddings:
+        vector = embedding.values
+        print(f"Length of Embedding Vector: {len(vector)}")
+        vectors.append(vector)
+    return vectors
+
+quizzes = []
+
+def read_file(filename, li):
+    count = 0
+    with open(filename, "r") as f:
+        for line in f:
+            line = line.strip()
+            li.append(line)
+            count += 1
+    return count
+
+# Read assertions and labels.
+num_quizzes = read_file("../corpus/quizzes.mc.txt", quizzes)
+
 count = 0
-qa = []
-labels = []
-seen = {}
-
-# Generate QA and labels.
-topics = list(gen.get_topics())
-
-f_questions = open("questions.mc.good.txt", "w")
-while True:
-    topic = random.choice(topics)
-    quiz = gen.gen_quiz(topic, questions_per_quiz)
-    for question in quiz:
-        if count >= num_questions:
-            break
-        q = question["question"]
-        if q in seen:
-            print("skipping")
-            continue
-        seen[q] = True
+with open("embed.corpus.mc.txt", "w") as f_embed:
+    for quiz in quizzes:
         count += 1
-        f_questions.write(json.dumps(question) + "\n") 
-        responses = question["responses"]
-        correct = question["correct"]
-        for r in responses:
-            label = "false"
-            if r == correct:
-                label = "true"
-            qa.append(f"- Q: {q} A: {r}")
-            labels.append(label)
-
-def write_keys(d, f):
-    for key in d:
-        f.write(f"{key}\n")
-
-with open("assertions.mc.good.txt", "w") as f:
-    write_keys(qa, f)
-with open("labels.mc.good.txt", "w") as f:
-    write_keys(labels, f)
-f_questions.close()
+        print(f"{count}: {quiz}")
+        vecs = text_embedding([quiz])
+        f_embed.write(f"{vecs}\n") 
