@@ -47,18 +47,18 @@ seen = {}
 topics = list(gen.get_topics())
 
 f_questions = open("questions.mc.good.txt", "w")
-while True:
+while count < num_questions:
     topic = random.choice(topics)
     quiz = gen.gen_quiz(topic, questions_per_quiz)
     for question in quiz:
-        if count >= num_questions:
-            break
         q = question["question"]
         if q in seen:
             print("skipping")
             continue
         seen[q] = True
         count += 1
+        if count > num_questions:
+            break
         f_questions.write(json.dumps(question) + "\n") 
         responses = question["responses"]
         correct = question["correct"]

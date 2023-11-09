@@ -59,8 +59,8 @@ def read_file(filename, li):
 
 
 # Read assertions and labels.
-num_questions = read_file("../corpus/assertions.mc.txt", assertions)
-num_labels = read_file("../corpus/labels.mc.txt", labels)
+num_questions = read_file("../corpus/assertions.mc.good.txt", assertions)
+num_labels = read_file("../corpus/labels.mc.good.txt", labels)
 assert num_questions == num_labels
 assert num_questions % 4 == 0
 questions = [int(i / 4) for i in range(num_questions)]
