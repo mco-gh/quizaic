@@ -53,12 +53,9 @@ num_questions = read_file("../corpus/questions.mc.good.txt", questions)
 
 count = 0
 with open("embed.corpus.mc.txt", "w") as f_embed:
-    f_embed.write("[")
-    comma = ","
     for question in questions:
         if count == num_questions:
             comma = ""
         count += 1
         embeddings = model.get_embeddings([question])[0].values
-        f_embed.write(f"{{\"id\": {count}, \"embedding\": {embeddings}}}{comma}\n") 
-    f_embed.write("]")
+        f_embed.write(f"{{\"id\": {count}, \"embedding\": {embeddings}}}\n") 
