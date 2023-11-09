@@ -40,15 +40,13 @@ vertexai.init(project="quizaic", location="us-central1")
 def text_embedding(li):
     """Text embedding with a Large Language Model."""
     vectors = []
-    print(f"{len(li)=}")
     embeddings = model.get_embeddings(li)
     for embedding in embeddings:
         vector = embedding.values
-        print(f"Length of Embedding Vector: {len(vector)}")
         vectors.append(vector)
     return vectors
 
-quizzes = []
+questions = []
 
 def read_file(filename, li):
     count = 0
@@ -60,12 +58,11 @@ def read_file(filename, li):
     return count
 
 # Read assertions and labels.
-num_quizzes = read_file("../corpus/quizzes.mc.txt", quizzes)
+num_questions = read_file("../corpus/questions.mc.good.txt", questions)
 
 count = 0
 with open("embed.corpus.mc.txt", "w") as f_embed:
-    for quiz in quizzes:
+    for question in questions:
         count += 1
-        print(f"{count}: {quiz}")
-        vecs = text_embedding([quiz])
+        vecs = text_embedding([question])
         f_embed.write(f"{vecs}\n") 
