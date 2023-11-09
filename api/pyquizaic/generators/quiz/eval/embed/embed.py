@@ -37,15 +37,6 @@ from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
 vertexai.init(project="quizaic", location="us-central1")
 
-def text_embedding(li):
-    """Text embedding with a Large Language Model."""
-    vectors = []
-    embeddings = model.get_embeddings(li)
-    for embedding in embeddings:
-        vector = embedding.values
-        vectors.append(vector)
-    return vectors
-
 questions = []
 
 def read_file(filename, li):
@@ -62,7 +53,12 @@ num_questions = read_file("../corpus/questions.mc.good.txt", questions)
 
 count = 0
 with open("embed.corpus.mc.txt", "w") as f_embed:
+    f_embed.write("[")
+    comma = ","
     for question in questions:
+        if count == num_questions:
+            comma = ""
         count += 1
-        vecs = text_embedding([question])
-        f_embed.write(f"{vecs}\n") 
+        embeddings = model.get_embeddings([question])[0].values
+        f_embed.write(f"{{\"id\": {count}, \"embedding\": {embeddings}}}{comma}\n") 
+    f_embed.write("]")
