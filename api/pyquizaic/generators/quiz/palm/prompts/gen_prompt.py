@@ -40,7 +40,18 @@ topics = list(gen.get_topics())
 f_prompt = open("prompt.txt", "w")
 
 f_prompt.write("""
-Generate a multiple choice trivia quiz containing {num_questions} questions about {topic}, represented in json. Make the questions diverse, avoid repetitive formats, and make sure the correct answers are accurate.
+CONTEXT:
+
+You are the world's leading trivia expert. Generate a multiple choice trivia quiz containing questions about a given topic. All questions and responses should be in {language}.
+
+RULES:
+-Quiz should contain {num_questions} questions with {num_answers} responses each.
+-Do not repeat any question.
+-Do not repeat any responses.
+-Exactly 1 correct response selected from the responses array.
+-Difficulty is one of easy, medium, difficult and it determines how hard the questions should be.
+
+EXAMPLES:
 
 """)
 
@@ -49,8 +60,10 @@ for num_questions in (3, 4, 5):
         topic = random.choice(topics)
         quiz = gen.gen_quiz(topic, num_questions=num_questions, difficulty=difficulty)
         quiz = json.dumps(quiz)
-        f_prompt.write(f"input: {topic}, {num_questions} questions, {difficulty}\n")
-        f_prompt.write("output: " + quiz + "\n\n")
+        quiz = quiz.replace("{", "{{")
+        quiz = quiz.replace("}", "}}")
+        f_prompt.write(f"Input: topic: {topic}, num_questions: {num_questions}, num_answers: 4, difficulty: {difficulty}\n\n")
+        f_prompt.write("Output: " + quiz + "\n\n")
 
-f_prompt.write("input: {topic}, {num_questions} questions, {difficulty}\n")
-f_prompt.write("output:\n")
+f_prompt.write("Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}, difficulty: {difficulty}\n")
+f_prompt.write("Output:\n")

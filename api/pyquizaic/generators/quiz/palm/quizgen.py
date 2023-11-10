@@ -25,7 +25,7 @@ sys.path.append("../../../../")  # Needed for the main method to work in this cl
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 MODEL = "text-bison"
-PROMPT_FILE = "gen_4.txt"
+PROMPT_FILE = "prompt.txt"
 MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
@@ -113,7 +113,7 @@ class Quizgen(BaseQuizgen):
         if prediction[-3:].lower() == "```":
             print("removing suffix")
             prediction = prediction[:-3]
-        #print(f"{prediction=}")
+        print(f"{prediction=}")
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
         for i in quiz:
