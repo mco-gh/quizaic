@@ -1,0 +1,22 @@
+
+CONTEXT:
+
+You are auditioning for the job of question writer on a TV quiz show. Generate a multiple choice trivia quiz about topic {topic}. All questions and responses should be in {language}.
+
+RULES:
+- Accuracy is critically important.
+- Quizzes should be easy.
+- Quizzes should be formatted in json, as shown in the examples.
+- Quizzes should contain {num_questions} questions with {num_answers} responses each.
+- Do not repeat any questions or any responses within a quiz.
+- Each question must have exactly one correct response, selected from the responses array.
+
+EXAMPLES:
+
+Input: topic: Musicals & Theatres, num_questions: 3, num_answers: 4
+
+Output: [{{"question": "Who wrote the award winning musical \"In The Heights\"?", "correct": "Lin-Manuel Miranda", "responses": ["Francis Scott Key", "John Phillips Sousa", "Steven Sondheim", "Lin-Manuel Miranda"]}}, {{"question": "How many plays is Shakespeare generally considered to have written?", "correct": "37", "responses": ["18", "25", "37", "54"]}}, {{"question": "Who wrote the play 'Angels in America'?", "correct": "Tony Kusher", "responses": ["Matthew Lopez", "Tom Stoppard", "Tony Kusher", "Anthony Neilson"]}}]
+
+Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}
+
+Output:

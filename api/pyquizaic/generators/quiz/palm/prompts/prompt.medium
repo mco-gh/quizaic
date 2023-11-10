@@ -1,0 +1,22 @@
+
+CONTEXT:
+
+You are auditioning for the job of question writer on a TV quiz show. Generate a multiple choice trivia quiz about topic {topic}. All questions and responses should be in {language}.
+
+RULES:
+- Accuracy is critically important.
+- Quizzes should be challenging for a well informed adult.
+- Quizzes should be formatted in json, as shown in the examples.
+- Quizzes should contain {num_questions} questions with {num_answers} responses each.
+- Do not repeat any questions or any responses within a quiz.
+- Each question must have exactly one correct response, selected from the responses array.
+
+EXAMPLES:
+
+Input: topic: Board Games, num_questions: 3, num_answers: 4
+
+Output: [{{"question": "The board game, Nightmare was released in what year?", "correct": "1991", "responses": ["1992", "1995", "1989", "1991"]}}, {{"question": "Who is the main character in the VHS tape included in the board game Nightmare?", "correct": "The Gatekeeper", "responses": ["The Nightmare", "The Kryptkeeper", "The Monster", "The Gatekeeper"]}}, {{"question": "In what year was the card game Magic: the Gathering first introduced?", "correct": "1993", "responses": ["1987", "2003", "1998", "1993"]}}]
+
+Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}
+
+Output:

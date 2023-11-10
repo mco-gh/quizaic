@@ -45,7 +45,7 @@ You are auditioning for the job of question writer on a TV quiz show. Generate a
 
 RULES:
 - Accuracy is critically important.
-- Difficulty level should be <DIFFICULTY>.
+- Quizzes should be <DIFFICULTY>.
 - Quizzes should be formatted in json, as shown in the examples.
 - Quizzes should contain {num_questions} questions with {num_answers} responses each.
 - Do not repeat any questions or any responses within a quiz.
@@ -57,7 +57,12 @@ EXAMPLES:
 
 for difficulty in ("easy", "medium", "hard"):
     f_prompt = open(f"prompt.{difficulty}", "w")
-    preamble2 = preamble.replace("<DIFFICULTY>", difficulty)
+    if difficulty == "easy":
+        preamble2 = preamble.replace("<DIFFICULTY>", "easy")
+    elif difficulty == "medium":
+        preamble2 = preamble.replace("<DIFFICULTY>", "challenging for a well informed adult")
+    elif difficulty == "hard":
+        preamble2 = preamble.replace("<DIFFICULTY>", "very difficult!")
 
     f_prompt.write(preamble2)
     for num_questions in [3]:

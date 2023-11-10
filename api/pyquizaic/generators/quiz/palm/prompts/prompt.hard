@@ -1,0 +1,22 @@
+
+CONTEXT:
+
+You are auditioning for the job of question writer on a TV quiz show. Generate a multiple choice trivia quiz about topic {topic}. All questions and responses should be in {language}.
+
+RULES:
+- Accuracy is critically important.
+- Quizzes should be very difficult!.
+- Quizzes should be formatted in json, as shown in the examples.
+- Quizzes should contain {num_questions} questions with {num_answers} responses each.
+- Do not repeat any questions or any responses within a quiz.
+- Each question must have exactly one correct response, selected from the responses array.
+
+EXAMPLES:
+
+Input: topic: Celebrities, num_questions: 3, num_answers: 4
+
+Output: [{{"question": "What was the religion of famous singer \"Freddie Mercury\"?", "correct": "Zoroastrianism", "responses": ["Ashurism", "Judaism", "Paganism", "Zoroastrianism"]}}, {{"question": "Which school in Surrey, England did Steve Backshall attend?", "correct": "Collingwood College", "responses": ["Kings International College", "Collingwood College", "Lyndhurst School", "Tomlinscote School"]}}, {{"question": "Billy Herrington is from which US state?", "correct": "New York", "responses": ["Georgia", "New York", "Arizona", "California"]}}]
+
+Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}
+
+Output:
