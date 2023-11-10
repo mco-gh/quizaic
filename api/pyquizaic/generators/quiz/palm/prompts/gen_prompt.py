@@ -37,26 +37,30 @@ from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 gen = QuizgenFactory.get_gen("opentrivia")
 topics = list(gen.get_topics())
 
-f_prompt = open("prompt.txt", "w")
 
-f_prompt.write("""
+preamble = """
 CONTEXT:
 
-You are the world's leading trivia expert. Generate a multiple choice trivia quiz containing questions about a given topic. All questions and responses should be in {language}.
+You are auditioning for the job of question writer on a TV quiz show. Generate a multiple choice trivia quiz about topic {topic}. All questions and responses should be in {language}.
 
 RULES:
--Quiz should contain {num_questions} questions with {num_answers} responses each.
--Do not repeat any question.
--Do not repeat any responses.
--Exactly 1 correct response selected from the responses array.
--Difficulty is one of easy, medium, difficult and it determines how hard the questions should be.
+- Accuracy is critically important.
+- Difficulty level should be <DIFFICULTY>.
+- Quizzes should be formatted in json, as shown in the examples.
+- Quizzes should contain {num_questions} questions with {num_answers} responses each.
+- Do not repeat any questions or any responses within a quiz.
+- Each question must have exactly one correct response, selected from the responses array.
 
 EXAMPLES:
 
-""")
+"""
 
-for num_questions in (3, 4, 5):
-    for difficulty in ("easy", "medium", "difficult"):
+for difficulty in ("easy", "medium", "hard"):
+    f_prompt = open(f"prompt.{difficulty}", "w")
+    preamble2 = preamble.replace("<DIFFICULTY>", difficulty)
+
+    f_prompt.write(preamble2)
+    for num_questions in [3]:
         while True:
             topic = random.choice(topics)
             if topic != "Art" and topic != "Gadgets":
@@ -66,8 +70,7 @@ for num_questions in (3, 4, 5):
         quiz = json.dumps(quiz)
         quiz = quiz.replace("{", "{{")
         quiz = quiz.replace("}", "}}")
-        f_prompt.write(f"Input: topic: {topic}, num_questions: {num_questions}, num_answers: 4, difficulty: {difficulty}\n\n")
+        f_prompt.write(f"Input: topic: {topic}, num_questions: {num_questions}, num_answers: 4\n\n")
         f_prompt.write("Output: " + quiz + "\n\n")
-
-f_prompt.write("Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}, difficulty: {difficulty}\n")
-f_prompt.write("Output:\n")
+    f_prompt.write("Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}\n\n")
+    f_prompt.write("Output:\n")

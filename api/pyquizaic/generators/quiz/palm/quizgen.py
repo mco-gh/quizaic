@@ -25,22 +25,15 @@ sys.path.append("../../../../")  # Needed for the main method to work in this cl
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 MODEL = "text-bison"
-PROMPT_FILE = "prompt.txt"
 MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
-
 
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
         # This doesn't seem to be needed
         # vertexai.init(project=project_id, location=region)
-
         self.topics = set()
-
-        file_path = os.path.join(os.path.dirname(__file__), "prompts/" + PROMPT_FILE)
-        with open(file_path, encoding="utf-8") as fp:
-            self.prompt_template = fp.read()
 
     def __str__(self):
         return "palm quiz generator"
@@ -61,6 +54,7 @@ class Quizgen(BaseQuizgen):
         model = TextGenerationModel.from_pretrained(model)
         if tuned_model:
             model = model.get_tuned_model(tuned_model)
+        print(f"{temperature=}, {prompt=}")
         response = model.predict(
             prompt,
             temperature=temperature,
@@ -92,14 +86,15 @@ class Quizgen(BaseQuizgen):
         temperature=BaseQuizgen.TEMPERATURE,
     ):
         #print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
+        file_path = os.path.join(os.path.dirname(__file__), f"prompts/prompt.{difficulty}")
+        with open(file_path, encoding="utf-8") as fp:
+            self.prompt_template = fp.read()
         prompt = self.prompt_template.format(
             topic=topic,
             num_questions=num_questions,
             num_answers=num_answers,
-            difficulty=difficulty,
             language=language,
         )
-        #print(f"{prompt=}")
         prediction = self.predict_llm(
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
         )
