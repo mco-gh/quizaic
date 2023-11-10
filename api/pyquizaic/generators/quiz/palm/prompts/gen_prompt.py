@@ -57,7 +57,11 @@ EXAMPLES:
 
 for num_questions in (3, 4, 5):
     for difficulty in ("easy", "medium", "difficult"):
-        topic = random.choice(topics)
+        while True:
+            topic = random.choice(topics)
+            if topic != "Art" and topic != "Gadgets":
+                break
+
         quiz = gen.gen_quiz(topic, num_questions=num_questions, difficulty=difficulty)
         quiz = json.dumps(quiz)
         quiz = quiz.replace("{", "{{")

@@ -24,5 +24,5 @@ from generators.quiz.quizgenfactory import QuizgenFactory
 from generators.image.imagegen import ImageGen
 
 gen = QuizgenFactory.get_gen("palm")
-quiz = gen.gen_quiz("History", 3, 4, difficulty="easy")
+quiz = gen.gen_quiz("History", 3, 4, difficulty="difficult")
 print(json.dumps(quiz, indent=4))

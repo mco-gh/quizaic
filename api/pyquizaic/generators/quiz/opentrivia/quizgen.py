@@ -88,9 +88,11 @@ class Quizgen(BaseQuizgen):
         if not (topic_num == 25 or topic_num == 30):
             url += f"&difficulty={difficulty}"
         url += f"&type=multiple"
+        #print(f"{url=}")
 
         r = requests.get(url)
         quiz = r.json()["results"]
+        #print(f"{quiz=}")
         json_quiz = []
 
         for question in quiz:
