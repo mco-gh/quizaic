@@ -46,7 +46,7 @@ seen = {}
 # Generate QA and labels.
 topics = list(gen.get_topics())
 
-f_questions = open("questions.mc.good.txt", "w")
+f_questions = open("opentrivia.questions.txt", "w")
 while count < num_questions:
     topic = random.choice(topics)
     quiz = gen.gen_quiz(topic, questions_per_quiz)
@@ -73,8 +73,8 @@ def write_keys(d, f):
     for key in d:
         f.write(f"{key}\n")
 
-with open("assertions.mc.good.txt", "w") as f:
+with open("opentrivia.assertions.txt", "w") as f:
     write_keys(qa, f)
-with open("labels.mc.good.txt", "w") as f:
+with open("opentrivia.labels.txt", "w") as f:
     write_keys(labels, f)
 f_questions.close()

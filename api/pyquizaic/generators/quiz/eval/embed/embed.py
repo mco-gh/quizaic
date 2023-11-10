@@ -49,7 +49,7 @@ def read_file(filename, li):
     return count
 
 # Read assertions and labels.
-num_questions = read_file("../corpus/questions.mc.good.txt", questions)
+num_questions = read_file("../corpus/opentrivia.questions.txt", questions)
 
 count = 0
 with open("opentrivia.json", "w") as f_embed:
