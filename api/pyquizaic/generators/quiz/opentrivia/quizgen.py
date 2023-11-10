@@ -83,6 +83,8 @@ class Quizgen(BaseQuizgen):
         url += f"&category={topic_num}"
         # TODO - Hack: For some categories (eg. Art, Gadget), there are not
         # enough questions. Ignore difficulty in that case.
+        if difficulty == "difficult":
+            difficulty = "hard"
         if not (topic_num == 25 or topic_num == 30):
             url += f"&difficulty={difficulty}"
         url += f"&type=multiple"
