@@ -29,33 +29,26 @@ import random
 import sys
 import time
 import vertexai
-from vertexai.language_models import TextEmbeddingModel
+from google.cloud import aiplatform_v1beta1
+from vertexai.language_models import TextGenerationModel, TextEmbeddingModel
 
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
+gen = QuizgenFactory.get_gen("palm")
 model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
-vertexai.init(project="quizaic", location="us-central1")
 
-questions = []
-
-def read_file(filename, li):
-    count = 0
-    with open(filename, "r") as f:
-        for line in f:
-            line = line.strip()
-            li.append(line)
-            count += 1
-    return count
-
-# Read assertions and labels.
-num_questions = read_file("../corpus/questions.mc.good.txt", questions)
-
-count = 0
-with open("opentrivia.json", "w") as f_embed:
-    for question in questions:
-        if count == num_questions:
-            comma = ""
-        count += 1
-        embeddings = model.get_embeddings([question])[0].values
-        f_embed.write(f"{{\"id\": {count}, \"embedding\": {embeddings}}}\n") 
+vertex_ai_client = aiplatform_v1beta1.MatchServiceClient()
+quiz = gen.gen_quiz("baseball", 10, 4)
+for question in quiz:
+    request = aiplatform_v1beta1.FindNeighborsRequest(
+        index_endpoint="projects/780573810218/locations/us-central1/indexEndpoints/6195409372936404992",
+        deployed_index_id="corpus_mc_good_1699565521918",
+    )
+    question = json.dumps(question)
+    embeddings = model.get_embeddings([question])[0].values
+    dp1 = aiplatform_v1beta1.IndexDatapoint(datapoint_id="0", feature_vector=embeddings)
+    query = aiplatform_v1beta1.FindNeighborsRequest.Query(datapoint=dp1)
+    request.queries.append(query)
+    response = vertex_ai_client.find_neighbors(request)
+    print(f"{response=}")
