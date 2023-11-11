@@ -38,44 +38,22 @@ gen = QuizgenFactory.get_gen("opentrivia")
 topics = list(gen.get_topics())
 
 
-preamble = """
-CONTEXT:
+prompt = """
+Generate a multiple choice trivia quiz.
 
-You are auditioning for the job of question writer on a TV quiz show. Generate a multiple choice trivia quiz about topic {topic}. All questions and responses should be in {language}.
+Category: {topic}
+Question difficulty level: {difficulty}
+Number of questions: {num_questions}
+Number or responses per question: {num_answers}
+Quiz language: {language}
 
 RULES:
-- Accuracy is critically important.
-- Quizzes should be <DIFFICULTY>.
-- Quizzes should be formatted in json, as shown in the examples.
-- Quizzes should contain {num_questions} questions with {num_answers} responses each.
-- Do not repeat any questions or any responses within a quiz.
-- Each question must have exactly one correct response, selected from the responses array.
 
-EXAMPLES:
+- Accuracy is critical.
+- Each question must have exactly one correct response, selected from the responses array.
+- Quiz output must be a json array of questions, each of which is an object containing keys "question", "responses", and "correct".
 
 """
 
-for difficulty in ("easy", "medium", "hard"):
-    f_prompt = open(f"prompt.{difficulty}", "w")
-    if difficulty == "easy":
-        preamble2 = preamble.replace("<DIFFICULTY>", "easy")
-    elif difficulty == "medium":
-        preamble2 = preamble.replace("<DIFFICULTY>", "challenging for a well informed adult")
-    elif difficulty == "hard":
-        preamble2 = preamble.replace("<DIFFICULTY>", "very difficult!")
-
-    f_prompt.write(preamble2)
-    for num_questions in [3]:
-        while True:
-            topic = random.choice(topics)
-            if topic != "Art" and topic != "Gadgets":
-                break
-
-        quiz = gen.gen_quiz(topic, num_questions=num_questions, difficulty=difficulty)
-        quiz = json.dumps(quiz)
-        quiz = quiz.replace("{", "{{")
-        quiz = quiz.replace("}", "}}")
-        f_prompt.write(f"Input: topic: {topic}, num_questions: {num_questions}, num_answers: 4\n\n")
-        f_prompt.write("Output: " + quiz + "\n\n")
-    f_prompt.write("Input: topic: {topic}, num_questions: {num_questions}, num_answers: {num_answers}\n\n")
-    f_prompt.write("Output:\n")
+with open(f"prompt.txt", "w") as f_prompt:
+    f_prompt.write(prompt)

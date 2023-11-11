@@ -23,13 +23,15 @@ from google.cloud import firestore
 from generators.quiz.quizgenfactory import QuizgenFactory
 from generators.image.imagegen import ImageGen
 
+topic = "US History"
+
 gen = QuizgenFactory.get_gen("palm")
-quiz = gen.gen_quiz("History", 3, 4, difficulty="easy")
+quiz = gen.gen_quiz(topic, 3, 4, difficulty="easy")
 print("\nEASY\n")
 print(json.dumps(quiz, indent=4))
-quiz = gen.gen_quiz("History", 3, 4, difficulty="medium")
+quiz = gen.gen_quiz(topic, 3, 4, difficulty="medium")
 print("\nMEDIUM\n")
 print(json.dumps(quiz, indent=4))
-quiz = gen.gen_quiz("History", 3, 4, difficulty="hard")
+quiz = gen.gen_quiz(topic, 3, 4, difficulty="hard")
 print("\nHARD\n")
 print(json.dumps(quiz, indent=4))
