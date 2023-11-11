@@ -42,7 +42,7 @@ prompt = """
 Generate a multiple choice trivia quiz.
 
 Category: {topic}
-Question difficulty level: {difficulty}
+Quiz difficulty level: {difficulty}
 Number of questions: {num_questions}
 Number or responses per question: {num_answers}
 Quiz language: {language}

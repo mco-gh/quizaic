@@ -23,7 +23,7 @@ from google.cloud import firestore
 from generators.quiz.quizgenfactory import QuizgenFactory
 from generators.image.imagegen import ImageGen
 
-topic = "US History"
+topic = "Baseball History"
 
 gen = QuizgenFactory.get_gen("palm")
 quiz = gen.gen_quiz(topic, 3, 4, difficulty="easy")

@@ -16,7 +16,7 @@ from abc import ABC, abstractmethod
 
 
 class BaseQuizgen(ABC):
-    TEMPERATURE = 0.2
+    TEMPERATURE = 0.6
     DIFFICULTY = "medium"
     LANGUAGE = "English"
 
