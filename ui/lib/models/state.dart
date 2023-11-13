@@ -209,10 +209,8 @@ class MyAppState extends ChangeNotifier {
       'Authorization': 'Bearer ${userData.idToken}',
     });
     if (response.statusCode == 200) {
-      print('here1');
       Iterable l = jsonDecode(response.body);
       quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
-      print('here2');
     }
     notifyListeners();
     return quizzes;
