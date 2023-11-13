@@ -218,11 +218,14 @@ class MyAppState extends ChangeNotifier {
 
   Future<List<Generator>> fetchGenerators() async {
     print('fetchGenerators using apiUrl: $apiUrl');
-    final response = await http.get(Uri.parse('$apiUrl/generators'));
+    final response = await http.get(Uri.parse('$apiUrl/generators'), headers: {
+      'Authorization': 'Bearer ${userData.idToken}',
+    });
     if (response.statusCode == 200) {
       Iterable l = jsonDecode(response.body);
       generators =
           List<Generator>.from(l.map((model) => Generator.fromJson(model)));
+      notifyListeners();
     }
     return generators;
   }

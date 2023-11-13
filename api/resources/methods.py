@@ -109,6 +109,12 @@ def list(resource_kind):
     else:
         results = db.list(resource_kind, resource_fields[resource_kind])
 
+    if resource_kind == "generators":
+        email = g.get("verified_email", None)
+        if not auth.user_is_admin(email):
+            # remove GPT from generator list if user is not an admin
+            results = [gen for gen in results if gen["name"] != "GPT"]
+
     return json.dumps(results), 200, {"Content-Type": "application/json"}
 
 
