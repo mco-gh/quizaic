@@ -70,7 +70,8 @@ class Quizgen(BaseQuizgen):
                 },
             ],
         )
-        return completion.choices[0].message.content
+        quiz = json.loads(completion.choices[0].message.content)
+        return quiz
 
 
 if __name__ == "__main__":
