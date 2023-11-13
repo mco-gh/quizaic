@@ -51,8 +51,8 @@ const List<String> placeWords = ['1st', '2nd', '3rd'];
 
 const List<String> difficultyLevel = [
   'easy',
-  'medium',
-  'difficult',
+  'intermediate',
+  'hard',
 ];
 const List<String> synchronousOrAsynchronous = ['Synchronous', 'Asynchronous'];
 const List<String> anonymousOrAuthenticated = ['Anonymous', 'Authenticated'];

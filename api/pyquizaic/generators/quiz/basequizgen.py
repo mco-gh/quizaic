@@ -16,9 +16,12 @@ from abc import ABC, abstractmethod
 
 
 class BaseQuizgen(ABC):
-    TEMPERATURE = 0.6
-    DIFFICULTY = "medium"
+    TOPIC = "random"
+    NUM_QUESTIONS = 5
+    NUM_ANSWERS = 4
+    DIFFICULTY = "intermediate"
     LANGUAGE = "English"
+    TEMPERATURE = 0.6
 
     def __init__(self, config=None):
         pass
@@ -43,10 +46,11 @@ class BaseQuizgen(ABC):
     @abstractmethod
     def gen_quiz(
         self,
-        topic=None,
-        num_questions=None,
-        num_answers=None,
-        difficulty=3,
-        temperature=0.5,
+        topic=TOPIC,
+        num_questions=NUM_QUESTIONS,
+        num_answers=NUM_ANSWERS,
+        difficulty=DIFFICULTY,
+        language=LANGUAGE,
+        temperature=TEMPERATURE,
     ):
         pass

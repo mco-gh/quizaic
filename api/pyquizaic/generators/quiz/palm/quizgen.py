@@ -29,6 +29,7 @@ MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
 
+
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
         # This doesn't seem to be needed
@@ -85,11 +86,11 @@ class Quizgen(BaseQuizgen):
         language=BaseQuizgen.LANGUAGE,
         temperature=BaseQuizgen.TEMPERATURE,
     ):
-        #print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
+        # print(f"{topic=}, {num_questions=}, {num_answers=}, {difficulty=}, {language=}")
         file_path = os.path.join(os.path.dirname(__file__), f"prompts/prompt.txt")
         with open(file_path, encoding="utf-8") as fp:
             self.prompt_template = fp.read()
-        if difficulty == "medium":
+        if difficulty == "intermediate":
             difficulty = "hard"
         elif difficulty == "hard":
             difficulty = "extremely hard"
@@ -99,7 +100,7 @@ class Quizgen(BaseQuizgen):
             num_questions=num_questions,
             num_answers=num_answers,
             language=language,
-            difficulty=difficulty
+            difficulty=difficulty,
         )
         prediction = self.predict_llm(
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K

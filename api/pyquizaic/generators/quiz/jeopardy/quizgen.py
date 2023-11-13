@@ -20,7 +20,15 @@ import random
 import sys
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
-from pyquizaic.generators.quiz.basequizgen import BaseQuizgen, DIFFICULTY
+from pyquizaic.generators.quiz.basequizgen import (
+    BaseQuizgen,
+    TOPIC,
+    NUM_QUESTIONS,
+    NUM_ANSWERS,
+    DIFFICULTY,
+    LANGUAGE,
+    TEMPERATURE,
+)
 
 
 class Quizgen(BaseQuizgen):
@@ -43,11 +51,12 @@ class Quizgen(BaseQuizgen):
 
     def gen_quiz(
         self,
-        topic,
-        num_questions,
-        num_answers=1,
+        topic=TOPIC,
+        num_questions=NUM_QUESTIONS,
+        num_answers=NUM_ANSWERS,
         difficulty=DIFFICULTY,
-        temperature=None,
+        language=LANGUAGE,
+        temperature=TEMPERATURE,
     ):
         if topic not in self.db.category.unique():
             raise Exception(f"unknown topic {topic}")
@@ -57,9 +66,9 @@ class Quizgen(BaseQuizgen):
         round3 = "Final Jeopardy!"
         if difficulty == "easy":
             difficulty = random.choice((1, 2))
-        elif difficulty == "medium":
+        elif difficulty == "intermediate":
             difficulty = "3"
-        elif difficulty == "difficult":
+        elif difficulty == "hard":
             difficulty = random.choice((4, 5))
 
         value1 = f"${difficulty * 100}"
@@ -79,6 +88,5 @@ class Quizgen(BaseQuizgen):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    num_questions = 3
-    quiz = gen.gen_quiz("Physics", num_questions)
+    quiz = gen.gen_quiz(topic="Physics", num_questions=3)
     print(json.dumps(quiz, indent=4))

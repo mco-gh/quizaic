@@ -15,7 +15,15 @@
 import sys
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
-from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
+from pyquizaic.generators.quiz.basequizgen import (
+    BaseQuizgen,
+    TOPIC,
+    NUM_QUESTIONS,
+    NUM_ANSWERS,
+    DIFFICULTY,
+    LANGUAGE,
+    TEMPERATURE,
+)
 
 
 class Quizgen(BaseQuizgen):
@@ -36,11 +44,12 @@ class Quizgen(BaseQuizgen):
 
     def gen_quiz(
         self,
-        topic=None,
-        num_questions=None,
-        num_answers=None,
-        difficulty=3,
-        temperature=0.5,
+        topic=TOPIC,
+        num_questions=NUM_QUESTIONS,
+        num_answers=NUM_ANSWERS,
+        difficulty=DIFFICULTY,
+        language=LANGUAGE,
+        temperature=TEMPERATURE,
     ):
         return "[]"
 
