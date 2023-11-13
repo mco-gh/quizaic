@@ -16,15 +16,7 @@ import json
 import sys
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
-from pyquizaic.generators.quiz.basequizgen import (
-    BaseQuizgen,
-    TOPIC,
-    NUM_QUESTIONS,
-    NUM_ANSWERS,
-    DIFFICULTY,
-    LANGUAGE,
-    TEMPERATURE,
-)
+from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 import os
 import openai
@@ -54,12 +46,12 @@ class Quizgen(BaseQuizgen):
 
     def gen_quiz(
         self,
-        topic=TOPIC,
-        num_questions=NUM_QUESTIONS,
-        num_answers=NUM_ANSWERS,
-        difficulty=DIFFICULTY,
-        language=LANGUAGE,
-        temperature=TEMPERATURE,
+        topic=BaseQuizgen.TOPIC,
+        num_questions=BaseQuizgen.NUM_QUESTIONS,
+        num_answers=BaseQuizgen.NUM_ANSWERS,
+        difficulty=BaseQuizgen.DIFFICULTY,
+        language=BaseQuizgen.LANGUAGE,
+        temperature=BaseQuizgen.TEMPERATURE,
     ):
         prompt2 = prompt.format(
             topic=topic,

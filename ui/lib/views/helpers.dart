@@ -117,6 +117,11 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                         'OpenTrivia (Open Source Trivia Question Repository)',
                     value: type,
                   )
+                else if (text == 'Quiz Generator' && type == 'GPT')
+                  DropdownMenuEntry(
+                    label: 'GPT (OpenAI GPT 4)',
+                    value: type,
+                  )
                 else if (text != 'Quiz Generator')
                   DropdownMenuEntry(
                     label: type,

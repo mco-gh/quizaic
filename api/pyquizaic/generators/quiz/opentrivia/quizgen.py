@@ -69,11 +69,12 @@ class Quizgen(BaseQuizgen):
 
     def gen_quiz(
         self,
-        topic,
-        num_questions,
-        num_answers=None,
+        topic=BaseQuizgen.TOPIC,
+        num_questions=BaseQuizgen.NUM_QUESTIONS,
+        num_answers=BaseQuizgen.NUM_ANSWERS,
         difficulty=BaseQuizgen.DIFFICULTY,
-        temperature=None,
+        language=BaseQuizgen.LANGUAGE,
+        temperature=BaseQuizgen.TEMPERATURE,
     ):
         topic_num = Quizgen.TOPICS.index(topic) + 9
 

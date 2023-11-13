@@ -567,6 +567,18 @@
   },
   {
     "collection": "generators",
+    "id": "57d63f567516414e98eb",
+    "data": {
+      "name": "GPT",
+      "answerFormats": [
+        "multiple choice",
+        "free form"
+      ],
+      "topics": []
+    }
+  },
+  {
+    "collection": "generators",
     "id": "13c75dcc33124f618209",
     "data": {
       "name": "OpenTrivia",

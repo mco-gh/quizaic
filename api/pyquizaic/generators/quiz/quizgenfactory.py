@@ -25,6 +25,7 @@ class QuizgenFactory:
         "manual": None,
         "opentrivia": None,
         "palm": None,
+        "gpt": None,
     }
 
     @staticmethod
