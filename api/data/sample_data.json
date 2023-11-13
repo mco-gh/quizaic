@@ -52,6 +52,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
       "numQuestions": 5,
       "difficulty": "easy",
+      "language": "English",
       "runCount": 10,
       "qAndA": [
         {
@@ -120,6 +121,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1597701974172-3a99fbb4b5c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
       "numQuestions": 3,
       "difficulty": "hard",
+      "language": "English",
       "runCount": 7,
       "qAndA": [
         {
@@ -150,6 +152,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
       "numQuestions": 3,
       "difficulty": "intermediate",
+      "language": "English",
       "runCount": 17,
       "qAndA": [
         {
@@ -268,6 +271,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
       "numQuestions": 2,
       "difficulty": "intermediate",
+      "language": "English",
       "runCount": 2,
       "qAndA": [
         {
@@ -306,6 +310,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1686&q=80",
       "numQuestions": 2,
       "difficulty": "easy",
+      "language": "English",
       "runCount": 23,
       "qAndA": [
         {
@@ -344,6 +349,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
       "numQuestions": 10,
       "difficulty": "intermediate",
+      "language": "English",
       "runCount": 13,
       "qAndA": [
         {
@@ -461,7 +467,6 @@
       "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
-      "language": "English",
       "pin": "999"
     }
   },
@@ -511,7 +516,6 @@
       "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
-      "language": "English",
       "pin": "489"
     }
   },

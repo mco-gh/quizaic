@@ -38,7 +38,7 @@ class EditQuizData {
   String generator = '';
   String topic = 'Select generator to see topics';
   int numQuestions = 5;
-  String difficulty = 'medium';
+  String difficulty = 'intermediate';
   String language = 'English';
   String imageUrl = '';
   String qAndA = '';
@@ -209,8 +209,10 @@ class MyAppState extends ChangeNotifier {
       'Authorization': 'Bearer ${userData.idToken}',
     });
     if (response.statusCode == 200) {
+      print('here1');
       Iterable l = jsonDecode(response.body);
       quizzes = List<Quiz>.from(l.map((model) => Quiz.fromJson(model)));
+      print('here2');
     }
     notifyListeners();
     return quizzes;
@@ -219,7 +221,6 @@ class MyAppState extends ChangeNotifier {
   Future<List<Generator>> fetchGenerators() async {
     print('fetchGenerators using apiUrl: $apiUrl');
     final response = await http.get(Uri.parse('$apiUrl/generators'));
-
     if (response.statusCode == 200) {
       Iterable l = jsonDecode(response.body);
       generators =

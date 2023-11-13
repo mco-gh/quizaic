@@ -340,7 +340,8 @@ Widget genQuizDifficultyWidget(
   Widget widget;
 
   if (readOnly && quiz != null) {
-    widget = genLabelValue(theme, 'Difficulty:', 'Medium'); //quiz.difficulty);
+    widget =
+        genLabelValue(theme, 'Difficulty:', 'intermediate'); //quiz.difficulty);
   } else {
     widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
         appState.editQuizData.difficulty, getDifficulties, setDifficulty);
