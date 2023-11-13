@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import html
+import json
 import random
 import requests
 
@@ -85,13 +86,15 @@ class Quizgen(BaseQuizgen):
         # TODO - Hack: For some categories (eg. Art, Gadget), there are not
         # enough questions. Ignore difficulty in that case.
         if not (topic_num == 25 or topic_num == 30):
+            if difficulty == "intermediate":
+                difficulty = "medium"
             url += f"&difficulty={difficulty}"
         url += f"&type=multiple"
-        # print(f"{url=}")
+        print(f"{url=}")
 
         r = requests.get(url)
         quiz = r.json()["results"]
-        # print(f"{quiz=}")
+        print(f"{quiz=}")
         json_quiz = []
 
         for question in quiz:
@@ -113,4 +116,5 @@ class Quizgen(BaseQuizgen):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    print(f"gen:{gen}")
+    quiz = gen.gen_quiz(topic="History", num_questions=3, num_answers=4)
+    print(json.dumps(quiz, indent=4))

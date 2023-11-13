@@ -125,17 +125,5 @@ class Quizgen(BaseQuizgen):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    # print(f'gen:{gen}')
-    # exit(0)
-
-    # prompt = "question: In the DC Comics 2016 reboot, Rebirth, which speedster escaped from the Speed Force after he had been erased from existance? Eobard Thawne?"
-    # result = gen.predict_llm(MODEL, 0, MAX_OUTPUT_TOKENS, 0.8, 40, prompt)
-    # print(f'result:{result == ""}')
-    # exit()
-
-    topic = "science"
-    num_questions = 3
-    num_answers = 4
-    quiz = gen.gen_quiz("science", num_questions, num_answers)
-    # quiz, topic, num_questions, num_answers = gen.load_quiz("quiz_cyprus.json")
+    quiz = gen.gen_quiz(topic="science", num_questions=3, num_answers=4)
     print(json.dumps(quiz, indent=4))

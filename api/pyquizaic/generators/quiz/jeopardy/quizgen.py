@@ -59,7 +59,7 @@ class Quizgen(BaseQuizgen):
         if difficulty == "easy":
             difficulty = random.choice((1, 2))
         elif difficulty == "intermediate":
-            difficulty = "3"
+            difficulty = 3
         elif difficulty == "hard":
             difficulty = random.choice((4, 5))
 
@@ -80,5 +80,5 @@ class Quizgen(BaseQuizgen):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    quiz = gen.gen_quiz(topic="Physics", num_questions=3)
+    quiz = gen.gen_quiz(topic="The Movies", num_questions=3, num_answers=4)
     print(json.dumps(quiz, indent=4))

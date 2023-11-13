@@ -76,5 +76,5 @@ class Quizgen(BaseQuizgen):
 
 if __name__ == "__main__":
     gen = Quizgen()
-    quiz = gen.quiz_gen(topic="baseball", num_questions=3)
-    print(json.loads(quiz, indent=4))
+    quiz = gen.gen_quiz(topic="science", num_questions=3, num_answers=4)
+    print(json.dumps(quiz, indent=4))
