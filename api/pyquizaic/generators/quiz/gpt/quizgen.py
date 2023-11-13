@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import sys
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
@@ -22,8 +23,10 @@ import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+file_path = os.path.join(os.path.dirname(__file__), f"../prompt.txt")
+with open(file_path, encoding="utf-8") as f:
+    prompt = f.read()
 
-# TODO: Implement
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
         self.topics = set()
@@ -41,37 +44,23 @@ class Quizgen(BaseQuizgen):
         return ["free-form", "multiple-choice"]
 
     def gen_quiz(
-        self, topic, num_questions, num_answers, difficulty=3, temperature=0.5
+        self, topic, num_questions, num_answers=4, difficulty=3, language="English", temperature=0.5
     ):
+        prompt2 = prompt.format(topic=topic, num_questions=num_questions,
+            num_answers=num_answers, difficulty=difficulty, language=language,
+            temperature=temperature)
         completion = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
                 {
-                    "role": "system",
-                    "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair.",
-                },
-                {
-                    "role": "user",
-                    "content": "Compose a poem that explains the concept of recursion in programming.",
+                    "role": "assistant",
+                    "content": prompt2,
                 },
             ],
         )
-
-        print(completion.choices[0].message)
-        return """[
-                    {
-                      "question":  "gpt question",
-                      "correct":   "gpt answer",
-                      "responses": [ 
-                                     "gpt answer 1",
-                                     "gpt answer 2",
-                                     "gpt answer 3",
-                                     "gpt answer 4"
-                                   ]
-                    }
-                  ]"""
+        return completion.choices[0].message.content
 
 
 if __name__ == "__main__":
     gen = Quizgen()
-    print(f"gen:{gen}")
+    print(json.loads(quiz, indent=4))

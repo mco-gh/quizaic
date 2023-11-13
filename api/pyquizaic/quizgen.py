@@ -25,7 +25,7 @@ from generators.image.imagegen import ImageGen
 
 topic = "Baseball History"
 
-gen = QuizgenFactory.get_gen("palm")
+gen = QuizgenFactory.get_gen("gpt")
 quiz = gen.gen_quiz(topic, 3, 4, difficulty="easy")
 print("\nEASY\n")
 print(json.dumps(quiz, indent=4))
