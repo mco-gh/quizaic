@@ -31,7 +31,7 @@ class Quizgen(BaseQuizgen):
         self.topics = set()
 
     def __str__(self):
-        return "Llama2-7b quiz generator"
+        return "Llama2-70b quiz generator"
 
     def get_topics(self, num=None):
         return self.topics
