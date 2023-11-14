@@ -132,6 +132,11 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                     label: 'Meta Llama2 (7b)',
                     value: type,
                   )
+                else if (text == 'Quiz Generator' && type == 'Llama2-70b')
+                  DropdownMenuEntry(
+                    label: 'Meta Llama2 (70b)',
+                    value: type,
+                  )
                 else if (text != 'Quiz Generator')
                   DropdownMenuEntry(
                     label: type,
