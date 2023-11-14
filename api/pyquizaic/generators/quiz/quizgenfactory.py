@@ -66,5 +66,8 @@ if __name__ == "__main__":
     gen = QuizgenFactory.get_gen("palm")
     print(f"gen:{gen}")
 
+    gen = QuizgenFactory.get_gen("llama2-7b")
+    print(f"gen:{gen}")
+
     gens = QuizgenFactory.get_gens()
     print(f"gens:{gens}")

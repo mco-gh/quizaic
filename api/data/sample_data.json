@@ -567,6 +567,18 @@
   },
   {
     "collection": "generators",
+    "id": "57d62f566516411e98eb",
+    "data": {
+      "name": "Llama2-7b",
+      "answerFormats": [
+        "multiple choice",
+        "free form"
+      ],
+      "topics": []
+    }
+  },
+  {
+    "collection": "generators",
     "id": "57d63f567516414e98eb",
     "data": {
       "name": "GPT",
