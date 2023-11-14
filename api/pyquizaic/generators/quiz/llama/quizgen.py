@@ -18,6 +18,7 @@ import os
 import random
 import re
 from vertexai.preview.language_models import TextGenerationModel
+from google.cloud import aiplatform
 
 import sys
 
@@ -45,62 +46,31 @@ class Quizgen(BaseQuizgen):
     def get_answer_formats(self):
         return ["free-form", "multiple-choice"]
 
-    @staticmethod
-    def predict_llm(
-        model, prompt, temperature, max_output_tokens, top_p, top_k, tuned_model=""
-    ):
-        model = TextGenerationModel.from_pretrained(model)
-        if tuned_model:
-            model = model.get_tuned_model(tuned_model)
-        print(f"{temperature=}, {prompt=}")
-        response = model.predict(
-            prompt,
-            temperature=temperature,
-            max_output_tokens=max_output_tokens,
-            top_k=top_k,
-            top_p=top_p,
-        )
-        return response.text
-
-    # Load quiz from a quiz_<topic>.json file, mainly for testing
-    @staticmethod
-    def load_quiz(quiz_file):
-        file = open(os.path.join(os.path.dirname(__file__), "quizzes/" + quiz_file))
-        quiz = json.load(file)
-
-        topic = re.search(r"_(.*)\.json", quiz_file).group(1)
-        num_questions = len(quiz)
-        num_answers = len(quiz[0]["responses"])
-
-        return quiz, topic, num_questions, num_answers
-
-    def predict_custom_trained_model_sample(
-        project: str,
-        endpoint_id: str,
-        instances: Union[Dict, List[Dict]],
-        location: str = "us-central1",
-        api_endpoint: str = "us-central1-aiplatform.googleapis.com",
+    def predict_custom_trained_model(
+        self,
+        prompt,
+        project="780573810218",
+        endpoint_id="4383042575431368704",
+        location = "us-central1",
+        api_endpoint = "us-central1-aiplatform.googleapis.com",
+        parameters = {},
     ):
         client_options = {"api_endpoint": api_endpoint}
         client = aiplatform.gapic.PredictionServiceClient(client_options=client_options)
-        instances = instances if isinstance(instances, list) else [instances]
         instances = [
-            json_format.ParseDict(instance_dict, Value()) for instance_dict in instances
+            {
+                "prompt": prompt
+            }
         ]
-        parameters_dict = {}
-        parameters = json_format.ParseDict(parameters_dict, Value())
         endpoint = client.endpoint_path(
             project=project, location=location, endpoint=endpoint_id
         )
         response = client.predict(
             endpoint=endpoint, instances=instances, parameters=parameters
         )
-        print("response")
-        print(" deployed_model_id:", response.deployed_model_id)
-        # The predictions are a google.protobuf.Value representation of the model's predictions.
         predictions = response.predictions
-        for prediction in predictions:
-            print(" prediction:", dict(prediction))
+        return predictions[0]
+
 
     def gen_quiz(
         self,
@@ -121,9 +91,7 @@ class Quizgen(BaseQuizgen):
             language=language,
             difficulty=difficulty,
         )
-        prediction = self.predict_llm(
-            MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
-        )
+        prediction = self.predict_custom_trained_model(prompt)
         print(f"{prediction=}")
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
