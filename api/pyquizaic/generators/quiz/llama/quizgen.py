@@ -25,10 +25,6 @@ import sys
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-MAX_OUTPUT_TOKENS = 1024
-TOP_P = 0.8
-TOP_K = 40
-
 
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
@@ -59,7 +55,8 @@ class Quizgen(BaseQuizgen):
         client = aiplatform.gapic.PredictionServiceClient(client_options=client_options)
         instances = [
             {
-                "prompt": prompt
+                "prompt": prompt,
+                "max_tokens": 1024
             }
         ]
         endpoint = client.endpoint_path(
@@ -91,8 +88,21 @@ class Quizgen(BaseQuizgen):
             language=language,
             difficulty=difficulty,
         )
-        prediction = self.predict_custom_trained_model(prompt)
-        print(f"{prediction=}")
+        s = self.predict_custom_trained_model(prompt)
+        depth = 0
+        prediction = ""
+        for i in s:
+            if i == "[":
+                prediction += i
+                depth += 1
+            elif prediction and i == "]":
+                prediction += i
+                depth -= 1
+                if depth == 0:
+                    break
+            elif prediction:
+                prediction += i
+
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
         for i in quiz:

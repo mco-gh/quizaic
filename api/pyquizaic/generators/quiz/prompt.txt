@@ -1,5 +1,5 @@
 
-Generate a multiple choice trivia quiz.
+Generate a set of multiple choice quiz questions.
 
 Category: {topic}
 Quiz difficulty level: {difficulty}
@@ -11,5 +11,6 @@ RULES:
 
 - Accuracy is critical.
 - Each question must have exactly one correct response, selected from the responses array.
-- Quiz output must be a json array of questions, each of which is an object containing keys "question", "responses", and "correct".
+- Output should be limited to a json array of questions, each of which is an object containing quoted keys "question", "responses", and "correct".
 
+OUTPUT:

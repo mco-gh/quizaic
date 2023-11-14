@@ -55,7 +55,7 @@ class Quizgen(BaseQuizgen):
         model = TextGenerationModel.from_pretrained(model)
         if tuned_model:
             model = model.get_tuned_model(tuned_model)
-        print(f"{temperature=}, {prompt=}")
+        #print(f"{temperature=}, {prompt=}")
         response = model.predict(
             prompt,
             temperature=temperature,
@@ -107,15 +107,12 @@ class Quizgen(BaseQuizgen):
         )
         prediction = prediction.strip()
         if prediction[0:7].lower() == "```json":
-            print("removing prefix")
             prediction = prediction[7:]
         elif prediction[0:8].lower() == "``` json":
-            print("removing prefix")
             prediction = prediction[8:]
         if prediction[-3:].lower() == "```":
-            print("removing suffix")
             prediction = prediction[:-3]
-        print(f"{prediction=}")
+        #print(f"{prediction=}")
         quiz = json.loads(prediction)
         # Make sure the correct answer appears randomly in responses
         for i in quiz:
