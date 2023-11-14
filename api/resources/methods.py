@@ -112,8 +112,8 @@ def list(resource_kind):
     if resource_kind == "generators":
         email = g.get("verified_email", None)
         if not auth.user_is_admin(email):
-            # remove GPT from generator list if user is not an admin
-            results = [gen for gen in results if gen["name"] != "GPT"]
+            # remove GPT and Jeopardy from generator list if user is not an admin
+            results = [gen for gen in results if gen["name"] != "GPT" and gen["name"] != "Jeopardy"]
 
     return json.dumps(results), 200, {"Content-Type": "application/json"}
 
@@ -218,6 +218,9 @@ def patch(resource_kind, id, representation):
     if resource_kind == "quizzes":
         regen_content = representation.get("qAndA", None) == "regen"
         regen_image = representation.get("imageUrl", None) == "regen"
+        # tmp hack while image gen is broken
+        regen_image = False
+        representation["imageUrl"] = "/assets/images/quizaic_logo.png"
 
         if regen_content:
             print("generating new quiz content...")
