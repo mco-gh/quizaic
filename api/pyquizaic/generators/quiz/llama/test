@@ -1,0 +1,9 @@
+{
+    "instances": [
+        {
+            "prompt": "Write a poem about Valencia.",
+            "max_length": 200,
+            "top_k": 10
+        }
+    ]
+}
