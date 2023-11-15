@@ -92,7 +92,6 @@ errors = 0
 
 # Generate predictions.
 while assertions:
-    time.sleep(3)
     batch_assertions = assertions[:BATCH_SIZE]
     batch_labels = labels[:BATCH_SIZE]
     assertions = assertions[BATCH_SIZE:]
@@ -108,13 +107,15 @@ while assertions:
         .split()
     )
 
-    error = False
     if len(grades) != len(batch_assertions):
-        print(f"bad prediction: {response=}")
+        print(f"bad prediction: {grades=}, {response=}")
+        errors += 1
+        continue
     for i in grades:
         if i != "true" and i != "false":
-            print(f"bad prediction: {i=}")
-            error = True
+            print(f"bad prediction: {grades=}, {response=}")
+            errors += 1
+            continue
 
     #for i in range(len(grades)):
         #grades[i] = "false" if grades[i] == "true" else "true"
