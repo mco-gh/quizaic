@@ -34,7 +34,11 @@ from vertexai.language_models import TextGenerationModel
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-gen = QuizgenFactory.get_gen("opentrivia")
+# construct the topic list from the intersection of the static generators' topics.
+topics = list(QuizgenFactory.get_gen("opentrivia").get_topics())
+
+generator = sys.argv[1]
+gen = QuizgenFactory.get_gen(generator)
 
 num_questions = 1000
 questions_per_quiz = 5
@@ -44,37 +48,39 @@ labels = []
 seen = {}
 
 # Generate QA and labels.
-topics = list(gen.get_topics())
 
-f_questions = open("opentrivia.questions.txt", "w")
+f_questions = open(f"{generator}.questions.txt", "w")
 while count < num_questions:
     topic = random.choice(topics)
-    quiz = gen.gen_quiz(topic, questions_per_quiz)
-    for question in quiz:
-        q = question["question"]
-        if q in seen:
-            print("skipping")
-            continue
-        seen[q] = True
-        count += 1
-        if count > num_questions:
-            break
-        f_questions.write(json.dumps(question) + "\n") 
-        responses = question["responses"]
-        correct = question["correct"]
-        for r in responses:
-            label = "false"
-            if r == correct:
-                label = "true"
-            qa.append(f"- Q: {q} A: {r}")
-            labels.append(label)
+    try:
+        quiz = gen.gen_quiz(topic, questions_per_quiz)
+        for question in quiz:
+            q = question["question"]
+            if q in seen:
+                print("skipping")
+                continue
+            seen[q] = True
+            count += 1
+            if count > num_questions:
+                break
+            f_questions.write(json.dumps(question) + "\n") 
+            responses = question["responses"]
+            correct = question["correct"]
+            for r in responses:
+                label = "false"
+                if r == correct:
+                    label = "true"
+                qa.append(f"- Q: {q} A: {r}")
+                labels.append(label)
+    except err:
+        print(err)
 
 def write_keys(d, f):
     for key in d:
         f.write(f"{key}\n")
 
-with open("opentrivia.assertions.txt", "w") as f:
+with open(f"{generator}.assertions.txt", "w") as f:
     write_keys(qa, f)
-with open("opentrivia.labels.txt", "w") as f:
+with open(f"{generator}.labels.txt", "w") as f:
     write_keys(labels, f)
 f_questions.close()

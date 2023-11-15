@@ -41,6 +41,8 @@ In one (and only one) word, are the following assertions true or false?
 
 """
 
+generator = sys.argv[1]
+
 num_shuffles = 10
 assertions = []
 labels = []
@@ -59,8 +61,8 @@ def read_file(filename, li):
 
 
 # Read assertions and labels.
-num_questions = read_file("../corpus/opentrivia.assertions.txt", assertions)
-num_labels = read_file("../corpus/opentrivia.labels.txt", labels)
+num_questions = read_file(f"../corpus/{generator}.assertions.txt", assertions)
+num_labels = read_file(f"../corpus/{generator}.labels.txt", labels)
 assert num_questions == num_labels
 assert num_questions % 4 == 0
 questions = [int(i / 4) for i in range(num_questions)]

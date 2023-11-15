@@ -219,9 +219,6 @@ def patch(resource_kind, id, representation):
     if resource_kind == "quizzes":
         regen_content = representation.get("qAndA", None) == "regen"
         regen_image = representation.get("imageUrl", None) == "regen"
-        # tmp hack while image gen is broken
-        regen_image = False
-        representation["imageUrl"] = "/assets/images/quizaic_logo.png"
 
         if regen_content:
             print("generating new quiz content...")
