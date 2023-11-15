@@ -52,28 +52,29 @@ seen = {}
 f_questions = open(f"{generator}.questions.txt", "w")
 while count < num_questions:
     topic = random.choice(topics)
-    quiz = gen.gen_quiz(topic, questions_per_quiz)
+    try:
+        quiz = gen.gen_quiz(topic, questions_per_quiz)
+    except Exception as err:
+        print(f"{err=}, {quiz=}")
+        continue
     for question in quiz:
-        try:
-            q = question["question"]
-            if q in seen:
-                print("skipping")
-                continue
-            seen[q] = True
-            count += 1
-            if count > num_questions:
-                break
-            f_questions.write(json.dumps(question) + "\n") 
-            responses = question["responses"]
-            correct = question["correct"]
-            for r in responses:
-                label = "false"
-                if r == correct:
-                    label = "true"
-                qa.append(f"- Q: {q} A: {r}")
-                labels.append(label)
-        except Exception as err:
-            print(f"{err=}, {question}")
+        q = question["question"]
+        if q in seen:
+            print("skipping")
+            continue
+        seen[q] = True
+        count += 1
+        if count > num_questions:
+            break
+        f_questions.write(json.dumps(question) + "\n") 
+        responses = question["responses"]
+        correct = question["correct"]
+        for r in responses:
+            label = "false"
+            if r == correct:
+                label = "true"
+            qa.append(f"- Q: {q} A: {r}")
+            labels.append(label)
 
 def write_keys(d, f):
     for key in d:
