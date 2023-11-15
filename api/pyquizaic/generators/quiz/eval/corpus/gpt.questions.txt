@@ -1,0 +1,1000 @@
+{"question": "Who was the first President of the United States?", "responses": ["Abraham Lincoln", "George Washington", "Benjamin Franklin", "Andrew Jackson"], "correct": "George Washington"}
+{"question": "What is known as the deadliest conflict in human history?", "responses": ["World War I", "World War II", "The American Civil War", "The French Revolution"], "correct": "World War II"}
+{"question": "Which ancient civilization built the pyramids?", "responses": ["Roman", "Greek", "Egyptian", "Incan"], "correct": "Egyptian"}
+{"question": "In what year did the Titanic sink?", "responses": ["1912", "1922", "1932", "1902"], "correct": "1912"}
+{"question": "Who was the British monarch during the American Revolution?", "responses": ["Queen Victoria", "Queen Elizabeth II", "King Henry VIII", "King George III"], "correct": "King George III"}
+{"question": "Which member of the Simpson's family is a vegetarian?", "responses": ["Bart", "Lisa", "Homer", "Marge"], "correct": "Lisa"}
+{"question": "Who is the main villain in the 'Batman' animated series?", "responses": ["Lex Luthor", "The Joker", "Thanos", "The Penguin"], "correct": "The Joker"}
+{"question": "What type of animal is Tom in the cartoon 'Tom and Jerry'?", "responses": ["Dog", "Cat", "Mouse", "Bird"], "correct": "Cat"}
+{"question": "Which famous superhero does the animated series 'The Amazing Spider-Man' revolve around?", "responses": ["Superman", "Batman", "Iron Man", "Spider-Man"], "correct": "Spider-Man"}
+{"question": "Who is the talking sea sponge in the animated series 'SpongeBob SquarePants'?", "responses": ["Patrick Star", "Squidward Tentacles", "Mr. Krabs", "SpongeBob SquarePants"], "correct": "SpongeBob SquarePants"}
+{"question": "Who wrote the famous 1851 novel 'Moby Dick'?", "responses": ["Herman Melville", "Mark Twain", "Ernest Hemingway", "F. Scott Fitzgerald"], "correct": "Herman Melville"}
+{"question": "The 'Harry Potter' series is primarily set in which country?", "responses": ["USA", "UK", "Canada", "Australia"], "correct": "UK"}
+{"question": "What is the name of the first book in the 'Game of Thrones' series by George R. R. Martin?", "responses": ["The Winds of Winter", "A Clash of Kings", "A Game of Thrones", "A Storm of Swords"], "correct": "A Game of Thrones"}
+{"question": " Which famous detective lived at 221b Baker Street, London?", "responses": ["Miss Marple", "Hercule Poirot", "Sam Spade", "Sherlock Holmes"], "correct": "Sherlock Holmes"}
+{"question": "What is the title of Harper Lee's only published book during her lifetime?", "responses": ["To Kill a Mockingbird", "Go Set a Watchman", "In Cold Blood", "The Great Gatsby"], "correct": "To Kill a Mockingbird"}
+{"question": "What is a group of lions called?", "responses": ["Pack", "Squad", "Pride", "Plague"], "correct": "Pride"}
+{"question": "Which animal has the longest lifespan?", "responses": ["Elephant", "Turtle", "Dog", "Cat"], "correct": "Turtle"}
+{"question": "Which animal is capable of true flight?", "responses": ["Penguins", "Ostriches", "Emus", "None of the Above"], "correct": "None of the Above"}
+{"question": "What is the world's smallest mammal?", "responses": ["Pygmy Marmoset", "Dwarf Lantern Shark", "Etruscan Shrew", "Bumblebee Bat"], "correct": "Bumblebee Bat"}
+{"question": "Which of these reptiles is known for changing its color?", "responses": ["Iguana", "Komodo Dragon", "Chameleon", "Python"], "correct": "Chameleon"}
+{"question": "Who is the main protagonist in the anime series 'Naruto'?", "responses": ["Sasuke Uchiha", "Son Goku", "Ichigo Kurosaki", "Naruto Uzumaki"], "correct": "Naruto Uzumaki"}
+{"question": "Which studio produced the anime film 'Spirited Away'?", "responses": ["Madhouse", "Toho", "Studio Ghibli", "Kodansha"], "correct": "Studio Ghibli"}
+{"question": "In the anime 'Attack on Titan', what is the name of the character who is later revealed to be the female titan?", "responses": ["Mikasa Ackerman", "Ymir", "Historia Reiss", "Annie Leonhart"], "correct": "Annie Leonhart"}
+{"question": "Which anime series features a soul reaper named 'Ichigo Kurosaki'?", "responses": ["One Piece", "Bleach", "Death Note", "Naruto"], "correct": "Bleach"}
+{"question": "What is the name of the most powerful titan in the anime 'Attack on Titan'?", "responses": ["Armor Titan", "Colossal Titan", "Beast Titan", "Founding Titan"], "correct": "Founding Titan"}
+{"question": "Who was the first woman to run for president in the United States?", "responses": ["Hillary Clinton", "Shirley Chisholm", "Victoria Woodhull", "Sarah Palin"], "correct": "Victoria Woodhull"}
+{"question": "What is the supreme law of the United States?", "responses": ["The Declaration of Independence", "The US Constitution", "The Bill of Rights", "The Magna Carta"], "correct": "The US Constitution"}
+{"question": "Who was the youngest president in US history?", "responses": ["Theodore Roosevelt", "John F. Kennedy", "Bill Clinton", "Barack Obama"], "correct": "Theodore Roosevelt"}
+{"question": "Who is considered the Father of the Constitution?", "responses": ["Thomas Jefferson", "James Madison", "George Washington", "Alexander Hamilton"], "correct": "James Madison"}
+{"question": "What year did the Berlin Wall fall, marking the end of the Cold War?", "responses": ["1989", "1991", "1985", "1990"], "correct": "1989"}
+{"question": "What is the capital of Canada?", "responses": ["Toronto", "Vancouver", "Montreal", "Ottawa"], "correct": "Ottawa"}
+{"question": "Which continent has the most countries?", "responses": ["Africa", "Asia", "Europe", "North America"], "correct": "Africa"}
+{"question": "The Amazon Rainforest is primarily located in which country?", "responses": ["Colombia", "Peru", "Brazil", "Ecuador"], "correct": "Brazil"}
+{"question": "What is the largest ocean on Earth?", "responses": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], "correct": "Pacific Ocean"}
+{"question": "Mount Everest is located in which country?", "responses": ["India", "Nepal", "China", "Bhutan"], "correct": "Nepal"}
+{"question": "What does CPU stand for in computer terminology?", "responses": ["Core Process Unit", "Custom Processing Unit", "Central Processing Unit", "Computerized Processing Unit"], "correct": "Central Processing Unit"}
+{"question": "Who is known as the 'father of the computer'?", "responses": ["Bill Gates", "Charles Babbage", "Alan Turing", "Steve Jobs"], "correct": "Charles Babbage"}
+{"question": "In computing, what does GUI stand for?", "responses": ["Graphical User Interface", "General User Input", "Graphical User Input", "General User Interface"], "correct": "Graphical User Interface"}
+{"question": "Which of these is not a programming language?", "responses": ["Java", "Python", "Silverlight", "C++"], "correct": "Silverlight"}
+{"question": "Which company was established on 1st April 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?", "responses": ["Microsoft", "Atari", "Commodore", "Apple"], "correct": "Apple"}
+{"question": "Who is considered the 'Father of the Constitution' for his pivotal role in its drafting and ratification?", "responses": ["George Washington", "James Madison", "Alexander Hamilton", "Benjamin Franklin"], "correct": "James Madison"}
+{"question": "What position in the US government is being referred to as 'the fourth arm of government'?", "responses": ["The Judiciary", "The Media", "The Military", "The Senate"], "correct": "The Media"}
+{"question": "Who was the youngest elected President of the United States?", "responses": ["John F. Kennedy", "Barack Obama", "Theodore Roosevelt", "Bill Clinton"], "correct": "John F. Kennedy"}
+{"question": "What is the term limit for serving as President of the United States?", "responses": ["2 terms", "3 terms", "4 terms", "No term limits"], "correct": "2 terms"}
+{"question": "What political theory advocates for the abolition of all government structures and institutions?", "responses": ["Marxism", "Liberalism", "Anarchism", "Fascism"], "correct": "Anarchism"}
+{"question": "What is the derivative of the function y = x^2?", "responses": ["2x", "2x^2", "x^2", "x"], "correct": "2x"}
+{"question": "What is the integral of 2x?", "responses": ["x^2 + C", "2x^2 + C", "x + C", "2x + C"], "correct": "x^2 + C"}
+{"question": "What is the Pythagorean theorem?", "responses": ["a^2 + b^2 = c^2", "a^2 - b^2 = c^2", "a^2 + b^2 = c", "a + b = c^2"], "correct": "a^2 + b^2 = c^2"}
+{"question": "What is the sum of the interior angles of a triangle?", "responses": ["90 degrees", "180 degrees", "270 degrees", "360 degrees"], "correct": "180 degrees"}
+{"question": "How many edges does a cube have?", "responses": ["6", "8", "12", "16"], "correct": "12"}
+{"question": "In the video game 'The Legend of Zelda', what is the name of the Princess that Link often has to rescue?", "responses": ["Peach", "Sarah", "Zelda", "Anastacia"], "correct": "Zelda"}
+{"question": "What material in 'Minecraft' is needed to make a torch?", "responses": ["Diamond", "Wood", "Coal", "Iron"], "correct": "Coal"}
+{"question": "In 'Super Mario Bros.', what does Mario use to become invincible?", "responses": ["Super Mushroom", "Starman", "Fire Flower", "Yoshi's Egg"], "correct": "Starman"}
+{"question": "In the game 'Among Us', how many impostors can there be in a game at maximum in a 10 player game?", "responses": ["1", "2", "3", "4"], "correct": "3"}
+{"question": "What is the name of the creature in 'Pok\u00e9mon' that Ash Ketchum, the main character, is associated with?", "responses": ["Charizard", "Squirtle", "Jigglypuff", "Pikachu"], "correct": "Pikachu"}
+{"question": "Who was the first president of the United States?", "responses": ["George Washington", "Abraham Lincoln", "Benjamin Franklin", "Thomas Jefferson"], "correct": "George Washington"}
+{"question": "In what year did World War I start?", "responses": ["1915", "1914", "1916", "1913"], "correct": "1914"}
+{"question": "Who was the 16th president of the United States?", "responses": ["George Washington", "Abraham Lincoln", "John F. Kennedy", "Franklin D. Roosevelt"], "correct": "Abraham Lincoln"}
+{"question": "Who discovered America?", "responses": ["Christopher Columbus", "Ferdinand Magellan", "Marco Polo", "Amerigo Vespucci"], "correct": "Christopher Columbus"}
+{"question": "Who was Martin Luther King Jr.?", "responses": ["A civil rights leader", "A U.S. president", "A British king", "A pop singer"], "correct": "A civil rights leader"}
+{"question": "Who holds the record for the highest individual score in a Test innings in cricket?", "responses": ["Brian Lara", "Sachin Tendulkar", "Sir Donald Bradman", "Sir Vivian Richards"], "correct": "Brian Lara"}
+{"question": "Who has won the most gold medals in a single Olympic Games?", "responses": ["Carl Lewis", "Michael Phelps", "Usain Bolt", "Mark Spitz"], "correct": "Michael Phelps"}
+{"question": "In what year was the first FIFA World Cup held?", "responses": ["1930", "1940", "1920", "1950"], "correct": "1930"}
+{"question": "What is the highest score achievable in ten-pin bowling?", "responses": ["300", "400", "500", "600"], "correct": "300"}
+{"question": "Who was the youngest player to win a Grand Slam title in tennis?", "responses": ["Serena Williams", "Martina Hingis", "Monica Seles", "Martina Navratilova"], "correct": "Martina Hingis"}
+{"question": "Who wrote the book 'To Kill a Mockingbird'?", "responses": ["Harper Lee", "Jane Austen", "J.K. Rowling", "Ernest Hemingway"], "correct": "Harper Lee"}
+{"question": "In J.D. Salinger\u2019s 'The Catcher in the Rye', who is the protagonist?", "responses": ["Charlie Bucket", "Holden Caulfield", "Jay Gatsby", "Atticus Finch"], "correct": "Holden Caulfield"}
+{"question": "What is the name of the fictional town in Gabriel Garcia Marquez's 'One Hundred Years of Solitude'?", "responses": ["Macondo", "Pemberley", "Middlemarch", "Hogsmeade"], "correct": "Macondo"}
+{"question": "Who is the author of the novel 'War and Peace'?", "responses": ["Fyodor Dostoyevsky", "Leo Tolstoy", "George Orwell", "Victor Hugo"], "correct": "Leo Tolstoy"}
+{"question": "What is the name of the main character in 'Moby-Dick' by Herman Melville?", "responses": ["Captain Ahab", "Ishmael", "Queequeg", "Starbuck"], "correct": "Ishmael"}
+{"question": "Who is the author of 'To Kill a Mockingbird'?", "responses": ["Harper Lee", "John Grisham", "J.D. Salinger", "Mark Twain"], "correct": "Harper Lee"}
+{"question": "What is the name of the main character in '1984' by George Orwell?", "responses": ["Harry Potter", "Winston Smith", "Holden Caulfield", "Jay Gatsby"], "correct": "Winston Smith"}
+{"question": "What is the magical realm in 'The Chronicles of Narnia' series called?", "responses": ["Middle Earth", "Hogwarts", "Narnia", "Wonderland"], "correct": "Narnia"}
+{"question": "Who wrote 'Pride and Prejudice'?", "responses": ["Victor Hugo", "Charlotte Bronte", "Jane Austen", "Emily Bronte"], "correct": "Jane Austen"}
+{"question": "What novel tells the story of Jean Valjean and Javert?", "responses": ["Catch-22", "Les Mis\u00e9rables", "Pride and Prejudice", "Great Expectations"], "correct": "Les Mis\u00e9rables"}
+{"question": "What was the first car to break the sound barrier?", "responses": ["Bugatti Veyron", "Thrust SSC", "Koenigsegg Jesko", "Hennessey Venom F5"], "correct": "Thrust SSC"}
+{"question": "What type of engine does a 'Tesla Model S' have?", "responses": ["V8", "Electric", "V6", "Turbocharged"], "correct": "Electric"}
+{"question": "Which company produced the first mass-production hybrid vehicle?", "responses": ["Tesla", "Ford", "Toyota", "Nissan"], "correct": "Toyota"}
+{"question": "Which car is often considered the first 'muscle car'?", "responses": ["Ford Mustang", "Pontiac GTO", "Chevrolet Camaro", "Dodge Charger"], "correct": "Pontiac GTO"}
+{"question": "What car brand produced the 'Veyron'?", "responses": ["Ferrari", "Bugatti", "Lamborghini", "McLaren"], "correct": "Bugatti"}
+{"question": "Who directed the movie 'Pulp Fiction'?", "responses": ["Quentin Tarantino", "Martin Scorsese", "Steven Spielberg", "Christopher Nolan"], "correct": "Quentin Tarantino"}
+{"question": "What is the name of the ship in 'Titanic'?", "responses": ["Black Pearl", "Queen Anne's Revenge", "S.S. Minnow", "RMS Titanic"], "correct": "RMS Titanic"}
+{"question": "Who played 'Iron Man' in the Marvel Cinematic Universe?", "responses": ["Robert Downey Jr.", "Chris Hemsworth", "Hugh Jackman", "Chris Evans"], "correct": "Robert Downey Jr."}
+{"question": "Which film won the Oscar for Best Picture in 2020?", "responses": ["Once Upon a Time in Hollywood", "The Irishman", "Parasite", "1917"], "correct": "Parasite"}
+{"question": "In 'The Lord of the Rings', who is the king of Rohan?", "responses": ["Aragorn", "Boromir", "Theoden", "Faramir"], "correct": "Theoden"}
+{"question": "In which year was the anime 'Attack on Titan' first released?", "responses": ["2010", "2013", "2015", "2004"], "correct": "2013"}
+{"question": "Who is the main protagonist in the anime 'Death Note'?", "responses": ["L", "Ryuk", "Light Yagami", "Misa Amane"], "correct": "Light Yagami"}
+{"question": "Which studio produced the anime 'Spirited Away'?", "responses": ["A-1 Pictures", "Sunrise", "Studio Ghibli", "Madhouse"], "correct": "Studio Ghibli"}
+{"question": "What is the name of the sword wielded by Ichigo Kurosaki in 'Bleach'?", "responses": ["Zangetsu", "Tensa Zangetsu", "Bankai", "Shikai"], "correct": "Zangetsu"}
+{"question": "What's the name of the main character in the anime 'My Hero Academia'?", "responses": ["Katsuki Bakugo", "Shoto Todoroki", "All Might", "Izuku Midoriya"], "correct": "Izuku Midoriya"}
+{"question": "What is the square root of 144?", "responses": ["16", "12", "14", "10"], "correct": "12"}
+{"question": "What is the value of Pi up to three decimal places?", "responses": ["3.141", "3.123", "3.111", "3.333"], "correct": "3.141"}
+{"question": "In geometry, how many degrees are there in a right angle?", "responses": ["45 degrees", "90 degrees", "180 degrees", "360 degrees"], "correct": "90 degrees"}
+{"question": "What is the parents of 0 defined in multiplication?", "responses": ["0", "1", "Undefined", "Infinity"], "correct": "0"}
+{"question": "What is the term for a polygon with five sides?", "responses": ["Hexagon", "Pentagon", "Octagon", "Quadrilateral"], "correct": "Pentagon"}
+{"question": "What does CPU stand for in terms of computing?", "responses": ["Central Processing Unit", "Computer Processing Unit", "Computing Protocol Unit", "Central Protocol Unit"], "correct": "Central Processing Unit"}
+{"question": "Which of the following languages is not a programming language?", "responses": ["Python", "JavaScript", "HTML", "C++"], "correct": "HTML"}
+{"question": "What is the primary function of an Operating System?", "responses": ["Managing the computer's hardware", "Running applications", "Protecting the computer from viruses", "Supporting system utilities"], "correct": "Managing the computer's hardware"}
+{"question": "Which company first introduced the personal computer?", "responses": ["IBM", "Apple", "Microsoft", "Atari"], "correct": "IBM"}
+{"question": "Who is the author of the book 'To Kill a Mockingbird'?", "responses": ["Harper Lee", "George Orwell", "F. Scott Fitzgerald", "Ernest Hemingway"], "correct": "Harper Lee"}
+{"question": "The novel '1984' introduced which dystopian concept?", "responses": ["The Hunger Games", "Big Brother", "Matrix", "Brave New World"], "correct": "Big Brother"}
+{"question": "What is the name of the main protagonist in 'The Catcher in the Rye'?", "responses": ["Atticus Finch", "Jay Gatsby", "Holden Caulfield", "Tom Sawyer"], "correct": "Holden Caulfield"}
+{"question": "Which classic science fiction novel is set on the desert planet Arrakis?", "responses": ["Foundation", "Neuromancer", "Dune", "The Left Hand of Darkness"], "correct": "Dune"}
+{"question": "Which actor played Tony Stark in 'Iron Man' in the Marvel Cinematic Universe?", "responses": ["Chris Hemsworth", "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo"], "correct": "Robert Downey Jr."}
+{"question": "Who did Taylor Swift date from December 2012 to January 2013?", "responses": ["Harry Styles", "Joe Jonas", "John Mayer", "Calvin Harris"], "correct": "Harry Styles"}
+{"question": "What is Angelina Jolie's middle name?", "responses": ["Marie", "Ann", "Louise", "Voight"], "correct": "Voight"}
+{"question": "What is the name of Rihanna's fashion brand?", "responses": ["Fenty", "Riri", "Savage", "Diamonds"], "correct": "Fenty"}
+{"question": "Who is the lead vocalist of the rock band 'Coldplay'?", "responses": ["Chris Martin", "Jonny Buckland", "Guy Berryman", "Will Champion"], "correct": "Chris Martin"}
+{"question": "What is the main function of the ALU in a computer system?", "responses": ["To perform arithmetic and logical operations", "To store data and programs", "To control other parts of the computer", "To connect the computer to the internet"], "correct": "To perform arithmetic and logical operations"}
+{"question": "Which programming language is primarily used for web development?", "responses": ["Python", "Java", "JavaScript", "C++"], "correct": "JavaScript"}
+{"question": "What does CPU stand for in computing?", "responses": ["Central Programming Unit", "Central Processing Unit", "Central Power Unit", "Central Performance Unit"], "correct": "Central Processing Unit"}
+{"question": "Which storage device type is non-volatile?", "responses": ["RAM", "ROM", "CPU", "Monitor"], "correct": "ROM"}
+{"question": "What does the 'https' in a URL stand for?", "responses": ["Hyper Text Transfer Protocol Secure", "Hyper Text Training Protocol Secure", "Hyper Terminal Transfer Protocol Secure", "Hyper Text Transfer Performance Secure"], "correct": "Hyper Text Transfer Protocol Secure"}
+{"question": "Who wrote the musical 'The Phantom of the Opera'?", "responses": ["Andrew Lloyd Webber", "Stephen Sondheim", "Leonard Bernstein", "Cole Porter"], "correct": "Andrew Lloyd Webber"}
+{"question": "What is the longest-running musical on Broadway?", "responses": ["The Phantom of the Opera", "Cats", "The Lion King", "Les Mis\u00e9rables"], "correct": "The Phantom of the Opera"}
+{"question": "Which musical tells the story about a young woman who discovers she is pregnant by her boyfriend who then leaves her to join the army during the Vietnam War?", "responses": ["Miss Saigon", "Les Mis\u00e9rables", "Wicked", "Chicago"], "correct": "Miss Saigon"}
+{"question": "What is the name of the theater where Shakespeare's plays were originally performed?", "responses": ["The Globe Theatre", "The Royal Theatre", "The Blackfriars Theatre", "The Lyceum Theatre"], "correct": "The Globe Theatre"}
+{"question": "What musical is the song 'Seasons of Love' from?", "responses": ["Dear Evan Hansen", "The Book of Mormon", "Jesus Christ Superstar", "Rent"], "correct": "Rent"}
+{"question": "What does HTTP stand for in web technology?", "responses": ["Hyper Text Transition Protocol", "Hyper Text Transfer Protocol", "Hyper Text Transaction Protocol", "Hyper Transfer Text Protocol"], "correct": "Hyper Text Transfer Protocol"}
+{"question": "Which company developed the C# programming language?", "responses": ["Apple Inc.", "Microsoft", "IBM", "Oracle"], "correct": "Microsoft"}
+{"question": "In computing, what is an IP address used for?", "responses": ["Identifying the user", "Identifying the device on a network", "Blocking unwanted data", "Encrypting data for security"], "correct": "Identifying the device on a network"}
+{"question": "Which of these is not a database management system?", "responses": ["MySQL", "SQLite", "Unix", "Oracle"], "correct": "Unix"}
+{"question": "What does the 'P' stand for in the PHP programming language?", "responses": ["Practical", "Pictorial", "Procedural", "Preprocessor"], "correct": "Preprocessor"}
+{"question": "Who composed the music for 'The Phantom of The Opera'?", "responses": ["Andrew Lloyd Webber", "Stephen Sondheim", "Claude-Michel Sch\u00f6nberg", "Richard Rodgers"], "correct": "Andrew Lloyd Webber"}
+{"question": "In what year was the musical 'Rent' first performed?", "responses": ["1996", "1989", "2001", "1991"], "correct": "1996"}
+{"question": "What is the longest running show on Broadway?", "responses": ["Chicago", "The Phantom of the Opera", "Cats", "Les Mis\u00e9rables"], "correct": "The Phantom of the Opera"}
+{"question": "Which Broadway musical is set in the fictional African nation of Wakanda?", "responses": ["The Lion King", "Hamilton", "Black Panther: The Musical", "The Wiz"], "correct": "Black Panther: The Musical"}
+{"question": "Who wrote the lyrics for the musical 'West Side Story'?", "responses": ["Stephen Sondheim", "Rogers and Hammerstein", "Andrew Lloyd Webber", "Jerry Herman"], "correct": "Stephen Sondheim"}
+{"question": "What is the largest species of penguin?", "responses": ["King Penguin", "Emperor Penguin", "Little Penguin", "Macaroni Penguin"], "correct": "Emperor Penguin"}
+{"question": "What is the largest land animal?", "responses": ["Hippopotamus", "Elephant", "Giraffe", "Kangaroo"], "correct": "Elephant"}
+{"question": "Who directed the film 'The Dark Knight'?", "responses": ["Steven Spielberg", "Christopher Nolan", "Michael Bay", "James Cameron"], "correct": "Christopher Nolan"}
+{"question": "What is the real name of pop singer Rihanna?", "responses": ["Robyn Rihanna Fenty", "Beyonce Giselle Knowles", "Alicia Keys Cook", "Onika Tanya Maraj"], "correct": "Robyn Rihanna Fenty"}
+{"question": "In what film did Brad Pitt win his first Oscar for Best Actor?", "responses": ["Fight Club", "Once Upon a Time in Hollywood", "Seven", "Mr. & Mrs. Smith"], "correct": "Once Upon a Time in Hollywood"}
+{"question": "Who is the lead vocalist of the rock band 'Queen'?", "responses": ["Mick Jagger", "Freddie Mercury", "Paul McCartney", "John Lennon"], "correct": "Freddie Mercury"}
+{"question": "Comedian Ellen DeGeneres was a judge on which reality TV show?", "responses": ["The Voice", "America's Got Talent", "American Idol", "Dancing with the Stars"], "correct": "American Idol"}
+{"question": "Which language is most commonly used for website front-end development?", "responses": ["C++", "Python", "JavaScript", "Java"], "correct": "JavaScript"}
+{"question": "What does HTTP stand for in website URLs?", "responses": ["High Tech Transfer Protocol", "Hyper Text Transfer Protocol", "Hyper Text Technology Protocol", "High Transfer Technology Protocol"], "correct": "Hyper Text Transfer Protocol"}
+{"question": "In the WWW, a collection of web pages on a particular subject that is created and maintained by an individual, group, or organization is referred to as a what?", "responses": ["Internet", "Website", "Web Space", "Network"], "correct": "Website"}
+{"question": "Which company was established on April 1st, 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?", "responses": ["Atari", "Microsoft", "Apple", "Commodore"], "correct": "Apple"}
+{"question": "What is the name of the principal character in the game series 'The Witcher'?", "responses": ["John Marston", "Leon S. Kennedy", "Geralt of Rivia", "Arthur Morgan"], "correct": "Geralt of Rivia"}
+{"question": "Which company developed the video game 'The Last of Us'?", "responses": ["Naughty Dog", "Rockstar Games", "Activision", "Square Enix"], "correct": "Naughty Dog"}
+{"question": "What is the name of the fictional city in the game Grand Theft Auto V?", "responses": ["Liberty City", "Vice City", "San Andreas", "Los Santos"], "correct": "Los Santos"}
+{"question": "In the game series 'God of War', who is the protagonist?", "responses": ["Kratos", "Marcus Fenix", "Master Chief", "Edward Kenway"], "correct": "Kratos"}
+{"question": "Who is the creator of the 'Super Mario Bros.' series?", "responses": ["Shigeru Miyamoto", "Hideo Kojima", "Hideki Kamiya", "Yuji Horii"], "correct": "Shigeru Miyamoto"}
+{"question": "Who was the first female Prime Minister of the United Kingdom?", "responses": ["Margaret Thatcher", "Queen Elizabeth II", "Theresa May", "Joan of Arc"], "correct": "Margaret Thatcher"}
+{"question": "What is the Lower House of the U.S Congress also known as?", "responses": ["Senate", "House of Lords", "House of Representatives", "Parliament"], "correct": "House of Representatives"}
+{"question": "Who was the President of the United States during the Civil War?", "responses": ["George Washington", "Abraham Lincoln", "Thomas Jefferson", "Theodore Roosevelt"], "correct": "Abraham Lincoln"}
+{"question": "Who was the first African-American president of the United States?", "responses": ["Barack Obama", "George W. Bush", "Bill Clinton", "Joe Biden"], "correct": "Barack Obama"}
+{"question": "What is the political system of Japan?", "responses": ["Communist Party", "Absolute Monarchy", "Parliamentary Constitutional Monarchy", "Presidential system"], "correct": "Parliamentary Constitutional Monarchy"}
+{"question": "Who is the main protagonist of the anime 'Naruto'?", "responses": ["Sasuke Uchiha", "Naruto Uzumaki", "Itachi Uchiha", "Kakashi Hatake"], "correct": "Naruto Uzumaki"}
+{"question": "What is the name of the pirate crew in the anime 'One Piece'?", "responses": ["Blue Pirates", "Red Pirates", "Straw Hat Pirates", "Golden Pirates"], "correct": "Straw Hat Pirates"}
+{"question": "Which anime involves giant human-eating creatures known as Titans?", "responses": ["Dragon Ball", "Attack On Titan", "Fullmetal Alchemist", "Fairy Tail"], "correct": "Attack On Titan"}
+{"question": "In the 'Death Note' anime, what happens when a name is written in the Death Note?", "responses": ["The person gains immortality", "The person falls in love", "The person loses their memory", "The person dies"], "correct": "The person dies"}
+{"question": "What is the name of the martial art-combat sport that is mainly practiced in the anime 'Hajime no Ippo'?", "responses": ["Karate", "Judo", "Wrestling", "Boxing"], "correct": "Boxing"}
+{"question": "Who starred as Tony Stark in 'Iron Man'?", "responses": ["Chris Evans", "Robert Downey Jr.", "Chris Hemsworth", "Tom Hanks"], "correct": 2}
+{"question": "Which celebrity has a lifestyle brand called Goop?", "responses": ["Gwyneth Paltrow", "Jennifer Aniston", "Oprah Winfrey", "Martha Stewart"], "correct": 1}
+{"question": "Who is known as the 'King of Pop'?", "responses": ["Elvis Presley", "Michael Jackson", "Madonna", "John Lennon"], "correct": 2}
+{"question": "What is the name of the 2013 autobiographical documentary about Justin Bieber?", "responses": ["Never Say Never", "My World", "Baby", "Believe"], "correct": 4}
+{"question": "Who founded the 'Imagination Library', a program that mails free books to children?", "responses": ["J.K. Rowling", "Oprah Winfrey", "Dolly Parton", "Emma Watson"], "correct": 3}
+{"question": "Who directed the movie 'Titanic'?", "responses": ["Steven Spielberg", "James Cameron", "Quentin Tarantino", "Tim Burton"], "correct": "James Cameron"}
+{"question": "In which movie does Marlon Brando say the famous line 'I could have been a contender'?", "responses": ["The Godfather", "A Streetcar Named Desire", "On the Waterfront", "Apocalypse Now"], "correct": "On the Waterfront"}
+{"question": "What is the name of the fictional planet in the movie 'Avatar'?", "responses": ["Arrakis", "Pandora", "Naboo", "Middle Earth"], "correct": "Pandora"}
+{"question": "Which actor played the character 'Forrest Gump'?", "responses": ["Tom Hanks", "Brad Pitt", "Johnny Depp", "Robin Williams"], "correct": "Tom Hanks"}
+{"question": "Who composed the score for the 'Star Wars' series?", "responses": ["Hans Zimmer", "John Williams", "James Horner", "Danny Elfman"], "correct": "John Williams"}
+{"question": "Who is known as the 'Father of the Computer'?", "responses": ["Charles Babbage", "Bill Gates", "Alan Turing", "Steve Jobs"], "correct": "Charles Babbage"}
+{"question": "What is the fundamental unit of data?", "responses": ["Kilobyte", "Bit", "Byte", "Gigabyte"], "correct": "Bit"}
+{"question": "What is used to mean 'read-only memory'?", "responses": ["RAM", "ROM", "CPU", "GPU"], "correct": "ROM"}
+{"question": "What does SQL stand for?", "responses": ["Standard Quick Language", "Structured Query Language", "Standard Query Language", "Structured Quick Language"], "correct": "Structured Query Language"}
+{"question": "In computing, what is a 'Kernel'?", "responses": ["A type of malware", "The outermost layer of a protected operating system", "The central or most important part of a computer operating system", "A unit of computational speed"], "correct": "The central or most important part of a computer operating system"}
+{"question": "Who is the main antagonist in the game 'The Legend of Zelda: Ocarina of Time'?", "responses": ["King Dedede", "Ridley", "Ganondorf", "Bowser"], "correct": "Ganondorf"}
+{"question": "What is the name of the character you play as in the 'Tomb Raider' series?", "responses": ["Lara Croft", "Aloy", "Samus Aran", "Alex Mercer"], "correct": "Lara Croft"}
+{"question": "Which game series features an ancient alien race known as the Forerunners?", "responses": ["Mass Effect", "Halo", "Dead Space", "Gears of War"], "correct": "Halo"}
+{"question": "What is the name of the dragon in the game series 'Spyro'?", "responses": ["Smaug", "Draco", "Spyro", "Drogon"], "correct": "Spyro"}
+{"question": "In the game 'Horizon Zero Dawn', what is the name of the machine that resembles a T-Rex?", "responses": ["Bellowback", "Thunderjaw", "Scrapper", "Watchers"], "correct": "Thunderjaw"}
+{"question": "What is the derivative of y = 5x^3?", "responses": ["15x^2", "20x^2", "5x^2", "10x^2"], "correct": "15x^2"}
+{"question": "Which of the following is not a prime number?", "responses": ["19", "37", "23", "25"], "correct": "25"}
+{"question": "What is the limit of the function (x^2 - 1) / (x - 1) as x approaches 1?", "responses": ["1", "0", "2", "undefined"], "correct": "2"}
+{"question": "What is the area of a circle with a radius of 3 cm?", "responses": ["15.7 cm^2", "9 cm^2", "28.3 cm^2", "7.2 cm^2"], "correct": "28.3 cm^2"}
+{"question": "Which anime follows the story of a high school student, Light Yagami, after he discovers a mysterious notebook?", "responses": ["Naruto", "Death Note", "One Piece", "Attack on Titan"], "correct": "Death Note"}
+{"question": "What is the name of the protagonist in the anime 'My Hero Academia'?", "responses": ["Izuku Midoriya", "Katsuki Bakugo", "Shoto Todoroki", "Eijiro Kirishima"], "correct": "Izuku Midoriya"}
+{"question": "What studio animated 'My Neighbor Totoro'?", "responses": ["Studio Ghibli", "Toei Animation", "Kyoto Animation", "Madhouse"], "correct": "Studio Ghibli"}
+{"question": "Who is the main antagonist in the manga series 'Attack on Titan'?", "responses": ["Zeke Yeager", "Eren Yeager", "Levi Ackerman", "Mikasa Ackerman"], "correct": "Zeke Yeager"}
+{"question": "Who does Naruto Uzumaki end up marrying in the 'Naruto' series?", "responses": ["Sakura Haruno", "Hinata Hyuga", "Ino Yamanaka", "Tenten"], "correct": "Hinata Hyuga"}
+{"question": "Which planet is known as the 'Red Planet'?", "responses": ["Earth", "Mars", "Jupiter", "Saturn"], "correct": "Mars"}
+{"question": "When did the Second World War end?", "responses": ["1941", "1942", "1944", "1945"], "correct": "1945"}
+{"question": "The world\u2019s largest ocean is?", "responses": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], "correct": "Pacific Ocean"}
+{"question": "Which country is known as the 'Land of the Rising Sun'?", "responses": ["China", "South Korea", "Japan", "Vietnam"], "correct": "Japan"}
+{"question": "Who invented the telephone?", "responses": ["Alexander Graham Bell", "Thomas Alva Edison", "Nikola Tesla", "Guglielmo Marconi"], "correct": "Alexander Graham Bell"}
+{"question": "Who is the alter ego of 'The Flash'?", "responses": ["Bruce Wayne", "Clark Kent", "Peter Parker", "Barry Allen"], "correct": "Barry Allen"}
+{"question": "Which comic book company created Spider-Man?", "responses": ["DC Comics", "Marvel Comics", "Image Comics", "Dark Horse Comics"], "correct": "Marvel Comics"}
+{"question": "What is Superman's real name on his home planet Krypton?", "responses": ["Kal-El", "Jor-El", "Zod", "Lara"], "correct": "Kal-El"}
+{"question": "Who is the creator of the 'Hellboy' comic series?", "responses": ["Stan Lee", "Mike Mignola", "Jack Kirby", "Frank Miller"], "correct": "Mike Mignola"}
+{"question": "In which comic series does the character 'Rorschach' appear?", "responses": ["Batman", "The Walking Dead", "Watchmen", "Avengers"], "correct": "Watchmen"}
+{"question": "What is the primary function of DNA?", "responses": ["To provide structure for cells", "To store and transmit genetic information", "To break down glucose and create energy for the cell", "To regulate the cell's metabolism"], "correct": "To store and transmit genetic information"}
+{"question": "What are the three main types of rocks?", "responses": ["Igneous, composite, and sandstone", "Metamorphic, diamond, and quartz", "Igneous, metamorphic, and sedimentary", "Sedimentary, pumice, and granite"], "correct": "Igneous, metamorphic, and sedimentary"}
+{"question": "Which layer of the Earth is the thickest?", "responses": ["Crust", "Mantle", "Outer core", "Inner core"], "correct": "Mantle"}
+{"question": "What are plants' main energy source?", "responses": ["Carbon dioxide", "Nutrients from soil", "Light from the sun", "Water"], "correct": "Light from the sun"}
+{"question": "Human body has how many pairs of chromosomes?", "responses": ["25", "45", "23", "35"], "correct": "23"}
+{"question": "Who painted the iconic artwork 'The Starry Night'?", "responses": ["Claude Monet", "Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci"], "correct": "Vincent van Gogh"}
+{"question": "The 'Mona Lisa' is housed in which museum?", "responses": ["The British Museum", "The Louvre", "The Metropolitan Museum of Art", "The Vatican Museums"], "correct": "The Louvre"}
+{"question": "What is the process of printing from a flat surface treated so as to repel the ink except where it is required for printing?", "responses": ["Engraving", "Etching", "Lithography", "Screen printing"], "correct": "Lithography"}
+{"question": "Who created the sculpture 'The Thinker'?", "responses": ["Auguste Rodin", "Michelangelo", "Gian Lorenzo Bernini", "Donatello"], "correct": "Auguste Rodin"}
+{"question": "Which art movement is Salvador Dal\u00ed associated with?", "responses": ["Cubism", "Surrealism", "Expressionism", "Abstract Expressionism"], "correct": "Surrealism"}
+{"question": "Who painted the Sistine Chapel ceiling?", "responses": ["Leonardo da Vinci", "Michelangelo", "Raphael", "Caravaggio"], "correct": "Michelangelo"}
+{"question": "What type of art style does Salvador Dali represent?", "responses": ["Cubism", "Surrealism", "Impressionism", "Fauvism"], "correct": "Surrealism"}
+{"question": "Where is the original 'Mona Lisa' displayed?", "responses": ["The British Museum, London", "The Prado, Madrid", "The Louvre, Paris", "The Uffizi, Florence"], "correct": "The Louvre, Paris"}
+{"question": "What is Vincent van Gogh's most famous artwork?", "responses": ["The Last Supper", "The Starry Night", "The Scream", "Girl with a Pearl Earring"], "correct": "The Starry Night"}
+{"question": "What nationality was the famous painter Frida Kahlo?", "responses": ["Italian", "French", "German", "Mexican"], "correct": "Mexican"}
+{"question": "In which year did the cartoon show The Simpsons first air?", "responses": ["1979", "1984", "1989", "1994"], "correct": "1989"}
+{"question": "What is the real name of Batman in the animation series?", "responses": ["Bruce Wayne", "Bruce Willis", "Tony Stark", "Tom Wayne"], "correct": "Bruce Wayne"}
+{"question": "In Disney's Aladdin, what is the name of Aladdin's monkey companion?", "responses": ["Iago", "Rajah", "Jafar", "Abu"], "correct": "Abu"}
+{"question": "What is the name of the dog in the cartoon, Scooby-Doo?", "responses": ["Scrappy", "Scooby", "Fred", "Snoop"], "correct": "Scooby"}
+{"question": "In the animated movie 'Ratatouille', what is the rat's name?", "responses": ["Gusteau", "Remy", "Linguini", "Emile"], "correct": "Remy"}
+{"question": "Who painted the Mona Lisa?", "responses": ["Vincent Van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"], "correct": "Leonardo da Vinci"}
+{"question": "What is the primary medium used in the art of sculpture?", "responses": ["Clay", "Oil paint", "Watercolors", "Acrylics"], "correct": "Clay"}
+{"question": "Which artist is famous for the 'Dripping' technique?", "responses": ["Jackson Pollock", "Salvador Dali", "Andy Warhol", "Claude Monet"], "correct": "Jackson Pollock"}
+{"question": "Who depicted 'The Starry Night'?", "responses": ["Pablo Picasso", "Vincent Van Gogh", "Claude Monet", "Michelangelo"], "correct": "Vincent Van Gogh"}
+{"question": "Which of these is not a painting technique?", "responses": ["Impasto", "Grisaille", "Hatching", "Ceramics"], "correct": "Ceramics"}
+{"question": "What is the name of the shark in the movie 'Jaws'?", "responses": ["Jasper", "Bruce", "Charlie", "Sid"], "correct": "Bruce"}
+{"question": "Which film won the first ever Academy Award for Best Picture?", "responses": ["The Jazz Singer", "Wings", "Sunrise", "The Last Command"], "correct": "Wings"}
+{"question": "In which Star Wars movie does the character Darth Vader say 'I am your father'?", "responses": ["A New Hope", "Empire Strikes Back", "Return of the Jedi", "The Phantom Menace"], "correct": "Empire Strikes Back"}
+{"question": "Who played the role of 'Neo' in 'The Matrix'?", "responses": ["Will Smith", "Tom Cruise", "Keanu Reeves", "Johnny Depp"], "correct": "Keanu Reeves"}
+{"question": "What is the name of Michael J. Fox's character in 'Back to the Future'?", "responses": ["Marty McFly", "Joey Baines", "George McFly", "Doc Brown"], "correct": "Marty McFly"}
+{"question": "In Greek mythology, who is known as the Goddess of Wisdom?", "responses": ["Aphrodite", "Persephone", "Athena", "Demeter"], "correct": "Athena"}
+{"question": "Who is the Roman counterpart to the Greek god Zeus?", "responses": ["Mars", "Jupiter", "Mercury", "Pluto"], "correct": "Jupiter"}
+{"question": "According to Norse mythology, who is the father of Thor?", "responses": ["Odin", "Loki", "Freya", "Baldr"], "correct": "Odin"}
+{"question": "In Egyptian mythology, who is the god of the Afterlife?", "responses": ["Ra", "Osiris", "Anubis", "Set"], "correct": "Osiris"}
+{"question": "Who is the Hindu goddess often depicted with multiple arms and riding a lion or tiger?", "responses": ["Kali", "Lakshmi", "Saraswati", "Durga"], "correct": "Durga"}
+{"question": "What was the first console video game that allowed the game to be saved?", "responses": ["Super Mario Bros.", "The Legend of Zelda", "Pac-Man", "Street Fighter"], "correct": "The Legend of Zelda"}
+{"question": "What year was the game 'Minecraft' first released?", "responses": ["2011", "2012", "2008", "2009"], "correct": "2009"}
+{"question": "Who is the developer behind the 'Call of Duty' franchise?", "responses": ["Ubisoft", "Capcom", "Infinity Ward", "Bethesda"], "correct": "Infinity Ward"}
+{"question": "Which famous actor voiced the character of Ethan Mars in the video game 'Heavy Rain'?", "responses": ["Leonardo DiCaprio", "Pascal Langdale", "Robert Downey Jr.", "Tom Cruise"], "correct": "Pascal Langdale"}
+{"question": "What is the highest-selling video game of all time?", "responses": ["Tetris", "Minecraft", "Grand Theft Auto V", "Super Mario Bros"], "correct": "Minecraft"}
+{"question": "What is the square root of 49?", "responses": ["5", "7", "6", "9"], "correct": "7"}
+{"question": "What is the result of (5*3) - (2+8)?", "responses": ["1", "5", "0", "9"], "correct": "5"}
+{"question": "Solve for x in the equation 2x = 16.", "responses": ["8", "9", "6", "10"], "correct": "8"}
+{"question": "What is the perimeter of a rectangle with length of 3 and width of 2?", "responses": ["10", "8", "9", "12"], "correct": "10"}
+{"question": "If a triangle has an angle of 90 degrees, what is the other two angles sum?", "responses": ["180", "90", "45", "30"], "correct": "90"}
+{"question": "What is the capital of Australia?", "responses": ["Sydney", "Melbourne", "Adelaide", "Canberra"], "correct": "Canberra"}
+{"question": "In what year did the second World War end?", "responses": ["1945", "1943", "1941", "1948"], "correct": "1945"}
+{"question": "Which planet is closest to the sun?", "responses": ["Earth", "Saturn", "Venus", "Mercury"], "correct": "Mercury"}
+{"question": "What is the smallest prime number?", "responses": ["1", "2", "3", "0"], "correct": "2"}
+{"question": "Who played the character of Daenerys Targaryen in the television series 'Game of Thrones'?", "responses": ["Sophie Turner", "Lena Headey", "Emilia Clarke", "Maisie Williams"], "correct": "Emilia Clarke"}
+{"question": "Which TV series revolves around the life of a chemistry teacher turned methamphetamine manufacturing drug dealer?", "responses": ["The Sopranos", "Breaking Bad", "Narcos", "Weeds"], "correct": "Breaking Bad"}
+{"question": "What is the name of the coffee shop in the sitcom 'Friends'?", "responses": ["Central Perk", "Daily Grind", "Java Joe's", "Coffee House"], "correct": "Central Perk"}
+{"question": "What is the fictional town where the series 'Stranger Things' is set?", "responses": ["Castle Rock", "Hawkins", "Rosewood", "Westview"], "correct": "Hawkins"}
+{"question": "Who is the main character in the TV series 'House'?", "responses": ["Dr. John Watson", "Dr. Gregory House", "Dr. James Wilson", "Dr. Robert Chase"], "correct": "Dr. Gregory House"}
+{"question": "Which of the following animals is a marsupial?", "responses": ["Koala", "Tiger", "Elephant", "Giraffe"], "correct": "Koala"}
+{"question": "What is the largest species of shark?", "responses": ["Great White Shark", "Tiger Shark", "Whale Shark", "Bull Shark"], "correct": "Whale Shark"}
+{"question": "What is the world's smallest bird?", "responses": ["Hummingbird", "Sparrow", "Canary", "Parrot"], "correct": "Hummingbird"}
+{"question": "What is the fastest land animal?", "responses": ["Cheetah", "Lion", "Horse", "Kangaroo"], "correct": "Cheetah"}
+{"question": "Which of the following animals is not a mammal?", "responses": ["Whale", "Kangaroo", "Penguin", "Elephant"], "correct": "Penguin"}
+{"question": "Who won the Super Bowl in 2020?", "responses": ["Minnesota Vikings", "San Francisco 49ers", "New England Patriots", "Kansas City Chiefs"], "correct": "Kansas City Chiefs"}
+{"question": "Who holds the record for the most home runs in a single season in Major League Baseball?", "responses": ["Babe Ruth", "Mickey Mantle", "Barry Bonds", "Hank Aaron"], "correct": "Barry Bonds"}
+{"question": "Who won the men's singles at the 2019 Wimbledon Championships?", "responses": ["Novak Djokovic", "Rafael Nadal", "Roger Federer", "Andy Murray"], "correct": "Novak Djokovic"}
+{"question": "In the National Basketball Association, who won the MVP Award for the 2018-2019 season?", "responses": ["LeBron James", "Kevin Durant", "Kawhi Leonard", "Giannis Antetokounmpo"], "correct": "Giannis Antetokounmpo"}
+{"question": "Who holds the record for the fastest 100m sprint in the world?", "responses": ["Usain Bolt", "Tyson Gay", "Yohan Blake", "Justin Gatlin"], "correct": "Usain Bolt"}
+{"question": "Who is the alter ego of Spider-Man?", "responses": ["Peter Parker", "Bruce Wayne", "Clark Kent", "Tony Stark"], "correct": "Peter Parker"}
+{"question": "What is the superhero team that Iron Man is a part of?", "responses": ["Justice League", "Avengers", "X-Men", "Guardians of the Galaxy"], "correct": "Avengers"}
+{"question": "What is the real name of Wolverine in the 'X-Men' comics?", "responses": ["Scott Summers", "Logan Howlett", "Charles Xavier", "Eric Lehnsherr"], "correct": "Logan Howlett"}
+{"question": "Who is Superman's love interest in the comics?", "responses": ["Lois Lane", "Mary Jane", "Pepper Potts", "Selina Kyle"], "correct": "Lois Lane"}
+{"question": "What planet is Thor from in the Marvel Comics?", "responses": ["Mars", "Krypton", "Asgard", "Oa"], "correct": "Asgard"}
+{"question": "Who is the goddess of love in Greek mythology?", "responses": ["Zeus", "Hera", "Aphrodite", "Hermes"], "correct": "Aphrodite"}
+{"question": "What is the name of Thor's hammer in Norse mythology?", "responses": ["Excalibur", "Mjolnir", "Gungnir", "Heimdall"], "correct": "Mjolnir"}
+{"question": "In Egyptian mythology, who weighs the hearts of the dead against a feather to determine their fate in the afterlife?", "responses": ["Ra", "Isis", "Anubis", "Osiris"], "correct": "Anubis"}
+{"question": "In Roman mythology, who is the king of the gods?", "responses": ["Mars", "Neptune", "Jupiter", "Vulcan"], "correct": "Jupiter"}
+{"question": "Who is the trickster god in Japanese mythology?", "responses": ["Inari", "Amaterasu", "Susanoo", "Raijin"], "correct": "Susanoo"}
+{"question": "Who directed the film 'Titanic'?", "responses": ["James Cameron", "Steven Spielberg", "Christopher Nolan", "Quentin Tarantino"], "correct": "James Cameron"}
+{"question": "'Life is like a box of chocolates' is a famous quote from which film?", "responses": ["Forrest Gump", "The Godfather", "Titanic", "Casablanca"], "correct": "Forrest Gump"}
+{"question": "What is the name of the actor who played Iron Man in the Marvel Cinematic Universe?", "responses": ["Chris Evans", "Robert Downey Jr.", "Tom Holland", "Mark Ruffalo"], "correct": "Robert Downey Jr."}
+{"question": "Who wrote the screenplay for the film 'The Social Network'?", "responses": ["David Fincher", "Quentin Tarantino", "Charlie Kaufman", "Aaron Sorkin"], "correct": "Aaron Sorkin"}
+{"question": "In which film does actress Natalie Portman portray a ballet dancer?", "responses": ["The Black Swan", "The Professional", "V for Vendetta", "Star Wars"], "correct": "The Black Swan"}
+{"question": "Who is the author of the book 'The Catcher in the Rye'?", "responses": ["J.D. Salinger", "Ernest Hemingway", "William Golding", "F. Scott Fitzgerald"], "correct": "J.D. Salinger"}
+{"question": "What is the last name of the family in 'To Kill a Mockingbird'?", "responses": ["Finch", "Radley", "Underwood", "Cunningham"], "correct": "Finch"}
+{"question": "What is the first name of the protagonist in 'Pride and Prejudice'?", "responses": ["Elizabeth", "Jane", "Catherine", "Lydia"], "correct": "Elizabeth"}
+{"question": "Who is the protagonist of the novel 'Moby-Dick'?", "responses": ["Captain Ahab", "Ishmael", "Queequeg", "Starbuck"], "correct": "Ishmael"}
+{"question": "What is the true identity of Robert Galbraith?", "responses": ["Stephen King", "J.K. Rowling", "Dan Brown", "John Grisham"], "correct": "J.K. Rowling"}
+{"question": "What is chemical formula for water?", "responses": ["H2O", "CO2", "O2", "N2"], "correct": "H2O"}
+{"question": "Which of the following is not a mammal?", "responses": ["Whale", "Bat", "Turtle", "Kangaroo"], "correct": "Turtle"}
+{"question": "Who is known as the father of genetics?", "responses": ["Charles Darwin", "Gregor Mendel", "Louis Pasteur", "Alexander Fleming"], "correct": "Gregor Mendel"}
+{"question": "What is the primary source of energy for the Earth's climate?", "responses": ["Wind Energy", "Solar Energy", "Geothermal Energy", "Nuclear Energy"], "correct": "Solar Energy"}
+{"question": "Which is the world's largest shark?", "responses": ["White Shark", "Tiger Shark", "Whale Shark", "Hammerhead Shark"], "correct": "Whale Shark"}
+{"question": "What is the chemical symbol for Iron?", "responses": ["Ir", "In", "Fe", "I"], "correct": "Fe"}
+{"question": "Which planet in the solar system has the most moons?", "responses": ["Mars", "Jupiter", "Neptune", "Saturn"], "correct": "Jupiter"}
+{"question": "What is the main gas found in the air we breathe?", "responses": ["Oxygen", "Hydrogen", "Carbon Dioxide", "Nitrogen"], "correct": "Nitrogen"}
+{"question": "Which is the largest bone in the human body?", "responses": ["Femur", "Spine", "Humerus", "Tibia"], "correct": "Femur"}
+{"question": "What is the hardest natural substance on Earth?", "responses": ["Sapphire", "Quartz", "Diamond", "Granite"], "correct": "Diamond"}
+{"question": "Which comic book hero lives in Gotham city?", "responses": ["Batman", "Superman", "Iron Man", "Hulk"], "correct": "Batman"}
+{"question": "Who is the alter ego of Tony Stark?", "responses": ["Captain America", "Spiderman", "Iron Man", "Thor"], "correct": "Iron Man"}
+{"question": "Which comic was Spiderman initially appeared in?", "responses": ["Amazing Fantasy #15", "Amazing Spiderman #1", "Journey into Mystery #11", "Tales of Suspense #39"], "correct": "Amazing Fantasy #15"}
+{"question": "Who is the primary enemy of Professor X?", "responses": ["Magneto", "Sabretooth", "Juggernaut", "Apocalypse"], "correct": "Magneto"}
+{"question": "Which superhero team consist of Superman, Wonder woman, and Batman?", "responses": ["Avengers", "Justice League", "Fantastic Four", "X-Men"], "correct": "Justice League"}
+{"question": "Who was the president of the United States during the Civil War?", "responses": ["Abraham Lincoln", "George Washington", "Andrew Johnson", "Thomas Jefferson"], "correct": "Abraham Lincoln"}
+{"question": "In what year did Christopher Columbus first arrive in the New World?", "responses": ["1400", "1501", "1492", "1522"], "correct": "1492"}
+{"question": "Which country was responsible for the construction and operation of the Panama Canal until 1999?", "responses": ["United States", "Spain", "Panama", "England"], "correct": "United States"}
+{"question": "Who is known as the 'Father of the Constitution'?", "responses": ["George Washington", "Benjamin Franklin", "James Madison", "Alexander Hamilton"], "correct": "James Madison"}
+{"question": "What sparked the start of World War I?", "responses": ["The sinking of the Lusitania", "The attack on Pearl Harbor", "The assassination of Archduke Franz Ferdinand", "The Bolshevik Revolution"], "correct": "The assassination of Archduke Franz Ferdinand"}
+{"question": "Who created the character Batman?", "responses": ["Stan Lee", "Bill Finger and Bob Kane", "Jerry Siegel and Joe Shuster", "Jack Kirby"], "correct": "Bill Finger and Bob Kane"}
+{"question": "What is Peter Parker's profession when he is not Spider-Man?", "responses": ["Police officer", "Doctor", "Photojournalist", "Mechanic"], "correct": "Photojournalist"}
+{"question": "In what year was the first X-Men comic published?", "responses": ["1963", "1965", "1970", "1955"], "correct": "1963"}
+{"question": "What is the real name of the comic book character 'The Joker'?", "responses": ["Arthur Fleck", "Jack Napier", "Bruce Wayne", "None of the above"], "correct": "None of the above"}
+{"question": "What is the home planet of Superman?", "responses": ["Mars", "Krypton", "Oa", "Asgard"], "correct": "Krypton"}
+{"question": "Who is the main antagonist in the 'Transformers' animated series?", "responses": ["Bumblebee", "Optimus Prime", "Megatron", "Ironhide"], "correct": "Megatron"}
+{"question": "What is the name of the princess in the animated film 'Aladdin'?", "responses": ["Jasmine", "Snow White", "Cinderella", "Belle"], "correct": "Jasmine"}
+{"question": "Which cartoon character is known for his famous line, 'What's up, Doc?'?", "responses": ["Donald Duck", "Mickey Mouse", "Bugs Bunny", "Goofy"], "correct": "Bugs Bunny"}
+{"question": "What is the name of the city in which the 'Powerpuff Girls' live?", "responses": ["Townsville", "Metropolis", "Gotham", "Springfield"], "correct": "Townsville"}
+{"question": "Who is Jerry's nemesis in the 'Tom and Jerry' cartoon series?", "responses": ["Tom", "Spike", "Butch", "Nibbles"], "correct": "Tom"}
+{"question": "Who directed the iconic 1994 film 'Pulp Fiction'?", "responses": ["Martin Scorsese", "Steven Spielberg", "Quentin Tarantino", "Christopher Nolan"], "correct": "Quentin Tarantino"}
+{"question": "What is the name of the ring in the movie 'The Lord of the Rings'?", "responses": ["The Ring of Power", "The One Ring", "The Great Ring", "The Ring of Doom"], "correct": "The One Ring"}
+{"question": "Who plays the role of Tony Stark in the Marvel Cinematic Universe?", "responses": ["Chris Hemsworth", "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo"], "correct": "Robert Downey Jr."}
+{"question": "Who composed the music for the 'Harry Potter' films?", "responses": ["Hans Zimmer", "John Williams", "Howard Shore", "James Horner"], "correct": "John Williams"}
+{"question": "What is the highest-grossing film of all time?", "responses": ["Titanic", "Avengers: Endgame", "Avatar", "Star Wars: The Force Awakens"], "correct": "Avengers: Endgame"}
+{"question": "Who directed the movie 'The Dark Knight'?", "responses": ["Christopher Nolan", "Zack Snyder", "Martin Scorsese", "Steven Spielberg"], "correct": "Christopher Nolan"}
+{"question": "In which movie did Leonardo DiCaprio win his first Best Actor Oscar?", "responses": ["The Revenant", "Titanic", "Inception", "The Wolf of Wall Street"], "correct": "The Revenant"}
+{"question": "What is the name of the film starring actor Ben Stiller as a male model?", "responses": ["Meet the Fockers", "Tropic Thunder", "Zoolander", "Night at the Museum"], "correct": "Zoolander"}
+{"question": "Benedict Cumberbatch played a famous English code-breaker in which film?", "responses": ["Star Trek Into Darkness", "The Imitation Game", "Doctor Strange", "War Horse"], "correct": "The Imitation Game"}
+{"question": "Who gave the iconic voice to Darth Vader in 'Star Wars'?", "responses": ["Harrison Ford", "Mark Hamill", "James Earl Jones", "Ian McDiarmid"], "correct": "James Earl Jones"}
+{"question": "What is the main character of 'Naruto Shippuden' known for?", "responses": ["His purple hair", "His intelligence", "His love for ramen", "His painting skills"], "correct": "His love for ramen"}
+{"question": "Which anime features giant human-eating creatures?", "responses": ["One Piece", "Attack on Titan", "Bleach", "Fairy Tail"], "correct": "Attack on Titan"}
+{"question": "In 'One Piece', what is the protagonist's dream?", "responses": ["Become the world\u2019s greatest swordsman", "Find the One Piece and become the Pirate King", "To become a Marine", "To defeat all four emperors"], "correct": "Find the One Piece and become the Pirate King"}
+{"question": "What is the unique feature of the main character in 'Tokyo Ghoul'?", "responses": ["He can disappear at will", "He is half-ghoul, half-human", "He can travel through time", "He can transform into a giant creature"], "correct": "He is half-ghoul, half-human"}
+{"question": "Who is the Saiyan prince in 'Dragon Ball' series?", "responses": ["Goku", "Vegeta", "Gohan", "Raditz"], "correct": "Vegeta"}
+{"question": "Who composed the classical piece 'Fur Elise'?", "responses": ["Ludwig Van Beethoven", "Wolfgang Amadeus Mozart", "Franz Schubert", "Johann Sebastian Bach"], "correct": "Ludwig Van Beethoven"}
+{"question": "Which band is known for the hit song 'Hotel California'?", "responses": ["The Eagles", "Led Zeppelin", "Pink Floyd", "The Beatles"], "correct": "The Eagles"}
+{"question": "Who is the 'King of Pop'?", "responses": ["Elvis Presley", "Michael Jackson", "Prince", "Freddie Mercury"], "correct": "Michael Jackson"}
+{"question": "Which genre of music did Bob Marley popularize?", "responses": ["Reggae", "Jazz", "Blues", "Rock"], "correct": "Reggae"}
+{"question": "Who is the best-selling female recording artist of all time?", "responses": ["Whitney Houston", "Madonna", "Mariah Carey", "Celine Dion"], "correct": "Madonna"}
+{"question": "In the game of Chess, what piece can only move diagonally?", "responses": ["Knight", "Pawn", "Bishop", "Rook"], "correct": "Bishop"}
+{"question": "How many houses can be placed on each property in Monopoly?", "responses": ["2", "3", "4", "5"], "correct": "4"}
+{"question": "In Scrabble, what is the highest scoring single letter tile?", "responses": ["Q", "Z", "X", "K"], "correct": "Q"}
+{"question": "What color are the standard dice in the game of Backgammon?", "responses": ["Black and White", "Red and Black", "Red and White", "Blue and Green"], "correct": "Red and White"}
+{"question": "In the game of Cluedo, how many murder weapons are there?", "responses": ["5", "6", "7", "8"], "correct": "6"}
+{"question": "Who authored the play 'Romeo and Juliet'?", "responses": ["William Shakespeare", "Charles Dickens", "J.K. Rowling", "George Orwell"], "correct": "William Shakespeare"}
+{"question": "In the musical 'The Sound of Music', how many Von Trapp children were there?", "responses": ["5", "6", "7", "8"], "correct": "7"}
+{"question": "What is the name of the main character in 'The Phantom of the Opera'?", "responses": ["Christine Daae", "Cosette", "Elphaba", "Maria"], "correct": "Christine Daae"}
+{"question": "Which musical is set in the French Revolution?", "responses": ["Cats", "Hamilton", "Wicked", "Les Miserables"], "correct": "Les Miserables"}
+{"question": "Who wrote the music for 'West Side Story'?", "responses": ["Leonard Bernstein", "Stephen Sondheim", "Andrew Lloyd Webber", "Elton John"], "correct": "Leonard Bernstein"}
+{"question": "Who painted 'The Starry Night'?", "responses": ["Leonardo da Vinci", "Pablo Picasso", "Vincent Van Gogh", "Claude Monet"], "correct": "Vincent Van Gogh"}
+{"question": "Who designed the iconic 'Barcelona Chair'?", "responses": ["Eero Saarinen", "Charles Eames", "Ludwig Mies van der Rohe", "Frank Lloyd Wright"], "correct": "Ludwig Mies van der Rohe"}
+{"question": "Which period of art did Salvador Dali belong to?", "responses": ["Impressionism", "Cubism", "Renaissance", "Surrealism"], "correct": "Surrealism"}
+{"question": "What is the name of the sculpture Greek artist Praxiteles created, which was among the first to realistically depict the nude female form in a life sized statue?", "responses": ["The Winged Victory of Samothrace", "Venus de Milo", "Aphrodite of Knidos", "Laoco\u00f6n and His Sons"], "correct": "Aphrodite of Knidos"}
+{"question": "Which artist is associated with the term 'Readymade'?", "responses": ["Andy Warhol", "Marcel Duchamp", "Jackson Pollock", "Piet Mondrian"], "correct": "Marcel Duchamp"}
+{"question": "What bird is known as a symbol of peace?", "responses": ["Dove", "Swan", "Bluebird", "Falcon"], "correct": "Dove"}
+{"question": "What animal has the longest lifespan?", "responses": ["Tortoise", "Elephant", "Blue Whale", "Parrot"], "correct": "Tortoise"}
+{"question": "Which river is the longest in the world?", "responses": ["Nile River", "Amazon River", "Yangtze River", "Mississippi River"], "correct": "Nile River"}
+{"question": "What is the smallest country in the world by area?", "responses": ["Liechtenstein", "Monaco", "Vatican City", "Malta"], "correct": "Vatican City"}
+{"question": "What is the highest mountain in the world?", "responses": ["K2", "Mount Kilimanjaro", "Mount Everest", "Aconcagua"], "correct": "Mount Everest"}
+{"question": "Which country has the most natural lakes?", "responses": ["United States", "Canada", "Russia", "India"], "correct": "Canada"}
+{"question": "Which country has the longest coastline in the world?", "responses": ["Greenland", "Australia", "Russia", "Canada"], "correct": "Canada"}
+{"question": "Which movement took place in India from 1857-1858?", "responses": ["Swadeshi Movement", "Quit India Movement", "First War of Independence", "Non Cooperation Movement"], "correct": "First War of Independence"}
+{"question": "Who was the President of the United States during the American Civil War?", "responses": ["George Washington", "Abraham Lincoln", "Theodore Roosevelt", "Thomas Jefferson"], "correct": "Abraham Lincoln"}
+{"question": "Which famous battle took place on June 18, 1815?", "responses": ["Battle of Gettysburg", "Battle of Waterloo", "Battle of Hastings", "Battle of Midway"], "correct": "Battle of Waterloo"}
+{"question": "What year did World War II end?", "responses": ["1942", "1945", "1943", "1944"], "correct": "1945"}
+{"question": "Who was the Egyptian queen who ruled as a Pharaoh?", "responses": ["Nefertiti", "Cleopatra", "Hatshepsut", "Nefertari"], "correct": "Hatshepsut"}
+{"question": "Who created the Marvel character Spider-Man?", "responses": ["Stan Lee and Jack Kirby", "Joe Simon and Jack Kirby", "Stan Lee and Steve Ditko", "Joe Simon and Steve Ditko"], "correct": "Stan Lee and Steve Ditko"}
+{"question": "Who is the alter ego of the superhero Batman?", "responses": ["Clark Kent", "Tony Stark", "Peter Parker", "Bruce Wayne"], "correct": "Bruce Wayne"}
+{"question": "In which comic book series did Harley Quinn first appear?", "responses": ["Suicide Squad ", "Batman: The Animated Series", "Justice League", "the Joker comics"], "correct": "Batman: The Animated Series"}
+{"question": "Who murdered Superman in 'The Death of Superman' storyline?", "responses": ["The Joker", "Lex Luthor", "Doomsday", "Darkseid"], "correct": "Doomsday"}
+{"question": "What is the real name of the Marvel supervillain Thanos?", "responses": ["Tony Stark", "Arthur Douglas", "Druig", "Thanos is his real name"], "correct": "Thanos is his real name"}
+{"question": "The Grand Canyon is located in which U.S state?", "responses": ["California", "Nevada", "Arizona", "Colorado"], "correct": "Arizona"}
+{"question": "Which is the largest ocean in the world?", "responses": ["Indian Ocean", "Atlantic Ocean", "Pacific Ocean", "Arctic Ocean"], "correct": "Pacific Ocean"}
+{"question": "The Sahara Desert is located on which continent?", "responses": ["Asia", "North America", "Australia", "Africa"], "correct": "Africa"}
+{"question": "Who is the author of the novel 'To Kill a Mockingbird'?", "responses": ["Harper Lee", "Ernest Hemingway", "John Grisham", "Tom Clancy"], "correct": "Harper Lee"}
+{"question": "What is the original color of Dorothy's slippers in 'The Wonderful Wizard of Oz' by L. Frank Baum?", "responses": ["Red", "Black", "Silver", "Pink"], "correct": "Silver"}
+{"question": "'Moby Dick' is a novel written by which author?", "responses": ["Mark Twain", "Herman Melville", "Charles Dickens", "J.D. Salinger"], "correct": "Herman Melville"}
+{"question": "Who wrote the dystopian novel '1984'?", "responses": ["Ray Bradbury", "Isaac Asimov", "Aldous Huxley", "George Orwell"], "correct": "George Orwell"}
+{"question": "What is the name of the detective in Sir Arthur Conan Doyle's novels?", "responses": ["Sam Spade", "Philip Marlowe", "Hercule Poirot", "Sherlock Holmes"], "correct": "Sherlock Holmes"}
+{"question": "Who was the star of the television show 'House, M.D.'?", "responses": ["Jesse Spencer", "Robert Sean Leonard", "Jennifer Morrison", "Hugh Laurie"], "correct": "Hugh Laurie"}
+{"question": "Which 'Friends' character is a paleontologist?", "responses": ["Rachel Green", "Joey Tribbiani", "Ross Geller", "Chandler Bing"], "correct": "Ross Geller"}
+{"question": "In 'The Simpsons', who is the owner of the nuclear power plant?", "responses": ["Ned Flanders", "Mr. Burns", "Principal Skinner", "Krusty the Clown"], "correct": "Mr. Burns"}
+{"question": "Who plays Daenerys Targaryen in 'Game of Thrones'?", "responses": ["Emilia Clarke", "Lena Headey", "Sophie Turner", "Natalie Dormer"], "correct": "Emilia Clarke"}
+{"question": "Which company developed the first smartphone?", "responses": ["Apple", "IBM", "Microsoft", "Motorola"], "correct": "IBM"}
+{"question": "Who is the inventor of the first digital camera?", "responses": ["Alexander Graham Bell", "Thomas Edison", "Steve Sasson", "George Eastman"], "correct": "Steve Sasson"}
+{"question": "What does the 'MP3' in 'MP3 player' stand for?", "responses": ["Multi-Purpose3", "Music Player 3", "MPEG Audio Layer-3", "Media & Picture 3"], "correct": "MPEG Audio Layer-3"}
+{"question": "Which company first introduced the laptop?", "responses": ["Toshiba", "IBM", "Microsoft", "Apple"], "correct": "Toshiba"}
+{"question": "Which device marked the start of the Personal Computer revolution?", "responses": ["IBM 5100", "Radio Shack TRS-80", "Apple I", "Commodore PET"], "correct": "Apple I"}
+{"question": "What is the capital of Canada, where legislative decisions are made?", "responses": ["Toronto", "Vancouver", "Ottawa", "Calgary"], "correct": "Ottawa"}
+{"question": "What event marked the beginning of the French Revolution?", "responses": ["The Paris Commune", "The signing of the Treaty of Versailles", "The Storming of the Bastille", "The death of Louis XVI"], "correct": "The Storming of the Bastille"}
+{"question": "Who was the first African-American president of the United States of America?", "responses": ["Barack Obama", "George Bush", "Martin Luther King Jr.", "Malcolm X"], "correct": "Barack Obama"}
+{"question": "What is the highest court in the United States?", "responses": ["The Supreme Court", "The Court of Appeals", "The District Court", "The Federal Court"], "correct": "The Supreme Court"}
+{"question": "Who is the current Chancellor of Germany as of 2021?", "responses": ["Angela Merkel", "Olaf Scholz", "Frank-Walter Steinmeier", "Joachim Gauck"], "correct": "Olaf Scholz"}
+{"question": "Which company is known for creating the 'Walkman'?", "responses": ["Apple", "Sony", "Samsung", "LG"], "correct": "Sony"}
+{"question": "What does the 'S' in the acronym 'SIM', used in Mobile Technology, stand for?", "responses": ["Subscriber", "System", "Silicon", "Synchronous"], "correct": "Subscriber"}
+{"question": "Which company introduced the iPad?", "responses": ["Microsoft", "Apple", "Samsung", "Dell"], "correct": "Apple"}
+{"question": "Who is the manufacturer of the Galaxy series?", "responses": ["Nokia", "Apple", "Sony", "Samsung"], "correct": "Samsung"}
+{"question": "What is the name of Google's laptop series?", "responses": ["Chromebook", "Edgebook", "Macbook", "Firebook"], "correct": "Chromebook"}
+{"question": "What is pointillism?", "responses": ["A painting technique using dots", "A sculpture method using clay", "A drawing technique using straight lines", "A style of caricature sketching"], "correct": "A painting technique using dots"}
+{"question": "Who created the statue 'David'?", "responses": ["Michelangelo", "Donatello", "Auguste Rodin", "Leonardo da Vinci"], "correct": "Michelangelo"}
+{"question": "Who is associated with the style of Cubism?", "responses": ["Andy Warhol", "Edvard Munch", "Pablo Picasso", "Leonardo da Vinci"], "correct": "Pablo Picasso"}
+{"question": "What artist famously painted starry night?", "responses": ["Claude Monet", "Pablo Picasso", "Vincent Van Gogh", "Andy Warhol"], "correct": "Vincent Van Gogh"}
+{"question": "What year was the Magna Carta signed?", "responses": ["1215", "1543", "1776", "1832"], "correct": "1215"}
+{"question": "Who discovered the Americas in 1492?", "responses": ["Christopher Columbus", "Marco Polo", "Leif Erikson", "Vasco da Gama"], "correct": "Christopher Columbus"}
+{"question": "What city was the first capital of the United States?", "responses": ["New York City", "Philadelphia", "Washington D.C.", "Boston"], "correct": "New York City"}
+{"question": "Which war was fought between North and South Korea in the 1950s?", "responses": ["World War II", "Vietnam War", "Korean War", "Cold War"], "correct": "Korean War"}
+{"question": "In the game of Chess, which piece has the most freedom of movement?", "responses": ["King", "Queen", "Bishop", "Knight"], "correct": "Queen"}
+{"question": "What is the highest possible scoring word in the traditional board game Scrabble?", "responses": ["Jazz", "Quizzes", "Jinxes", "Jump"], "correct": "Quizzes"}
+{"question": "In which board game do players collect resources and build settlements?", "responses": ["Monopoly", "Risk", "The Settlers of Catan", "Ticket to Ride"], "correct": "The Settlers of Catan"}
+{"question": "In the game of Clue, how many murder weapons are there?", "responses": ["5", "6", "7", "8"], "correct": "6"}
+{"question": "What is the name of the murderer in the board game Cluedo?", "responses": ["Colonel Mustard", "Miss Scarlett", "Professor Plum", "None of these - it changes every game"], "correct": "None of these - it changes every game"}
+{"question": "Who is known as the father of the computer?", "responses": ["Thomas Edison", "Albert Einstein", "Charles Babbage", "Isaac Newton"], "correct": "Charles Babbage"}
+{"question": "Which language is used for styling web pages?", "responses": ["HTML", "Java", "Python", "CSS"], "correct": "CSS"}
+{"question": "Which computer hardware device provides an interface for all other connected devices to communicate?", "responses": ["Motherboard", "Processor", "Hard Disk", "RAM"], "correct": "Motherboard"}
+{"question": "What does the 'MP' stand for in MP3?", "responses": ["Moving Picture", "Music Player", "Multi Pass", "Micro Point"], "correct": "Moving Picture"}
+{"question": "Which programming language is a favorite among hackers?", "responses": ["Python", "JavaScript", "SQL", "Ruby"], "correct": "Python"}
+{"question": "Who created the comic book series 'The Walking Dead'?", "responses": ["Robert Kirkman", "Stan Lee", "Frank Miller", "Alan Moore"], "correct": "Robert Kirkman"}
+{"question": "When was the first issue of 'X-Men' published?", "responses": ["1963", "1972", "1981", "1991"], "correct": "1963"}
+{"question": "Who is the alter ego of 'The Flash' in DC comics?", "responses": ["Bruce Wayne", "Clark Kent", "Barry Allen", "Peter Parker"], "correct": "Barry Allen"}
+{"question": "Who is the archenemy of Superman?", "responses": ["Magneto", "Joker", "Lex Luthor", "Green Goblin"], "correct": "Lex Luthor"}
+{"question": "In what year did the comic 'The Amazing Spider-Man' first appear?", "responses": ["1955", "1962", "1967", "1971"], "correct": "1962"}
+{"question": "Who is the author of the classic book 'To Kill a Mockingbird'?", "responses": ["Harper Lee", "Mark Twain", "F. Scott Fitzgerald", "George Orwell"], "correct": "Harper Lee"}
+{"question": "In J.D. Salinger's 'The Catcher in the Rye', who is the main protagonist?", "responses": ["Phoebe Caulfield", "Allie Caulfield", "Holden Caulfield", "D.B. Caulfield"], "correct": "Holden Caulfield"}
+{"question": "What is the name of the fictional land where the 'Chronicles of Narnia' are set?", "responses": ["Middle-Earth", "Hogwarts", "Narnia", "Westeros"], "correct": "Narnia"}
+{"question": "In 'Pride and Prejudice' by Jane Austen, who is Elizabeth Bennet's romantic interest?", "responses": ["Charles Bingley", "George Wickham", "William Collins", "Fitzwilliam Darcy"], "correct": "Fitzwilliam Darcy"}
+{"question": "Which planet is known as the Red Planet?", "responses": ["Venus", "Mars", "Jupiter", "Saturn"], "correct": "Mars"}
+{"question": "Which country is Prague in?", "responses": ["Poland", "Germany", "Czech Republic", "Austria"], "correct": "Czech Republic"}
+{"question": "Who wrote 'To Kill a Mockingbird'?", "responses": ["Ernest Hemingway", "Harper Lee", "F. Scott Fitzgerald", "Mark Twain"], "correct": "Harper Lee"}
+{"question": "Which chemical element has the symbol Fe?", "responses": ["Oxygen", "Lead", "Iron", "Silver"], "correct": "Iron"}
+{"question": "How many teeth does an average adult human have?", "responses": ["32", "28", "36", "40"], "correct": "32"}
+{"question": "In which year did World War II end?", "responses": ["1946", "1945", "1944", "1947"], "correct": "1945"}
+{"question": "Which is the largest desert in the world?", "responses": ["Sahara", "Arabian", "Gobi", "Antarctic"], "correct": "Antarctic"}
+{"question": "Which is the highest mountain in the world?", "responses": ["K2", "Makalu", "Everest", "Kilimanjaro"], "correct": "Everest"}
+{"question": "Who is known as 'The King of Pop'?", "responses": ["Elvis Presley", "Michael Jackson", "Bruce Springsteen", "Justin Bieber"], "correct": "Michael Jackson"}
+{"question": "Who did actor Ryan Reynolds marry in 2012?", "responses": ["Scarlett Johansson", "Blake Lively", "Sandra Bullock", "Jennifer Aniston"], "correct": "Blake Lively"}
+{"question": "Who won an Oscar for Best Actor for the movie 'The Revenant'?", "responses": ["Brad Pitt", "Tom Hanks", "Leonardo DiCaprio", "George Clooney"], "correct": "Leonardo DiCaprio"}
+{"question": "Who plays the character Tony Stark in the Marvel Cinematic Universe?", "responses": ["Chris Evans", "Robert Downey Jr.", "Mark Ruffalo", "Chris Hemsworth"], "correct": "Robert Downey Jr."}
+{"question": "What is Taylor Swift's album released in 2020?", "responses": ["Speak Now", "Reputation", "Folklore", "Lover"], "correct": "Folklore"}
+{"question": "Who is the Greek god of war?", "responses": ["Ares", "Apollo", "Poseidon", "Hermes"], "correct": "Ares"}
+{"question": "In Norse mythology, who is the god of thunder?", "responses": ["Freya", "Loki", "Odin", "Thor"], "correct": "Thor"}
+{"question": "Which animal does the Egyptian goddess Bastet usually resemble?", "responses": ["Cat", "Hawk", "Cow", "Crocodile"], "correct": "Cat"}
+{"question": "Who is the god of wine in Greek mythology?", "responses": ["Zeus", "Bacchus", "Hermes", "Dionysus"], "correct": "Dionysus"}
+{"question": "Who is the king of the gods in Roman mythology?", "responses": ["Zeus", "Jupiter", "Mars", "Neptune"], "correct": "Jupiter"}
+{"question": "In what year was the first version of Minecraft released?", "responses": ["2007", "2009", "2010", "2012"], "correct": "2009"}
+{"question": "Who is the main antagonist in the game Final Fantasy VII?", "responses": ["Aerith", "Sephiroth", "Cloud", "Barret"], "correct": "Sephiroth"}
+{"question": "What is the name of the main character in The Witcher video game series?", "responses": ["Geralt of Rivia", "Ciri", "Yennifer", "Dandelion"], "correct": "Geralt of Rivia"}
+{"question": "In the game 'Five Nights at Freddy\u2019s', what is the name of the security guard?", "responses": ["Mike Schmidt", "Freddy Fazbear", "Chica", "Foxy"], "correct": "Mike Schmidt"}
+{"question": "Which enemy in the game Legend of Zelda: Ocarina of Time steals Link's items?", "responses": ["Ganon", "Tingle", "Like Like", "Deku Scrub"], "correct": "Like Like"}
+{"question": "What is the highest scoring single word possible in Scrabble?", "responses": ["QUIZZIFY", "OXYPHENBUTAZONE", "ZYZZYVA", "HYPERCOMPLEX"], "correct": "OXYPHENBUTAZONE"}
+{"question": "Monopoly, a popular board game, first originated in which country?", "responses": ["England", "Germany", "United States of America", "France"], "correct": "United States of America"}
+{"question": "Which board game involves deducing the identity of the opponent's chosen character?", "responses": ["Battleship", "Guess Who", "Candy Land", "Monopoly"], "correct": "Guess Who"}
+{"question": "Which board game uses a hexagonal shaped board with resources like brick, wood, wheat, sheep and ore?", "responses": ["Monopoly", "Trouble", "The Settlers of Catan", "Carcassonne"], "correct": "The Settlers of Catan"}
+{"question": "In chess, how many squares are on a standard chessboard?", "responses": ["64", "72", "60", "100"], "correct": "64"}
+{"question": "Who is the Greek god of wine, theater, and ecstasy?", "responses": ["Dionysus", "Apollo", "Hermes", "Zeus"], "correct": "Dionysus"}
+{"question": "Which nobleman unleashed Pandora's Box on humankind according to Greek mythology?", "responses": ["Epimetheus", "Orpheus", "Heracles", "Theseus"], "correct": "Epimetheus"}
+{"question": "In Norse mythology, which is the realm of the gods?", "responses": ["Midgard", "Asgard", "Jotunheim", "Niflheim"], "correct": "Asgard"}
+{"question": "Who is the Roman equivalent of the Greek god Hermes?", "responses": ["Janus", "Apollo", "Mercury", "Mars"], "correct": "Mercury"}
+{"question": "What's the name of the three-legged crow in Chinese mythology?", "responses": ["Peng", "Hou Yi", "Jingwei", "Sanzuwu"], "correct": "Sanzuwu"}
+{"question": "What does the HTTP stand for in website addresses?", "responses": ["Hyper Textmaster Transport Protocol", "High Transfer Text Protocol", "Hyper Text Transfer Protocol", "Hyper Text Tensile Protocol"], "correct": "Hyper Text Transfer Protocol"}
+{"question": "Which technology is used to create webpages?", "responses": ["HTML", "Internet Explorer", "Firefox", "Windows OS"], "correct": "HTML"}
+{"question": "What does the 'R' stand for in the computer term 'RAM'?", "responses": ["Retro", "Rational", "Random", "Rapid"], "correct": "Random"}
+{"question": "What type of computer memory is non-volatile and can be electrically erased and reprogrammed?", "responses": ["RAM", "ROM", "Flash", "Cache"], "correct": "Flash"}
+{"question": "What is the most common type of data that the 'SQL' programming language handles?", "responses": ["Relational data", "Binary data", "Graphical data", "Quantum data"], "correct": "Relational data"}
+{"question": "What is the top speed of Bugatti Veyron Super Sport?", "responses": ["267.8 mph", "250.4 mph", "275.6 mph", "260.1 mph"], "correct": "267.8 mph"}
+{"question": "Who manufactures the Model S electric car?", "responses": ["Ford", "Tesla", "Chevrolet", "Nissan"], "correct": "Tesla"}
+{"question": "Which country is Lamborghini based in?", "responses": ["United States", "Italy", "Germany", "Japan"], "correct": "Italy"}
+{"question": "What type of fuel does a hybrid car use?", "responses": ["Electricity only", "Diesel only", "Gasoline only", "Gasoline and Electricity"], "correct": "Gasoline and Electricity"}
+{"question": "When was the first production automobile, Benz Patent-Motorwagen, invented?", "responses": ["1866", "1879", "1886", "1892"], "correct": "1886"}
+{"question": "Who is frequently referred to as the 'Father of the Constitution' in the United States?", "responses": ["George Washington", "Thomas Jefferson", "John Adams", "James Madison"], "correct": "James Madison"}
+{"question": "Which political ideology promotes ownership and control of the means of production and industry by the community?", "responses": ["Capitalism", "Socialism", "Fascism", "Feudalism"], "correct": "Socialism"}
+{"question": "What is the process called where districts are drawn in a way to favor one party?", "responses": ["Squandering", "Bipartisanship", "Gerrymandering", "Obstructionism"], "correct": "Gerrymandering"}
+{"question": "What is the result of the equation: 7^2 - 6^2?", "responses": ["1", "7", "13", "19"], "correct": "13"}
+{"question": "If a triangle has angles measuring 35, 90, and 55 degrees respectively, what kind of triangle it is?", "responses": ["Equilateral triangle", "Isosceles triangle", "Acute triangle", "Right triangle"], "correct": "Right triangle"}
+{"question": "The sum of the interior angles of a pentagon is equal to how many degrees?", "responses": ["360 degrees", "540 degrees", "720 degrees", "900 degrees"], "correct": "540 degrees"}
+{"question": "A number raised to the zero power is always equal to what value?", "responses": ["0", "1", "The original number", "Undefined"], "correct": "1"}
+{"question": "What was the first production car to be equipped with airbags as a standard feature?", "responses": ["Chevrolet Impala", "Cadillac Fleetwood", "Mercedes-Benz S-Class", "Ford Taurus"], "correct": "Mercedes-Benz S-Class"}
+{"question": "What was the first car to break the 300 mph barrier?", "responses": ["Bugatti Veyron", "Koenigsegg Agera RS", "McLaren F1", "Bugatti Chiron"], "correct": "Bugatti Chiron"}
+{"question": "Which car company was the first to introduce Hybrid cars?", "responses": ["Honda", "Toyota", "Nissan", "Ford"], "correct": "Toyota"}
+{"question": "What is the origin country of the car manufacturer BMW?", "responses": ["United States", "United Kingdom", "Germany", "France"], "correct": "Germany"}
+{"question": "What does the abbreviation SUV stand for?", "responses": ["Sport Utility Vehicle", "Superior Utility Van", "Suburban Utility Van", "Sporty Under-Vehicle"], "correct": "Sport Utility Vehicle"}
+{"question": "Which of the following animals is a mammal?", "responses": ["Shark", "Eagle", "Spider", "Kangaroo"], "correct": "Kangaroo"}
+{"question": "Which is the largest species of penguin?", "responses": ["King Penguin", "Emperor Penguin", "Gentoo Penguin", "Macaroni Penguin"], "correct": "Emperor Penguin"}
+{"question": "Which animal has the longest gestation period?", "responses": ["Elephant", "Whale", "Kangaroo", "Opossum"], "correct": "Elephant"}
+{"question": "Which of the following animals is not a reptile?", "responses": ["Crocodile", "Komodo Dragon", "Parrot", "Turtle"], "correct": "Parrot"}
+{"question": "Which of the listed artists is famous for the painting 'The Starry Night'?", "responses": ["Claude Monet", "Pablo Picasso", "Vincent Van Gogh", "Jackson Pollock"], "correct": "Vincent Van Gogh"}
+{"question": "In what year was the world-renowned artist Pablo Picasso born?", "responses": ["1881", "1901", "1801", "1751"], "correct": "1881"}
+{"question": "Which of the following is NOT a painting style?", "responses": ["Impressionism", "Cubism", "Surrealism", "Expression"], "correct": "Expression"}
+{"question": "Who created the piece known as 'The Persistence of Memory'?", "responses": ["Salvador Dali", "Pablo Picasso", "Michelangelo", "Vincent Van Gogh"], "correct": "Salvador Dali"}
+{"question": "Who is the Greek goddess of wisdom and war strategy?", "responses": ["Aphrodite", "Hera", "Athena", "Demeter"], "correct": "Athena"}
+{"question": "What is the home of the Norse gods called?", "responses": ["Valhalla", "Asgard", "Midgard", "Niflheim"], "correct": "Asgard"}
+{"question": "Who is the Chinese goddess of the Moon?", "responses": ["Mazu", "Chi Lin", "Chang'e", "Guanyin"], "correct": "Chang'e"}
+{"question": "Who is the Roman equivalent of the Greek god Zeus?", "responses": ["Jupiter", "Mars", "Neptune", "Saturn"], "correct": "Jupiter"}
+{"question": "What creature in Greek mythology has the body of a lion, the head of a human, and sometimes the wings of an eagle?", "responses": ["Minotaur", "Pegasus", "Cyclops", "Sphinx"], "correct": "Sphinx"}
+{"question": "Who was the president of the United States during the signing of the Paris Agreement on climate change?", "responses": ["George W. Bush", "Barack Obama", "Bill Clinton", "Donald Trump"], "correct": "Barack Obama"}
+{"question": "Who first proposed the construction of a 'border wall' between the United States and Mexico?", "responses": ["Barack Obama", "Hillary Clinton", "Donald Trump", "Ronald Reagan"], "correct": "Donald Trump"}
+{"question": "What is the term limit for a president in the United States?", "responses": ["2 terms", "3 terms", "4 terms", "No term limit"], "correct": "2 terms"}
+{"question": "The 'Brexit' referendum was a vote for the United Kingdom to leave what entity?", "responses": ["NATO", "United Nations", "World Health Organization", "European Union"], "correct": "European Union"}
+{"question": "Which country first implemented the policy known as 'One child policy'?", "responses": ["Russia", "China", "India", "United States"], "correct": "China"}
+{"question": "Who is the alter ego of superhero Black Panther?", "responses": ["T'Challa", "Tony Stark", "Bruce Wayne", "Peter Parker"], "correct": "T'Challa"}
+{"question": "What is the name of Thor\u2019s hammer?", "responses": ["Aegis", "Excalibur", "Mjolnir", "Frostmourne"], "correct": "Mjolnir"}
+{"question": "Who was the first superhero to appear in Marvel Comics?", "responses": ["Captain America", "The Human Torch", "Namor the Sub-Mariner", "Spider-Man"], "correct": "The Human Torch"}
+{"question": "What city does Batman protect?", "responses": ["New York City", "Los Angeles", "Gotham City", "Metropolis"], "correct": "Gotham City"}
+{"question": "Who is the nemesis of the Fantastic Four?", "responses": ["Green Goblin", "The Joker", "Lex Luthor", "Doctor Doom"], "correct": "Doctor Doom"}
+{"question": "Who created the Marvel Comic character Spider-Man?", "responses": ["Robert Kirkman", "Alan Moore", "Jack Kirby", "Stan Lee"], "correct": "Stan Lee"}
+{"question": "What superhero did Gal Gadot portray in DC's 2017 film?", "responses": ["Catwoman", "Wonder Woman", "Superwoman", "Batwoman"], "correct": "Wonder Woman"}
+{"question": "What did the villain Thanos seek to collect in the Marvel Cinematic Universe?", "responses": ["Infinity Stones", "Mjolnir Hammers", "Black Matter Radiators", "Ultron Droids"], "correct": "Infinity Stones"}
+{"question": "What is the name of Batman's secret identity in DC's comics?", "responses": ["Clark Kent", "Bruce Wayne", "Peter Parker", "Tony Stark"], "correct": "Bruce Wayne"}
+{"question": "Who did Captain America pass his shield to at the end of 'Avengers: Endgame'?", "responses": ["Tony Stark", "Peter Parker", "Bruce Banner", "Sam Wilson"], "correct": "Sam Wilson"}
+{"question": "What is the chemical symbol for Mercury?", "responses": ["Me", "Hg", "Mc", "Me"], "correct": "Hg"}
+{"question": "What is the hottest planet in our solar system?", "responses": ["Mercury", "Venus", "Mars", "Jupiter"], "correct": "Venus"}
+{"question": "Which blood type is considered the universal donor?", "responses": ["A", "B", "AB", "O"], "correct": "O"}
+{"question": "Which mammal can breathe through its buttocks?", "responses": ["Kangaroo", "Turtle", "Platypus", "Dolphin"], "correct": "Turtle"}
+{"question": "What type of lens do telescopes typically use?", "responses": ["Convex", "Concave", "Planar", "Spherical"], "correct": "Convex"}
+{"question": "In the book '1984', what is the name of the totalitarian regime's ruling party?", "responses": ["The Party", "The Order", "The Regime", "The Union"], "correct": "The Party"}
+{"question": "'A Song of Ice and Fire' series is the basis for which popular TV Show?", "responses": ["The Walking Dead", "Breaking Bad", "Game of Thrones", "Lost"], "correct": "Game of Thrones"}
+{"question": "What is the first book in J.K. Rowling\u2019s 'Harry Potter' series?", "responses": ["Harry Potter and the Goblet of Fire", "Harry Potter and the Chamber of Secrets", "Harry Potter and the Sorcerer's Stone", "Harry Potter and the Order of the Phoenix"], "correct": "Harry Potter and the Sorcerer's Stone"}
+{"question": "Which of these novels is a seminal work by Jane Austen?", "responses": ["Wuthering Heights", "Pride and Prejudice", "Jane Eyre", "Little Women"], "correct": "Pride and Prejudice"}
+{"question": "Who has the record for the most home runs in a single season in Major League Baseball?", "responses": ["Babe Ruth", "Hank Aaron", "Barry Bonds", "Mickey Mantle"], "correct": "Barry Bonds"}
+{"question": "Which country won the first ever FIFA World Cup in 1930?", "responses": ["Brazil", "Uruguay", "Argentina", "England"], "correct": "Uruguay"}
+{"question": "Which tennis player holds the record for most Grand Slam titles won?", "responses": ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Margaret Court"], "correct": "Margaret Court"}
+{"question": "Which city hosted the 2000 Summer Olympics?", "responses": ["Sydney", "Athens", "Beijing", "London"], "correct": "Sydney"}
+{"question": "Who is the top scorer in NBA history?", "responses": ["Michael Jordan", "LeBron James", "Kobe Bryant", "Kareem Abdul-Jabbar"], "correct": "Kareem Abdul-Jabbar"}
+{"question": "Who was the first woman to win a Nobel Prize?", "responses": ["Marie Curie", "Mother Teresa", "Rosalind Franklin", "Jane Goodall"], "correct": "Marie Curie"}
+{"question": "What chemical element is diamond made of?", "responses": ["Carbon", "Iron", "Gold", "Platinum"], "correct": "Carbon"}
+{"question": "Who is the artist behind the 'Starry Night' painting?", "responses": ["Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Monet"], "correct": "Vincent van Gogh"}
+{"question": "Which country is the largest by total area?", "responses": ["China", "United States", "Russia", "Canada"], "correct": "Russia"}
+{"question": "Who is the primary antagonist in Disney's 'The Lion King'?", "responses": ["Simba", "Zazu", "Scar", "Mufasa"], "correct": "Scar"}
+{"question": "In 'Finding Nemo', what is the name of Nemo's forgetful friend?", "responses": ["Daisy", "Dory", "Dolly", "Debbie"], "correct": "Dory"}
+{"question": "Who voiced the character of Shrek in the 'Shrek' film series?", "responses": ["Chris Rock", "Mike Myers", "Eddie Murphy", "Adam Sandler"], "correct": "Mike Myers"}
+{"question": "Which character does not belong to the 'SpongeBob SquarePants' television show?", "responses": ["Squidward", "Patrick", "Bart Simpson", "Mr. Krabs"], "correct": "Bart Simpson"}
+{"question": "What is the name of Mickey Mouse's dog?", "responses": ["Goofy", "Pluto", "Donald", "Minnie"], "correct": "Pluto"}
+{"question": "In which year did the French Revolution start?", "responses": ["1492", "1776", "1918", "1789"], "correct": "1789"}
+{"question": "Who was the first woman to fly solo across the Atlantic Ocean?", "responses": ["Amelia Earhart", "Sally Ride", "Valentina Tereshkova", "Marie Marvingt"], "correct": "Amelia Earhart"}
+{"question": "When was the World War II officially ended?", "responses": ["1941", "1945", "1949", "1953"], "correct": "1945"}
+{"question": "Which Ancient Wonder of the World was located in present day Iraq?", "responses": ["Great Pyramid of Giza", "Hanging Gardens of Babylon", "Statue of Zeus at Olympia", "Lighthouse of Alexandria"], "correct": "Hanging Gardens of Babylon"}
+{"question": "What is the real name of 'The Hulk' in the Marvel Comic universe?", "responses": ["Bruce Banner", "Peter Parker", "Steve Rogers", "Tony Stark"], "correct": "Bruce Banner"}
+{"question": "Who is the archenemy of the 'X-Men' in the comic book series?", "responses": ["Joker", "Magneto", "Red Skull", "Thanos"], "correct": "Magneto"}
+{"question": "In which comic book series is the character 'Hellboy' featured?", "responses": ["Dark Horse Comics", "DC Comics", "Image Comics", "Marvel Comics"], "correct": "Dark Horse Comics"}
+{"question": "What is the superhero alias of Diana Prince in the comic books?", "responses": ["Black Widow", "Captain Marvel", "Supergirl", "Wonder Woman"], "correct": "Wonder Woman"}
+{"question": "Which artist painted the Mona Lisa?", "responses": ["Vincent van Gogh", "Leonardo Da Vinci", "Claude Monet", "Pablo Picasso"], "correct": "Leonardo Da Vinci"}
+{"question": "Who is the lead vocalist of the band Coldplay?", "responses": ["Chris Martin", "Bono", "Jonny Buckland", "Will Champion"], "correct": "Chris Martin"}
+{"question": "Which actor plays Tony Stark in the Marvel Cinematic Universe?", "responses": ["Chris Evans", "Robert Downey Jr.", "Chris Hemsworth", "Mark Ruffalo"], "correct": "Robert Downey Jr."}
+{"question": "Who wrote the Harry Potter series?", "responses": ["Stephanie Meyer", "J.K. Rowling", "Suzanne Collins", "Rick Riordan"], "correct": "J.K. Rowling"}
+{"question": "Which celebrity is married to Jay-Z?", "responses": ["Nicki Minaj", "Beyonce", "Rihanna", "Miley Cyrus"], "correct": "Beyonce"}
+{"question": "In Greek mythology, who was the king who turned all he touched into gold?", "responses": ["King Midas", "Perseus", "Hercules", "Zeus"], "correct": "King Midas"}
+{"question": "What weapon does the Norse god Thor traditionally wield?", "responses": ["Mjolnir", "Excalibur", "A trident", "A bow and arrow"], "correct": "Mjolnir"}
+{"question": "Who was the Greek god of the underworld?", "responses": ["Hades", "Ares", "Poseidon", "Zeus"], "correct": "Hades"}
+{"question": "In Egyptian mythology, who was the god of the sun?", "responses": ["Osiris", "Ra", "Anubis", "Isis"], "correct": "Ra"}
+{"question": "Which film won the Best Picture Oscar in 2000?", "responses": ["American Beauty", "Gladiator", "Crouching Tiger, Hidden Dragon", "Traffic"], "correct": "American Beauty"}
+{"question": "Who composed the original score for the film 'Inception'?", "responses": ["Hans Zimmer", "John Williams", "Danny Elfman", "James Newton Howard"], "correct": "Hans Zimmer"}
+{"question": "Who directed the film 'Pulp Fiction'?", "responses": ["Martin Scorsese", "Joel Coen", "Quentin Tarantino", "Steven Spielberg"], "correct": "Quentin Tarantino"}
+{"question": "In which film did Leonardo DiCaprio play a character named Jack Dawson?", "responses": ["Titanic", "The Departed", "Inception", "Romeo + Juliet"], "correct": "Titanic"}
+{"question": "What is the name of the character played by Anthony Hopkins in 'The Silence of the Lambs'?", "responses": ["Hannibal Lecter", "Clarice Starling", "Buffalo Bill", "Jack Crawford"], "correct": "Hannibal Lecter"}
+{"question": "What was the first musical show that Rodgers and Hammerstein II collaborated on together?", "responses": ["Carousel", "South Pacific", "The King and I", "Oklahoma!"], "correct": "Oklahoma!"}
+{"question": "Stephen Sondheim collaborated with which famous musical theater lyricist early in his career?", "responses": ["Andrew Lloyd Webber", "Georges Bizet", "Oscar Hammerstein II", "Leonard Bernstein"], "correct": "Oscar Hammerstein II"}
+{"question": "Which musical is based on a memoir written by French politician and diplomat Henri Charri\u00e8re?", "responses": ["Les Mis\u00e9rables", "Papillon", "Notre-Dame de Paris", "An American in Paris"], "correct": "Papillon"}
+{"question": "Elton John composed the music for which Broadway hit?", "responses": ["Wicked", "The Phantom of the Opera", "Jersey Boys", "The Lion King"], "correct": "The Lion King"}
+{"question": "In the musical 'The Sound of Music', what is the name of the eldest von Trapp daughter?", "responses": ["Brigitta", "Louisa", "Gretl", "Liesl"], "correct": "Liesl"}
+{"question": "Who is often referred to as the 'Father of the Constitution'?", "responses": ["George Washington", "Alexander Hamilton", "Thomas Jefferson", "James Madison"], "correct": "James Madison"}
+{"question": "Who was the first woman to run for President of the United States?", "responses": ["Hillary Clinton", "Victoria Woodhull", "Eleanor Roosevelt", "Sarah Palin"], "correct": "Victoria Woodhull"}
+{"question": "What is the limit on the number of terms a U.S. President can serve?", "responses": ["One", "Two", "Three", "No limit"], "correct": "Two"}
+{"question": "When was the European Union established?", "responses": ["1945", "1957", "1993", "2000"], "correct": "1993"}
+{"question": "Which of these political ideologies advocates for a society centered around common ownership of the means of production?", "responses": ["Liberalism", "Capitalism", "Socialism", "Conservatism"], "correct": "Socialism"}
+{"question": "Who was the commander of the Confederate Army during the American Civil War?", "responses": ["Abraham Lincoln", "Robert E. Lee", "Ulysses S. Grant", "Thomas Jackson"], "correct": "Robert E. Lee"}
+{"question": "Which treaty ended the World War I?", "responses": ["The Treaty of Versailles", "The Treaty of Paris", "The Treaty of Rome", "The Treaty of London"], "correct": "The Treaty of Versailles"}
+{"question": "What historical event took place on December 7, 1941?", "responses": ["The Invasion of Normandy", "The Bombing of Pearl Harbor", "The Battle of Midway", "The Battle of Britain"], "correct": "The Bombing of Pearl Harbor"}
+{"question": "What ancient civilization built the Machu Picchu complex in Peru?", "responses": ["The Aztecs", "The Incas", "The Mayans", "The Olmecs"], "correct": "The Incas"}
+{"question": "Who was the Prime Minister of the United Kingdom at the start of World War II?", "responses": ["Winston Churchill", "Neville Chamberlain", "Clement Attlee", "Anthony Eden"], "correct": "Neville Chamberlain"}
+{"question": "Which political party does Angela Merkel belong to?", "responses": ["Social Democratic Party", "Christian Democratic Union", "The Left", "Free Democratic Party"], "correct": "Christian Democratic Union"}
+{"question": "Who was the president of the United States during the cuban missile crisis?", "responses": ["Dwight D. Eisenhower", "John F. Kennedy", "Lyndon Johnson", "Richard Nixon"], "correct": "John F. Kennedy"}
+{"question": "In which year did the Berlin Wall fall?", "responses": ["1989", "1991", "1993", "1995"], "correct": "1989"}
+{"question": "Who was the first female Prime Minister of Australia?", "responses": ["Julia Gillard", "Margaret Thatcher", "Angela Merkel", "Theresa May"], "correct": "Julia Gillard"}
+{"question": "What is the speed of light?", "responses": ["300,000 km/sec", "400,000 km/sec", "500,000 km/sec", "600,000 km/sec"], "correct": "300,000 km/sec"}
+{"question": "What is the human body's largest organ?", "responses": ["Liver", "Heart", "Skin", "Brain"], "correct": "Skin"}
+{"question": "Who is the author of the 'Harry Potter' series?", "responses": ["J.K. Rowling", "Stephen King", "Jane Austen", "Mark Twain"], "correct": "J.K. Rowling"}
+{"question": "In the 'Lord of the Rings' trilogy, who is the hobbit that carries the One Ring to Mordor?", "responses": ["Merry", "Bilbo", "Sam", "Frodo"], "correct": "Frodo"}
+{"question": "What dystopian novel by George Orwell tells the story of a place where Big Brother is always watching?", "responses": ["Animal Farm", "1984", "Fahrenheit 451", "Brave New World"], "correct": "1984"}
+{"question": "Who wrote the novel 'To Kill a Mockingbird'?", "responses": ["Harper Lee", "Emily Bront\u00eb", "Sylvia Plath", "Virginia Woolf"], "correct": "Harper Lee"}
+{"question": "Which of the following books is not written by Stephen King?", "responses": ["The Shining", "Cujo", "Carrie", "To Kill a Mockingbird"], "correct": "To Kill a Mockingbird"}
+{"question": "Which actor played Tony Stark in the movie 'Iron Man'?", "responses": ["Chris Evans", "Tom Cruise", "Robert Downey Jr.", "Mark Ruffalo"], "correct": "Robert Downey Jr."}
+{"question": "In which year was the movie 'The Godfather' first released?", "responses": ["1969", "1972", "1975", "1980"], "correct": "1972"}
+{"question": "Which movie is known as the highest-grossing film of all time?", "responses": ["Avengers: Endgame", "Titanic", "Star Wars: The Force Awakens", "Avatar"], "correct": "Avengers: Endgame"}
+{"question": "Who won the Best Actress Oscar for the film 'The Queen'?", "responses": ["Nicole Kidman", "Meryl Streep", "Julia Roberts", "Helen Mirren"], "correct": "Helen Mirren"}
+{"question": "What is the longest running show in Broadway history?", "responses": ["Cats", "The Lion King", "The Phantom of the Opera", "Les Mis\u00e9rables"], "correct": "The Phantom of the Opera"}
+{"question": "Which musical is based on a novel by Victor Hugo?", "responses": ["Les Mis\u00e9rables", "The Phantom of the Opera", "Chicago", "Mamma Mia!"], "correct": "Les Mis\u00e9rables"}
+{"question": "What musical tells the story of the witches from 'The Wizard of Oz'?", "responses": ["The Wiz", "Wicked", "Into the Woods", "Hamilton"], "correct": "Wicked"}
+{"question": "Who is the female lead in 'The Phantom of the Opera'?", "responses": ["Cosette", "Christine Daa\u00e9", "\u00c9ponine", "Mrs. Potts"], "correct": "Christine Daa\u00e9"}
+{"question": "What is the world's largest land animal?", "responses": ["Elephant", "Kangaroo", "Giraffe", "Brown Bear"], "correct": "Elephant"}
+{"question": "What is a group of lions known as?", "responses": ["Herd", "Pack", "Pride", "Gaggle"], "correct": "Pride"}
+{"question": "Which animal is known for its elaborate courtship dance?", "responses": ["Parrot", "Peacock", "Gorilla", "Penguin"], "correct": "Peacock"}
+{"question": "What type of animal is a Komodo dragon?", "responses": ["Lizard", "Snake", "Bird", "Mammal"], "correct": "Lizard"}
+{"question": "What is the world's fastest car as of 2021?", "responses": ["Bugatti Veyron", "Hennessey Venom GT", "Bucciali TAV", "SSC Tuatara"], "correct": "SSC Tuatara"}
+{"question": "What is the car brand logo that has a prancing horse?", "responses": ["Ferrari", "Ford", "Mercedes-Benz", "Toyota"], "correct": "Ferrari"}
+{"question": "Which car company first introduced the assembly line?", "responses": ["BMW", "Ford Motor Company", "General Motors", "Daimler AG"], "correct": "Ford Motor Company"}
+{"question": "What is the name of the first model car produced by Toyota?", "responses": ["Model AA", "Corolla", "Crown", "Century"], "correct": "Model AA"}
+{"question": "What is the probability of rolling a 6 in a single toss of a fair six-sided die?", "responses": ["1/6", "1/5", "1/4", "1/3"], "correct": "1/6"}
+{"question": "What is the product of -2 and -3?", "responses": ["-6", "-5", "6", "5"], "correct": "6"}
+{"question": "What is the value of the square root of 64?", "responses": ["8", "6", "10", "16"], "correct": "8"}
+{"question": "How do you express the number 86 as a product of its prime factors?", "responses": ["2 * 43", "2 * 42", "2 * 44", "2 * 41"], "correct": "2 * 43"}
+{"question": "If x = -3 and y = 4, what is the value of x\u00b2 - y\u00b2?", "responses": ["-7", "-16", "7", "16"], "correct": "-7"}
+{"question": "In what year was actor Leonardo DiCaprio born?", "responses": ["1974", "1970", "1965", "1978"], "correct": "1974"}
+{"question": "Who won the Oscar for Best Actor in 2020?", "responses": ["Leonardo DiCaprio", "Joaquin Phoenix", "Adam Driver", "Brad Pitt"], "correct": "Joaquin Phoenix"}
+{"question": "Taylor Swift is known for what genre of music?", "responses": ["Pop", "Jazz", "Hip Hop", "Reggae"], "correct": "Pop"}
+{"question": "What is the real name of the artist known as Lady Gaga?", "responses": ["Katy Perry", "Kim Kardashian", "Stefani Joanne Angelina Germanotta", "Madonna"], "correct": "Stefani Joanne Angelina Germanotta"}
+{"question": "What country does the actor Hugh Jackman originate from?", "responses": ["New Zealand", "Australia", "South Africa", "United Kingdom"], "correct": "Australia"}
+{"question": "The term 'Phablet' is a blend of what two words?", "responses": ["Photo & Tablet", "Phone & Tablet", "Pen & Tablet", "Portable & Tablet"], "correct": "Phone & Tablet"}
+{"question": "What was the first product introduced by Apple Inc.?", "responses": ["Apple Macintosh", "Apple II", "iPod", "Apple 1"], "correct": "Apple 1"}
+{"question": "The Nintendo Wii was originally codenamed what during its development?", "responses": ["Revolution", "Evolution", "Resolution", "Dissolution"], "correct": "Revolution"}
+{"question": "What year was the first iPhone released?", "responses": ["2005", "2007", "2006", "2008"], "correct": "2007"}
+{"question": "Who is known as the 'Father of VR' (Virtual Reality)?", "responses": ["Mark Zuckerberg", "Steve Jobs", "Bill Gates", "Ivan Sutherland"], "correct": "Ivan Sutherland"}
+{"question": "Which instrument is used by a conductor in an orchestra?", "responses": ["Violin", "Trumpet", "Drum", "Baton"], "correct": "Baton"}
+{"question": "Who composed the Four Seasons?", "responses": ["Wolfgang Amadeus Mozart", "Ludwig Van Beethoven", "Johann Sebastian Bach", "Antonio Vivaldi"], "correct": "Antonio Vivaldi"}
+{"question": "Which band sang 'Bohemian Rhapsody'?", "responses": ["The Beatles", "Queen", "Led Zeppelin", "The Rolling Stones"], "correct": "Queen"}
+{"question": "What is the musical term for a gradual increase in loudness?", "responses": ["Fortissimo", "Crescendo", "Pianissimo", "Staccato"], "correct": "Crescendo"}
+{"question": "Who wrote the music to the long-running Broadway musical, 'The Phantom of the Opera'?", "responses": ["Andrew Lloyd Webber", "Stephen Sondheim", "Elton John", "Richard Rodgers"], "correct": "Andrew Lloyd Webber"}
+{"question": "Which Broadway show was the first to gross over $1 billion?", "responses": ["The Lion King", "Cats", "Hamilton", "Wicked"], "correct": "The Lion King"}
+{"question": "What is the longest running musical on Broadway?", "responses": ["Chicago", "The Phantom of the Opera", "Cats", "The Lion King"], "correct": "The Phantom of the Opera"}
+{"question": "Which musical is based on the novel 'Wicked: The Life and Times of the Wicked Witch of the West'?", "responses": ["Into the Woods", "The Wizard of Oz", "Wicked", "Matilda"], "correct": "Wicked"}
+{"question": "What legendary actress originated the role of Dolly Levi in the Broadway musical 'Hello, Dolly!' in 1964?", "responses": ["Julie Andrews", "Carol Channing", "Barbra Streisand", "Audrey Hepburn"], "correct": "Carol Channing"}
+{"question": "Who painted the 'Mona Lisa'?", "responses": ["Vincent Van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"], "correct": "Leonardo da Vinci"}
+{"question": "Which art movement is Salvador Dali associated with?", "responses": ["Impressionism", "Cubism", "Surrealism", "Expressionism"], "correct": "Surrealism"}
+{"question": "What is the primary subject in 'The Persistence of Memory' by Salvador Dali?", "responses": ["Melting Clocks", "Sunflowers", "Lighthouses", "Weeping woman"], "correct": "Melting Clocks"}
+{"question": "'Starry Night Over the Rh\u00f4ne' was painted by which artist?", "responses": ["Claude Monet", "Vincent Van Gogh", "Pierre-Auguste Renoir", "Edouard Manet"], "correct": "Vincent Van Gogh"}
+{"question": "Which artist painted 'The Girl with a Pearl Earring'?", "responses": ["Rembrandt van Rijn", "Johannes Vermeer", "Jan van Eyck", "Peter Paul Rubens"], "correct": "Johannes Vermeer"}
+{"question": "What does HTTP stand for?", "responses": ["Hyper Text Transfer Protocol", "Hyper Text Transport Protocol", "Hyper Transfer Text Protocol", "Huge Transfer Text Protocol"], "correct": "Hyper Text Transfer Protocol"}
+{"question": "What is the common name for the 'Windows keyboard shortcut' that is used to perform a variety of functions, including closing a program?", "responses": ["Alt + Tab", "Ctrl + C", "Alt + F4", "Ctrl + Alt + Del"], "correct": "Alt + F4"}
+{"question": "What is the binary system used for in computers?", "responses": ["Calculations", "Programming", "Data storage", "All of the above"], "correct": "All of the above"}
+{"question": "Which of the following is not an operating system?", "responses": ["Linux", "Macintosh", "Oracle", "Windows"], "correct": "Oracle"}
+{"question": "Who was the Egyptian queen who formed an alliance with Roman leaders Julius Caesar and Mark Antony?", "responses": ["Nefertiti", "Hatshepsut", "Cleopatra", "Tiye"], "correct": "Cleopatra"}
+{"question": "In which year did the American Civil War end?", "responses": ["1865", "1861", "1875", "1885"], "correct": "1865"}
+{"question": "Who was the Prime Minister of Britain when World War II began?", "responses": ["Winston Churchill", "Neville Chamberlain", "David Lloyd George", "Harold Macmillan"], "correct": "Neville Chamberlain"}
+{"question": "Who was the Spanish conqueror who led an expedition that caused the fall of the Aztec Empire?", "responses": ["Ferdinand Magellan", "Francisco Pizarro", "Hern\u00e1n Cort\u00e9s", "Diego Vel\u00e1zquez"], "correct": "Hern\u00e1n Cort\u00e9s"}
+{"question": "Who is the main character in 'Attack on Titan'?", "responses": ["Mikasa Ackerman", "Armin Arlert", "Levi Ackerman", "Eren Yeager"], "correct": "Eren Yeager"}
+{"question": "What is the name of the pirate ship in 'One Piece'?", "responses": ["Thousand Sunny", "Black Pearl", "Going Merry", "Moby Dick"], "correct": "Thousand Sunny"}
+{"question": "Who created the manga series 'Naruto'?", "responses": ["Eiichiro Oda", "Masashi Kishimoto", "Akira Toriyama", "Hajime Isayama"], "correct": "Masashi Kishimoto"}
+{"question": "What is the highest achievable rank for a ninja in 'Naruto'?", "responses": ["J\u014dnin", "Ch\u016bnin", "Kage", "Genin"], "correct": "Kage"}
+{"question": "What is the name of the character who was always with Ash in 'Pok\u00e9mon'?", "responses": ["Brock", "Misty", "Gary", "Pikachu"], "correct": "Pikachu"}
+{"question": "What is the real name of the actress who played Hermione Granger in Harry Potter?", "responses": ["Anna Watson", "Emma Stone", "Emma Watson", "Emily Watson"], "correct": "Emma Watson"}
+{"question": "Who starred as Tony Stark in the Iron Man series?", "responses": ["Chris Evans", "Robert Downey Jr.", "Tom Holland", "Chris Hemsworth"], "correct": "Robert Downey Jr."}
+{"question": "Who is the lead singer of the band U2?", "responses": ["Bono", "The Edge", "Adam Clayton", "Larry Mullen Jr."], "correct": "Bono"}
+{"question": "Which actress played the lead role in 'The Queen' and won an Academy Award for her performance?", "responses": ["Helen Mirren", "Cate Blanchett", "Judi Dench", "Meryl Streep"], "correct": "Helen Mirren"}
+{"question": "Who is the protagonist of the anime series 'Death Note'?", "responses": ["L", "Light Yagami", "Ryuk", "Misa Amane"], "correct": "Light Yagami"}
+{"question": "In Naruto, who is the leader of Team 7?", "responses": ["Naruto Uzumaki", "Kakashi Hatake", "Sasuke Uchiha", "Sakura Haruno"], "correct": "Kakashi Hatake"}
+{"question": "What is the titanic weapon Eren Yeager can transform into in the 'Attacks on Titans' series?", "responses": ["Colossal Titan", "Armored Titan", "Femine Titan", "Attack Titan"], "correct": "Attack Titan"}
+{"question": "Who is the Straw Hat Pirates' doctor in the 'One Piece' series?", "responses": ["Tony Tony Chopper", "Roronoa Zoro", "Sanji", "Nami"], "correct": "Tony Tony Chopper"}
+{"question": "In the 'Bleach' series, what is the name of the high-level spiritual beings from the Soul Society?", "responses": ["Shinigami", "Quincy", "Hollows", "Arrancar"], "correct": "Shinigami"}
+{"question": "Which character in the musical 'My Fair Lady' says the famous line, 'The rain in Spain stays mainly in the plain'?", "responses": ["Henry Higgins", "Eliza Doolittle", "Alfred Doolittle", "Colonel Pickering"], "correct": "Henry Higgins"}
+{"question": "What is the longest-running musical in West End history?", "responses": ["The Phantom of the Opera", "Les Miserables", "Cats", "The Lion King"], "correct": "Les Miserables"}
+{"question": "What musical is based on a play by George Bernard Shaw?", "responses": ["Mamma Mia!", "Cats", "My Fair Lady", "Wicked"], "correct": "My Fair Lady"}
+{"question": "In the musical 'The Phantom of the Opera,' where does the Phantom live?", "responses": ["In the attic of the opera house", "Underneath the opera house", "In an apartment nearby", "In a secret room on the stage"], "correct": "Underneath the opera house"}
+{"question": "What is the name of the theater where 'The Phantom of the Opera' is set?", "responses": ["The Metropolitan Opera", "The Paris Opera House", "The Royal Opera House", "The Broadway Theatre"], "correct": "The Paris Opera House"}
+{"question": "The Great Barrier Reef is located in which body of water?", "responses": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Coral Sea"], "correct": "Coral Sea"}
+{"question": "Mount Everest is located in which mountain range?", "responses": ["Alps", "Andes", "Rocky Mountains", "Himalayas"], "correct": "Himalayas"}
+{"question": "What is the largest desert in the world?", "responses": ["Sahara", "Arabian", "Gobi", "Kalahari"], "correct": "Sahara"}
+{"question": "Who directed the film 'Inception'?", "responses": ["Christopher Nolan", "Steven Spielberg", "James Cameron", "Martin Scorsese"], "correct": "Christopher Nolan"}
+{"question": "Which actor played the character 'Jason Bourne' in the Bourne series?", "responses": ["Brad Pitt", "Robert Pattinson", "Matt Damon", "Tom Cruise"], "correct": "Matt Damon"}
+{"question": "Who won the Best Director award at the 2020 Academy Awards?", "responses": ["Quentin Tarantino", "Bong Joon Ho", "Martin Scorsese", "Sam Mendes"], "correct": "Bong Joon Ho"}
+{"question": "Who played the lead role in the film 'Black Panther'?", "responses": ["Chadwick Boseman", "Idris Elba", "Chris Evans", "Mark Ruffalo"], "correct": "Chadwick Boseman"}
+{"question": "In which video game is the city 'San Andreas' located?", "responses": ["Grand Theft Auto", "FIFA", "Call of Duty", "The Witcher"], "correct": "Grand Theft Auto"}
+{"question": "What is the name of the anti-terrorism squad in 'Counter-Strike'?", "responses": ["Swat Squad", "Counter Terrorists", "Anti-Strikers", "World Troopers"], "correct": "Counter Terrorists"}
+{"question": "In the game 'World of Warcraft', which faction includes the Night Elves race?", "responses": ["Alliance", "Horde", "Neutral", "Titan"], "correct": "Alliance"}
+{"question": "Who is the creator of the game 'Minecraft'?", "responses": ["Tim Sweeney", "Gabe Newell", "Markus Persson", "John Carmack"], "correct": "Markus Persson"}
+{"question": "'Tristram' is a central location in which video game series?", "responses": ["Warcraft", "Diablo", "Starcraft", "Elder Scrolls"], "correct": "Diablo"}
+{"question": "Which actor played the character 'Hannibal Lecter' in 'The Silence of the Lambs'?", "responses": ["Robert De Niro", "Jack Nicholson", "Anthony Hopkins", "Jeremy Irons"], "correct": "Anthony Hopkins"}
+{"question": "In which movie did Julia Roberts play a character named 'Vivian Ward'?", "responses": ["Runaway Bride", "The Pelican Brief", "Erin Brockovich", "Pretty Woman"], "correct": "Pretty Woman"}
+{"question": "What is the name of the spaceship in the 'Alien' franchise?", "responses": ["Enterprise", "Nostromo", "Prometheus", "Millennium Falcon"], "correct": "Nostromo"}
+{"question": "Who starred as 'Andy Dufresne' in the movie 'The Shawshank Redemption'?", "responses": ["Morgan Freeman", "Clint Eastwood", "Bruce Willis", "Tim Robbins"], "correct": "Tim Robbins"}
+{"question": "Who is the lead singer of the band Coldplay?", "responses": ["Chris Martin", "Adam Levine", "Brandon Flowers", "Bono"], "correct": "Chris Martin"}
+{"question": "Actress Angelina Jolie won an Academy Award for which film?", "responses": ["Maleficent", "Mr. & Mrs. Smith", "Salt", "Girl, Interrupted"], "correct": "Girl, Interrupted"}
+{"question": "Which artist famously sang 'Purple Rain'?", "responses": ["Michael Jackson", "Prince", "David Bowie", "Billy Joel"], "correct": "Prince"}
+{"question": "Who among the following actors portrayed the character Tony Stark in Marvel's Iron Man series?", "responses": ["Hugh Jackman", "Robert Downey Jr.", "Tom Cruise", "Leonardo DiCaprio"], "correct": "Robert Downey Jr."}
+{"question": "Which celebrity did Kanye West interrupt during the 2009 MTV Video Music Awards?", "responses": ["Britney Spears", "Taylor Swift", "Beyonc\u00e9", "Rihanna"], "correct": "Taylor Swift"}
+{"question": "What instrument did jazz musician Miles Davis play?", "responses": ["Piano", "Trumpet", "Guitar", "Saxophone"], "correct": "Trumpet"}
+{"question": "Who is the singer for the band Radiohead?", "responses": ["Chris Cornell", "Eddie Vedder", "Thom Yorke", "Dave Grohl"], "correct": "Thom Yorke"}
+{"question": "Which 1980s pop artist is known for the hit song 'Like a Virgin'?", "responses": ["Brooke Shields", "Cyndi Lauper", "Madonna", "Kim Wilde"], "correct": "Madonna"}
+{"question": "Which composer created the music for the 'Star Wars' movies?", "responses": ["Hans Zimmer", "John Williams", "James Horner", "Danny Elfman"], "correct": "John Williams"}
+{"question": "Who is known as the King of Pop?", "responses": ["Elvis Presley", "Michael Jackson", "Prince", "Frank Sinatra"], "correct": "Michael Jackson"}
+{"question": "Who wrote the song 'Imagine'?", "responses": ["Paul McCartney", "John Lennon", "Ringo Starr", "George Harrison"], "correct": "John Lennon"}
+{"question": "What is the name of Nirvana's debut album?", "responses": ["Nevermind", "In Utero", "Bleach", "MTV Unplugged in New York"], "correct": "Bleach"}
+{"question": "Which musical instrument did musician Miles Davis famously play?", "responses": ["Saxophone", "Piano", "Trumpet", "Drums"], "correct": "Trumpet"}
+{"question": "In the anime series 'My Hero Academia', what is the name of the school that trains aspiring heroes?", "responses": ["U.A. High School", "Hero Academy", "Tokyo Metropolitan Magic Technical College", "Shujin Academy"], "correct": "U.A. High School"}
+{"question": "In the manga 'Death Note', what is the name of the Shinigami who drops his Death Note into the human world?", "responses": ["Ryuk", "Rem", "Gelus", "Sidoh"], "correct": "Ryuk"}
+{"question": "What is the name of the main antagonist in the anime series 'Attack on Titan'?", "responses": ["Zeke Yeager", "Eren Yeager", "Mikasa Ackerman", "Reiner Braun"], "correct": "Zeke Yeager"}
+{"question": "In 'One Piece', which character is known as the 'Pirate King'?", "responses": ["Gol D. Roger", "Monkey D. Luffy", "Edward Newgate", "Shanks"], "correct": "Gol D. Roger"}
+{"question": "What is the alternate universe called in the anime series 'Sword Art Online'?", "responses": ["Aincrad", "Alfheim Online", "Gun Gale Online", "Underworld"], "correct": "Aincrad"}
+{"question": "What is the square root of 81?", "responses": ["9", "8", "10", "7"], "correct": "9"}
+{"question": "How many sides does a heptadecagon have?", "responses": ["16", "18", "17", "19"], "correct": "17"}
+{"question": "What is the sum of the interior angles of a pentagon?", "responses": ["540 degrees", "720 degrees", "360 degrees", "180 degrees"], "correct": "540 degrees"}
+{"question": "The number \u03c0 is most closely equal to which of the following?", "responses": ["2.71", "3.14", "1.61", "1.73"], "correct": "3.14"}
+{"question": "The tangent of 45 degrees is equal to?", "responses": ["1", "0", "Infinity", "Undefined"], "correct": "1"}
+{"question": "Which video game company created 'Super Mario Brothers'?", "responses": ["Atari", "Sega", "Nintendo", "Ubisoft"], "correct": "Nintendo"}
+{"question": "In the 'Call of Duty' series, what is the name of the special ops group Soap McTavish is part of?", "responses": ["Black Ops", "Task Force 141", "Ghosts", "Green Berets"], "correct": "Task Force 141"}
+{"question": "Which character is not part of 'Street Fighter' original characters?", "responses": ["Ryu", "Ken", "Chun-Li", "Lara Croft"], "correct": "Lara Croft"}
+{"question": "What is the subtitle of the third 'Max Payne' game?", "responses": ["A Bullet's Charm", "No Pain No Gain", "Max's Revenge", "A Dark and Twisted Night"], "correct": "A Dark and Twisted Night"}
+{"question": "In 'Legend of Zelda: Majora\u2019s Mask', how many days does Link have before the moon crashes into Termina?", "responses": ["3 days", "7 days", "5 days", "A week"], "correct": "3 days"}
+{"question": "Which game involves strategies and tactics to capture opponent\u2019s pieces on an 8\u00d78 square grid board?", "responses": ["Chess", "Scrabble", "Monopoly", "Cluedo"], "correct": "Chess"}
+{"question": "In the game of Monopoly, which card tells you that you've won second prize in a beauty contest?", "responses": ["Chance Card", "Community Chest Card", "Property Card", "Income Tax Card"], "correct": "Community Chest Card"}
+{"question": "In Scrabble, how many points is the letter Q worth?", "responses": ["5 points", "8 points", "10 points", "15 points"], "correct": "10 points"}
+{"question": "Which classic board game requires you to solve a murder mystery?", "responses": ["Cluedo", "Risk", "Scrabble", "Chess"], "correct": "Cluedo"}
+{"question": "In the game of Risk, how many territories are there?", "responses": ["32 territories", "36 territories", "42 territories", "48 territories"], "correct": "42 territories"}
+{"question": "Who was the first emperor of the Roman Empire?", "responses": ["Julius Caesar", "Augustus", "Constantine", "Marcus Aurelius"], "correct": "Augustus"}
+{"question": "Which historical event happened first?", "responses": ["The American Revolutionary War", "The French Revolution", "The Spanish Conquest of the Aztecs", "The Fall of the Roman Empire"], "correct": "The Spanish Conquest of the Aztecs"}
+{"question": "Which country dropped the first atomic bomb in history?", "responses": ["Germany", "China", "USA", "UK"], "correct": "USA"}
+{"question": "In which country were the first ever Winter Olympics held?", "responses": ["France", "Sweden", "United States", "Canada"], "correct": "France"}
+{"question": "Who holds the record for the most goals scored in a single season in the English Premier League?", "responses": ["Alan Shearer", "Thierry Henry", "Cristiano Ronaldo", "Mohamed Salah"], "correct": "Alan Shearer"}
+{"question": "Who was the first player to score a goal in World Cup history?", "responses": ["Pele", "David Beckham", "Luis Monti", "Lucien Laurent"], "correct": "Lucien Laurent"}
+{"question": "What country won the first ever Rugby Union World Cup in 1987?", "responses": ["Australia", "New Zealand", "South Africa", "England"], "correct": "New Zealand"}
+{"question": "In tennis, what is a 'bagel'?", "responses": ["A type of serve", "Winning a set 6-0", "A double fault", "A match without break points"], "correct": "Winning a set 6-0"}
+{"question": "Who is the creator of the cartoon show 'The Simpsons'?", "responses": ["Matt Roberts", "Matt Dillon", "Matt Groening", "Matt Smith"], "correct": "Matt Groening"}
+{"question": "What is the name of the little boy in the animation 'Toy Story'?", "responses": ["Andy", "Randy", "Mandy", "Sandy"], "correct": "Andy"}
+{"question": "In the cartoon 'The Flintstones', what is the name of Fred's best friend?", "responses": ["Barney Rubble", "George Jetson", "Dino", "Bam-Bam"], "correct": "Barney Rubble"}
+{"question": "Who is the main villain in the 'Scooby-Doo' series?", "responses": ["Scrappy Doo", "Freddy Krueger", "Dracula", "Ghost Clown"], "correct": "Ghost Clown"}
+{"question": "What is the name of the city where the 'Spongebob Squarepants' series takes place?", "responses": ["Bikini Atoll", "Bikini Bottom", "Bikini Top", "Bikini Island"], "correct": "Bikini Bottom"}
+{"question": "What is the name of the main character in 'The Legend of Zelda' series?", "responses": ["Pikachu", "Mario", "Link", "Zelda"], "correct": "Link"}
+{"question": "In the game 'Overwatch', which hero uses a bow and arrow?", "responses": ["Tracer", "Hanzo", "Reaper", "Genji"], "correct": "Hanzo"}
+{"question": "Which video game series is set in the fictional city 'Los Santos'?", "responses": ["Far Cry", "Grand Theft Auto", "Mafia", "Watch Dogs"], "correct": "Grand Theft Auto"}
+{"question": "In the 'Super Smash Bros.' series, which character is from the 'Metroid' series?", "responses": ["Captain Falcon", "Ridley", "Peach", "Fox"], "correct": "Ridley"}
+{"question": "In 'Resident Evil 3', what is the name of the main female protagonist?", "responses": ["Claire Redfield", "Jill Valentine", "Ada Wong", "Rebecca Chambers"], "correct": "Jill Valentine"}
+{"question": "Which character from the anime 'One Piece' holds the title of 'Pirate King'?", "responses": ["Monkey D. Luffy", "Gol D. Roger", "Portgas D. Ace", "Whitebeard"], "correct": "Gol D. Roger"}
+{"question": "What is the name of the elite group of soldiers led by Captain Levi in 'Attack on Titan'?", "responses": ["Free Corps", "Scouting Legion", "Special Operations Squad", "Guard Corps"], "correct": "Special Operations Squad"}
+{"question": "Who is the protagonist in 'My Hero Academia'?", "responses": ["Bakugo Katsuki", "Todoroki Shouto", "All Might", "Midoriya Izuku"], "correct": "Midoriya Izuku"}
+{"question": "Which member of Team 7 in 'Naruto' eventually becomes Hokage?", "responses": ["Sasuke Uchiha", "Sakura Haruno", "Naruto Uzumaki", "Kakashi Hatake"], "correct": "Naruto Uzumaki"}
+{"question": "What is the highest rank a Hunter can achieve in 'Hunter x Hunter'?", "responses": ["Master Hunter", "Triple Star Hunter", "Double Star Hunter", "Single Star Hunter"], "correct": "Triple Star Hunter"}
+{"question": "What event started the First World War?", "responses": ["Attack on Pearl Harbor", "Assassination of Archduke Franz Ferdinand", "Bombing of Hiroshima and Nagasaki", "Russian Revolution"], "correct": "Assassination of Archduke Franz Ferdinand"}
+{"question": "When was the Magna Carta signed?", "responses": ["1776", "1215", "1492", "1066"], "correct": "1215"}
+{"question": "Who was the British monarch during the American Revolutionary War?", "responses": ["Queen Victoria", "King George III", "King Henry VIII", "Queen Elizabeth II"], "correct": "King George III"}
+{"question": "What world event took place from 1939 to 1945?", "responses": ["Vietnam War", "Cold War", "World War I", "World War II"], "correct": "World War II"}
+{"question": "What is the derivative of 3x^2 + 4x - 2?", "responses": ["6x + 4", "6x - 2", "3x^2 + 4", "6x"], "correct": "6x + 4"}
+{"question": "Factorize the expression 2x^2 + 7x + 3.", "responses": ["2x(x + 3.5) + 1", "(2x + 1)(x + 3)", "(x + 2)(2x + 3)", "2x(x + 1.5) + 1"], "correct": "(2x + 1)(x + 3)"}
+{"question": "What is the integral of sinx dx from 0 to \u03c0?", "responses": ["-1", "1", "2", "0"], "correct": "2"}
+{"question": "If the sum of the squares of the roots of a quadratic equation ax^2 + bx + c=0 is 9, what's the value of b^2 - 4ac?", "responses": ["36", "18", "9", "-9"], "correct": "36"}
+{"question": "Which company created the first version of the Android Operating System?", "responses": ["Apple", "Microsoft", "Google", "Amazon"], "correct": "Google"}
+{"question": "What was the original purpose of the Fitbit gadget when it was first introduced in 2009?", "responses": ["Wrist watch", "Weight monitoring", "Activity tracker", "Sleep monitoring"], "correct": "Activity tracker"}
+{"question": "Which among these is not a type of drone?", "responses": ["Quadcopter", "Octocopter", "Dodecacopter", "Hexacopter"], "correct": "Dodecacopter"}
+{"question": "What does 'VR' stand for in the term 'VR headset'?", "responses": ["Virtual Reality", "Video Repo", "Visual Rapture", "Venue Resolution"], "correct": "Virtual Reality"}
+{"question": "What is the primary function of a Chromecast?", "responses": ["Internet browsing", "Gaming", "Online Shopping", "Streaming media"], "correct": "Streaming media"}
+{"question": "In what year was the critically acclaimed video game 'Halo: Combat Evolved' originally released?", "responses": ["2000", "2001", "2002", "2003"], "correct": "2001"}
+{"question": "Which of the following game series was the first to be developed by Rockstar Games?", "responses": ["Red Dead Redemption", "Max Payne", "Grand Theft Auto", "Bully"], "correct": "Grand Theft Auto"}
+{"question": "What genre is the video game \u2018The Legend of Zelda: Breath of the Wild\u2019 categorized under?", "responses": ["First-Person Shooter", "Platformer", "Rhythm Game", "Action-Adventure"], "correct": "Action-Adventure"}
+{"question": "What is the name of the primary villain in \u2018Super Mario Brothers\u2019 series?", "responses": ["Wario", "King Boo", "Bowser", "Ganondorf"], "correct": "Bowser"}
+{"question": "Nathan Drake is the main character in which video game series?", "responses": ["Assassin's Creed", "Uncharted", "Far Cry", "Tomb Raider"], "correct": "Uncharted"}
+{"question": "What house is Hermione Granger sorted into in the Harry Potter series?", "responses": ["Ravenclaw", "Slytherin", "Gryffindor", "Hufflepuff"], "correct": "Gryffindor"}
+{"question": "Who wrote the novel '1984'?", "responses": ["F. Scott Fitzgerald", "Aldous Huxley", "George Orwell", "Ray Bradbury"], "correct": "George Orwell"}
+{"question": "What's the name of the main character in 'The Catcher in the Rye'?", "responses": ["Nick Carraway", "Holden Caulfield", "Jay Gatsby", "Jack Dawson"], "correct": "Holden Caulfield"}
+{"question": "In 'The Lord of The Rings', who is the original owner of the 'One ring'?", "responses": ["Gandalf", "Frodo Baggins", "Bilbo Baggins", "Sauron"], "correct": "Sauron"}
+{"question": "Who directed the 1994 film 'Pulp Fiction'?", "responses": ["Quentin Tarantino", "Martin Scorsese", "Steven Spielberg", "Christopher Nolan"], "correct": "Quentin Tarantino"}
+{"question": "What is the name of the 1972 film that won the Academy Award for Best Picture, based on a novel by Mario Puzo?", "responses": ["The Godfather", "Raging Bull", "Goodfellas", "Scarface"], "correct": "The Godfather"}
+{"question": "Who played the role of Tony Stark in the Marvel Cinematic Universe?", "responses": ["Chris Evans", "Robert Downey Jr.", "Mark Ruffalo", "Chris Hemsworth"], "correct": "Robert Downey Jr."}
+{"question": "Which film did Heath Ledger win a posthumous Oscar for Best Supporting Actor?", "responses": ["The Dark Knight", "Brokeback Mountain", "A Knight's Tale", "10 Things I Hate About You"], "correct": "The Dark Knight"}
+{"question": "Which country does the film 'Parasite' originate from?", "responses": ["Japan", "China", "Korea", "Thailand"], "correct": "Korea"}
+{"question": "Which country has won the most World Cups in soccer?", "responses": ["Germany", "Argentina", "Brazil", "France"], "correct": "Brazil"}
+{"question": "How long is a professional basketball game, according to the NBA?", "responses": ["45 minutes", "60 minutes", "90 minutes", "48 minutes"], "correct": "48 minutes"}
+{"question": "In hockey, what is the term for a player scoring three times in a single game?", "responses": ["Triple shot", "Triple triumph", "Triple goal", "Hat trick"], "correct": "Hat trick"}
+{"question": "Who holds the world record for the 100m sprint in athletics?", "responses": ["Carl Lewis", "Usain Bolt", "Maurice Greene", "Justin Gatlin"], "correct": "Usain Bolt"}
+{"question": "Which sport uses a shuttlecock?", "responses": ["Tennis", "Badminton", "Table Tennis", "Squash"], "correct": "Badminton"}
+{"question": "Which video game features the character Master Chief?", "responses": ["FINAL FANTASY", "HALO", "GRAND THEFT AUTO", "THE WITCHER"], "correct": "HALO"}
+{"question": "What is the name of the place where Mario lives in his video game series?", "responses": ["MAGIC KINGDOM", "MUSHROOM KINGDOM", "GOTTA KINGDOM", "ENERGY KINGDOM"], "correct": "MUSHROOM KINGDOM"}
+{"question": "Which video game features a character named Link?", "responses": ["THE ELDER SCROLLS", "LEGEND OF ZELDA", "SONIC", "DRAGON AGE"], "correct": "LEGEND OF ZELDA"}
+{"question": "In the 'BioShock' series, where is the majority of the first game set?", "responses": ["PARIS", "RACCOON CITY", "RAPTURE", "NORMANDY"], "correct": "RAPTURE"}
+{"question": "In 'Call of Duty: Modern Warfare', which character is considered as the main protagonist?", "responses": ["CAPTAIN PRICE", "JOHN SOAP", "GHOST", "NIKOLAI"], "correct": "CAPTAIN PRICE"}
+{"question": "Which company created the first smartphone?", "responses": ["Apple", "Blackberry", "IBM", "Nokia"], "correct": "IBM"}
+{"question": "Which of the following gadgets uses e-ink technology?", "responses": ["Laptops", "Smart TVs", "Kindle e-Readers", "Digital Cameras"], "correct": "Kindle e-Readers"}
+{"question": "What was the name of the first successful personal computer?", "responses": ["Apple I", "IBM 5100", "Commodore PET", "Altair 8800"], "correct": "Altair 8800"}
+{"question": "What was the world\u2019s first commercially available webcam, released in 1994?", "responses": ["Logitech QuickCam", "Connectix QuickCam", "Cisco Webcam", "Philips Webcam"], "correct": "Connectix QuickCam"}
+{"question": "Who is Clark Kent's love interest in 'Superman' comics?", "responses": ["Lois Lane", "Selina Kyle", "Diana Prince", "Mary Jane Watson"], "correct": "Lois Lane"}
+{"question": "Which popular superhero team features characters like Hulk, Iron Man, and Captain America?", "responses": ["Justice League", "X-Men", "Avengers", "Fantastic Four"], "correct": "Avengers"}
+{"question": "Who created the 'Spider-Man' comic series?", "responses": ["Stan Lee and Steve Ditko", "Bob Kane and Bill Finger", "Jerry Siegel and Joe Shuster", "Charles M. Schulz"], "correct": "Stan Lee and Steve Ditko"}
+{"question": "In the 'X-Men' comic series, what is Wolverine\u2019s real name?", "responses": ["Bruce Wayne", "Peter Parker", "James Howlett", "Tony Stark"], "correct": "James Howlett"}
+{"question": "Which villain is the archnemesis of Batman in the DC universe?", "responses": ["Lex Luthor", "The Joker", "Magneto", "Doctor Doom"], "correct": "The Joker"}
+{"question": "Which chemical element has the symbol 'K'?", "responses": ["Krypton", "Potassium", "Calcium", "Kryptonite"], "correct": "Potassium"}
+{"question": "What country is the car manufacturer 'Volkswagen' based in?", "responses": ["USA", "France", "Germany", "Australia"], "correct": "Germany"}
+{"question": "Which company produced the first electric car?", "responses": ["Ford", "Tesla", "Nissan", "General Motors"], "correct": "General Motors"}
+{"question": "Which car is sometimes called 'The Bug'?", "responses": ["Volkswagen Beetle", "Mini Cooper", "Ford Mustang", "Toyota Corolla"], "correct": "Volkswagen Beetle"}
+{"question": "What is the world's best-selling hybrid car?", "responses": ["Chevrolet Volt", "Honda Civic Hybrid", "Toyota Prius", "Ford Fusion Hybrid"], "correct": "Toyota Prius"}
+{"question": "Which company invented the three-point seatbelt system?", "responses": ["Audi", "Volvo", "Mercedes-Benz", "BMW"], "correct": "Volvo"}
+{"question": "Which country is both the smallest and the oldest independent nation in the world?", "responses": ["San Marino", "Monaco", "Vatican City", "Liechtenstein"], "correct": "San Marino"}
+{"question": "Which city is known as the 'City of Canals'?", "responses": ["Amsterdam", "Venice", "Stockholm", "St. Petersburg"], "correct": "Venice"}
+{"question": "Where is the world's highest waterfall, Angel Falls, located?", "responses": ["Brazil", "Colombia", "Venezuela", "Argentina"], "correct": "Venezuela"}
+{"question": "Which mountain range stretches the length of the western coast of South America?", "responses": ["Rocky Mountains", "Great Dividing Range", "Andes Mountains", "Himalaya Mountains"], "correct": "Andes Mountains"}
+{"question": "Which animal is known for its distinctive black and white color?", "responses": ["Lion", "Polar Bear", "Zebra", "Elephant"], "correct": "Zebra"}
+{"question": "Which animal is considered the world's fastest land animal?", "responses": ["Cheetah", "Lion", "Elephant", "Kangaroo"], "correct": "Cheetah"}
+{"question": "Which bird is famous for its beautiful tail feathers?", "responses": ["Eagle", "Peacock", "Penguin", "Sparrow"], "correct": "Peacock"}
+{"question": "What is the largest living land animal?", "responses": ["Giraffe", "Elephant", "Rhino", "Hippopotamus"], "correct": "Elephant"}
+{"question": "Who is the creator of the comic book series 'The Walking Dead'?", "responses": ["Robert Kirkman", "Stan Lee", "Neil Gaiman", "Alan Moore"], "correct": "Robert Kirkman"}
+{"question": "What is the real name of the superhero 'The Flash'?", "responses": ["Bruce Wayne", "Peter Parker", "Barry Allen", "Clark Kent"], "correct": "Barry Allen"}
+{"question": "'Watchmen', a famous graphic novel, is published by which comic book company?", "responses": ["Marvel Comics", "DC Comics", "Image Comics", "Dark Horse Comics"], "correct": "DC Comics"}
+{"question": "Who is the arch-enemy of the superhero Spider-Man?", "responses": ["The Joker", "Lex Luthor", "Green Goblin", "Magneto"], "correct": "Green Goblin"}
+{"question": "What is the home planet of the comic book character Superman?", "responses": ["Mars", "Krypton", "Oa", "Asgard"], "correct": "Krypton"}
+{"question": "Who holds the record for the fastest 100m sprint?", "responses": ["Usain Bolt", "Tyson Gay", "Carl Lewis", "Yohan Blake"], "correct": "Usain Bolt"}
+{"question": "Which country won the FIFA World Cup in 2018?", "responses": ["Germany", "Argentina", "France", "Brazil"], "correct": "France"}
+{"question": "Who won the women's singles at the Wimbledon Championship in 2019?", "responses": ["Serena Williams", "Simona Halep", "Naomi Osaka", "Ashleigh Barty"], "correct": "Simona Halep"}
+{"question": "What does the term 'par' refer to in golf?", "responses": ["The number of attempts a golfer should make to get the ball into the hole", "The first shot in a hole", "The grass area where golf is played", "The maximum number of strokes a player can make in a game"], "correct": "The number of attempts a golfer should make to get the ball into the hole"}
+{"question": "Which country hosted the Olympics in 2000?", "responses": ["China", "USA", "Australia", "Brazil"], "correct": "Australia"}
+{"question": "In what year was the World Wide Web invented?", "responses": ["1989", "1991", "1993", "1995"], "correct": "1989"}
+{"question": "In which city is the headquarters of the United Nations situated?", "responses": ["Geneva", "New York", "Paris", "London"], "correct": "New York"}
+{"question": "Who painted 'Starry Night'?", "responses": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"], "correct": "Vincent van Gogh"}
+{"question": "What art movement is Salvador Dal\u00ed associated with?", "responses": ["Impressionism", "Cubism", "Surrealism", "Expressionism"], "correct": "Surrealism"}
+{"question": "Pablo Picasso is known for co-founding which art style?", "responses": ["Fauvism", "Impressionism", "Cubism", "Surrealism"], "correct": "Cubism"}
+{"question": "Where is the Louvre Museum located?", "responses": ["Berlin, Germany", "New York, USA", "Paris, France", "Rome, Italy"], "correct": "Paris, France"}
+{"question": "What is the art of creating figures or objects in three dimensions?", "responses": ["Sculpture", "Painting", "Printmaking", "Drawing"], "correct": "Sculpture"}
+{"question": "What are the primary colors in traditional color theory?", "responses": ["Red, Yellow, Blue", "Red, Green, Blue", "Orange, Green, Violet", "Black, White, Gray"], "correct": "Red, Yellow, Blue"}
+{"question": "What is the Japanese art of paper folding called?", "responses": ["Bonsai", "Origami", "Ikebana", "Sumi-e"], "correct": "Origami"}
+{"question": "What is the land speed record for a non-rocket powered car?", "responses": ["763.035 mph", "500.342 mph", "623.414 mph", "592.637 mph"], "correct": "763.035 mph"}
+{"question": "Which of these vehicles were first invented and patented in the 19th century?", "responses": ["Jet Ski", "Motorcycle", "Helicopter", "Snowmobile"], "correct": "Motorcycle"}
+{"question": "In which country was the Lamborghini founded?", "responses": ["United States", "Germany", "Italy", "France"], "correct": "Italy"}
+{"question": "Which automobile manufacturer was the first to produce more than 10 million vehicles per year?", "responses": ["Ford", "Toyota", "General Motors", "Volkswagen"], "correct": "Toyota"}
+{"question": "What is the full term for 4WD in automobile terminology?", "responses": ["4 Wheel Drive", "4 Wide Drive", "4 Wired Drive", "4 Way Drive"], "correct": "4 Wheel Drive"}
+{"question": "What is the derivative of x^3?", "responses": ["3x^2", "3x", "x^2", "6x"], "correct": "3x^2"}
+{"question": "Which theorem states that every non constant polynomial has at least one root in the complex number system?", "responses": ["Pythagorean theorem", "Binomial theorem", "Fundamental theorem of algebra", "Bayes theorem"], "correct": "Fundamental theorem of algebra"}
+{"question": "What is the value of Pi up to 2 decimal points?", "responses": ["2.14", "3.14", "1.57", "3.41"], "correct": "3.14"}
+{"question": "For a parallelogram, if one angle measures 80 degrees, what would be the measure of opposite angle?", "responses": ["100 degrees", "80 degrees", "90 degrees", "110 degrees"], "correct": "80 degrees"}
+{"question": "The polar representation of a complex number 'z' is given by r(cos\u03b8 + isin\u03b8). What is 'r' in this representation?", "responses": ["Real part of z", "Imaginary part of z", "Modulus of z", "Angle of z"], "correct": "Modulus of z"}
+{"question": "In which game does the character 'Link' first appear?", "responses": ["Super Mario Bros.", "The Legend of Zelda", "Mega Man", "Final Fantasy"], "correct": "The Legend of Zelda"}
+{"question": "Which of the following video game series has a game subtitled 'Brotherhood'?", "responses": ["Assassin's Creed", "Call of Duty", "Halo", "Grand Theft Auto"], "correct": "Assassin's Creed"}
+{"question": "Who is the developer of the 'God of War' series?", "responses": ["Rockstar Games", "Bethesda", "Santa Monica Studio", "EA Sports"], "correct": "Santa Monica Studio"}
+{"question": "In which year was the first 'Grand Theft Auto' game released?", "responses": ["1995", "1997", "2001", "2004"], "correct": "1997"}
+{"question": "What programming language was used to create the original 'Doom' game?", "responses": ["Python", "C++", "Java", "C"], "correct": "C"}
+{"question": "In the Marvel Universe, who is the king of Wakanda?", "responses": ["T'Challa", "Logan", "Scott Summers", "Stephen Strange"], "correct": "T'Challa"}
+{"question": "Who wields the magical hammer Mjolnir in the Marvel Universe?", "responses": ["Tony Stark", "Thor", "Bruce Banner", "Peter Quill"], "correct": "Thor"}
+{"question": "What superhero team is Wonder Woman a part of?", "responses": ["The Avengers", "The Fantastic Four", "The X-Men", "The Justice League"], "correct": "The Justice League"}
+{"question": "Who is the arch-enemy of Batman?", "responses": ["Green Goblin", "Doctor Doom", "The Joker", "Red Skull"], "correct": "The Joker"}
+{"question": "In what year was the video game 'Super Mario Bros.' released?", "responses": ["1980", "1985", "1990", "1995"], "correct": "1985"}
+{"question": "Who is the creator of the video game 'Minecraft'?", "responses": ["Todd Howard", "Markus Persson", "Hideo Kojima", "Sid Meier"], "correct": "Markus Persson"}
+{"question": "In which video game series would you come across Dragonborn?", "responses": ["The Elder Scrolls", "World of Warcraft", "Dark Souls", "Final Fantasy"], "correct": "The Elder Scrolls"}
+{"question": "What is the name of the virtual world in the game 'Second Life'?", "responses": ["Azeroth", "Matrix", "SimCity", "Grid"], "correct": "Grid"}
+{"question": "In which video game would you find the 'Master Sword'?", "responses": ["The Legend of Zelda", "Final Fantasy", "Dragon Age", "Fable"], "correct": "The Legend of Zelda"}
+{"question": "Who plays the role of Jon Snow in the TV series 'Game of Thrones'?", "responses": ["Kit Harrington", "Peter Dinklage", "Nikolaj Coster-Waldau", "Sean Bean"], "correct": "Kit Harrington"}
+{"question": "In the TV show 'Friends', what is the name of Ross and Monica's dog?", "responses": ["Marcel", "Bing", "Chandler", "Ross"], "correct": "Marcel"}
+{"question": "What is the ship's name in the series 'Star Trek: The Next Generation'?", "responses": ["Enterprise-D", "Millenium Falcon", "Discovery", "Voyager"], "correct": "Enterprise-D"}
+{"question": "What is the surname of the character Walter in the series 'Breaking Bad'?", "responses": ["White", "Pinkman", "Ehrmantraut", "Goodman"], "correct": "White"}
+{"question": "Who is the lead character in the TV series 'The Crown'?", "responses": ["Queen Elizabeth II", "Prince Philip", "Winston Churchill", "Margaret Thatcher"], "correct": "Queen Elizabeth II"}
+{"question": "In which war did the Battle of Gettysburg take place?", "responses": ["World War II", "The War of 1812", "The American Civil War", "The Spanish-American War"], "correct": "The American Civil War"}
+{"question": "Who was the last ruling monarch of the Hawaiian Islands?", "responses": ["King Kamehameha III", "Queen Lili\u02bbuokalani", "King Kal\u0101kaua", "Queen Ka\u02bbahumanu"], "correct": "Queen Lili\u02bbuokalani"}
+{"question": "What was the name of the ship on which the Pilgrims traveled to North America in 1620?", "responses": ["Santa Maria", "RMS Titanic", "Mayflower", "SS Normandie"], "correct": "Mayflower"}
+{"question": "Who was the first human to journey into outer space?", "responses": ["Neil Armstrong", "Yuri Gagarin", "Buzz Aldrin", "John Glenn"], "correct": "Yuri Gagarin"}
+{"question": "When did the Titanic sink?", "responses": ["April 15, 1912", "June 16, 1902", "March 17, 1911", "July 18, 1910"], "correct": "April 15, 1912"}
+{"question": "In what year was Picasso's 'Guernica' painted?", "responses": ["1935", "1937", "1942", "1948"], "correct": "1937"}
+{"question": "Which artist is famous for 'The Starry Night'?", "responses": ["Van Gogh", "Monet", "Pollock", "Kandinsky"], "correct": "Van Gogh"}
+{"question": "Which artist created the sculpture 'David'?", "responses": ["Donatello", "Michelangelo", "Rodin", "Degas"], "correct": "Michelangelo"}
+{"question": "Who is the main protagonist in the 'Attack on Titan' series?", "responses": ["Mikasa Ackerman", "Armin Arlert", "Eren Jeager", "Levi Ackerman"], "correct": "Eren Jeager"}
+{"question": "What is the name of Naruto Uzumaki's son in the series 'Boruto: Naruto Next Generations'?", "responses": ["Jiraiya", "Sasuke", "Himawari", "Boruto"], "correct": "Boruto"}
+{"question": "Which character is known as the 'Pirate Hunter' in the 'One Piece' series?", "responses": ["Monkey D. Luffy", "Roronoa Zoro", "Nami", "Sanji"], "correct": "Roronoa Zoro"}
+{"question": "Which character is not a member of the Phantom Troupe in 'Hunter x Hunter'?", "responses": ["Kurapika", "Hisoka", "Chrollo Lucilfer", "Feitan Portor"], "correct": "Kurapika"}
+{"question": "What is the main source of power for the martial artists in the 'Dragon Ball' series?", "responses": ["Spirit Energy", "Ki", "Chakra", "Nen"], "correct": "Ki"}
+{"question": "In the United States, how many years is a full term for a Senator?", "responses": ["2 years", "4 years", "6 years", "8 years"], "correct": "6 years"}
+{"question": "Who was president of the United States during the Civil War?", "responses": ["George Washington", "Abraham Lincoln", "Thomas Jefferson", "Franklin D. Roosevelt"], "correct": "Abraham Lincoln"}
+{"question": "What is the main responsibility of the judiciary branch in the U.S.?", "responses": ["Create laws", "Enforce laws", "Interpret laws", "None of the above"], "correct": "Interpret laws"}
+{"question": "What is the capital city of Australia?", "responses": ["Sydney", "Melbourne", "Brisbane", "Canberra"], "correct": "Canberra"}
+{"question": "Which of the following anime is not produced by Studio Ghibli?", "responses": ["Spirited Away", "My Neighbor Totoro", "Grave of the Fireflies", "Attack on Titan"], "correct": "Attack on Titan"}
+{"question": "Who is the protagonist of the anime 'Death Note'?", "responses": ["L", "Light Yagami", "Ryuuk", "Misa Amane"], "correct": "Light Yagami"}
+{"question": "What is the famous line of Jotaro Kujo in 'JoJo's Bizarre Adventure'?", "responses": ["It's over 9000!", "I am the bone of my sword.", "Yare Yare Daze", "Believe it"], "correct": "Yare Yare Daze"}
+{"question": "What is the name of the colossal humanoid creatures that first appeared in the anime 'Attack on Titan'?", "responses": ["Ninjas", "Shinigami", "Titans", "Demons"], "correct": "Titans"}
+{"question": "What is the highest grossing anime film of all time?", "responses": ["Your Name", "Spirited Away", "Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train", "Princess Mononoke"], "correct": "Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train"}
+{"question": "What is the art movement associated with Salvador Dali?", "responses": ["Impressionism", "Cubism", "Surrealism", "Expressionism"], "correct": "Surrealism"}
+{"question": "What famous French painter is known for his series of paintings of water lilies?", "responses": ["Claude Monet", "Edouard Manet", "Vincent Van Gogh", "Paul Gauguin"], "correct": "Claude Monet"}
+{"question": "Which artist created the public sculpture known as 'The Bean' in Chicago?", "responses": ["Anish Kapoor", "Richard Serra", "Jeff Koons", "Ai Weiwei"], "correct": "Anish Kapoor"}
+{"question": "What is the painting 'The Starry Night' depicting the view from the east-facing window of his asylum room at Saint-R\u00e9my-de-Provence?", "responses": ["Pablo Picasso", "Vincent Van Gogh", "Claude Monet", "Edvard Munch"], "correct": "Vincent Van Gogh"}
+{"question": "Which company manufactures the 'Civic' model of car?", "responses": ["Volvo", "Honda", "Ferrari", "Toyota"], "correct": "Honda"}
+{"question": "Which type of vehicle was the Ford Model T?", "responses": ["Motorcycle", "Truck", "Sedan", "Bicycle"], "correct": "Sedan"}
+{"question": "Which company manufactures the '911' model?", "responses": ["Fiat", "Mercedes", "Porsche", "BMW"], "correct": "Porsche"}
+{"question": "In which country is the automaker 'Ferrari' based?", "responses": ["Germany", "United States", "Italy", "France"], "correct": "Italy"}
+{"question": "Which company created the first commercial helicopter?", "responses": ["Boeing", "Sikorsky Aircraft Corporation", "Lockheed Martin", "Airbus"], "correct": "Sikorsky Aircraft Corporation"}
+{"question": "What is the real name of the actor known as 'The Rock'?", "responses": ["Dwayne Johnson", "Vin Diesel", "Will Smith", "John Cena"], "correct": "Dwayne Johnson"}
+{"question": "Which English actor is known for playing Loki in the Marvel Cinematic Universe?", "responses": ["Benedict Cumberbatch", "Tom Hardy", "Tom Hiddleston", "Robert Pattinson"], "correct": "Tom Hiddleston"}
+{"question": "Who won an Oscar for Best Actress in 2017 for the film 'La La Land'?", "responses": ["Emma Stone", "Natalie Portman", "Meryl Streep", "Jennifer Lawrence"], "correct": "Emma Stone"}
+{"question": "Who did Meghan Markle marry?", "responses": ["Prince William", "Prince Charles", "Prince Harry", "Prince Philip"], "correct": "Prince Harry"}
+{"question": "Which singer is known as the 'Material Girl'?", "responses": ["Madonna", "Britney Spears", "Christina Aguilera", "Taylor Swift"], "correct": "Madonna"}
+{"question": "Which artist is commonly known as the 'King of Pop'?", "responses": ["Michael Jackson", "Elvis Presley", "Bob Marley", "Madonna"], "correct": "Michael Jackson"}
+{"question": "Which rock band was known as 'The Fab Four'?", "responses": ["The Beatles", "The Rolling Stones", "Queen", "U2"], "correct": "The Beatles"}
+{"question": "Who performed the soundtrack for the movie 'Titanic'?", "responses": ["Celine Dion", "Whitney Houston", "Mariah Carey", "Cher"], "correct": "Celine Dion"}
+{"question": "Who was the lead vocalist of the rock band 'Queen'?", "responses": ["Freddie Mercury", "Roger Waters", "Sting", "Bono"], "correct": "Freddie Mercury"}
+{"question": "Which company developed the Android operating system?", "responses": ["Microsoft", "Apple", "Google", "Samsung"], "correct": "Google"}
+{"question": "Who is the manufacturer of the PlayStation gaming console?", "responses": ["Microsoft", "Nintendo", "Sony", "Atari"], "correct": "Sony"}
+{"question": "What year was the Amazon Kindle first released?", "responses": ["2005", "2007", "2009", "2011"], "correct": "2007"}
+{"question": "Which company produced the first laptop computer?", "responses": ["Apple", "IBM", "Hewlett-Packard", "Epson"], "correct": "Epson"}
+{"question": "Who is the husband of Queen Elizabeth II?", "responses": ["Prince William", "Prince Charles", "Prince Phillip", "Prince Harry"], "correct": "Prince Phillip"}
+{"question": "Which actor played Iron Man in the Marvel Cinematic Universe?", "responses": ["Chris Evans", "Tom Holland", "Robert Downey Jr.", "Chris Hemsworth"], "correct": "Robert Downey Jr."}
+{"question": "Who created the cartoon character Bugs Bunny?", "responses": ["Walt Disney", "Charles M. Schulz", "Warner Bros.", "Hanna-Barbera"], "correct": "Warner Bros."}
+{"question": "In the 'SpongeBob SquarePants' cartoon series, what is the name of SpongeBob's pet snail?", "responses": ["Gary", "Squidward", "Larry", "Patrick"], "correct": "Gary"}
+{"question": "What is the name of the princess in Disney's 'Aladdin'?", "responses": ["Jasmine", "Ariel", "Belle", "Pocahontas"], "correct": "Jasmine"}
+{"question": "Which cartoon character lives in a pineapple under the sea?", "responses": ["SpongeBob SquarePants", "Patrick Star", "Dora the Explorer", "Tommy Pickles"], "correct": "SpongeBob SquarePants"}
+{"question": "Who are the main rivals of Tom in the cartoon 'Tom and Jerry'?", "responses": ["Spike and Tyke", "Sylvester and Tweety", "Bugs Bunny and Daffy Duck", "Jerry and Spike"], "correct": "Jerry and Spike"}
+{"question": "How many bones does an adult human have?", "responses": ["206", "300", "250", "215"], "correct": "206"}
+{"question": "Which Element has the symbol K on the periodic table?", "responses": ["Potassium", "Krypton", "Kalcium", "Kelvin"], "correct": "Potassium"}
+{"question": "What does CPU stand for in computer terms?", "responses": ["Central Processing Unit", "Computer Processing Unit", "Central Performance Unit", "Conductive Power Unit"], "correct": "Central Processing Unit"}
+{"question": "Which company developed the first cell phone?", "responses": ["Nokia", "Motorola", "Samsung", "Apple"], "correct": "Motorola"}
+{"question": "Who is credited with creating the first tablet?", "responses": ["Microsoft", "Apple", "Samsung", "Amazon"], "correct": "Microsoft"}
+{"question": "What year was the first VR headset, the Oculus Rift, released?", "responses": ["2012", "2013", "2014", "2015"], "correct": "2016"}
+{"question": "Which company developed Android OS?", "responses": ["Samsung", "Apple", "Google", "Microsoft"], "correct": "Google"}
+{"question": "Which console did Nintendo release in 2017?", "responses": ["Wii U", "Nintendo 64", "Switch", "GameCube"], "correct": "Switch"}
+{"question": "What superhero team does Wolverine belong to?", "responses": ["Justice League", "The Avengers", "Fantastic Four", "X-Men"], "correct": "X-Men"}
+{"question": "In the DC Comics universe, who is the alter ego of the Flash?", "responses": ["Clark Kent", "Bruce Wayne", "Barry Allen", "Tony Stark"], "correct": "Barry Allen"}
+{"question": "Who is known as the 'Merc with a Mouth' in the Marvel universe?", "responses": ["Spider-Man", "Wolverine", "Deadpool", "Thor"], "correct": "Deadpool"}
+{"question": "What is the real name of the superhero Iron Man?", "responses": ["Steve Rogers", "Tony Stark", "Bruce Banner", "Peter Parker"], "correct": "Tony Stark"}
+{"question": "Which villain is known for being Batman's archenemy?", "responses": ["Loki", "Thanos", "Joker", "Green Goblin"], "correct": "Joker"}
+{"question": "Who is the protagonist in 'The Legend of Zelda' series?", "responses": ["Zelda", "Ganondorf", "Link", "Bowser"], "correct": "Link"}
+{"question": "In which year was the first 'Super Mario Bros.' game released?", "responses": ["1980", "1985", "1990", "1995"], "correct": "1985"}
+{"question": "What is the name of the city in 'Grand Theft Auto V'?", "responses": ["San Andreas", "Los Santos", "Vice City", "Liberty City"], "correct": "Los Santos"}
+{"question": "What is the name of the planet that the character in 'Metroid' series typically explores?", "responses": ["Zebes", "Krypton", "Dagobah", "Asgard"], "correct": "Zebes"}
+{"question": "What is the profession of the main character in 'Half-Life' series?", "responses": ["Lawyer", "Doctor", "Teacher", "Theoretical physicist"], "correct": "Theoretical physicist"}
+{"question": "Which country was the first to adapt democracy?", "responses": ["United States of America", "Roman Republic", "Canada", "Ancient Greece"], "correct": "Ancient Greece"}
+{"question": "Which political theory advocates for the abolition of government and establishment of a society based on voluntary cooperation?", "responses": ["Communism", "Fascism", "Anarchism", "Socialism"], "correct": "Anarchism"}
+{"question": "What does the term 'gerrymandering' refer to?", "responses": ["Limiting voting rights based on race", "Manipulation of electoral boundaries to favour one party", "Implementation of faulty voting machines", "Campaigning without registration"], "correct": "Manipulation of electoral boundaries to favour one party"}
+{"question": "Which president signed the Civil Rights Act into law in 1964?", "responses": ["John F. Kennedy", "Dwight D. Eisenhower", "Lyndon B. Johnson", "Richard Nixon"], "correct": "Lyndon B. Johnson"}
+{"question": "Who is the highest paid actress in Hollywood according to Forbes' 2020 list?", "responses": ["Scarlett Johansson", "Jennifer Aniston", "Sofia Vergara", "Angelina Jolie"], "correct": "Sofia Vergara"}
+{"question": "Which celebrity has the highest number of followers on Instagram as of 2020?", "responses": ["Selena Gomez", "Cristiano Ronaldo", "Dwayne 'The Rock' Johnson", "Ariana Grande"], "correct": "Cristiano Ronaldo"}
+{"question": "Who won the Best Actor Oscar at the 92nd Academy Awards in 2020?", "responses": ["Joaquin Phoenix", "Brad Pitt", "Leonardo DiCaprio", "Adam Driver"], "correct": "Joaquin Phoenix"}
+{"question": "Which artist has won the most Grammy Awards as of 2020?", "responses": ["Beyonce", "Paul McCartney", "Jay-Z", "Stevie Wonder"], "correct": "Beyonce"}
+{"question": "Who is the youngest person ever to be named as Time's Person of the Year?", "responses": ["Barack Obama", "Malala Yousafzai", "Mark Zuckerberg", "Greta Thunberg"], "correct": "Greta Thunberg"}
+{"question": "What is the main use of a fuel cell in vehicles?", "responses": ["To cool the vehicle", "To power electrics in the vehicle", "To provide propulsion", "To heat the vehicle"], "correct": "To provide propulsion"}
+{"question": "What type of fuel does a diesel engine use?", "responses": ["Regular Gasoline", "Diesel", "Propane", "Electricity"], "correct": "Diesel"}
+{"question": "What does the horsepower (HP) of a vehicle measure?", "responses": ["The size of the vehicle", "The speed of the vehicle", "The power of the vehicle's engine", "The fuel efficiency of the vehicle"], "correct": "The power of the vehicle's engine"}
+{"question": "What role does a vehicle's transmission play?", "responses": ["Power distribution to the wheels", "Cooling the engine", "Controlling the speed of the vehicle", "Fuel combustion"], "correct": "Power distribution to the wheels"}
+{"question": "What does ABS stand for in vehicles?", "responses": ["Average Breaking System", "Automatic Brake System", "Auxiliary Break System", "Anti-lock Braking System"], "correct": "Anti-lock Braking System"}
+{"question": "What does HTML stand for?", "responses": ["Host Text Markup Language", "Hyperlinks and Text Markup Language", "Hyper Text Markup Language", "Hierarchy Text Markup Language"], "correct": "Hyper Text Markup Language"}
+{"question": "What does CPU stand for?", "responses": ["Central Processing Unit", "Central Performance Unit", "Computer Processing Unit", "Central Power Unit"], "correct": "Central Processing Unit"}
+{"question": "Which language is used for styling the web pages?", "responses": ["HTML", "Java", "jQuery", "CSS"], "correct": "CSS"}
+{"question": "What does the 'www' stand for in website URLs?", "responses": ["Wide Web World", "World Wide Web", "Web World Wide", "Web Wide World"], "correct": "World Wide Web"}
+{"question": "In the game of Chess, which piece is only allowed to move diagonally?", "responses": ["Pawn", "Knight", "Bishop", "Rook"], "correct": "Bishop"}
+{"question": "What color do you need to win in the game 'Ticket to Ride'?", "responses": ["Red", "Green", "None, colors do not matter", "Blue"], "correct": "None, colors do not matter"}
+{"question": "How many tiles do players initially draw in 'Scrabble'?", "responses": ["5", "7", "8", "9"], "correct": "7"}
+{"question": "In the game 'Settlers of Catan', what resource is represented by the color grey?", "responses": ["Wheat", "Ore", "Brick", "Lumber"], "correct": "Ore"}
+{"question": "In 'Monopoly', which property is NOT part of the green color group?", "responses": ["Pennsylvania Avenue", "North Carolina Avenue", "Park Place", "Pacific Avenue"], "correct": "Park Place"}
+{"question": "Who composed the 'Moonlight Sonata'?", "responses": ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Franz Schubert", "Johann Sebastian Bach"], "correct": "Ludwig van Beethoven"}
+{"question": "Who is the lead singer of the rock band Queen?", "responses": ["Brian May", "Freddie Mercury", "Roger Taylor", "John Deacon"], "correct": "Freddie Mercury"}
+{"question": "What instrument does Yo-Yo Ma famously play?", "responses": ["Piano", "Violin", "Cello", "Flute"], "correct": "Cello"}
+{"question": "Who wrote the music for the Broadway show 'Hamilton'?", "responses": ["Lin-Manuel Miranda", "Andrew Lloyd Webber", "Stephen Sondheim", "Rodgers and Hammerstein"], "correct": "Lin-Manuel Miranda"}
+{"question": "In which country was composer Fr\u00e9d\u00e9ric Chopin born?", "responses": ["Germany", "Austria", "France", "Poland"], "correct": "Poland"}
+{"question": "Who was the first host of 'The Tonight Show'?", "responses": ["Johnny Carson", "Steve Allen", "Jay Leno", "Jimmy Fallon"], "correct": "Steve Allen"}
+{"question": "In 'Breaking Bad', what alias does Walter White use in the drug trade?", "responses": ["Ice Man", "Heisenberg", "Red", "Skinny Pete"], "correct": "Heisenberg"}
+{"question": "What is the name of Sherlock Holmes' landlady in the BBC series 'Sherlock'?", "responses": ["Mrs. Hudson", "Mrs. Watson", "Mrs. Doyle", "Mrs. Brown"], "correct": "Mrs. Hudson"}
+{"question": "What is the setting for the HBO series 'Game of Thrones'?", "responses": ["Middle Earth", "Cataclysm", "Westworld", "Westeros"], "correct": "Westeros"}
+{"question": "What is the name of Ross' pet monkey in the television show 'Friends'?", "responses": ["George", "Bobo", "Marcel", "Vincent"], "correct": "Marcel"}
+{"question": "Who directed the movie 'Inception'?", "responses": ["Christopher Nolan", "Steven Spielberg", "Quentin Tarantino", "Martin Scorsese"], "correct": "Christopher Nolan"}
+{"question": "Which movie won the Best Picture at the 89th Academy Awards in 2017?", "responses": ["Moonlight", "La La Land", "Manchester by the Sea", "Arrival"], "correct": "Moonlight"}
+{"question": "Who played the character of Hermione Granger in the Harry Potter movie series?", "responses": ["Emma Watson", "Emilia Clarke", "Emma Stone", "Emily Blunt"], "correct": "Emma Watson"}
+{"question": "What is the name of the fictional city where the movie 'The Dark Knight' is set?", "responses": ["Gotham City", "Metropolis", "Starling City", "Central City"], "correct": "Gotham City"}
+{"question": "Who is the highest-grossing actor of all time, as of 2021?", "responses": ["Robert Downey Jr.", "Tom Hanks", "Samuel L. Jackson", "Harrison Ford"], "correct": "Samuel L. Jackson"}
+{"question": "What country has the largest natural gas reserves?", "responses": ["Saudi Arabia", "United States", "Russia", "Iran"], "correct": "Russia"}
+{"question": "Which country is the biggest in terms of land area?", "responses": ["China", "Russia", "Canada", "United States"], "correct": "Russia"}
+{"question": "Which is the smallest country in the world?", "responses": ["Vatican City", "San Marino", "Liechtenstein", "Monaco"], "correct": "Vatican City"}
+{"question": "Which is the longest river in the world?", "responses": ["Nile", "Amazon", "Yangtze", "Mississippi"], "correct": "Nile"}
+{"question": "Which famous American musician was known as 'The King of Pop'?", "responses": ["Elvis Presley", "Michael Jackson", "Prince", "James Brown"], "correct": "Michael Jackson"}
+{"question": "In which city was the famous music festival 'Woodstock' held in 1969?", "responses": ["San Francisco", "New York", "Chicago", "Bethel"], "correct": "Bethel"}
+{"question": "Who is the drummer of the rock band 'The Beatles'?", "responses": ["John Lennon", "George Harrison", "Ringo Starr", "Paul McCartney"], "correct": "Ringo Starr"}
+{"question": "What is the formal process for selecting the President and Vice President of the United States?", "responses": ["Popular Vote", "Congressional Vote", "Electoral College", "Supreme Court Decision"], "correct": "Electoral College"}
+{"question": "Which political theory advocates for the protection of individual liberty and constitutional democracy?", "responses": ["Monarchism", "Totalitarianism", "Liberalism", "Fascism"], "correct": "Liberalism"}
+{"question": "In what year was the United Nations established?", "responses": ["1914", "1945", "1950", "1960"], "correct": "1945"}
+{"question": "What does the 'lobbying' in politics refer to?", "responses": ["Fundraising for political campaigns", "Spreading political propaganda", "Influencing the decisions of public officials", "Discussing policy in casual environments"], "correct": "Influencing the decisions of public officials"}
+{"question": "Who composed the music for the musical 'The Phantom of the Opera'?", "responses": ["Stephen Sondheim", "Andrew Lloyd Webber", "Richard Rodgers", "Leonard Bernstein"], "correct": "Andrew Lloyd Webber"}
+{"question": "Which famous musical is set during the French Revolution?", "responses": ["Les Miserables", "The Sound of Music", "Grease", "Mamma Mia"], "correct": "Les Miserables"}
+{"question": "In the musical 'Wicked', who is Elphaba?", "responses": ["The Good Witch of the North", "The Wicked Witch of the West", "The Wicked Witch of the East", "The Good Witch of the South"], "correct": "The Wicked Witch of the West"}
+{"question": "'Master of the House' is a song from which musical?", "responses": ["The Phantom of the Opera", "Les Miserables", "Chicago", "West Side Story"], "correct": "Les Miserables"}
+{"question": "Which of these musicals was not composed by Rodgers and Hammerstein?", "responses": ["Oklahoma!", "The Sound of Music", "West Side Story", "The King and I"], "correct": "West Side Story"}
+{"question": "Solve for x: 2x^2 - 3x - 2 = 0?", "responses": ["x = 2 or -1/2", "x = 1 or -2", "x = 2 or 1", "x = -2 or 1"], "correct": "x = 2 or -1/2"}
+{"question": "In geometry, how many degrees are there in a full circle?", "responses": ["360 degrees", "180 degrees", "90 degrees", "270 degrees"], "correct": "360 degrees"}
+{"question": "What is the derivative of y = 3x^3 ?", "responses": ["9x^2", "9x", "3x^2", "6x"], "correct": "9x^2"}
+{"question": "A function f(x) is defined as f(x) = x^2 - 6x + 9. What is the vertex of the parabola represented by this function?", "responses": ["(1, 4)", "(0, 0)", "(3, 0)", "(2, 3)"], "correct": "(3, 0)"}
+{"question": "Who played Tony Stark in the Marvel Cinematic Universe?", "responses": ["Chris Hemsworth", "Robert Downey Jr.", "Tom Holland", "Chris Evans"], "correct": "Robert Downey Jr."}
+{"question": "Who is the lead singer of the band 'Coldplay'?", "responses": ["Chris Martin", "Bono", "Mick Jagger", "Jon Bon Jovi"], "correct": "Chris Martin"}
+{"question": "Which actress played Hermione Granger in the Harry Potter series?", "responses": ["Emma Thomson", "Emma Stone", "Emma Watson", "Emma Roberts"], "correct": "Emma Watson"}
+{"question": "Who starred as Walter White in the TV Show 'Breaking Bad'?", "responses": ["Aaron Paul", "Bryan Cranston", "Dean Norris", "Bob Odenkirk"], "correct": "Bryan Cranston"}
+{"question": "Who played the character of the Joker in the movie 'The Dark Knight'?", "responses": ["Tom Hardy", "Christian Bale", "Heath Ledger", "Joaquin Phoenix"], "correct": "Heath Ledger"}
+{"question": "Who is the main character in the anime series 'Attack on Titan'?", "responses": ["Eren Yeager", "Mikasa Ackerman", "Levi Ackerman", "Armin Arlert"], "correct": "Eren Yeager"}
+{"question": "What is the highest rank in the 'One Punch Man' Hero Association?", "responses": ["S-Class", "A-Class", "B-Class", "C-Class"], "correct": "S-Class"}
+{"question": "Who is the first Hokage in the 'Naruto' series?", "responses": ["Sasuke Uchiha", "Tsunade Senju", "Hashirama Senju", "Hiruzen Sarutobi"], "correct": "Hashirama Senju"}
+{"question": "How does Edward Elric, in 'Fullmetal Alchemist', lose his right arm?", "responses": ["In a war", "In an alchemical experiment gone wrong", "During a fight with an enemy", "In an accident"], "correct": "In an alchemical experiment gone wrong"}
+{"question": "What is the main character's profession in 'Death Note'?", "responses": ["Law enforcement officer", "High school student", "Private detective", "University professor"], "correct": "High school student"}
+{"question": "What are the building blocks of all digital products and services?", "responses": ["Digital Numbers", "Digital Borders", "Digital Blocks", "Digital Particles"], "correct": "Digital Particles"}
+{"question": "What does GPU stand for?", "responses": ["Graphical Performance Unit", "Graph Processing Unit", "Graphical Processing Unit", "General Processing Unit"], "correct": "Graphical Processing Unit"}
+{"question": "What is the main function of operating system?", "responses": ["Managing hardware", "Running application software", "Security", "All of the above"], "correct": "All of the above"}
+{"question": "Who is considered the father of the computer?", "responses": ["John Vince", "Charles Babbage", "Alan Turing", "James Gosling"], "correct": "Charles Babbage"}
+{"question": "Which one is a high level language for general purpose programming?", "responses": ["C#", "Python", "Java", "All of the above"], "correct": "All of the above"}
+{"question": "What is the largest type of passenger vehicle?", "responses": ["Sports car", "Sedan", "Minivan", "Double-decker bus"], "correct": "Double-decker bus"}
+{"question": "What type of vehicle typically has two wheels and is often used for racing?", "responses": ["Car", "Truck", "Motorcycle", "Boat"], "correct": "Motorcycle"}
+{"question": "Which type of vehicles are frequently used to transport goods over long distances?", "responses": ["Car", "Bicycle", "Truck", "Motorcycle"], "correct": "Truck"}
+{"question": "Which of the following vehicles typically has the most seats?", "responses": ["Motorcycle", "Convertible", "Compact car", "Minibus"], "correct": "Minibus"}
+{"question": "What type of vehicle is powered by both an electric motor and a gas engine?", "responses": ["Electric car", "Hybrid vehicle", "Fuel cell vehicle", "Diesel vehicle"], "correct": "Hybrid vehicle"}
+{"question": "Who was the first superhero to be portrayed in comics?", "responses": ["Batman", "Superman", "Spiderman", "The Flash"], "correct": "Superman"}
+{"question": "What is the real name of Iron Man in Marvel comics?", "responses": ["Steve Rogers", "Tony Stark", "Bruce Banner", "Peter Parker"], "correct": "Tony Stark"}
+{"question": "Who created the comic book character 'Wolverine'?", "responses": ["Stan Lee", "Jack Kirby", "Roy Thomas", "Walt Disney"], "correct": "Roy Thomas"}
+{"question": "Which comic book series is Hellboy originally from?", "responses": ["DC Comics", "Marvel Comics", "Dark Horse Comics", "Image Comics"], "correct": "Dark Horse Comics"}
+{"question": "Who is the archenemy of the superhero 'Batman'?", "responses": ["Lex Luthor", "Joker", "Penguin", "Riddler"], "correct": "Joker"}
+{"question": "What is the maximum storage capacity of the iPhone 12 Pro?", "responses": ["128GB", "256GB", "512GB", "1TB"], "correct": "512GB"}
+{"question": "Who is the inventor of the iPod?", "responses": ["Steve Jobs", "Bill Gates", "Tony Fadell", "Elon Musk"], "correct": "Tony Fadell"}
+{"question": "What is the name of Samsung's foldable smartphone?", "responses": ["Samsung Galaxy Flex", "Samsung Galaxy Z Fold", "Samsung Galaxy F", "Samsung Galaxy S Fold"], "correct": "Samsung Galaxy Z Fold"}
+{"question": "What does the 'S' stand for in 'PlayStation'?", "responses": ["Sound", "System", "Service", "Screen"], "correct": "System"}
+{"question": "Which company manufactures Fitbit devices?", "responses": ["Samsung", "Apple", "Google", "Huawei"], "correct": "Google"}
+{"question": "Who is the Sailor Moon's real identity in the Anime series 'Sailor Moon'?", "responses": ["Mina Aino", "Chibiusa", "Ami Mizuno", "Usagi Tsukino"], "correct": "Usagi Tsukino"}
+{"question": "Which character in 'Naruto' is known as 'Copy Ninja'?", "responses": ["Kakashi Hatake", "Jiraiya", "Naruto Uzumaki", "Sasuke Uchiha"], "correct": "Kakashi Hatake"}
+{"question": "In 'One Piece', which Devil Fruit did Luffy eat?", "responses": ["Flare Flare Fruit", "Gum Gum Fruit", "Chop Chop Fruit", "Invisible Invisible Fruit"], "correct": "Gum Gum Fruit"}
+{"question": "What is the name of the demonic butler in 'Black Butler'?", "responses": ["Finnian", "Alois Trancy", "Ciel Phantomhive", "Sebastian Michaelis"], "correct": "Sebastian Michaelis"}
+{"question": "In 'Death Note', what is the real name of the character 'L'?", "responses": ["Light Yagami", "Soichiro Yagami", "Misa Amane", "L Lawliet"], "correct": "L Lawliet"}
+{"question": "What is the longest running musical in Broadway history?", "responses": ["Cats", "The Phantom of the Opera", "Chicago", "Les Mis\u00e9rables"], "correct": "The Phantom of the Opera"}
+{"question": "Which musical is based on the novel 'Wicked: The Life and Times of the Wicked Witch of the West' by Gregory Maguire?", "responses": ["Wicked", "Mary Poppins", "The Wizard of Oz", "Into the Woods"], "correct": "Wicked"}
+{"question": "What popular musical features the songs 'Memory', 'Jellicle Cats' and 'The Jellicle Ball'?", "responses": ["Cats", "West Side Story", "The Lion King", "Les Mis\u00e9rables"], "correct": "Cats"}
+{"question": "Which musical features a character named Jean Valjean?", "responses": ["West Side Story", "Les Mis\u00e9rables", "Chicago", "Into the Woods"], "correct": "Les Mis\u00e9rables"}
+{"question": "Which Avant-garde musical about East Village bohemians is based on Puccini's opera La Boh\u00e8me?", "responses": ["Rent", "Cats", "Grease", "The Sound of Music"], "correct": "Rent"}
+{"question": "Which is the largest planet in our solar system?", "responses": ["Earth", "Pluto", "Jupiter", "Venus"], "correct": "Jupiter"}
+{"question": "What element is 'Au' on the periodic table?", "responses": ["Iron", "Gold", "Silver", "Copper"], "correct": "Gold"}
+{"question": "Who is famous for developing the Theory of Relativity?", "responses": ["Isaac Newton", "Albert Einstein", "Thomas Edison", "Galileo Galilei"], "correct": "Albert Einstein"}
+{"question": "Which famous anime is set in a dystopian reality where giant creatures called 'Titans' terrorize humanity?", "responses": ["Naruto", "My Hero Academia", "Attack on Titan", "One Piece"], "correct": "Attack on Titan"}
+{"question": "In the anime 'Death Note', what is the name of the Shinigami who dropped his Death Note in the human world?", "responses": ["Ryuk", "Light", "Misa", "L"], "correct": "Ryuk"}
+{"question": "Who is the main character in 'One Punch Man' who can defeat any enemy with a single punch?", "responses": ["Mob", "Saitama", "Genos", "All Might"], "correct": "Saitama"}
+{"question": "'Demon Slayer: Kimetsu no Yaiba', revolves around the journey of which lead character?", "responses": ["Nezuko Kamado", "Tanjiro Kamado", "Zenitsu Agatsuma", "Inosuke Hashibira"], "correct": "Tanjiro Kamado"}
+{"question": "In the anime 'Naruto', what hidden village is Naruto Uzumaki from?", "responses": ["The Village Hidden in the Leaves", "The Village Hidden in the Sand", "The Village Hidden in the Clouds", "The Village Hidden in the Mist"], "correct": "The Village Hidden in the Leaves"}
+{"question": "What planet is known as the 'Red Planet'?", "responses": ["Jupiter", "Venus", "Mars", "Mercury"], "correct": "Mars"}
+{"question": "What is the currency of Japan?", "responses": ["Yen", "Dollar", "Rupee", "Euro"], "correct": "Yen"}
+{"question": "Where is the Great Barrier Reef?", "responses": ["Hawaii", "Australia", "Indonesia", "Brazil"], "correct": "Australia"}
+{"question": "What instrument does a drummer use?", "responses": ["Flute", "Piano", "Drums", "Violin"], "correct": "Drums"}
+{"question": "In the series 'Attack on Titan', which military division does Eren Yeager join?", "responses": ["The Garrison", "The Military Police Brigade", "The Scout Regiment", "The Royal Guard"], "correct": "The Scout Regiment"}
+{"question": "What is the name of the main character in the anime 'One Piece'?", "responses": ["Ruffy", "Naruto", "Izuku Midoriya", "Monkey D. Luffy"], "correct": "Monkey D. Luffy"}
