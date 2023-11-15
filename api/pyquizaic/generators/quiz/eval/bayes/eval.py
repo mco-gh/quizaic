@@ -90,12 +90,9 @@ valid_grades = []
 valid_labels = []
 errors = 0
 
-with open("transcript", "w") as f:
-    pass
-
 # Generate predictions.
 while assertions:
-    time.sleep(1)
+    time.sleep(3)
     batch_assertions = assertions[:BATCH_SIZE]
     batch_labels = labels[:BATCH_SIZE]
     assertions = assertions[BATCH_SIZE:]
@@ -113,22 +110,11 @@ while assertions:
 
     error = False
     if len(grades) != len(batch_assertions):
-        print(f"bad prediction: {grades=}")
-        error = True
+        print(f"bad prediction: {response=}")
     for i in grades:
         if i != "true" and i != "false":
             print(f"bad prediction: {i=}")
             error = True
-
-    with open("transcript", "a") as f:
-        f.write("\nASSERTIONS:\n" + "\n".join(batch_assertions))
-        f.write("\nRESPONSE:\n" + response.text)
-        f.write("\nLABELS:\n" + str(batch_labels))
-        f.write("\nQUESTIONS:\n" + str(questions))
-        if error:
-            f.write("\nERROR!\n")
-            errors += 1
-            continue
 
     #for i in range(len(grades)):
         #grades[i] = "false" if grades[i] == "true" else "true"
