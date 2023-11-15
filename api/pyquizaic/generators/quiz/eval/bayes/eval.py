@@ -25,23 +25,26 @@
 # limitations under the License.
 
 import json
+import os
 import random
 import sys
 import time
 import vertexai
+from openai import OpenAI
 from vertexai.language_models import TextGenerationModel
 
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
-eval = QuizgenFactory.get_gen("palm")
 
 prompt = """
 In one (and only one) word, are the following assertions true or false?
+Provide one response per assertion.
 
 """
 
-generator = sys.argv[1]
+evaluator = sys.argv[1]
+generator = sys.argv[2]
 
 num_shuffles = 10
 assertions = []
@@ -74,16 +77,33 @@ for i in range(num_shuffles):
     random.shuffle(zipped)
     assertions, labels, questions, quizzes = zip(*zipped)
 
-vertexai.init(project="quizaic", location="us-central1")
-parameters = {
-    "candidate_count": 1,
-    "max_output_tokens": 2048,
-    "temperature": 0.0,
-    "top_p": 0.0,
-    "top_k": 1,
-}
-
-model = TextGenerationModel.from_pretrained("text-bison")
+if evaluator == "gpt":
+    key = os.getenv("OPENAI_API_KEY")
+    client = OpenAI()
+    def predict(p):
+        completion = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {
+                    "role": "assistant",
+                    "content": p,
+                }
+            ],
+        )
+        return completion.choices[0].message.content
+elif evaluator == "palm":
+    vertexai.init(project="quizaic", location="us-central1")
+    parameters = {
+        "candidate_count": 1,
+        "max_output_tokens": 2048,
+        "temperature": 0.0,
+        "top_p": 0.0,
+        "top_k": 1,
+    }
+    model = TextGenerationModel.from_pretrained("text-bison")
+    def predict(p):
+        response = model.predict(p)
+        return response.text
 
 BATCH_SIZE = 10
 valid_grades = []
@@ -92,14 +112,15 @@ errors = 0
 
 # Generate predictions.
 while assertions:
+    time.sleep(1)
     batch_assertions = assertions[:BATCH_SIZE]
     batch_labels = labels[:BATCH_SIZE]
     assertions = assertions[BATCH_SIZE:]
     labels = labels[BATCH_SIZE:]
     p = prompt + "\n".join(batch_assertions) + "\n"
-    response = model.predict(p)
+    response = predict(p)
     grades = (
-        response.text.replace(",", "")
+        response.replace(",", "")
         .replace(".", "")
         .replace(" ", "")
         .replace("-", "")
@@ -108,12 +129,17 @@ while assertions:
     )
 
     if len(grades) != len(batch_assertions):
-        print(f"bad prediction: {grades=}, {response=}")
+        print(f"bad prediction: {len(grades)=}, {p=}, {response=}, {grades=}")
         errors += 1
         continue
+    for i in range(len(grades)):
+        if grades[i].startswith("true"):
+            grades[i] = "true"
+        elif grades[i].startswith("false"):
+            grades[i] = "false"
     for i in grades:
         if i != "true" and i != "false":
-            print(f"bad prediction: {grades=}, {response=}")
+            print(f"bad prediction: {p=}, {response=}, {grades=}")
             errors += 1
             continue
 
