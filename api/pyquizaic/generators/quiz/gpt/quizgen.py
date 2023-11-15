@@ -19,9 +19,10 @@ sys.path.append("../../../../")  # Needed for the main method to work in this cl
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 import os
-import openai
+from openai import OpenAI
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 
 file_path = os.path.join(os.path.dirname(__file__), f"../prompt.txt")
 with open(file_path, encoding="utf-8") as f:
@@ -61,13 +62,13 @@ class Quizgen(BaseQuizgen):
             language=language,
             temperature=temperature,
         )
-        completion = openai.ChatCompletion.create(
+        completion = client.chat.completions.create(
             model="gpt-4",
             messages=[
                 {
                     "role": "assistant",
                     "content": prompt2,
-                },
+                }
             ],
         )
         quiz = json.loads(completion.choices[0].message.content)
