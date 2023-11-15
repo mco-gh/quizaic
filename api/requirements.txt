@@ -1,4 +1,5 @@
 flask==2.3.3
+pandas
 #google-cloud-aiplatform==1.32.0
 google-cloud-aiplatform[preview]
 google-cloud-firestore==2.10.0

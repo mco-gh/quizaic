@@ -52,9 +52,9 @@ seen = {}
 f_questions = open(f"{generator}.questions.txt", "w")
 while count < num_questions:
     topic = random.choice(topics)
-    try:
-        quiz = gen.gen_quiz(topic, questions_per_quiz)
-        for question in quiz:
+    quiz = gen.gen_quiz(topic, questions_per_quiz)
+    for question in quiz:
+        try:
             q = question["question"]
             if q in seen:
                 print("skipping")
@@ -72,8 +72,8 @@ while count < num_questions:
                     label = "true"
                 qa.append(f"- Q: {q} A: {r}")
                 labels.append(label)
-    except err:
-        print(err)
+        except Exception as err:
+            print(f"{err=}, {question}")
 
 def write_keys(d, f):
     for key in d:
