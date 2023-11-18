@@ -143,8 +143,8 @@ while assertions:
             errors += 1
             continue
 
-    #for i in range(len(grades)):
-        #grades[i] = "false" if grades[i] == "true" else "true"
+    for i in range(len(grades)):
+        grades[i] = "false" if grades[i] == "true" else "true"
 
     valid_grades.extend(grades)
     valid_labels.extend(batch_labels)

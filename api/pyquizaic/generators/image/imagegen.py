@@ -22,8 +22,8 @@ PROMPT_TEMPLATE = "photorealistic image about {topic}"
 NEGATIVE_PROMPT = "blurry"
 
 # Temp workaround to b/310910799.
-from vertexai._model_garden import _model_garden_models
-ImageGenerationModel._LAUNCH_STAGE = _model_garden_models._SDK_PRIVATE_PREVIEW_LAUNCH_STAGE
+#from vertexai._model_garden import _model_garden_models
+#ImageGenerationModel._LAUNCH_STAGE = _model_garden_models._SDK_PRIVATE_PREVIEW_LAUNCH_STAGE
 
 class ImageGen:
     def __init__(self):
