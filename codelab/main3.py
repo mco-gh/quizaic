@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import request
-from vertexai.preview.language_models import TextGenerationModel
 import os
 
 # Default model settings
