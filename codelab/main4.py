@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
-from vertexai.preview.language_models import TextGenerationModel
+import vertexai
+from vertexai.language_models import TextGenerationModel
 import os
 
 # Default model settings
@@ -21,6 +22,9 @@ Generate a quiz according to the following specifications:
 - topic: {topic}
 - num_q: {num_q}
 - diff:  {diff}
+
+Output should be (only) an unquoted json array of objects with keys "question", "responses", and "correct".
+
 """
 
 
