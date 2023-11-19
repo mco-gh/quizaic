@@ -3,7 +3,7 @@ from flask import request
 import os
 
 app = Flask(__name__)  # Create a Flask object.
-PORT = os.environ.get("PORT")  # Get PORT setting from the environment.
+PORT = os.environ.get("PORT")  # Get PORT setting from environment.
 if not PORT:
     PORT = 8080
 
