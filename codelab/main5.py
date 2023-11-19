@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request
-from vertexai.preview.language_models import TextGenerationModel
+from flask import Response
+import vertexai
+from vertexai.language_models import TextGenerationModel
 import os
 
 # Default model settings
@@ -21,6 +23,9 @@ Generate a quiz according to the following specifications:
 - topic: {topic}
 - num_q: {num_q}
 - diff:  {diff}
+
+Output should be (only) an unquoted json array of objects with keys "question", "responses", and "correct".
+
 """
 
 
@@ -28,6 +33,17 @@ app = Flask(__name__)  # Create a Flask object.
 PORT = os.environ.get("PORT")  # Get PORT setting from the environment.
 if not PORT:
     PORT = 8080
+
+# Initialize Vertex AI access.
+vertexai.init()
+parameters = {
+    "candidate_count": 1,
+    "max_output_tokens": 1024,
+    "temperature": 0.2,
+    "top_p": 0.8,
+    "top_k": 40,
+}
+model = TextGenerationModel.from_pretrained("text-bison")
 
 
 # This function takes a dictionary, a name, and a default value.
@@ -50,9 +66,10 @@ def generate():
     num_q = check(args, "num_q", NUM_Q)
     diff = check(args, "diff", DIFF)
     prompt = PROMPT.format(topic=topic, num_q=num_q, diff=diff)
-    prediction = client.predict(prompt)
-    html = f"<h1>Prompt:</h1><br><pre>{prediction}</pre>"
-    return html
+    response = model.predict(prompt, **parameters)
+    print(f"Response from Model: {response.text}")
+    html = f"{response.text}"
+    return Response(html, mimetype="application/json")
 
 
 # This code ensures that your Flask app is started and listens for
