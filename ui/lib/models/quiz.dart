@@ -16,6 +16,7 @@ class Quiz {
   // provided by quiz creator (in order of appearance on create quiz form)
   String name;
   String generator;
+  String customGenUrl;
   String answerFormat;
   String topic;
   int numQuestions;
@@ -40,6 +41,7 @@ class Quiz {
     // provided by quiz creator (in order of appearance on create quiz form)
     required this.name,
     required this.generator,
+    required this.customGenUrl,
     required this.answerFormat,
     required this.topic,
     required this.numQuestions,
@@ -61,10 +63,12 @@ class Quiz {
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
+    print('json: $json');
     return Quiz(
       // provided by quiz creator (in order of appearance on create quiz form)
       name: json['name'],
       generator: json['generator'],
+      customGenUrl: json['customGenUrl'],
       answerFormat: json['answerFormat'],
       topic: json['topic'],
       numQuestions: json['numQuestions'],
@@ -89,6 +93,7 @@ class Quiz {
   Map toJson() => {
         'name': name,
         'generator': generator,
+        'customGenUrl': customGenUrl,
         'answerFormat': answerFormat,
         'topic': topic,
         'numQuestions': numQuestions,

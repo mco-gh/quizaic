@@ -48,6 +48,7 @@ resource_fields = {
         "creator",
         "name",
         "generator",
+        "customGenUrl",
         "answerFormat",
         "topic",
         "imageUrl",

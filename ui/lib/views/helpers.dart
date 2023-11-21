@@ -137,7 +137,12 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                     label: 'Meta Llama2 (70b)',
                     value: type,
                   )
-                else if (text != 'Quiz Generator')
+                else if (text == 'Quiz Generator')
+                  DropdownMenuEntry(
+                    label: 'Custom (provide a URL)',
+                    value: 'Custom',
+                  )
+                else
                   DropdownMenuEntry(
                     label: type,
                     value: type,
@@ -146,6 +151,17 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
       ),
     ),
   );
+}
+
+String? urlValidator(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Missing value';
+  }
+  if (!Uri.parse(value).isAbsolute) {
+    return 'Must be a properly formatted URL';
+  }
+  return null;
+  ;
 }
 
 String? intValidator(String? value) {

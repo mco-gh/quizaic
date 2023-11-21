@@ -98,6 +98,16 @@ class _CreatePageState extends State<CreatePage> {
       });
     }
 
+    String getCustomGenUrl() {
+      return appState.editQuizData.customGenUrl;
+    }
+
+    void setCustomGenUrl(value) {
+      return setState(() {
+        appState.editQuizData.customGenUrl = value.toString();
+      });
+    }
+
     List<String> getTopics() {
       for (var generator in appState.generators) {
         if (generator.name == appState.editQuizData.generator) {
@@ -191,6 +201,14 @@ class _CreatePageState extends State<CreatePage> {
     Widget quizGeneratorWidget = genQuizGeneratorWidget(theme, widget.readOnly,
         quiz, _generatorKey, appState, getGenerators, setGenerator);
 
+    Widget quizCustomGenUrlWidget = genTextFormField(
+      theme,
+      'Custom Generator URL',
+      urlValidator,
+      getCustomGenUrl,
+      setCustomGenUrl,
+    );
+
     Widget quizTopicWidget = genQuizTopicWidget(theme, widget.readOnly, quiz,
         _topicListKey, appState, getTopics, setTopic);
 
@@ -255,6 +273,12 @@ class _CreatePageState extends State<CreatePage> {
               // Quiz Generator
               quizGeneratorWidget,
               SizedBox(height: verticalSpaceHeight),
+
+              // Custom URL
+              if (appState.editQuizData.generator == 'Custom')
+                quizCustomGenUrlWidget,
+              if (appState.editQuizData.generator == 'Custom')
+                SizedBox(height: verticalSpaceHeight),
 
               // Quiz Topic
               if (getTopics().isNotEmpty || widget.readOnly)

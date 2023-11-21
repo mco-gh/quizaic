@@ -36,6 +36,7 @@ class EditQuizData {
   String name = 'My new quiz';
   String answerFormat = 'multiple choice';
   String generator = '';
+  String customGenUrl = 'Enter custom generator URL';
   String topic = 'Select generator to see topics';
   int numQuestions = 5;
   String difficulty = 'intermediate';
@@ -245,6 +246,7 @@ class MyAppState extends ChangeNotifier {
         editQuizData.name = quiz.name;
         editQuizData.answerFormat = quiz.answerFormat;
         editQuizData.generator = quiz.generator;
+        editQuizData.customGenUrl = quiz.customGenUrl;
         editQuizData.topic = quiz.topic;
         editQuizData.numQuestions = quiz.numQuestions;
         editQuizData.difficulty = quiz.difficulty;
@@ -481,6 +483,7 @@ class MyAppState extends ChangeNotifier {
     Quiz tmpQuiz = Quiz(
         name: editQuizData.name,
         generator: editQuizData.generator,
+        customGenUrl: editQuizData.customGenUrl,
         answerFormat: editQuizData.answerFormat,
         topic: editQuizData.topic,
         numQuestions: editQuizData.numQuestions,
@@ -496,6 +499,7 @@ class MyAppState extends ChangeNotifier {
 
     tmpQuiz.name = editQuizData.name;
     tmpQuiz.generator = editQuizData.generator;
+    tmpQuiz.customGenUrl = editQuizData.customGenUrl;
     tmpQuiz.answerFormat = editQuizData.answerFormat;
     tmpQuiz.topic = editQuizData.topic;
     tmpQuiz.numQuestions = editQuizData.numQuestions;
@@ -544,6 +548,7 @@ class MyAppState extends ChangeNotifier {
         String genUrl = '$apiUrl/quizzes/${quizData['id']}';
         String json = '''{
               "generator": "${editQuizData.generator}",
+              "customGenUrl": "${editQuizData.customGenUrl}",
               "topic": "${editQuizData.topic}",
               "numQuestions": ${editQuizData.numQuestions},
               "difficulty": "${editQuizData.difficulty}",
