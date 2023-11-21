@@ -34,7 +34,7 @@ from data import cloud_firestore as db
 from google.cloud import firestore
 from resources import auth, base
 from utils.logging import log
-from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
+erom pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 from pyquizaic.generators.image.imagegen import ImageGen
 
 IMAGES_BUCKET = os.getenv("IMAGES_BUCKET")
@@ -224,17 +224,25 @@ def patch(resource_kind, id, representation):
         if regen_content:
             print("generating new quiz content...")
             generator = representation["generator"]
+            custom_gen_url = None
+            if generator == "Custom":
+                custom_gen_url = representation["customGenUrl"]
             topic = representation["topic"]
             num_questions = int(representation["numQuestions"])
             # num_answers = int(representation["numAnswers"])
             num_answers = 4
             language = representation["language"]
             difficulty = representation["difficulty"]
-            gen = QuizgenFactory.get_gen(generator.lower())
-            print(
-                f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}"
-            )
-            quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
+            if custom_gen_url:
+                url = f"{custom_gen_url}/?topic={topic}&num_q={num_questions}&num_a={num_answers}&diff={difficulty}&lang={language}"
+                response = request.get(url) 
+                quiz = response.txt
+            else:
+                gen = QuizgenFactory.get_gen(generator.lower())
+                print(
+                    f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}"
+                )
+                quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
             print(json.dumps(quiz, indent=4))
             representation["qAndA"] = json.dumps(quiz)
 
