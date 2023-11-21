@@ -212,7 +212,7 @@ Widget genQuestionList(
         theme, 'Quiz generation appears to have failed for this quiz.');
   }
 
-  var qAndA = jsonDecode(getQuizContent() as String);
+  var qAndA = jsonDecode(quizContent);
   for (var question in qAndA) {
     getQuestion() {
       return question['question'];

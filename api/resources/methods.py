@@ -28,13 +28,14 @@ import hashlib
 import json
 import os
 import random
+import requests
 
 from main import g, request
 from data import cloud_firestore as db
 from google.cloud import firestore
 from resources import auth, base
 from utils.logging import log
-erom pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
+from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 from pyquizaic.generators.image.imagegen import ImageGen
 
 IMAGES_BUCKET = os.getenv("IMAGES_BUCKET")
@@ -235,14 +236,17 @@ def patch(resource_kind, id, representation):
             difficulty = representation["difficulty"]
             if custom_gen_url:
                 url = f"{custom_gen_url}/?topic={topic}&num_q={num_questions}&num_a={num_answers}&diff={difficulty}&lang={language}"
-                response = request.get(url) 
-                quiz = response.txt
+                print(f"{url=}")
+                response = requests.get(url) 
+                quiz = json.loads(response.text)
+                print(f"custom: {quiz=}")
             else:
                 gen = QuizgenFactory.get_gen(generator.lower())
                 print(
                     f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}"
                 )
                 quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
+                print(f"local: {quiz=}")
             print(json.dumps(quiz, indent=4))
             representation["qAndA"] = json.dumps(quiz)
 
