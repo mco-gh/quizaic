@@ -137,6 +137,11 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                     label: 'Meta Llama2 (70b)',
                     value: type,
                   )
+                else if (text == 'Quiz Generator' && type == 'Gemini-Pro')
+                  DropdownMenuEntry(
+                    label: 'Gemini Pro',
+                    value: type,
+                  )
                 else if (text == 'Quiz Generator')
                   DropdownMenuEntry(
                     label: 'Custom (provide a URL)',
@@ -213,6 +218,7 @@ Widget genQuestionList(
   }
 
   var qAndA = jsonDecode(quizContent);
+  print('qAndA: $qAndA');
   for (var question in qAndA) {
     getQuestion() {
       return question['question'];

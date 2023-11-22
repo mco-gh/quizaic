@@ -573,6 +573,18 @@
   },
   {
     "collection": "generators",
+    "id": "37d92f5b65a6441e97eb",
+    "data": {
+      "name": "Gemini-Pro",
+      "answerFormats": [
+        "multiple choice",
+        "free form"
+      ],
+      "topics": []
+    }
+  },
+  {
+    "collection": "generators",
     "id": "56d62f366516413e97eb",
     "data": {
       "name": "Llama2-7b",
