@@ -27,11 +27,13 @@
 import json
 import os
 import random
+import re
 import sys
 import time
 import vertexai
 from openai import OpenAI
 from vertexai.language_models import TextGenerationModel
+from google.cloud.aiplatform.private_preview.generative_models import GenerativeModel, Image
 
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
@@ -42,6 +44,10 @@ In one (and only one) word, are the following assertions true or false?
 Provide one response per assertion.
 
 """
+
+temp = 0.0
+top_p = 0.8
+top_k = 40
 
 evaluator = sys.argv[1]
 generator = sys.argv[2]
@@ -96,14 +102,26 @@ elif evaluator == "palm":
     parameters = {
         "candidate_count": 1,
         "max_output_tokens": 2048,
-        "temperature": 0.0,
-        "top_p": 0.0,
-        "top_k": 1,
+        "temperature": temp,
+        "top_p": top_p,
+        "top_k": top_k,
     }
     model = TextGenerationModel.from_pretrained("text-bison")
     def predict(p):
         response = model.predict(p)
         return response.text
+elif evaluator == "gemini":
+    vertexai.init(project="quizaic", location="us-central1")
+    model = GenerativeModel("gemini-pro")
+    def predict(p):
+        response = model.generate_content(
+            p, generation_config = {
+                "temperature": temp,
+                "top_k": top_k,
+                "top_p": top_p,
+            }
+        )
+        return response.candidates[0].content.parts[0].text
 
 BATCH_SIZE = 10
 valid_grades = []
@@ -119,17 +137,19 @@ while assertions:
     labels = labels[BATCH_SIZE:]
     p = prompt + "\n".join(batch_assertions) + "\n"
     response = predict(p)
-    grades = (
-        response.replace(",", "")
+    response = re.sub(r'\d', '', response)
+    response = (
+        response
+        .replace(",", "")
         .replace(".", "")
         .replace(" ", "")
         .replace("-", "")
         .lower()
-        .split()
     )
+    grades = response.split()
 
     if len(grades) != len(batch_assertions):
-        print(f"bad prediction: {len(grades)=}, {p=}, {response=}, {grades=}")
+        print(f"bad prediction: {len(grades)=}, {grades=}")
         errors += 1
         continue
     for i in range(len(grades)):

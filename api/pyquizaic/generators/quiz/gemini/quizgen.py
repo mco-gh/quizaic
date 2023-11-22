@@ -17,14 +17,17 @@ import json
 import os
 import random
 import re
-from vertexai.preview.language_models import TextGenerationModel
+import vertexai
+from google.cloud.aiplatform.private_preview.generative_models import GenerativeModel, Image
 
 import sys
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-MODEL = "text-bison"
+PROJECT_ID = "quizaic"
+REGION = "us-central1"
+MODEL = "gemini-pro"
 MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
@@ -32,8 +35,7 @@ TOP_K = 40
 
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
-        # This doesn't seem to be needed
-        # vertexai.init(project=project_id, location=region)
+        vertexai.init(project=PROJECT_ID, location=REGION)
         self.topics = set()
 
     def __str__(self):
@@ -52,18 +54,15 @@ class Quizgen(BaseQuizgen):
     def predict_llm(
         model, prompt, temperature, max_output_tokens, top_p, top_k, tuned_model=""
     ):
-        model = TextGenerationModel.from_pretrained(model)
-        if tuned_model:
-            model = model.get_tuned_model(tuned_model)
-        #print(f"{temperature=}, {prompt=}")
-        response = model.predict(
-            prompt,
-            temperature=temperature,
-            max_output_tokens=max_output_tokens,
-            top_k=top_k,
-            top_p=top_p,
+        model = GenerativeModel(model)
+        response = model.generate_content(
+            prompt, generation_config = {
+                "temperature": temperature,
+                "top_k": top_k,
+                "top_p": top_p,
+            }
         )
-        return response.text
+        return response
 
     # Load quiz from a quiz_<topic>.json file, mainly for testing
     @staticmethod
@@ -101,6 +100,8 @@ class Quizgen(BaseQuizgen):
         prediction = self.predict_llm(
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
         )
+        prediction = prediction.candidates[0].content.parts[0].text
+        print(f"{type(prediction)=}, {prediction=}")
         prediction = prediction.strip()
         if prediction[0:7].lower() == "```json":
             prediction = prediction[7:]
@@ -108,8 +109,8 @@ class Quizgen(BaseQuizgen):
             prediction = prediction[8:]
         if prediction[-3:].lower() == "```":
             prediction = prediction[:-3]
-        #print(f"{prediction=}")
         quiz = json.loads(prediction)
+        print(f"{quiz=}")
         # Make sure the correct answer appears randomly in responses
         for i in quiz:
             random.shuffle(i["responses"])
