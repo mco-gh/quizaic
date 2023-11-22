@@ -28,6 +28,7 @@ class QuizgenFactory:
         "gpt": None,
         "llama2-7b": None,
         "llama2-70b": None,
+        "gemini-pro": None,
     }
 
     @staticmethod
