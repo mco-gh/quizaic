@@ -39,7 +39,7 @@ class Quizgen(BaseQuizgen):
         self.topics = set()
 
     def __str__(self):
-        return "gemini quiz generator"
+        return "gemini-pro quiz generator"
 
     def get_topics(self, num=None):
         return self.topics
