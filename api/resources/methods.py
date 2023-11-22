@@ -115,7 +115,7 @@ def list(resource_kind):
         email = g.get("verified_email", None)
         if not auth.user_is_admin(email):
             # remove GPT and Jeopardy from generator list if user is not an admin
-            restricted = ("Llama2-70b", "GPT", "Jeopardy")
+            restricted = ("Llama2-70b", "GPT", "Jeopardy", "Gemini-Pro")
             results = [gen for gen in results if gen["name"] not in restricted]
 
     return json.dumps(results), 200, {"Content-Type": "application/json"}
