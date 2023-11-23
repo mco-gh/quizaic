@@ -41,7 +41,7 @@ generator = sys.argv[1]
 gen = QuizgenFactory.get_gen(generator)
 
 num_questions = 1000
-questions_per_quiz = 5
+questions_per_quiz = 10
 count = 0
 qa = []
 labels = []

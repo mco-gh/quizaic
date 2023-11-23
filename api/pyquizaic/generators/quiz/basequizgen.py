@@ -21,7 +21,7 @@ class BaseQuizgen(ABC):
     NUM_ANSWERS = 4
     DIFFICULTY = "intermediate"
     LANGUAGE = "English"
-    TEMPERATURE = 0.6
+    TEMPERATURE = 1.0
 
     def __init__(self, config=None):
         pass
