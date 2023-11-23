@@ -55,7 +55,7 @@ while count < num_questions:
     try:
         quiz = gen.gen_quiz(topic, questions_per_quiz)
     except Exception as err:
-        print(f"{err=}, {quiz=}")
+        print(f"{err=}")
         continue
     for question in quiz:
         q = question["question"]
