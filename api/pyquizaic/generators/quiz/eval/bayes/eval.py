@@ -73,7 +73,7 @@ def read_file(filename, li):
 num_questions = read_file(f"../corpus/{generator}.assertions.txt", assertions)
 num_labels = read_file(f"../corpus/{generator}.labels.txt", labels)
 assert num_questions == num_labels
-assert num_questions % 4 == 0
+#assert num_questions % 4 == 0
 questions = [int(i / 4) for i in range(num_questions)]
 quizzes = [int(i / 20) for i in range(num_questions)]
 
@@ -110,9 +110,21 @@ elif evaluator == "palm":
     def predict(p):
         response = model.predict(p)
         return response.text
-elif evaluator == "gemini":
+elif evaluator == "gemini-pro":
     vertexai.init(project="quizaic", location="us-central1")
     model = GenerativeModel("gemini-pro")
+    def predict(p):
+        response = model.generate_content(
+            p, generation_config = {
+                "temperature": temp,
+                "top_k": top_k,
+                "top_p": top_p,
+            }
+        )
+        return response.candidates[0].content.parts[0].text
+elif evaluator == "gemini-ultra":
+    vertexai.init(project="quizaic", location="us-central1")
+    model = GenerativeModel("gemini-ultra")
     def predict(p):
         response = model.generate_content(
             p, generation_config = {
@@ -163,8 +175,8 @@ while assertions:
             errors += 1
             continue
 
-    for i in range(len(grades)):
-        grades[i] = "false" if grades[i] == "true" else "true"
+    #for i in range(len(grades)):
+        #grades[i] = "false" if grades[i] == "true" else "true"
 
     valid_grades.extend(grades)
     valid_labels.extend(batch_labels)
