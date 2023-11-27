@@ -29,7 +29,7 @@ fi
 if [ "$1" = "ui" ]
 then
     cd ui
-    export API_URL=`gcloud -q run services describe api --platform managed --region us-central1 --format 'value(status.url)'`
+    export API_URL=`gcloud -q run services describe api --platform managed --region ${REGION} --format 'value(status.url)'`
     if [ "$API_URL" = "" ]
     then
         echo "Can't find url for api service"
