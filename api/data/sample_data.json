@@ -585,6 +585,18 @@
   },
   {
     "collection": "generators",
+    "id": "38d93f5b75ab441e67eb",
+    "data": {
+      "name": "Gemini-Ultra",
+      "answerFormats": [
+        "multiple choice",
+        "free form"
+      ],
+      "topics": []
+    }
+  },
+  {
+    "collection": "generators",
     "id": "56d62f366516413e97eb",
     "data": {
       "name": "Llama2-7b",

@@ -99,26 +99,26 @@ def list(resource_kind):
 
         # Unused filtering of quizzes owned by user.
         # This will be done on the client side, controlled by a ui option.
-        #hashed_email = get_hashed_email()
-        #email = g.get("verified_email", None)
-        #print(f"{email=}, {hashed_email=}")
-        #if auth.user_is_admin(email):
-            #print("admin user gets to see all quizzes")
-            #results = db.list(resource_kind, resource_fields[resource_kind])
-        #else:
-            #print("regular user sees public quizzes and their own quizzes")
-            #results = db.list_matching(resource_kind, resource_fields[resource_kind], "creator", hashed_email)
-            #public_quizzes = db.list_matching(resource_kind, resource_fields[resource_kind], "public", True)
-            #for i in public_quizzes:
-                #if i not in results:
-                    #results.append(i)
+        # hashed_email = get_hashed_email()
+        # email = g.get("verified_email", None)
+        # print(f"{email=}, {hashed_email=}")
+        # if auth.user_is_admin(email):
+        # print("admin user gets to see all quizzes")
+        # results = db.list(resource_kind, resource_fields[resource_kind])
+        # else:
+        # print("regular user sees public quizzes and their own quizzes")
+        # results = db.list_matching(resource_kind, resource_fields[resource_kind], "creator", hashed_email)
+        # public_quizzes = db.list_matching(resource_kind, resource_fields[resource_kind], "public", True)
+        # for i in public_quizzes:
+        # if i not in results:
+        # results.append(i)
 
     if resource_kind == "generators":
         results = db.list(resource_kind, resource_fields[resource_kind])
         email = g.get("verified_email", None)
         if not auth.user_is_admin(email):
             # remove GPT and Jeopardy from generator list if user is not an admin
-            restricted = ("Llama2-70b", "GPT", "Jeopardy", "Gemini-Pro")
+            restricted = ("Llama2-70b", "GPT", "Jeopardy", "Gemini-Pro", "Gemini-Ultra")
             results = [gen for gen in results if gen["name"] not in restricted]
 
     return json.dumps(results), 200, {"Content-Type": "application/json"}
@@ -240,7 +240,7 @@ def patch(resource_kind, id, representation):
             if custom_gen_url:
                 url = f"{custom_gen_url}/?topic={topic}&num_q={num_questions}&num_a={num_answers}&diff={difficulty}&lang={language}"
                 print(f"{url=}")
-                response = requests.get(url) 
+                response = requests.get(url)
                 quiz = json.loads(response.text)
                 print(f"custom: {quiz=}")
             else:
@@ -248,7 +248,9 @@ def patch(resource_kind, id, representation):
                 print(
                     f"{type(num_questions)=}, {num_questions=}, {type(num_answers)=}, {num_answers=}"
                 )
-                quiz = gen.gen_quiz(topic, num_questions, num_answers, difficulty, language)
+                quiz = gen.gen_quiz(
+                    topic, num_questions, num_answers, difficulty, language
+                )
                 print(f"local: {quiz=}")
             print(json.dumps(quiz, indent=4))
             representation["qAndA"] = json.dumps(quiz)

@@ -142,6 +142,11 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                     label: 'Gemini Pro',
                     value: type,
                   )
+                else if (text == 'Quiz Generator' && type == 'Gemini-Ultra')
+                  DropdownMenuEntry(
+                    label: 'Gemini Ultra',
+                    value: type,
+                  )
                 else if (text == 'Quiz Generator')
                   DropdownMenuEntry(
                     label: 'Custom (provide a URL)',

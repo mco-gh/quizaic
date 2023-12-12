@@ -132,7 +132,7 @@ class MyAppState extends ChangeNotifier {
   int selectedPageIndex = 0;
   bool sessionFound = false;
   bool revealed = false;
-  bool myQuizzesOnly = false;
+  bool myQuizzesOnly = true;
 
   List<Quiz> quizzes = [];
   List<Generator> generators = [];
