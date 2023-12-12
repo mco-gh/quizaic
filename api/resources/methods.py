@@ -58,6 +58,7 @@ resource_fields = {
         "language",
         "qAndA",
         "runCount",
+        "public",
     ],
     "sessions": [
         "quizId",
@@ -93,25 +94,27 @@ def list(resource_kind):
     if not auth.allowed("GET", resource_kind):
         return "Forbidden", 403
 
-    # if resource_kind == "quizzes":
-    # hashed_email = get_hashed_email()
-    # email = g.get("verified_email", None)
-    # print(f"email: {email=}")
-    # if auth.user_is_admin(email):
-    # print("admin user gets to see all quizzes")
-    # results = db.list(resource_kind, resource_fields[resource_kind])
-    # else:
-    # print("regular user sees public quizzes and their own quizzes")
-    # results1 = db.list_matching(resource_kind, resource_fields[resource_kind],
-    # "creator", hashed_email)
-    # results2 = db.list_matching(resource_kind, resource_fields[resource_kind],
-    # "public", True)
-    # results = results1 + results2
-
-    else:
+    if resource_kind == "quizzes":
         results = db.list(resource_kind, resource_fields[resource_kind])
 
+        # Unused filtering of quizzes owned by user.
+        # This will be done on the client side, controlled by a ui option.
+        #hashed_email = get_hashed_email()
+        #email = g.get("verified_email", None)
+        #print(f"{email=}, {hashed_email=}")
+        #if auth.user_is_admin(email):
+            #print("admin user gets to see all quizzes")
+            #results = db.list(resource_kind, resource_fields[resource_kind])
+        #else:
+            #print("regular user sees public quizzes and their own quizzes")
+            #results = db.list_matching(resource_kind, resource_fields[resource_kind], "creator", hashed_email)
+            #public_quizzes = db.list_matching(resource_kind, resource_fields[resource_kind], "public", True)
+            #for i in public_quizzes:
+                #if i not in results:
+                    #results.append(i)
+
     if resource_kind == "generators":
+        results = db.list(resource_kind, resource_fields[resource_kind])
         email = g.get("verified_email", None)
         if not auth.user_is_admin(email):
             # remove GPT and Jeopardy from generator list if user is not an admin
