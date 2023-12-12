@@ -63,7 +63,7 @@ class Quiz {
   });
 
   factory Quiz.fromJson(Map<String, dynamic> json) {
-    print('json: $json');
+    //print('json: $json');
     return Quiz(
       // provided by quiz creator (in order of appearance on create quiz form)
       name: json['name'],

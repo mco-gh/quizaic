@@ -27,7 +27,8 @@ import 'dart:math';
 
 class UserData {
   String name = '';
-  String hashedHmail = '';
+  String email = '';
+  String hashedEmail = '';
   String photoUrl = '';
   String idToken = '';
 }
@@ -131,6 +132,7 @@ class MyAppState extends ChangeNotifier {
   int selectedPageIndex = 0;
   bool sessionFound = false;
   bool revealed = false;
+  bool myQuizzesOnly = false;
 
   List<Quiz> quizzes = [];
   List<Generator> generators = [];

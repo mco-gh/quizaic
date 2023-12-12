@@ -27,6 +27,8 @@ import 'package:quizaic/const.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/views/quiz.dart';
 import 'package:quizaic/views/welcome.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -232,6 +234,21 @@ class HomePageScaffold extends StatelessWidget {
               user.getIdTokenResult().then((result) {
                 print('home page setting idToken');
                 appState.userData.idToken = result.token as String;
+                if (user.photoURL != null) {
+                  print('home page setting photoUrl');
+                  appState.userData.photoUrl = user.photoURL as String;
+                }
+                if (user.displayName != null) {
+                  print('home page setting displayName');
+                  appState.userData.name = user.displayName as String;
+                }
+                if (user.email != null) {
+                  print('home page setting email and hashedEmail');
+                  appState.userData.email = user.email as String;
+                  var data = utf8.encode('${user.email}'); // data being hashed
+                  var hashedEmail = sha256.convert(data).toString();
+                  appState.userData.hashedEmail = hashedEmail;
+                }
               });
             }
             if ((user != null) && (user.photoURL != null)) {

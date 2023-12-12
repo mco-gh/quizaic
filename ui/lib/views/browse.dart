@@ -92,6 +92,24 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Row(
+                      children: [
+                        genText(theme, "All quizzes"),
+                        Switch(
+                            // This bool value toggles the switch.
+                            value: appState.myQuizzesOnly,
+                            activeColor: Colors.red,
+                            onChanged: (bool value) {
+                              // This is called when the user toggles the switch.
+                              setState(() {
+                                appState.myQuizzesOnly = value;
+                                print(
+                                    "appState.myQuizzesOnly: ${appState.myQuizzesOnly}");
+                              });
+                            }),
+                        genText(theme, "My Quizzes"),
+                      ],
+                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
@@ -105,161 +123,175 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                             columnGap: 15,
                             children: [
                               for (var quiz in appState.quizzes)
-                                Card(
-                                  elevation: 5,
-                                  //color: Color.fromRGBO(246, 141, 45, 1),
-                                  color: theme.colorScheme.secondaryContainer,
-                                  shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 2,
-                                        color: Colors.orange,
-                                      ),
-                                      borderRadius: BorderRadius.circular(16)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(formPadding),
-                                    child: Column(
-                                      children: [
-                                        genText(theme, quiz.name,
-                                            size: 22, weight: FontWeight.bold),
-                                        SizedBox(height: 5),
-                                        if (quiz.imageUrl ==
-                                            'assets/assets/images/quizaic_logo.png')
-                                          SizedBox(
-                                            height: 150,
-                                            child: Center(
-                                              child: CircularProgressIndicator(
-                                                value: controller.value,
-                                                semanticsLabel:
-                                                    'Circular progress indicator',
+                                if (!appState.myQuizzesOnly ||
+                                    quiz.creator ==
+                                        appState.userData.hashedEmail)
+                                  Card(
+                                    elevation: 5,
+                                    //color: Color.fromRGBO(246, 141, 45, 1),
+                                    color: theme.colorScheme.secondaryContainer,
+                                    shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          width: 2,
+                                          color: Colors.orange,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(16)),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.all(formPadding),
+                                      child: Column(
+                                        children: [
+                                          genText(theme, quiz.name,
+                                              size: 22,
+                                              weight: FontWeight.bold),
+                                          SizedBox(height: 5),
+                                          if (quiz.imageUrl ==
+                                              'assets/assets/images/quizaic_logo.png')
+                                            SizedBox(
+                                              height: 150,
+                                              child: Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  value: controller.value,
+                                                  semanticsLabel:
+                                                      'Circular progress indicator',
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                        else
-                                          Hero(
-                                              tag: quiz.id!,
-                                              child: Image.network(
-                                                  quiz.imageUrl as String,
-                                                  height: 150)),
-                                        SizedBox(height: 10),
-                                        if (appState.userData.idToken == '')
-                                          Row(
+                                            )
+                                          else
+                                            Hero(
+                                                tag: quiz.id!,
+                                                child: Image.network(
+                                                    quiz.imageUrl as String,
+                                                    height: 150)),
+                                          SizedBox(height: 10),
+                                          if (appState.userData.idToken == '')
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  TextButton(
+                                                    child: Column(
+                                                      children: [
+                                                        Icon(Icons.view_list,
+                                                            color: Colors.white,
+                                                            semanticLabel:
+                                                                'View'),
+                                                        genText(theme, 'View',
+                                                            color:
+                                                                Colors.white),
+                                                      ],
+                                                    ),
+                                                    onPressed: () {
+                                                      router(
+                                                          '/view/${quiz.id}');
+                                                    },
+                                                  ),
+                                                ])
+                                          else
+                                            Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
                                                 TextButton(
                                                   child: Column(
                                                     children: [
-                                                      Icon(Icons.view_list,
-                                                          color: Colors.white,
-                                                          semanticLabel:
-                                                              'View'),
-                                                      genText(theme, 'View',
-                                                          color: Colors.white),
+                                                      Icon(
+                                                        Icons.play_circle,
+                                                        semanticLabel: 'Host',
+                                                      ),
+                                                      genText(
+                                                        theme,
+                                                        'Host',
+                                                        size: buttonTextSize,
+                                                      ),
                                                     ],
                                                   ),
                                                   onPressed: () {
-                                                    router('/view/${quiz.id}');
+                                                    appState
+                                                        .createOrReuseSession(
+                                                            quiz.id, router);
+                                                    router('/host/${quiz.id}');
                                                   },
                                                 ),
-                                              ])
-                                        else
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              TextButton(
-                                                child: Column(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.play_circle,
-                                                      semanticLabel: 'Host',
+                                                TextButton(
+                                                    child: Column(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.edit,
+                                                          semanticLabel: 'Edit',
+                                                        ),
+                                                        genText(
+                                                          theme,
+                                                          'Edit',
+                                                          size: buttonTextSize,
+                                                        ),
+                                                      ],
                                                     ),
-                                                    genText(
-                                                      theme,
-                                                      'Host',
-                                                      size: buttonTextSize,
+                                                    onPressed: () {
+                                                      appState.selectQuizData(
+                                                          quiz.id);
+                                                      router(
+                                                          '/edit/${quiz.id}');
+                                                    }),
+                                                TextButton(
+                                                    child: Column(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.content_copy,
+                                                          semanticLabel:
+                                                              'Clone',
+                                                        ),
+                                                        genText(
+                                                          theme,
+                                                          'Clone',
+                                                          size: buttonTextSize,
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                                onPressed: () {
-                                                  appState.createOrReuseSession(
-                                                      quiz.id, router);
-                                                  router('/host/${quiz.id}');
-                                                },
-                                              ),
-                                              TextButton(
-                                                  child: Column(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.edit,
-                                                        semanticLabel: 'Edit',
-                                                      ),
-                                                      genText(
-                                                        theme,
-                                                        'Edit',
-                                                        size: buttonTextSize,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  onPressed: () {
-                                                    appState.selectQuizData(
-                                                        quiz.id);
-                                                    router('/edit/${quiz.id}');
-                                                  }),
-                                              TextButton(
-                                                  child: Column(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.content_copy,
-                                                        semanticLabel: 'Clone',
-                                                      ),
-                                                      genText(
-                                                        theme,
-                                                        'Clone',
-                                                        size: buttonTextSize,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  onPressed: () {
-                                                    appState.getQuiz(quiz.id);
-                                                    appState.selectQuizData(
-                                                        quiz.id);
-                                                    router('/clone');
-                                                  }),
-                                              TextButton(
-                                                  child: Column(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.delete,
-                                                        semanticLabel: 'Delete',
-                                                      ),
-                                                      genText(
-                                                        theme,
-                                                        'Delete',
-                                                        size: buttonTextSize,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  onPressed: () {
-                                                    appState.deleteQuiz(
-                                                        context, quiz.id);
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                      duration: Duration(
-                                                          milliseconds: 1000),
-                                                      content: genText(
-                                                        theme,
-                                                        'Deleting quiz...',
-                                                      ),
-                                                    ));
-                                                  }),
-                                            ],
-                                          ),
-                                      ],
+                                                    onPressed: () {
+                                                      appState.getQuiz(quiz.id);
+                                                      appState.selectQuizData(
+                                                          quiz.id);
+                                                      router('/clone');
+                                                    }),
+                                                TextButton(
+                                                    child: Column(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.delete,
+                                                          semanticLabel:
+                                                              'Delete',
+                                                        ),
+                                                        genText(
+                                                          theme,
+                                                          'Delete',
+                                                          size: buttonTextSize,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    onPressed: () {
+                                                      appState.deleteQuiz(
+                                                          context, quiz.id);
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                              SnackBar(
+                                                        duration: Duration(
+                                                            milliseconds: 1000),
+                                                        content: genText(
+                                                          theme,
+                                                          'Deleting quiz...',
+                                                        ),
+                                                      ));
+                                                    }),
+                                              ],
+                                            ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
                             ],
                           ),
                         ),

@@ -166,7 +166,6 @@ String? urlValidator(String? value) {
     return 'Must be a properly formatted URL';
   }
   return null;
-  ;
 }
 
 String? intValidator(String? value) {

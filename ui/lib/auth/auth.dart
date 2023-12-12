@@ -21,6 +21,8 @@ import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/const.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -34,21 +36,36 @@ class AuthPage extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          appState.userData.idToken = '';
+          appState.userData.name = '';
+          appState.userData.hashedEmail = '';
           appState.userData.photoUrl = '';
+          appState.userData.idToken = '';
           return SignInScreen(
             actions: [
               AuthStateChangeAction<SignedIn>((context, state) {
                 User? user = FirebaseAuth.instance.currentUser;
                 if (user != null) {
                   user.getIdTokenResult().then((result) {
-                    print('home page setting idToken');
+                    print('home page setting idToken, user: $user');
                     appState.userData.idToken = result.token as String;
+                    if (user.photoURL != null) {
+                      print('home page setting photoUrl');
+                      appState.userData.photoUrl = user.photoURL as String;
+                    }
+                    if (user.displayName != null) {
+                      print('home page setting displayName');
+                      appState.userData.name = user.displayName as String;
+                    }
+                    if (user.email != null) {
+                      print('home page setting email and hashedEmail');
+                      appState.userData.email = user.email as String;
+                      var data =
+                          utf8.encode('${user.email}'); // data being hashed
+                      var hashedEmail = sha256.convert(data).toString();
+                      appState.userData.hashedEmail = hashedEmail;
+                    }
                     GoRouter.of(context).go('/browse');
                   });
-                }
-                if ((user != null) && (user.photoURL != null)) {
-                  appState.userData.photoUrl = user.photoURL as String;
                 }
               }),
             ],
@@ -122,8 +139,10 @@ class AuthPage extends StatelessWidget {
                     ]),
                   ),
                   onPressed: () => {
-                    appState.userData.idToken = '',
+                    appState.userData.name = '',
+                    appState.userData.hashedEmail = '',
                     appState.userData.photoUrl = '',
+                    appState.userData.idToken = '',
                     FirebaseAuth.instance.signOut(),
                     GoRouter.of(context).go('/'),
                   },
