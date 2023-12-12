@@ -17,15 +17,20 @@ import json
 import os
 import random
 import re
-import vertexai
-from google.cloud.aiplatform.private_preview.generative_models import GenerativeModel, Image
-
 import sys
+import vertexai
+from vertexai.preview.generative_models import (
+    GenerationConfig,
+    GenerativeModel,
+    Image,
+    Part,
+)
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-PROJECT_ID = "quizaic"
+#PROJECT_ID = "quizaic"
+PROJECT_ID = "cloud-llm-preview1"
 REGION = "us-central1"
 MODEL = "gemini-ultra"
 MAX_OUTPUT_TOKENS = 1024
@@ -39,7 +44,7 @@ class Quizgen(BaseQuizgen):
         self.topics = set()
 
     def __str__(self):
-        return "gemini-ultra quiz generator"
+        return "gemini-pro quiz generator"
 
     def get_topics(self, num=None):
         return self.topics
@@ -52,17 +57,21 @@ class Quizgen(BaseQuizgen):
 
     @staticmethod
     def predict_llm(
-        model, prompt, temperature, max_output_tokens, top_p, top_k, tuned_model=""
+        model_name, prompt, temperature, max_output_tokens, top_p, top_k, tuned_model=""
     ):
-        model = GenerativeModel(model)
-        response = model.generate_content(
-            prompt, generation_config = {
+        model = GenerativeModel(model_name)
+        responses = model.generate_content(
+            prompt, stream=True, generation_config = {
                 "temperature": temperature,
                 "top_k": top_k,
                 "top_p": top_p,
             }
         )
-        return response
+        result = ""
+        for response in responses:
+            print(f"{response=}")
+            result += response.text
+        return result
 
     # Load quiz from a quiz_<topic>.json file, mainly for testing
     @staticmethod
@@ -100,8 +109,7 @@ class Quizgen(BaseQuizgen):
         prediction = self.predict_llm(
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
         )
-        prediction = prediction.candidates[0].content.parts[0].text
-        print(f"{type(prediction)=}, {prediction=}")
+        #print(f"{type(prediction)=}, {prediction=}")
         prediction = prediction.strip()
         if prediction[0:7].lower() == "```json":
             prediction = prediction[7:]
@@ -110,7 +118,7 @@ class Quizgen(BaseQuizgen):
         if prediction[-3:].lower() == "```":
             prediction = prediction[:-3]
         quiz = json.loads(prediction)
-        print(f"{quiz=}")
+        #print(f"{quiz=}")
         # Make sure the correct answer appears randomly in responses
         for i in quiz:
             random.shuffle(i["responses"])

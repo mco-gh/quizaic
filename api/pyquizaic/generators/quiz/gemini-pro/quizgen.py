@@ -17,26 +17,20 @@ import json
 import os
 import random
 import re
-import vertexai
 import sys
-import google.cloud.aiplatform
-from google.cloud.aiplatform.private_preview import generative_models
-from google.cloud.aiplatform.private_preview.generative_models import GenerativeModel, Image, Content, Part
+import vertexai
+from vertexai.preview.generative_models import (
+    GenerationConfig,
+    GenerativeModel,
+    Image,
+    Part,
+)
 
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-# Temporary workaround until official endpoints are in place
-from google.cloud import aiplatform
-
-staging = False
-staging = True  # streaming only
-endpoint_prefix = "staging" if staging else "autopush"
-endpoint = f"{endpoint_prefix}-aiplatform.sandbox.googleapis.com"
-aiplatform.constants.base.API_BASE_PATH = endpoint
-aiplatform.constants.base.PREDICTION_API_BASE_PATH = endpoint
-
-PROJECT_ID = "quizaic"
+#PROJECT_ID = "quizaic"
+PROJECT_ID = "cloud-llm-preview1"
 REGION = "us-central1"
 MODEL = "gemini-pro"
 MAX_OUTPUT_TOKENS = 1024
@@ -68,13 +62,17 @@ class Quizgen(BaseQuizgen):
         model = GenerativeModel(model_name)
         print(f"{prompt=}")
         responses = model.generate_content(
-            prompt, generation_config = {
+            prompt, stream=True, generation_config = {
                 "temperature": temperature,
                 "top_k": top_k,
                 "top_p": top_p,
-            }, stream=True
+            }
         )
-        return responses
+        result = ""
+        for response in responses:
+            print(f"{response=}")
+            result += response.text
+        return result
 
     # Load quiz from a quiz_<topic>.json file, mainly for testing
     @staticmethod
@@ -109,28 +107,23 @@ class Quizgen(BaseQuizgen):
             language=language,
             difficulty=difficulty,
         )
-        responses = self.predict_llm(
+        prediction = self.predict_llm(
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
         )
-        
-        for response in responses:
-            print(f"{type(response.text)=}, {response.text=}")
-        x = """
-            prediction = response.candidates[0].content.parts[0].text
-            prediction = prediction.strip()
-            if prediction[0:7].lower() == "```json":
-                prediction = prediction[7:]
-            elif prediction[0:8].lower() == "``` json":
-                prediction = prediction[8:]
-            if prediction[-3:].lower() == "```":
-                prediction = prediction[:-3]
-            quiz = json.loads(prediction)
-            print(f"{quiz=}")
-            # Make sure the correct answer appears randomly in responses
-            for i in quiz:
-                random.shuffle(i["responses"])
-            return quiz
-        """
+        #print(f"{type(prediction)=}, {prediction=}")
+        prediction = prediction.strip()
+        if prediction[0:7].lower() == "```json":
+            prediction = prediction[7:]
+        elif prediction[0:8].lower() == "``` json":
+            prediction = prediction[8:]
+        if prediction[-3:].lower() == "```":
+            prediction = prediction[:-3]
+        quiz = json.loads(prediction)
+        #print(f"{quiz=}")
+        # Make sure the correct answer appears randomly in responses
+        for i in quiz:
+            random.shuffle(i["responses"])
+        return quiz
 
 
 if __name__ == "__main__":
