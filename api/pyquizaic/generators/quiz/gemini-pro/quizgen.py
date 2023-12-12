@@ -70,7 +70,7 @@ class Quizgen(BaseQuizgen):
         )
         result = ""
         for response in responses:
-            print(f"{response=}")
+            #print(f"{response=}")
             result += response.text
         return result
 
