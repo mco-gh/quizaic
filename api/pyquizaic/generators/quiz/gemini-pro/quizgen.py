@@ -29,8 +29,8 @@ from vertexai.preview.generative_models import (
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-PROJECT_ID = "quizaic"
-#PROJECT_ID = "cloud-llm-preview1"
+#PROJECT_ID = "quizaic"
+PROJECT_ID = "cloud-llm-preview1"
 REGION = "us-central1"
 MODEL = "gemini-pro"
 MAX_OUTPUT_TOKENS = 1024
