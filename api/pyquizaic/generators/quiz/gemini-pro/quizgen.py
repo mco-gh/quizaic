@@ -60,7 +60,7 @@ class Quizgen(BaseQuizgen):
         model_name, prompt, temperature, max_output_tokens, top_p, top_k, tuned_model=""
     ):
         model = GenerativeModel(model_name)
-        print(f"{prompt=}")
+        #print(f"{prompt=}")
         responses = model.generate_content(
             prompt, stream=True, generation_config = {
                 "temperature": temperature,
