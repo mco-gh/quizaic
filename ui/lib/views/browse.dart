@@ -98,7 +98,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                         Switch(
                             // This bool value toggles the switch.
                             value: appState.myQuizzesOnly,
-                            activeColor: Colors.red,
+                            activeColor: theme.primaryColor,
                             onChanged: (bool value) {
                               // This is called when the user toggles the switch.
                               setState(() {
