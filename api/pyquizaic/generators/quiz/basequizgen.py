@@ -16,6 +16,8 @@ from abc import ABC, abstractmethod
 
 
 class BaseQuizgen(ABC):
+    PROJECT = "quizaic"
+    REGION = "us-central1"
     TOPIC = "random"
     NUM_QUESTIONS = 5
     NUM_ANSWERS = 4

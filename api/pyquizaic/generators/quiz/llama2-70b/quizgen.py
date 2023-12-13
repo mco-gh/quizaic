@@ -17,6 +17,7 @@ import json
 import os
 import random
 import re
+import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 from google.cloud import aiplatform
 
@@ -28,6 +29,7 @@ from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
+        vertexai.init(project=BaseQuizgen.PROJECT, location=BaseQuizgen.REGION)
         self.topics = set()
 
     def __str__(self):

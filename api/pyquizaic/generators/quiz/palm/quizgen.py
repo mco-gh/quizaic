@@ -17,6 +17,7 @@ import json
 import os
 import random
 import re
+import vertexai
 from vertexai.preview.language_models import TextGenerationModel
 
 import sys
@@ -33,7 +34,7 @@ TOP_K = 40
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
         # This doesn't seem to be needed
-        # vertexai.init(project=project_id, location=region)
+        vertexai.init(project=BaseQuizgen.PROJECT, location=BaseQuizgen.REGION)
         self.topics = set()
 
     def __str__(self):
