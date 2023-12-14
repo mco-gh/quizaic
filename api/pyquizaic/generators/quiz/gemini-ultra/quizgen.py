@@ -37,7 +37,8 @@ TOP_K = 40
 
 class Quizgen(BaseQuizgen):
     def __init__(self, config=None):
-        vertexai.init(project=BaseQuizgen.PROJECT, location=BaseQuizgen.REGION)
+        #vertexai.init(project=BaseQuizgen.PROJECT, location=BaseQuizgen.REGION)
+        vertexai.init(project="cloud-llm-preview2", location=BaseQuizgen.REGION)
         self.topics = set()
 
     def __str__(self):

@@ -32,16 +32,24 @@ import sys
 import time
 import vertexai
 from openai import OpenAI
+import vertexai
+from vertexai.preview.generative_models import (
+    GenerationConfig,
+    GenerativeModel,
+    Image,
+    Part,
+)
 from vertexai.language_models import TextGenerationModel
-from google.cloud.aiplatform.private_preview.generative_models import GenerativeModel, Image
 
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
+BATCH_SIZE = 10
 
-prompt = """
-In one (and only one) word, are the following assertions true or false?
-Provide one response per assertion.
+prompt = f"""
+
+In one (and only one) word, are the following {BATCH_SIZE} question and answer pairs are true or false?
+Provide one response for each assertion.
 
 """
 
@@ -110,48 +118,46 @@ elif evaluator == "palm":
     def predict(p):
         response = model.predict(p)
         return response.text
-elif evaluator == "gemini-pro":
-    vertexai.init(project="quizaic", location="us-central1")
-    model = GenerativeModel("gemini-pro")
+elif evaluator == "gemini-pro" or evaluator == "gemini-ultra":
+    if evaluator == "gemini-ultra":
+        vertexai.init(project="cloud-llm-preview1", location="us-central1")
+    else:
+        vertexai.init(project="quizaic", location="us-central1")
+    model = GenerativeModel(evaluator)
     def predict(p):
-        response = model.generate_content(
-            p, generation_config = {
+        responses = model.generate_content(
+            prompt, stream=True, generation_config = {
                 "temperature": temp,
                 "top_k": top_k,
                 "top_p": top_p,
             }
         )
-        return response.candidates[0].content.parts[0].text
-elif evaluator == "gemini-ultra":
-    vertexai.init(project="quizaic", location="us-central1")
-    model = GenerativeModel("gemini-ultra")
-    def predict(p):
-        response = model.generate_content(
-            p, generation_config = {
-                "temperature": temp,
-                "top_k": top_k,
-                "top_p": top_p,
-            }
-        )
-        return response.candidates[0].content.parts[0].text
+        result = ""
+        for response in responses:
+            result += response.text
+        return result
 
-BATCH_SIZE = 10
 valid_grades = []
 valid_labels = []
 errors = 0
+cnt = 0
 
 # Generate predictions.
 while assertions:
-    time.sleep(1)
+    cnt += 1
+    time.sleep(60)
     batch_assertions = assertions[:BATCH_SIZE]
     batch_labels = labels[:BATCH_SIZE]
     assertions = assertions[BATCH_SIZE:]
     labels = labels[BATCH_SIZE:]
     p = prompt + "\n".join(batch_assertions) + "\n"
     response = predict(p)
+    print(p, response)
     response = re.sub(r'\d', '', response)
     response = (
         response
+        .replace("a:", "")
+        .replace("A:", "")
         .replace(",", "")
         .replace(".", "")
         .replace(" ", "")
@@ -161,7 +167,7 @@ while assertions:
     grades = response.split()
 
     if len(grades) != len(batch_assertions):
-        print(f"bad prediction: {len(grades)=}, {grades=}")
+        print(f"{cnt}: bad prediction: {len(grades)=}, {grades=}")
         errors += 1
         continue
     for i in range(len(grades)):
@@ -171,7 +177,7 @@ while assertions:
             grades[i] = "false"
     for i in grades:
         if i != "true" and i != "false":
-            print(f"bad prediction: {p=}, {response=}, {grades=}")
+            print(f"{cnt}: bad prediction: {p=}, {response=}, {grades=}")
             errors += 1
             continue
 
