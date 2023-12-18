@@ -1,5 +1,5 @@
 
-Generate a set of multiple choice quiz questions.
+You are a trivia expert. Generate a set of multiple choice quiz questions.
 
 Category: {topic}
 Quiz difficulty level: {difficulty}
