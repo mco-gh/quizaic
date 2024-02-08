@@ -38,6 +38,8 @@ from vertexai.preview.generative_models import (
     GenerativeModel,
     Image,
     Part,
+    HarmCategory,
+    HarmBlockThreshold,
 )
 from vertexai.language_models import TextGenerationModel
 
@@ -48,8 +50,33 @@ BATCH_SIZE = 10
 
 prompt = f"""
 
-In one (and only one) word, are the following {BATCH_SIZE} question and answer pairs are true or false?
-Provide one response for each assertion.
+You are an expert fact checker. You will be provided a list of {BATCH_SIZE}
+question and answer pairs, and you will decide if each provided anwer is 
+by returning a list of the words 'true' or 'false'.
+
+INPUT:
+- Q: In which year was the Declaration of Independence signed? A: 1809
+- Q: Who was the first US President? A: George Washington
+- Q: Who wrote the Gettysburg Address? A: Thomas Jefferson
+- Q: What is the capital of France? A: Lyon
+- Q: Who invented the Theory of Relativity? A: Albert Einstein
+- Q: Who directed Jaws? A: Steven Wright
+- Q: Who wrote The Grapes of Wratch? A: John Steinbeck
+- Q: Who wrote Oliver Twist? A: William Shakespeare
+- Q: Who wrote Hamlet? A: Charles Dickens
+
+
+RESPONSE:
+false
+true
+false
+false
+true
+true
+false
+false
+false
+false
 
 """
 
@@ -119,17 +146,20 @@ elif evaluator == "palm":
         response = model.predict(p)
         return response.text
 elif evaluator == "gemini-pro" or evaluator == "gemini-ultra":
-    if evaluator == "gemini-ultra":
-        vertexai.init(project="cloud-llm-preview1", location="us-central1")
-    else:
-        vertexai.init(project="quizaic", location="us-central1")
+    vertexai.init(project="quizaic", location="us-central1")
     model = GenerativeModel(evaluator)
     def predict(p):
         responses = model.generate_content(
-            prompt, stream=True, generation_config = {
+            p, stream=True, generation_config = {
                 "temperature": temp,
                 "top_k": top_k,
                 "top_p": top_p,
+            },
+            safety_settings = {
+                HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+                HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
             }
         )
         result = ""
@@ -145,14 +175,14 @@ cnt = 0
 # Generate predictions.
 while assertions:
     cnt += 1
-    time.sleep(60)
+    time.sleep(1)
     batch_assertions = assertions[:BATCH_SIZE]
     batch_labels = labels[:BATCH_SIZE]
     assertions = assertions[BATCH_SIZE:]
     labels = labels[BATCH_SIZE:]
-    p = prompt + "\n".join(batch_assertions) + "\n"
+    p = prompt + "\nINPUT:\n" + "\n".join(batch_assertions) + "\n\nRESPONSE:\n"
     response = predict(p)
-    print(p, response)
+    print("\n--PROMPT--\n", p, "\n--RESPONSE--\n", response)
     response = re.sub(r'\d', '', response)
     response = (
         response
