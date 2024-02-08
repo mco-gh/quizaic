@@ -570,14 +570,10 @@
 - Q: Which of the following is a type of cloud? A: Hydrosphere
 - Q: Which of the following is a type of cloud? A: Cumulonimbus
 - Q: Which of the following is a type of cloud? A: Magnetosphere
-- Q: Which British band was originally known as 'Pudding Mill'?
- A: The Beatles
-- Q: Which British band was originally known as 'Pudding Mill'?
- A: Iron Maiden
-- Q: Which British band was originally known as 'Pudding Mill'?
- A: Dire Straits
-- Q: Which British band was originally known as 'Pudding Mill'?
- A: Def Leppard
+- Q: Which British band was originally known as 'Pudding Mill'? A: The Beatles
+- Q: Which British band was originally known as 'Pudding Mill'? A: Iron Maiden
+- Q: Which British band was originally known as 'Pudding Mill'? A: Dire Straits
+- Q: Which British band was originally known as 'Pudding Mill'? A: Def Leppard
 - Q: Which classical composer is known for his 'Moonlight Sonata'? A: Antonio Vivaldi
 - Q: Which classical composer is known for his 'Moonlight Sonata'? A: Joseph Haydn
 - Q: Which classical composer is known for his 'Moonlight Sonata'? A: Wolfgang Amadeus Mozart
