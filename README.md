@@ -21,8 +21,8 @@ To deploy Quizaic, you will need:
 
 The machine that you will run the setup from will need the following installed:
 * [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
-* [Python3](https://www.python.org/downloads) and [Pip](https://pip.pypa.io/en/stable/installation/)
-* [Flutter](https://flutter.dev)
+* [Python3](https://www.python.org/downloads) and [Pip](https://pip.pypa.io/en/stable/installation/), recommended version: 3.12.2
+* [Flutter](https://flutter.dev), recommended version: 3.19.3
 * [Firebase CLI](https://firebase.google.com/docs/cli#setup_update_cli)
 * [Git](https://github.com/git-guides/install-git)
 
