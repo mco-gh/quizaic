@@ -109,6 +109,17 @@ class Quizgen(BaseQuizgen):
         prediction = prediction.strip()
         prediction = re.sub('.*``` *(json)?', '', prediction)
         prediction = prediction[prediction.find('['):]
+        parsed = ""
+        level = 0
+        for i in prediction:
+            if i == "[":
+                level += 1
+            elif i == "]":
+                level -= 1
+            parsed += i
+            if level <= 0:
+                break 
+        prediction = parsed
         print("prediction=", prediction)
         quiz = json.loads(prediction)
         #print(f"{quiz=}")
