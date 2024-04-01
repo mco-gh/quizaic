@@ -17,11 +17,12 @@ import 'package:flutter/material.dart';
 
 const String appName = 'Quizaic';
 
-const apiUrl =
-    bool.hasEnvironment('API_URL') ? String.fromEnvironment('API_URL') : '';
+const apiUrl = bool.hasEnvironment('API_URL')
+    ? String.fromEnvironment('API_URL')
+    : 'http://localhost:8081';
 const redirectUri = bool.hasEnvironment('REDIRECT_URI')
     ? String.fromEnvironment('REDIRECT_URI')
-    : '';
+    : 'http://localhost:8080/callback';
 const clientId =
     bool.hasEnvironment('CLIENT_ID') ? String.fromEnvironment('CLIENT_ID') : '';
 
