@@ -251,7 +251,7 @@ google-api-core[grpc]==2.11.1 ; python_version >= "3.11" and python_version < "4
 google-auth==2.22.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:164cba9af4e6e4e40c3a4f90a1a6c12ee56f14c0b4868d1ca91b32826ab334ce \
     --hash=sha256:d61d1b40897407b574da67da1a833bdc10d5a11642566e506565d1b1a46ba873
-google-cloud-aiplatform==1.31.1 ; python_version >= "3.11" and python_version < "4.0" \
+google-cloud-aiplatform==1.46.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:360d95c4c6f6a27fc2a4a071741a66588f0f0ca245509315839cfa320d6862e2 \
     --hash=sha256:6de8d7d647990cc0ee601d938d3a1693e3ef50f3d54d735397b2e31ca8eeb946
 google-cloud-bigquery==3.11.4 ; python_version >= "3.11" and python_version < "4.0" \

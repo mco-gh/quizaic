@@ -107,15 +107,9 @@ class Quizgen(BaseQuizgen):
             MODEL, prompt, temperature, MAX_OUTPUT_TOKENS, TOP_P, TOP_K
         )
         prediction = prediction.strip()
-        if prediction[0:7].lower() == "```json":
-            prediction = prediction[7:]
-        elif prediction[0:8].lower() == "``` json":
-            prediction = prediction[8:]
-        if prediction[0:3].lower() == "```":
-            prediction = prediction[3:]
-        if prediction[-3:].lower() == "```":
-            prediction = prediction[:-3]
-        print(f"{prediction=}")
+        prediction = re.sub('.*``` *(json)?', '', prediction)
+        prediction = prediction[prediction.find('['):]
+        print("prediction=", prediction)
         quiz = json.loads(prediction)
         #print(f"{quiz=}")
         # Make sure the correct answer appears randomly in responses

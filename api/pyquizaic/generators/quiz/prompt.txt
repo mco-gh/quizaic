@@ -12,5 +12,6 @@ RULES:
 - Accuracy is critical.
 - Each question must have exactly one correct response, selected from the responses array.
 - Output should be limited to a json array of questions, each of which is an object containing quoted keys "question", "responses", and "correct".
+- Don't return anything other than the json document.
 
 OUTPUT:
