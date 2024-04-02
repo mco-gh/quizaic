@@ -23,7 +23,7 @@ from pyquizaic.generators.quiz.basequizeval import BaseQuizeval
 from pyquizaic.generators.quiz.palm.quizgen import Quizgen
 
 # Assumes there's a corresponding eval_*.py for input/output parsing and possibly eval_*.txt if a prompt template exists
-PROMPT_VERSION = "eval_4"
+PROMPT_VERSION = "eval"
 MODEL = "text-bison"
 TEMPERATURE = 0
 TOP_K = 40

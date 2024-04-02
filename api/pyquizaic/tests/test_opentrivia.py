@@ -17,17 +17,18 @@ from generators.quiz.quizgenfactory import QuizgenFactory
 from generators.quiz.basequizeval import BaseQuizeval
 
 
-def test_opentrivia_gen_quiz():
-    topic = "General Knowledge"
-    num_questions = 5
-    num_answers = 4  # opentrivia always has 4 responses
-    gen = QuizgenFactory.get_gen("opentrivia")
-    quiz = gen.gen_quiz("General Knowledge", num_questions)
-    print(json.dumps(quiz, indent=4))
-    assert quiz != None
+# Mete: I commented this out because OpenTrivia API return 429 (too many requests)
+# Instead, the next test tests both generation and evaluation of quizzes
+# def test_opentrivia_gen_quiz():
+#     num_questions = 5
+#     num_answers = 4  # opentrivia always has 4 responses
+#     gen = QuizgenFactory.get_gen("opentrivia")
+#     quiz = gen.gen_quiz("General Knowledge", num_questions)
+#     print(json.dumps(quiz, indent=4))
+#     assert quiz != None
 
 
-def test_eval_quiz_num_questions():
+def test_opentrivia_gen_and_eval_quiz_num_questions():
     topic = "General Knowledge"
     num_questions = 5
     num_answers = 4  # opentrivia always has 4 responses

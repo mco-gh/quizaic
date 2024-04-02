@@ -18,7 +18,7 @@ import pytest
 from generators.image.imagegen import ImageGen
 
 # Change to your own project for tests to pass
-PROJECT_ID = "quizrd-prod-atamel"
+PROJECT_ID = "quizaic-atamel-dev"
 BUCKET_NAME = PROJECT_ID + "-images"
 
 

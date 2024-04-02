@@ -33,7 +33,7 @@ class QuizevalHelper:
         pass
 
     def __str__(self):
-        return "eval_6"
+        return "eval"
 
     @staticmethod
     def prepare_prompt(quiz, topic):
@@ -43,7 +43,7 @@ class QuizevalHelper:
                 f"\nquestion: {item['question']} {', '.join(item['responses'])}\n"
                 + "correct: <find correct answer>\n"
             )
-        prompt += """\nReturn correct answers in JSON: 
+        prompt += """\nReturn correct answers in this format: 
         [
             <answer>,
             <answer>,

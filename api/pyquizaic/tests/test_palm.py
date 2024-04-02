@@ -14,6 +14,7 @@
 
 import copy
 import json
+import pytest
 import random
 
 from generators.quiz.quizgenfactory import QuizgenFactory
@@ -158,6 +159,7 @@ def test_eval_quiz_with_opentrivia_data():
         )
 
 
+@pytest.mark.skip(reason="OpenTrivia API returns 429 (too many requests) for multiple tests run in parallel")
 def test_eval_quiz_with_perturbed_opentrivia_data():
     gen_opentrivia = QuizgenFactory.get_gen("opentrivia")
     evaluator = Quizeval()
