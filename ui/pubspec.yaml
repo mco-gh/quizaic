@@ -36,7 +36,6 @@ dependencies:
   flutter_layout_grid: ^2.0.6
   localstorage: ^4.0.1+4
   qr_flutter: ^4.1.0
-  fl_chart: ^0.67.0
   vertical_barchart: ^2.0.0+2
   confetti: ^0.7.0
   crypto: ^3.0.3

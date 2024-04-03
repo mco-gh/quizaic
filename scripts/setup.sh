@@ -48,16 +48,16 @@ then
 fi
 
 print_header "Creating Cloud Storage bucket for sessions."
-gsutil mb gs://${SESSION_BUCKET}
+gsutil ls -b gs://${SESSION_BUCKET} >/dev/null 2>&1 || gsutil mb gs://${SESSION_BUCKET}
 gsutil acl set public-read gs://${SESSION_BUCKET}
 
 print_header "Creating Cloud Storage bucket for images with acl and cors."
-gsutil mb gs://${IMAGES_BUCKET}
+gsutil ls -b gs://${IMAGES_BUCKET} >/dev/null 2>&1 || gsutil mb gs://${IMAGES_BUCKET}
 gsutil acl set public-read gs://${IMAGES_BUCKET}
 gsutil cors set cors.json gs://${IMAGES_BUCKET}
 
 print_header "Creating Cloud Artifacts repository."
-gcloud artifacts repositories create ${APP} --location=$REGION --repository-format=docker
+gcloud artifacts repositories create ${APP} --repository-format=docker
 
 print_header "Resetting firestore database."
 cd api
@@ -71,7 +71,7 @@ print_header "Firebase app configuration."
 firebase login
 cd ui
 dart pub global activate flutterfire_cli
-$HOME/.pub-cache/bin/flutterfire configure
+#$HOME/.pub-cache/bin/flutterfire configure
 cd -
 
 print_header "Building and deploying api service."

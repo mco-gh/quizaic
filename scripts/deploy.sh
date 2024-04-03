@@ -35,7 +35,7 @@ then
         echo "Can't find url for api service"
         exit 1
     fi
-    sed <Dockerfile.app >Dockerfile "s#<API_URL>#$API_URL#g"
+    sed <Dockerfile.app >Dockerfile -e "s#<API_URL>#$API_URL#g" -e "s#<PROJECT_ID>#$PROJECT_ID#g"
     export VERSION=$(cat version)
     export TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${APP}/ui:v${VERSION}"
     gcloud builds submit . --tag=$TAG

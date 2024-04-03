@@ -1,4 +1,4 @@
-FROM us-central1-docker.pkg.dev/quizaic/quizaic/foundation
+FROM us-central1-docker.pkg.dev/<PROJECT_ID>/quizaic/foundation
 
 WORKDIR /usr/local/bin/app
 COPY . /usr/local/bin/app
