@@ -98,6 +98,21 @@ service cloud.firestore {
     f. Select the "Authorized Domains" tab.
     g. Add the domain name corresponding to your deployed ui service on Cloud Run.
 
+## Configure Firebase
+
+Run the following commands to set the appropriate firebase configuration values in the flutter code:
+
+```bash
+cd ui
+flutterfire configure
+```
+
+Select your project and the flutter platforms you'd like to support. When that finishes, redeploy your UI using the following command:
+
+```bash
+./scripts/deploy.sh ui
+```
+
 ## Verify Setup
 
 Connect to the ui URL given by the output from the previous deployment script and verify the ui looks something like this:
