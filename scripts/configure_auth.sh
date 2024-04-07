@@ -96,7 +96,7 @@ else
 fi
 echo ""
 echo "  Create a secret by clicking +CREATE SECRET and name it $(tput bold)client_id_secret$(tput sgr0)."
-echo "  If the secret already exists, open $(tput bold)client_id_secret$(tput sgr0) and click +NEW VERSION. "
+echo "  If the secret already exists, open $(tput bold)client_id_secret$(tput sgr0) and click +CREATE SECRET. "
 echo "  In the $(tput bold)Secret value$(tput sgr0) field, enter the $(tput bold)client ID$(tput sgr0) from the previous step. "
 echo "  Click $(tput bold)Add new version$(tput sgr0)."
 echo "                                                "
