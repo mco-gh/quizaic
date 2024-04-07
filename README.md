@@ -105,6 +105,7 @@ Run the following commands to set the appropriate firebase configuration values 
 ```bash
 cd ui
 flutterfire configure
+cd ..
 ```
 
 Select your project and the flutter platforms you'd like to support. When that finishes, redeploy your UI using the following command:
@@ -119,8 +120,7 @@ Connect to the ui URL given by the output from the previous deployment script an
 
 <img src="ui/assets/images/ui.png" height="300">
 
-Also, try to log in as a user to make sure OAuth is setup correctly and create &
-run quizzes to make sure everything works.
+Also, try to log in as a user to make sure OAuth is setup correctly and create and run quizzes to make sure everything works.
 
 ## Deployment
 
