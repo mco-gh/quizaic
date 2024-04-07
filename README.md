@@ -88,14 +88,14 @@ service cloud.firestore {
 }
 ```
 
-1. Configure authentication by selecting the "Authentication" tab.
+1. Configure authentication by clicking the "Authentication" card.
 
     a. Click the "Get started" button.  
-    b. Click the "Set signin method" button.  
+    b. Select the "Sign-in method" tab.
     c. Click the "Google" button under "Additional Providers".  
     d. Click the "Enable" slider and the "Save" button.  
     e. Select the "Settings" tab.  
-    f. Select the "Authorized Domains" tab.  
+    f. Select the "Authorized Domains" tab.
     g. Add the domain name corresponding to your deployed ui service on Cloud Run.
 
 ## Verify Setup
