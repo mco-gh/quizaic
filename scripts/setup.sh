@@ -77,5 +77,8 @@ cd -
 print_header "Building and deploying api service."
 ./scripts/deploy.sh api
 
+print_header "Building and deploying foundation ui service."
+./scripts/deploy.sh flutter
+
 print_header "Building and deploying ui service."
 ./scripts/deploy.sh ui
