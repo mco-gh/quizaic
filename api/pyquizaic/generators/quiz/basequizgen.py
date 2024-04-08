@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 from abc import ABC, abstractmethod
 
 
 class BaseQuizgen(ABC):
-    PROJECT = "quizaic"
-    REGION = "us-central1"
+    PROJECT = os.environ.get("PROJECT_ID", "quizaic")
+    REGION = os.environ.get("REGION", "us-central1")
     TOPIC = "random"
     NUM_QUESTIONS = 5
     NUM_ANSWERS = 4
