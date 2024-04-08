@@ -140,27 +140,17 @@ You can incrementally deploy services (instead of redeploying everything).
 
 ## Local Testing
 
-You can make changes in services and test them locally without deploying.
+You can make changes in services and test them locally without deploying to the Cloud.
 
-### API
-
-```bash
-./scripts/test.sh api
-```
-
-### UI
-
-First, you need to store your OAuth web client's id and secret (which
-can be obtained from the `APIs & Services` -> `Credentials` page on the Cloud
-console) as environment variables in `$HOME/keys.sh`, like this:
+First, you need to store your OAuth web client's id and secret (which can be obtained from the `APIs & Services` -> `Credentials` page on the Cloud Console) as environment variables in `$HOME/keys.sh`, like this:
 
 ```bash
 export CLIENT_ID=<your-client-id>
 export CLIENT_SECRET=<your-client-secret>
 ```
 
-You also need to add `http://localhost:8080/callback` under `APIs & Services` ->
-`Credentials` -> (_your previously-created OAuth 2.0 Client ID_) -> `Authorized redirect URIs`.
+You also need to add `http://localhost:8080/callback` under `APIs & Services` -> `Credentials` -> (_your-previously-created OAuth 2.0 Client ID_) -> `Authorized redirect URIs`.
+
 If you're using a remote development environment, adjust the URL accordingly as `localhost` will not work.
 
 The ui depends on the api. Make sure api is running locally first:
