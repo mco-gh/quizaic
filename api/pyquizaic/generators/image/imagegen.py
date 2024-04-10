@@ -38,7 +38,7 @@ class ImageGen:
         prompt = PROMPT_TEMPLATE.format(topic=topic)
         print(f"Generating {number_of_images} image(s) with prompt: {prompt}")
 
-        model = ImageGenerationModel.from_pretrained("imagegeneration")
+        model = ImageGenerationModel.from_pretrained("imagegeneration@006")
         images = model.generate_images(
             prompt=prompt,
             number_of_images=number_of_images,
