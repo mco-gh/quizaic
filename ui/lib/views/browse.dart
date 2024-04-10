@@ -149,7 +149,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                           if (quiz.imageUrl ==
                                               'assets/assets/images/quizaic_logo.png')
                                             SizedBox(
-                                              height: 150,
+                                              height: 100,
                                               child: Center(
                                                 child:
                                                     CircularProgressIndicator(
@@ -164,7 +164,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                                 tag: quiz.id!,
                                                 child: Image.network(
                                                     quiz.imageUrl as String,
-                                                    height: 150)),
+                                                    height: 100)),
                                           SizedBox(height: 10),
                                           if (appState.userData.idToken == '')
                                             Row(

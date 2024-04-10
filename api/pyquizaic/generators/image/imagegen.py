@@ -16,6 +16,7 @@ import os
 from io import BytesIO
 from google.cloud import storage
 from vertexai.preview.vision_models import ImageGenerationModel
+from PIL import Image
 
 PROJECT_ID = os.getenv("PROJECT_ID")
 PROMPT_TEMPLATE = "photorealistic image about {topic}"
@@ -62,6 +63,8 @@ class ImageGen:
         blob = bucket.blob(file_name)
 
         bytes_io = BytesIO()
+        size = 100, 100
+        image._pil_image.thumbnail(size, Image.Resampling.LANCZOS)
         image._pil_image.save(bytes_io, format="PNG")
         blob.upload_from_file(bytes_io, rewind=True, content_type="image/png")
 
