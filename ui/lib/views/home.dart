@@ -255,10 +255,23 @@ class HomePageScaffold extends StatelessWidget {
               appState.userData.photoUrl = user.photoURL as String;
             }
           }
+          var lg = LinearGradient(
+            colors: <Color>[
+              Color(0xff4F87ED),
+              Color(0xff9476C5),
+              Color(0xffBC688E),
+              Color(0xffD6645D),
+            ],
+            tileMode: TileMode.mirror,
+          );
           return Scaffold(
               resizeToAvoidBottomInset: false,
               //body: child,
               appBar: AppBar(
+                  flexibleSpace: Container(
+                      decoration: BoxDecoration(
+                    gradient: lg,
+                  )),
                   actions: <Widget>[
                     IconButton(
                       icon: icon,
@@ -279,7 +292,7 @@ class HomePageScaffold extends StatelessWidget {
                     )
                     */
                   ],
-                  backgroundColor: Color(0xfff68d2d),
+                  backgroundColor: theme.primaryColor,
                   centerTitle: false,
                   title: InkWell(
                     onTap: () {
@@ -288,7 +301,7 @@ class HomePageScaffold extends StatelessWidget {
                     child: Row(
                       children: [
                         Image.asset(
-                          'assets/images/quizaic_logo.png',
+                          'assets/images/quizaic.png',
                           height: 40,
                         ),
                         Row(

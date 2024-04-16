@@ -20,6 +20,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'views/home.dart';
 import 'models/state.dart';
 import 'firebase_options.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,18 +37,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme =
-        ColorScheme.fromSeed(seedColor: Color(0xfff68d2d));
+        ColorScheme.fromSeed(seedColor: Color(0xff4F87ED));
+    TextTheme textTheme = GoogleFonts.robotoTextTheme();
     return ChangeNotifierProvider(
         create: (context) => MyAppState(),
         child: MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'Quizaic',
-            routerConfig: HomePage().router,
-            theme: ThemeData(
+          debugShowCheckedModeBanner: false,
+          title: 'Quizaic',
+          routerConfig: HomePage().router,
+          theme: ThemeData(
               useMaterial3: true,
               colorScheme: colorScheme,
-              scaffoldBackgroundColor: Color.fromRGBO(
-                  243, 223, 210, 1), //colorScheme.primaryContainer),
-            )));
+              textTheme: textTheme,
+              scaffoldBackgroundColor: colorScheme.secondaryContainer),
+        ));
   }
 }

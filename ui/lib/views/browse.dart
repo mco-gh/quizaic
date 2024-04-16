@@ -133,7 +133,7 @@ class _BrowsePageState extends State<BrowsePage> with TickerProviderStateMixin {
                                     shape: RoundedRectangleBorder(
                                         side: BorderSide(
                                           width: 2,
-                                          color: Colors.orange,
+                                          color: theme.primaryColor,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(16)),
