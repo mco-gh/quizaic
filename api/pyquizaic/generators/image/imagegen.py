@@ -38,11 +38,16 @@ class ImageGen:
         prompt = PROMPT_TEMPLATE.format(topic=topic)
         print(f"Generating {number_of_images} image(s) with prompt: {prompt}")
 
-        model = ImageGenerationModel.from_pretrained("imagegeneration@006")
+        # imagegeneration@006 seems finicky about prompt content (b/335169534)
+        # so reverting to @005 until that's fixed.
+        model = ImageGenerationModel.from_pretrained("imagegeneration@005")
         images = model.generate_images(
             prompt=prompt,
             number_of_images=number_of_images,
             negative_prompt=NEGATIVE_PROMPT,
+            # @006 settings
+            #person_generation="allow_adult",
+            #safety_filter_level="block_few",
         )
         return images
 
