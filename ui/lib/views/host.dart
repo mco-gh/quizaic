@@ -434,7 +434,7 @@ class _HostPageState extends State<HostPage> {
                     SizedBox(height: verticalSpaceHeight * 2),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(width: horizontalSpaceWidth),
                           genBarChart(
