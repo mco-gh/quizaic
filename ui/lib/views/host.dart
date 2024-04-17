@@ -361,105 +361,101 @@ class _HostPageState extends State<HostPage> {
 
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Column(
-                      children: [
-                        genText(theme, 'Hosting Quiz "${quiz.name}"',
-                            size: 30, weight: FontWeight.bold),
-                        genText(theme,
-                            '($respondents of ${leaderBoard.length} players have responded so far)',
-                            size: 24),
-                        QrImageView(
-                          data: 'https://quizaic.com/play/${data["pin"]}',
-                          version: QrVersions.auto,
-                          size: 150.0,
-                        ),
-                        SizedBox(height: formRowHeight),
-                        genCard(
-                            theme,
-                            genText(theme,
-                                'Question ${curQuestion + 1}: $question')),
-                        SizedBox(height: formRowHeight),
-                        if (curQuestion >= 0)
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                for (var answer in responses)
-                                  if (appState.revealed && answer == correct)
-                                    genCard(theme, genText(theme, answer),
-                                        highlight: true)
-                                  else
-                                    genCard(theme, genText(theme, answer))
-                              ]),
-                        SizedBox(height: formRowHeight),
-                        SizedBox(
-                          width: rowWidth,
-                          child: Row(
+                  child: Column(
+                    children: [
+                      genText(theme, 'Hosting Quiz "${quiz.name}"',
+                          size: 30, weight: FontWeight.bold),
+                      genText(theme,
+                          '($respondents of ${leaderBoard.length} players have responded so far)',
+                          size: 24),
+                      QrImageView(
+                        data: 'https://quizaic.com/play/${data["pin"]}',
+                        version: QrVersions.auto,
+                        size: 150.0,
+                      ),
+                      SizedBox(height: formRowHeight / 2),
+                      genCard(
+                          theme,
+                          genText(
+                              theme, 'Question ${curQuestion + 1}: $question')),
+                      SizedBox(height: formRowHeight / 2),
+                      if (curQuestion >= 0)
+                        Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  appState.revealed = !appState.revealed;
-                                  if (appState.revealed != lastRevealed) {
-                                    if (appState.revealed) {
-                                      resultsController.expand();
-                                      if (correct != '') {
-                                        leaderBoardController.expand();
-                                      }
-                                      if (curQuestion ==
-                                          quiz.numQuestions - 1) {
-                                        if (correct != '') {
-                                          appState.setFinalists(leaderBoard);
-                                        }
-                                      }
-                                    } else {
-                                      resultsController.collapse();
-                                      if (correct != '') {
-                                        leaderBoardController.collapse();
-                                      }
-                                      appState.incQuestion(
-                                          appState.sessionData.id,
-                                          curQuestion,
-                                          quiz.numQuestions);
-                                    }
-                                  }
-                                  lastRevealed = appState.revealed;
-                                  setState(() {});
-                                },
-                                child: genText(
-                                    theme,
-                                    appState.revealed
-                                        ? 'Next Question'
-                                        : 'Show Results'),
-                              ),
-                              SizedBox(width: horizontalSpaceWidth),
-                              ElevatedButton(
-                                onPressed: () {
-                                  appState.stopQuiz();
-                                  GoRouter.of(context).go('/browse');
-                                },
-                                child: genText(theme, 'Stop Quiz'),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: verticalSpaceHeight * 2),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(width: horizontalSpaceWidth),
-                              genBarChart(
-                                  theme, resultsController, hist, responses),
-                              SizedBox(width: horizontalSpaceWidth),
-                              if (correct != '')
-                                genLeaderBoard(
-                                    theme, leaderBoardController, leaderBoard,
-                                    showScores: true),
+                              for (var answer in responses)
+                                if (appState.revealed && answer == correct)
+                                  genCard(theme, genText(theme, answer),
+                                      highlight: true)
+                                else
+                                  genCard(theme, genText(theme, answer))
                             ]),
-                      ],
-                    ),
+                      SizedBox(height: formRowHeight),
+                      SizedBox(
+                        width: rowWidth,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                appState.revealed = !appState.revealed;
+                                if (appState.revealed != lastRevealed) {
+                                  if (appState.revealed) {
+                                    resultsController.expand();
+                                    if (correct != '') {
+                                      leaderBoardController.expand();
+                                    }
+                                    if (curQuestion == quiz.numQuestions - 1) {
+                                      if (correct != '') {
+                                        appState.setFinalists(leaderBoard);
+                                      }
+                                    }
+                                  } else {
+                                    resultsController.collapse();
+                                    if (correct != '') {
+                                      leaderBoardController.collapse();
+                                    }
+                                    appState.incQuestion(
+                                        appState.sessionData.id,
+                                        curQuestion,
+                                        quiz.numQuestions);
+                                  }
+                                }
+                                lastRevealed = appState.revealed;
+                                setState(() {});
+                              },
+                              child: genText(
+                                  theme,
+                                  appState.revealed
+                                      ? 'Next Question'
+                                      : 'Show Results'),
+                            ),
+                            SizedBox(width: horizontalSpaceWidth),
+                            ElevatedButton(
+                              onPressed: () {
+                                appState.stopQuiz();
+                                GoRouter.of(context).go('/browse');
+                              },
+                              child: genText(theme, 'Stop Quiz'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: verticalSpaceHeight * 2),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(width: horizontalSpaceWidth),
+                            genBarChart(
+                                theme, resultsController, hist, responses),
+                            SizedBox(width: horizontalSpaceWidth),
+                            if (correct != '')
+                              genLeaderBoard(
+                                  theme, leaderBoardController, leaderBoard,
+                                  showScores: true),
+                          ]),
+                    ],
                   ),
                 );
               });

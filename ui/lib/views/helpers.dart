@@ -199,7 +199,7 @@ Widget genCard(theme, widget, {highlight = false}) {
     color = Colors.green;
   }
   return Padding(
-    padding: const EdgeInsets.all(formPadding),
+    padding: const EdgeInsets.all(formPadding / 2),
     child: Card(
         //shape:
         //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
