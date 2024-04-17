@@ -193,13 +193,17 @@ String? strValidator(String? value) {
   return null;
 }
 
-Widget genCard(theme, widget) {
+Widget genCard(theme, widget, {highlight = false}) {
+  var color = theme.colorScheme.primaryContainer;
+  if (highlight) {
+    color = Colors.green;
+  }
   return Padding(
     padding: const EdgeInsets.all(formPadding),
     child: Card(
         //shape:
         //RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: theme.colorScheme.primaryContainer,
+        color: color,
         child: Padding(
           padding: const EdgeInsets.all(cardPadding),
           child: widget,

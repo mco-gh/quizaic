@@ -376,7 +376,11 @@ class _HostPageState extends State<HostPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             for (var answer in responses)
-                              genCard(theme, genText(theme, answer)),
+                              if (appState.revealed && answer == correct)
+                                genCard(theme, genText(theme, answer),
+                                    highlight: true)
+                              else
+                                genCard(theme, genText(theme, answer))
                           ]),
                     SizedBox(height: formRowHeight),
                     SizedBox(
