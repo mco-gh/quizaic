@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizaic/models/state.dart';
@@ -112,7 +111,7 @@ class QuizPage extends StatelessWidget {
           return score;
         }
 
-        List<Widget> genResponses(responses, enable) {
+        SingleChildScrollView genResponses(responses, enable) {
           List<Widget> responseList = [SizedBox(height: verticalSpaceHeight)];
           for (var i = 0; i < responses.length; i++) {
             var yes = Icon(Icons.check_circle, color: Colors.green);
@@ -169,7 +168,9 @@ class QuizPage extends StatelessWidget {
               responseList.add(SizedBox(height: verticalSpaceHeight * 2));
             }
           }
-          return responseList;
+          return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Column(children: responseList));
         }
 
         print(
@@ -225,7 +226,7 @@ class QuizPage extends StatelessWidget {
             ),
           ),
         ])));
-        widgets.addAll(genResponses(responses, enable));
+        widgets.add(genResponses(responses, enable));
         if (!enable) {
           widgets.add(SizedBox(height: verticalSpaceHeight * 2));
           if (curQuestion < numQuestions - 1) {
