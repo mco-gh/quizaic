@@ -28,6 +28,7 @@ import hashlib
 import json
 import os
 import random
+import re
 import requests
 
 from main import g, request
@@ -241,8 +242,23 @@ def patch(resource_kind, id, representation):
                 url = f"{custom_gen_url}/?topic={topic}&num_q={num_questions}&num_a={num_answers}&diff={difficulty}&lang={language}"
                 print(f"{url=}")
                 response = requests.get(url)
-                quiz = json.loads(response.text)
-                print(f"custom: {quiz=}")
+                prediction = response.text.strip()
+                prediction = re.sub('.*``` *(json)?', '', prediction)
+                prediction = prediction[prediction.find('['):]
+                parsed = ""
+                level = 0
+                for i in prediction:
+                    if i == "[":
+                        level += 1
+                    elif i == "]":
+                        level -= 1
+                    parsed += i
+                    if level <= 0:
+                        break
+                prediction = parsed
+                print("prediction=", prediction)
+                quiz = json.loads(prediction)
+                print(f"custom quiz: {quiz=}")
             else:
                 gen = QuizgenFactory.get_gen(generator.lower())
                 print(

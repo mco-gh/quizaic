@@ -122,7 +122,7 @@ class Quizgen(BaseQuizgen):
         prediction = parsed
         print("prediction=", prediction)
         quiz = json.loads(prediction)
-        #print(f"{quiz=}")
+        print(f"{quiz=}")
         # Make sure the correct answer appears randomly in responses
         for i in quiz:
             random.shuffle(i["responses"])
