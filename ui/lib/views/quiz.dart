@@ -255,11 +255,8 @@ class QuizPage extends StatelessWidget {
         }
         return SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              children: widgets,
-            ),
+          child: Column(
+            children: widgets,
           ),
         );
       },
