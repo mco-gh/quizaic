@@ -39,37 +39,40 @@ class WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 5.0),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: verticalSpaceHeight * 5),
-            Image.asset(
-              "assets/images/quizaic.png",
-              fit: BoxFit.contain,
-              width: 600.0,
-              alignment: Alignment.topCenter,
-            ),
-            Text(
-              "AI Powered Infinite Trivia",
-              style: TextStyle(
-                  fontSize: 48.0,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
-                  height: 2.0),
-              textAlign: TextAlign.center,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Text(
-                '''Quizaic combines the power of generative AI and Google Cloud services to support creating and playing trivia quizzes and online surveys. Quizaic is not an official Google project. Let us know (via quizaic@google.com) if you have any problems or suggestions.''',
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: verticalSpaceHeight * 5),
+              Image.asset(
+                "assets/images/quizaic.png",
+                fit: BoxFit.contain,
+                width: 600.0,
+                alignment: Alignment.topCenter,
+              ),
+              Text(
+                "AI Powered Infinite Trivia",
                 style: TextStyle(
-                    fontSize: 32.0,
+                    fontSize: 48.0,
+                    fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.primary,
-                    //letterSpacing: 1.2,
-                    height: 1.3),
+                    height: 2.0),
                 textAlign: TextAlign.center,
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Text(
+                  '''Quizaic combines the power of generative AI and Google Cloud services to support creating and playing trivia quizzes and online surveys. Quizaic is not an official Google project. Let us know (via quizaic@google.com) if you have any problems or suggestions.''',
+                  style: TextStyle(
+                      fontSize: 32.0,
+                      color: Theme.of(context).colorScheme.primary,
+                      //letterSpacing: 1.2,
+                      height: 1.3),
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

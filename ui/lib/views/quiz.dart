@@ -252,8 +252,11 @@ class QuizPage extends StatelessWidget {
             }
           }
         }
-        return Column(
-          children: widgets,
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: widgets,
+          ),
         );
       },
     );

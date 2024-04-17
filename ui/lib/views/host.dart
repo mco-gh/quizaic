@@ -14,7 +14,6 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:quizaic/const.dart';
 import 'package:quizaic/models/state.dart';
@@ -235,65 +234,71 @@ class _HostPageState extends State<HostPage> {
                     }
                   }
 
-                  return Column(children: [
-                    SizedBox(height: verticalSpaceHeight),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Hero(
-                          tag: quiz.id as String,
-                          child: Image.network(
-                            quiz.imageUrl as String,
-                            height: logoHeight,
-                          ),
-                        ),
-                        SizedBox(width: horizontalSpaceWidth),
-                        Column(
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Column(children: [
+                        SizedBox(height: verticalSpaceHeight),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            genText(theme,
-                                'Waiting for players to join quiz "${quiz.name}"...',
-                                size: 30, weight: FontWeight.bold),
-                            Row(
+                            Hero(
+                              tag: quiz.id as String,
+                              child: Image.network(
+                                quiz.imageUrl as String,
+                                height: logoHeight,
+                              ),
+                            ),
+                            SizedBox(width: horizontalSpaceWidth),
+                            Column(
                               children: [
-                                //genText(theme,
-                                SelectableText(
-                                  'https://quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold),
+                                genText(theme,
+                                    'Waiting for players to join quiz "${quiz.name}"...',
+                                    size: 30, weight: FontWeight.bold),
+                                Row(
+                                  children: [
+                                    //genText(theme,
+                                    SelectableText(
+                                      'https://quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(width: horizontalSpaceWidth),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        appState.startQuiz(
+                                            quiz.id, quiz.numQuestions);
+                                      },
+                                      child: genText(theme, 'Start Quiz'),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(width: horizontalSpaceWidth),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    appState.startQuiz(
-                                        quiz.id, quiz.numQuestions);
-                                  },
-                                  child: genText(theme, 'Start Quiz'),
-                                ),
+                                SizedBox(height: verticalSpaceHeight),
                               ],
                             ),
-                            SizedBox(height: verticalSpaceHeight),
                           ],
                         ),
-                      ],
-                    ),
-                    SizedBox(height: verticalSpaceHeight * 2),
-                    Center(
-                      child: Row(
-                        children: [
-                          SizedBox(width: horizontalSpaceWidth * 3),
-                          genLeaderBoard(theme, null, leaderBoard,
-                              showScores: false),
-                          SizedBox(width: horizontalSpaceWidth * 3),
-                          QrImageView(
-                            data: 'https://quizaic.com/play/${data["pin"]}',
-                            version: QrVersions.auto,
-                            size: 400.0,
+                        SizedBox(height: verticalSpaceHeight * 2),
+                        Center(
+                          child: Row(
+                            children: [
+                              SizedBox(width: horizontalSpaceWidth * 3),
+                              genLeaderBoard(theme, null, leaderBoard,
+                                  showScores: false),
+                              SizedBox(width: horizontalSpaceWidth * 3),
+                              QrImageView(
+                                data: 'https://quizaic.com/play/${data["pin"]}',
+                                version: QrVersions.auto,
+                                size: 400.0,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ]),
                     ),
-                  ]);
+                  );
                 });
           }
 
