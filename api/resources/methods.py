@@ -256,13 +256,18 @@ def patch(resource_kind, id, representation):
             representation["qAndA"] = json.dumps(quiz)
 
         if regen_image:
-            print("generating a new quiz image...")
-            filename = id + ".png"
-            file_url = ImageGen.generate_and_upload_image(
-                topic, filename, IMAGES_BUCKET
-            )
-            print(f"file_url: {file_url}")
-            representation["imageUrl"] = file_url
+            try:
+                print("generating a new quiz image...")
+                filename = id + ".png"
+                file_url = ImageGen.generate_and_upload_image(
+                    topic, filename, IMAGES_BUCKET
+                )
+                print(f"file_url: {file_url}")
+                representation["imageUrl"] = file_url
+            except:
+                print(f"imagegen failed, using default image")
+                representation["imageUrl"] = "/assets/assets/images/quizaic_logo.png"
+
 
     if resource_kind == "results":
         key = next(iter(representation))
