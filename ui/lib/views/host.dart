@@ -357,13 +357,14 @@ class _HostPageState extends State<HostPage> {
                   children: [
                     genText(theme, 'Hosting Quiz "${quiz.name}"',
                         size: 30, weight: FontWeight.bold),
-                    SelectableText(
-                      'https://quizaic.com/play/${data["pin"]}  (pin ${data["pin"]})',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
                     genText(theme,
-                        '($respondents of ${leaderBoard.length} players have responded so far)'),
+                        '($respondents of ${leaderBoard.length} players have responded so far)',
+                        size: 24),
+                    QrImageView(
+                      data: 'https://quizaic.com/play/${data["pin"]}',
+                      version: QrVersions.auto,
+                      size: 150.0,
+                    ),
                     SizedBox(height: formRowHeight),
                     genCard(
                         theme,
