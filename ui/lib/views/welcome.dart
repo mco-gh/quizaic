@@ -51,7 +51,7 @@ class WelcomePageState extends State<WelcomePage> {
                 alignment: Alignment.topCenter,
               ),
               Text(
-                "AI Powered Infinite Trivia",
+                "AI Powered Infinitrivia",
                 style: TextStyle(
                     fontSize: 48.0,
                     fontWeight: FontWeight.bold,

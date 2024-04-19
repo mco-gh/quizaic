@@ -46,7 +46,7 @@ const double buttonTextSize = 12;
 const IntrinsicContentTrackSize gridRowSize = auto;
 const FixedTrackSize gridColSize = FixedTrackSize(gridColWidth * .75);
 const String appBarTitle = '';
-const String appBarTitleExtended = '$appBarTitle  AI Powered Infinite Trivia';
+const String appBarTitleExtended = '$appBarTitle  AI Powered Infinitrivia';
 
 const List<String> placeWords = ['1st', '2nd', '3rd'];
 

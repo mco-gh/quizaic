@@ -1,4 +1,4 @@
-# <img src="ui/assets/images/logo.png" height="40"> Quizaic - AI-powered Infinite Trivia
+# <img src="ui/assets/images/logo.png" height="40"> Quizaic - AI-powered Infinitrivia
 
 Quizaic is a trivia quiz app with a twist - it uses Artificial Intelligence to generate the quizzes based on user input.
 
