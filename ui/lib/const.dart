@@ -43,6 +43,7 @@ const double formColumnWidth = 375.0;
 const double formRowHeight = 52.0;
 const double gridColWidth = 375.0;
 const double buttonTextSize = 12;
+const int defaultResponseTimeout = 15;
 const IntrinsicContentTrackSize gridRowSize = auto;
 const FixedTrackSize gridColSize = FixedTrackSize(gridColWidth * .75);
 const String appBarTitle = '';

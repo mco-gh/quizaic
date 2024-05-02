@@ -364,7 +364,9 @@ class _CreatePageState extends State<CreatePage> {
                           // If the form is valid, display a snackbar.
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                duration: Duration(milliseconds: 3000),
+                                duration: Duration(
+                                    milliseconds:
+                                        defaultResponseTimeout * 1000),
                                 content: genText(theme, snack)),
                           );
                           appState.createOrUpdateQuiz(
