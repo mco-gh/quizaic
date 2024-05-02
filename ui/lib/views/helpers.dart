@@ -110,6 +110,7 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                   DropdownMenuEntry(
                     label: 'Google Pathways Language Model (PaLM)',
                     value: type,
+                    enabled: false,
                   )
                 else if (text == 'Quiz Generator' && type == 'OpenTrivia')
                   DropdownMenuEntry(
@@ -121,21 +122,7 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                   DropdownMenuEntry(
                     label: 'Jeopardy (US TV Program Archives)',
                     value: type,
-                  )
-                else if (text == 'Quiz Generator' && type == 'GPT')
-                  DropdownMenuEntry(
-                    label: 'GPT (OpenAI GPT 4)',
-                    value: type,
-                  )
-                else if (text == 'Quiz Generator' && type == 'Llama2-7b')
-                  DropdownMenuEntry(
-                    label: 'Meta Llama2 (7b)',
-                    value: type,
-                  )
-                else if (text == 'Quiz Generator' && type == 'Llama2-70b')
-                  DropdownMenuEntry(
-                    label: 'Meta Llama2 (70b)',
-                    value: type,
+                    enabled: false,
                   )
                 else if (text == 'Quiz Generator' && type == 'Gemini-Pro')
                   DropdownMenuEntry(
@@ -147,10 +134,15 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                     label: 'Gemini Ultra',
                     value: type,
                   )
-                else if (text == 'Quiz Generator')
+                else if (text == 'Quiz Generator' && type == "Custom")
                   DropdownMenuEntry(
                     label: 'Custom (provide a URL)',
                     value: 'Custom',
+                  )
+                else if (text == 'Quiz Generator' && type == "Manual")
+                  DropdownMenuEntry(
+                    label: 'Manual (enter a quiz from scratch)',
+                    value: 'Manual',
                   )
                 else
                   DropdownMenuEntry(

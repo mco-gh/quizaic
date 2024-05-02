@@ -747,7 +747,7 @@
     "collection": "generators",
     "id": "f6d00e41de6c4c7e86d1",
     "data": {
-      "name": "Manual",
+      "name": "Custom",
       "answerFormats": [
         "multiple choice",
         "free form"

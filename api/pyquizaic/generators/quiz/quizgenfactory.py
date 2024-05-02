@@ -20,14 +20,10 @@ sys.path.append("../../")  # Needed for the main method to work in this class
 
 class QuizgenFactory:
     GENERATORS = {
-        "gpt": None,
         "jeopardy": None,
         "manual": None,
         "opentrivia": None,
         "palm": None,
-        "gpt": None,
-        "llama2-7b": None,
-        "llama2-70b": None,
         "gemini-pro": None,
         "gemini-ultra": None,
     }
