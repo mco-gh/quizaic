@@ -48,14 +48,14 @@ class EditQuizData {
 
 class EditSessionData {
   bool synchronous = true;
-  int timeLimit = 30;
+  int timeLimit = defaultResponseTimeout;
   bool anonymous = true;
   bool randomizeQuestions = false;
   bool randomizeAnswers = false;
 
   reset() {
     synchronous = true;
-    timeLimit = 30;
+    timeLimit = defaultResponseTimeout;
     anonymous = true;
     randomizeQuestions = false;
     randomizeAnswers = false;
