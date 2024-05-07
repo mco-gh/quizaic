@@ -36,6 +36,11 @@ int _generatorKey = 0;
 int _answerFormatKey = 0;
 int _topicListKey = 0;
 int _questionListKey = 0;
+TextEditingController quizGeneratorController = TextEditingController();
+TextEditingController quizTopicController = TextEditingController();
+TextEditingController answerFormatController = TextEditingController();
+TextEditingController difficultyController = TextEditingController();
+TextEditingController questionListController = TextEditingController();
 
 class _CreatePageState extends State<CreatePage> {
   @override
@@ -198,8 +203,15 @@ class _CreatePageState extends State<CreatePage> {
     Widget quizNameWidget = genQuizNameWidget(
         theme, widget.readOnly, quiz, getQuizName, setQuizName);
 
-    Widget quizGeneratorWidget = genQuizGeneratorWidget(theme, widget.readOnly,
-        quiz, _generatorKey, appState, getGenerators, setGenerator);
+    Widget quizGeneratorWidget = genQuizGeneratorWidget(
+        theme,
+        widget.readOnly,
+        quiz,
+        _generatorKey,
+        appState,
+        getGenerators,
+        setGenerator,
+        quizGeneratorController);
 
     Widget quizCustomGenUrlWidget = genTextFormField(
       theme,
@@ -210,7 +222,7 @@ class _CreatePageState extends State<CreatePage> {
     );
 
     Widget quizTopicWidget = genQuizTopicWidget(theme, widget.readOnly, quiz,
-        _topicListKey, appState, getTopics, setTopic);
+        _topicListKey, appState, getTopics, setTopic, quizTopicController);
 
     Widget quizAnswerFormatWidget = genQuizAnswerFormatWidget(
         theme,
@@ -219,7 +231,8 @@ class _CreatePageState extends State<CreatePage> {
         _answerFormatKey,
         appState,
         getAnswerFormats,
-        setAnswerFormat);
+        setAnswerFormat,
+        answerFormatController);
 
     Widget quizNumQuestionsWidget = genTextFormField(
       theme,
@@ -236,7 +249,8 @@ class _CreatePageState extends State<CreatePage> {
         _formKey,
         appState,
         getDifficulties,
-        setDifficulty);
+        setDifficulty,
+        difficultyController);
 
     Widget quizLanguageWidget = genQuizLanguageWidget(
         theme, widget.readOnly, quiz, getLanguage, setLanguage);
@@ -291,7 +305,8 @@ class _CreatePageState extends State<CreatePage> {
                     formColumnWidth,
                     appState.editQuizData.topic,
                     () => ['Select generator to see topics'],
-                    setTopic)
+                    setTopic,
+                    quizTopicController)
               else
                 genTextFormField(
                     theme,
@@ -312,7 +327,8 @@ class _CreatePageState extends State<CreatePage> {
                     formColumnWidth,
                     appState.editQuizData.answerFormat,
                     () => ['Select generator to see formats'],
-                    setAnswerFormat)
+                    setAnswerFormat,
+                    answerFormatController)
               else if (getAnswerFormats().length == 1)
                 genDropdownMenu(
                     theme,
@@ -321,7 +337,8 @@ class _CreatePageState extends State<CreatePage> {
                     formColumnWidth,
                     getAnswerFormats()[0],
                     getAnswerFormats,
-                    setAnswerFormat)
+                    setAnswerFormat,
+                    answerFormatController)
               else if (getAnswerFormats().length > 1)
                 genDropdownMenu(
                     theme,
@@ -330,7 +347,8 @@ class _CreatePageState extends State<CreatePage> {
                     formColumnWidth,
                     appState.editQuizData.answerFormat,
                     getAnswerFormats,
-                    setAnswerFormat)
+                    setAnswerFormat,
+                    answerFormatController)
               else
                 genText(
                   theme,
@@ -387,8 +405,8 @@ class _CreatePageState extends State<CreatePage> {
                 SizedBox(
                   key: ValueKey(_questionListKey),
                   width: formColumnWidth,
-                  child: genQuestionList(
-                      theme, appState, getQuizContent, setQuizContent),
+                  child: genQuestionList(theme, appState, getQuizContent,
+                      setQuizContent, questionListController),
                 ),
               SizedBox(height: verticalSpaceHeight),
             ]),

@@ -88,8 +88,7 @@ Widget genTextFormField(
 }
 
 Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
-    current, getter, setter) {
-  var initialSelection = current;
+    current, getter, setter, controller) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(formPadding),
@@ -99,8 +98,8 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
         child: DropdownMenu<String>(
             textStyle: TextStyle(color: theme.primaryColor),
             key: ValueKey(key),
-            controller: TextEditingController(),
-            initialSelection: initialSelection,
+            controller: controller,
+            initialSelection: current,
             onSelected: setter,
             width: formColumnWidth,
             label: genText(theme, text),
@@ -204,7 +203,7 @@ Widget genCard(theme, widget, {highlight = false}) {
 }
 
 Widget genQuestionList(
-    ThemeData theme, appState, getQuizContent, setQuizContent) {
+    ThemeData theme, appState, getQuizContent, setQuizContent, controller) {
   List<Widget> widgets = [];
   List<Widget> subwidgets = [];
 
@@ -275,8 +274,15 @@ Widget genQuestionList(
         subwidgets.add(genTextFormField(
             theme, options[j], null, getResponse, mkSetResponse(i)));
       }
-      subwidgets.add(genDropdownMenu(theme, 'CorrectAnswer', questionKeys[i],
-          formColumnWidth, question["correct"], getResponses, setCorrect));
+      subwidgets.add(genDropdownMenu(
+          theme,
+          'CorrectAnswer',
+          questionKeys[i],
+          formColumnWidth,
+          question["correct"],
+          getResponses,
+          setCorrect,
+          controller));
     } else {
       subwidgets.add(genText(theme, 'Answer: ${question["correct"]}'));
     }
@@ -325,41 +331,55 @@ Widget genQuizNameWidget(theme, readOnly, quiz, getQuizName, setQuizName) {
   return widget;
 }
 
-Widget genQuizGeneratorWidget(
-    theme, readOnly, quiz, key, appState, getGenerators, setGenerator) {
+Widget genQuizGeneratorWidget(theme, readOnly, quiz, key, appState,
+    getGenerators, setGenerator, controller) {
   Widget widget;
 
   if (readOnly && quiz != null) {
     widget = genLabelValue(theme, 'Quiz Generator:', quiz.generator);
   } else {
-    widget = genDropdownMenu(theme, 'Quiz Generator', key, formColumnWidth,
-        appState.editQuizData.generator, getGenerators, setGenerator);
+    widget = genDropdownMenu(
+        theme,
+        'Quiz Generator',
+        key,
+        formColumnWidth,
+        appState.editQuizData.generator,
+        getGenerators,
+        setGenerator,
+        controller);
   }
   return widget;
 }
 
 Widget genQuizTopicWidget(
-    theme, readOnly, quiz, key, appState, getTopics, setTopic) {
+    theme, readOnly, quiz, key, appState, getTopics, setTopic, controller) {
   Widget widget;
 
   if (readOnly && quiz != null) {
     widget = genLabelValue(theme, 'Quiz Topic:', quiz.topic);
   } else {
     widget = genDropdownMenu(theme, 'Quiz Topic', key, formColumnWidth,
-        appState.editQuizData.topic, getTopics, setTopic);
+        appState.editQuizData.topic, getTopics, setTopic, controller);
   }
   return widget;
 }
 
-Widget genQuizAnswerFormatWidget(
-    theme, readOnly, quiz, key, appState, getAnswerFormats, setAnswerFormat) {
+Widget genQuizAnswerFormatWidget(theme, readOnly, quiz, key, appState,
+    getAnswerFormats, setAnswerFormat, controller) {
   Widget widget;
 
   if (readOnly && quiz != null) {
     widget = genLabelValue(theme, 'Answer Format:', quiz.answerFormat);
   } else {
-    widget = genDropdownMenu(theme, 'Answer Format', key, formColumnWidth,
-        appState.editQuizData.answerFormat, getAnswerFormats, setAnswerFormat);
+    widget = genDropdownMenu(
+        theme,
+        'Answer Format',
+        key,
+        formColumnWidth,
+        appState.editQuizData.answerFormat,
+        getAnswerFormats,
+        setAnswerFormat,
+        controller);
   }
   return widget;
 }
@@ -377,16 +397,23 @@ Widget genQuizNumQuestionsWidget(
   return widget;
 }
 
-Widget genQuizDifficultyWidget(
-    theme, readOnly, quiz, key, appState, getDifficulties, setDifficulty) {
+Widget genQuizDifficultyWidget(theme, readOnly, quiz, key, appState,
+    getDifficulties, setDifficulty, controller) {
   Widget widget;
 
   if (readOnly && quiz != null) {
     widget =
         genLabelValue(theme, 'Difficulty:', 'intermediate'); //quiz.difficulty);
   } else {
-    widget = genDropdownMenu(theme, 'Difficulty', key, formColumnWidth,
-        appState.editQuizData.difficulty, getDifficulties, setDifficulty);
+    widget = genDropdownMenu(
+        theme,
+        'Difficulty',
+        key,
+        formColumnWidth,
+        appState.editQuizData.difficulty,
+        getDifficulties,
+        setDifficulty,
+        controller);
   }
   return widget;
 }

@@ -40,6 +40,10 @@ class _HostPageState extends State<HostPage> {
   final ExpansionTileController leaderBoardController =
       ExpansionTileController();
   bool lastRevealed = false;
+  TextEditingController synchController = TextEditingController();
+  TextEditingController anonymousController = TextEditingController();
+  TextEditingController randomizeQuestionsController = TextEditingController();
+  TextEditingController randomizeAnswersController = TextEditingController();
 
   @override
   void initState() {
@@ -143,7 +147,8 @@ class _HostPageState extends State<HostPage> {
                               ? 'Synchronous'
                               : 'Asynchronous',
                           () => synchronousOrAsynchronous,
-                          setHostSynch),
+                          setHostSynch,
+                          synchController),
                       SizedBox(height: verticalSpaceHeight),
 
                       // Time Limit
@@ -165,7 +170,8 @@ class _HostPageState extends State<HostPage> {
                               ? 'Anonymous'
                               : 'Authenticated',
                           () => anonymousOrAuthenticated,
-                          setHostAnonymous),
+                          setHostAnonymous,
+                          anonymousController),
                       SizedBox(height: verticalSpaceHeight),
 
                       // Randomize Questions
@@ -178,7 +184,8 @@ class _HostPageState extends State<HostPage> {
                               ? 'Yes'
                               : 'No',
                           () => yesOrNo,
-                          setHostRandomizeQuestions),
+                          setHostRandomizeQuestions,
+                          randomizeQuestionsController),
                       SizedBox(height: verticalSpaceHeight),
 
                       // Randomize Answers
@@ -189,7 +196,8 @@ class _HostPageState extends State<HostPage> {
                           formColumnWidth,
                           appState.sessionData.randomizeAnswers ? 'Yes' : 'No',
                           () => yesOrNo,
-                          setHostRandomizeAnswers),
+                          setHostRandomizeAnswers,
+                          randomizeAnswersController),
                       SizedBox(height: verticalSpaceHeight),
 
                       // Submit button
