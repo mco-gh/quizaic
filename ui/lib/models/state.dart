@@ -441,8 +441,10 @@ class MyAppState extends ChangeNotifier {
         resetSession(quizId);
         print('Reusing idle session ${sessionData.id} for new quiz $quizId.');
       } else if (sessionData.quizId != quizId) {
-        errorDialog(
-            'Quiz already in progress, terminating it so you can host a new quiz.');
+        // If a quiz is already in progress on this session, reset it.
+        // Skip the dialog, it's not adding much value and often gets in the way.
+        //errorDialog(
+        //'Quiz already in progress, terminating it so you can host a new quiz.');
         stopQuiz();
         resetSession(quizId);
       } else {
