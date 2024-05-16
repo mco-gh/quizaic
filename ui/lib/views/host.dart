@@ -161,6 +161,7 @@ class _HostPageState extends State<HostPage> {
                       SizedBox(height: verticalSpaceHeight),
 
                       // Anonymous or Authenticated
+                      /*
                       genDropdownMenu(
                           theme,
                           'Anonymous or Authenticated',
@@ -173,8 +174,10 @@ class _HostPageState extends State<HostPage> {
                           setHostAnonymous,
                           anonymousController),
                       SizedBox(height: verticalSpaceHeight),
+                      */
 
                       // Randomize Questions
+                      /*
                       genDropdownMenu(
                           theme,
                           'Randomize Questions',
@@ -187,8 +190,10 @@ class _HostPageState extends State<HostPage> {
                           setHostRandomizeQuestions,
                           randomizeQuestionsController),
                       SizedBox(height: verticalSpaceHeight),
+                      */
 
                       // Randomize Answers
+                      /*
                       genDropdownMenu(
                           theme,
                           'Randomize Answers',
@@ -199,6 +204,7 @@ class _HostPageState extends State<HostPage> {
                           setHostRandomizeAnswers,
                           randomizeAnswersController),
                       SizedBox(height: verticalSpaceHeight),
+                      */
 
                       // Submit button
                       Padding(
