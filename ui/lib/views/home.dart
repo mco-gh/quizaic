@@ -27,6 +27,7 @@ import 'package:quizaic/const.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/views/quiz.dart';
 import 'package:quizaic/views/welcome.dart';
+import 'package:quizaic/views/about.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
@@ -83,6 +84,11 @@ class HomePage extends StatefulWidget {
               path: '/',
               pageBuilder: (context, state) =>
                   genCustomTransitionPage(state, WelcomePage()),
+            ),
+            GoRoute(
+              path: '/about',
+              pageBuilder: (context, state) =>
+                  genCustomTransitionPage(state, AboutPage()),
             ),
             GoRoute(
               path: '/browse',
@@ -337,6 +343,10 @@ class HomePageScaffold extends StatelessWidget {
                             onTap: (int idx) => _onItemSelected(idx, context),
                             items: [
                               BottomNavigationBarItem(
+                                icon: Icon(Icons.home),
+                                label: 'Home',
+                              ),
+                              BottomNavigationBarItem(
                                 icon: Icon(Icons.grid_view),
                                 label: 'Browse',
                               ),
@@ -347,6 +357,10 @@ class HomePageScaffold extends StatelessWidget {
                               BottomNavigationBarItem(
                                 icon: Icon(Icons.sports_esports),
                                 label: 'Play',
+                              ),
+                              BottomNavigationBarItem(
+                                icon: Icon(Icons.description),
+                                label: 'About',
                               ),
                             ],
                           ),
@@ -363,6 +377,10 @@ class HomePageScaffold extends StatelessWidget {
                             extended: constraints.maxWidth >= 600,
                             destinations: [
                               NavigationRailDestination(
+                                icon: Icon(Icons.home),
+                                label: genText(theme, 'Home'),
+                              ),
+                              NavigationRailDestination(
                                 icon: Icon(Icons.grid_view),
                                 label: genText(theme, 'Browse'),
                               ),
@@ -373,6 +391,10 @@ class HomePageScaffold extends StatelessWidget {
                               NavigationRailDestination(
                                 icon: Icon(Icons.sports_esports),
                                 label: genText(theme, 'Play'),
+                              ),
+                              NavigationRailDestination(
+                                icon: Icon(Icons.description),
+                                label: genText(theme, 'About'),
                               ),
                             ],
                             //selectedIndex: appState.selectedIndex,
@@ -401,14 +423,20 @@ class HomePageScaffold extends StatelessWidget {
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
-    if (location.startsWith('/browse')) {
+    if (location.startsWith('/home')) {
       return 0;
     }
-    if (location.startsWith('/create')) {
+    if (location.startsWith('/browse')) {
       return 1;
     }
-    if (location.startsWith('/play')) {
+    if (location.startsWith('/create')) {
       return 2;
+    }
+    if (location.startsWith('/play')) {
+      return 3;
+    }
+    if (location.startsWith('/about')) {
+      return 4;
     }
     return 0;
   }
@@ -416,13 +444,19 @@ class HomePageScaffold extends StatelessWidget {
   void _onItemSelected(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go('/browse');
+        GoRouter.of(context).go('/');
         break;
       case 1:
-        GoRouter.of(context).go('/create');
+        GoRouter.of(context).go('/browse');
         break;
       case 2:
+        GoRouter.of(context).go('/create');
+        break;
+      case 3:
         GoRouter.of(context).go('/play');
+        break;
+      case 4:
+        GoRouter.of(context).go('/about');
         break;
     }
   }
