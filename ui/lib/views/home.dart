@@ -339,6 +339,8 @@ class HomePageScaffold extends StatelessWidget {
                         )),
                         SafeArea(
                           child: BottomNavigationBar(
+                            selectedItemColor: Colors.black,
+                            unselectedItemColor: Colors.blue,
                             currentIndex: _calculateSelectedIndex(context),
                             onTap: (int idx) => _onItemSelected(idx, context),
                             items: [
