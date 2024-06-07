@@ -151,6 +151,7 @@ class MyAppState extends ChangeNotifier {
   Stream<DocumentSnapshot<Map<String, dynamic>>>? sessionStream;
   Stream<DocumentSnapshot<Map<String, dynamic>>>? playerSessionStream;
   Stream<DocumentSnapshot<Map<String, dynamic>>>? resultsStream;
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? playerResultsStream;
 
   MyAppState() {
     print("apiUrl: $apiUrl");
@@ -258,6 +259,33 @@ class MyAppState extends ChangeNotifier {
     }
   }
 
+  Future<bool> incPlayerQuestion(sessionId, curQuestion, numQuestions) async {
+    print('incPlayerQuestion($sessionId, $curQuestion, $numQuestions)');
+    if (curQuestion >= numQuestions - 1) {
+      errorDialog('Reached end of quiz, stop quiz to proceed.');
+      return true;
+    }
+    curQuestion++;
+    var body = '''{
+          "players.${playerData.playerName}.curQuestion": $curQuestion
+    }''';
+    final response = await http.patch(
+        Uri.parse('$apiUrl/results/${playerData.sessionId}'),
+        body: body,
+        headers: {
+          'Authorization': 'Bearer ${userData.idToken}',
+          'Content-Type': 'application/json',
+        });
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("Player question incremented.");
+    } else {
+      errorDialog('Failed to increment player question.');
+    }
+    notifyListeners();
+    return true;
+  }
+
   Future<bool> incQuestion(sessionId, curQuestion, numQuestions) async {
     print('incQuestion($sessionId, $curQuestion, $numQuestions)');
     if (curQuestion >= numQuestions - 1) {
@@ -266,8 +294,8 @@ class MyAppState extends ChangeNotifier {
     }
     curQuestion++;
     String body = '{"curQuestion": $curQuestion}';
-    final response = await http
-        .patch(Uri.parse('$apiUrl/sessions/$sessionId'), body: body, headers: {
+    var url = '$apiUrl/sessions/$sessionId';
+    final response = await http.patch(Uri.parse(url), body: body, headers: {
       'Authorization': 'Bearer ${userData.idToken}',
       'Content-Type': 'application/json',
     });
@@ -332,6 +360,8 @@ class MyAppState extends ChangeNotifier {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       print('Reusable session ${sessionData.id} reset.');
+      sessionData.synchronous = editSessionData.synchronous;
+      sessionData.timeLimit = editSessionData.timeLimit;
     } else {
       errorDialog('Failed to reset reusable session ${sessionData.id}');
     }
@@ -466,6 +496,7 @@ class MyAppState extends ChangeNotifier {
     // start a quiz by setting curQuestion to 0
     await resetResults(quizId);
     await incQuestion(sessionData.id, -1, numQuestions);
+
     revealed = false;
     notifyListeners();
     return true;
@@ -602,8 +633,10 @@ class MyAppState extends ChangeNotifier {
 
     String key = 'players.$playerName';
     var body = '''{
-      "$key.score": 0, "$key.results": {},
-      "$key.score": 0, "$key.answers": {}
+      "$key.score": 0,
+      "$key.curQuestion": 0,
+      "$key.answers": {},
+      "$key.results": {}
     }''';
     print('name: $playerName, body: $body');
     final response = await http.patch(
@@ -617,11 +650,21 @@ class MyAppState extends ChangeNotifier {
       playerData.playerName = playerName;
       playerData.registered = true;
       storage.setItem(playerData.pin, playerData.playerName);
+      // Setup this players's results stream
+      playerResultsStream = FirebaseFirestore.instance
+          .collection('results')
+          .doc(playerData.sessionId)
+          .snapshots();
+
       print("Player ${playerData.playerName} registered, routing to quiz page");
       if (router != null) {
         router('/quiz');
       }
     } else if (response.statusCode == 409 && allowRereg) {
+      playerResultsStream = FirebaseFirestore.instance
+          .collection('results')
+          .doc(playerData.sessionId)
+          .snapshots();
       print(
           'Player $playerName already registered for this quiz but rereg allowed.');
       playerData.registered = true;
@@ -644,7 +687,6 @@ class MyAppState extends ChangeNotifier {
           "players.${playerData.playerName}.results.$curQuestion": $score,
           "players.${playerData.playerName}.answers.$curQuestion": $answer
         }''';
-    print('body: $body');
     final response = await http.patch(
         Uri.parse('$apiUrl/results/${playerData.sessionId}'),
         body: body,
@@ -703,11 +745,12 @@ class MyAppState extends ChangeNotifier {
           'pin $pin led to session ${playerData.sessionId}, quiz ${playerData.quiz}',
         );
 
-        // Start listening on this session for updates from host.
+        // Setup stream for this player's session updates from host.
         playerSessionStream = FirebaseFirestore.instance
             .collection('sessions')
             .doc(playerData.sessionId)
             .snapshots();
+
         sessionFound = true;
         notifyListeners();
       },

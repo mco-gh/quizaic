@@ -61,7 +61,7 @@ class _HostPageState extends State<HostPage> {
 
     void setHostSynch(value) {
       return setState(() {
-        print('value: $value');
+        print('setHostSynch value: $value');
         appState.editSessionData.synchronous = (value == 'Synchronous');
       });
     }
@@ -76,23 +76,29 @@ class _HostPageState extends State<HostPage> {
       });
     }
 
+    /*
     void setHostAnonymous(value) {
       return setState(() {
         appState.editSessionData.anonymous = (value == "Anonymous");
       });
     }
+    */
 
+    /*
     void setHostRandomizeQuestions(value) {
       return setState(() {
         appState.editSessionData.randomizeQuestions = (value == "Yes");
       });
     }
+    */
 
+    /*
     void setHostRandomizeAnswers(value) {
       return setState(() {
         appState.editSessionData.randomizeAnswers = (value == "Yes");
       });
     }
+    */
 
     if (quiz == null) {
       return Center(
@@ -253,7 +259,8 @@ class _HostPageState extends State<HostPage> {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Column(children: [
-                        SizedBox(height: verticalSpaceHeight),
+                        if (appState.sessionData.synchronous)
+                          SizedBox(height: verticalSpaceHeight),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -387,64 +394,72 @@ class _HostPageState extends State<HostPage> {
                         version: QrVersions.auto,
                         size: 150.0,
                       ),
-                      SizedBox(height: formRowHeight / 2),
-                      genCard(
-                          theme,
-                          genText(
-                              theme, 'Question ${curQuestion + 1}: $question')),
-                      SizedBox(height: formRowHeight / 2),
-                      if (curQuestion >= 0)
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              for (var answer in responses)
-                                if (appState.revealed && answer == correct)
-                                  genCard(theme, genText(theme, answer),
-                                      highlight: true)
-                                else
-                                  genCard(theme, genText(theme, answer))
-                            ]),
+                      if (appState.sessionData.synchronous)
+                        SizedBox(height: formRowHeight / 2),
+                      if (appState.sessionData.synchronous)
+                        genCard(
+                            theme,
+                            genText(theme,
+                                'Question ${curQuestion + 1}: $question')),
+                      if (appState.sessionData.synchronous)
+                        SizedBox(height: formRowHeight / 2),
+                      if (appState.sessionData.synchronous)
+                        if (curQuestion >= 0)
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                for (var answer in responses)
+                                  if (appState.revealed && answer == correct)
+                                    genCard(theme, genText(theme, answer),
+                                        highlight: true)
+                                  else
+                                    genCard(theme, genText(theme, answer))
+                              ]),
                       SizedBox(height: formRowHeight),
                       SizedBox(
                         width: rowWidth,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                appState.revealed = !appState.revealed;
-                                if (appState.revealed != lastRevealed) {
-                                  if (appState.revealed) {
-                                    resultsController.expand();
-                                    if (correct != '') {
-                                      leaderBoardController.expand();
-                                    }
-                                    if (curQuestion == quiz.numQuestions - 1) {
+                            if (appState.sessionData.synchronous)
+                              ElevatedButton(
+                                onPressed: () {
+                                  appState.revealed = !appState.revealed;
+                                  if (appState.revealed != lastRevealed) {
+                                    if (appState.revealed) {
+                                      resultsController.expand();
                                       if (correct != '') {
-                                        appState.setFinalists(leaderBoard);
+                                        leaderBoardController.expand();
                                       }
-                                    }
-                                  } else {
-                                    resultsController.collapse();
-                                    if (correct != '') {
-                                      leaderBoardController.collapse();
-                                    }
-                                    appState.incQuestion(
+                                      if (curQuestion ==
+                                          quiz.numQuestions - 1) {
+                                        if (correct != '') {
+                                          appState.setFinalists(leaderBoard);
+                                        }
+                                      }
+                                    } else {
+                                      resultsController.collapse();
+                                      if (correct != '') {
+                                        leaderBoardController.collapse();
+                                      }
+                                      appState.incQuestion(
                                         appState.sessionData.id,
                                         curQuestion,
-                                        quiz.numQuestions);
+                                        quiz.numQuestions,
+                                      );
+                                    }
                                   }
-                                }
-                                lastRevealed = appState.revealed;
-                                setState(() {});
-                              },
-                              child: genText(
-                                  theme,
-                                  appState.revealed
-                                      ? 'Next Question'
-                                      : 'Show Results'),
-                            ),
-                            SizedBox(width: horizontalSpaceWidth),
+                                  lastRevealed = appState.revealed;
+                                  setState(() {});
+                                },
+                                child: genText(
+                                    theme,
+                                    appState.revealed
+                                        ? 'Next Question'
+                                        : 'Show Results'),
+                              ),
+                            if (appState.sessionData.synchronous)
+                              SizedBox(width: horizontalSpaceWidth),
                             ElevatedButton(
                               onPressed: () {
                                 appState.stopQuiz();
@@ -460,10 +475,13 @@ class _HostPageState extends State<HostPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(width: horizontalSpaceWidth),
-                            genBarChart(
-                                theme, resultsController, hist, responses),
-                            SizedBox(width: horizontalSpaceWidth),
+                            if (appState.sessionData.synchronous)
+                              SizedBox(width: horizontalSpaceWidth),
+                            if (appState.sessionData.synchronous)
+                              genBarChart(
+                                  theme, resultsController, hist, responses),
+                            if (appState.sessionData.synchronous)
+                              SizedBox(width: horizontalSpaceWidth),
                             if (correct != '')
                               genLeaderBoard(
                                   theme, leaderBoardController, leaderBoard,
