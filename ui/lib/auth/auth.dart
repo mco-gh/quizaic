@@ -22,6 +22,7 @@ import 'package:quizaic/models/state.dart';
 import 'package:quizaic/views/helpers.dart';
 import 'package:quizaic/const.dart';
 import 'package:crypto/crypto.dart';
+import 'package:url_launcher/link.dart';
 import 'dart:convert';
 
 anonymousAuth(context, appState) async {
@@ -110,11 +111,35 @@ class AuthPage extends StatelessWidget {
               );
             },
             footerBuilder: (context, action) {
-              return const Padding(
+              return Padding(
                 padding: EdgeInsets.only(top: 16),
-                child: Text(
-                  'By signing in, you agree to our privacy policy.',
-                  style: TextStyle(color: Colors.grey),
+                child: Row(
+                  children: [
+                    Text(
+                      'By signing in, you agree to our ',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Link(
+                      target: LinkTarget.blank,
+                      uri: Uri.parse('/about'),
+                      builder: (context, followLink) => MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: followLink,
+                          child: Text(
+                            'privacy policy',
+                            style: TextStyle(
+                                color: Colors.grey,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '.',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 ),
               );
             },
