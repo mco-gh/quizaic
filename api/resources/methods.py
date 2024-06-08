@@ -178,6 +178,8 @@ def insert(resource_kind, representation):
     if resource_kind not in resource_fields:
         return "Not found", 404
 
+    print(f"{g.verified_email=}")
+
     if not auth.allowed("POST", resource_kind, representation):
         return "Forbidden", 403
 

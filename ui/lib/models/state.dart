@@ -563,7 +563,7 @@ class MyAppState extends ChangeNotifier {
       error = 'Failed to update quiz.';
       method = http.patch;
     }
-
+    print('idToken: ${userData.idToken}');
     print('tmpQuiz: ${jsonEncode(tmpQuiz)}');
     var response =
         await method(Uri.parse(url), body: jsonEncode(tmpQuiz), headers: {

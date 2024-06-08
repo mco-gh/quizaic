@@ -24,6 +24,17 @@ import 'package:quizaic/const.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
+anonymousAuth(context, appState) async {
+  final userCredential = await FirebaseAuth.instance.signInAnonymously();
+  User? user = userCredential.user;
+  if (user != null) {
+    user.getIdTokenResult().then((result) {
+      appState.userData.idToken = result.token as String;
+      GoRouter.of(context).go('/browse');
+    });
+  }
+}
+
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -31,6 +42,8 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var theme = Theme.of(context);
+
+    //anonymousAuth(context, appState);
 
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
@@ -74,7 +87,7 @@ class AuthPage extends StatelessWidget {
               GoogleProvider(
                 clientId: clientId,
                 scopes: ['email', 'profile'],
-              )
+              ),
             ],
             headerBuilder: (context, constraints, shrinkOffset) {
               return Padding(
@@ -100,7 +113,7 @@ class AuthPage extends StatelessWidget {
               return const Padding(
                 padding: EdgeInsets.only(top: 16),
                 child: Text(
-                  'By signing in, you agree to our terms and conditions.',
+                  'By signing in, you agree to our privacy policy.',
                   style: TextStyle(color: Colors.grey),
                 ),
               );

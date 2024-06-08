@@ -50,21 +50,72 @@ class AboutPageState extends State<AboutPage> {
                 width: 600.0,
                 alignment: Alignment.topCenter,
               ),
-              Text(
-                "About Quizaic",
-                style: TextStyle(
-                    fontSize: 48.0,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                    height: 2.0),
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 10.0, 90.0, 0.0),
+                child: Text(
+                  "About Quizaic",
+                  style: TextStyle(
+                      fontSize: 36.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                      height: 2.0),
+                  textAlign: TextAlign.center,
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: const EdgeInsets.fromLTRB(90.0, 0.0, 90.0, 5.0),
                 child: Text(
-                  '''Quizaic is a demonstration app to illustrate what's possible with the combination of Google Cloud services, Flutter, and Generative AI. Quizaic is not an official Google product. Quizaic only requires logging in to create or a host a quiz. Quiz players may participate in quizzes anonymously. No personally identifiable information (PII) is stored anywhere by Quizaic.''',
+                  '''Quizaic leverages the power of generative AI to create and play unlimited trivia quizzes and online surveys. Quizaic is a demonstration app to illustrate what's possible with the combination of Google Cloud services, Flutter, and Vertex AI. Quizaic is not an official Google product and should not be used for commercial purposes.''',
                   style: TextStyle(
-                      fontSize: 32.0,
+                      fontSize: 20.0,
+                      color: Theme.of(context).colorScheme.primary,
+                      //letterSpacing: 1.2,
+                      height: 1.3),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 10.0, 90.0, 0.0),
+                child: Text(
+                  "Privacy Policy",
+                  style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                      height: 2.0),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 0.0, 90.0, 0.0),
+                child: Text(
+                  '''Quizaic quizzes can be played anonymously, without logging in. Creating or hosting a quiz requires logging in with a Google account. When logging into Quizaic, Google will share your name, email address, language preference, and profile picture with the app developer. This information is used solely to identify returning users, to manage quiz ownership, and to provide feedback on your identity while logged in.''',
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      color: Theme.of(context).colorScheme.primary,
+                      //letterSpacing: 1.2,
+                      height: 1.3),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 10.0, 90.0, 0.0),
+                child: Text(
+                  "Feedback",
+                  style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                      height: 2.0),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 0.0, 90.0, 0.0),
+                child: Text(
+                  '''Let us know by email to quizaic@google.com if you have any problems using Quizaic or suggestions about ways to improve it.''',
+                  style: TextStyle(
+                      fontSize: 20.0,
                       color: Theme.of(context).colorScheme.primary,
                       //letterSpacing: 1.2,
                       height: 1.3),
