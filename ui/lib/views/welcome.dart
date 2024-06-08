@@ -60,11 +60,11 @@ class WelcomePageState extends State<WelcomePage> {
                 textAlign: TextAlign.center,
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(90.0, 20.0, 90.0, 20.0),
+                padding: const EdgeInsets.fromLTRB(90.0, 10.0, 90.0, 0.0),
                 child: Text(
                   '''Quizaic leverages the power of generative AI to create and play unlimited trivia quizzes and online surveys. Quizaic is a demonstration app to illustrate what's possible with the combination of Google Cloud services, Flutter, and Vertex AI. Quizaic is not an official Google product and should not be used for commercial purposes.''',
                   style: TextStyle(
-                      fontSize: 32.0,
+                      fontSize: 26.0,
                       color: Theme.of(context).colorScheme.primary,
                       //letterSpacing: 1.2,
                       height: 1.3),

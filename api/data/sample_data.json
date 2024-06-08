@@ -17,6 +17,14 @@
   },
   {
     "collection": "admins",
+    "id": "eeea1c4f94294ff59dcc",
+    "data": {
+      "name": "Marc Cohen",
+      "email": "marc@mco.dev"
+    }
+  },
+  {
+    "collection": "admins",
     "id": "1dd769f312ec4d0b8701",
     "data": {
       "name": "Mete Atamel",
@@ -465,7 +473,7 @@
     "collection": "sessions",
     "id": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
     "data": {
-      "curQuestion": -1,
+      "curQuestion": -2,
       "hostId": "b97e0a460b2e49342e597d89200abd784f30ad36ceafe20b056033186ee1521b",
       "quizId": "",
       "synchronous": true,
@@ -512,17 +520,66 @@
   },
   {
     "collection": "sessions",
+    "id": "7916d1c1f3b07b992d46220c75378cdb27abdbb6058edd9558c62a8cdfa4ae85",
+    "data": {
+      "curQuestion": -2,
+      "hostId": "7916d1c1f3b07b992d46220c75378cdb27abdbb6058edd9558c62a8cdfa4ae85",
+      "quizId": "",
+      "synchronous": true,
+      "anonymous": true,
+      "timeLimit": 30,
+      "randomizeAnswers": true,
+      "randomizeQuestions": true,
+      "pin": "123"
+    }
+  },
+  {
+    "collection": "sessions",
     "id": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
     "data": {
-      "curQuestion": 0,
+      "curQuestion": -2,
       "hostId": "c3e3cae7e717c781c86c5e743e66cc3b2e62af47d9799ed0d79992926d972031",
-      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "quizId": "",
       "synchronous": true,
       "anonymous": true,
       "timeLimit": 30,
       "randomizeAnswers": true,
       "randomizeQuestions": true,
       "pin": "489"
+    }
+  },
+  {
+    "collection": "results",
+    "id": "7916d1c1f3b07b992d46220c75378cdb27abdbb6058edd9558c62a8cdfa4ae85",
+    "data": {
+      "hostId": "7916d1c1f3b07b992d46220c75378cdb27abdbb6058edd9558c62a8cdfa4ae85",
+      "quizId": "Gc34g8db0wCrroLUxJeA",
+      "players": {
+        "Marc": {
+          "score": 0
+        },
+        "Dina": {
+          "score": 1
+        },
+        "Gosia": {
+          "score": 2
+        },
+        "Kimba": {
+          "score": 3
+        },
+        "Maya": {
+          "score": 0
+        },
+        "Benji": {
+          "score": 1
+        },
+        "Maple": {
+          "score": 1
+        },
+        "Darrow": {
+          "score": 0
+        }
+      }
     }
   },
   {
