@@ -256,13 +256,15 @@ class QuizPage extends StatelessWidget {
               widgets.add(genResponses(responses, enable));
               if (!data['synchronous']) {
                 widgets.add(SizedBox(height: verticalSpaceHeight * 4));
-                widgets.add(
-                  ElevatedButton(
-                    onPressed: () => appState.incPlayerQuestion(
-                        data['id'], curQuestion, numQuestions),
-                    child: genText(theme, 'Next Question'),
-                  ),
-                );
+                if (curQuestion < numQuestions - 1) {
+                  widgets.add(
+                    ElevatedButton(
+                      onPressed: () => appState.incPlayerQuestion(
+                          data['id'], curQuestion, numQuestions),
+                      child: genText(theme, 'Next Question'),
+                    ),
+                  );
+                }
               }
               if (!enable) {
                 widgets.add(SizedBox(height: verticalSpaceHeight * 2));

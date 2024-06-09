@@ -421,7 +421,9 @@ class _HostPageState extends State<HostPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            if (appState.sessionData.synchronous)
+                            if (appState.sessionData.synchronous &&
+                                ((curQuestion < quiz.numQuestions - 1) ||
+                                    !appState.revealed))
                               ElevatedButton(
                                 onPressed: () {
                                   appState.revealed = !appState.revealed;
@@ -454,7 +456,9 @@ class _HostPageState extends State<HostPage> {
                                 },
                                 child: genText(
                                     theme,
-                                    appState.revealed
+                                    appState.revealed &&
+                                            (curQuestion <
+                                                quiz.numQuestions - 1)
                                         ? 'Next Question'
                                         : 'Show Results'),
                               ),
