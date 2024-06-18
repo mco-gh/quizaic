@@ -145,7 +145,7 @@ elif evaluator == "palm":
     def predict(p):
         response = model.predict(p)
         return response.text
-elif evaluator == "gemini-pro" or evaluator == "gemini-ultra":
+elif evaluator == "gemini-pro" or evaluator == "gemini-ultra" or evaluator == "gemini-flash":
     vertexai.init(project="quizaic", location="us-central1")
     model = GenerativeModel(evaluator)
     def predict(p):
