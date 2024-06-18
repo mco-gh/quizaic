@@ -65,7 +65,31 @@ class AboutPageState extends State<AboutPage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(90.0, 0.0, 90.0, 5.0),
                 child: Text(
-                  '''Quizaic leverages the power of generative AI to create and play unlimited trivia quizzes and online surveys. Quizaic is a demonstration app to illustrate what's possible with the combination of Google Cloud services, Flutter, and Vertex AI. Quizaic is not an official Google product and should not be used for commercial purposes.''',
+                  '''Quizaic leverages the power of generative AI to create and play unlimited trivia quizzes and online surveys. Quizaic is a demonstration app to illustrate what's possible with the combination of Google Cloud services, Flutter, and Vertex AI.''',
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      color: Theme.of(context).colorScheme.primary,
+                      //letterSpacing: 1.2,
+                      height: 1.3),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 10.0, 90.0, 0.0),
+                child: Text(
+                  "Disclaimer",
+                  style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                      height: 2.0),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(90.0, 0.0, 90.0, 5.0),
+                child: Text(
+                  '''Quizaic is not an official Google product and should not be used for commercial purposes. Generative AI results can be unreliable. While we've made every attempt to make Quizaic quizzes as accurate as possible, they may contain errors.''',
                   style: TextStyle(
                       fontSize: 20.0,
                       color: Theme.of(context).colorScheme.primary,
@@ -121,6 +145,9 @@ class AboutPageState extends State<AboutPage> {
                       height: 1.3),
                   textAlign: TextAlign.center,
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
               )
             ],
           ),
