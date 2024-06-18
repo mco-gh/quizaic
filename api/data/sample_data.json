@@ -156,7 +156,7 @@
       "public": true,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Who Wrote It?",
-      "generator": "Palm",
+      "generator": "Gemini Pro",
       "customGenUrl": "",
       "answerFormat": "multiple choice",
       "topic": "French Literature",
@@ -316,7 +316,7 @@
       "public": false,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Cat Trivia by حسین رضایی",
-      "generator": "Palm",
+      "generator": "Gemini-Ultra",
       "customGenUrl": "",
       "answerFormat": "free form",
       "topic": "Pets",
@@ -356,7 +356,7 @@
       "public": true,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Pop Music",
-      "generator": "Palm",
+      "generator": "Gemini-Ultra",
       "customGenUrl": "",
       "answerFormat": "multiple choice",
       "topic": "Pop Music",
@@ -618,9 +618,9 @@
   },
   {
     "collection": "generators",
-    "id": "57d62f566516411e98eb",
+    "id": "37d92f5b65a6441e97eb",
     "data": {
-      "name": "Palm",
+      "name": "Gemini-Pro",
       "answerFormats": [
         "multiple choice",
         "free form"
@@ -630,9 +630,9 @@
   },
   {
     "collection": "generators",
-    "id": "37d92f5b65a6441e97eb",
+    "id": "37e92f6b65a6341f97eb",
     "data": {
-      "name": "Gemini-Pro",
+      "name": "Gemini-Flash",
       "answerFormats": [
         "multiple choice",
         "free form"

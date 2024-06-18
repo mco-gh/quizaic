@@ -23,8 +23,8 @@ class QuizgenFactory:
         "jeopardy": None,
         "manual": None,
         "opentrivia": None,
-        "palm": None,
         "gemini-pro": None,
+        "gemini-flash": None,
         "gemini-ultra": None,
     }
 

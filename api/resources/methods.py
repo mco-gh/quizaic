@@ -119,7 +119,7 @@ def list(resource_kind):
         email = g.get("verified_email", None)
         if not auth.user_is_admin(email):
             # remove GPT and Jeopardy from generator list if user is not an admin
-            restricted = ("Llama2-70b", "GPT", "Jeopardy")
+            restricted = ()
             results = [gen for gen in results if gen["name"] not in restricted]
 
     return json.dumps(results), 200, {"Content-Type": "application/json"}
@@ -245,8 +245,8 @@ def patch(resource_kind, id, representation):
                 print(f"{url=}")
                 response = requests.get(url)
                 prediction = response.text.strip()
-                prediction = re.sub('.*``` *(json)?', '', prediction)
-                prediction = prediction[prediction.find('['):]
+                prediction = re.sub(".*``` *(json)?", "", prediction)
+                prediction = prediction[prediction.find("[") :]
                 parsed = ""
                 level = 0
                 for i in prediction:
@@ -289,8 +289,9 @@ def patch(resource_kind, id, representation):
                     representation["imageUrl"] = file_url
                 except:
                     print(f"imagegen failed, using default image")
-                    representation["imageUrl"] = "/assets/assets/images/quizaic_logo.png"
-
+                    representation["imageUrl"] = (
+                        "/assets/assets/images/quizaic_logo.png"
+                    )
 
     if resource_kind == "results":
         key = next(iter(representation))

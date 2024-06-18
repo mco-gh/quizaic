@@ -145,7 +145,7 @@ elif evaluator == "palm":
     def predict(p):
         response = model.predict(p)
         return response.text
-elif evaluator == "gemini-pro" or evaluator == "gemini-ultra" or evaluator == "gemini-flash":
+else:
     vertexai.init(project="quizaic", location="us-central1")
     model = GenerativeModel(evaluator)
     def predict(p):
@@ -196,6 +196,11 @@ while assertions:
     )
     grades = response.split()
 
+    while len(grades) > 0 and grades[0] != "true" and grades[0] != "false":
+        grades = grades[1:]
+    for i in range(len(grades)):
+        grades[i].replace("* **true**", "true")
+        grades[i].replace("* **false**", "false")
     if len(grades) != len(batch_assertions):
         print(f"{cnt}: bad prediction: {len(grades)=}, {grades=}")
         errors += 1

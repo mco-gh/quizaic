@@ -105,13 +105,7 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
             label: genText(theme, text),
             dropdownMenuEntries: [
               for (var type in getter())
-                if (text == 'Quiz Generator' && type == 'Palm')
-                  DropdownMenuEntry(
-                    label: 'Google Pathways Language Model (PaLM)',
-                    value: type,
-                    enabled: false,
-                  )
-                else if (text == 'Quiz Generator' && type == 'OpenTrivia')
+                if (text == 'Quiz Generator' && type == 'OpenTrivia')
                   DropdownMenuEntry(
                     label:
                         'OpenTrivia (Open Source Trivia Question Repository)',
@@ -121,11 +115,15 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                   DropdownMenuEntry(
                     label: 'Jeopardy (US TV Program Archives)',
                     value: type,
-                    enabled: false,
                   )
                 else if (text == 'Quiz Generator' && type == 'Gemini-Pro')
                   DropdownMenuEntry(
                     label: 'Gemini Pro',
+                    value: type,
+                  )
+                else if (text == 'Quiz Generator' && type == 'Gemini-Flash')
+                  DropdownMenuEntry(
+                    label: 'Gemini Flash',
                     value: type,
                   )
                 else if (text == 'Quiz Generator' && type == 'Gemini-Ultra')
@@ -338,15 +336,12 @@ Widget genQuizGeneratorWidget(theme, readOnly, quiz, key, appState,
   if (readOnly && quiz != null) {
     widget = genLabelValue(theme, 'Quiz Generator:', quiz.generator);
   } else {
-    widget = genDropdownMenu(
-        theme,
-        'Quiz Generator',
-        key,
-        formColumnWidth,
-        appState.editQuizData.generator,
-        getGenerators,
-        setGenerator,
-        controller);
+    var defaultGenerator = 'Gemini-Ultra';
+    if (appState.editQuizData.generator != '') {
+      defaultGenerator = appState.editQuizData.generator;
+    }
+    widget = genDropdownMenu(theme, 'Quiz Generator', key, formColumnWidth,
+        defaultGenerator, getGenerators, setGenerator, controller);
   }
   return widget;
 }
