@@ -29,7 +29,7 @@ from vertexai.preview.generative_models import (
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-MODEL = "gemini-1.5-pro-001"
+MODEL = "gemini-1.5-flash-001"
 MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40
