@@ -336,12 +336,19 @@ Widget genQuizGeneratorWidget(theme, readOnly, quiz, key, appState,
   if (readOnly && quiz != null) {
     widget = genLabelValue(theme, 'Quiz Generator:', quiz.generator);
   } else {
-    var defaultGenerator = 'Gemini-Ultra';
-    if (appState.editQuizData.generator != '') {
-      defaultGenerator = appState.editQuizData.generator;
+    if (appState.editQuizData.generator == '') {
+      print('setting default generator');
+      setGenerator('Gemini-Ultra');
     }
-    widget = genDropdownMenu(theme, 'Quiz Generator', key, formColumnWidth,
-        defaultGenerator, getGenerators, setGenerator, controller);
+    widget = genDropdownMenu(
+        theme,
+        'Quiz Generator',
+        key,
+        formColumnWidth,
+        appState.editQuizData.generator,
+        getGenerators,
+        setGenerator,
+        controller);
   }
   return widget;
 }
