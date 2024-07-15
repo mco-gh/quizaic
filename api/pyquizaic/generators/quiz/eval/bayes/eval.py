@@ -46,6 +46,12 @@ from vertexai.language_models import TextGenerationModel
 sys.path.append("../../../../../")
 from pyquizaic.generators.quiz.quizgenfactory import QuizgenFactory
 
+model_versions = {
+    "gemini-flash": "gemini-1.5-flash-001",
+    "gemini-pro":   "gemini-1.5-pro-001",
+    "gemini-ultra": "gemini-1.0-ultra-001",
+}
+
 BATCH_SIZE = 10
 
 prompt = f"""
@@ -146,6 +152,10 @@ elif evaluator == "palm":
         response = model.predict(p)
         return response.text
 else:
+    if evaluator not in model_versions:
+        print(f"unsupported evaluator model {evaluator}")
+        exit(1)
+    evaluator = model_versions[evaluator]
     vertexai.init(project="quizaic", location="us-central1")
     model = GenerativeModel(evaluator)
     def predict(p):
