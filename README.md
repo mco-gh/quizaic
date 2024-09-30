@@ -167,6 +167,7 @@ You should be able to test the ui locally now:
 
 ---
 
-Quizaic is not an official Google project. You need to login to your Google
-account to create quizzes and your email hash will be stored to identify the
-quizzes you own.
+Quizaic is not an official Google product. You need to login to your Google
+account to create quizzes and your email hash will be stored and used to
+identify the quizzes you own (no marketing emails). The email hash will be
+deleted once the quiz is deleted.
