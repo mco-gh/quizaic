@@ -25,7 +25,6 @@ class QuizgenFactory:
         "opentrivia": None,
         "gemini-pro": None,
         "gemini-flash": None,
-        "gemini-ultra": None,
     }
 
     @staticmethod

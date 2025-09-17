@@ -126,11 +126,6 @@ Widget genDropdownMenu(ThemeData theme, String text, key, formColumnWidth,
                     label: 'Gemini Flash',
                     value: type,
                   )
-                else if (text == 'Quiz Generator' && type == 'Gemini-Ultra')
-                  DropdownMenuEntry(
-                    label: 'Gemini Ultra',
-                    value: type,
-                  )
                 else if (text == 'Quiz Generator' && type == "Custom")
                   DropdownMenuEntry(
                     label: 'Custom (provide a URL)',
@@ -338,7 +333,7 @@ Widget genQuizGeneratorWidget(theme, readOnly, quiz, key, appState,
   } else {
     if (appState.editQuizData.generator == '') {
       print('setting default generator');
-      setGenerator('Gemini-Ultra');
+      setGenerator('Gemini-Pro');
     }
     widget = genDropdownMenu(
         theme,

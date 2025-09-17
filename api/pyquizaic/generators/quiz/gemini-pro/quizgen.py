@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ from vertexai.preview.generative_models import (
 sys.path.append("../../../../")  # Needed for the main method to work in this class
 from pyquizaic.generators.quiz.basequizgen import BaseQuizgen
 
-MODEL = "gemini-1.5-pro-001"
+MODEL = "gemini-2.5-pro"
 MAX_OUTPUT_TOKENS = 1024
 TOP_P = 0.8
 TOP_K = 40

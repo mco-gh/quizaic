@@ -316,7 +316,7 @@
       "public": false,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Cat Trivia by حسین رضایی",
-      "generator": "Gemini-Ultra",
+      "generator": "Gemini-Pro",
       "customGenUrl": "",
       "answerFormat": "free form",
       "topic": "Pets",
@@ -356,7 +356,7 @@
       "public": true,
       "creator": "2d41792b01229b25f7b18013b23ec987d9091c13582d0807fbe95cfb740b6f9d",
       "name": "Pop Music",
-      "generator": "Gemini-Ultra",
+      "generator": "Gemini-Pro",
       "customGenUrl": "",
       "answerFormat": "multiple choice",
       "topic": "Pop Music",
@@ -644,7 +644,7 @@
     "collection": "generators",
     "id": "38d93f5b75ab441e67eb",
     "data": {
-      "name": "Gemini-Ultra",
+      "name": "Gemini-Pro",
       "answerFormats": [
         "multiple choice",
         "free form"
